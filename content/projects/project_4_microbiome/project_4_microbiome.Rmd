@@ -1,0 +1,346 @@
+A Microbiome Profile of a Family
+================================
+
+.. contents::
+   :local:
+
+
+Advances in high-throughput sequencing technology has enabled the
+characterization of the composition of microbial communities at unprecedented
+levels. The non-human organisms that live on and in us, collectively referred
+to as our microbiome, have been shown to play a vital role in human health and
+disease. Better understanding the composition and diversity of the ‘normal’
+human microbiome, and how diet, environment, kinship, and cohabitation affect
+these properties is of utmost interest in the medical community. Schloss et al
+performed microbiome 16S profiling using 454 sequencing technology in all 8
+members of a family by sequencing the ribosomal RNA (rRNA) found in stool
+samples collected over the course of a month. Profiling the gut microbiome of
+these related individuals with a wide age range and comparing to a community
+microbiome profile showed that members within the same family are likely to be
+more similar to each other than to unrelated individuals. In this project,
+students will download and process a subset of the raw data from this study and
+reproduce the finding that the microbial diversity varies across the family
+members.
+
+The `mothur`_ software package is a program that implements a large number of
+tools useful for analyzing microbiomic data and is available as a module on
+SCC. The analysis in this project follows a (rather long) tutorial written by
+the author here. If a step is confusing in this description, check that page
+for another explanation of what needs to be done and why.
+
+.. note::
+  Roles have not been specified in this project. Work with your team to
+  divide up the tasks and describe how you did this in the Methods section of
+  your report.
+
+Upon completion of this project, students will be able to do the following:
+
+* Download and extract sequencing reads from publicly available 454 microbiome
+  sequencing samples
+* Perform preliminary processing of the raw sequencing data using the mothur
+  software package
+* Analyze preprocessed sequences from individuals in the study and compute
+  diversity statistics for the samples
+* Visualize the results of the analysis and produce figures similar to those in
+  the published study
+
+.. _mothur: https://www.mothur.org/wiki/Main_Page
+
+1. Read the paper & supplemental methods
+----------------------------------------
+
+Schloss et al. “The dynamics of a family’s gut microbiota reveal variations on a
+theme.” Microbiome. 2014; 2: 25 `PMID: PMC4109379
+<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4109379/>`_
+
+2. Data acquisition & transfer to SCC
+-------------------------------------
+
+The data from this study is made available on a `web site`_ indicated at the end
+of the methods of the paper. Because the data is somewhat large, we will only
+download one of the samples for processing. Download ``sff`` and ``oligos``
+files for the Family 16S rRNA gene data part 3 to one of your own directories.
+You might consider creating a folder in your project space so avoid space
+issues. The sff file is the raw data from the 454 sequencer, and the oligos
+file contains a mapping between barcodes and samples. The sff file is in a
+binary format and cannot be viewed directly in the terminal, but the oligos
+file is a tab delimited file that can be printed to the screen.
+
+.. _web site: https://www.mothur.org/FamilyStudy/
+
+3. Initial processing with the mothur software package
+------------------------------------------------------
+
+The initial processing step involves extracting sequences from the sff file,
+splitting the reads into the correct sample group based on barcode, removing
+barcodes and primer sequences introduced during the sequence prep protocol, and
+filtering reads based on quality. All of the commands you write in this step
+should be ultimately added to a script file that you pass to mothur as its only
+argument to run in batch mode, but you may test out the commands interactively
+first. When you have determined the correct commands, be sure to submit the
+mothur command as a batch job using a qsub script as we have done in previous
+projects.
+
+.. note::
+  many commands in mothur automatically create files that will be used in
+  subsequent steps, so get comfortable reading the documentation in the `manual`_
+  to understand what filenames to expect. You may also find the
+  `command reference`_ useful.
+
+  Note that some commands have different arguments in the documentation than
+  are described in this document. This is because we are using an older
+  version of mothur - use the parameter names in this description when they
+  differ from that in the manual.
+
+.. _manual: https://www.mothur.org/wiki/Mothur_manual
+.. _command reference: https://www.mothur.org/wiki/Category:Commands
+
+1. Load the mothur module on SCC and confirm you can run the program by
+   running the command ``mothur`` on the command line.
+2. Use the `sffinfo`_ command to extract the flows (i.e. sequences) from the
+   sff file. You may use something like:
+
+      sffinfo(sff=<filename>.sff,oligos=<filename>.oligos,flows=T)
+
+   This command should create a file named ``<filename>.fasta``. Take a look at
+   this fasta file to see what it looks like.
+3. Use the `summary.seqs`_ command to print out sequence statistics by passing
+   the fasta file just created using the ``fasta=<filename>.fasta`` argument.
+   Report the statistics returned by the function in your writeup.
+4. Use the `trim.flows`_ command to map flows to their samples using the
+   information in the oligos file. Specify ``flows=<filename>.flow``,
+   ``oligos=<filename>.oligos``, ``pdiffs=2``, and ``bdiffs=1`` as arguments.
+5. Use the ``shhh.flows`` command to calibrate the flows and produce fasta files
+   for each sample, as well as a combined fasta file of all samples. Specify
+   ``file=<filename>.flow.files`` and ``lookup=LookUp_GSFLX.pat`` as arguments.
+   This step may take a while, so plan accordingly.
+6. Use the `trim.seqs`_ command to map the fasta sequences to samples using the
+   barcode, remove barcode and adapter sequences, eliminate sequences with
+   homopolymers longer than 8 or total length less than 200, and reverse the
+   strand of the sequences. We flip the strand because, due to the sequencing
+   prep protocol, the rRNA is reversed from its original form when sequenced.
+   Read the documentation for the `trim.seqs`_ function on the wiki to
+   determine the correction arguments for this command. Hint: you need to
+   specify ``fasta=``, ``name=``, ``oligos=``, ``pdiffs=``, ``bdiffs=``,
+   ``maxhomop=``, ``minlength=``, and ``flip=`` arguments.
+7. Use the `summary.seqs`_ command again on the output of the `trim.seqs`_
+   command.  Report the sequence statistics after filtering and trimming in
+   your writeup.
+
+**Deliverables:**
+
+* A summary table of sequence statistics from the `summary.seqs`_ command prior
+  to and after filtering
+
+.. _summary.seqs: https://www.mothur.org/wiki/Summary.seqs
+.. _trim.seqs: https://www.mothur.org/wiki/Trim.seqs
+.. _trim.flows: https://www.mothur.org/wiki/Trim.flows
+.. _sffinfo: https://www.mothur.org/wiki/Sffinfo
+
+
+4. Aligning and filtering individual samples
+--------------------------------------------
+
+Each individual was sampled around 20 times over the course of the study and
+these samples were sequenced in different 454 sequencing runs. It is somewhat
+complicated to extract and recombine all the appropriate samples from across
+sequencing runs for each individual so this has been done for you. Files for
+the 8 samples are found in
+``/project/bf528/project_4_metagenomics/data/samples``. They are named either
+as <age><gender>, e.g. 0M means a male infant and 10F means 10 year old female,
+or as M/F indicating adult mother or father. The reference for aligning the
+samples is in
+``/project/bf528/project_4_metagenomics/data/ref/silva.nr_v119.align``.
+
+1. mothur automatically creates new files in the directory where the files
+   it processes exist, which in this case does not have sufficient
+   permissions for you to write. Instead, create a directory in your own
+   space and create a subdirectory for every individual in the project
+   directory. Within those directories, create symbolic links to all of the
+   original sample files. For example, to link all of the files in 0M, you
+   may run something like the following:
+
+       ln -s /project/bf528/project_4_metagenomics/data/samples/0M/* my_samples/0M/
+
+   This will create symbolic links in ``my_samples/0M/`` that point to samples
+   in the original directory. When you write your mothur scripts in this step,
+   refer to the symlink files you created in this step.
+
+   The groups files indicate which sequence belongs to which sample, and the
+   names files have information about which sequences are duplicates, each
+   generated from a previous step. We will use these files throughout the
+   analysis.
+2. Process the fasta files so that they contain only unique sequences using the
+   `unique.seqs`_ command with the ``fasta=`` and ``name=`` arguments. This saves on
+   computation time later.
+3. Align the unique fasta sequences using the `align.seqs`_ function, with
+   ``template=`` to the path above.
+4. Filter the alignments with `screen.seqs`_ so that they all start within 95%
+   of each other and end before the position of the reference that corresponds
+   to the end of the 16S sequence. In addition to the ``fasta=``, ``name=``,
+   and ``group=``, arguments, also specify ``end=27659``, ``optimize=start``,
+   and ``criteria=95``. This step will create files named like
+   ``*.good.align``, ``*.good.names``, and ``*.good.groups`` that you will use
+   in subsequent steps.
+5. Filter out positions in the new screened alignments that are all empty
+   (indicated by ``.``) with the `filter.seqs`_ command. In addition to the
+   ``fasta=`` argument, provide ``vertical=T`` and ``trump=.``.
+6. Find unique aligned sequences using the `unique.seqs`_ command. Provide the
+   ``fasta=`` and ``name=`` arguments.
+7. Use the `pre.cluster`_ command to merge aligned sequences together that have
+   two or fewer misaligned bases. Provide ``fasta=``, ``name=``, ``group=``,
+   and ``diffs=2`` arguments. This will create two files named like
+   ``*.precluster.fasta`` and ``*.precluster.names`` that will be used in
+   downstream analysis.
+8. The sample 0M has been analyzed for you already. Repeat these steps for the
+   remaining individuals.
+
+.. _align.seqs: https://www.mothur.org/wiki/Align.seqs
+.. _screen.seqs: https://www.mothur.org/wiki/Screen.seqs
+.. _unique.seqs: https://www.mothur.org/wiki/Unique.seqs
+.. _filter.seqs: https://www.mothur.org/wiki/Filter.seqs
+.. _pre.cluster: https://www.mothur.org/wiki/Pre.cluster
+
+5. QA and clean aligned sequences
+---------------------------------
+
+There are a number of steps we can take to remove sequences from our dataset
+that we are not interested in. Chimeric genomes, in which part of the genome
+originates with one species and another part originates with a different
+species, and non-bacterial genomes are often not considered in current
+microbiome studies. We therefore attempt to detect and remove these sequences
+from the dataset.
+
+Preclustered files for the 0M sample have been provided for you in
+``/project/bf528/project_4_metagenomics/data/samples/0M/``:
+
+* ``0M.unique.good.filter.unique.precluster.fasta``
+* ``0M.unique.good.filter.unique.precluster.names``
+* ``0M.good.groups``
+
+1. Detect chimeras with the `chimera.uchime`_ command. Provide ``fasta=``,
+   ``name=``, and ``group=`` arguments from the output of the Part 4. This
+   command creates a file with an accnos extension needed in the next step.
+2. Remove chimeric sequences identified in the previous step using the
+   `remove.seqs`_ function, providing the ``accnos=``, ``fasta=``, ``name=``,
+   ``group=``, and ``dups=T`` arguments.
+3. Use the `classify.seqs`_ command to identify any sequences that map to
+   non-bacterial genomes. In addition to ``fasta=``, ``name=``, and ``group=``
+   arguments, provide:
+
+      template=/project/bf528/project_4_metagenomics/data/ref/trainset10_082014.pds.fasta
+      taxonomy=/project/bf528/project_4_metagenomics/data/ref/trainset10_082014.pds.tax
+      cutoff=80
+
+   This step creates a file with a taxonomy extension we will need in the next
+   step.
+4. Remove sequences identified as non-bacterial with the `remove.lineage`_
+   command. In addition to ``fasta=``, ``name=``, and ``group=`` arguments,
+   provide:
+
+      taxonomy=<taxonomy file from previous step>
+      taxon=Mitochondria-Chloroplast-Archaea-Eukaryota-unknown
+
+5. This is all the filtering we are going to perform. By now our filenames are
+   quite long, and it would be convenient to rename them to be shorter. For
+   example, your fully filtered fasta file might be named
+   ``0M.unique.good.filter.unique.precluster.pick.pick.fasta``  which we could
+   rename to ``0M_final.fasta``. Make a copy of your most recent fasta, names,
+   groups, and taxonomy files renamed in this way and use these files for
+   subsequent steps.
+6. The sample 0M has been analyzed for you already. Repeat these steps for the
+   remaining individuals.
+
+.. _chimera.uchime: https://www.mothur.org/wiki/Chimera.uchime
+.. _remove.seqs: https://www.mothur.org/wiki/Remove.seqs
+.. _classify.seqs: https://www.mothur.org/wiki/Classify.seqs
+.. _remove.lineage: https://www.mothur.org/wiki/Remove.lineage
+
+6. Sequence and OTU analysis
+----------------------------
+
+Now that we have our final sequences aligned to reference species, we are
+interested in organizing our results into operational taxonomic units (OTUs)
+that help us better understand the high-level, functional composition of the
+microbial community.
+
+Preclustered files for the 0M sample have been provided for you in
+``/project/bf528/project_4_metagenomics/data/samples/0M/``:
+
+* ``0M_final.fasta``
+* ``0M_final.names``
+* ``0M_final.taxonomy``
+* ``0M.good.groups``
+
+1. Cluster the sequences into OTUs using the `cluster.split`_ command, providing
+   ``fasta=``, ``taxonomy=``, and ``name=`` arguments from the previous part and
+   ``taxlevel=3``. This creates a list extension file we will use in the next
+   step.
+2. Create a file that indicates how many OTUs are shared between samples using
+   the `make.shared`_ command, providing ``list=``, ``group=``, and
+   ``label=0.03`` arguments.
+3. The authors report that they sub-sampled their sequences to recalculate OTUs
+   so as to ensure as even an error rate as possible between samples. Subsample
+   using the `sub.sample`_ command providing
+   ``shared=<shared file from previous step>`` and ``size=1827``.
+4. Using the `classify.otu`_ command, generate a consensus taxonomy by providing
+   ``list=``, ``name=``, ``taxonomy=``, and ``label=0.03`` arguments. This
+   command creates files like ``*.an.0.03.cons.taxonomy`` which contains
+   taxonomic sequence abundance data we will use in our visualization.
+5. The authors report the inverse Simpson diversity index in Figure 1A, which
+   we would like to replicate. Use the `collect.single`_ command with the
+   ``shared=`` argument from step 2 above and ``calc=invsimpson`` and
+   ``freq=100``. This command creates a ``.invsimpson`` extension file for each
+   sample that we will use in our visualization.
+6. Repeat these steps for each individual.
+
+.. _cluster.split: https://www.mothur.org/wiki/Cluster.split
+.. _make.shared: https://www.mothur.org/wiki/Make.shared
+.. _sub.sample: https://www.mothur.org/wiki/Sub.sample
+.. _classify.otu: https://www.mothur.org/wiki/Classify.otu
+.. _collect.single: https://www.mothur.org/wiki/Collect.single
+
+7. Visualizing Microbial Diversity and Relative Abundance
+---------------------------------------------------------
+
+Figure 1A presents the inverse Simpson index for all samples within each
+individual and shows clear distinction between the microbial diversity of
+family members. We are going to reproduce this plot as a boxplot instead of a
+scatter. Though the authors did not include this result in the paper, we are
+also going to create stacked bar charts of relative abundance within each
+individual.
+
+Classified files for the 0M sample have been provided for you in
+``/project/bf528/project_4_metagenomics/data/samples/0M/0M_final.an.0.03.cons.tax.summary``.
+
+1. Figure1A: Each of the ``*.invsimpson`` files created in step 5 of the
+   previous part has a list of inverse Simpson statistics at different
+   sequence sampling rates. We are interested in only the last row of each
+   file. Extract the last line of each file within each individual. You
+   might find it easier to write a shell command using tail to extract out
+   the last line of each file within an individual into a new file that is
+   easier to parse. Once you have collected the statistics for each sample
+   for each individual, combine them into a single boxplot that resembles
+   the scatter plot in the paper.
+2. Relative abundance: We are interested in visualizing the relative abundance
+   differences between the individuals. The files created in step 6.4 contain
+   information on the number of sequences that map to which part of the
+   taxonomy. The ``*.an.0.03.cons.tax.summary`` file contains a reference of
+   the different OTUs that were measured, with the taxonomic level (i.e.
+   Kingdom, Phylum, etc) as numeric values in the first column. Rows where the
+   first column equals 4 correspond to Family level taxa.
+
+   Create a stacked bar chart containing the distribution of sequences mapping
+   to each individual based on Family-level taxa. Filter the summary file to
+   include rows that have the value of 4 in the first column.  For each
+   individual, filter the file based on this criterion and note the ``taxon``
+   and ``total`` columns. There are too many distinct taxa to make a nice
+   stacked bar chart; select only the top ten taxa by frequency to add to the
+   stacked bar, and lump the remaining taxa into an *Others* category. Both R
+   and python+matplotlib have a stacked bar function that accepts a list of
+   values and a list of labels.
+
+Assignment Writeup
+------------------
+
+:doc:`../project_reports`

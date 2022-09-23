@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>28 Single Cell RNA-Seq Analysis of Pancreatic Cells | BF528 - Applications in Translational Bioinformatics</title>
+
+  
+   
+   <meta name="generator" content="placeholder" />
+  <meta property="og:title" content="28 Single Cell RNA-Seq Analysis of Pancreatic Cells | BF528 - Applications in Translational Bioinformatics" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="28 Single Cell RNA-Seq Analysis of Pancreatic Cells | BF528 - Applications in Translational Bioinformatics" />
+  
+  
+  
+  <!-- JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script>
+    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet" />
+    <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script>
+    <script src="libs/bs3compat-0.3.1/transition.js"></script>
+    <script src="libs/bs3compat-0.3.1/tabs.js"></script>
+    <script src="libs/bs3compat-0.3.1/bs3compat.js"></script>
+    <link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet" />
+    <script src="libs/bs4_book-1.0.0/bs4_book.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script>
+
+  <!-- CSS -->
+  <style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+      <link rel="stylesheet" href="style.css" />
+  
+</head>
+
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book">
+    <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">BF528 - Applications in Translational Bioinformatics</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+      </form>
+
+      <nav aria-label="Table of contents">
+        <h2>Table of contents</h2>
+        <div id="book-toc"></div>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="#">View book source <i class="fab fa-github"></i></a></li></p>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="col-sm-12 col-md-9 col-lg-7" id="content">
+<div id="single-cell-rna-seq-analysis-of-pancreatic-cells" class="section level1" number="28">
+<h1><span class="header-section-number">28</span> Single Cell RNA-Seq Analysis of Pancreatic Cells</h1>
+<p>.. contents::
+:local:</p>
+<p>The pancreas is a complex organ comprised of a diverse set of cell types.
+Proper function of the pancreas is required to maintain healthy metabolism,
+and pancreatic dysfunction leads to serious illnesses, including type 1
+diabetes. Baron et al performed single cell RNA sequencing in a set of
+post-mortem human donor pancreatic cells from four subjects and two mouse
+models to better understand the cellular diversity in the pancreas. Analysis of
+the data identified previously known cell types as well as rare and novel cell
+type subpopulations, and created a more detailed characterization of the
+diversity of those cell types. In this project, we will attempt to replicate
+their primary findings using current analytical methodology and software
+packages.</p>
+<p>Upon completion of project 4, students will be able to do the following:</p>
+<ul>
+<li>Process the barcode reads of a single cell sequencing dataset</li>
+<li>Perform cell-by-gene quantification of UMI counts</li>
+<li>Perform quality control on a UMI counts matrix</li>
+<li>Analyze the UMI counts to identify clusters and marker genes for distinct
+cell type populations</li>
+<li>Ascribe biological meaning to the clustered cell types and identify
+novel marker genes associated with them</li>
+</ul>
+<p>.. note::</p>
+<p>This project description is much more conceptual than previous projects.
+This is by design. You are still strongly encouraged to share and discuss
+strategies with each other and your TAs, and use any materials you find
+online. Remember: outside of this class, you will be expected to figure out
+how to solve conceptual problems, often without guidance!</p>
+<div id="read-the-paper" class="section level2" number="28.1">
+<h2><span class="header-section-number">28.1</span> 1. Read the paper</h2>
+<p>Baron, Maayan, Adrian Veres, Samuel L. Wolock, Aubrey L. Faust, Renaud Gaujoux,
+Amedeo Vetere, Jennifer Hyoje Ryu, et al. 2016. “A Single-Cell Transcriptomic
+Map of the Human and Mouse Pancreas Reveals Inter- and Intra-Cell Population
+Structure.” Cell Systems 3 (4): 346–60.e4. <code>PMID: 27667365 &lt;https://www.ncbi.nlm.nih.gov/pubmed/27667365/&gt;</code>_</p>
+</div>
+<div id="process-single-cell-sequencing-reads-and-choose-barcodes" class="section level2" number="28.2">
+<h2><span class="header-section-number">28.2</span> 2. Process Single Cell Sequencing Reads and Choose Barcodes</h2>
+<p><strong>Lead role: Data Curator</strong></p>
+<p>First we must process the sequencing libraries into UMI counts matrices.</p>
+<p>The human single cell RNA-Seq samples in this study have already been
+downloaded and can be found under <code>/projectnb/bf528/project_4_scrnaseq/fastq</code>.
+The sequencing protocol used by the paper uses a <code>complicated barcoding scheme for read 1</code>_. Typically the barcode for each cell and UMIs for each
+transcript will be provided to you in a more convenient format, so the
+raw read 1 barcode has already been processed for you in files with names
+that look like <code>SRRXXXXXXX_1_bc.fastq.gz</code>. The reads in this file have
+the format::</p>
+<p>BBBBBBBBBBBBBBBBBBBUUUUUU
+  19 bc bases / UMI/</p>
+<p>You will need this information when quantifying the reads with salmon_.
+Use these preprocessed files as read 1 instead of the ones ending in
+<code>_1.fastq.gz</code>.</p>
+<p>.. note::</p>
+<p>Some of the barcode reads in the original <code>*_1.fastq.gz</code> could not be
+matched to the InDrops barcode scheme. This is a common occurence due to
+noise in the protocol. Furthermore, although the original InDrops barcodes
+are variable length, the barcodes provided to you above have been padded to
+be all exactly 19 bases + 6 UMI bases = 25 bases when a valid barcode pattern
+was identified in the read. Any barcodes that are not exactly 25 bases long
+will be of very low frequency (probably exactly 1 read per) and therefore will
+be filtered out when you perform the frequency filter when creating the barcode
+whitelist in 2.3.</p>
+<p>.. _complicated barcoding scheme for read 1: <a href="https://github.com/indrops/indrops/blob/master/indrops.py#L1413" class="uri">https://github.com/indrops/indrops/blob/master/indrops.py#L1413</a>
+.. _salmon: <a href="https://salmon.readthedocs.io/en/latest/salmon.html" class="uri">https://salmon.readthedocs.io/en/latest/salmon.html</a></p>
+<ol style="list-style-type: decimal">
+<li><strong>Locate the sample metadata</strong>. The sample information corresponding to the
+short read archives has not been provided to you. Examine the paper for a
+link to the GEO accession number. On the GEO accession page, search for the
+<code>SRA Run Selector</code> link at the bottom and identify and download the sample
+information for the human samples on the linked page. There are 13 samples
+(sequencing libraries), but only four individuals. Use only the SRR files
+associated with the 51 year old female donor for further analysis.</li>
+<li><strong>Count the number of reads by barcodes.</strong> Examine each <code>SRRXXXXXXX_1_bc.fastq.gz</code> and calculate
+the number of reads per distinct barcode. Hint: Generate a cumulative
+distribution plot to help understand how the reads are distributed among
+barcodes. NB: the UMI is <em>not</em> part of the barcode.</li>
+<li><strong>Whitelist informative barcodes.</strong> We wish to eliminate reads with
+infrequent barcodes from consideration (why?). Choose a read threshold to
+filter out barcodes that are too infrequent to be informative and write the
+remaining distinct barcodes to a file, one barcode per line. These will be
+our “whitelist” barcodes to provide to salmon in the next step.</li>
+<li><strong>Generate UMI counts matrix.</strong> Generate UMI matrix using <code>salmon alevin</code><em>
+with the provided fastq files and the whitelisted barcodes from the previous
+step. You will need to provide custom barcode+UMI arguments when quantifying
+the reads: <code>--end 5 --barcodeLength 19 --umiLength 6</code>. Use the current human
+reference transcriptome available on the <code>Gencode website</code></em>. You should also
+create a transcript ID (ENSTXXX…) to gene (ENSGXXX…) map file as described
+in the salmon alevin documentation, to enable salmon to collapse from the
+transcript to the gene level.</li>
+<li><strong>Record mapping statistics.</strong> The salmon output contains some useful
+statistics about how well the reads mapped. Capture and examine the output
+and report any informative statistics (e.g. mapping rate) in your report.</li>
+</ol>
+<p>.. _salmon alevin: <a href="https://salmon.readthedocs.io/en/latest/alevin.html" class="uri">https://salmon.readthedocs.io/en/latest/alevin.html</a>
+.. _Gencode website: <a href="https://www.gencodegenes.org/" class="uri">https://www.gencodegenes.org/</a></p>
+<p>.. warning::</p>
+<pre><code>These files are big and will take a significant amount of time to process.
+Start early!</code></pre>
+<p>.. note::</p>
+<pre><code>Suggestion: you may find it convenient to create smaller versions of
+the files when developing your code.</code></pre>
+<p>.. note::</p>
+<pre><code>Suggestion: salmon can run with multiple threads using the ``-p`` argument.
+You will need to submit your qsub jobs with the appropriate parallel
+environemt, which you can find on the `SCC documentation site`_</code></pre>
+<p>.. _SCC documentation site: <a href="http://www.bu.edu/tech/support/research/system-usage/running-jobs/submitting-jobs/#job-resources" class="uri">http://www.bu.edu/tech/support/research/system-usage/running-jobs/submitting-jobs/#job-resources</a></p>
+<p><strong>Deliverables:</strong></p>
+<ul>
+<li>Report and justify the strategy you chose for identifying informative barcodes
+by whatever method you deem appropriate</li>
+<li>Report any mapping statistics from the salmon output you deem relevant</li>
+<li>UMI counts matrix for the chosen sample in the form of salmon alevin output</li>
+</ul>
+</div>
+<div id="processing-the-umi-counts-matrix" class="section level2" number="28.3">
+<h2><span class="header-section-number">28.3</span> 3. Processing the UMI counts matrix</h2>
+<p><strong>Lead role: Programmer</strong></p>
+<p>The authors developed a custom analysis methodology for this paper. We will
+follow the tutorial materials written by the authors of the Bioconductor
+package Seurat_ instead of trying to implement their methods.</p>
+<p>.. _Seurat: <a href="https://satijalab.org/seurat/" class="uri">https://satijalab.org/seurat/</a></p>
+<p>A precomputed UMI counts matrix is available at</p>
+<pre><code>``/projectnb/bf528/project_4_scrnaseq/GSM2230760__salmon_quant``</code></pre>
+<p>for your use. Hint: you may find <code>this tutorial</code>_ instructive in completing
+many of these steps.</p>
+<p>.. _this tutorial: <a href="https://satijalab.org/seurat/v3.1/pbmc3k_tutorial.html" class="uri">https://satijalab.org/seurat/v3.1/pbmc3k_tutorial.html</a></p>
+<ol style="list-style-type: decimal">
+<li><strong>Filter out low-quality cells</strong>. You will need to discover how to load the
+salmon alevin counts file into R. Choose criteria to identify and filter
+low-quality cells and genes from the UMI counts matrix. You should consider the
+minimum number of non-zero count genes per cell, the number of non-zero count
+cells per gene, etc. NB: The UMI counts matrix has Ensembl gene identifiers,
+but it may be helpful to map them to gene symbols. There are many ways to do
+this.</li>
+<li><strong>Filter out low variance genes.</strong> Further filter the counts matrix to
+include only highly variable features that are likely to be informative.
+Choose an appropriate number of features based on the data. Recall that the
+counts matrix must be normalized before comparing cells to one another.</li>
+<li><strong>Identify clusters of cell type subpopulations.</strong> Use a clustering method
+of your choosing to discover clusters of cells. Identify the number of
+cells in each cluster.</li>
+</ol>
+<p><strong>Deliverables:</strong></p>
+<ul>
+<li>Report the number of cells and the number of genes in the unfiltered dataset</li>
+<li>Report the number of cells remaining after filtering out low quality cells,
+and justify any filtering criteria used</li>
+<li>Report the number features you used after variance filtering, and justify the
+filtering criteria used</li>
+<li>Report the number of clusters you identified, and report the relative
+proportions of cell numbers (e.g. as a bar or pie chart)</li>
+</ul>
+</div>
+<div id="cluster-marker-genes" class="section level2" number="28.4">
+<h2><span class="header-section-number">28.4</span> 4. Cluster marker genes</h2>
+<p><strong>Lead role: Analyst</strong></p>
+<p>The authors report that they found all major pancreatic cell types in the
+data based on known marker genes. The major cell types also had approximately
+expected relative proportions.</p>
+<p>A RDS file containing a saved Seurat object with processed, clustered counts is
+available for you to use:</p>
+<pre><code>``/projectnb/bf528/project_4_scrnaseq/GSM2230760_seurat.rda``</code></pre>
+<p>You can load this into R using <code>cells &lt;- loadRDS("GSM2230760_seurat.rda")</code>.
+Hint: you may find <code>this tutorial</code>_ instructive in completing many of these steps.</p>
+<p>.. _this tutorial: <a href="https://satijalab.org/seurat/v3.1/pbmc3k_tutorial.html" class="uri">https://satijalab.org/seurat/v3.1/pbmc3k_tutorial.html</a></p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Identify marker genes for each cluster.</strong> Use a differential expression
+method to identify the marker genes in each cluster. You may use any
+reasonable approach to do this.</p></li>
+<li><p><strong>Label clusters as a cell type based on marker genes.</strong> The marker genes
+should indicate which clusters correspond to which cell types. You may use
+the marker genes indicated by the authors or do your own research.</p>
+<p>.. note:</p>
+<p>If you are unable to label clusters with the marker genes reported in
+the paper, you might have to work with the programmer to understand why
+and iterate.</p></li>
+<li><p><strong>Visualize the clustered cells using a projection method.</strong> Use either t-SNE
+or UMAP to create a projection and scatter plot colored by cell cluster.
+Label the plot with the cell types you previously assigned. Compare this
+plot to Figure 1D in the paper.</p></li>
+<li><p><strong>Visualize the top marker genes per cluster.</strong> Choose however many
+top marker genes you deem suitable and visualize them to show the
+differences. You might plot a clustered heatmap of log normalized UMI
+counts for those genes across all cells following the format used in
+Figure 1B of the paper or any other format you deem effective. The cluster
+identities should be clearly visible on the heatmap, probably as a colored
+bar along one of the axes.</p></li>
+<li><p><strong>Find novel marker genes.</strong> After labeling your clusters, there will likely
+be other differentially expressed genes in that cluster that are just as
+discriminative of cell type as the marker genes. Indicate these genes in your
+report by whatever means you deem appropriate.</p></li>
+<li><p><strong>Four member groups only: Output marker gene information.</strong> Write out a CSV file with
+marker gene statistics you identified above. You should include the fold change,
+precision (i.e. p-value and adjusted p-value), cluster membership, and gene identifier.
+The Biologist will use these marker genes for further analysis.</p></li>
+</ol>
+<p><strong>Deliverables:</strong></p>
+<ul>
+<li>Report the method you used to label clusters to cell types</li>
+<li>Compare your cluster marker genes to those reported in the paper; do they agree?
+Are there clusters that could not be labeled using their marker genes? What
+do these clusters seem to be?</li>
+<li>Show the visualized projection plot colored by cluster and labeled with your
+assigned cell type</li>
+<li>Compare your projection plot with that of the paper in your discussion</li>
+<li>Show the clustered heatmap of log normalized UMI counts for marker genes
+of each cluster</li>
+<li>Compare your heatmap results with that of the paper in your discussion</li>
+<li>Report any “novel” marker genes in an appropriate format, e.g. a table or
+in the heatmap</li>
+</ul>
+</div>
+<div id="in-depth-marker-gene-analysis" class="section level2" number="28.5">
+<h2><span class="header-section-number">28.5</span> 5. In-depth marker gene analysis</h2>
+<p><strong>Lead role: Biologist - for 4 person groups only</strong></p>
+<p>The authors labeled their clusters to mostly previously known cell types that
+are thought to perform certain functions. We will attempt to confirm these cell
+type functions using the marker genes that were discovered through the relatively
+unbiased clustering and differential expression analysis, without the influence
+of <em>a priori</em> knowledge.</p>
+<p>A precomputed clustered dataset is available for you to use at:</p>
+<pre><code>``/projectnb/bf528/project_4_scrnaseq/GSM2230760_marker_genes.csv``</code></pre>
+<ol style="list-style-type: decimal">
+<li><strong>Perform gene set enrichment analysis on marker genes.</strong> Use an appropriate
+gene set enrichment analysis tool of your choosing (e.g. DAVID_, enrichR_,
+metascape_, etc) to perform gene set enrichment on the marker genes for each
+cluster. You might decide to filter the marker genes by some criteria, like
+adjusted p-value or log2 fold change and see how the results change. Report
+the results and compare them to the cell type label, if any, of each cluster.</li>
+</ol>
+<p>.. note:</p>
+<p>The marker genes you receive from the analyst have been restricted in
+certain ways. If you think you don’t have enough marker genes for certain
+clusters, you might have to work with the analyst to change the thresholds
+set on the marker gene analysis to get more.</p>
+<p>.. _DAVID: <a href="https://david.ncifcrf.gov/" class="uri">https://david.ncifcrf.gov/</a>
+.. _enrichR: <a href="http://amp.pharm.mssm.edu/Enrichr/" class="uri">http://amp.pharm.mssm.edu/Enrichr/</a>
+.. _metascape: <a href="http://metascape.org/gp/index.html#/main/step1" class="uri">http://metascape.org/gp/index.html#/main/step1</a></p>
+<p><strong>Deliverables:</strong></p>
+<ul>
+<li>Report the results of the gene set enrichment analysis in a concise way (e.g.
+a table with cluster name, label, number of marker genes, and enriched gene sets,
+ensuring the table is readable and not too large)</li>
+<li>Discuss the results in the Discussion section, describing how well you think the
+gene set enrichment results match the assigned cell type labels</li>
+</ul>
+</div>
+<div id="discuss-your-findings-3" class="section level2" number="28.6">
+<h2><span class="header-section-number">28.6</span> 8. Discuss Your Findings</h2>
+<p>Discuss your findings with your team members and other teams. Some interesting
+questions to consider:</p>
+<ol style="list-style-type: decimal">
+<li>Did you replicate the study? What were they differences between their methodology
+and those you performed?</li>
+<li>Were there any key differences between your results and those presented in
+the study? Did these key differences affect the biological interpretation of
+the results?</li>
+<li>Did you find evidence of the distinct cell types described in the paper? Were
+there any major differences in the cell types you discovered, e.g. in number,
+proportion, markers, etc?</li>
+</ol>
+</div>
+<div id="assignment-writeup-3" class="section level2" number="28.7">
+<h2><span class="header-section-number">28.7</span> Assignment Writeup</h2>
+<p>:doc:<code>../project_reports</code></p>
+
+</div>
+</div>
+  </main>
+
+  <div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <div id="book-on-this-page"></div>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          <li><a id="book-source" href="#">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="#">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5">
+  <div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>BF528 - Applications in Translational Bioinformatics</strong>" was written by . </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+<script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+
+</html>

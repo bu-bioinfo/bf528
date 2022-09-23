@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>26 Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq | BF528 - Applications in Translational Bioinformatics</title>
+
+  
+   
+   <meta name="generator" content="placeholder" />
+  <meta property="og:title" content="26 Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq | BF528 - Applications in Translational Bioinformatics" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="26 Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq | BF528 - Applications in Translational Bioinformatics" />
+  
+  
+  
+  <!-- JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script>
+    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet" />
+    <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script>
+    <script src="libs/bs3compat-0.3.1/transition.js"></script>
+    <script src="libs/bs3compat-0.3.1/tabs.js"></script>
+    <script src="libs/bs3compat-0.3.1/bs3compat.js"></script>
+    <link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet" />
+    <script src="libs/bs4_book-1.0.0/bs4_book.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script>
+
+  <!-- CSS -->
+  <style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+      <link rel="stylesheet" href="style.css" />
+  
+</head>
+
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book">
+    <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">BF528 - Applications in Translational Bioinformatics</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+      </form>
+
+      <nav aria-label="Table of contents">
+        <h2>Table of contents</h2>
+        <div id="book-toc"></div>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="#">View book source <i class="fab fa-github"></i></a></li></p>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="col-sm-12 col-md-9 col-lg-7" id="content">
+<div id="transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq" class="section level1" number="26">
+<h1><span class="header-section-number">26</span> Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</h1>
+<p>.. contents::
+:local:</p>
+<p>High-throughput sequencing technologies have helped researchers expand their
+understanding of genome-wide gene expression through their ability to detect
+potentially any mRNA molecule in a sample, rather than measuring only molecules
+with specific sequences as with microarrays. This agnostic approach to
+molecular profiling allows us to ask different and somewhat more complex
+questions of a sequencing dataset than a microarray dataset, (e.g. novel splice
+patterns, lincRNAs, coding mutations, etc), but the most basic information,
+mRNA abundance, is analogous to microarray expression measurements and
+extremely useful. In this project, you will download, QC, process, and analyze
+sequencing data that was generated to better understand how neonatal mice are
+able to regenerate their heart tissue but lose this ability later in
+development.</p>
+<p>Upon completion of assignment 2, students will be able to do the following:</p>
+<ul>
+<li>Download and extract sequencing reads from publicly available mRNA-Seq
+datasets</li>
+<li>Understand the most common short read sequencing file formats and which
+available tools are useful in analyzing sequencing data</li>
+<li>Align and normalize sequencing reads to an appropriate genome using the
+tuxedo suite of short read mapping tools</li>
+<li>Compute and evaluate quality control metrics for sequencing datasets</li>
+<li>Examine differential expression identified with cuffdiff and interpret the
+results using DAVID</li>
+</ul>
+<div id="read-the-paper-supplemental-methods-1" class="section level2" number="26.1">
+<h2><span class="header-section-number">26.1</span> 1. Read the paper &amp; supplemental methods</h2>
+<p>O’Meara et al. Transcriptional Reversion of Cardiac Myocyte Fate During
+Mammalian Cardiac Regeneration. Circ Res. Feb 2015. <code>PMID: 25477501 &lt;https://www.ncbi.nlm.nih.gov/pubmed/25477501&gt;</code>_</p>
+</div>
+<div id="data-acquisition-transfer-to-remote-server-1" class="section level2" number="26.2">
+<h2><span class="header-section-number">26.2</span> 2. Data acquisition &amp; transfer to remote server</h2>
+<p><strong>Lead role: Data Curator</strong></p>
+<p>As in the last study, all but one of the samples for this study have been
+downloaded and prepared for you. You will download the one remaining sample
+and process it.</p>
+<ol style="list-style-type: decimal">
+<li><p>Download the sample <code>GSM1570702    &lt;https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM1570702&gt;</code>_ (vP0_1)
+from GEO <code>Series GSE64403    &lt;https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE64403&gt;</code>_ to one of
+your directories on SCC. The filename you should download is SRR1727914.sra
+and it is 1.1Gb. The file is in SRA (short read archive) format.</p></li>
+<li><p>Use the command <code>module load sratoolkit</code> to make the SRA tools available.
+Read the <code>SRAtoolkit documentation    &lt;https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=toolkit_doc&gt;</code>_ to
+find the correct command to use to extract the SRA format to FASTQ. This is
+a paired-end sequencing run, so you will have two FASTQ files. You may find
+it convenient to rename the SRA file to <code>P0_1.sra</code> before converting to
+FASTQ. Create a file <code>run_extract.qsub</code>, and put all code for extracting
+the FASTQ files, including the module command from above, into it and submit
+it as a batch job using the <code>qsub</code> command. You should use the file
+<code>/project/bf528/project_2/scripts/qsub_skel.qsub</code> as a template.</p></li>
+<li><p>Once you have extracted the short reads to FASTQ format, inspect the files
+with <code>head</code> and ensure the format is what you expect. Also ensure that the
+text in the header fields of the records are exactly the same between the
+two files, i.e. the first read in the first FASTQ file should be mated with
+the first read in the second file.</p></li>
+<li><h2 id="quality-control-fastq-files">Quality control FASTQ files</h2></li>
+</ol>
+<p><strong>Lead role: Data Curator</strong></p>
+<p>Now that we have FASTQ files, we will begin processing them and extracting
+quality measures. We will use the FastQC package available on SCC to do this.</p>
+<ol style="list-style-type: decimal">
+<li>Use the command <code>module load fastqc</code> on the cluster to make the FastQC
+tool available on the command line.</li>
+<li>By default, FastQC is run with a graphical user interface (GUI), but we are
+going to run it in command line mode. Do this by simply running the
+<code>fastqc</code> command with the FASTQ files you extracted in the previous step
+as arguments. You may run <code>fastqc -h</code> to output how to use the fastqc
+command. You may find the <code>-o|--outdir</code> command line argument helpful.</li>
+<li>The tool will create a number of html and image files of the statistics.
+You can look at the html files if you choose using <code>head</code>, <code>cat</code>, or
+your favorite command line text editor (<code>nano</code>, <code>emacs</code>, <code>vim</code>, etc).
+You will not be able to view the images directly on the cluster, so you must
+download them. Download both the images and the html files to your
+desktop/laptop computer using a compatible SFTP application (e.g. WinSCP on
+Windows, RBrowser or Cyberduck on Mac).</li>
+<li>Examine the output of FastQC by opening the html files in a web browser.
+Observe if any of the quality metrics failed.</li>
+<li>Report the results of the metrics read quality, GC content bias, sequence
+duplication levels, and any over-represented sequences you think might
+indicate a problem with the data in your report.</li>
+</ol>
+<p><strong>Deliverables</strong>:</p>
+<ul>
+<li>A summary of the quality of the dataset as assessed by fastqc</li>
+<li>A description of any anomalies, or questions about data quality</li>
+<li>Any plots that support the above</li>
+</ul>
+</div>
+<div id="aligning-and-qa-using-tophat-and-rseqc" class="section level2" number="26.3">
+<h2><span class="header-section-number">26.3</span> 4. Aligning and QA using tophat and RSeQC</h2>
+<p><strong>Lead Role: Programmer</strong></p>
+<p>Next we will align the reads to the mouse genome reference called mm9. The
+reference files are available on the cluster at
+<code>/project/bf528/project_2/reference</code>. Included in this directory are the mm9
+FASTA file (mm9.fa) as well its Bowtie2 indexes. Algorithms that align millions
+of reads onto a genome always require indexes of the reference sequence. The
+developers of TopHat host several of the most commonly used indexes which can
+be found here (<a href="http://ccb.jhu.edu/software/tophat/igenomes.shtml" class="uri">http://ccb.jhu.edu/software/tophat/igenomes.shtml</a>). For your
+convenience, we’ve downloaded the mm9 indexes you’ll need to run TopHat. They
+are available in the same folder listed above.</p>
+<p>To help you get started writing your code, we have downloaded the fastq files
+from the other timecourse samples in this study under
+<code>/project/bf528/project_2/data/samples/</code>. Pick one of the samples and use the
+FASTQ files when writing your alignment and RSeQC scripts. The samples from P0
+can then be swapped in later as they become ready.</p>
+<ol style="list-style-type: decimal">
+<li><p>Use the command <code>module load samtools bowtie2 boost    tophat</code> to load the alignment utilities we will need. <code>samtools</code> and
+<code>boost</code> are dependencies of TopHat. We will use samtools in subsequent
+steps. Create a file <code>run_tophat.qsub</code> and put all code for running
+tophat, including the module command from above, into it. You should use the
+file <code>/project/bf528/project_2/scripts/qsub_skel.qsub</code> as a template.</p></li>
+<li><p>Construct a command that will align the two FASTQ files you extracted in
+part 2 against the mm9 reference using TopHat. Running <code>tophat</code> without
+any arguments will print out how to use it. The arguments in the paper are
+not formatted well, copy the arguments from
+<code>/project/bf528/project_2/scripts/tophat_args.txt</code> into your tophat
+command.</p></li>
+<li><p>TopHat is a program that requires a substantial amount of memory to run. As
+a result, it is usually necessary to run TopHat as a batch job on the
+cluster rather than running it interactively. Once you have written your
+tophat command into the qsub file, submit the TopHat job using <code>qsub    run_tophat.qsub</code> and wait for the alignment to complete. To check the
+status of your job, issue the command <code>qstat -u your_user_name</code>. For more
+information about submitting jobs to the queue, please see the
+<code>SCC documentation page &lt;https://www.bu.edu/tech/support/research/system-usage/running-jobs/submitting-jobs/&gt;</code>_.
+NB: tophat may take more than an hour to finish.</p></li>
+<li><p>A file named <code>P0_1_tophat/accepted_hits.bam</code> will be created when TopHat
+has successfully run to completion. The file is in BAM format, which is a
+binary version of the SAM (Sequence Alignment/Map) format, and contains all
+of the original reads plus any alignments discovered by TopHat. Run the
+command <code>samtools flagstat P0_1_tophat/accepted_hits.bam</code> in the directory
+where you ran TopHat and examine the results. Report these results in your
+writeup.</p></li>
+<li><p>Use the command <code>module load python samtools rseqc</code> to make the RseQC
+utilities available. You will first need to index the BAM file using
+<code>samtools index accepted_hits.bam</code> before you can run these commands.
+After the BAM file has been indexed, and the file <code>accepted_hits.bam.bai</code>
+exists, run the following first without arguments to see their usage and
+then with <code>accepted_hits.bam</code> as input::</p>
+<p>geneBody_coverage.py
+inner_distance.py
+bam_stat.py</p>
+<p>Each of these utilities outputs a different quality control metric, and two
+create plot images which must be downloaded to view. Examine the metrics
+output by these three tools and explain and interpret them in your report.
+When a tool requires a bed file as input, use
+<code>/project/bf528/project_2/reference/annot/mm9.bed</code>.</p></li>
+</ol>
+<p><strong>Deliverables:</strong></p>
+<ul>
+<li>A report of the total number of reads, number of mapped, unique, multimapped,
+and unaligned reads with percentages of total reads for each</li>
+<li>Plots and interpretation of the RSeQC output</li>
+</ul>
+</div>
+<div id="quantifying-gene-expression-with-cufflinks" class="section level2" number="26.4">
+<h2><span class="header-section-number">26.4</span> 5. Quantifying gene expression with cufflinks</h2>
+<p><strong>Lead Role: Programmer</strong></p>
+<p>Cufflinks is a tool that counts how reads map to genomic regions defined by an
+annotation, often a gene annotation like the one we have provided at
+<code>/project/bf528/project_2/reference/annot/mm9.gtf</code>.</p>
+<p>Feel free to use the <code>accepted_hits.bam</code> file you created above for the
+alternate sample to develop your scripts if P0 is not ready yet.</p>
+<ol style="list-style-type: decimal">
+<li>Run the command <code>module load cufflinks</code> to make the program available to
+run, and run <code>cufflinks</code> without any arguments to see usage. Create a file
+<code>run_cufflinks.qsub</code> and put all code for running cufflinks, including the
+module command from above, into it. You should use the file
+<code>/project/bf528/project_2/scripts/qsub_skel.qsub</code> as a template.</li>
+<li>Construct a command that will run <code>cufflinks</code> on the file
+<code>P0_1_tophat/accepted_hits.bam</code>. The arguments in the paper are not
+formatted well, copy the arguments from
+<code>/project/bf528/project_2/scripts/cufflinks_args.txt</code> into your cufflinks
+command. When you have created the appropriate command, submit your script
+as a batch job using <code>qsub run_cufflinks.qsub</code>.</li>
+<li>When <code>cufflinks</code> has completed, the file
+<code>P0_1_cufflinks/genes.fpkm_tracking</code> contains the quantified alignments in
+FPKM for all genes. Load this file into R using <code>read.table</code>, and create a
+histogram of the FPKM values. You may consider removing the genes that have
+an FPKM value of zero.</li>
+<li>You have downloaded and processed one of the four samples involved (each of
+<code>P0</code> and <code>Ad</code> have two replicates). We have prepared the remaining
+samples (P0_2, Ad_1, Ad_2) for analysis under <code>/project/bf528/project_2/data/samples</code>.
+The authors used <code>cuffdiff</code>, a tool in the cufflinks suite, to identify
+differentially expressed genes. We have created a script that runs cuffdiff
+for you, though you will have to copy and modify it to use the alignments
+you produced in the previous steps. The qsub script you should copy is
+<code>/project/bf528/project_2/scripts/run_cuffdiff.qsub</code>.</li>
+</ol>
+<p><strong>Deliverables:</strong></p>
+<ul>
+<li>Histogram of the FPKM values for all genes</li>
+<li>A report on the number of genes you identified in the analysis, including any
+filtering (e.g. FPKM value thresholds, etc) you used</li>
+</ul>
+</div>
+<div id="identifying-differentially-expressed-genes-associated-with-myocyte-differentiation" class="section level2" number="26.5">
+<h2><span class="header-section-number">26.5</span> 6. Identifying Differentially Expressed Genes Associated with Myocyte Differentiation</h2>
+<p><strong>Lead Role: Analyst</strong></p>
+<p>There were many experiments in this study. We are going to reproduce the
+comparison of postnatal day 0 (P0) versus Adult from Figure 1B. The output
+from cuffdiff in 5.4 should have produced the file <code>cuffdiff_out/gene_exp.diff</code>.
+This file contains the differential expression statistics comparing the two
+conditions. We will examine this file to interpret the results.</p>
+<p>To help you get started writing your code before the results from earlier steps
+are ready, we have provided a differential expression analysis from P4 vs P7 in
+the file <code>/project/bf528/project_2/data/P4_vs_P7_cuffdiff_out/gene_exp.diff</code>.
+You may use this file to develop your code and then swap in the analysis from
+above when it is ready.</p>
+<ol style="list-style-type: decimal">
+<li><p>Load the file <code>cuffdiff_out/gene_exp.diff</code> into R. Sort the data frame so
+that the smallest <code>q_values</code> are at the top (hint: look at the <code>order</code>
+function). Produce a table of the top ten differentially expressed genes,
+with their names, FPKM values, log fold change, p-value, and q-value in your
+report.</p></li>
+<li><p>Produce a histogram of the <code>log2.foldchange</code> column for all genes with the
+<code>hist</code> function. Try specifying different values for the breaks argument
+to control the number of bars in the plot and pick one you like best.</p></li>
+<li><p>Create a new data frame that contains only the genes where the last column,
+named <code>significant</code>, is equal to <code>yes</code>. The <code>subset</code> function is
+useful for this kind of task, for example if <code>df</code> is a data frame with a
+column named <code>A</code>, then we can write <code>df.sub &lt;- subset(df,A==”x”)</code>. Note
+the nominal <span class="math inline">\(p\)</span>-value and <span class="math inline">\(q\)</span>-value that these genes have in your report.</p></li>
+<li><p>Create a second histogram of the log2 fold change values only for
+significant genes. What do you notice?</p></li>
+<li><p>Further subset the significant gene data frame you just created into two
+separate data frames with only the up- and down-regulated genes using the
+<code>log2.foldchange</code> column. Include the number of up and down regulated
+genes in your report.</p></li>
+<li><p>Using the <code>write</code> function, write out the up- and down- regulated gene
+names to separate files. The files should have one gene name on each line
+(leave genes that are separated by commas on the same line as is). Copy
+these files to your laptop or desktop, as we will be uploading them to a web
+application to perform gene set analysis.</p></li>
+<li><p>DAVID Functional Annotation Clustering groups gene sets based on the genes
+they share. The output of this tool attempts to organize the enriched gene
+sets into functionally related clusters. The Score attribute of the clusters
+is equal to the <code>-log10(average p-value)</code> from enriched gene sets. In a
+web browser, go to <a href="https://david.ncifcrf.gov/summary.jsp" class="uri">https://david.ncifcrf.gov/summary.jsp</a> .</p>
+<ol style="list-style-type: lower-alpha">
+<li>On the left of the page, look for the Upload tab, and upload the up
+regulated gene list file, or copy and paste the gene list into the first
+text box.</li>
+<li>Choose OFFICIAL_GENE_SYMBOL from the dropdown</li>
+<li>Mark the Gene List radio button</li>
+<li>Press Submit</li>
+<li>On the next page (Annotation Summary Results), pick Mus Musculus from
+the box on the left and press Select Species.</li>
+<li>On the page to the right, click Clear All, then expand the Gene_Ontology
+group and select GOTERM_BP_FAT, GOTERM_MF_FAT, and GOTERM_CC_FAT boxes</li>
+<li>Click the Functional Annotation Clustering button</li>
+<li>A window should appear containing a list of enriched GO terms organized
+into clusters based on functional relatedness</li>
+<li>Examine these results, and save them to file if you wish</li>
+<li>Follow this same process for the down regulated gene list</li>
+</ol></li>
+</ol>
+<p><strong>Deliverables:</strong></p>
+<ul>
+<li>A table of the top 10 differentially expressed genes and statistics from 6.1</li>
+<li>A histogram of the log2 fold changes</li>
+<li>A report of the number of differentially expressed genes detected as significant
+from 6.3, and the numbers of up- and down- regulated genes at this
+significance level</li>
+<li>Two csv files containing the up- and down- regulated significant genes from
+6.6</li>
+<li>A table summarizing the top cluster results from the DAVID analysis in 6.7</li>
+</ul>
+</div>
+<div id="biological-interpretation" class="section level2" number="26.6">
+<h2><span class="header-section-number">26.6</span> 7. Biological Interpretation</h2>
+<p><strong>Lead role: Biologist - for 4 person groups only</strong></p>
+<p>The authors used the FPKM tables to make biological interpretation of their
+experiment. We will follow their example and analyze the content of the
+FPKM expression matrices for biological patterns.</p>
+<p>To help you get started writing your code, we have provided a FPKM table of
+just the other 7 samples, not including P0, and a list of DE genes from P4
+vs P7 in <code>/project/bf528/project_2/data/fpkm_matrix.csv</code> and
+<code>/project/bf528/project_2/data/P4_vs_P7_cuffdiff_out/gene_exp.diff</code>. After
+you have written this code, it should be easy to substitute in the full
+results with P0 FPKMs and the P0 vs Ad DE genes when they are ready.</p>
+<ol style="list-style-type: decimal">
+<li>Figure 1D contains plots of genes specific to the most prominent GO terms
+discovered in the analysis. Using your <code>genes.fpkm_tracking</code> FPKM table
+and those you find in the different sample directories under
+<code>/project/bf528/project_2/data/samples/</code>, compare the trends you see in
+your data with those in the paper. I.e. do you observe the same direction
+and magnitude of effect for the P0 and Ad samples as reported in the plots?</li>
+<li>Compare the results you obtained from the DAVID analysis in 6.7 with those
+reported in the paper. Further develop the table you created for 6.7 to
+include annotations for those biological pathways that showed overlap with
+the results reported in the paper. E.g. include a second column for the
+manuscript scores, or an asterisk indicating which processes are in common.</li>
+<li>Create a FPKM matrix of all 8 samples by concatenating the <code>FPKM</code> columns
+from each of the tracking tables from 7.1 together into a single dataframe.
+Subset this matrix by at most the top 1k genes found to be differentially
+expressed between P0 and Ad from 5.4 and create a clustered heatmap like the
+one you made in project 1. Genes should be along rows and samples along
+columns, with dendrograms and labels shown. Compare the heatmap you get to
+the heatmap in Figure 2A.</li>
+</ol>
+<p><strong>Deliverables:</strong></p>
+<ul>
+<li>A table or plot of the fold changes for the genes highlighted in Figure 1D,
+showing whether your results agree with those in the paper.</li>
+<li>An augmented table from that in 6 of enriched biological pathways that
+includes a comparison with the results reported in the paper.</li>
+<li>A clustered heatmap of FPKM values using at most the top 1000 DE genes found
+in the P0 vs Ad analysis.</li>
+</ul>
+</div>
+<div id="discuss-your-findings-1" class="section level2" number="26.7">
+<h2><span class="header-section-number">26.7</span> 8. Discuss Your Findings</h2>
+<p>Discuss your findings with your team members and other teams. Some interesting
+questions to consider:</p>
+<ol style="list-style-type: decimal">
+<li>How well do our numbers of differentially expressed genes agree with theirs?
+What are some of the potential differences between your analysis and theirs
+that might have caused different numbers? If you see a difference, is that a
+concern?</li>
+<li>Why did the authors do so many different experiments (<em>in vitro</em>, <em>in vivo</em>,
+<em>explant</em>, etc)? Since we only compared two of the samples they produced, do
+we expect to have good agreement between our results? Is the degree to which
+we see agreement surprising?</li>
+<li>Was it easy to verify that you replicated the results from this study, based
+on the text and figures of the paper? What other information could the
+authors have included in their publication to aid in assessing this?</li>
+<li>A short list of the enriched GO terms found in the study is in Figure1C. How
+does the functional enrichment of the differentially expressed genes you
+found compare to what was reported in the paper?</li>
+</ol>
+</div>
+<div id="assignment-writeup-1" class="section level2" number="26.8">
+<h2><span class="header-section-number">26.8</span> Assignment Writeup</h2>
+<p>:doc:<code>../project_reports</code></p>
+
+</div>
+</div>
+  </main>
+
+  <div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <div id="book-on-this-page"></div>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          <li><a id="book-source" href="#">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="#">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5">
+  <div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>BF528 - Applications in Translational Bioinformatics</strong>" was written by . </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+<script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+
+</html>

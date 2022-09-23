@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>27 Concordance of microarray and RNA-Seq differential gene expression | BF528 - Applications in Translational Bioinformatics</title>
+
+  
+   
+   <meta name="generator" content="placeholder" />
+  <meta property="og:title" content="27 Concordance of microarray and RNA-Seq differential gene expression | BF528 - Applications in Translational Bioinformatics" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="27 Concordance of microarray and RNA-Seq differential gene expression | BF528 - Applications in Translational Bioinformatics" />
+  
+  
+  
+  <!-- JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script>
+    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet" />
+    <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script>
+    <script src="libs/bs3compat-0.3.1/transition.js"></script>
+    <script src="libs/bs3compat-0.3.1/tabs.js"></script>
+    <script src="libs/bs3compat-0.3.1/bs3compat.js"></script>
+    <link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet" />
+    <script src="libs/bs4_book-1.0.0/bs4_book.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script>
+
+  <!-- CSS -->
+  <style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+      <link rel="stylesheet" href="style.css" />
+  
+</head>
+
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book">
+    <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">BF528 - Applications in Translational Bioinformatics</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+      </form>
+
+      <nav aria-label="Table of contents">
+        <h2>Table of contents</h2>
+        <div id="book-toc"></div>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="#">View book source <i class="fab fa-github"></i></a></li></p>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="col-sm-12 col-md-9 col-lg-7" id="content">
+<div id="concordance-of-microarray-and-rna-seq-differential-gene-expression" class="section level1" number="27">
+<h1><span class="header-section-number">27</span> Concordance of microarray and RNA-Seq differential gene expression</h1>
+<p>.. contents::
+:local:</p>
+<p>In principle, microarray and RNA-Seq measure the same thing: the genome-wide
+abundance of mRNA molecules. However, the technologies are fundamentally
+different and the results from the same experiments assayed using the different
+methods can show substantial differences. Assessing the differences in gene
+expression measurement exclusively due to the underlying technology requires
+careful and comprehensive study design, such that other sources of variation
+in gene expression are controlled, e.g. from biological differences in
+conditions or samples. Wang et al present a large study comparing microarray
+and RNA-Seq gene expression data from a set of toxicological treatments with
+known mechanism of action (MOA) measured in rat liver. The goal of the study
+was to characterize the concordance of differential gene expression across
+platforms, test and compare how effective each platform is at detecting
+expected pathway-level effects based on each treatment’s MOA, and assess the
+MOA prediction accuracy of each platform using a test set.</p>
+<p>In this project, we will reproduce the results from Figure 2a and Figure 3b+c,
+as well as compare the pathway enrichment results reported in the paper. Each
+group will choose a subset of the samples, termed <code>toxgroups</code>, to analyze.
+There are sets of samples corresponding to RNA-Seq and microarray data for each
+toxgroup. Unlike previous projects, we will implement a different analytical
+pipeline for the RNA-Seq data using current methodologies. At the end of the
+project the results will be combined into an overall result and discussed in
+class.</p>
+<p>Upon completion of project 3, students will be able to do the following:</p>
+<ul>
+<li>Align short reads to the rat genome using STAR and quantify expression
+using a read counting strategy</li>
+<li>Perform differential expression analysis of RNA-Seq data with DESeq2</li>
+<li>Perform differential expression analysis of pre-normalized microarray
+expression data using limma</li>
+<li>Map between Affymetrix and refSeq identifier systems</li>
+</ul>
+<div id="choose-a-toxgroup-read-the-paper-supplemental-methods" class="section level2" number="27.1">
+<h2><span class="header-section-number">27.1</span> 1. Choose a toxgroup, read the paper &amp; supplemental methods</h2>
+<p>Metadata files containing sample info for each toxgroup are found in
+<code>/project/bf528/project_3/toxgroups</code>. Pick one of these toxgroups to
+analyze. Each toxgroup has approximately the same number of samples; you may
+choose whichever you like.</p>
+<p>This paper contains many analyses each with many details. Don’t worry if you
+don’t understand the methods, but do try to understand the main text and the
+online methods as best you can.</p>
+<p>Wang, Charles, Binsheng Gong, Pierre R. Bushel, Jean Thierry-Mieg, Danielle
+Thierry-Mieg, Joshua Xu, Hong Fang, et al. 2014. “A comprehensive study design
+reveals treatment- and transcript abundance–dependent concordance between
+RNA-seq and microarray data” Nature Biotechnology 32 (9): 926–32. <code>PMID: 4243706 &lt;https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4243706/&gt;</code>_</p>
+</div>
+<div id="rna-seq-sample-statistics-and-alignment" class="section level2" number="27.2">
+<h2><span class="header-section-number">27.2</span> 2. RNA-Seq Sample Statistics and Alignment</h2>
+<p><strong>Lead role: Data Curator</strong></p>
+<p>All of the microarray and sequencing datasets have already been downloaded for
+you from the accessions <code>SRP039021</code><em>, <code>GSE55347</code></em>, and <code>GSE47875</code>_. To save
+time, we have also already processed the microarray data as described in the
+paper, so we will focus solely on the sequencing data processing here.</p>
+<p>.. _SRP039021: <a href="https://www.ncbi.nlm.nih.gov/sra/?term=SRP039021" class="uri">https://www.ncbi.nlm.nih.gov/sra/?term=SRP039021</a>
+.. _GSE55347: <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE55347" class="uri">https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE55347</a>
+.. _GSE47875: <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE47875" class="uri">https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE47875</a></p>
+<ol style="list-style-type: decimal">
+<li><p>We have downloaded all of the datasets for you and made them available at
+<code>/project/bf528/project_3/samples</code>. Identify the treatment samples (and
+<em>not</em> the controls) from your toxgroup sample info file. Create symbolic
+links to those files in your group project directories. You should have nine
+samples total: 3 different treatments each with three replicates. <em>You do
+not need to process the control samples, but you will need their sample
+IDs for the programmer’s role.</em></p></li>
+<li><p>Run fastqc on each of the fastq files you are analyzing. You may inspect the
+results from all of them, but in step 2.5 below you will run a tool that gathers
+information from many runs of fastqc and puts them into a convenient report.</p></li>
+<li><p>Align each of the samples against the rat genome using the STAR aligner.
+STAR is an alignment program, like tophat, that is designed specifically for
+spliced alignment of RNA-Seq data. Load STAR into your environment using
+<code>module load star/2.6.0c</code>. Also like tophat, STAR requires a
+genome index to run, which has been built and provided for you at
+<code>/project/bf528/project_3/reference/rn4_STAR</code>.</p>
+<p><strong>NB:</strong> Instead of using modules, you are encouraged to try using miniconda
+to install and manage your software throughout these projects. You may use
+the SCC miniconda module by running <code>module load anaconda3</code>, after which
+the <code>conda</code> executable will be available on the command line. You will need
+to configure your account prior to creating conda environments by following
+<code>this guide</code>_. If you run into issues with conda, you may use modules if you
+prefer.</p>
+<p>STAR has a tremendous number of options. Look at the <code>STAR manual</code>_ section
+3.2.2 for the parameters used by the ENCODE project. Also be sure to specify
+the <code>--outFileNamePrefix</code> option to be unique for each sample. We have
+provided a skeleton qsub script under <code>/project/bf528/project_3/scripts/STAR.qsub</code>
+for you to use.</p>
+<p>You might consider writing your qsub script to accept an argument of the
+input fastq filenames. Refer to the <code>foundations page on bash scripting</code>_
+to see how to do this. You can provide command line arguments to qsub
+scripts on the command line by adding them after the qsub command, e.g.
+<code>qsub STAR.qsub read1.fastq.gz read2.fastq.gz</code>.</p></li>
+<li><p>STAR reports alignment statistics when it is finished running. Find these
+statistics and report them in a table along with your sample names. This
+should include uniquely aligned reads, multimapped reads, unmapped reads,
+etc.</p></li>
+<li><p>The tool <code>multiqc</code>_ is a very helpful tool for collecting information from
+many different bioinformatics programs for a set of samples and combining them
+into a single convenient report. Run multiqc on your samples directory and
+it should find and process your results from both fastqc and STAR. Examine
+the results in multiqc and include any plots you deem necessary for
+communicating the quality of the datasets. We have provided a skeleton qsub
+script for multiqc under <code>/project/bf528/project_3/scripts/multiqc.qsub</code>.</p></li>
+</ol>
+<p><strong>Deliverables:</strong></p>
+<ul>
+<li>9 bam files containing alignments for each of your samples</li>
+<li>A table of read and alignment statistics</li>
+<li>Any other tables or plots from the multiqc output you deem relevant</li>
+</ul>
+<p>.. _foundations page on bash scripting: <a href="http://foundations-in-computational-skills.readthedocs.io/en/latest/content/workshops/06_cluster_computing/06_cluster_computing.html#command-line-arguments" class="uri">http://foundations-in-computational-skills.readthedocs.io/en/latest/content/workshops/06_cluster_computing/06_cluster_computing.html#command-line-arguments</a>
+.. _STAR manual: <a href="https://github.com/alexdobin/STAR/blob/2.5.3a/doc/STARmanual.pdf" class="uri">https://github.com/alexdobin/STAR/blob/2.5.3a/doc/STARmanual.pdf</a>
+.. _multiqc: <a href="https://multiqc.info" class="uri">https://multiqc.info</a>
+.. _this guide: <a href="https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/anaconda/" class="uri">https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/anaconda/</a></p>
+</div>
+<div id="read-counting-with-featurecounts" class="section level2" number="27.3">
+<h2><span class="header-section-number">27.3</span> 3. Read counting with featureCounts</h2>
+<p><strong>Lead role: Programmer</strong></p>
+<p>We will now use the alignments from STAR to count reads against a gene
+annotation using the program <code>featureCounts</code>. These counts will serve as
+the quantificatied transcript abundance measurements for comparing with the
+microarray data.</p>
+<p>We have provided bam files containing STAR alignments under
+<code>/project/bf528/project_3/samples/*.bam</code> for you to use while your group’s
+samples are being processed. You can find the metadata for these files in
+<code>/project/bf528/project_3/groups/group_EX_rna_info.csv</code>.</p>
+<ol style="list-style-type: decimal">
+<li>Use the command <code>module load subread</code> on the cluster to make the
+<code>featureCounts</code> tool available on the command line. Run the command
+without any arguments to read about its usage. Identify any arguments
+that might be important to set.</li>
+<li>featureCounts requires an annotation file in GTF format, which we have
+provided at <code>/project/bf528/project_3/reference/rn4_refGene_20180308.gtf</code>.
+Run featureCounts on each of your nine samples to generate individual counts
+files. We have provided a skeleton qsub script at
+<code>/project/bf528/project_3/scripts/featureCounts.qsub</code>. You might again
+consider writing the script to accept command line arguments. <em>Hint:</em> You
+can create output filenames based on the input filename using the
+<code>basename</code> command.</li>
+<li>Run multiqc on the directory where your counts files are created (see 2.5).
+Examine the output and include any plots or statistics you deem relevant to
+describing the data, e.g. outlier samples, etc.</li>
+<li>Combine the counts files from each sample into a single comma-delimited text
+file where the first column is the gene name and subsequent columns are the
+counts taken from each file for each sample. Create a header row in the
+combined file with “gene_id” in the first column and the corresponding
+sample name in subsequent columns. You might consider doing this using the
+<code>read.csv</code> function and dataframes in R.</li>
+<li>Create box plots for each of your samples showing the distribution of
+counts. Report your observations about distributional differences between
+your samples.</li>
+</ol>
+<p><strong>Deliverables</strong>:</p>
+<ul>
+<li>9 counts files containing gene counts for each sample</li>
+<li>Tables/plots from multiqc for relevant features of the counts data</li>
+<li>A comma-delimited text file containing the concatenated counts matrix</li>
+<li>A box plot containing count distributions for each of your samples</li>
+</ul>
+</div>
+<div id="rna-seq-differential-expression-with-deseq2" class="section level2" number="27.4">
+<h2><span class="header-section-number">27.4</span> 4. RNA-Seq Differential Expression with DESeq2</h2>
+<p><strong>Lead Role: Programmer</strong></p>
+<p>The most basic processed form of data from RNA-Seq experiments are read counts.
+The distribution of count data have three properties that make standard
+statistical methodologies like linear models unsuitable for analysis. First,
+counts are discrete, i.e. they only occur as integers. Second, they do not
+follow a normal distribution, since there can be no negative counts. And third,
+the mean and variance of a given gene’s count distribution are not independent,
+as often the higher the mean count of a gene, the greater the variance. For
+this reason, generalized linear models, in particular negative binomial
+regression, is the statistical tool most frequently used to analyze count data.
+DESeq2_ and edgeR_ are two such software tools that use negative binomial
+regression to estimate count differences given a statistical design. In this
+step you will use DESeq2 to determine differential expression between your
+treated samples and appropriate controls.</p>
+<p>.. _DESeq2: <a href="https://bioconductor.org/packages/release/bioc/html/DESeq2.html" class="uri">https://bioconductor.org/packages/release/bioc/html/DESeq2.html</a>
+.. _edgeR: <a href="https://bioconductor.org/packages/release/bioc/html/edgeR.html" class="uri">https://bioconductor.org/packages/release/bioc/html/edgeR.html</a></p>
+<ol style="list-style-type: decimal">
+<li>Create a new counts matrix that includes control counts. Your sample metadata
+file <code>group_N_rna_info.csv</code> contains the sample IDs of the control samples
+for vehicles that correspond to your treatment samples. Identify the columns
+of your control samples in the sample matrix provided at
+<code>/project/bf528/project_3/samples/control_counts.csv</code>. You will need to
+subset columns out of the control matrix and merge them with your treatment
+counts matrix. <strong>NB:</strong> Be sure you are matching rows of the treatment and
+control samples so that the genes match.</li>
+<li>Install the DESeq2_ package from Bioconductor_, read the vignette to learn
+how to use it. We have provided an example script illustrating DESeq2 usage
+in <code>/project/bf528/project_3/scripts/run_deseq.R</code> to help you.</li>
+<li>Write an R script to run DESeq2 comparing each group of your samples to the
+controls in the combined data matrix from 4.1. This will produce three
+separate DE gene lists, one for each condition with a corresponding set of
+controls. You will need to modify your script for each comparison; you may
+consider writing separate scripts for each analysis or put them all in the
+same script. You will need to subset your counts matrix to include only the
+relevant samples for a given comparison before running DESeq2. The
+appropriate controls for a given treatment are the ones that have the same
+<em>vehicle</em> value.</li>
+<li>Write out the differential expression results to files sorted by adjusted
+p-value. Report the number of genes significant at p-adjust &lt; 0.05.</li>
+<li>Report the top 10 DE genes from each analysis by p-value in a table</li>
+<li>Create histograms of fold change values from the significant DE genes for
+each analysis. Also create scatter plots of fold change vs nominal p-value.</li>
+<li><strong>4 person groups only:</strong> Read the DESeq2 manual to identify how to extract
+the <em>normalized</em> counts out of the DESeq2 object, and save the normalized
+counts matrix to a file. You will use this matrix for clustering in part
+<ol start="7" style="list-style-type: decimal">
+<li></li>
+</ol></li>
+</ol>
+<p>.. _Bioconductor: <a href="https://bioconductor.org/" class="uri">https://bioconductor.org/</a></p>
+<p><strong>Deliverables:</strong></p>
+<ul>
+<li>A report of the number of DE genes at p-adjust &lt; 0.05</li>
+<li>A table of the top 10 DE genes from each of your analyses</li>
+<li>Histograms of fold change values and scatter plots of fold change vs
+nominal-pvalue from the significant DE genes</li>
+<li><strong>4 person groups only:</strong> Normalized counts matrices for each of your
+analyses</li>
+</ul>
+</div>
+<div id="microarray-differential-expressoin-with-limma" class="section level2" number="27.5">
+<h2><span class="header-section-number">27.5</span> 5. Microarray Differential Expressoin with Limma</h2>
+<p><strong>Lead Role: Analyst</strong></p>
+<p>limma_ is a highly mature Bioconductor_ package that implements the standard
+analytical methodology for microarray differential expression analysis. The
+authors used RMA normalization + limma to determine differential expression
+between the different treatments and control samples. You will generate
+similar analyses using the pre-normalized expression matrix made available by
+the authors. You will find the samples that correspond to the sequencing data
+treatments in the file names <code>/project/bf528/project_3/groups/group_X_mic_info.csv</code>.</p>
+<p>The full RMA expression matrix has been made available at
+<code>/project/bf528/project_3/samples/liver-normalization-rma.txt</code> for your use.
+Since we have the pre-normalized expression matrix, you will not need to
+perform normalization or QC yourself and may begin directly with differential
+expression.</p>
+<p>.. _limma: <a href="https://bioconductor.org/packages/release/bioc/html/limma.html" class="uri">https://bioconductor.org/packages/release/bioc/html/limma.html</a></p>
+<ol style="list-style-type: decimal">
+<li>Install limma_ and use it to run differential expression analysis of your
+samples versus the appropriate controls using the provided RMA normalized
+expression matrix. Be sure to read the limma documentation for details on
+how to use the package. We have provided an example R script that implements
+an limma analysis at <code>/project/bf528/project_3/scripts/run_limma.R</code>
+for your reference. You will need to change the script to reference your
+groups samples and the appropriate comparisons. There should be one
+microarray DE analysis for each of those you produced in 4.3.</li>
+<li>Write out the differential expression results to files sorted by adjusted
+p-value as you did in 4.4. Report the number of genes significant at
+p-adjust &lt; 0.05.</li>
+<li>Report the top 10 DE genes by p-value in a table for each of your analyses</li>
+<li>Create histograms of fold change values from the significant DE genes from
+each of your analyses. Also create scatter plots of fold change vs nominal
+p-value.</li>
+</ol>
+<p><strong>Deliverables:</strong></p>
+<ul>
+<li>A report of the number of DE genes at p-adjust &lt; 0.05</li>
+<li>A table of the top 10 DE genes from each of your analyses</li>
+<li>Histograms of fold change values and scatter plots of fold change vs
+nominal-pvalue from the significant DE genes</li>
+</ul>
+</div>
+<div id="concordance-between-microarray-and-rna-seq-de-genes" class="section level2" number="27.6">
+<h2><span class="header-section-number">27.6</span> 6. Concordance between microarray and RNA-Seq DE genes</h2>
+<p><strong>Lead Role: Analyst</strong></p>
+<p>The primary finding of the paper was that the concordance of RNA-Seq and
+microarray expression estimates depends on a number of factors, including
+biological effect size and gene expression level. Using the differential
+expression results from both DESeq2 and limma above, you will implement
+the method used by the paper to measure and examine concordance between
+platforms.</p>
+<p>We have provided example differential expression results from both methods
+in <code>/project/bf528/project_3/results</code> for you to use until the DESeq2
+results come available for your samples.</p>
+<ol style="list-style-type: decimal">
+<li>Read the online methods of the paper that describe how concordance was
+calculated.</li>
+<li>Implement this concordance method in R or your language of choice. The input
+should be two sets of DE genes. You will need to figure out how to map
+Affymetrix probe IDs from the microarray analysis to refSeq identifiers
+used by the RNA-Seq analysis. We have provided a refSeq-to-probe id
+mapping in <code>/project/bf528/project_3/refseq_affy_map.csv</code>. Read the
+paper closely for clues on how the authors accomplished this. A short
+discussion of the concordance calculation is provided :download:<code>here &lt;concordance.nb.html&gt;</code>
+(<code>Rnotebook &lt;https://bitbucket.org/bucab/bf528/src/master/content/projects/project_3_rnaseq_2/&gt;</code>_).</li>
+<li>Compute concordance for the significantly DE genes from each of your three
+analyses.</li>
+<li>Produce a plot like that in Figure 2a, which plots the concordance vs the
+number of DE genes from the RNA-Seq analysis. Also plot concordance vs
+number of DE genes from the microarray analysis.</li>
+<li>Subdivide the DE genes into “above-median” and “below-median” groups as in
+Figure 3 b+c for each of your sample groups. Compute the concordance of these
+separate groups of genes. Use the RNA-Seq results to determine median from
+the <code>baseMean</code> column in the DESeq2 results, which corresponds to the
+overall mean count of the gene across all samples in the comparison.</li>
+<li>Produce a bar plot combining overall concordance measures you obtained for
+the overall DE gene list and the above- and below-median subsets.
+<em>Challenge:</em> Try to recreate the figure, by computing concordance for
+increasing subsets of genes ranked by fold change descending. You will have
+to decide how to handle the case of having different numbers of DE genes
+between platforms.</li>
+</ol>
+<p><strong>Deliverables:</strong></p>
+<ul>
+<li>Concordance between overall, above-, and below-median genes for all three
+analyses</li>
+<li>A plot of overall concordance vs number of DE genes from each analysis</li>
+<li>A combined plot of overall, above-, and below-median genes for each of your
+analyses, and the challenge plot if you so desire</li>
+</ul>
+</div>
+<div id="biological-interpretation-1" class="section level2" number="27.7">
+<h2><span class="header-section-number">27.7</span> 7. Biological Interpretation</h2>
+<p><strong>Lead role: Biologist - for 4 person groups only</strong></p>
+<p>The authors chose chemical agents that cause toxcity via five known, distinct
+mechanisms of action (MOA). The MOAs spanned a range of effect severity and
+biological processes. Since each chemical falling under an MOA should
+participate in the same processes, the DE genes identified by an individual
+chemical treatment should concur with the overall pathways for treatments in
+its MOA. The authors provided results from a gene set enrichment analysis in
+Supplementary Table 4. You shall seek to determine whether your DE genes are
+in agreement with the processes listed by the authors.</p>
+<p>We have provided example differential expression results from both methods
+in <code>/project/bf528/project_3/results</code> for you to use until the DESeq2
+results come available for your samples.</p>
+<p>The authors also sought to evaluate the utility of both platforms in predicting
+the MOA of a given treatment using a cluster analysis. While this clustering
+analysis is too in-depth to reproduce here, you will create a heatmap-based
+hierarchical clustering of your RNA-Seq samples to look for segregation by MOA.</p>
+<p>We have provided an example set of normalized counts for you to use until those
+from your group come available: <code>/project/bf528/project_3/results/example_deseq_norm_counts.csv</code>.</p>
+<ol style="list-style-type: decimal">
+<li>Using a gene set enrichment method of your choosing (e.g. DAVID_, Gather_,
+GSEA_, etc.) and the DE genes from your treatments, compare the pathway
+enrichment results of your genes to those reported in the paper.</li>
+<li>Take the normalized expression matrix from part 4 and produce a clustered
+heatmap of the counts. Experiment with filtering metrics of average count,
+coefficient of variation, etc. to see if you can induce a clustering that
+is consistent with MOA.</li>
+</ol>
+<p>.. _DAVID: <a href="https://david.ncifcrf.gov/tools.jsp" class="uri">https://david.ncifcrf.gov/tools.jsp</a>
+.. _Gather: <a href="http://changlab.uth.tmc.edu/gather/gather.py" class="uri">http://changlab.uth.tmc.edu/gather/gather.py</a>
+.. _GSEA: <a href="http://software.broadinstitute.org/gsea/index.jsp" class="uri">http://software.broadinstitute.org/gsea/index.jsp</a></p>
+<p><strong>Deliverables:</strong></p>
+<ul>
+<li>A table of enriched pathways identified with your DE genes from each of your
+analyses, and a discussion of how they compare to those reported in the
+supplement</li>
+<li>A clustered heatmap of your normalized counts, potentially showing how
+samples from each MOA cluster together</li>
+</ul>
+</div>
+<div id="discuss-your-findings-2" class="section level2" number="27.8">
+<h2><span class="header-section-number">27.8</span> 8. Discuss Your Findings</h2>
+<p>Discuss your findings with your team members and other teams. Some interesting
+questions to consider:</p>
+<ol style="list-style-type: decimal">
+<li>How well do our numbers of differentially expressed genes agree with theirs?
+What are some of the potential differences between your analysis and theirs
+that might have caused different numbers? If you see a difference, is that a
+concern?</li>
+<li>Were you able to replicate their main finding that concordance between
+platforms is dependent upon effect size and expression level? Why or why not?</li>
+<li>Do you think the premise of this study, that chemicals with similar MOAs will
+induce the a similar gene expression response, is reasonable?</li>
+</ol>
+</div>
+<div id="assignment-writeup-2" class="section level2" number="27.9">
+<h2><span class="header-section-number">27.9</span> Assignment Writeup</h2>
+<p>:doc:<code>../project_reports</code></p>
+
+</div>
+</div>
+  </main>
+
+  <div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <div id="book-on-this-page"></div>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          <li><a id="book-source" href="#">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="#">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5">
+  <div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>BF528 - Applications in Translational Bioinformatics</strong>" was written by . </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+<script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+
+</html>

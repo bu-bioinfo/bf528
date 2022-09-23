@@ -1,0 +1,282 @@
+---
+title: "BF528 - Applications in Translational Bioinformatics"
+link-citations: true
+---
+
+```{r include=FALSE}
+# github pages doesn't host files/directories that start with "_", change it for the whole book
+knitr::opts_chunk$set(fig.path = 'main_files/')
+# always turn off warnings and messages
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+# cache by default
+knitr::opts_chunk$set(cache = TRUE)
+```
+
+# BF528 - Applications in Translational Bioinformatics {-}
+
+Welcome to the homepage of BF528.
+
+**Semester: Spring 2023**
+
+**Meeting time:** Monday/Friday 10:10-11:55
+
+**Location:** EPC 208 and Zoom
+
+**Office hours:**
+By appointment
+
+Contents:
+
+- [Course Schedule]
+- [Instructor]
+- [Office Hours]
+- [Course Values and Policies]
+
+The objective of this course is expose students to the topics and technologies
+used in modern bioinformatics studies. The course covers a mix of biological
+and computational topics, including:
+
+* High throughput genomics techniques (microarrays, 2nd generation sequencing)
+* Current high throughput sequencing assays (DNA-Seq, RNA-Seq, ChIP-Seq)
+* Differential gene expression techniques
+* Microbiome/metagenomics techniques
+* Metabolomics
+* Proteomics
+* Systems, network, and integrative biology
+* Basic linux cluster usage
+* Python and R scripting
+* Computational workflow and replication strategies
+* Genomics data visualization techniques
+* Biological databases
+
+This is highly hands-on course, where a portion of in-class periods are
+dedicated to concerted group work and interactive discussions. The course
+materials are focused on real-world applications of the high throughput
+genomics techniques and organized into structured **group projects**. Students
+are organized into groups of three or four for the entire semester, where they
+will work together to replicate results from published studies. The tasks for
+each project have been divided into four ‘roles’:
+
+**Data curator**: identify, download, and describe relevant datasets and
+literature
+
+**Programmer**: write code to transform the downloaded data into an
+interpretable form
+
+**Analyst**: examine and visualize processed data to aid in interpretation
+
+**Biologist**: connect the processed data into meaningful biological
+interpretation
+
+Each group will complete four projects over the course of the semester, and for
+each project the roles of the members rotate, such that each member fulfills
+each role once. Each group will produce a full report describing their work on
+each project, including biological background, methods, results, and
+interpretation.
+
+The first half of each in-class period will be dedicated to interactive
+discussions on special topics germane to the project material. The second half
+is dedicated to either special topics as indicated in the schedule below, or
+to discussion of the projects, sharing ideas, and communicating challenges both
+within and between groups, with the assistance of the instructors.
+
+There are no homeworks or exams, only projects.
+
+The course materials are aligned with [BF591 R for Biological
+Sciences](https://github.com/bu-bioinfo/r-for-biological-sciences) and are
+intended to be taken in tandem, but the materials also stand alone as an
+independent class.
+
+## Course Values and Policies {-}
+
+**Everyone is welcome.** Every background, race, color, creed, religion, ethnic origin,
+age, sex, sexual orientation, gender identity, nationality is welcome and celebrated
+in this course. Everyone deserves respect, patience, and kindness. *Disrespectful language,
+discrimination, or harassment of any kind are not tolerated, and may result in removal
+from class or the University.* This is not merely [BU
+policy](http://www.bu.edu/policies/policy-category/harassment-discrimination/).
+The instructors deem these principles to be inviolable human rights. Students
+should feel safe reporting any and all instances of discrimination or harassment
+to the instructor, to any of the Bioinformatics Program leadership, or the BU
+[Equal Opportunity Office](http://www.bu.edu/eoo/)
+
+**Everyone brings value.** Each of us brings unique experiences, skills, and
+creativity to this course. Our diversity is our greatest asset.
+
+**Collaboration is highly encouraged**. All students are encouraged to work together and seek
+out any and all available resources when completing projects in all aspects of the course,
+including sharing both ideas and code as well as those found on the internet. Any and all
+available resources may be brought to bear. *However, consistent with BU policy, your reports
+should be written in your own words and represent your own work and understanding of the
+material.*
+
+**A safe space for dissent.** For complex topics such as those covered in this class, there
+is seldom one correct answer, approach, or solution. Disagreement fosters innovation.
+All in the course, including students and TAs, are encouraged to express constructive
+criticism and alternative ideas on any aspect of the content.
+
+**We are always learning.** Our knowledge and understanding is always incomplete. Even experts
+are fallible. The bioinformatics field evolves rapidly, and "Rome was not built in a day."
+Be kind to yourself and to others. You are always smarter and more knowledgable today than you
+were yesterday.
+
+## Prerequisites {-}
+
+Basic understanding of biology and genomics. Any of these courses are adequate
+prerequisites for this course: BF527, BE505/BE605. Students should have some
+experience programming in a modern programming language (R, python, C, Java, etc).
+
+## Instructor {-}
+
+Joey Orofino
+
+### My pledge to foster Diversity, Inclusion, Anti-racism {-}
+
+This course is a judgement free and anti-racist learning environment. Our cohort consists of
+students from a wide variety of social identities and life circumstances. Everyone will treat
+one another with respect and consideration at all times or be asked to leave the classroom.
+
+As instructor, I pledge to
+
+1. Learn and correctly pronounce everyone’s preferred name/nickname
+2. Use preferred pronouns for those who wish to indicate this to me/the class
+3. Work to accommodate/prevent language related challenges (for instance I will
+   do my best to avoid the use of idioms and slang)
+
+## Project Overview {-}
+
+The four projects are as follows:
+
+1. [Microarray Based Tumor Classification]
+2. [Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq]
+3. [Concordance of microarray and RNA-Seq differential gene expression]
+4. [Single Cell RNA-Seq Analysis of Pancreatic Cells]
+5. [Individual Project]
+
+In the individual project, you will choose (at least) two roles from any of the
+projects *that you did not previously do*. This will give you an opportunity to
+gain experience with tools and skills you may have missed while playing other
+roles.
+
+The roles in each project require varying amounts of effort. Since you must do
+each role exactly once, below is information about the rating of each role in
+each project with respect to the amount of **computational skill/time commitment
+required** to help you choose your sequence of roles:
+
++--------------+------------+------------+------------+-----------------+
+| Role         | Project 1  | Project 2  | Project 3  | Project 4       |
++==============+============+============+============+=================+
+| Data Curator | ⚫⚪⚪⚪   | ⚫⚫⚪⚪   | ⚫⚫⚪⚪   | ⚫⚫⚫❗        |
++--------------+------------+------------+------------+-----------------+
+| Programmer   | ⚫⚪⚪⚪   | ⚫⚫⚪⚪   | ⚫⚫⚫⚪   | ⚫⚫⚪⚪        |
++--------------+------------+------------+------------+-----------------+
+| Analyst      | ⚫⚫⚪⚪   | ⚫⚪⚪⚪   | ⚫⚫⚫⚪   | ⚫⚫⚪⚪        |
++--------------+------------+------------+------------+-----------------+
+| Biologist    | ⚫⚪⚪⚪   | ⚫⚪⚪⚪   | ⚫⚪⚪⚪   | ⚫⚫⚪⚪        |
++--------------+------------+------------+------------+-----------------+
+| ⚫⚪⚪⚪ -- least skill required; ⚫⚫⚫❗ -- most skill required     |
++--------------+------------+------------+------------+-----------------+
+
+Taking these ratings into account, we provide four possible sequences for
+each member of each group. Sequence 1 through 4 involve increasingly difficult
+computational tasks:
+
++--------------+--------------+--------------+--------------+--------------+
+|              | Project 1    | Project 2    | Project 3    | Project 4    |
++==============+==============+==============+==============+==============+
+| Sequence 1   | Programmer   | Analyst      | Data Curator | Biologist    |
++--------------+--------------+--------------+--------------+--------------+
+| Sequence 2   | Data Curator | Biologist    | Analyst      | Programmer   |
++--------------+--------------+--------------+--------------+--------------+
+| Sequence 3   | Biologist    | Data Curator | Programmer   | Analyst      |
++--------------+--------------+--------------+--------------+--------------+
+| Sequence 4   | Analyst      | Programmer   | Biologist    | Data Curator |
++--------------+--------------+--------------+--------------+--------------+
+
+These are only suggestions. These suggested sequences also only reflect the
+computational skill involved in each role; those with less biological
+background may find the biologist roles more conceptually challenging.
+
+Project guidelines for group reports (1, 2, 3, and 4) are here:
+[Project Writeup Instructions]
+
+## Grading and Assessment {-}
+
+Group report assessment will be the same for all group members. Assessment is
+made based on the process completed by the group, not whether the study results
+were successfully replicated or not. Each students' grade may be adjusted based
+upon the quality of their final individual project relative to their group
+reports.
+
+
+## Course Schedule {-}
+
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+| #  | Day | Date      | Primary Topic                                 | Secondary Topic        |     |
++====+=====+===========+===============================================+========================+=====+
+| 1  | Fri | 1/21/2022 | [Introduction]                                | Command Line Interface |     |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+| 2  | Mon | 1/24/2022 | [Genomics, Genes, and Genomes]                | Cluster Usage          |     |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+| 3  | Fri | 1/28/2022 | [Array Technologies]                          | git                    | 1   |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+| 4  | Mon | 1/31/2022 | [Gene sets and enrichment]                    | R+RStudio Primer       |     |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+| 5  | Fri | 2/4/2022  | [2nd Gen Sequencing]                          |                        |     |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+| 6  | Mon | 2/7/2022  | [Sequence Analysis Fundamentals]              |                        |     |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+| 7  | Fri | 2/11/2022 | [Sequence Analysis - RNA-Seq 1]               |                        |     |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+| 8  | Mon | 2/14/2022 | [Sequence Analysis - RNA-Seq 2]               |                        |     |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+| 9  | Fri | 2/18/2022 | [Genomic Variation and SNP Analysis]          | Project 1 Review       | 1/2 |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+| 10 | Tue | 2/22/2022 | [Biological Data Formats]                     | Genome Browsers        |     |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+| 11 | Fri | 2/25/2022 | [Sequence Visualization]                      |                        |     |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+| 12 | Mon | 2/28/2022 | [Sequence Analysis - ChIP-Seq]                |                        |     |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+| 13 | Fri | 3/4/2022  | [Biological Databases]                        |                        |     |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+|    | Mon | 3/7/2022  | Spring Break                                  |                        |     |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+|    | Fri | 3/11/2022 | Spring Break                                  |                        |     |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+| 14 | Mon | 3/14/2022 | [Replicability vs Reproducibility Strategies] |                        |     |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+| 15 | Fri | 3/18/2022 | [Computational Environment Management]        | Project 2 Review       | 2/3 |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+| 16 | Mon | 3/21/2022 | [Computational Pipeline Strategies]           | Conda+Snakemake        |     |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+| 17 | Fri | 3/25/2022 | [Single Cell Techniques]                      |                        |     |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+| 18 | Mon | 3/28/2022 | [Single Cell Analysis Part 1]                 |                        |     |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+| 19 | Fri | 4/1/2022  | [Single Cell Analysis Part 2]                 |                        |     |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+| 20 | Mon | 4/4/2022  | [Microbiome: 16S]                             |                        |     |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+| 21 | Fri | 4/8/2022  | [Microbiome: Metagenomics]                    | Project 3 Review       | 3/4 |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+| 22 | Mon | 4/11/2022 | [Proteomics]                                  | Something Fancy        |     |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+| 23 | Fri | 4/15/2022 | [Metabolomics]                                |                        |     |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+| 24 | Wed | 4/20/2022 | [Integrative Genomics]                        |                        |     |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+|    | Fri | 4/22/2022 | Project work, no class                        |                        |     |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+|    | Mon | 4/25/2022 | TBD                                           |                        |     |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+|    | Fri | 4/29/2022 | TBD                                           | Project 4 Review       | 4/5 |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+| 28 | Mon | 5/2/2022  | The Future + retrospective, end of classes    |                        |     |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+|    | Fri | 5/13/2022 | Final projects due                            |                        | 5   |
++----+-----+-----------+-----------------------------------------------+------------------------+-----+
+
+## Office Hours {-}
+
+* TBD

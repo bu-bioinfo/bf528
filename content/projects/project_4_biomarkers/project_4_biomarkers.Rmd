@@ -1,0 +1,189 @@
+Biomarker Discovery & Development
+=================================
+
+.. contents::
+   :local:
+
+The discovery of molecular biomarkers and development of predictive models
+remains an extremely challenging task. Each year, hundreds of biomarker models
+are published but rarely are they validated and brought to the clinic. This
+high rate of failure is directly associated with the complexities that
+characterize the biomarker development process. Everything from sample
+collection protocols to experimental design and model building techniques plays
+a role in how well a particular biomarker will validate. Here, we focus on the
+computational aspects of biomarker development and examine a paper which
+employed a successful computational strategy to ultimately validate their
+models.
+
+.. note::
+  Roles have not been specified in this project. Work with your team to
+  divide up the tasks and describe how you did this in the Methods section of
+  your report.
+
+Upon completion of this project, students will be able to do the following:
+
+* process microarray data in preparation for identifying gene expression based
+  biomarkers
+* split a set of samples into a training and test set for cross validation
+* perform cross validation on a predictive model of a clinical variable using
+  gene expression
+* report classification accuracy using an ROC curve plot
+
+1. Read the paper & supplemental methods
+----------------------------------------
+
+Spira et al. Airway epithelial gene expression in the diagnostic evaluation of
+smokers with suspect lung cancer. Nat Med. 2007 Mar;13(3):361-6.
+`PMID: 17334370 <https://www.ncbi.nlm.nih.gov/pubmed/17334370>`_
+
+2. Cleaning the clinical annotation file
+----------------------------------------
+
+A major part of downloading and using publically available data is making sure
+the data is in the format necessary to perform data analysis. Provided in the
+project directory (``/project/bf528/project_4_biomarkers``) is a clinical
+annotation file containing several lines from the GEO series matrix file.
+
+#. Read the file ``GSE4115_clinical_annotation.txt`` into R while setting
+   ``head=TRUE`` and ``row.names=1``.
+#. You’ll notice we have already curated the ``CANCER_STATUS`` column for you
+   but the other columns contain text, which can be removed. Write a script in
+   R to remove the excess text from each of the columns so that the column
+   names accurately describe the data. (hint: you can use the ``strsplit()``
+   command in R to split strings at certain characters. You’ll want to split
+   these strings at the “:” and retain only the second portion.)
+#. You will also notice that a fair number of samples contain missing values
+   (denoted by NAs). This analysis will require the variables
+   ``CANCER_STATUS``, ``SMOKING_STATUS``, and ``PACK_YEARS``. Remove any
+   samples for which there is a missing value in any of these variables.
+
+3. Using average z-score as quality control on the expression matrix
+--------------------------------------------------------------------
+
+The authors of this paper developed a method by which they could distinguish
+good quality samples from poor quality samples. This method compares the
+average z-score value per sample and removes the top 15% of samples with the
+highest score. For more details on this method, please see the supplemental
+methods.
+
+#. Read in the probesets using the file ``GSEA4115_probeset_expression.txt`` in
+   the project directory.
+#. Z-score normalize each probeset in the expression matrix (hint: use the
+   ``scale()`` function. This function scales in column-major order by default
+   so make sure your matrix is properly oriented).
+#. Compute the average z-score normalized probeset value for each sample.
+#. Plot these average z-scores in a histogram being sure to label your plot and
+   axes. Add a vertical red line to your plot indicating the smallest value in
+   the top 15% of scores.
+#. Remove 15% of samples with the highest average z-score.
+
+4. Split data into training & validation sets
+---------------------------------------------
+
+When building a predictive model, it is critical to set aside a portion of your
+data to evaluate the performance of your final model. Evaluating your model on
+independent data will give you an honest approximation of your model’s
+performance and will allow you to gauge how well it will perform in the future.
+Typically, the larger the validation set, the more convincing the result.
+However, when our sample size is limited, reserving approximately 30% of your
+data for independent validation is sufficient.
+
+#. Randomly select 30% of the samples and set them aside for use downstream as
+   an independent validation set. There are several methods by which you can
+   make this random selection. Use either the native R function ``sample()`` or
+   the ``createDataPartition()`` function from the ``caret`` package.
+#. Use the remaining 70% of your samples for Part 5. This portion of the data
+   is referred to as the *training set*.
+
+5. Use cross-validation to select genes for the biomarker
+---------------------------------------------------------
+
+Here, you will implement a technique called cross-validation. Cross-validation
+is a method used in predictive modeling to determine the set of optimal
+parameters for a given model and estimate the model’s performance in
+independent data in a non-biased manner. It is common practice to partition
+your training set into two subsets. The first is called the *internal training
+set* and is typically made up of 70-80% of the data in the training set. The
+second subset is called the *internal test set* and is composed of the
+remaining 20-30% of training set samples. Given this sort of data partition, we
+build a predictive model using data from the internal training set, then test
+the model on the internal test set. We repeat this process across several
+random data partitions and average the performance metrics to obtain a
+representative measure of how well we can expect the model to perform in an
+independent dataset.
+
+#. Create a random split of the training set data in which 80% of samples are
+   in the internal training set and 20% of samples are in the internal test
+   set.
+#. Run an ANOVA model in the internal training set to rank genes based on
+   p-value after correcting for smoking status and pack-years. (hint: Use the
+   ``f.pvalue()`` function from the ``sva`` package to rapidly perform this
+   test and produce p-values. You will also need to use the ``lmFit()``
+   function in the ``limma`` package to compute t-statistics for each gene to
+   determine the direction of regulation after correcting for smoking status
+   and pack-years.)
+#. Select the top 5 up-regulated and 5 down-regulated genes
+#. Train a weighted voting classifier using the training set and the genes
+   selected in the previous point (use the function ``wv.model()`` to build the
+   model).
+#. Evaluate this model on the internal test set. This step will produce a
+   prediction score per sample (use the function ``predict.wv()`` to evaluate
+   your model from the previous point).
+#. The ``predict.wv()`` function above returns the weighted voting scores, the
+   binary predictions (based on the sign of the scores), and the strength of
+   each prediction. Using the scores and true class labels, compute the Area
+   Under the Receiver Operating Characteristic curve (AUC) using to ``roc()``
+   and ``auc()`` functions in the ``AUC`` package. Using the binary predictions
+   and true class labels, compute the sensitivity and specificity of the
+   model’s predictions.
+#. Repeat steps 1-5 100 times (using a for loop), keeping track of the
+   performance metrics at each iteration, as well as the genes that were
+   selected for the model.
+#. Summarize your cross-validation loop by averaging the performance metrics
+#. Repeat steps 1-8 but select different numbers of genes to be in the model
+   (increase by the selected up-regulated and down-regulated genes each by 5
+   until a total of 100 genes are in the model).
+#. Plot the average 100x cross-validation AUC as a function of the number of
+   genes you selected. Is there a certain number of genes that performs best?
+
+6. Building the final model
+---------------------------
+
+#. In Part 5 you found the optimal number of genes that should be included in
+   the biomarker and you kept track of the genes selected for the biomarker
+   across 100 runs of cross-validation. Using this optimal configuration and
+   the data you stored from that cross-validation run, identify the genes that
+   were included in your model most often. These genes will become your final
+   biomarker. Note: be sure to select an equal number of up-regulated and
+   down-regulated genes.
+#. Create a heatmap of your genes using the entire training set. Be sure to
+   color your columns based on the cancer status of each patient.
+#. Build your final model using the genes selected in Part 6.1 and the entire
+   training set (use the same function as in Part 5.4).
+#. Test your model on the validation set (function from Part 5.5) and compute
+   the same performance metrics as in Part 5.6
+#. Plot your validation set ROC curve and provide the AUC value in the title.
+
+7. Discuss Your Findings
+------------------------
+
+Discuss your findings with your team members and other teams. Some interesting
+questions to consider:
+
+#. How comparable was your cross-validation AUC to the validation set AUC? If
+   they were very similar, what does this tell you? If they were very
+   different, why do you think that is and what does that tell you about the
+   model fit?
+#. Visually, how comparable is your final biomarker to the biomarker published
+   in the paper?
+#. In this assignment, you used cross-validation to optimize the number of
+   genes in the biomarker and which genes were included in the final model. In
+   general, what other parameters you would be able to optimize in
+   cross-validation?
+#. Comment on the author’s methods for deriving their biomarker. What did you
+   like about their method and what would you have done differently?
+
+Assignment Writeup
+------------------
+
+:doc:`../project_reports`

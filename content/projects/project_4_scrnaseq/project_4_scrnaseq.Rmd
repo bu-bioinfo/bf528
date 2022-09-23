@@ -1,0 +1,313 @@
+Single Cell RNA-Seq Analysis of Pancreatic Cells
+================================================
+
+.. contents::
+   :local:
+
+The pancreas is a complex organ comprised of a diverse set of cell types.
+Proper function of the pancreas is required to maintain healthy metabolism,
+and pancreatic dysfunction leads to serious illnesses, including type 1
+diabetes. Baron et al performed single cell RNA sequencing in a set of
+post-mortem human donor pancreatic cells from four subjects and two mouse
+models to better understand the cellular diversity in the pancreas. Analysis of
+the data identified previously known cell types as well as rare and novel cell
+type subpopulations, and created a more detailed characterization of the
+diversity of those cell types. In this project, we will attempt to replicate
+their primary findings using current analytical methodology and software
+packages.
+
+Upon completion of project 4, students will be able to do the following:
+
+* Process the barcode reads of a single cell sequencing dataset
+* Perform cell-by-gene quantification of UMI counts
+* Perform quality control on a UMI counts matrix
+* Analyze the UMI counts to identify clusters and marker genes for distinct
+  cell type populations
+* Ascribe biological meaning to the clustered cell types and identify
+  novel marker genes associated with them
+
+.. note::
+
+   This project description is much more conceptual than previous projects.
+   This is by design. You are still strongly encouraged to share and discuss
+   strategies with each other and your TAs, and use any materials you find
+   online. Remember: outside of this class, you will be expected to figure out
+   how to solve conceptual problems, often without guidance!
+
+
+1. Read the paper
+-----------------
+
+Baron, Maayan, Adrian Veres, Samuel L. Wolock, Aubrey L. Faust, Renaud Gaujoux,
+Amedeo Vetere, Jennifer Hyoje Ryu, et al. 2016. “A Single-Cell Transcriptomic
+Map of the Human and Mouse Pancreas Reveals Inter- and Intra-Cell Population
+Structure.” Cell Systems 3 (4): 346–60.e4. `PMID: 27667365
+<https://www.ncbi.nlm.nih.gov/pubmed/27667365/>`_
+
+2. Process Single Cell Sequencing Reads and Choose Barcodes
+-----------------------------------------------------------
+
+**Lead role: Data Curator**
+
+First we must process the sequencing libraries into UMI counts matrices.
+
+The human single cell RNA-Seq samples in this study have already been
+downloaded and can be found under ``/projectnb/bf528/project_4_scrnaseq/fastq``.
+The sequencing protocol used by the paper uses a `complicated barcoding
+scheme for read 1`_. Typically the barcode for each cell and UMIs for each
+transcript will be provided to you in a more convenient format, so the
+raw read 1 barcode has already been processed for you in files with names
+that look like ``SRRXXXXXXX_1_bc.fastq.gz``. The reads in this file have
+the format::
+
+  BBBBBBBBBBBBBBBBBBBUUUUUU
+  \   19 bc bases   /\ UMI/
+
+You will need this information when quantifying the reads with salmon_.
+Use these preprocessed files as read 1 instead of the ones ending in
+``_1.fastq.gz``.
+
+.. note::
+
+   Some of the barcode reads in the original ``*_1.fastq.gz`` could not be
+   matched to the InDrops barcode scheme. This is a common occurence due to
+   noise in the protocol. Furthermore, although the original InDrops barcodes
+   are variable length, the barcodes provided to you above have been padded to
+   be all exactly 19 bases + 6 UMI bases = 25 bases when a valid barcode pattern
+   was identified in the read. Any barcodes that are not exactly 25 bases long
+   will be of very low frequency (probably exactly 1 read per) and therefore will
+   be filtered out when you perform the frequency filter when creating the barcode
+   whitelist in 2.3.
+
+.. _complicated barcoding scheme for read 1: https://github.com/indrops/indrops/blob/master/indrops.py#L1413
+.. _salmon: https://salmon.readthedocs.io/en/latest/salmon.html
+
+1. **Locate the sample metadata**. The sample information corresponding to the
+   short read archives has not been provided to you. Examine the paper for a
+   link to the GEO accession number. On the GEO accession page, search for the
+   ``SRA Run Selector`` link at the bottom and identify and download the sample
+   information for the human samples on the linked page. There are 13 samples
+   (sequencing libraries), but only four individuals. Use only the SRR files
+   associated with the 51 year old female donor for further analysis.
+2. **Count the number of reads by barcodes.** Examine each ``SRRXXXXXXX_1_bc.fastq.gz`` and calculate
+   the number of reads per distinct barcode. Hint: Generate a cumulative
+   distribution plot to help understand how the reads are distributed among
+   barcodes. NB: the UMI is *not* part of the barcode.
+3. **Whitelist informative barcodes.** We wish to eliminate reads with
+   infrequent barcodes from consideration (why?). Choose a read threshold to
+   filter out barcodes that are too infrequent to be informative and write the
+   remaining distinct barcodes to a file, one barcode per line. These will be
+   our "whitelist" barcodes to provide to salmon in the next step.
+4. **Generate UMI counts matrix.** Generate UMI matrix using `salmon alevin`_
+   with the provided fastq files and the whitelisted barcodes from the previous
+   step. You will need to provide custom barcode+UMI arguments when quantifying
+   the reads: ``--end 5 --barcodeLength 19 --umiLength 6``. Use the current human
+   reference transcriptome available on the `Gencode website`_.  You should also
+   create a transcript ID (ENSTXXX...) to gene (ENSGXXX...) map file as described
+   in the salmon alevin documentation, to enable salmon to collapse from the
+   transcript to the gene level.
+5. **Record mapping statistics.** The salmon output contains some useful
+   statistics about how well the reads mapped. Capture and examine the output
+   and report any informative statistics (e.g. mapping rate) in your report.
+
+.. _salmon alevin: https://salmon.readthedocs.io/en/latest/alevin.html
+.. _Gencode website: https://www.gencodegenes.org/
+
+.. warning::
+
+    These files are big and will take a significant amount of time to process.
+    Start early!
+
+.. note::
+
+    Suggestion: you may find it convenient to create smaller versions of
+    the files when developing your code.
+
+.. note::
+
+    Suggestion: salmon can run with multiple threads using the ``-p`` argument.
+    You will need to submit your qsub jobs with the appropriate parallel
+    environemt, which you can find on the `SCC documentation site`_
+
+.. _SCC documentation site: http://www.bu.edu/tech/support/research/system-usage/running-jobs/submitting-jobs/#job-resources
+
+**Deliverables:**
+
+* Report and justify the strategy you chose for identifying informative barcodes
+  by whatever method you deem appropriate
+* Report any mapping statistics from the salmon output you deem relevant
+* UMI counts matrix for the chosen sample in the form of salmon alevin output
+
+3. Processing the UMI counts matrix
+-----------------------------------
+
+**Lead role: Programmer**
+
+The authors developed a custom analysis methodology for this paper. We will
+follow the tutorial materials written by the authors of the Bioconductor
+package Seurat_ instead of trying to implement their methods.
+
+.. _Seurat: https://satijalab.org/seurat/
+
+A precomputed UMI counts matrix is available at
+
+    ``/projectnb/bf528/project_4_scrnaseq/GSM2230760__salmon_quant``
+
+for your use. Hint: you may find `this tutorial`_ instructive in completing
+many of these steps.
+
+.. _this tutorial: https://satijalab.org/seurat/v3.1/pbmc3k_tutorial.html
+
+1. **Filter out low-quality cells**. You will need to discover how to load the
+   salmon alevin counts file into R. Choose criteria to identify and filter
+   low-quality cells and genes from the UMI counts matrix. You should consider the
+   minimum number of non-zero count genes per cell, the number of non-zero count
+   cells per gene, etc. NB: The UMI counts matrix has Ensembl gene identifiers,
+   but it may be helpful to map them to gene symbols. There are many ways to do
+   this.
+2. **Filter out low variance genes.** Further filter the counts matrix to
+   include only highly variable features that are likely to be informative.
+   Choose an appropriate number of features based on the data. Recall that the
+   counts matrix must be normalized before comparing cells to one another.
+3. **Identify clusters of cell type subpopulations.** Use a clustering method
+   of your choosing to discover clusters of cells. Identify the number of
+   cells in each cluster.
+
+**Deliverables:**
+
+* Report the number of cells and the number of genes in the unfiltered dataset
+* Report the number of cells remaining after filtering out low quality cells,
+  and justify any filtering criteria used
+* Report the number features you used after variance filtering, and justify the
+  filtering criteria used
+* Report the number of clusters you identified, and report the relative
+  proportions of cell numbers (e.g. as a bar or pie chart)
+
+4. Cluster marker genes
+-----------------------
+
+**Lead role: Analyst**
+
+The authors report that they found all major pancreatic cell types in the
+data based on known marker genes. The major cell types also had approximately
+expected relative proportions.
+
+A RDS file containing a saved Seurat object with processed, clustered counts is
+available for you to use:
+
+    ``/projectnb/bf528/project_4_scrnaseq/GSM2230760_seurat.rda``
+
+You can load this into R using ``cells <- loadRDS("GSM2230760_seurat.rda")``.
+Hint: you may find `this tutorial`_ instructive in completing many of these steps.
+
+.. _this tutorial: https://satijalab.org/seurat/v3.1/pbmc3k_tutorial.html
+
+1. **Identify marker genes for each cluster.** Use a differential expression
+   method to identify the marker genes in each cluster. You may use any
+   reasonable approach to do this.
+2. **Label clusters as a cell type based on marker genes.** The marker genes
+   should indicate which clusters correspond to which cell types. You may use
+   the marker genes indicated by the authors or do your own research.
+
+   .. note:
+
+      If you are unable to label clusters with the marker genes reported in
+      the paper, you might have to work with the programmer to understand why
+      and iterate.
+
+3. **Visualize the clustered cells using a projection method.** Use either t-SNE
+   or UMAP to create a projection and scatter plot colored by cell cluster.
+   Label the plot with the cell types you previously assigned. Compare this
+   plot to Figure 1D in the paper.
+4. **Visualize the top marker genes per cluster.** Choose however many
+   top marker genes you deem suitable and visualize them to show the
+   differences. You might plot a clustered heatmap of log normalized UMI
+   counts for those genes across all cells following the format used in
+   Figure 1B of the paper or any other format you deem effective. The cluster
+   identities should be clearly visible on the heatmap, probably as a colored
+   bar along one of the axes.
+5. **Find novel marker genes.** After labeling your clusters, there will likely
+   be other differentially expressed genes in that cluster that are just as
+   discriminative of cell type as the marker genes. Indicate these genes in your
+   report by whatever means you deem appropriate.
+6. **Four member groups only: Output marker gene information.** Write out a CSV file with
+   marker gene statistics you identified above. You should include the fold change,
+   precision (i.e. p-value and adjusted p-value), cluster membership, and gene identifier.
+   The Biologist will use these marker genes for further analysis.
+
+**Deliverables:**
+
+* Report the method you used to label clusters to cell types
+* Compare your cluster marker genes to those reported in the paper; do they agree?
+  Are there clusters that could not be labeled using their marker genes? What
+  do these clusters seem to be?
+* Show the visualized projection plot colored by cluster and labeled with your
+  assigned cell type
+* Compare your projection plot with that of the paper in your discussion
+* Show the clustered heatmap of log normalized UMI counts for marker genes
+  of each cluster
+* Compare your heatmap results with that of the paper in your discussion
+* Report any "novel" marker genes in an appropriate format, e.g. a table or
+  in the heatmap
+
+5. In-depth marker gene analysis
+--------------------------------
+
+**Lead role: Biologist - for 4 person groups only**
+
+The authors labeled their clusters to mostly previously known cell types that
+are thought to perform certain functions. We will attempt to confirm these cell
+type functions using the marker genes that were discovered through the relatively
+unbiased clustering and differential expression analysis, without the influence
+of *a priori* knowledge.
+
+A precomputed clustered dataset is available for you to use at:
+
+    ``/projectnb/bf528/project_4_scrnaseq/GSM2230760_marker_genes.csv``
+
+1. **Perform gene set enrichment analysis on marker genes.** Use an appropriate
+   gene set enrichment analysis tool of your choosing (e.g. DAVID_, enrichR_,
+   metascape_, etc) to perform gene set enrichment on the marker genes for each
+   cluster. You might decide to filter the marker genes by some criteria, like
+   adjusted p-value or log2 fold change and see how the results change. Report
+   the results and compare them to the cell type label, if any, of each cluster.
+
+.. note:
+
+  The marker genes you receive from the analyst have been restricted in
+  certain ways. If you think you don't have enough marker genes for certain
+  clusters, you might have to work with the analyst to change the thresholds
+  set on the marker gene analysis to get more.
+
+.. _DAVID: https://david.ncifcrf.gov/
+.. _enrichR: http://amp.pharm.mssm.edu/Enrichr/
+.. _metascape: http://metascape.org/gp/index.html#/main/step1
+
+**Deliverables:**
+
+* Report the results of the gene set enrichment analysis in a concise way (e.g.
+  a table with cluster name, label, number of marker genes, and enriched gene sets,
+  ensuring the table is readable and not too large)
+* Discuss the results in the Discussion section, describing how well you think the
+  gene set enrichment results match the assigned cell type labels
+
+
+8. Discuss Your Findings
+------------------------
+
+Discuss your findings with your team members and other teams. Some interesting
+questions to consider:
+
+1. Did you replicate the study? What were they differences between their methodology
+   and those you performed?
+2. Were there any key differences between your results and those presented in
+   the study? Did these key differences affect the biological interpretation of
+   the results?
+3. Did you find evidence of the distinct cell types described in the paper? Were
+   there any major differences in the cell types you discovered, e.g. in number,
+   proportion, markers, etc?
+
+Assignment Writeup
+------------------
+
+:doc:`../project_reports`

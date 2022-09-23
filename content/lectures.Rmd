@@ -1,0 +1,53 @@
+---
+output: html_document
+---
+
+# Introduction
+
+# Genomics, Genes, and Genomes
+
+# Array Technologies
+
+# Gene sets and enrichment
+
+# 2nd Gen Sequencing
+
+# Sequence Analysis Fundamentals
+
+# Sequence Analysis - RNA-Seq 1
+
+# Sequence Analysis - RNA-Seq 2
+
+# Genomic Variation and SNP Analysis
+
+# Biological Data Formats
+
+# Sequence Visualization
+
+# Sequence Analysis - ChIP-Seq
+
+# Biological Databases
+
+# Replicability vs Reproducibility Strategies
+
+# Computational Environment Management
+
+# Computational Pipeline Strategies
+
+# Single Cell Techniques
+
+# Single Cell Analysis Part 1
+
+# Single Cell Analysis Part 2
+
+# Microbiome: 16S
+
+# Microbiome: Metagenomics
+
+# Proteomics
+
+# Metabolomics
+
+# Integrative Genomics
+
+# (PART) Projects

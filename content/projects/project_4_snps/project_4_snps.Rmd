@@ -1,0 +1,181 @@
+Frequent Mutations in Cancer
+============================
+
+Read the paper Vogelstein et al., Cancer Genome Landscapes, Science, 2013
+http://www.sciencemag.org/content/339/6127/1546.full
+Fifteen years ago, the idea that all of the genes altered in cancer could be
+identified at base-pair resolution would have seemed like science fiction.
+Today, such genome-wide analysis, through sequencing of the exome or of the
+whole genome, is routine. (Vogelstein et al., 2013)
+
+The paper presents a comprehensive study about mutations status and their
+effect in cancer.  They point out that there is a fundamental difference
+between a driver gene and a driver gene mutation. A driver gene is one that
+contains driver gene mutations, but may also contain passenger gene mutations
+which do not drive the cancer.  The best way to identify Mut-driver genes is
+through their pattern of mutation rather than through their mutation frequency.
+The patterns of mutations in well-studied oncogenes and tumor suppressor genes
+are highly characteristic and nonrandom. Oncogenes are recurrently mutated at
+the same amino acid positions, whereas tumor suppressor genes are mutated
+through protein-truncating alterations throughout their length. (Vogelstein et
+al., 2013)
+
+The authors propose a method, the 20/20 rule, which classifies genes in
+oncogenes and tumor suppressor genes based on the type and the frequency of
+mutations. Using data from Catalogue of Somatic Mutations in Cancer (COSMIC)
+they computed a score that is able to predict whether a gene is more likely to
+behave as an oncogene or a tumor suppressor gene.  The paper provides a list of
+125 genes and their oncogene and tumor suppressor gene scores.
+
+.. note::
+  Roles have not been specified in this project. Work with your team to
+  divide up the tasks and describe how you did this in the Methods section of
+  your report.
+
+Upon completion of this assignment, students will be able to do the following:
+
+* parse, subset, and tabulate a large tab separated table containing mutation
+  data
+* compute a score based on genomic coordinates to prioritize oncogenes and
+  tumor suppressors
+
+1. Read the paper
+-----------------
+
+Vogelstein, Bert, Nickolas Papadopoulos, Victor E. Velculescu, Shibin Zhou,
+Luis A. Diaz Jr, and Kenneth W. Kinzler. 2013. “Cancer Genome Landscapes.”
+Science 339 (6127): 1546–58. `PMID: 23539594 <https://www.ncbi.nlm.nih.gov/pubmed/23539594>`_
+
+2. Examine the COSMIC Targeted Screen Mutation Dataset
+------------------------------------------------------
+
+The `COSMIC`_ mutation database is the largest and most comprehensive
+collection of cancer mutations from human tumors available. There are two
+types of datasets: targeted screen and genome-wide. The targeted screen
+mutations have been carefully curated by experts to include only
+high-confidence mutations, while the genome-wide mutations were created by
+analysis of large sets of pubilcly available tumor genome data.
+
+The Targeted Screening dataset has been made available for you at
+``/project/bf528/project_4_snps/data/CosmicCompleteTargetedScreensMutantExport.tsv``
+and can be used for all parts of this assignment.
+
+1. Familiarize yourself with the data format for the "COSMIC Complete Mutation
+   Data (Targeted Screens)" dataset in the `COSMIC database`_ downloads page. The
+   file is tab separated with 35 columns.
+2. Compute the following statistics using the Targeted Screen mutation dataset
+   and put them in a table:
+
+   * Total number of samples
+   * Total number of mutated samples
+   * Total number of negative samples
+   * Total number of tumors
+   * Total number of genes
+   * Total number of mutations
+3. Produce bar plots or pie charts for each of the following distributions:
+
+   * Number of mutations broken out by mutation description
+   * Number of mutations broken out by Primary site
+   * Number of mutations broken out by Primary histology
+   Some of the values for these fields have very low counts. You might consider
+   grouping low-count values into an 'Other' category for readability.
+
+**Deliverables:**
+
+* a table with the statistics from 2.2
+* three bar or pie charts showing the distribution of mutations according to
+  primary site and histology
+
+.. _COSMIC: http://cancer.sanger.ac.uk/cosmic
+.. _COSMIC database: http://cancer.sanger.ac.uk/cancergenome/projects/cosmic/download
+
+3. Detailed analysis of mutations per tumor by cancer type
+----------------------------------------------------------
+
+1. Produce a matrix that records the number of tumors broken out by Primary
+   site vs Primary histology. For example, there are 13,390 mutations in breast
+   tumors of type carcinoma. Visualize this matrix as a heatmap with
+   appropriate labels.
+2. Identify the number of mutations in each tumor grouped by cancer type, as in
+   Figure 1B. Produce a boxplot of tumor mutation distributions with the x-axis
+   ordered like that of the figure.
+
+**Deliverables:**
+
+* a heatmap showing the distribution of site vs histology type
+* a boxplot of the distribution of number of mutations per tumor similar to
+  Figure 1B
+
+4. Mut-driver genes and the 20/20 rule
+--------------------------------------
+
+Some genes are more likely to be mutated in certain cancers than others.
+However, the authors note that a simple overabundance of mutations in a gene is
+not sufficient to explain the tumorigenicity observed in the sample.
+
+1. Using the mutated and negative samples, calculate the fraction of mutated
+   vs. all tumors for each gene in the dataset. Examine the top genes when
+   sorted by absolute number of mutated tumors compared with fraction. Report
+   the top ten genes sorted by both of these metrics in tables.
+2. One potential factor in the calculation of mutation frequency is the length
+   of each gene. Use the Gene CDS Length column to find the coding sequence
+   length and plot it against the number of mutations calculated in 4.1 as a
+   scatter plot. Note any trends you observe in the plot.
+3. Implement the 20/20 rule as described in the paper. Use the Mutation genome
+   position column and the description of "Missense" for mutated tumors to
+   identify recurrently mutated positions for oncogenes. Use mutations with
+   description "Nonsense" to identify mutations that are inactivating for tumor
+   suppressor genes. Include the top ten oncogenes and top ten tumor suppressor
+   genes as ranked by highest 20/20 score in separate tables.
+4. Compare your lists of top scoring genes to the 125 Mut-driver genes listed
+   in the manuscript supplemental table S2A.
+
+**Deliverables:**
+
+* tables for the top ten genes sorted by number of mutations and fraction
+  mutated
+* a scatter plot of fraction mutated versus CDS length
+* tables for the top ten oncogenes and tumor suppressor genes ranked by 20/20
+  score
+* a comparison of your 20/20 scores to those reported in the paper
+
+5. Mutation frequency by tumor and cancer type
+----------------------------------------------
+
+**For 4 person groups only**
+
+1. Extend the analysis from part 4 by subdividing the fraction of mutated vs
+   all tumors by Primary site and Primary histology. Choose any three of each
+   type and identify the most frequently mutated genes for those types. Report
+   the top ten most frequently mutated genes for each type in a table with the
+   frequency.
+2. Use the top 100 genes from each of your chosen types from 5.1 and run a gene
+   set enrichment analysis using the tool of your choosing. Report any
+   significantly enriched gene sets in your report.
+
+**Deliverables:**
+
+* a table containing the top ten most frequently mutated genes for three sites
+  and three histology types along with their frequency
+* any significant gene set enrichment results for the top 100 genes ranked by
+  mutation frequency
+
+6. Discuss Your Findings
+------------------------
+
+Discuss your findings with your team members and other teams who chose this
+project. Some interesting questions to consider:
+
+1. Is the distribution of sites and histology types in this dataset consistent
+   with the relative frequency of these cancer types as reported elsewhere in
+   the literature? Why or why not?
+2. Is the frequency of site vs histology type consistent with your
+   expectations? Are there any site/histology type combinations that are
+   unexpected?
+3. Why isn't mutational frequency alone a good predictor of tumorigenicity?
+4. Do your overall results agree with those presented in the paper?
+
+Assignment Writeup
+------------------
+
+:doc:`../project_reports`

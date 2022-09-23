@@ -1,0 +1,491 @@
+---
+---
+
+# Project Writeup Instructions {-}
+
+Your reports should be focused on describing what *you* did and any relevant
+background. The purpose of our projects is to attempt to reproduce the findings
+in a published manuscript. You do not need to restate any of the methods from
+the paper itself; only what you yourself did in pursuit of reproducibility. The
+introduction should include a brief discussion (not more than a paragraph)
+summarizing the premise of the original study, just to give the reader enough
+context to understand the results.
+
+Projects are due by adding and pushing your report document to your github
+repos **prior to the start of class on the day the project is due!** The project
+will be discussed on the due date, so no late assignments can be accepted. If
+you have trouble pushing the document, you may email it to the instructor and
+your TA instead.
+
+## Report Guidelines {-}
+
+Your reports will be assessed in six areas:
+
+- [Accuracy]
+- [Report Formatting]
+- [Figure & Table Quality]
+- [Clarity of Language]
+- [Thoroughness]
+- [Cohesion]
+
+You will be provided with detailed feedback on each of your reports with
+specific comments on each of these areas. Your final grade will be assigned
+based on how well you respond to the comments for your projects overall.
+
+## FAQ {-}
+
+**How do you assign grades in this class?**
+
+Both your overall group and individual performance are taken into account when
+assigning grades at the end of the semester. The feedback we give is intended to
+help you improve your writing, critical thinking, and biological/bioinformatic
+reasoning skills. We therefore want you to focus more on the content of the
+feedback than the grades of each project. For this reason, our feedback will
+specify the range of grade you would receive at the end of the course based on
+the quality of each report.
+
+The only guaranteed ways to get a lower grade is to not follow the instructions
+in the project descriptions, or not incorporating feedback you received on
+previous projects.
+
+**I'm having trouble with my section and I don't want my group's grade to suffer. What happens in this case?**
+
+We track which team member played which role on each project. Please focus only
+on the sections of the report that correspond to your role and not that of other
+roles. This is both out of fairness and also because it would prevent your TAs
+and me from giving feedback on each of your contributions. It is fine for other
+group members to go over and revise the overall report for consistency and
+formatting reasons, but the content (writing, analysis, plots, etc) of each
+section should be completed primarily by the corresponding role.
+
+For report sections requiring input from several roles, add content specific to
+your role as well as you can. It ok to write the report using the precomputed
+results provided if needed. It is always better to submit something that is
+incomplete than nothing, and you may consider commenting on the difficulties you
+had in the report if you were unable to complete your section.
+
+**What happens if we don't get results like those in the paper?**
+
+We are not assessing your reports based on whether you replicate the results or
+not! We are looking for your *process*. If your analysis results look nothing
+like what was reported in the paper, but you describe those results accurately
+and reason about why they were different, that is all I'm looking for.  There is
+never one "right way" to do these studies, and in any case your results will
+almost never match those reported precisely. Use your reasoning powers to
+explain your results, whatever they are.
+
+**How should we format our reports?**
+
+The report should be roughly similar to that of a published paper, with
+appropriate section headings, prose, and figures/tables interspersed throughout
+as appropriate. In the past, groups have used Word, Google Docs, etc as the word
+processing tool. Be sure to review the writeup instructions below to get an idea
+of what specifically we will be looking for.
+
+
+## Report Sections Description {-}
+
+Each of these sections should be included in your report. The *Lead author*
+of each section is the indicated role, but other roles may need to contribute
+text to the section depending on the project. The lead role should coordinate
+the collection and organization of the materials in their section.
+
+### Introduction {-}
+
+**Lead author: shared**
+
+- What is the biological background of the study?
+- Why was the study performed?
+- Why did the authors use the bioinformatic techniques they did?
+
+### Data {-}
+
+**Lead author: Data Curator**
+
+The data section should be used to describe the data as completely as possible.
+Note typical manuscripts will not have a dedicated Data section; this
+information will usually be included in the Methods.
+
+- Data Description, e.g.:
+
+   - Which instrument was used?
+   - What protocol was used to prepare the samples?
+   - For which genome was the data generated?
+   - How many samples of which types?
+   - For arrays, what type of microarray was used?
+   - For sequencing datasets:
+
+       - What was the average library size, i.e. number of reads?
+       - How long are the reads?
+       - Are the reads single or paired end?
+
+- What was the source of the data? Include references, links to the public
+  repositories, etc.
+- Data quality control:
+
+   - How was the data assess to be of high quality?
+   - Were any samples eliminated due to low quality?
+   - Were there any sources of error or contamination detected?
+
+### Methods {-}
+
+**Lead author: Programmer**
+
+The methods section should concisely describe which steps were taken in the
+analysis of the data.
+
+- How was the data normalized?
+- How were outliers detected and removed?
+- What summarization method was used, if necessary?
+
+- Overview: Explain the rationale for the method and tools selected to perform
+  each step in the analysis
+- Briefly describe the algorithms used to analyze the data, with graphical
+  illustrations if necessary
+- Describe the specific steps, software versions, and parameters to those
+  software packages that were used to process the data
+- How was the analysis run? How long did it take? What computational resources
+  were required?
+
+### Results {-}
+
+**Lead author: Analyst**
+
+The results section presents the primary findings of the study. This should
+generally be a simple description of the results, and all discussion and
+interpretation should be reserved for the Discussion section.
+
+- Results from each step in the methods section
+- If something failed, explain why you think this happened and suggest
+  alternatives or fixes
+- Figures and/or tables describing your results, with descriptive captions
+
+### Discussion {-}
+
+**Lead author: shared**
+
+Discuss and interpret the results in the larger biological context of the
+study. Begin with a brief restatement of the primary results, followed by
+any interpretations and conclusions drawn.
+
+- Briefly summarize the overall method and main findings
+- What are the implications of your main findings?
+- What biological interpretation do the findings suggest?
+- Were you able to reproduce the result from the original paper? If not, why
+  not?
+
+### Conclusion {-}
+
+**Lead author: shared**
+
+State the overall conclusions the reader should draw from the study. Note
+typical manuscripts will not have a dedicated Conclusion section; this
+information will usually be found at the end of the Discussion.
+
+   - Concisely state the overall conclusion the reader should draw from the
+     analysis
+   - Describe any specific challenges or problems you encountered in the
+     project, how you overcame them, and for those that you were unable to
+     solve, what more would you need to solve them?
+
+### References {-}
+
+**Lead author: shared**
+
+List any publications cited
+
+## Report Assessment Guidelines {-}
+
+Your reports will be assessed in the areas described below.
+
+### Accuracy {-}
+
+Accurate writing conveys correct information, and is the baseline requirement of
+good writing. Accuracy relates primarily to the content of what is being
+described, though incorrect or awkward grammar can obscure otherwise accurate
+writing. Accuracy involves producing the correct structure and components of a
+requested body of writing, be it a class assignment with specified plots and
+results, or a journal article that must have specific sections in a
+predetermined order.
+
+#### Common mistakes {-}
+
+- Omitting key components, e.g. sections, plots, tables, etc
+- Including incorrect information, or omitting requested information, from plots and tables
+- Incomplete description of methods or results
+- Poor or awkward grammar that interferes with the reader's comprehension of the
+  content (also see Clarity of language and Thoroughness)
+
+### Formatting {-}
+
+Clear and consistent formatting is an important aspect of communicating in
+writing. At worst, inconsistent formatting can interfere with the effectiveness
+and clarity of your writing, making it difficult to understand. Everything
+related to how your text, figures, and tables appear visually on the page is
+formatting, including font, font size, heading and subheading position and size,
+location and size of figures and corresponding captions, margin widths, use of
+color, etc. All sections of a document should be consistent in all of these
+areas. Consistent formatting can take time and effort when incorporating sources
+from multiple documents/programs. Programs like Microsoft Word often have
+specific formatting settings that differ between users. One way to ensure
+consistent formatting is to use a typesetting program like LaTeX, possibly used
+with an online editor platform like overleaf.com, to separate the content (i.e.
+text, images, etc) from the layout.
+
+#### Common mistakes {-}
+
+- Excessive (>1" each) or miniscule (<0.25" each) margins
+- Margins should be consistent throughout
+- Section heading and subheading levels do not have consistent font weight and size throughout document
+- Inconsistent indentation of blocks of text:
+  * All new paragraphs should have same indentation of first line (may be none)
+  * Separation (i.e. blank space) between paragraphs should be consistent
+  * Block quotes, if used, should use identical formatting throughout
+- Figures and tables should be centered on the page (or column, if using
+  multiple column layouts), and captions centered immediately below them
+- Except in section headings, font decorations like underline or bold should generally be avoided
+- Citations referenced from the text should have consistent format (e.g. (McKee 2016), or [1])
+
+### Figure & Table Quality {-}
+
+Figures and tables serve various roles throughout your reports.  They can show
+critical data when it would be impractical to describe it, lay out a
+particularly complicated workflow so that readers can better understand it, or
+show data in a less biased way so that readers can come to their own
+conclusions.  In general, the reader should be able to go through a section and
+then see a figure regarding its main point.  This is most often important in
+results and conclusions sections but can be helpful in methods and introduction
+as well.
+
+Captions are necessary for each figure.  They should succintely provide enough
+detail so that the reader can understand the figure.  Ideally this should be
+enough so that readers could understand the figure without reading the main
+body of the text.
+
+If you are not sure if a figure or table should be included simply consider
+this:  Is this critical to a thorough reading of this report?  If you find that
+a figure is an edge case, or would only be useful to those looking for
+additional information, feel free to include it as a supplemental figure.
+
+#### Important Features {-}
+
+- Relates directly to text
+- Contains necessary information
+- Does not contain too much unnecessary information
+- Fully labeled and unambiguous
+- Clear and succinct captions
+- Visually pleasing
+
+#### Common mistakes {-}
+
+- Extraneous and unexpected information
+- Not providing support for claims made in the results or discussion sections
+- Unclear or missing labeling
+- Use of methodology not explained in the methods section
+- Poor choice of color scheme
+- Information obscured by legends or other information
+- Unreadable text
+
+#### Examples {-}
+
+Unlabeled axes and a bit too much detail in the caption:
+
+![Unlabeled axes and too much caption detail](projects/guidelines/figure_1.png)
+
+Text shrunk to the point of being unreadable.  The gene names (right y axis of
+the right image) could have been cut and replaced with a simpler, general axis
+title.  There is no legend to indicate what color is high in the heatmap:
+
+![Illegible text](projects/guidelines/figure_2.png)
+
+If something looks like this, put it in a table:
+
+[Use a table](projects/guidelines/figure_3.png)
+
+Good use of a figure to explain a method central to the report.  More detail or
+formatting besides the cut and paste would be welcome though:
+
+[Figure copied from another website](projects/guidelines/figure_4.png)
+
+Clear use of extra time to make every inch of the figure useful:
+
+[Great figure example](projects/guidelines/figure_5.png)
+
+### Clarity of language {-}
+
+The purpose of writing reports is to communicate your findings with your
+audience. Each sentence should be readable and totally clear. Try not to
+confuse the reader. Think of each paragraph as a slide in a presentation and
+answer three questions:
+
+1. Why is this important enough to be in your text? How does it add to your story.
+2. What information are you trying to give to your audience? What is the takeaway sentence.
+3. How do you support this claim? How did you get this result?
+
+Put yourself into the reader's shoes. Usually a reader looks at your abstract,
+then jumps to the results section. Once they find something interesting to
+them,  they will go to methods to make sure about the results and get the
+details. If the overall work interests them, they will look at your discussion.
+
+The overall flow should be:
+
+- **Introduction**: Explain any relevant terms you will use in your work. Avoid
+  side tracks, don't confuse your audience by explaining every detail; just
+  cite papers and if someone wants to learn more they will go and read it.
+- **Methods**: Any details of how you did the work goes into the methods. Give
+  enough information that the reader can understand how to repeat your methods.
+- **Results**: Results follows the flow in the methods. Start each paragraph
+  with a summary sentence, explaining what did you do, why you did it, and what
+  did you find? Follow up with the details and numbers. Refer to tables and
+  figures as needed. Avoid giving the details of the methods, those should go
+  into the methods section. Keep relevant figures and tables that add to your
+  story.
+- **Discussion/Conclusion**: Start by summarizing your work and the most
+  noticable results. Any interpolations or probable outcomes from your results
+  can be discussed here. Difficulties, limitations, and future work are
+  discussed in this section. Do not repeat sentences from the results of
+  methods.
+
+
+#### Common mistakes {-}
+
+- Finding synonyms on the web which have more syllabuses and sound harder to
+  pronounce, thinking complexity makes your work seem more sophisticated.
+- Long sentences, joined with which, and, or that go on forever.
+- Using it/the/she/he constantly without clarifying the reference.
+- Abbreviating too much or too little.
+- Every figure and table should be referenced in your text.
+- When you are not sure, don't try to scramble around and avoid explaining. It gets worse.
+- Keep the same verb tenses throughout the section. We (I) did .... We (I) found that ...
+- Avoid sentences that bring forward personal bias: I believe, I think
+
+#### Tips {-}
+
+- Start by making an outline then extend each bullet to a paragraph.
+
+  For example an outline for the introduction section on a paper to study Parkinson disease using miRNA in substantia nigra would be:
+
+  1. What is Parkinson disease
+  2. The mechanism is unknown
+  3. Why use miRNA?
+  4. Why the tissue substantia nigra?
+  5. What is coming in this paper?
+
+  You can read the result here. [Hoss, Andrew G., et al. "microRNA profiles in
+  Parkinson's disease prefrontal cortex." Frontiers in aging neuroscience 8
+  (2016): 36.]
+
+- Punctuation helps a lot to make your text more readable.
+- Read more and more papers. Learn from good examples. Papers published in
+  highly recognized journals are good examples to learn from. After you read
+  the paper to learn the content, read it again, for the language.
+- Read your own paper as if you were the reader. Try to grade your own work.
+- When you watch a presentation or read a paper, try to notice when you get
+  confused and what went wrong. Learn from other people�s mistakes.
+
+#### Good examples {-}
+
+Here the first sentence explains why they did it (To determine whether changes
+in DNA methylation were associated with changes in gene expression), what they
+did (we measured transcript levels using mRNA-Seq). Following sentences explain
+the results:
+
+    To determine whether changes in DNA methylation were associated with
+    changes in gene expression, we measured transcript levels using mRNA-Seq.
+    Overall, the genes we find to be differentially regulated have a high
+    degree of overlap (P < 1E-109) with a previous study (27) that used
+    microarrays (Fig. S1F). Genes that overlap in both studies and decrease in
+    expression in the STHdhQ111 cells are associated with developmental
+    processes, neuron migration, regulation of signaling, and regulation of
+    neural precursor cell proliferation (Dataset S2). Genes that increase in
+    expression in the STHdhQ111 cells in both our study and the previously
+    published microarray data are associated with categories including
+    extracellular matrix organization, signal transduction, and cell
+    differentiation (Dataset S2). [Ng, Christopher W., et al. "Extensive
+    changes in DNA methylation are associated with expression of mutant
+    huntingtin." Proceedings of the National Academy of Sciences110.6 (2013):
+    2354-2359.]
+
+#### Average Examples {-}
+
+##### Example 1 {-}
+
+Original:
+
+    Then a set of Welch T test (with unequal variance) was conducted between
+    same genes in different clusters, and the p values for the tests were
+    adjusted with the FDR value. 1000 genes were filtered out to be the most
+    significant markers for the variances between two clusters. Within these
+    1000 genes, the analyst did a cross validation with the supplementary
+    material provided by the original paper. In the supplementary material
+    there is a table of the logFC data of cancer vs control, the analyst
+    checked the data and located genes with large differences in the number of
+    fold changes vs control (for example, genes have large positive value in
+    logFC in C3 vs Control and have a very negative value in logFC in C4 vs
+    Control at the same time and vice versa), and check if these genes are in
+    the 1000 genes located from the adjusted p value filter.
+
+Purpose is unclear. Many references are given without prior mentioning. Methods
+are not clear. The use of the term "cross validation" which is not explained
+clearly.
+
+Rewritten:
+
+    To determine if the genes expression in the detected different patient
+    clusters have similar distributions, we applied Welch T test on the sample
+    genes present in different clusters. The top 1000 genes with adjusted
+    p-value<xxx were selected as the markers for the clusters. We compared
+    these genes with the fold change values given by authors. [The criteria for
+    the validation is unclear and should be rewritten]
+
+
+##### Example 2 {-}
+
+Original:
+
+    Data was read as CSV format, as comma separated files. Based on Marisa et
+    al. we selected genes using three well defined metrics and these filters
+    were applied to the RMA normalized and ComBat adjusted expression matrix
+    data for this analysis. These filters included; (1) Genes expressed in at
+    least 20% of the samples with expression values greater than log2(15); (2)
+    Have a variance significantly different from the median variance of all
+    probe sets using a threshold of p<0.01 then applying Chi-square statistic;
+    and (3) genes with a coefficient of variation greater than 0.186.
+    Additionally, a quantile chi-square test was applied to the dataset with
+    degrees of freedom (N-1) and alpha level equal to 0.01. All filtering
+    analysis were done on R version 3.5.1 with built in packages in Rstudio.
+
+CSV and R version whatever is too much detail which does not add to the flow
+(part of accuracy). The text "in at least 20% of the samples" is ambiguous. The
+expression greater than log2(15), did they mean at least 15 reads? If the
+normalization method to get the expression values is explained above, remove
+log2 and just place a number. Rewrite sentences to make the method more clear.
+Keep all numbers within a reasonable precision (part of accuracy), for example
+20% of samples, log2(15), 0.01, 0.186. Why did you choose 0.186?
+
+Rewritten:
+
+    Variable genes were selected based on the three variability metrics
+    suggested in Marisa et. al. First, genes were required to have a minimum of
+    15 reads in at least xxx samples (20% of all samples). Then, the genes were
+    filtered based on their variance to ensure they have significantly higher
+    variance than an average gene. The variance was computed by a chi-square
+    test. Genes with a coefficient of variation greater than 0.186 at p-value <
+    0.01 were selected.  These genes were used in the downstream analysis.
+
+##### Example 3 {-}
+
+Original:
+
+    It is interesting to see if any certain feature of a TR, i.e. pattern
+    length, copy number or annotation would be predictive of VNTRs. In order to
+    study that, we fitted a generalized regression model (glm) to predict
+    whether a TR is VNTR, or if any VNTR will become common or hyper.
+
+Rewritten:
+
+    We constructed generalized linear models to determine whether specific TR
+    features, e.g., pattern length, copy number, array length, or genomic
+    annotation, are predictive of VNTR status.  Four models were designed, one
+    to predict whether a TR is a VNTR and three more to predict VNTR subtypes
+    (private, common, hyper).
