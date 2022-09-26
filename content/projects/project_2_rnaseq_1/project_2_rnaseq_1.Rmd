@@ -1,8 +1,7 @@
-Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq
-=======================================================================
+---
+---
 
-.. contents::
-   :local:
+# Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq
 
 High-throughput sequencing technologies have helped researchers expand their
 understanding of genome-wide gene expression through their ability to detect
@@ -29,15 +28,26 @@ Upon completion of assignment 2, students will be able to do the following:
 * Examine differential expression identified with cuffdiff and interpret the
   results using DAVID
 
-1. Read the paper & supplemental methods
-----------------------------------------
+Contents:
+
+
+* [1. Read the paper & supplemental methods]
+* [2. Data acquisition & transfer to remote server]
+* [3. Quality control FASTQ files]
+* [4. Aligning and QA using tophat and RSeQC]
+* [5. Quantifying gene expression with cufflinks]
+* [6. Identifying Differentially Expressed Genes Associated with Myocyte Differentiation]
+* [7. Biological Interpretation]
+* [8. Discuss Your Findings]
+* [Assignment Writeup]
+
+## 1. Read the paper & supplemental methods {-}
 
 O’Meara et al. Transcriptional Reversion of Cardiac Myocyte Fate During
 Mammalian Cardiac Regeneration. Circ Res. Feb 2015. `PMID: 25477501
 <https://www.ncbi.nlm.nih.gov/pubmed/25477501>`_
 
-2. Data acquisition & transfer to remote server
------------------------------------------------
+## 2. Data acquisition & transfer to remote server {-}
 
 **Lead role: Data Curator**
 
@@ -51,40 +61,39 @@ and process it.
    <https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE64403>`_ to one of
    your directories on SCC. The filename you should download is SRR1727914.sra
    and it is 1.1Gb. The file is in SRA (short read archive) format.
-2. Use the command ``module load sratoolkit`` to make the SRA tools available.
+2. Use the command `module load sratoolkit` to make the SRA tools available.
    Read the `SRAtoolkit documentation
    <https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=toolkit_doc>`_ to
    find the correct command to use to extract the SRA format to FASTQ. This is
    a paired-end sequencing run, so you will have two FASTQ files. You may find
-   it convenient to rename the SRA file to ``P0_1.sra`` before converting to
-   FASTQ. Create a file ``run_extract.qsub``, and put all code for extracting
+   it convenient to rename the SRA file to `P0_1.sra` before converting to
+   FASTQ. Create a file `run_extract.qsub`, and put all code for extracting
    the FASTQ files, including the module command from above, into it and submit
-   it as a batch job using the ``qsub`` command. You should use the file
-   ``/project/bf528/project_2/scripts/qsub_skel.qsub`` as a template.
+   it as a batch job using the `qsub` command. You should use the file
+   `/project/bf528/project_2/scripts/qsub_skel.qsub` as a template.
 3. Once you have extracted the short reads to FASTQ format, inspect the files
-   with ``head`` and ensure the format is what you expect. Also ensure that the
+   with `head` and ensure the format is what you expect. Also ensure that the
    text in the header fields of the records are exactly the same between the
    two files, i.e. the first read in the first FASTQ file should be mated with
    the first read in the second file.
 
-3. Quality control FASTQ files
-------------------------------
+## 3. Quality control FASTQ files {-}
 
 **Lead role: Data Curator**
 
 Now that we have FASTQ files, we will begin processing them and extracting
 quality measures. We will use the FastQC package available on SCC to do this.
 
-1. Use the command ``module load fastqc`` on the cluster to make the FastQC
+1. Use the command `module load fastqc` on the cluster to make the FastQC
    tool available on the command line.
 2. By default, FastQC is run with a graphical user interface (GUI), but we are
    going to run it in command line mode. Do this by simply running the
-   ``fastqc`` command with the FASTQ files you extracted in the previous step
-   as arguments. You may run ``fastqc -h`` to output how to use the fastqc
-   command. You may find the ``-o|--outdir`` command line argument helpful.
+   `fastqc` command with the FASTQ files you extracted in the previous step
+   as arguments. You may run `fastqc -h` to output how to use the fastqc
+   command. You may find the `-o|--outdir` command line argument helpful.
 3. The tool will create a number of html and image files of the statistics.
-   You can look at the html files if you choose using ``head``, ``cat``, or
-   your favorite command line text editor (``nano``, ``emacs``, ``vim``, etc).
+   You can look at the html files if you choose using `head`, `cat`, or
+   your favorite command line text editor (`nano`, `emacs`, `vim`, etc).
    You will not be able to view the images directly on the cluster, so you must
    download them. Download both the images and the html files to your
    desktop/laptop computer using a compatible SFTP application (e.g. WinSCP on
@@ -101,14 +110,13 @@ quality measures. We will use the FastQC package available on SCC to do this.
 * A description of any anomalies, or questions about data quality
 * Any plots that support the above
 
-4. Aligning and QA using tophat and RSeQC
------------------------------------------
+## 4. Aligning and QA using tophat and RSeQC {-}
 
 **Lead Role: Programmer**
 
 Next we will align the reads to the mouse genome reference called mm9. The
 reference files are available on the cluster at
-``/project/bf528/project_2/reference``. Included in this directory are the mm9
+`/project/bf528/project_2/reference`. Included in this directory are the mm9
 FASTA file (mm9.fa) as well its Bowtie2 indexes. Algorithms that align millions
 of reads onto a genome always require indexes of the reference sequence. The
 developers of TopHat host several of the most commonly used indexes which can
@@ -118,54 +126,56 @@ are available in the same folder listed above.
 
 To help you get started writing your code, we have downloaded the fastq files
 from the other timecourse samples in this study under
-``/project/bf528/project_2/data/samples/``. Pick one of the samples and use the
+`/project/bf528/project_2/data/samples/`. Pick one of the samples and use the
 FASTQ files when writing your alignment and RSeQC scripts. The samples from P0
 can then be swapped in later as they become ready.
 
-1. Use the command ``module load samtools bowtie2 boost
-   tophat`` to load the alignment utilities we will need. ``samtools`` and
-   ``boost`` are dependencies of TopHat. We will use samtools in subsequent
-   steps. Create a file ``run_tophat.qsub`` and put all code for running
+1. Use the command `module load samtools bowtie2 boost
+   tophat` to load the alignment utilities we will need. `samtools` and
+   `boost` are dependencies of TopHat. We will use samtools in subsequent
+   steps. Create a file `run_tophat.qsub` and put all code for running
    tophat, including the module command from above, into it. You should use the
-   file ``/project/bf528/project_2/scripts/qsub_skel.qsub`` as a template.
+   file `/project/bf528/project_2/scripts/qsub_skel.qsub` as a template.
 2. Construct a command that will align the two FASTQ files you extracted in
-   part 2 against the mm9 reference using TopHat. Running ``tophat`` without
+   part 2 against the mm9 reference using TopHat. Running `tophat` without
    any arguments will print out how to use it. The arguments in the paper are
    not formatted well, copy the arguments from
-   ``/project/bf528/project_2/scripts/tophat_args.txt`` into your tophat
+   `/project/bf528/project_2/scripts/tophat_args.txt` into your tophat
    command.
 3. TopHat is a program that requires a substantial amount of memory to run. As
    a result, it is usually necessary to run TopHat as a batch job on the
    cluster rather than running it interactively. Once you have written your
-   tophat command into the qsub file, submit the TopHat job using ``qsub
-   run_tophat.qsub`` and wait for the alignment to complete. To check the
-   status of your job, issue the command ``qstat -u your_user_name``. For more
+   tophat command into the qsub file, submit the TopHat job using `qsub
+   run_tophat.qsub` and wait for the alignment to complete. To check the
+   status of your job, issue the command `qstat -u your_user_name`. For more
    information about submitting jobs to the queue, please see the
-   `SCC documentation page <https://www.bu.edu/tech/support/research/system-usage/running-jobs/submitting-jobs/>`_.
+   [SCC documentation page](https://www.bu.edu/tech/support/research/system-usage/running-jobs/submitting-jobs/).
    NB: tophat may take more than an hour to finish.
-4. A file named ``P0_1_tophat/accepted_hits.bam`` will be created when TopHat
+4. A file named `P0_1_tophat/accepted_hits.bam` will be created when TopHat
    has successfully run to completion. The file is in BAM format, which is a
    binary version of the SAM (Sequence Alignment/Map) format, and contains all
    of the original reads plus any alignments discovered by TopHat. Run the
-   command ``samtools flagstat P0_1_tophat/accepted_hits.bam`` in the directory
+   command `samtools flagstat P0_1_tophat/accepted_hits.bam` in the directory
    where you ran TopHat and examine the results. Report these results in your
    writeup.
-5. Use the command ``module load python samtools rseqc`` to make the RseQC
+5. Use the command `module load python samtools rseqc` to make the RseQC
    utilities available. You will first need to index the BAM file using
-   ``samtools index accepted_hits.bam`` before you can run these commands.
-   After the BAM file has been indexed, and the file ``accepted_hits.bam.bai``
+   `samtools index accepted_hits.bam` before you can run these commands.
+   After the BAM file has been indexed, and the file `accepted_hits.bam.bai`
    exists, run the following first without arguments to see their usage and
-   then with ``accepted_hits.bam`` as input::
+   then with `accepted_hits.bam` as input:
 
-    geneBody_coverage.py
-    inner_distance.py
-    bam_stat.py
+   ```
+   geneBody_coverage.py
+   inner_distance.py
+   bam_stat.py
+   ```
 
    Each of these utilities outputs a different quality control metric, and two
    create plot images which must be downloaded to view. Examine the metrics
    output by these three tools and explain and interpret them in your report.
    When a tool requires a bed file as input, use
-   ``/project/bf528/project_2/reference/annot/mm9.bed``.
+   `/project/bf528/project_2/reference/annot/mm9.bed`.
 
 **Deliverables:**
 
@@ -173,42 +183,41 @@ can then be swapped in later as they become ready.
   and unaligned reads with percentages of total reads for each
 * Plots and interpretation of the RSeQC output
 
-5. Quantifying gene expression with cufflinks
----------------------------------------------
+## 5. Quantifying gene expression with cufflinks {-}
 
 **Lead Role: Programmer**
 
 Cufflinks is a tool that counts how reads map to genomic regions defined by an
 annotation, often a gene annotation like the one we have provided at
-``/project/bf528/project_2/reference/annot/mm9.gtf``.
+`/project/bf528/project_2/reference/annot/mm9.gtf`.
 
-Feel free to use the ``accepted_hits.bam`` file you created above for the
+Feel free to use the `accepted_hits.bam` file you created above for the
 alternate sample to develop your scripts if P0 is not ready yet.
 
-1. Run the command ``module load cufflinks`` to make the program available to
-   run, and run ``cufflinks`` without any arguments to see usage. Create a file
-   ``run_cufflinks.qsub`` and put all code for running cufflinks, including the
+1. Run the command `module load cufflinks` to make the program available to
+   run, and run `cufflinks` without any arguments to see usage. Create a file
+   `run_cufflinks.qsub` and put all code for running cufflinks, including the
    module command from above, into it. You should use the file
-   ``/project/bf528/project_2/scripts/qsub_skel.qsub`` as a template.
-2. Construct a command that will run ``cufflinks`` on the file
-   ``P0_1_tophat/accepted_hits.bam``. The arguments in the paper are not
+   `/project/bf528/project_2/scripts/qsub_skel.qsub` as a template.
+2. Construct a command that will run `cufflinks` on the file
+   `P0_1_tophat/accepted_hits.bam`. The arguments in the paper are not
    formatted well, copy the arguments from
-   ``/project/bf528/project_2/scripts/cufflinks_args.txt`` into your cufflinks
+   `/project/bf528/project_2/scripts/cufflinks_args.txt` into your cufflinks
    command. When you have created the appropriate command, submit your script
-   as a batch job using ``qsub run_cufflinks.qsub``.
-3. When ``cufflinks`` has completed, the file
-   ``P0_1_cufflinks/genes.fpkm_tracking`` contains the quantified alignments in
-   FPKM for all genes. Load this file into R using ``read.table``, and create a
+   as a batch job using `qsub run_cufflinks.qsub`.
+3. When `cufflinks` has completed, the file
+   `P0_1_cufflinks/genes.fpkm_tracking` contains the quantified alignments in
+   FPKM for all genes. Load this file into R using `read.table`, and create a
    histogram of the FPKM values. You may consider removing the genes that have
    an FPKM value of zero.
 4. You have downloaded and processed one of the four samples involved (each of
-   ``P0`` and ``Ad`` have two replicates). We have prepared the remaining
-   samples (P0_2, Ad_1, Ad_2) for analysis under ``/project/bf528/project_2/data/samples``.
-   The authors used ``cuffdiff``, a tool in the cufflinks suite, to identify
+   `P0` and `Ad` have two replicates). We have prepared the remaining
+   samples (P0_2, Ad_1, Ad_2) for analysis under `/project/bf528/project_2/data/samples`.
+   The authors used `cuffdiff`, a tool in the cufflinks suite, to identify
    differentially expressed genes. We have created a script that runs cuffdiff
    for you, though you will have to copy and modify it to use the alignments
    you produced in the previous steps.  The qsub script you should copy is
-   ``/project/bf528/project_2/scripts/run_cuffdiff.qsub``.
+   `/project/bf528/project_2/scripts/run_cuffdiff.qsub`.
 
 **Deliverables:**
 
@@ -216,43 +225,42 @@ alternate sample to develop your scripts if P0 is not ready yet.
 * A report on the number of genes you identified in the analysis, including any
   filtering (e.g. FPKM value thresholds, etc) you used
 
-6. Identifying Differentially Expressed Genes Associated with Myocyte Differentiation
--------------------------------------------------------------------------------------
+## 6. Identifying Differentially Expressed Genes Associated with Myocyte Differentiation {-}
 
 **Lead Role: Analyst**
 
 There were many experiments in this study. We are going to reproduce the
 comparison of postnatal day 0 (P0) versus Adult from Figure 1B. The output
-from cuffdiff in 5.4 should have produced the file ``cuffdiff_out/gene_exp.diff``.
+from cuffdiff in 5.4 should have produced the file `cuffdiff_out/gene_exp.diff`.
 This file contains the differential expression statistics comparing the two
 conditions. We will examine this file to interpret the results.
 
 To help you get started writing your code before the results from earlier steps
 are ready, we have provided a differential expression analysis from P4 vs P7 in
-the file ``/project/bf528/project_2/data/P4_vs_P7_cuffdiff_out/gene_exp.diff``.
+the file `/project/bf528/project_2/data/P4_vs_P7_cuffdiff_out/gene_exp.diff`.
 You may use this file to develop your code and then swap in the analysis from
 above when it is ready.
 
-1. Load the file ``cuffdiff_out/gene_exp.diff`` into R. Sort the data frame so
-   that the smallest ``q_values`` are at the top (hint: look at the ``order``
+1. Load the file `cuffdiff_out/gene_exp.diff` into R. Sort the data frame so
+   that the smallest `q_values` are at the top (hint: look at the `order`
    function). Produce a table of the top ten differentially expressed genes,
    with their names, FPKM values, log fold change, p-value, and q-value in your
    report.
-2. Produce a histogram of the ``log2.foldchange`` column for all genes with the
-   ``hist`` function. Try specifying different values for the breaks argument
+2. Produce a histogram of the `log2.foldchange` column for all genes with the
+   `hist` function. Try specifying different values for the breaks argument
    to control the number of bars in the plot and pick one you like best.
 3. Create a new data frame that contains only the genes where the last column,
-   named ``significant``, is equal to ``yes``. The ``subset`` function is
-   useful for this kind of task, for example if ``df`` is a data frame with a
-   column named ``A``, then we can write ``df.sub <- subset(df,A==”x”)``. Note
+   named `significant`, is equal to `yes`. The `subset` function is
+   useful for this kind of task, for example if `df` is a data frame with a
+   column named `A`, then we can write `df.sub <- subset(df,A==”x”)`. Note
    the nominal $p$-value and $q$-value that these genes have in your report.
 4. Create a second histogram of the log2 fold change values only for
    significant genes. What do you notice?
 5. Further subset the significant gene data frame you just created into two
    separate data frames with only the up- and down-regulated genes using the
-   ``log2.foldchange`` column. Include the number of up and down regulated
+   `log2.foldchange` column. Include the number of up and down regulated
    genes in your report.
-6. Using the ``write`` function, write out the up- and down- regulated gene
+6. Using the `write` function, write out the up- and down- regulated gene
    names to separate files. The files should have one gene name on each line
    (leave genes that are separated by commas on the same line as is). Copy
    these files to your laptop or desktop, as we will be uploading them to a web
@@ -260,7 +268,7 @@ above when it is ready.
 7. DAVID Functional Annotation Clustering groups gene sets based on the genes
    they share. The output of this tool attempts to organize the enriched gene
    sets into functionally related clusters. The Score attribute of the clusters
-   is equal to the ``-log10(average p-value)`` from enriched gene sets. In a
+   is equal to the `-log10(average p-value)` from enriched gene sets. In a
    web browser, go to https://david.ncifcrf.gov/summary.jsp .
 
     a. On the left of the page, look for the Upload tab, and upload the up
@@ -290,8 +298,7 @@ above when it is ready.
   6.6
 * A table summarizing the top cluster results from the DAVID analysis in 6.7
 
-7. Biological Interpretation
-----------------------------
+## 7. Biological Interpretation {-}
 
 **Lead role: Biologist - for 4 person groups only**
 
@@ -301,15 +308,15 @@ FPKM expression matrices for biological patterns.
 
 To help you get started writing your code, we have provided a FPKM table of
 just the other 7 samples, not including P0, and a list of DE genes from P4
-vs P7 in ``/project/bf528/project_2/data/fpkm_matrix.csv`` and
-``/project/bf528/project_2/data/P4_vs_P7_cuffdiff_out/gene_exp.diff``. After
+vs P7 in `/project/bf528/project_2/data/fpkm_matrix.csv` and
+`/project/bf528/project_2/data/P4_vs_P7_cuffdiff_out/gene_exp.diff`. After
 you have written this code, it should be easy to substitute in the full
 results with P0 FPKMs and the P0 vs Ad DE genes when they are ready.
 
 1. Figure 1D contains plots of genes specific to the most prominent GO terms
-   discovered in the analysis. Using your ``genes.fpkm_tracking`` FPKM table
+   discovered in the analysis. Using your `genes.fpkm_tracking` FPKM table
    and those you find in the different sample directories under
-   ``/project/bf528/project_2/data/samples/``, compare the trends you see in
+   `/project/bf528/project_2/data/samples/`, compare the trends you see in
    your data with those in the paper. I.e. do you observe the same direction
    and magnitude of effect for the P0 and Ad samples as reported in the plots?
 2. Compare the results you obtained from the DAVID analysis in 6.7 with those
@@ -317,7 +324,7 @@ results with P0 FPKMs and the P0 vs Ad DE genes when they are ready.
    include annotations for those biological pathways that showed overlap with
    the results reported in the paper. E.g. include a second column for the
    manuscript scores, or an asterisk indicating which processes are in common.
-3. Create a FPKM matrix of all 8 samples by concatenating the ``FPKM`` columns
+3. Create a FPKM matrix of all 8 samples by concatenating the `FPKM` columns
    from each of the tracking tables from 7.1 together into a single dataframe.
    Subset this matrix by at most the top 1k genes found to be differentially
    expressed between P0 and Ad from 5.4 and create a clustered heatmap like the
@@ -334,8 +341,7 @@ results with P0 FPKMs and the P0 vs Ad DE genes when they are ready.
 * A clustered heatmap of FPKM values using at most the top 1000 DE genes found
   in the P0 vs Ad analysis.
 
-8. Discuss Your Findings
-------------------------
+## 8. Discuss Your Findings {-}
 
 Discuss your findings with your team members and other teams. Some interesting
 questions to consider:
@@ -355,7 +361,6 @@ questions to consider:
    does the functional enrichment of the differentially expressed genes you
    found compare to what was reported in the paper?
 
-Assignment Writeup
-------------------
+## Assignment Writeup {-}
 
-:doc:`../project_reports`
+Refer to the [Project Report Guidelines].
