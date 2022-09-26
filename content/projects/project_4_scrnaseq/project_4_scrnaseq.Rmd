@@ -1,4 +1,7 @@
-# Single Cell RNA-Seq Analysis of Pancreatic Cells {-}
+---
+---
+
+# Project 4: Single Cell RNA-Seq Analysis of Pancreatic Cells {-}
 
 The pancreas is a complex organ comprised of a diverse set of cell types.
 Proper function of the pancreas is required to maintain healthy metabolism,
@@ -114,21 +117,21 @@ whitelist in 2.3.
    statistics about how well the reads mapped. Capture and examine the output
    and report any informative statistics (e.g. mapping rate) in your report.
 
-::: {.box .warn}
+::: {.box .warning}
 These files are big and will take a significant amount of time to process.
 Start early!
 :::
 
-::: {.box .note}
-Suggestion: you may find it convenient to create smaller versions of
-the files when developing your code.
+::: {.box .hint}
+You may find it convenient to create smaller versions of the files when developing your code.
 :::
 
-::: {.box .note}
-Suggestion: salmon can run with multiple threads using the `-p` argument.
-You will need to submit your qsub jobs with the appropriate parallel
-environemt, which you can find on the [SCC documentation
+::: {.box .hint}
+salmon can run with multiple threads using the `-p` argument.  You will need to
+submit your qsub jobs with the appropriate parallel environemt, which you can
+find on the [SCC documentation
 site](http://www.bu.edu/tech/support/research/system-usage/running-jobs/submitting-jobs/#job-resources)
+:::
 
 **Deliverables:**
 
@@ -297,4 +300,4 @@ questions to consider:
 
 ## Assignment Writeup {-}
 
-Refer to the [Project Writeup Guidelines].
+Refer to the [Project Writeup Instructions].
