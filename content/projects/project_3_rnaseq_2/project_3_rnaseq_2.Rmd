@@ -35,8 +35,17 @@ Upon completion of project 3, students will be able to do the following:
 
 Contents:
 
-1. Choose a toxgroup, read the paper & supplemental methods
------------------------------------------------------------
+* 1. Choose a toxgroup, read the paper & supplemental methods
+* 2. RNA-Seq Sample Statistics and Alignment
+* 3. Read counting with featureCounts
+* 4. RNA-Seq Differential Expression with DESeq2
+* 5. Microarray Differential Expressoin with limma
+* 6. Concordance between microarray and RNA-Seq DE genes
+* 7. Biological Interpretation
+* 8. Discuss Your Findings
+* Assignment Writeup
+
+## 1. Choose a toxgroup, read the paper & supplemental methods {-}
 
 Metadata files containing sample info for each toxgroup are found in
 `/project/bf528/project_3/toxgroups`. Pick one of these toxgroups to
@@ -52,8 +61,7 @@ Thierry-Mieg, Joshua Xu, Hong Fang, et al. 2014. "A comprehensive study design
 reveals treatment- and transcript abundance-dependent concordance between
 RNA-seq and microarray data" Nature Biotechnology 32 (9): 926-32. PMID: 4243706](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4243706/)
 
-2. RNA-Seq Sample Statistics and Alignment
-------------------------------------------
+## 2. RNA-Seq Sample Statistics and Alignment {-}
 
 **Lead role: Data Curator**
 
@@ -117,8 +125,7 @@ paper, so we will focus solely on the sequencing data processing here.
 * A table of read and alignment statistics
 * Any other tables or plots from the multiqc output you deem relevant
 
-3. Read counting with featureCounts
------------------------------------
+## 3. Read counting with featureCounts {-}
 
 **Lead role: Programmer**
 
@@ -164,8 +171,7 @@ samples are being processed. You can find the metadata for these files in
 * A comma-delimited text file containing the concatenated counts matrix
 * A box plot containing count distributions for each of your samples
 
-4. RNA-Seq Differential Expression with DESeq2
-----------------------------------------------
+## 4. RNA-Seq Differential Expression with DESeq2 {-}
 
 **Lead Role: Programmer**
 
@@ -225,8 +231,7 @@ controls.
 * **4 person groups only:** Normalized counts matrices for each of your
   analyses
 
-5. Microarray Differential Expressoin with Limma
-------------------------------------------------
+## 5. Microarray Differential Expressoin with limma {-}
 
 **Lead Role: Analyst**
 
@@ -272,8 +277,7 @@ expression.
 * Histograms of fold change values and scatter plots of fold change vs
   nominal-pvalue from the significant DE genes
 
-6. Concordance between microarray and RNA-Seq DE genes
-------------------------------------------------------
+## 6. Concordance between microarray and RNA-Seq DE genes {-}
 
 **Lead Role: Analyst**
 
@@ -324,8 +328,7 @@ results come available for your samples.
 * A combined plot of overall, above-, and below-median genes for each of your
   analyses, and the challenge plot if you so desire
 
-7. Biological Interpretation
-----------------------------
+## 7. Biological Interpretation {-}
 
 **Lead role: Biologist - for 4 person groups only**
 
@@ -366,8 +369,7 @@ from your group come available: `/project/bf528/project_3/results/example_deseq_
 * A clustered heatmap of your normalized counts, potentially showing how
   samples from each MOA cluster together
 
-8. Discuss Your Findings
-------------------------
+## 8. Discuss Your Findings {-}
 
 Discuss your findings with your team members and other teams. Some interesting
 questions to consider:
@@ -381,7 +383,6 @@ questions to consider:
 3. Do you think the premise of this study, that chemicals with similar MOAs will
    induce the a similar gene expression response, is reasonable?
 
-Assignment Writeup
-------------------
+## Assignment Writeup {-}
 
 Refer to the [Project Report Guidelines].

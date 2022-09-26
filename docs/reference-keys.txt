@@ -24,15 +24,6 @@ metabolomics
 integrative-genomics
 part-projects
 transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq
-choose-a-toxgroup-read-the-paper-supplemental-methods
-rna-seq-sample-statistics-and-alignment
-read-counting-with-featurecounts
-rna-seq-differential-expression-with-deseq2
-microarray-differential-expressoin-with-limma
-concordance-between-microarray-and-rna-seq-de-genes
-biological-interpretation-1
-discuss-your-findings-2
-assignment-writeup-2
 wang-et-al-2014-concordance-calculation
 single-cell-rna-seq-analysis-of-pancreatic-cells
 read-the-paper

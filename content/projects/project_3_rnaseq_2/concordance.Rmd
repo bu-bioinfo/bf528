@@ -1,7 +1,6 @@
 ---
 ---
 
-
 ## Wang et al 2014 Concordance Calculation
 
 Consider a differential expression experiment where two different datasets are used to identify DE genes. The DE genes from each experiment may be depicted as subsets (A and B) of all possible genes (G), as depicted in Figure 1. We indicate the number of genes in the sets A, B, and G as $n_1$, $n_2$, and $N$, respectively.

@@ -110,8 +110,35 @@ expression data using limma</li>
 <li>Map between Affymetrix and refSeq identifier systems</li>
 </ul>
 <p>Contents:</p>
-<div id="choose-a-toxgroup-read-the-paper-supplemental-methods" class="section level2" number="26.1">
-<h2><span class="header-section-number">26.1</span> 1. Choose a toxgroup, read the paper &amp; supplemental methods</h2>
+<ul>
+<li><ol style="list-style-type: decimal">
+<li>Choose a toxgroup, read the paper &amp; supplemental methods</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: decimal">
+<li>RNA-Seq Sample Statistics and Alignment</li>
+</ol></li>
+<li><ol start="3" style="list-style-type: decimal">
+<li>Read counting with featureCounts</li>
+</ol></li>
+<li><ol start="4" style="list-style-type: decimal">
+<li>RNA-Seq Differential Expression with DESeq2</li>
+</ol></li>
+<li><ol start="5" style="list-style-type: decimal">
+<li>Microarray Differential Expressoin with limma</li>
+</ol></li>
+<li><ol start="6" style="list-style-type: decimal">
+<li>Concordance between microarray and RNA-Seq DE genes</li>
+</ol></li>
+<li><ol start="7" style="list-style-type: decimal">
+<li>Biological Interpretation</li>
+</ol></li>
+<li><ol start="8" style="list-style-type: decimal">
+<li>Discuss Your Findings</li>
+</ol></li>
+<li>Assignment Writeup</li>
+</ul>
+<div id="choose-a-toxgroup-read-the-paper-supplemental-methods" class="section level2 unnumbered">
+<h2>1. Choose a toxgroup, read the paper &amp; supplemental methods</h2>
 <p>Metadata files containing sample info for each toxgroup are found in
 <code>/project/bf528/project_3/toxgroups</code>. Pick one of these toxgroups to
 analyze. Each toxgroup has approximately the same number of samples; you may
@@ -124,8 +151,8 @@ Thierry-Mieg, Joshua Xu, Hong Fang, et al. 2014. “A comprehensive study desig
 reveals treatment- and transcript abundance-dependent concordance between
 RNA-seq and microarray data” Nature Biotechnology 32 (9): 926-32. PMID: 4243706</a></p>
 </div>
-<div id="rna-seq-sample-statistics-and-alignment" class="section level2" number="26.2">
-<h2><span class="header-section-number">26.2</span> 2. RNA-Seq Sample Statistics and Alignment</h2>
+<div id="rna-seq-sample-statistics-and-alignment" class="section level2 unnumbered">
+<h2>2. RNA-Seq Sample Statistics and Alignment</h2>
 <p><strong>Lead role: Data Curator</strong></p>
 <p>All of the microarray and sequencing datasets have already been downloaded for
 you from the accessions <a href="https://www.ncbi.nlm.nih.gov/sra/?term=SRP039021">SRP039021</a>, <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE55347">GSE55347</a>, and <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE47875">GSE47875</a>. To save time, we have also already processed the microarray data as described in the
@@ -185,8 +212,8 @@ provided a skeleton qsub script for multiqc under
 <li>Any other tables or plots from the multiqc output you deem relevant</li>
 </ul>
 </div>
-<div id="read-counting-with-featurecounts" class="section level2" number="26.3">
-<h2><span class="header-section-number">26.3</span> 3. Read counting with featureCounts</h2>
+<div id="read-counting-with-featurecounts" class="section level2 unnumbered">
+<h2>3. Read counting with featureCounts</h2>
 <p><strong>Lead role: Programmer</strong></p>
 <p>We will now use the alignments from STAR to count reads against a gene
 annotation using the program <code>featureCounts</code>. These counts will serve as
@@ -230,8 +257,8 @@ your samples.</li>
 <li>A box plot containing count distributions for each of your samples</li>
 </ul>
 </div>
-<div id="rna-seq-differential-expression-with-deseq2" class="section level2" number="26.4">
-<h2><span class="header-section-number">26.4</span> 4. RNA-Seq Differential Expression with DESeq2</h2>
+<div id="rna-seq-differential-expression-with-deseq2" class="section level2 unnumbered">
+<h2>4. RNA-Seq Differential Expression with DESeq2</h2>
 <p><strong>Lead Role: Programmer</strong></p>
 <p>The most basic processed form of data from RNA-Seq experiments are read counts.
 The distribution of count data have three properties that make standard
@@ -292,8 +319,8 @@ nominal-pvalue from the significant DE genes</li>
 analyses</li>
 </ul>
 </div>
-<div id="microarray-differential-expressoin-with-limma" class="section level2" number="26.5">
-<h2><span class="header-section-number">26.5</span> 5. Microarray Differential Expressoin with Limma</h2>
+<div id="microarray-differential-expressoin-with-limma" class="section level2 unnumbered">
+<h2>5. Microarray Differential Expressoin with limma</h2>
 <p><strong>Lead Role: Analyst</strong></p>
 <p><a href="https://bioconductor.org/packages/release/bioc/html/limma.html">limma</a> is a
 highly mature Bioconductor package that implements the standard analytical
@@ -337,8 +364,8 @@ p-value.</li>
 nominal-pvalue from the significant DE genes</li>
 </ul>
 </div>
-<div id="concordance-between-microarray-and-rna-seq-de-genes" class="section level2" number="26.6">
-<h2><span class="header-section-number">26.6</span> 6. Concordance between microarray and RNA-Seq DE genes</h2>
+<div id="concordance-between-microarray-and-rna-seq-de-genes" class="section level2 unnumbered">
+<h2>6. Concordance between microarray and RNA-Seq DE genes</h2>
 <p><strong>Lead Role: Analyst</strong></p>
 <p>The primary finding of the paper was that the concordance of RNA-Seq and
 microarray expression estimates depends on a number of factors, including
@@ -386,8 +413,8 @@ analyses</li>
 analyses, and the challenge plot if you so desire</li>
 </ul>
 </div>
-<div id="biological-interpretation-1" class="section level2" number="26.7">
-<h2><span class="header-section-number">26.7</span> 7. Biological Interpretation</h2>
+<div id="biological-interpretation-1" class="section level2 unnumbered">
+<h2>7. Biological Interpretation</h2>
 <p><strong>Lead role: Biologist - for 4 person groups only</strong></p>
 <p>The authors chose chemical agents that cause toxcity via five known, distinct
 mechanisms of action (MOA). The MOAs spanned a range of effect severity and
@@ -424,8 +451,8 @@ supplement</li>
 samples from each MOA cluster together</li>
 </ul>
 </div>
-<div id="discuss-your-findings-2" class="section level2" number="26.8">
-<h2><span class="header-section-number">26.8</span> 8. Discuss Your Findings</h2>
+<div id="discuss-your-findings-2" class="section level2 unnumbered">
+<h2>8. Discuss Your Findings</h2>
 <p>Discuss your findings with your team members and other teams. Some interesting
 questions to consider:</p>
 <ol style="list-style-type: decimal">
@@ -439,13 +466,13 @@ platforms is dependent upon effect size and expression level? Why or why not?</l
 induce the a similar gene expression response, is reasonable?</li>
 </ol>
 </div>
-<div id="assignment-writeup-2" class="section level2" number="26.9">
-<h2><span class="header-section-number">26.9</span> Assignment Writeup</h2>
+<div id="assignment-writeup-2" class="section level2 unnumbered">
+<h2>Assignment Writeup</h2>
 <p>Refer to the [Project Report Guidelines].</p>
 
 </div>
-<div id="wang-et-al-2014-concordance-calculation" class="section level2" number="26.10">
-<h2><span class="header-section-number">26.10</span> Wang et al 2014 Concordance Calculation</h2>
+<div id="wang-et-al-2014-concordance-calculation" class="section level2" number="26.1">
+<h2><span class="header-section-number">26.1</span> Wang et al 2014 Concordance Calculation</h2>
 <p>Consider a differential expression experiment where two different datasets are used to identify DE genes. The DE genes from each experiment may be depicted as subsets (A and B) of all possible genes (G), as depicted in Figure 1. We indicate the number of genes in the sets A, B, and G as <span class="math inline">\(n_1\)</span>, <span class="math inline">\(n_2\)</span>, and <span class="math inline">\(N\)</span>, respectively.</p>
 <p>G represents the space of all possible genes. “All possible genes” may mean different things based on the context. For example, not every gene will be detected in an RNA-Seq experiment, and so you could argue that <span class="math inline">\(N\)</span> should be the number of genes detected, rather than the number of genes in the whole genome. Without a priori knowledge like this, <span class="math inline">\(N\)</span> should be set to the number of genes in the genome. Regardless, for genome-wide experiments, setting <span class="math inline">\(N\)</span> to the total number of genes in the genome is usually a defensible choice.</p>
 <div class="figure">
