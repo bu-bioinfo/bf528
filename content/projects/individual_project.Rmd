@@ -1,5 +1,7 @@
-Individual Project
-==================
+---
+---
+
+# Individual Project {-}
 
 The fourth project is designed to allow students to revisit sections of
 previous projects in order to gain experience with skills they may have missed
