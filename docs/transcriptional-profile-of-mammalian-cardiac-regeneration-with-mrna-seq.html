@@ -78,8 +78,6 @@
   <main class="col-sm-12 col-md-9 col-lg-7" id="content">
 <div id="transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq" class="section level1" number="26">
 <h1><span class="header-section-number">26</span> Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</h1>
-<p>.. contents::
-:local:</p>
 <p>High-throughput sequencing technologies have helped researchers expand their
 understanding of genome-wide gene expression through their ability to detect
 potentially any mRNA molecule in a sample, rather than measuring only molecules
@@ -104,23 +102,35 @@ tuxedo suite of short read mapping tools</li>
 <li>Examine differential expression identified with cuffdiff and interpret the
 results using DAVID</li>
 </ul>
-<div id="read-the-paper-supplemental-methods-1" class="section level2" number="26.1">
-<h2><span class="header-section-number">26.1</span> 1. Read the paper &amp; supplemental methods</h2>
+<p>Contents:</p>
+<ul>
+<li><a href="transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html#read-the-paper-supplemental-methods-1">1. Read the paper &amp; supplemental methods</a></li>
+<li><a href="transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html#data-acquisition-transfer-to-remote-server-1">2. Data acquisition &amp; transfer to remote server</a></li>
+<li><a href="transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html#quality-control-fastq-files">3. Quality control FASTQ files</a></li>
+<li><a href="transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html#aligning-and-qa-using-tophat-and-rseqc">4. Aligning and QA using tophat and RSeQC</a></li>
+<li><a href="transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html#quantifying-gene-expression-with-cufflinks">5. Quantifying gene expression with cufflinks</a></li>
+<li><a href="transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html#identifying-differentially-expressed-genes-associated-with-myocyte-differentiation">6. Identifying Differentially Expressed Genes Associated with Myocyte Differentiation</a></li>
+<li><a href="concordance-of-microarray-and-rna-seq-differential-gene-expression.html#biological-interpretation-1">7. Biological Interpretation</a></li>
+<li><a href="single-cell-rna-seq-analysis-of-pancreatic-cells.html#discuss-your-findings-3">8. Discuss Your Findings</a></li>
+<li><a href="single-cell-rna-seq-analysis-of-pancreatic-cells.html#assignment-writeup-3">Assignment Writeup</a></li>
+</ul>
+<div id="read-the-paper-supplemental-methods-1" class="section level2 unnumbered">
+<h2>1. Read the paper &amp; supplemental methods</h2>
 <p>O’Meara et al. Transcriptional Reversion of Cardiac Myocyte Fate During
 Mammalian Cardiac Regeneration. Circ Res. Feb 2015. <code>PMID: 25477501 &lt;https://www.ncbi.nlm.nih.gov/pubmed/25477501&gt;</code>_</p>
 </div>
-<div id="data-acquisition-transfer-to-remote-server-1" class="section level2" number="26.2">
-<h2><span class="header-section-number">26.2</span> 2. Data acquisition &amp; transfer to remote server</h2>
+<div id="data-acquisition-transfer-to-remote-server-1" class="section level2 unnumbered">
+<h2>2. Data acquisition &amp; transfer to remote server</h2>
 <p><strong>Lead role: Data Curator</strong></p>
 <p>As in the last study, all but one of the samples for this study have been
 downloaded and prepared for you. You will download the one remaining sample
 and process it.</p>
 <ol style="list-style-type: decimal">
-<li><p>Download the sample <code>GSM1570702    &lt;https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM1570702&gt;</code>_ (vP0_1)
+<li>Download the sample <code>GSM1570702    &lt;https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM1570702&gt;</code>_ (vP0_1)
 from GEO <code>Series GSE64403    &lt;https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE64403&gt;</code>_ to one of
 your directories on SCC. The filename you should download is SRR1727914.sra
-and it is 1.1Gb. The file is in SRA (short read archive) format.</p></li>
-<li><p>Use the command <code>module load sratoolkit</code> to make the SRA tools available.
+and it is 1.1Gb. The file is in SRA (short read archive) format.</li>
+<li>Use the command <code>module load sratoolkit</code> to make the SRA tools available.
 Read the <code>SRAtoolkit documentation    &lt;https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=toolkit_doc&gt;</code>_ to
 find the correct command to use to extract the SRA format to FASTQ. This is
 a paired-end sequencing run, so you will have two FASTQ files. You may find
@@ -128,14 +138,16 @@ it convenient to rename the SRA file to <code>P0_1.sra</code> before converting 
 FASTQ. Create a file <code>run_extract.qsub</code>, and put all code for extracting
 the FASTQ files, including the module command from above, into it and submit
 it as a batch job using the <code>qsub</code> command. You should use the file
-<code>/project/bf528/project_2/scripts/qsub_skel.qsub</code> as a template.</p></li>
-<li><p>Once you have extracted the short reads to FASTQ format, inspect the files
+<code>/project/bf528/project_2/scripts/qsub_skel.qsub</code> as a template.</li>
+<li>Once you have extracted the short reads to FASTQ format, inspect the files
 with <code>head</code> and ensure the format is what you expect. Also ensure that the
 text in the header fields of the records are exactly the same between the
 two files, i.e. the first read in the first FASTQ file should be mated with
-the first read in the second file.</p></li>
-<li><h2 id="quality-control-fastq-files">Quality control FASTQ files</h2></li>
+the first read in the second file.</li>
 </ol>
+</div>
+<div id="quality-control-fastq-files" class="section level2 unnumbered">
+<h2>3. Quality control FASTQ files</h2>
 <p><strong>Lead role: Data Curator</strong></p>
 <p>Now that we have FASTQ files, we will begin processing them and extracting
 quality measures. We will use the FastQC package available on SCC to do this.</p>
@@ -167,8 +179,8 @@ indicate a problem with the data in your report.</li>
 <li>Any plots that support the above</li>
 </ul>
 </div>
-<div id="aligning-and-qa-using-tophat-and-rseqc" class="section level2" number="26.3">
-<h2><span class="header-section-number">26.3</span> 4. Aligning and QA using tophat and RSeQC</h2>
+<div id="aligning-and-qa-using-tophat-and-rseqc" class="section level2 unnumbered">
+<h2>4. Aligning and QA using tophat and RSeQC</h2>
 <p><strong>Lead Role: Programmer</strong></p>
 <p>Next we will align the reads to the mouse genome reference called mm9. The
 reference files are available on the cluster at
@@ -202,7 +214,7 @@ cluster rather than running it interactively. Once you have written your
 tophat command into the qsub file, submit the TopHat job using <code>qsub    run_tophat.qsub</code> and wait for the alignment to complete. To check the
 status of your job, issue the command <code>qstat -u your_user_name</code>. For more
 information about submitting jobs to the queue, please see the
-<code>SCC documentation page &lt;https://www.bu.edu/tech/support/research/system-usage/running-jobs/submitting-jobs/&gt;</code>_.
+<a href="https://www.bu.edu/tech/support/research/system-usage/running-jobs/submitting-jobs/">SCC documentation page</a>.
 NB: tophat may take more than an hour to finish.</p></li>
 <li><p>A file named <code>P0_1_tophat/accepted_hits.bam</code> will be created when TopHat
 has successfully run to completion. The file is in BAM format, which is a
@@ -216,10 +228,10 @@ utilities available. You will first need to index the BAM file using
 <code>samtools index accepted_hits.bam</code> before you can run these commands.
 After the BAM file has been indexed, and the file <code>accepted_hits.bam.bai</code>
 exists, run the following first without arguments to see their usage and
-then with <code>accepted_hits.bam</code> as input::</p>
-<p>geneBody_coverage.py
+then with <code>accepted_hits.bam</code> as input:</p>
+<pre><code>geneBody_coverage.py
 inner_distance.py
-bam_stat.py</p>
+bam_stat.py</code></pre>
 <p>Each of these utilities outputs a different quality control metric, and two
 create plot images which must be downloaded to view. Examine the metrics
 output by these three tools and explain and interpret them in your report.
@@ -233,8 +245,8 @@ and unaligned reads with percentages of total reads for each</li>
 <li>Plots and interpretation of the RSeQC output</li>
 </ul>
 </div>
-<div id="quantifying-gene-expression-with-cufflinks" class="section level2" number="26.4">
-<h2><span class="header-section-number">26.4</span> 5. Quantifying gene expression with cufflinks</h2>
+<div id="quantifying-gene-expression-with-cufflinks" class="section level2 unnumbered">
+<h2>5. Quantifying gene expression with cufflinks</h2>
 <p><strong>Lead Role: Programmer</strong></p>
 <p>Cufflinks is a tool that counts how reads map to genomic regions defined by an
 annotation, often a gene annotation like the one we have provided at
@@ -274,8 +286,8 @@ you produced in the previous steps. The qsub script you should copy is
 filtering (e.g. FPKM value thresholds, etc) you used</li>
 </ul>
 </div>
-<div id="identifying-differentially-expressed-genes-associated-with-myocyte-differentiation" class="section level2" number="26.5">
-<h2><span class="header-section-number">26.5</span> 6. Identifying Differentially Expressed Genes Associated with Myocyte Differentiation</h2>
+<div id="identifying-differentially-expressed-genes-associated-with-myocyte-differentiation" class="section level2 unnumbered">
+<h2>6. Identifying Differentially Expressed Genes Associated with Myocyte Differentiation</h2>
 <p><strong>Lead Role: Analyst</strong></p>
 <p>There were many experiments in this study. We are going to reproduce the
 comparison of postnatal day 0 (P0) versus Adult from Figure 1B. The output
@@ -347,8 +359,8 @@ significance level</li>
 <li>A table summarizing the top cluster results from the DAVID analysis in 6.7</li>
 </ul>
 </div>
-<div id="biological-interpretation" class="section level2" number="26.6">
-<h2><span class="header-section-number">26.6</span> 7. Biological Interpretation</h2>
+<div id="biological-interpretation" class="section level2 unnumbered">
+<h2>7. Biological Interpretation</h2>
 <p><strong>Lead role: Biologist - for 4 person groups only</strong></p>
 <p>The authors used the FPKM tables to make biological interpretation of their
 experiment. We will follow their example and analyze the content of the
@@ -389,8 +401,8 @@ includes a comparison with the results reported in the paper.</li>
 in the P0 vs Ad analysis.</li>
 </ul>
 </div>
-<div id="discuss-your-findings-1" class="section level2" number="26.7">
-<h2><span class="header-section-number">26.7</span> 8. Discuss Your Findings</h2>
+<div id="discuss-your-findings-1" class="section level2 unnumbered">
+<h2>8. Discuss Your Findings</h2>
 <p>Discuss your findings with your team members and other teams. Some interesting
 questions to consider:</p>
 <ol style="list-style-type: decimal">
@@ -410,9 +422,9 @@ does the functional enrichment of the differentially expressed genes you
 found compare to what was reported in the paper?</li>
 </ol>
 </div>
-<div id="assignment-writeup-1" class="section level2" number="26.8">
-<h2><span class="header-section-number">26.8</span> Assignment Writeup</h2>
-<p>:doc:<code>../project_reports</code></p>
+<div id="assignment-writeup-1" class="section level2 unnumbered">
+<h2>Assignment Writeup</h2>
+<p>Refer to the [Project Report Guidelines].</p>
 
 </div>
 </div>

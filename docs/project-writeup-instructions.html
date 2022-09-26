@@ -95,10 +95,10 @@ your TA instead.</p>
 <p>Your reports will be assessed in six areas:</p>
 <ul>
 <li><a href="project-writeup-instructions.html#accuracy">Accuracy</a></li>
-<li>[Report Formatting]</li>
+<li><a href="project-writeup-instructions.html#formatting">Formatting</a></li>
 <li><a href="project-writeup-instructions.html#figure-table-quality">Figure &amp; Table Quality</a></li>
 <li><a href="project-writeup-instructions.html#clarity-of-language">Clarity of Language</a></li>
-<li>[Thoroughness]</li>
+<li><a href="project-writeup-instructions.html#thoroughness">Thoroughness</a></li>
 <li>[Cohesion]</li>
 </ul>
 <p>You will be provided with detailed feedback on each of your reports with
@@ -277,7 +277,7 @@ predetermined order.</p>
 <li>Including incorrect information, or omitting requested information, from plots and tables</li>
 <li>Incomplete description of methods or results</li>
 <li>Poor or awkward grammar that interferes with the reader’s comprehension of the
-content (also see Clarity of language and Thoroughness)</li>
+content (also see <a href="project-writeup-instructions.html#clarity-of-language">Clarity of Language</a> and <a href="project-writeup-instructions.html#thoroughness">Thoroughness</a>)</li>
 </ul>
 </div>
 </div>
@@ -380,7 +380,7 @@ formatting besides the cut and paste would be welcome though:</p>
 </div>
 </div>
 <div id="clarity-of-language" class="section level3 unnumbered">
-<h3>Clarity of language</h3>
+<h3>Clarity of Language</h3>
 <p>The purpose of writing reports is to communicate your findings with your
 audience. Each sentence should be readable and totally clear. Try not to
 confuse the reader. Think of each paragraph as a slide in a presentation and
@@ -544,9 +544,169 @@ features, e.g., pattern length, copy number, array length, or genomic
 annotation, are predictive of VNTR status.  Four models were designed, one
 to predict whether a TR is a VNTR and three more to predict VNTR subtypes
 (private, common, hyper).</code></pre>
+</div>
+</div>
+</div>
+<div id="thoroughness" class="section level3 unnumbered">
+<h3>Thoroughness</h3>
+<p>Thorough writing fully describes a result or method without providing too much,
+too little, or extraneous detail. This means describing not only the basic
+facts or concepts, but also providing sufficient context for a scientifically
+literate reader who is not intimately familiar with the subject matter to
+understand them. There is a balance between being descriptive and being concise
+that takes practice and experience to master.</p>
+<div id="common-mistakes-4" class="section level4 unnumbered">
+<h4>Common mistakes</h4>
+<ul>
+<li><p>Mentioning key terms or concepts without describing what they are</p></li>
+<li><p>Providing too little or too much detail (examples below)</p></li>
+<li><p>Including tables or figures without sufficient parallel description in the text:</p>
+<ul>
+<li>In the <strong>Results</strong> section text: briefly describe what the figure/table
+contains and what the reader should observe about the figure</li>
+<li>In the <strong>Discussion</strong> section text: describe what the author believes the
+figure/table means and how that relates to the results of the overall study</li>
+<li>In the <strong>Caption text</strong>: provide specific details that aid the reader in
+understanding the figure</li>
+</ul></li>
+<li><p>Vague or incomplete description of the methods in the Methods section</p></li>
+<li><p>Vague or incomplete description of the results in the Results section</p></li>
+<li><p>Vague or incomplete interpretation of the results in the Discussion section</p></li>
+<li><p>Omitting citations justifying key claims in your text, especially if you say
+“Previous studies have shown…” etc</p></li>
+</ul>
+</div>
+<div id="tips-1" class="section level4 unnumbered">
+<h4>Tips</h4>
+<ul>
+<li>Make sure each program or method you used is mentioned and describe any key
+parameter choices (e.g. number of reads for a gene to be included in the
+study) in the Methods section</li>
+<li>Do not include the specific commands or literal command line arguments (e.g.
+<code>--index</code>) in the text; it is sufficient to reference the names of
+programs/packages and the versions you used</li>
+<li>When reading a published work, imagine trying to implement the analysis
+described in the methods section; do you feel there is sufficient detail
+included to do so?</li>
+<li>Reread your own Methods section and ask the same question as above</li>
+<li>Make a bulleted list of titles for each of your tables and figures, ordered
+in a logical progression</li>
+<li>Write a results section that describes the key results and observations from
+your sequence of tables and figures so that the text flows from one result to
+the next; it should be clear to the reader why you conducted each experiment
+based on those described earlier</li>
+<li>Reread your results text without looking at the figures; do you get an
+accurate understanding of the results from the text alone?</li>
+<li>Make sure you reference each of your figures in the Discussion, connecting
+the results together to form an overall interpretation</li>
+<li>The last paragraph of your Introduction should have included a statement
+about what question(s) your work sought to answer; after reading your results
+and discussion, do you feel you have answered those questions? If not, you
+should probably be more thorough.</li>
+</ul>
+<div id="good-example" class="section level5 unnumbered">
+<h5>Good example</h5>
+<p>A methods section from <code>Mandelboum et al 2019</code>_, subdivided for clarity:</p>
+<pre><code>We analyzed 35 publicly available human or mouse RNA-seq datasets from GEO
+[30] (S1 Table). We sought datasets that were (1) published in recent years
+(mostly in 2017-18), (2) contained 2-4 replicate samples of each biological
+condition, (3) probed treatments with well-documented biological responses
+(e.g., TNFa) to ease functional interpretation and recognition of true
+calls by GSEA, and (4) collectively covered diverse biological processes.</code></pre>
+<p>The study design (# of samples, RNA-Seq datasets) is clearly defined, as is the
+rationale for sample selection.</p>
+<pre><code>We downloaded either raw count data files when provided by GEO or,
+otherwise, raw sequence fastq files (from SRA DB). In the latter, reads
+were aligned to the reference genome (hg19 for Hs and mm10 for Mm) using
+TopHat2 [31], and gene count data were generated using FeatureCounts [32].
+We calculated cpm levels, and in each dataset analysis, we included only
+the expressed genes (defined as those whose expression was at least 1.0 cpm
+in all replicate samples of at least one of the biological condition probed
+in the dataset).</code></pre>
+<p>Specific sources of data are mentioned without providing too much detail (GEO
+or SRA DB). Specific reference genomes are mentioned (hg19, mm10), and
+published methods are mentioned and correctly cited (TopHat2, FeatureCounts).
+Appropriate detail is included for the important minimum cpm parameter (1.0 in
+all replicates of at least one biological condition).</p>
+<pre><code>Following this filtering step, gene counts were normalized using six
+different normalization methods: RPKM [7], RPKM followed by quantile
+normalization [25], TMM [8], RLE [9], RLE followed by RPKM, and UQ
+normalization followed by RPKM [11], all implemented in edgeR [33]. cqn and
+EDASeq (both available as Bioconductor packages) were applied to expression
+count data. Gene-expression FC was either calculated by dividing normalized
+expression levels (after adding 1.0 to both numerator and denominator and
+averaging over replicate samples in the treatment versus control
+comparisons) or estimated by edgeR regression model fit. Gene annotations
+were downloaded from GENCODE (v25 for Hs and vM10 for Mm) [34]. For genes
+with multiple transcripts, we took the length of the principal transcript
+(as defined by GENCODE&#39;s annotation of principal and alternative splice
+isoforms [APPRIS] annotations [35]) or the length of the longest transcript
+if principal transcript is not defined for the gene. All statistical
+analyses were performed in R. Statistical significance of Spearman&#39;s
+correlation was calculated using the cor.test function.</code></pre>
+<p>Concise language and appropriate citations, inclusion of relevant analysis
+choice details (e.g. “For genes with multiple transcripts…”) without too much
+implementation detail.</p>
+<p>.. _Mandelboum et al 2019: <a href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3000481" class="uri">https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3000481</a></p>
+</div>
+<div id="average-examples-1" class="section level5 unnumbered">
+<h5>Average examples</h5>
+<p><strong>Example 1</strong></p>
+<p>Original:</p>
+<pre><code>On the GEO (Gene Expression Omnibus) website, the paper has the repository
+with accession Number GSE64403. The data was acquired by using the SRA
+toolkit. The sample data GSM1570702 was downloaded using the fastq-dump
+``--split-files``. The ``--split-files`` is the argument that split the SRA file
+into two fastq files.</code></pre>
+<p>Writing is not concise, too little description of the data, and too much description of the methods.</p>
+<p>Rewritten:</p>
+<pre><code>Paired end RNA-Seq data for the P0 timepoint sample (Dataset Accession
+GSM1570702) was downloaded using SRA toolkit from GEO (Series Accession
+GSE64403).</code></pre>
+<p><strong>Example 2</strong></p>
+<p>Original:</p>
+<pre><code>The mapping process of the two give FASTQ files containing the RNA-seq
+paired end reads needed index files for the barcodes used in the RNA-Seq,
+in addition to annotation file of the reference sequence. Due to the
+computationally demanding nature of this process, a batch job script was
+coded to utilize number of tools available on the Shared Computer Cluster
+(SCC) (Table 5):
 
+- Bowtie2: is a package for alignment based on Barrows-Wheeler algorithm,
+  which allows a margin of mismatch and randomization that reduces the
+  memory footprint. And therefor it is fast and described as greedy
+  algorithm. Bowtie is not Reads splice aware [6].
+- Tophat v2.1.1: is a splice junction mapper for RNA-Seq reads based on the
+  aligner bowtie. Its job is to identify splice junctions between exons
+  (Figure 5).
+- Boost v1.58.0 is C++ library for string and text processing.
+- Samtools V0.1.19: are tools to view, sort, merge and to get statistics on
+  alignment files, that are kept in SAM format.</code></pre>
+<p>Unnecessary general description for methods section, too much implementation
+detail, Methods text should generally not include bullet points.</p>
+<p>Rewritten:</p>
+<pre><code>Paired end FASTQ files were aligned against the mm9 reference genome with
+Bowtie2[6], followed by spliced alignment with Tophat[citation needed].
+Alignment statistics were calculated using samtools.</code></pre>
 </div>
 </div>
+</div>
+<div id="cohesion-and-coherence" class="section level3 unnumbered">
+<h3>Cohesion and Coherence</h3>
+<p>A cohesive document is consistent in all aspects throughout. This includes not
+only formatting, but also grammatical features like tense, voice, and tone, and
+stylistic characteristics where sentences, clauses, and ideas flow from one to
+the next. Although many published manuscripts have sections that are written by
+different people, articles typically (or should) sound as if they were written
+by one person. Consistency throughout the document makes it easier to read and
+understand. Beyond consistency of an entire document, cohesive writing flows
+from sentence to sentence in a logical progression that aids the reader in
+comprehension. Each sentence or clause should follow logically from the one
+that came before, and set up the reader for the next to come.</p>
+<p>Cohesion and coherence are some of the most difficult writing concepts to
+master. For more detailed description and discussion of cohesion and coherence,
+see <a href="https://eapwriting.com/coherence/">this excellent post</a>.</p>
+
 </div>
 </div>
 </div>

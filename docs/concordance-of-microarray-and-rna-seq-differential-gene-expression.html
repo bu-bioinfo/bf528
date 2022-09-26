@@ -4,19 +4,19 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>27 Concordance of microarray and RNA-Seq differential gene expression | BF528 - Applications in Translational Bioinformatics</title>
+  <title>Concordance of microarray and RNA-Seq differential gene expression | BF528 - Applications in Translational Bioinformatics</title>
 
   
    
    <meta name="generator" content="placeholder" />
-  <meta property="og:title" content="27 Concordance of microarray and RNA-Seq differential gene expression | BF528 - Applications in Translational Bioinformatics" />
+  <meta property="og:title" content="Concordance of microarray and RNA-Seq differential gene expression | BF528 - Applications in Translational Bioinformatics" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="27 Concordance of microarray and RNA-Seq differential gene expression | BF528 - Applications in Translational Bioinformatics" />
+  <meta name="twitter:title" content="Concordance of microarray and RNA-Seq differential gene expression | BF528 - Applications in Translational Bioinformatics" />
   
   
   
@@ -76,10 +76,8 @@
   </header>
 
   <main class="col-sm-12 col-md-9 col-lg-7" id="content">
-<div id="concordance-of-microarray-and-rna-seq-differential-gene-expression" class="section level1" number="27">
-<h1><span class="header-section-number">27</span> Concordance of microarray and RNA-Seq differential gene expression</h1>
-<p>.. contents::
-:local:</p>
+<div id="concordance-of-microarray-and-rna-seq-differential-gene-expression" class="section level1 unnumbered">
+<h1>Concordance of microarray and RNA-Seq differential gene expression</h1>
 <p>In principle, microarray and RNA-Seq measure the same thing: the genome-wide
 abundance of mRNA molecules. However, the technologies are fundamentally
 different and the results from the same experiments assayed using the different
@@ -111,8 +109,9 @@ using a read counting strategy</li>
 expression data using limma</li>
 <li>Map between Affymetrix and refSeq identifier systems</li>
 </ul>
-<div id="choose-a-toxgroup-read-the-paper-supplemental-methods" class="section level2" number="27.1">
-<h2><span class="header-section-number">27.1</span> 1. Choose a toxgroup, read the paper &amp; supplemental methods</h2>
+<p>Contents:</p>
+<div id="choose-a-toxgroup-read-the-paper-supplemental-methods" class="section level2" number="26.1">
+<h2><span class="header-section-number">26.1</span> 1. Choose a toxgroup, read the paper &amp; supplemental methods</h2>
 <p>Metadata files containing sample info for each toxgroup are found in
 <code>/project/bf528/project_3/toxgroups</code>. Pick one of these toxgroups to
 analyze. Each toxgroup has approximately the same number of samples; you may
@@ -120,21 +119,17 @@ choose whichever you like.</p>
 <p>This paper contains many analyses each with many details. Don’t worry if you
 don’t understand the methods, but do try to understand the main text and the
 online methods as best you can.</p>
-<p>Wang, Charles, Binsheng Gong, Pierre R. Bushel, Jean Thierry-Mieg, Danielle
+<p><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4243706/">Wang, Charles, Binsheng Gong, Pierre R. Bushel, Jean Thierry-Mieg, Danielle
 Thierry-Mieg, Joshua Xu, Hong Fang, et al. 2014. “A comprehensive study design
-reveals treatment- and transcript abundance–dependent concordance between
-RNA-seq and microarray data” Nature Biotechnology 32 (9): 926–32. <code>PMID: 4243706 &lt;https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4243706/&gt;</code>_</p>
+reveals treatment- and transcript abundance-dependent concordance between
+RNA-seq and microarray data” Nature Biotechnology 32 (9): 926-32. PMID: 4243706</a></p>
 </div>
-<div id="rna-seq-sample-statistics-and-alignment" class="section level2" number="27.2">
-<h2><span class="header-section-number">27.2</span> 2. RNA-Seq Sample Statistics and Alignment</h2>
+<div id="rna-seq-sample-statistics-and-alignment" class="section level2" number="26.2">
+<h2><span class="header-section-number">26.2</span> 2. RNA-Seq Sample Statistics and Alignment</h2>
 <p><strong>Lead role: Data Curator</strong></p>
 <p>All of the microarray and sequencing datasets have already been downloaded for
-you from the accessions <code>SRP039021</code><em>, <code>GSE55347</code></em>, and <code>GSE47875</code>_. To save
-time, we have also already processed the microarray data as described in the
+you from the accessions <a href="https://www.ncbi.nlm.nih.gov/sra/?term=SRP039021">SRP039021</a>, <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE55347">GSE55347</a>, and <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE47875">GSE47875</a>. To save time, we have also already processed the microarray data as described in the
 paper, so we will focus solely on the sequencing data processing here.</p>
-<p>.. _SRP039021: <a href="https://www.ncbi.nlm.nih.gov/sra/?term=SRP039021" class="uri">https://www.ncbi.nlm.nih.gov/sra/?term=SRP039021</a>
-.. _GSE55347: <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE55347" class="uri">https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE55347</a>
-.. _GSE47875: <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE47875" class="uri">https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE47875</a></p>
 <ol style="list-style-type: decimal">
 <li><p>We have downloaded all of the datasets for you and made them available at
 <code>/project/bf528/project_3/samples</code>. Identify the treatment samples (and
@@ -157,15 +152,16 @@ to install and manage your software throughout these projects. You may use
 the SCC miniconda module by running <code>module load anaconda3</code>, after which
 the <code>conda</code> executable will be available on the command line. You will need
 to configure your account prior to creating conda environments by following
-<code>this guide</code>_. If you run into issues with conda, you may use modules if you
-prefer.</p>
-<p>STAR has a tremendous number of options. Look at the <code>STAR manual</code>_ section
+<a href="https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/anaconda/">this
+guide</a>.
+If you run into issues with conda, you may use modules if you prefer.</p>
+<p>STAR has a tremendous number of options. Look at the <a href="https://github.com/alexdobin/STAR/blob/2.5.3a/doc/STARmanual.pdf">STAR manual</a> section
 3.2.2 for the parameters used by the ENCODE project. Also be sure to specify
 the <code>--outFileNamePrefix</code> option to be unique for each sample. We have
 provided a skeleton qsub script under <code>/project/bf528/project_3/scripts/STAR.qsub</code>
 for you to use.</p>
 <p>You might consider writing your qsub script to accept an argument of the
-input fastq filenames. Refer to the <code>foundations page on bash scripting</code>_
+input fastq filenames. Refer to the <a href="http://foundations-in-computational-skills.readthedocs.io/en/latest/content/workshops/06_cluster_computing/06_cluster_computing.html#command-line-arguments">foundations page on bash scripting</a>
 to see how to do this. You can provide command line arguments to qsub
 scripts on the command line by adding them after the qsub command, e.g.
 <code>qsub STAR.qsub read1.fastq.gz read2.fastq.gz</code>.</p></li>
@@ -173,13 +169,14 @@ scripts on the command line by adding them after the qsub command, e.g.
 statistics and report them in a table along with your sample names. This
 should include uniquely aligned reads, multimapped reads, unmapped reads,
 etc.</p></li>
-<li><p>The tool <code>multiqc</code>_ is a very helpful tool for collecting information from
-many different bioinformatics programs for a set of samples and combining them
-into a single convenient report. Run multiqc on your samples directory and
-it should find and process your results from both fastqc and STAR. Examine
-the results in multiqc and include any plots you deem necessary for
-communicating the quality of the datasets. We have provided a skeleton qsub
-script for multiqc under <code>/project/bf528/project_3/scripts/multiqc.qsub</code>.</p></li>
+<li><p>The tool <a href="https://multiqc.info">multiqc</a> is a very helpful tool for
+collecting information from many different bioinformatics programs for a set
+of samples and combining them into a single convenient report. Run multiqc
+on your samples directory and it should find and process your results from
+both fastqc and STAR. Examine the results in multiqc and include any plots
+you deem necessary for communicating the quality of the datasets. We have
+provided a skeleton qsub script for multiqc under
+<code>/project/bf528/project_3/scripts/multiqc.qsub</code>.</p></li>
 </ol>
 <p><strong>Deliverables:</strong></p>
 <ul>
@@ -187,13 +184,9 @@ script for multiqc under <code>/project/bf528/project_3/scripts/multiqc.qsub</co
 <li>A table of read and alignment statistics</li>
 <li>Any other tables or plots from the multiqc output you deem relevant</li>
 </ul>
-<p>.. _foundations page on bash scripting: <a href="http://foundations-in-computational-skills.readthedocs.io/en/latest/content/workshops/06_cluster_computing/06_cluster_computing.html#command-line-arguments" class="uri">http://foundations-in-computational-skills.readthedocs.io/en/latest/content/workshops/06_cluster_computing/06_cluster_computing.html#command-line-arguments</a>
-.. _STAR manual: <a href="https://github.com/alexdobin/STAR/blob/2.5.3a/doc/STARmanual.pdf" class="uri">https://github.com/alexdobin/STAR/blob/2.5.3a/doc/STARmanual.pdf</a>
-.. _multiqc: <a href="https://multiqc.info" class="uri">https://multiqc.info</a>
-.. _this guide: <a href="https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/anaconda/" class="uri">https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/anaconda/</a></p>
 </div>
-<div id="read-counting-with-featurecounts" class="section level2" number="27.3">
-<h2><span class="header-section-number">27.3</span> 3. Read counting with featureCounts</h2>
+<div id="read-counting-with-featurecounts" class="section level2" number="26.3">
+<h2><span class="header-section-number">26.3</span> 3. Read counting with featureCounts</h2>
 <p><strong>Lead role: Programmer</strong></p>
 <p>We will now use the alignments from STAR to count reads against a gene
 annotation using the program <code>featureCounts</code>. These counts will serve as
@@ -237,8 +230,8 @@ your samples.</li>
 <li>A box plot containing count distributions for each of your samples</li>
 </ul>
 </div>
-<div id="rna-seq-differential-expression-with-deseq2" class="section level2" number="27.4">
-<h2><span class="header-section-number">27.4</span> 4. RNA-Seq Differential Expression with DESeq2</h2>
+<div id="rna-seq-differential-expression-with-deseq2" class="section level2" number="26.4">
+<h2><span class="header-section-number">26.4</span> 4. RNA-Seq Differential Expression with DESeq2</h2>
 <p><strong>Lead Role: Programmer</strong></p>
 <p>The most basic processed form of data from RNA-Seq experiments are read counts.
 The distribution of count data have three properties that make standard
@@ -249,12 +242,12 @@ the mean and variance of a given gene’s count distribution are not independent
 as often the higher the mean count of a gene, the greater the variance. For
 this reason, generalized linear models, in particular negative binomial
 regression, is the statistical tool most frequently used to analyze count data.
-DESeq2_ and edgeR_ are two such software tools that use negative binomial
-regression to estimate count differences given a statistical design. In this
-step you will use DESeq2 to determine differential expression between your
-treated samples and appropriate controls.</p>
-<p>.. _DESeq2: <a href="https://bioconductor.org/packages/release/bioc/html/DESeq2.html" class="uri">https://bioconductor.org/packages/release/bioc/html/DESeq2.html</a>
-.. _edgeR: <a href="https://bioconductor.org/packages/release/bioc/html/edgeR.html" class="uri">https://bioconductor.org/packages/release/bioc/html/edgeR.html</a></p>
+<a href="https://bioconductor.org/packages/release/bioc/html/DESeq2.html">DESeq2</a> and
+<a href="https://bioconductor.org/packages/release/bioc/html/edgeR.html">edgeR</a> are two
+such software tools that use negative binomial regression to estimate count
+differences given a statistical design. In this step you will use DESeq2 to
+determine differential expression between your treated samples and appropriate
+controls.</p>
 <ol style="list-style-type: decimal">
 <li>Create a new counts matrix that includes control counts. Your sample metadata
 file <code>group_N_rna_info.csv</code> contains the sample IDs of the control samples
@@ -264,9 +257,10 @@ of your control samples in the sample matrix provided at
 subset columns out of the control matrix and merge them with your treatment
 counts matrix. <strong>NB:</strong> Be sure you are matching rows of the treatment and
 control samples so that the genes match.</li>
-<li>Install the DESeq2_ package from Bioconductor_, read the vignette to learn
-how to use it. We have provided an example script illustrating DESeq2 usage
-in <code>/project/bf528/project_3/scripts/run_deseq.R</code> to help you.</li>
+<li>Install the DESeq2 package from <a href="https://bioconductor.org/">Bioconductor</a>,
+read the vignette to learn how to use it. We have provided an example script
+illustrating DESeq2 usage in <code>/project/bf528/project_3/scripts/run_deseq.R</code>
+to help you.</li>
 <li>Write an R script to run DESeq2 comparing each group of your samples to the
 controls in the combined data matrix from 4.1. This will produce three
 separate DE gene lists, one for each condition with a corresponding set of
@@ -288,7 +282,6 @@ counts matrix to a file. You will use this matrix for clustering in part
 <li></li>
 </ol></li>
 </ol>
-<p>.. _Bioconductor: <a href="https://bioconductor.org/" class="uri">https://bioconductor.org/</a></p>
 <p><strong>Deliverables:</strong></p>
 <ul>
 <li>A report of the number of DE genes at p-adjust &lt; 0.05</li>
@@ -299,31 +292,35 @@ nominal-pvalue from the significant DE genes</li>
 analyses</li>
 </ul>
 </div>
-<div id="microarray-differential-expressoin-with-limma" class="section level2" number="27.5">
-<h2><span class="header-section-number">27.5</span> 5. Microarray Differential Expressoin with Limma</h2>
+<div id="microarray-differential-expressoin-with-limma" class="section level2" number="26.5">
+<h2><span class="header-section-number">26.5</span> 5. Microarray Differential Expressoin with Limma</h2>
 <p><strong>Lead Role: Analyst</strong></p>
-<p>limma_ is a highly mature Bioconductor_ package that implements the standard
-analytical methodology for microarray differential expression analysis. The
-authors used RMA normalization + limma to determine differential expression
-between the different treatments and control samples. You will generate
-similar analyses using the pre-normalized expression matrix made available by
-the authors. You will find the samples that correspond to the sequencing data
-treatments in the file names <code>/project/bf528/project_3/groups/group_X_mic_info.csv</code>.</p>
+<p><a href="https://bioconductor.org/packages/release/bioc/html/limma.html">limma</a> is a
+highly mature Bioconductor package that implements the standard analytical
+methodology for microarray differential expression analysis. The authors used
+RMA normalization + limma to determine differential expression between the
+different treatments and control samples. You will generate similar analyses
+using the pre-normalized expression matrix made available by the authors. You
+will find the samples that correspond to the sequencing data treatments in the
+file names <code>/project/bf528/project_3/groups/group_X_mic_info.csv</code>.</p>
 <p>The full RMA expression matrix has been made available at
 <code>/project/bf528/project_3/samples/liver-normalization-rma.txt</code> for your use.
 Since we have the pre-normalized expression matrix, you will not need to
 perform normalization or QC yourself and may begin directly with differential
 expression.</p>
-<p>.. _limma: <a href="https://bioconductor.org/packages/release/bioc/html/limma.html" class="uri">https://bioconductor.org/packages/release/bioc/html/limma.html</a></p>
 <ol style="list-style-type: decimal">
-<li>Install limma_ and use it to run differential expression analysis of your
+<li>Install limma and use it to run differential expression analysis of your
 samples versus the appropriate controls using the provided RMA normalized
 expression matrix. Be sure to read the limma documentation for details on
-how to use the package. We have provided an example R script that implements
-an limma analysis at <code>/project/bf528/project_3/scripts/run_limma.R</code>
-for your reference. You will need to change the script to reference your
-groups samples and the appropriate comparisons. There should be one
-microarray DE analysis for each of those you produced in 4.3.</li>
+how to use the package. You may also find <a href="https://bu-bioinfo.github.io/r-for-biological-sciences/biology-bioinformatics.html#differential-expression-microarrays-limma">the section on
+limma</a>
+from <a href="https://bu-bioinfo.github.io/r-for-biological-sciences/">R for Biological
+Sciences</a> helpful.
+We have provided an example R script that implements a limma analysis at
+<code>/project/bf528/project_3/scripts/run_limma.R</code> for your reference. You will
+need to change the script to reference your groups samples and the
+appropriate comparisons. There should be one microarray DE analysis for each
+of those you produced in 4.3.</li>
 <li>Write out the differential expression results to files sorted by adjusted
 p-value as you did in 4.4. Report the number of genes significant at
 p-adjust &lt; 0.05.</li>
@@ -340,8 +337,8 @@ p-value.</li>
 nominal-pvalue from the significant DE genes</li>
 </ul>
 </div>
-<div id="concordance-between-microarray-and-rna-seq-de-genes" class="section level2" number="27.6">
-<h2><span class="header-section-number">27.6</span> 6. Concordance between microarray and RNA-Seq DE genes</h2>
+<div id="concordance-between-microarray-and-rna-seq-de-genes" class="section level2" number="26.6">
+<h2><span class="header-section-number">26.6</span> 6. Concordance between microarray and RNA-Seq DE genes</h2>
 <p><strong>Lead Role: Analyst</strong></p>
 <p>The primary finding of the paper was that the concordance of RNA-Seq and
 microarray expression estimates depends on a number of factors, including
@@ -353,32 +350,32 @@ platforms.</p>
 in <code>/project/bf528/project_3/results</code> for you to use until the DESeq2
 results come available for your samples.</p>
 <ol style="list-style-type: decimal">
-<li>Read the online methods of the paper that describe how concordance was
-calculated.</li>
-<li>Implement this concordance method in R or your language of choice. The input
+<li><p>Read the online methods of the paper that describe how concordance was
+calculated.</p></li>
+<li><p>Implement this concordance method in R or your language of choice. The input
 should be two sets of DE genes. You will need to figure out how to map
 Affymetrix probe IDs from the microarray analysis to refSeq identifiers
 used by the RNA-Seq analysis. We have provided a refSeq-to-probe id
 mapping in <code>/project/bf528/project_3/refseq_affy_map.csv</code>. Read the
 paper closely for clues on how the authors accomplished this. A short
-discussion of the concordance calculation is provided :download:<code>here &lt;concordance.nb.html&gt;</code>
-(<code>Rnotebook &lt;https://bitbucket.org/bucab/bf528/src/master/content/projects/project_3_rnaseq_2/&gt;</code>_).</li>
-<li>Compute concordance for the significantly DE genes from each of your three
-analyses.</li>
-<li>Produce a plot like that in Figure 2a, which plots the concordance vs the
+discussion of the concordance calculation is provided at <a href="concordance-of-microarray-and-rna-seq-differential-gene-expression.html#wang-et-al-2014-concordance-calculation">Wang et al 2014
+Concordance Calculation</a>.</p></li>
+<li><p>Compute concordance for the significantly DE genes from each of your three
+analyses.</p></li>
+<li><p>Produce a plot like that in Figure 2a, which plots the concordance vs the
 number of DE genes from the RNA-Seq analysis. Also plot concordance vs
-number of DE genes from the microarray analysis.</li>
-<li>Subdivide the DE genes into “above-median” and “below-median” groups as in
+number of DE genes from the microarray analysis.</p></li>
+<li><p>Subdivide the DE genes into “above-median” and “below-median” groups as in
 Figure 3 b+c for each of your sample groups. Compute the concordance of these
 separate groups of genes. Use the RNA-Seq results to determine median from
 the <code>baseMean</code> column in the DESeq2 results, which corresponds to the
-overall mean count of the gene across all samples in the comparison.</li>
-<li>Produce a bar plot combining overall concordance measures you obtained for
+overall mean count of the gene across all samples in the comparison.</p></li>
+<li><p>Produce a bar plot combining overall concordance measures you obtained for
 the overall DE gene list and the above- and below-median subsets.
 <em>Challenge:</em> Try to recreate the figure, by computing concordance for
 increasing subsets of genes ranked by fold change descending. You will have
 to decide how to handle the case of having different numbers of DE genes
-between platforms.</li>
+between platforms.</p></li>
 </ol>
 <p><strong>Deliverables:</strong></p>
 <ul>
@@ -389,8 +386,8 @@ analyses</li>
 analyses, and the challenge plot if you so desire</li>
 </ul>
 </div>
-<div id="biological-interpretation-1" class="section level2" number="27.7">
-<h2><span class="header-section-number">27.7</span> 7. Biological Interpretation</h2>
+<div id="biological-interpretation-1" class="section level2" number="26.7">
+<h2><span class="header-section-number">26.7</span> 7. Biological Interpretation</h2>
 <p><strong>Lead role: Biologist - for 4 person groups only</strong></p>
 <p>The authors chose chemical agents that cause toxcity via five known, distinct
 mechanisms of action (MOA). The MOAs spanned a range of effect severity and
@@ -410,17 +407,14 @@ hierarchical clustering of your RNA-Seq samples to look for segregation by MOA.<
 <p>We have provided an example set of normalized counts for you to use until those
 from your group come available: <code>/project/bf528/project_3/results/example_deseq_norm_counts.csv</code>.</p>
 <ol style="list-style-type: decimal">
-<li>Using a gene set enrichment method of your choosing (e.g. DAVID_, Gather_,
-GSEA_, etc.) and the DE genes from your treatments, compare the pathway
+<li>Using a gene set enrichment method of your choosing (e.g. <a href="https://david.ncifcrf.gov/tools.jsp">DAVID</a>, <a href="http://changlab.uth.tmc.edu/gather/gather.py">Gather</a>,
+<a href="http://software.broadinstitute.org/gsea/index.jsp">GSEA</a>, etc.) and the DE genes from your treatments, compare the pathway
 enrichment results of your genes to those reported in the paper.</li>
 <li>Take the normalized expression matrix from part 4 and produce a clustered
 heatmap of the counts. Experiment with filtering metrics of average count,
 coefficient of variation, etc. to see if you can induce a clustering that
 is consistent with MOA.</li>
 </ol>
-<p>.. _DAVID: <a href="https://david.ncifcrf.gov/tools.jsp" class="uri">https://david.ncifcrf.gov/tools.jsp</a>
-.. _Gather: <a href="http://changlab.uth.tmc.edu/gather/gather.py" class="uri">http://changlab.uth.tmc.edu/gather/gather.py</a>
-.. _GSEA: <a href="http://software.broadinstitute.org/gsea/index.jsp" class="uri">http://software.broadinstitute.org/gsea/index.jsp</a></p>
 <p><strong>Deliverables:</strong></p>
 <ul>
 <li>A table of enriched pathways identified with your DE genes from each of your
@@ -430,8 +424,8 @@ supplement</li>
 samples from each MOA cluster together</li>
 </ul>
 </div>
-<div id="discuss-your-findings-2" class="section level2" number="27.8">
-<h2><span class="header-section-number">27.8</span> 8. Discuss Your Findings</h2>
+<div id="discuss-your-findings-2" class="section level2" number="26.8">
+<h2><span class="header-section-number">26.8</span> 8. Discuss Your Findings</h2>
 <p>Discuss your findings with your team members and other teams. Some interesting
 questions to consider:</p>
 <ol style="list-style-type: decimal">
@@ -445,9 +439,37 @@ platforms is dependent upon effect size and expression level? Why or why not?</l
 induce the a similar gene expression response, is reasonable?</li>
 </ol>
 </div>
-<div id="assignment-writeup-2" class="section level2" number="27.9">
-<h2><span class="header-section-number">27.9</span> Assignment Writeup</h2>
-<p>:doc:<code>../project_reports</code></p>
+<div id="assignment-writeup-2" class="section level2" number="26.9">
+<h2><span class="header-section-number">26.9</span> Assignment Writeup</h2>
+<p>Refer to the [Project Report Guidelines].</p>
+
+</div>
+<div id="wang-et-al-2014-concordance-calculation" class="section level2" number="26.10">
+<h2><span class="header-section-number">26.10</span> Wang et al 2014 Concordance Calculation</h2>
+<p>Consider a differential expression experiment where two different datasets are used to identify DE genes. The DE genes from each experiment may be depicted as subsets (A and B) of all possible genes (G), as depicted in Figure 1. We indicate the number of genes in the sets A, B, and G as <span class="math inline">\(n_1\)</span>, <span class="math inline">\(n_2\)</span>, and <span class="math inline">\(N\)</span>, respectively.</p>
+<p>G represents the space of all possible genes. “All possible genes” may mean different things based on the context. For example, not every gene will be detected in an RNA-Seq experiment, and so you could argue that <span class="math inline">\(N\)</span> should be the number of genes detected, rather than the number of genes in the whole genome. Without a priori knowledge like this, <span class="math inline">\(N\)</span> should be set to the number of genes in the genome. Regardless, for genome-wide experiments, setting <span class="math inline">\(N\)</span> to the total number of genes in the genome is usually a defensible choice.</p>
+<div class="figure">
+<img src="concordance_figure1.png" style="width:25.0%" alt="" />
+<p class="caption">Figure 1</p>
+</div>
+<p>If you threw a dart at Figure 1 (and were guaranteed to hit it), the probability of hitting the area of A is <span class="math inline">\(p_A = n_1/N\)</span>, and likewise the probability of hitting B is <span class="math inline">\(p_B = n_2/N\)</span>. It follows that the probability of hitting the intersection is <span class="math inline">\(p_{A\cap B} = p_Ap_B = (n_1/N)(n_2/N)\)</span>. Therefore, the number of genes that corresponds to the intersection is <span class="math inline">\(n_{A\cap B} = Np_{A\cap B}\)</span> (they use <span class="math inline">\(n_0\)</span> in the text).</p>
+<p>If A and B are independent, there is still some probability they will overlap by chance. This probability is proportional to the size of the sets, where larger sets will result in a higher probability of overlap by chance, since they comprise a larger proportion of the overall set G. Consider Figure 2, where the size of the sets, and therefore the size of the intersection, is enlarged compared with Figure 1. Some number <span class="math inline">\(n_r\)</span> of the intersecting genes have occurred by chance. The total number of observed intersecting genes is therefore composed of a “background” part <span class="math inline">\(n_r\)</span> and a “true” part <span class="math inline">\(n_x\)</span> (they use <span class="math inline">\(x\)</span> as <span class="math inline">\(n_x\)</span> in the text), <span class="math inline">\(n_{A\&amp;B} = n_r + n_x\)</span>.</p>
+<div class="figure">
+<img src="concordance_figure2.png" style="width:25.0%" alt="" />
+<p class="caption">Figure 2</p>
+</div>
+<p>Since the probability of observing overlap by chance is dependent upon the size of the sets <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span>, the authors reason that they can compute <span class="math inline">\(n_x\)</span> by examining the probability of intersection for the set of genes that results after removing the size of the “true” overlap.</p>
+<p><span class="math display">\[ n_0 = n_x + \frac{(n_1 - n_x)(n_2 - n_x)}{N-n_x} \]</span></p>
+<p>Since <span class="math inline">\(n_0, n_1, n_2,\)</span> and <span class="math inline">\(N\)</span> are known, we can solve this equation for <span class="math inline">\(n_x\)</span> to find the background corrected number of “true” overlapping genes.</p>
+<p><span class="math display">\[ n_x = \frac{Nn_0-n_1n_2}{n_0+N-n_1-n_2} \]</span></p>
+<p>In other words, the number of genes we expect to overlap by chance depends upon the number of total genes, the size of the observed overlap, and the size of each set.</p>
+<p>Note the effect of background correction is subtle for small values of <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span>. Below are plots of observed (<span class="math inline">\(n_{A\cap B}\)</span>) versus “true” overlap (<span class="math inline">\(n_x\)</span>) using the formula presented in the paper for different values of <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span>, given a constant <span class="math inline">\(N\)</span> of 20,000 genes.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="concordance-of-microarray-and-rna-seq-differential-gene-expression.html#cb24-1" aria-hidden="true" tabindex="-1"></a>fig3 <span class="ot">&lt;-</span> <span class="fu">do.plot</span>(<span class="dv">100</span>)</span></code></pre></div>
+<p><img src="main_files/fig3-1.png" width="672" /></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="concordance-of-microarray-and-rna-seq-differential-gene-expression.html#cb25-1" aria-hidden="true" tabindex="-1"></a>fig4 <span class="ot">&lt;-</span> <span class="fu">do.plot</span>(<span class="dv">1000</span>)</span></code></pre></div>
+<p><img src="main_files/fig4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="concordance-of-microarray-and-rna-seq-differential-gene-expression.html#cb26-1" aria-hidden="true" tabindex="-1"></a>fig5 <span class="ot">&lt;-</span> <span class="fu">do.plot</span>(<span class="dv">10000</span>)</span></code></pre></div>
+<p><img src="main_files/fig5-1.png" width="672" /></p>
 
 </div>
 </div>

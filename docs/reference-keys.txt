@@ -24,15 +24,6 @@ metabolomics
 integrative-genomics
 part-projects
 transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq
-read-the-paper-supplemental-methods-1
-data-acquisition-transfer-to-remote-server-1
-aligning-and-qa-using-tophat-and-rseqc
-quantifying-gene-expression-with-cufflinks
-identifying-differentially-expressed-genes-associated-with-myocyte-differentiation
-biological-interpretation
-discuss-your-findings-1
-assignment-writeup-1
-concordance-of-microarray-and-rna-seq-differential-gene-expression
 choose-a-toxgroup-read-the-paper-supplemental-methods
 rna-seq-sample-statistics-and-alignment
 read-counting-with-featurecounts
@@ -42,6 +33,7 @@ concordance-between-microarray-and-rna-seq-de-genes
 biological-interpretation-1
 discuss-your-findings-2
 assignment-writeup-2
+wang-et-al-2014-concordance-calculation
 single-cell-rna-seq-analysis-of-pancreatic-cells
 read-the-paper
 process-single-cell-sequencing-reads-and-choose-barcodes
