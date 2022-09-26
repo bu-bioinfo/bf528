@@ -26,7 +26,7 @@ Your reports will be assessed in six areas:
 - [Figure & Table Quality]
 - [Clarity of Language]
 - [Thoroughness]
-- [Cohesion]
+- [Cohesion & Coherence]
 
 You will be provided with detailed feedback on each of your reports with
 specific comments on each of these areas. Your final grade will be assigned
@@ -550,7 +550,9 @@ that takes practice and experience to master.
 
 ##### Good example {-}
 
-A methods section from `Mandelboum et al 2019`_, subdivided for clarity:
+A methods section from [Mandelboum et al
+2019](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3000481),
+subdivided for clarity:
 
     We analyzed 35 publicly available human or mouse RNA-seq datasets from GEO
     [30] (S1 Table). We sought datasets that were (1) published in recent years
@@ -597,8 +599,6 @@ all replicates of at least one biological condition).
 Concise language and appropriate citations, inclusion of relevant analysis
 choice details (e.g. "For genes with multiple transcripts...") without too much
 implementation detail.
-
-.. _Mandelboum et al 2019: https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3000481
 
 ##### Average examples {-}
 
@@ -652,7 +652,7 @@ Rewritten:
     Alignment statistics were calculated using samtools.
 
 
-### Cohesion and Coherence {-}
+### Cohesion & Coherence {-}
 
 A cohesive document is consistent in all aspects throughout. This includes not
 only formatting, but also grammatical features like tense, voice, and tone, and
@@ -667,4 +667,4 @@ that came before, and set up the reader for the next to come.
 
 Cohesion and coherence are some of the most difficult writing concepts to
 master. For more detailed description and discussion of cohesion and coherence,
-see [this excellent post](https://eapwriting.com/coherence/).
+see [this excellent post](https://writing.chalmers.se/chalmers-writing-guide/writing-a-text/coherence-cohesion/)
