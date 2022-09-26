@@ -491,7 +491,7 @@ Rewritten:
     (private, common, hyper).
 
 
-### Thoroughness
+### Thoroughness {-}
 
 Thorough writing fully describes a result or method without providing too much,
 too little, or extraneous detail. This means describing not only the basic
@@ -500,7 +500,7 @@ literate reader who is not intimately familiar with the subject matter to
 understand them. There is a balance between being descriptive and being concise
 that takes practice and experience to master.
 
-#### Common mistakes
+#### Common mistakes {-}
 
 - Mentioning key terms or concepts without describing what they are
 - Providing too little or too much detail (examples below)
@@ -520,7 +520,7 @@ that takes practice and experience to master.
   "Previous studies have shown..." etc
 
 
-#### Tips
+#### Tips {-}
 
 - Make sure each program or method you used is mentioned and describe any key
   parameter choices (e.g. number of reads for a gene to be included in the
@@ -548,7 +548,7 @@ that takes practice and experience to master.
   should probably be more thorough.
 
 
-##### Good example
+##### Good example {-}
 
 A methods section from `Mandelboum et al 2019`_, subdivided for clarity:
 
@@ -600,7 +600,7 @@ implementation detail.
 
 .. _Mandelboum et al 2019: https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3000481
 
-##### Average examples
+##### Average examples {-}
 
 **Example 1**
 
@@ -652,7 +652,7 @@ Rewritten:
     Alignment statistics were calculated using samtools.
 
 
-### Cohesion and Coherence
+### Cohesion and Coherence {-}
 
 A cohesive document is consistent in all aspects throughout. This includes not
 only formatting, but also grammatical features like tense, voice, and tone, and
