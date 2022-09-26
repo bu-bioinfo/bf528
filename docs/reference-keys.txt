@@ -24,7 +24,6 @@ metabolomics
 integrative-genomics
 part-projects
 transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq
-wang-et-al-2014-concordance-calculation
 single-cell-rna-seq-analysis-of-pancreatic-cells
 read-the-paper
 process-single-cell-sequencing-reads-and-choose-barcodes
