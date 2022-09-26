@@ -1,7 +1,7 @@
 ---
 ---
 
-# Microarray Based Tumor Classification {-}
+# Project 1: Microarray Based Tumor Classification {-}
 
 Microarray technologies allow scientists to quickly and accurately profile the
 expression of tens of thousands of genes at a time at a fraction of the cost of
@@ -436,4 +436,4 @@ questions to consider:
 
 ## Assignment Writeup {-}
 
-Refer to the [Project Writeup Guidelines].
+Refer to the [Project Writeup Instructions].

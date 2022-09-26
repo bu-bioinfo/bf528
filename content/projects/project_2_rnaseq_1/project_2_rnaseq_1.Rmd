@@ -1,7 +1,7 @@
 ---
 ---
 
-# Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq
+# Project 2: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq {-}
 
 High-throughput sequencing technologies have helped researchers expand their
 understanding of genome-wide gene expression through their ability to detect
@@ -363,4 +363,4 @@ questions to consider:
 
 ## Assignment Writeup {-}
 
-Refer to the [Project Report Guidelines].
+Refer to the [Project Writeup Instructions].

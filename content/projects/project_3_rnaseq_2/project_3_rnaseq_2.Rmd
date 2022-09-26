@@ -1,4 +1,7 @@
-# Concordance of microarray and RNA-Seq differential gene expression {-}
+---
+---
+
+# Project 3: Concordance of microarray and RNA-Seq differential gene expression {-}
 
 In principle, microarray and RNA-Seq measure the same thing: the genome-wide
 abundance of mRNA molecules. However, the technologies are fundamentally
@@ -302,7 +305,7 @@ results come available for your samples.
    paper closely for clues on how the authors accomplished this. A short
    discussion of the concordance calculation is provided at [Wang et al 2014
    Concordance Calculation].
-   
+
 3. Compute concordance for the significantly DE genes from each of your three
    analyses.
 4. Produce a plot like that in Figure 2a, which plots the concordance vs the
@@ -385,4 +388,4 @@ questions to consider:
 
 ## Assignment Writeup {-}
 
-Refer to the [Report Guidelines].
+Refer to the [Project Writeup Instructions].
