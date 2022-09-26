@@ -4,19 +4,19 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Concordance of microarray and RNA-Seq differential gene expression | BF528 - Applications in Translational Bioinformatics</title>
+  <title>Project 3: Concordance of microarray and RNA-Seq differential gene expression | BF528 - Applications in Translational Bioinformatics</title>
 
   
    
    <meta name="generator" content="placeholder" />
-  <meta property="og:title" content="Concordance of microarray and RNA-Seq differential gene expression | BF528 - Applications in Translational Bioinformatics" />
+  <meta property="og:title" content="Project 3: Concordance of microarray and RNA-Seq differential gene expression | BF528 - Applications in Translational Bioinformatics" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Concordance of microarray and RNA-Seq differential gene expression | BF528 - Applications in Translational Bioinformatics" />
+  <meta name="twitter:title" content="Project 3: Concordance of microarray and RNA-Seq differential gene expression | BF528 - Applications in Translational Bioinformatics" />
   
   
   
@@ -76,8 +76,8 @@
   </header>
 
   <main class="col-sm-12 col-md-9 col-lg-7" id="content">
-<div id="concordance-of-microarray-and-rna-seq-differential-gene-expression" class="section level1 unnumbered">
-<h1>Concordance of microarray and RNA-Seq differential gene expression</h1>
+<div id="project-3-concordance-of-microarray-and-rna-seq-differential-gene-expression" class="section level1 unnumbered">
+<h1>Project 3: Concordance of microarray and RNA-Seq differential gene expression</h1>
 <p>In principle, microarray and RNA-Seq measure the same thing: the genome-wide
 abundance of mRNA molecules. However, the technologies are fundamentally
 different and the results from the same experiments assayed using the different
@@ -385,7 +385,7 @@ Affymetrix probe IDs from the microarray analysis to refSeq identifiers
 used by the RNA-Seq analysis. We have provided a refSeq-to-probe id
 mapping in <code>/project/bf528/project_3/refseq_affy_map.csv</code>. Read the
 paper closely for clues on how the authors accomplished this. A short
-discussion of the concordance calculation is provided at <a href="concordance-of-microarray-and-rna-seq-differential-gene-expression.html#wang-et-al-2014-concordance-calculation">Wang et al 2014
+discussion of the concordance calculation is provided at <a href="project-3-concordance-of-microarray-and-rna-seq-differential-gene-expression.html#wang-et-al-2014-concordance-calculation">Wang et al 2014
 Concordance Calculation</a>.</p></li>
 <li><p>Compute concordance for the significantly DE genes from each of your three
 analyses.</p></li>
@@ -485,11 +485,11 @@ induce the a similar gene expression response, is reasonable?</li>
 <p><span class="math display">\[ n_x = \frac{Nn_0-n_1n_2}{n_0+N-n_1-n_2} \]</span></p>
 <p>In other words, the number of genes we expect to overlap by chance depends upon the number of total genes, the size of the observed overlap, and the size of each set.</p>
 <p>Note the effect of background correction is subtle for small values of <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span>. Below are plots of observed (<span class="math inline">\(n_{A\cap B}\)</span>) versus “true” overlap (<span class="math inline">\(n_x\)</span>) using the formula presented in the paper for different values of <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span>, given a constant <span class="math inline">\(N\)</span> of 20,000 genes.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="concordance-of-microarray-and-rna-seq-differential-gene-expression.html#cb24-1" aria-hidden="true" tabindex="-1"></a>fig3 <span class="ot">&lt;-</span> <span class="fu">do.plot</span>(<span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="project-3-concordance-of-microarray-and-rna-seq-differential-gene-expression.html#cb24-1" aria-hidden="true" tabindex="-1"></a>fig3 <span class="ot">&lt;-</span> <span class="fu">do.plot</span>(<span class="dv">100</span>)</span></code></pre></div>
 <p><img src="main_files/fig3-1.png" width="672" /></p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="concordance-of-microarray-and-rna-seq-differential-gene-expression.html#cb25-1" aria-hidden="true" tabindex="-1"></a>fig4 <span class="ot">&lt;-</span> <span class="fu">do.plot</span>(<span class="dv">1000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="project-3-concordance-of-microarray-and-rna-seq-differential-gene-expression.html#cb25-1" aria-hidden="true" tabindex="-1"></a>fig4 <span class="ot">&lt;-</span> <span class="fu">do.plot</span>(<span class="dv">1000</span>)</span></code></pre></div>
 <p><img src="main_files/fig4-1.png" width="672" /></p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="concordance-of-microarray-and-rna-seq-differential-gene-expression.html#cb26-1" aria-hidden="true" tabindex="-1"></a>fig5 <span class="ot">&lt;-</span> <span class="fu">do.plot</span>(<span class="dv">10000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="project-3-concordance-of-microarray-and-rna-seq-differential-gene-expression.html#cb26-1" aria-hidden="true" tabindex="-1"></a>fig5 <span class="ot">&lt;-</span> <span class="fu">do.plot</span>(<span class="dv">10000</span>)</span></code></pre></div>
 <p><img src="main_files/fig5-1.png" width="672" /></p>
 
 </div>

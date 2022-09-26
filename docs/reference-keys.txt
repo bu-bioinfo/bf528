@@ -23,5 +23,3 @@ proteomics
 metabolomics
 integrative-genomics
 part-projects
-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq
-individual-project

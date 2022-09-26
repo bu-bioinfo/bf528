@@ -4,19 +4,19 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Microarray Based Tumor Classification | BF528 - Applications in Translational Bioinformatics</title>
+  <title>Project 1: Microarray Based Tumor Classification | BF528 - Applications in Translational Bioinformatics</title>
 
   
    
    <meta name="generator" content="placeholder" />
-  <meta property="og:title" content="Microarray Based Tumor Classification | BF528 - Applications in Translational Bioinformatics" />
+  <meta property="og:title" content="Project 1: Microarray Based Tumor Classification | BF528 - Applications in Translational Bioinformatics" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Microarray Based Tumor Classification | BF528 - Applications in Translational Bioinformatics" />
+  <meta name="twitter:title" content="Project 1: Microarray Based Tumor Classification | BF528 - Applications in Translational Bioinformatics" />
   
   
   
@@ -76,8 +76,8 @@
   </header>
 
   <main class="col-sm-12 col-md-9 col-lg-7" id="content">
-<div id="microarray-based-tumor-classification" class="section level1 unnumbered">
-<h1>Microarray Based Tumor Classification</h1>
+<div id="project-1-microarray-based-tumor-classification" class="section level1 unnumbered">
+<h1>Project 1: Microarray Based Tumor Classification</h1>
 <p>Microarray technologies allow scientists to quickly and accurately profile the
 expression of tens of thousands of genes at a time at a fraction of the cost of
 modern day sequencing protocols. Repositories and databases such as the Gene
@@ -115,14 +115,14 @@ novel relationships among samples in a given dataset.</li>
 </ul>
 <p>Contents:</p>
 <ul>
-<li><a href="transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html#read-the-paper-supplemental-methods-1">1. Read the paper &amp; supplemental methods</a></li>
-<li><a href="transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html#data-acquisition-transfer-to-remote-server-1">2. Data acquisition &amp; transfer to remote server</a></li>
-<li><a href="microarray-based-tumor-classification.html#data-preprocessing-quality-control">3. Data preprocessing &amp; quality control</a></li>
-<li><a href="microarray-based-tumor-classification.html#noise-filtering-dimensionality-reduction">4. Noise filtering &amp; dimensionality reduction</a></li>
-<li><a href="microarray-based-tumor-classification.html#hierarchical-clustering-subtype-discovery">5. Hierarchical clustering &amp; subtype discovery</a></li>
-<li><a href="microarray-based-tumor-classification.html#in-depth-analysis">6. In-depth Analysis</a></li>
-<li><a href="microarray-based-tumor-classification.html#discuss-your-findings">7. Discuss Your Findings</a></li>
-<li><a href="single-cell-rna-seq-analysis-of-pancreatic-cells.html#assignment-writeup-3">Assignment Writeup</a></li>
+<li><a href="project-2-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html#read-the-paper-supplemental-methods-1">1. Read the paper &amp; supplemental methods</a></li>
+<li><a href="project-2-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html#data-acquisition-transfer-to-remote-server-1">2. Data acquisition &amp; transfer to remote server</a></li>
+<li><a href="project-1-microarray-based-tumor-classification.html#data-preprocessing-quality-control">3. Data preprocessing &amp; quality control</a></li>
+<li><a href="project-1-microarray-based-tumor-classification.html#noise-filtering-dimensionality-reduction">4. Noise filtering &amp; dimensionality reduction</a></li>
+<li><a href="project-1-microarray-based-tumor-classification.html#hierarchical-clustering-subtype-discovery">5. Hierarchical clustering &amp; subtype discovery</a></li>
+<li><a href="project-1-microarray-based-tumor-classification.html#in-depth-analysis">6. In-depth Analysis</a></li>
+<li><a href="project-1-microarray-based-tumor-classification.html#discuss-your-findings">7. Discuss Your Findings</a></li>
+<li><a href="project-4-single-cell-rna-seq-analysis-of-pancreatic-cells.html#assignment-writeup-3">Assignment Writeup</a></li>
 </ul>
 <div id="read-the-paper-supplemental-methods" class="section level2 unnumbered">
 <h2>1. Read the paper &amp; supplemental methods</h2>
@@ -187,9 +187,9 @@ CRAN and Bioconductor. As mentioned before, to download packages from CRAN,
 issue the command <code>install.packages("packageNameHere")</code> from within your R
 session. To install packages from Bioconductor, its necessary to first source
 the biocLite function on the Bioconductor servers:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="microarray-based-tumor-classification.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;BiocManager&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb18-2"><a href="microarray-based-tumor-classification.html#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>)</span>
-<span id="cb18-3"><a href="microarray-based-tumor-classification.html#cb18-3" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="at">version =</span> <span class="st">&quot;3.14&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="project-1-microarray-based-tumor-classification.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;BiocManager&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb18-2"><a href="project-1-microarray-based-tumor-classification.html#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>)</span>
+<span id="cb18-3"><a href="project-1-microarray-based-tumor-classification.html#cb18-3" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="at">version =</span> <span class="st">&quot;3.14&quot;</span>)</span></code></pre></div>
 <p>Once this function has been sourced, you can use the command <code>BiocManager::install("packageNameHere")</code> to
 automatically download any Bioconductor package. For this assignment, you
 will need the <code>affy</code>, <code>affyPLM</code>, <code>sva</code>, <code>AnnotationDbi</code>, and
@@ -197,12 +197,12 @@ will need the <code>affy</code>, <code>affyPLM</code>, <code>sva</code>, <code>A
 these packages to SCC. For this assignment, we will be working in R. Issue
 the following commands to load the R module and install your packages. When
 prompted with a <code>yes or no [y/n]</code>, respond with yes::</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="microarray-based-tumor-classification.html#cb19-1" aria-hidden="true" tabindex="-1"></a>module load R</span>
-<span id="cb19-2"><a href="microarray-based-tumor-classification.html#cb19-2" aria-hidden="true" tabindex="-1"></a>R <span class="sc">--</span>vanilla</span>
-<span id="cb19-3"><a href="microarray-based-tumor-classification.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;BiocManager&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb19-4"><a href="microarray-based-tumor-classification.html#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>)</span>
-<span id="cb19-5"><a href="microarray-based-tumor-classification.html#cb19-5" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="at">version =</span> <span class="st">&quot;3.14&quot;</span>)</span>
-<span id="cb19-6"><a href="microarray-based-tumor-classification.html#cb19-6" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="fu">c</span>(<span class="st">&quot;affy&quot;</span>,<span class="st">&quot;affyPLM&quot;</span>,<span class="st">&quot;sva&quot;</span>,<span class="st">&quot;AnnotationDbi&quot;</span>,<span class="st">&quot;hgu133plus2.db&quot;</span>))</span></code></pre></div></li>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="project-1-microarray-based-tumor-classification.html#cb19-1" aria-hidden="true" tabindex="-1"></a>module load R</span>
+<span id="cb19-2"><a href="project-1-microarray-based-tumor-classification.html#cb19-2" aria-hidden="true" tabindex="-1"></a>R <span class="sc">--</span>vanilla</span>
+<span id="cb19-3"><a href="project-1-microarray-based-tumor-classification.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;BiocManager&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb19-4"><a href="project-1-microarray-based-tumor-classification.html#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>)</span>
+<span id="cb19-5"><a href="project-1-microarray-based-tumor-classification.html#cb19-5" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="at">version =</span> <span class="st">&quot;3.14&quot;</span>)</span>
+<span id="cb19-6"><a href="project-1-microarray-based-tumor-classification.html#cb19-6" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="fu">c</span>(<span class="st">&quot;affy&quot;</span>,<span class="st">&quot;affyPLM&quot;</span>,<span class="st">&quot;sva&quot;</span>,<span class="st">&quot;AnnotationDbi&quot;</span>,<span class="st">&quot;hgu133plus2.db&quot;</span>))</span></code></pre></div></li>
 <li><p>Once installed, confirm that you can load each of these packages by opening
 a new R session and typing <code>library(packageNameHere)</code>. These commands should
 execute without error.</p></li>

@@ -1,0 +1,66 @@
+img {
+  width: 100%;
+}
+div.figure {
+  text-align: center;
+  background: rgba(240, 240, 240, 0.6);
+  padding-top: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 8px;
+}
+.bold {
+  font-weight: bold;
+}
+.box{
+  border-radius: 8px;
+  border: 2px #989898 solid;
+  padding-top: 3px;
+  padding-bottom: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+.tldr:before {
+  content: "tl;dr";
+  font-weight: bold;
+}
+.tldr {
+  background: #eeeeee;
+}
+.readmore:before {
+  content: "Further reading:";
+  font-weight: bold;
+}
+.readmore {
+  background: #eeeeee;
+}
+.note:before {
+  content: "Note:";
+  font-weight: bold;
+}
+.note {
+  background: #eeeeff;
+}
+.hint:before {
+  content: "Hint:";
+  font-weight: bold;
+}
+.hint {
+  background: #ccffcc;
+}
+.warning:before {
+  content: "Warning:";
+  font-weight: bold;
+}
+.warning {
+  background: #ffcc99;
+}
+.important:before {
+  content: "Important:";
+  font-weight: bold;
+}
+.important {
+  background: #ffffcc;
+}
