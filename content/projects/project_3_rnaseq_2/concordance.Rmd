@@ -7,13 +7,17 @@ Consider a differential expression experiment where two different datasets are u
 
 G represents the space of all possible genes. "All possible genes" may mean different things based on the context. For example, not every gene will be detected in an RNA-Seq experiment, and so you could argue that $N$ should be the number of genes detected, rather than the number of genes in the whole genome. Without a priori knowledge like this, $N$ should be set to the number of genes in the genome. Regardless, for genome-wide experiments, setting $N$ to the total number of genes in the genome is usually a defensible choice.
 
-![Figure 1](concordance_figure1.png){width=25%}
+```{r, echo=FALSE}
+knitr::include_graphics("projects/project_3_rnaseq_2/concordance_figure1.png")
+```
 
 If you threw a dart at Figure 1 (and were guaranteed to hit it), the probability of hitting the area of A is $p_A = n_1/N$, and likewise the probability of hitting B is $p_B = n_2/N$. It follows that the probability of hitting the intersection is $p_{A\cap B} = p_Ap_B = (n_1/N)(n_2/N)$. Therefore, the number of genes that corresponds to the intersection is $n_{A\cap B} = Np_{A\cap B}$ (they use $n_0$ in the text).
 
 If A and B are independent, there is still some probability they will overlap by chance. This probability is proportional to the size of the sets, where larger sets will result in a higher probability of overlap by chance, since they comprise a larger proportion of the overall set G. Consider Figure 2, where the size of the sets, and therefore the size of the intersection, is enlarged compared with Figure 1. Some number $n_r$ of the intersecting genes have occurred by chance. The total number of observed intersecting genes is therefore composed of a "background" part $n_r$ and a "true" part $n_x$ (they use $x$ as $n_x$ in the text), $n_{A\&B} = n_r + n_x$.
 
-![Figure 2](concordance_figure2.png){width=25%}
+```{r, echo=FALSE}
+knitr::include_graphics("projects/project_3_rnaseq_2/concordance_figure2.png")
+```
 
 Since the probability of observing overlap by chance is dependent upon the size of the sets $n_1$ and $n_2$, the authors reason that they can compute $n_x$ by examining the probability of intersection for the set of genes that results after removing the size of the "true" overlap.
 
