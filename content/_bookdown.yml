@@ -5,6 +5,7 @@ rmd_files:
     - "projects/project_1_microarrays/project_1_microarrays.Rmd"
     - "projects/project_2_rnaseq_1/project_2_rnaseq_1.Rmd"
     - "projects/project_3_rnaseq_2/project_3_rnaseq_2.Rmd"
+    - "projects/project_3_rnaseq_2/concordance.Rmd"
     - "projects/project_4_scrnaseq/project_4_scrnaseq.Rmd"
     - "projects/individual_project.Rmd"
 delete_merged_file: true

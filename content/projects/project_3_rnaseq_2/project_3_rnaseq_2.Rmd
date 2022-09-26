@@ -1,8 +1,4 @@
-Concordance of microarray and RNA-Seq differential gene expression
-==================================================================
-
-.. contents::
-   :local:
+# Concordance of microarray and RNA-Seq differential gene expression {-}
 
 In principle, microarray and RNA-Seq measure the same thing: the genome-wide
 abundance of mRNA molecules. However, the technologies are fundamentally
@@ -37,11 +33,13 @@ Upon completion of project 3, students will be able to do the following:
   expression data using limma
 * Map between Affymetrix and refSeq identifier systems
 
+Contents:
+
 1. Choose a toxgroup, read the paper & supplemental methods
 -----------------------------------------------------------
 
 Metadata files containing sample info for each toxgroup are found in
-``/project/bf528/project_3/toxgroups``. Pick one of these toxgroups to
+`/project/bf528/project_3/toxgroups`. Pick one of these toxgroups to
 analyze. Each toxgroup has approximately the same number of samples; you may
 choose whichever you like.
 
@@ -49,11 +47,10 @@ This paper contains many analyses each with many details. Don't worry if you
 don't understand the methods, but do try to understand the main text and the
 online methods as best you can.
 
-Wang, Charles, Binsheng Gong, Pierre R. Bushel, Jean Thierry-Mieg, Danielle
-Thierry-Mieg, Joshua Xu, Hong Fang, et al. 2014. “A comprehensive study design
-reveals treatment- and transcript abundance–dependent concordance between
-RNA-seq and microarray data” Nature Biotechnology 32 (9): 926–32. `PMID: 4243706
-<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4243706/>`_
+[Wang, Charles, Binsheng Gong, Pierre R. Bushel, Jean Thierry-Mieg, Danielle
+Thierry-Mieg, Joshua Xu, Hong Fang, et al. 2014. "A comprehensive study design
+reveals treatment- and transcript abundance-dependent concordance between
+RNA-seq and microarray data" Nature Biotechnology 32 (9): 926-32. PMID: 4243706](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4243706/)
 
 2. RNA-Seq Sample Statistics and Alignment
 ------------------------------------------
@@ -61,16 +58,11 @@ RNA-seq and microarray data” Nature Biotechnology 32 (9): 926–32. `PMID: 424
 **Lead role: Data Curator**
 
 All of the microarray and sequencing datasets have already been downloaded for
-you from the accessions `SRP039021`_, `GSE55347`_, and `GSE47875`_. To save
-time, we have also already processed the microarray data as described in the
+you from the accessions [SRP039021](https://www.ncbi.nlm.nih.gov/sra/?term=SRP039021), [GSE55347](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE55347), and [GSE47875](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE47875). To save time, we have also already processed the microarray data as described in the
 paper, so we will focus solely on the sequencing data processing here.
 
-.. _SRP039021: https://www.ncbi.nlm.nih.gov/sra/?term=SRP039021
-.. _GSE55347: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE55347
-.. _GSE47875: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE47875
-
 1. We have downloaded all of the datasets for you and made them available at
-   ``/project/bf528/project_3/samples``. Identify the treatment samples (and
+   `/project/bf528/project_3/samples`. Identify the treatment samples (and
    *not* the controls) from your toxgroup sample info file. Create symbolic
    links to those files in your group project directories. You should have nine
    samples total: 3 different treatments each with three replicates. *You do
@@ -82,40 +74,42 @@ paper, so we will focus solely on the sequencing data processing here.
 3. Align each of the samples against the rat genome using the STAR aligner.
    STAR is an alignment program, like tophat, that is designed specifically for
    spliced alignment of RNA-Seq data. Load STAR into your environment using
-   ``module load star/2.6.0c``. Also like tophat, STAR requires a
+   `module load star/2.6.0c`. Also like tophat, STAR requires a
    genome index to run, which has been built and provided for you at
-   ``/project/bf528/project_3/reference/rn4_STAR``.
+   `/project/bf528/project_3/reference/rn4_STAR`.
 
    **NB:** Instead of using modules, you are encouraged to try using miniconda
    to install and manage your software throughout these projects. You may use
-   the SCC miniconda module by running ``module load anaconda3``, after which
-   the ``conda`` executable will be available on the command line. You will need
+   the SCC miniconda module by running `module load anaconda3`, after which
+   the `conda` executable will be available on the command line. You will need
    to configure your account prior to creating conda environments by following
-   `this guide`_. If you run into issues with conda, you may use modules if you
-   prefer.
+   [this
+   guide](https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/anaconda/).
+   If you run into issues with conda, you may use modules if you prefer.
 
-   STAR has a tremendous number of options. Look at the `STAR manual`_ section
+   STAR has a tremendous number of options. Look at the [STAR manual](https://github.com/alexdobin/STAR/blob/2.5.3a/doc/STARmanual.pdf) section
    3.2.2 for the parameters used by the ENCODE project. Also be sure to specify
-   the ``--outFileNamePrefix`` option to be unique for each sample. We have
-   provided a skeleton qsub script under ``/project/bf528/project_3/scripts/STAR.qsub``
+   the `--outFileNamePrefix` option to be unique for each sample. We have
+   provided a skeleton qsub script under `/project/bf528/project_3/scripts/STAR.qsub`
    for you to use.
 
    You might consider writing your qsub script to accept an argument of the
-   input fastq filenames. Refer to the `foundations page on bash scripting`_
+   input fastq filenames. Refer to the [foundations page on bash scripting](http://foundations-in-computational-skills.readthedocs.io/en/latest/content/workshops/06_cluster_computing/06_cluster_computing.html#command-line-arguments)
    to see how to do this. You can provide command line arguments to qsub
    scripts on the command line by adding them after the qsub command, e.g.
-   ``qsub STAR.qsub read1.fastq.gz read2.fastq.gz``.
+   `qsub STAR.qsub read1.fastq.gz read2.fastq.gz`.
 4. STAR reports alignment statistics when it is finished running. Find these
    statistics and report them in a table along with your sample names. This
    should include uniquely aligned reads, multimapped reads, unmapped reads,
    etc.
-5. The tool `multiqc`_ is a very helpful tool for collecting information from
-   many different bioinformatics programs for a set of samples and combining them
-   into a single convenient report. Run multiqc on your samples directory and
-   it should find and process your results from both fastqc and STAR. Examine
-   the results in multiqc and include any plots you deem necessary for
-   communicating the quality of the datasets. We have provided a skeleton qsub
-   script for multiqc under ``/project/bf528/project_3/scripts/multiqc.qsub``.
+5. The tool [multiqc](https://multiqc.info) is a very helpful tool for
+   collecting information from many different bioinformatics programs for a set
+   of samples and combining them into a single convenient report. Run multiqc
+   on your samples directory and it should find and process your results from
+   both fastqc and STAR. Examine the results in multiqc and include any plots
+   you deem necessary for communicating the quality of the datasets. We have
+   provided a skeleton qsub script for multiqc under
+   `/project/bf528/project_3/scripts/multiqc.qsub`.
 
 **Deliverables:**
 
@@ -123,38 +117,33 @@ paper, so we will focus solely on the sequencing data processing here.
 * A table of read and alignment statistics
 * Any other tables or plots from the multiqc output you deem relevant
 
-.. _foundations page on bash scripting: http://foundations-in-computational-skills.readthedocs.io/en/latest/content/workshops/06_cluster_computing/06_cluster_computing.html#command-line-arguments
-.. _STAR manual: https://github.com/alexdobin/STAR/blob/2.5.3a/doc/STARmanual.pdf
-.. _multiqc: https://multiqc.info
-.. _this guide: https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/anaconda/
-
 3. Read counting with featureCounts
 -----------------------------------
 
 **Lead role: Programmer**
 
 We will now use the alignments from STAR to count reads against a gene
-annotation using the program ``featureCounts``. These counts will serve as
+annotation using the program `featureCounts`. These counts will serve as
 the quantificatied transcript abundance measurements for comparing with the
 microarray data.
 
 We have provided bam files containing STAR alignments under
-``/project/bf528/project_3/samples/*.bam`` for you to use while your group's
+`/project/bf528/project_3/samples/*.bam` for you to use while your group's
 samples are being processed. You can find the metadata for these files in
-``/project/bf528/project_3/groups/group_EX_rna_info.csv``.
+`/project/bf528/project_3/groups/group_EX_rna_info.csv`.
 
-1. Use the command ``module load subread`` on the cluster to make the
-   ``featureCounts`` tool available on the command line. Run the command
+1. Use the command `module load subread` on the cluster to make the
+   `featureCounts` tool available on the command line. Run the command
    without any arguments to read about its usage. Identify any arguments
    that might be important to set.
 2. featureCounts requires an annotation file in GTF format, which we have
-   provided at ``/project/bf528/project_3/reference/rn4_refGene_20180308.gtf``.
+   provided at `/project/bf528/project_3/reference/rn4_refGene_20180308.gtf`.
    Run featureCounts on each of your nine samples to generate individual counts
    files. We have provided a skeleton qsub script at
-   ``/project/bf528/project_3/scripts/featureCounts.qsub``. You might again
+   `/project/bf528/project_3/scripts/featureCounts.qsub`. You might again
    consider writing the script to accept command line arguments. *Hint:* You
    can create output filenames based on the input filename using the
-   ``basename`` command.
+   `basename` command.
 3. Run multiqc on the directory where your counts files are created (see 2.5).
    Examine the output and include any plots or statistics you deem relevant to
    describing the data, e.g. outlier samples, etc.
@@ -163,7 +152,7 @@ samples are being processed. You can find the metadata for these files in
    counts taken from each file for each sample. Create a header row in the
    combined file with "gene_id" in the first column and the corresponding
    sample name in subsequent columns. You might consider doing this using the
-   ``read.csv`` function and dataframes in R.
+   `read.csv` function and dataframes in R.
 5. Create box plots for each of your samples showing the distribution of
    counts. Report your observations about distributional differences between
    your samples.
@@ -189,25 +178,25 @@ the mean and variance of a given gene's count distribution are not independent,
 as often the higher the mean count of a gene, the greater the variance. For
 this reason, generalized linear models, in particular negative binomial
 regression, is the statistical tool most frequently used to analyze count data.
-DESeq2_ and edgeR_ are two such software tools that use negative binomial
-regression to estimate count differences given a statistical design. In this
-step you will use DESeq2 to determine differential expression between your
-treated samples and appropriate controls.
-
-.. _DESeq2: https://bioconductor.org/packages/release/bioc/html/DESeq2.html
-.. _edgeR: https://bioconductor.org/packages/release/bioc/html/edgeR.html
+[DESeq2](https://bioconductor.org/packages/release/bioc/html/DESeq2.html) and
+[edgeR](https://bioconductor.org/packages/release/bioc/html/edgeR.html) are two
+such software tools that use negative binomial regression to estimate count
+differences given a statistical design. In this step you will use DESeq2 to
+determine differential expression between your treated samples and appropriate
+controls.
 
 1. Create a new counts matrix that includes control counts. Your sample metadata
-   file ``group_N_rna_info.csv`` contains the sample IDs of the control samples
+   file `group_N_rna_info.csv` contains the sample IDs of the control samples
    for vehicles that correspond to your treatment samples. Identify the columns
    of your control samples in the sample matrix provided at
-   ``/project/bf528/project_3/samples/control_counts.csv``. You will need to
+   `/project/bf528/project_3/samples/control_counts.csv`. You will need to
    subset columns out of the control matrix and merge them with your treatment
    counts matrix. **NB:** Be sure you are matching rows of the treatment and
    control samples so that the genes match.
-2. Install the DESeq2_ package from Bioconductor_, read the vignette to learn
-   how to use it. We have provided an example script illustrating DESeq2 usage
-   in ``/project/bf528/project_3/scripts/run_deseq.R`` to help you.
+2. Install the DESeq2 package from [Bioconductor](https://bioconductor.org/),
+   read the vignette to learn how to use it. We have provided an example script
+   illustrating DESeq2 usage in `/project/bf528/project_3/scripts/run_deseq.R`
+   to help you.
 3. Write an R script to run DESeq2 comparing each group of your samples to the
    controls in the combined data matrix from 4.1. This will produce three
    separate DE gene lists, one for each condition with a corresponding set of
@@ -227,8 +216,6 @@ treated samples and appropriate controls.
    counts matrix to a file. You will use this matrix for clustering in part
    7.
 
-.. _Bioconductor: https://bioconductor.org/
-
 **Deliverables:**
 
 * A report of the number of DE genes at p-adjust < 0.05
@@ -243,30 +230,33 @@ treated samples and appropriate controls.
 
 **Lead Role: Analyst**
 
-limma_ is a highly mature Bioconductor_ package that implements the standard
-analytical methodology for microarray differential expression analysis. The
-authors used RMA normalization + limma to determine differential expression
-between the different treatments and control samples. You will generate
-similar analyses using the pre-normalized expression matrix made available by
-the authors. You will find the samples that correspond to the sequencing data
-treatments in the file names ``/project/bf528/project_3/groups/group_X_mic_info.csv``.
+[limma](https://bioconductor.org/packages/release/bioc/html/limma.html) is a
+highly mature Bioconductor package that implements the standard analytical
+methodology for microarray differential expression analysis. The authors used
+RMA normalization + limma to determine differential expression between the
+different treatments and control samples. You will generate similar analyses
+using the pre-normalized expression matrix made available by the authors. You
+will find the samples that correspond to the sequencing data treatments in the
+file names `/project/bf528/project_3/groups/group_X_mic_info.csv`.
 
 The full RMA expression matrix has been made available at
-``/project/bf528/project_3/samples/liver-normalization-rma.txt`` for your use.
+`/project/bf528/project_3/samples/liver-normalization-rma.txt` for your use.
 Since we have the pre-normalized expression matrix, you will not need to
 perform normalization or QC yourself and may begin directly with differential
 expression.
 
-.. _limma: https://bioconductor.org/packages/release/bioc/html/limma.html
-
-1. Install limma_ and use it to run differential expression analysis of your
+1. Install limma and use it to run differential expression analysis of your
    samples versus the appropriate controls using the provided RMA normalized
    expression matrix. Be sure to read the limma documentation for details on
-   how to use the package. We have provided an example R script that implements
-   an limma analysis at ``/project/bf528/project_3/scripts/run_limma.R``
-   for your reference. You will need to change the script to reference your
-   groups samples and the appropriate comparisons. There should be one
-   microarray DE analysis for each of those you produced in 4.3.
+   how to use the package. You may also find [the section on
+   limma](https://bu-bioinfo.github.io/r-for-biological-sciences/biology-bioinformatics.html#differential-expression-microarrays-limma)
+   from [R for Biological
+   Sciences](https://bu-bioinfo.github.io/r-for-biological-sciences/) helpful.
+   We have provided an example R script that implements a limma analysis at
+   `/project/bf528/project_3/scripts/run_limma.R` for your reference. You will
+   need to change the script to reference your groups samples and the
+   appropriate comparisons. There should be one microarray DE analysis for each
+   of those you produced in 4.3.
 2. Write out the differential expression results to files sorted by adjusted
    p-value as you did in 4.4. Report the number of genes significant at
    p-adjust < 0.05.
@@ -295,7 +285,7 @@ the method used by the paper to measure and examine concordance between
 platforms.
 
 We have provided example differential expression results from both methods
-in ``/project/bf528/project_3/results`` for you to use until the DESeq2
+in `/project/bf528/project_3/results` for you to use until the DESeq2
 results come available for your samples.
 
 1. Read the online methods of the paper that describe how concordance was
@@ -304,10 +294,11 @@ results come available for your samples.
    should be two sets of DE genes. You will need to figure out how to map
    Affymetrix probe IDs from the microarray analysis to refSeq identifiers
    used by the RNA-Seq analysis. We have provided a refSeq-to-probe id
-   mapping in ``/project/bf528/project_3/refseq_affy_map.csv``. Read the
+   mapping in `/project/bf528/project_3/refseq_affy_map.csv`. Read the
    paper closely for clues on how the authors accomplished this. A short
-   discussion of the concordance calculation is provided :download:`here <concordance.nb.html>`
-   (`Rnotebook <https://bitbucket.org/bucab/bf528/src/master/content/projects/project_3_rnaseq_2/>`_).
+   discussion of the concordance calculation is provided at [Wang et al 2014
+   Concordance Calculation].
+   
 3. Compute concordance for the significantly DE genes from each of your three
    analyses.
 4. Produce a plot like that in Figure 2a, which plots the concordance vs the
@@ -316,7 +307,7 @@ results come available for your samples.
 5. Subdivide the DE genes into "above-median" and "below-median" groups as in
    Figure 3 b+c for each of your sample groups. Compute the concordance of these
    separate groups of genes. Use the RNA-Seq results to determine median from
-   the ``baseMean`` column in the DESeq2 results, which corresponds to the
+   the `baseMean` column in the DESeq2 results, which corresponds to the
    overall mean count of the gene across all samples in the comparison.
 6. Produce a bar plot combining overall concordance measures you obtained for
    the overall DE gene list and the above- and below-median subsets.
@@ -348,7 +339,7 @@ Supplementary Table 4. You shall seek to determine whether your DE genes are
 in agreement with the processes listed by the authors.
 
 We have provided example differential expression results from both methods
-in ``/project/bf528/project_3/results`` for you to use until the DESeq2
+in `/project/bf528/project_3/results` for you to use until the DESeq2
 results come available for your samples.
 
 The authors also sought to evaluate the utility of both platforms in predicting
@@ -357,19 +348,15 @@ analysis is too in-depth to reproduce here, you will create a heatmap-based
 hierarchical clustering of your RNA-Seq samples to look for segregation by MOA.
 
 We have provided an example set of normalized counts for you to use until those
-from your group come available: ``/project/bf528/project_3/results/example_deseq_norm_counts.csv``.
+from your group come available: `/project/bf528/project_3/results/example_deseq_norm_counts.csv`.
 
-1. Using a gene set enrichment method of your choosing (e.g. DAVID_, Gather_,
-   GSEA_, etc.) and the DE genes from your treatments, compare the pathway
+1. Using a gene set enrichment method of your choosing (e.g. [DAVID](https://david.ncifcrf.gov/tools.jsp), [Gather](http://changlab.uth.tmc.edu/gather/gather.py),
+   [GSEA](http://software.broadinstitute.org/gsea/index.jsp), etc.) and the DE genes from your treatments, compare the pathway
    enrichment results of your genes to those reported in the paper.
 2. Take the normalized expression matrix from part 4 and produce a clustered
    heatmap of the counts. Experiment with filtering metrics of average count,
    coefficient of variation, etc. to see if you can induce a clustering that
    is consistent with MOA.
-
-.. _DAVID: https://david.ncifcrf.gov/tools.jsp
-.. _Gather: http://changlab.uth.tmc.edu/gather/gather.py
-.. _GSEA: http://software.broadinstitute.org/gsea/index.jsp
 
 **Deliverables:**
 
@@ -397,4 +384,4 @@ questions to consider:
 Assignment Writeup
 ------------------
 
-:doc:`../project_reports`
+Refer to the [Project Report Guidelines].
