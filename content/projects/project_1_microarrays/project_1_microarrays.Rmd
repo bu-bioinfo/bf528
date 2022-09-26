@@ -436,4 +436,4 @@ questions to consider:
 
 ## Assignment Writeup {-}
 
-Refer to the [Project Report Guidelines].
+Refer to the [Project Writeup Guidelines].
