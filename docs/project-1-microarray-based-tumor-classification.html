@@ -1,56 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <title>Project 1: Microarray Based Tumor Classification | BF528 - Applications in Translational Bioinformatics</title>
-
-  
-   
-   <meta name="generator" content="placeholder" />
-  <meta property="og:title" content="Project 1: Microarray Based Tumor Classification | BF528 - Applications in Translational Bioinformatics" />
-  <meta property="og:type" content="book" />
-  
-  
-  
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Project 1: Microarray Based Tumor Classification | BF528 - Applications in Translational Bioinformatics" />
-  
-  
-  
-  <!-- JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script>
-  <script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script>
-    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet" />
-    <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script>
-    <script src="libs/bs3compat-0.3.1/transition.js"></script>
-    <script src="libs/bs3compat-0.3.1/tabs.js"></script>
-    <script src="libs/bs3compat-0.3.1/bs3compat.js"></script>
-    <link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet" />
-    <script src="libs/bs4_book-1.0.0/bs4_book.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script>
-
-  <!-- CSS -->
-  <style type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Project 1: Microarray Based Tumor Classification | BF528 - Applications in Translational Bioinformatics</title>
+<meta name="generator" content="bookdown 0.29 with bs4_book()">
+<meta property="og:title" content="Project 1: Microarray Based Tumor Classification | BF528 - Applications in Translational Bioinformatics">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Project 1: Microarray Based Tumor Classification | BF528 - Applications in Translational Bioinformatics">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
-      <link rel="stylesheet" href="style.css" />
-  
+<link rel="stylesheet" href="style.css">
+<meta name="description" content="Microarray technologies allow scientists to quickly and accurately profile the expression of tens of thousands of genes at a time at a fraction of the cost of modern day sequencing protocols....">
+<meta property="og:description" content="Microarray technologies allow scientists to quickly and accurately profile the expression of tens of thousands of genes at a time at a fraction of the cost of modern day sequencing protocols....">
+<meta name="twitter:description" content="Microarray technologies allow scientists to quickly and accurately profile the expression of tens of thousands of genes at a time at a fraction of the cost of modern day sequencing protocols....">
 </head>
-
 <body data-spy="scroll" data-target="#toc">
 
 <div class="container-fluid">
 <div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book">
-    <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
@@ -62,22 +38,52 @@
     <div id="main-nav" class="collapse-lg">
       <form role="search">
         <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
-      </form>
+</form>
 
-      <nav aria-label="Table of contents">
-        <h2>Table of contents</h2>
-        <div id="book-toc"></div>
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
+<li><a class="" href="introduction.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="genomics-genes-and-genomes.html"><span class="header-section-number">2</span> Genomics, Genes, and Genomes</a></li>
+<li><a class="" href="array-technologies.html"><span class="header-section-number">3</span> Array Technologies</a></li>
+<li><a class="" href="gene-sets-and-enrichment.html"><span class="header-section-number">4</span> Gene sets and enrichment</a></li>
+<li><a class="" href="nd-gen-sequencing.html"><span class="header-section-number">5</span> 2nd Gen Sequencing</a></li>
+<li><a class="" href="sequence-analysis-fundamentals.html"><span class="header-section-number">6</span> Sequence Analysis Fundamentals</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-1.html"><span class="header-section-number">7</span> Sequence Analysis - RNA-Seq 1</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-2.html"><span class="header-section-number">8</span> Sequence Analysis - RNA-Seq 2</a></li>
+<li><a class="" href="genomic-variation-and-snp-analysis.html"><span class="header-section-number">9</span> Genomic Variation and SNP Analysis</a></li>
+<li><a class="" href="biological-data-formats.html"><span class="header-section-number">10</span> Biological Data Formats</a></li>
+<li><a class="" href="sequence-visualization.html"><span class="header-section-number">11</span> Sequence Visualization</a></li>
+<li><a class="" href="sequence-analysis---chip-seq.html"><span class="header-section-number">12</span> Sequence Analysis - ChIP-Seq</a></li>
+<li><a class="" href="biological-databases.html"><span class="header-section-number">13</span> Biological Databases</a></li>
+<li><a class="" href="replicability-vs-reproducibility-strategies.html"><span class="header-section-number">14</span> Replicability vs Reproducibility Strategies</a></li>
+<li><a class="" href="computational-environment-management.html"><span class="header-section-number">15</span> Computational Environment Management</a></li>
+<li><a class="" href="computational-pipeline-strategies.html"><span class="header-section-number">16</span> Computational Pipeline Strategies</a></li>
+<li><a class="" href="single-cell-techniques.html"><span class="header-section-number">17</span> Single Cell Techniques</a></li>
+<li><a class="" href="single-cell-analysis-part-1.html"><span class="header-section-number">18</span> Single Cell Analysis Part 1</a></li>
+<li><a class="" href="single-cell-analysis-part-2.html"><span class="header-section-number">19</span> Single Cell Analysis Part 2</a></li>
+<li><a class="" href="microbiome-16s.html"><span class="header-section-number">20</span> Microbiome: 16S</a></li>
+<li><a class="" href="microbiome-metagenomics.html"><span class="header-section-number">21</span> Microbiome: Metagenomics</a></li>
+<li><a class="" href="proteomics.html"><span class="header-section-number">22</span> Proteomics</a></li>
+<li><a class="" href="metabolomics.html"><span class="header-section-number">23</span> Metabolomics</a></li>
+<li><a class="" href="integrative-genomics.html"><span class="header-section-number">24</span> Integrative Genomics</a></li>
+<li class="book-part">Projects</li>
+<li><a class="" href="project-writeup-instructions.html">Project Writeup Instructions</a></li>
+<li><a class="active" href="project-1-microarray-based-tumor-classification.html">Project 1: Microarray Based Tumor Classification</a></li>
+<li><a class="" href="project-2-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html">Project 2: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></li>
+<li><a class="" href="project-3-concordance-of-microarray-and-rna-seq-differential-gene-expression.html">Project 3: Concordance of microarray and RNA-Seq differential gene expression</a></li>
+<li><a class="" href="project-4-single-cell-rna-seq-analysis-of-pancreatic-cells.html">Project 4: Single Cell RNA-Seq Analysis of Pancreatic Cells</a></li>
+<li><a class="" href="individual-project.html">Individual Project</a></li>
+</ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="#">View book source <i class="fab fa-github"></i></a></li></p>
+          
         </div>
       </nav>
-    </div>
-  </header>
-
-  <main class="col-sm-12 col-md-9 col-lg-7" id="content">
-<div id="project-1-microarray-based-tumor-classification" class="section level1 unnumbered">
-<h1>Project 1: Microarray Based Tumor Classification</h1>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="project-1-microarray-based-tumor-classification" class="section level1 unnumbered">
+<h1>Project 1: Microarray Based Tumor Classification<a class="anchor" aria-label="anchor" href="#project-1-microarray-based-tumor-classification"><i class="fas fa-link"></i></a>
+</h1>
 <p>Microarray technologies allow scientists to quickly and accurately profile the
 expression of tens of thousands of genes at a time at a fraction of the cost of
 modern day sequencing protocols. Repositories and databases such as the Gene
@@ -125,13 +131,15 @@ novel relationships among samples in a given dataset.</li>
 <li><a href="project-4-single-cell-rna-seq-analysis-of-pancreatic-cells.html#assignment-writeup-3">Assignment Writeup</a></li>
 </ul>
 <div id="read-the-paper-supplemental-methods" class="section level2 unnumbered">
-<h2>1. Read the paper &amp; supplemental methods</h2>
+<h2>1. Read the paper &amp; supplemental methods<a class="anchor" aria-label="anchor" href="#read-the-paper-supplemental-methods"><i class="fas fa-link"></i></a>
+</h2>
 <p><a href="https://www.ncbi.nlm.nih.gov/pubmed/23700391">Marisa et al. Gene Expression Classification of Colon Cancer into Molecular
 Subtypes: Characterization, Validation, and Prognostic Value. PLoS Medicine,
 May 2013. PMID: 23700391</a></p>
 </div>
 <div id="data-acquisition-transfer-to-remote-server" class="section level2 unnumbered">
-<h2>2. Data acquisition &amp; transfer to remote server</h2>
+<h2>2. Data acquisition &amp; transfer to remote server<a class="anchor" aria-label="anchor" href="#data-acquisition-transfer-to-remote-server"><i class="fas fa-link"></i></a>
+</h2>
 <p><strong>Lead Role: Data Curator</strong></p>
 <p>Create a directory for your group under the following path:</p>
 <pre><code>/projectnb/bf528/users/</code></pre>
@@ -168,7 +176,8 @@ directory.</li>
 </ol>
 </div>
 <div id="data-preprocessing-quality-control" class="section level2 unnumbered">
-<h2>3. Data preprocessing &amp; quality control</h2>
+<h2>3. Data preprocessing &amp; quality control<a class="anchor" aria-label="anchor" href="#data-preprocessing-quality-control"><i class="fas fa-link"></i></a>
+</h2>
 <p><strong>Lead Role: Programmer</strong></p>
 <p>Normalization of microarray data is necessary to ensure that differences in
 intensities read by the scanner are due to differential gene expression and not
@@ -182,14 +191,16 @@ Multiarray Averaging (RMA) algorithm. Then, you will compute standard quality
 control metrics on your normalized data and visualize the distribution of
 samples using Principal Component Analysis (PCA).</p>
 <ol style="list-style-type: decimal">
-<li><p>There are two major repositories we will be leveraging during this course:
+<li>
+<p>There are two major repositories we will be leveraging during this course:
 CRAN and Bioconductor. As mentioned before, to download packages from CRAN,
 issue the command <code>install.packages("packageNameHere")</code> from within your R
 session. To install packages from Bioconductor, its necessary to first source
 the biocLite function on the Bioconductor servers:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="project-1-microarray-based-tumor-classification.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;BiocManager&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb18-2"><a href="project-1-microarray-based-tumor-classification.html#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>)</span>
-<span id="cb18-3"><a href="project-1-microarray-based-tumor-classification.html#cb18-3" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="at">version =</span> <span class="st">&quot;3.14&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span>version <span class="op">=</span> <span class="st">"3.14"</span><span class="op">)</span></span></code></pre></div>
 <p>Once this function has been sourced, you can use the command <code>BiocManager::install("packageNameHere")</code> to
 automatically download any Bioconductor package. For this assignment, you
 will need the <code>affy</code>, <code>affyPLM</code>, <code>sva</code>, <code>AnnotationDbi</code>, and
@@ -199,12 +210,13 @@ the following commands to load the R module and install your packages. When
 prompted with a <code>yes or no [y/n]</code>, respond with yes::</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="project-1-microarray-based-tumor-classification.html#cb19-1" aria-hidden="true" tabindex="-1"></a>module load R</span>
 <span id="cb19-2"><a href="project-1-microarray-based-tumor-classification.html#cb19-2" aria-hidden="true" tabindex="-1"></a>R <span class="sc">--</span>vanilla</span>
-<span id="cb19-3"><a href="project-1-microarray-based-tumor-classification.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;BiocManager&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb19-4"><a href="project-1-microarray-based-tumor-classification.html#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>)</span>
-<span id="cb19-5"><a href="project-1-microarray-based-tumor-classification.html#cb19-5" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="at">version =</span> <span class="st">&quot;3.14&quot;</span>)</span>
-<span id="cb19-6"><a href="project-1-microarray-based-tumor-classification.html#cb19-6" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="fu">c</span>(<span class="st">&quot;affy&quot;</span>,<span class="st">&quot;affyPLM&quot;</span>,<span class="st">&quot;sva&quot;</span>,<span class="st">&quot;AnnotationDbi&quot;</span>,<span class="st">&quot;hgu133plus2.db&quot;</span>))</span></code></pre></div></li>
+<span id="cb19-3"><a href="project-1-microarray-based-tumor-classification.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"BiocManager"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb19-4"><a href="project-1-microarray-based-tumor-classification.html#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">"BiocManager"</span>)</span>
+<span id="cb19-5"><a href="project-1-microarray-based-tumor-classification.html#cb19-5" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="at">version =</span> <span class="st">"3.14"</span>)</span>
+<span id="cb19-6"><a href="project-1-microarray-based-tumor-classification.html#cb19-6" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="fu">c</span>(<span class="st">"affy"</span>,<span class="st">"affyPLM"</span>,<span class="st">"sva"</span>,<span class="st">"AnnotationDbi"</span>,<span class="st">"hgu133plus2.db"</span>))</span></code></pre></div>
+</li>
 <li><p>Once installed, confirm that you can load each of these packages by opening
-a new R session and typing <code>library(packageNameHere)</code>. These commands should
+a new R session and typing <code><a href="https://rdrr.io/r/base/library.html">library(packageNameHere)</a></code>. These commands should
 execute without error.</p></li>
 <li><p>Read in the CEL files using the <code>ReadAffy()</code> function, then use the
 <code>rma()</code> function to normalize all of the CEL files together. If you are
@@ -233,8 +245,8 @@ correct for batch effects while preserving features of interest. Write out
 the expression data to a CSV file using the <code>exprs</code> and <code>write.csv</code>
 functions, where probesets are rows and samples are columns.</p></li>
 <li><p>Perform Principal Component Analysis (PCA) on your normalized data using the
-<code>prcomp()</code> function. It is important to center and scale your data when
-performing PCA. To do so, use the <code>scale()</code> function. Note that scaling and
+<code><a href="https://rdrr.io/r/stats/prcomp.html">prcomp()</a></code> function. It is important to center and scale your data when
+performing PCA. To do so, use the <code><a href="https://rdrr.io/r/base/scale.html">scale()</a></code> function. Note that scaling and
 centering is done within each column. Given that we want to scale within each
 gene rather than within each sample, you will have to transpose your
 expression matrix prior to scaling then re-transpose it to return to it to
@@ -259,7 +271,8 @@ principal components shown on the x and y axes labels.</li>
 <p>In your writeup, provide an interpretation of each of these plots.</p>
 </div>
 <div id="noise-filtering-dimensionality-reduction" class="section level2 unnumbered">
-<h2>4. Noise filtering &amp; dimensionality reduction</h2>
+<h2>4. Noise filtering &amp; dimensionality reduction<a class="anchor" aria-label="anchor" href="#noise-filtering-dimensionality-reduction"><i class="fas fa-link"></i></a>
+</h2>
 <p><strong>Lead Role: Analyst</strong></p>
 <p>To help you get started writing your code, we have provided gene expression
 data similar to the form you should obtain in 3.5. You will find a
@@ -288,11 +301,12 @@ probe sets using a threshold of <span class="math inline">\(p&lt;0.01\)</span> (
 as shown in <a href="http://www.itl.nist.gov/div898/handbook/eda/section3/eda358.htm" class="uri">http://www.itl.nist.gov/div898/handbook/eda/section3/eda358.htm</a>.
 You will need to manually compute the test statistic for each gene and
 compare it to the chi-squared distribution with the correct number of
-degrees of freedom using the <code>qchisq()</code> function).</li>
+degrees of freedom using the <code><a href="https://rdrr.io/r/stats/Chisquare.html">qchisq()</a></code> function).</li>
 <li>Have a coefficient of variation &gt; 0.186.</li>
 <li>Write out a different file containing the gene expression matrix for genes
 passing all three of the filters from 4.1, 4.2, and 4.3.</li>
-<li><strong>For groups with Biologist role only:</strong> Write out the expression matrix for
+<li>
+<strong>For groups with Biologist role only:</strong> Write out the expression matrix for
 probesets that pass the expression threshold from 4.2 to a file with
 <code>write.csv</code>.</li>
 </ol>
@@ -301,12 +315,14 @@ probesets that pass the expression threshold from 4.2 to a file with
 <li>A comma separated file with the filtered results from all three filters from
 4.4.</li>
 <li>Report the number of genes that pass all of these thresholds.</li>
-<li><strong>For groups with Biologist role only:</strong> A comma separated file with the
+<li>
+<strong>For groups with Biologist role only:</strong> A comma separated file with the
 filtered results from the expression filter from 4.2.</li>
 </ul>
 </div>
 <div id="hierarchical-clustering-subtype-discovery" class="section level2 unnumbered">
-<h2>5. Hierarchical clustering &amp; subtype discovery</h2>
+<h2>5. Hierarchical clustering &amp; subtype discovery<a class="anchor" aria-label="anchor" href="#hierarchical-clustering-subtype-discovery"><i class="fas fa-link"></i></a>
+</h2>
 <p><strong>Lead Role: Analyst</strong></p>
 <p>A powerful analytical tool to leverage with large sample sizes is clustering.
 Clustering is an unsupervised method for grouping sets of similar objects based
@@ -324,7 +340,7 @@ genes.</li>
 <li>Cut the dendrogram such that the samples are divided into 2 clusters. How
 many samples are in each cluster?</li>
 <li>Create a heatmap of the gene-expression of each gene across all samples
-using the <code>heatmap()</code> function. Include a column colorbar by setting the
+using the <code><a href="https://rdrr.io/r/stats/heatmap.html">heatmap()</a></code> function. Include a column colorbar by setting the
 <code>ColSideColors</code> variable in the heatmap function equal to “red” if the
 sample belongs to the C3 subtype and “blue” otherwise. Subtype annotation
 can be found in the annotation matrix under the title
@@ -338,7 +354,8 @@ genes are differentially expressed at adjusted :math:<code>p&lt;0.05</code> betw
 clusters for both lists?</li>
 <li>Select the most differentially expressed genes that you feel best define the
 clusters and explain your selection.</li>
-<li><strong>For groups with Biologist role only</strong>: perform the t-test analysis
+<li>
+<strong>For groups with Biologist role only</strong>: perform the t-test analysis
 described in 5.4 on the expression matrix from 4.5 as well and provide to
 the Biologist as a csv file.</li>
 </ol>
@@ -353,12 +370,14 @@ the two clusters</li>
 genes irrespective of significance for each subtype comparison</li>
 <li>report a list of the genes you feel best represent each cluster and explain
 how you came to your conclusion</li>
-<li><strong>For groups with Biologist role only:</strong> A comma separated file with the
+<li>
+<strong>For groups with Biologist role only:</strong> A comma separated file with the
 t-test results computed on the expression matrix from 4.5.</li>
 </ul>
 </div>
 <div id="in-depth-analysis" class="section level2 unnumbered">
-<h2>6. In-depth Analysis</h2>
+<h2>6. In-depth Analysis<a class="anchor" aria-label="anchor" href="#in-depth-analysis"><i class="fas fa-link"></i></a>
+</h2>
 <p><strong>Primary role: Biologist - for 4 person groups only</strong></p>
 <p>The authors in Marisa et al sought to understand the biological significance of
 the different gene expression profiles for each tumor subtype using gene set
@@ -400,7 +419,8 @@ from our course <a href="https://bu-bioinfo.github.io/r-for-biological-sciences/
 Sciences</a>
 helpful. How many gene sets are there in each of the collections we are
 using?</p></li>
-<li><p>Use the <code>fisher.test</code> function to compute hypergeometric statistics and
+<li>
+<p>Use the <code>fisher.test</code> function to compute hypergeometric statistics and
 p-values comparing overlap for each gene set and each of the top 1000 increased
 and 1000 decreased genes from 6.3. You will have two sets of enrichment statistics,
 one for each direction of effect.</p>
@@ -409,21 +429,19 @@ of differentially expressed gene symbols and a single gene set to test your code
 You will need to create a <a href="https://en.wikipedia.org/wiki/Contingency_table">contingency
 table</a> for each calculation
 to pass as the argument to <code>fisher.test</code>, e.g.:</p>
-<table style="width:98%;">
+<table style="width:98%;" class="table table-sm">
 <colgroup>
-<col width="20%" />
-<col width="31%" />
-<col width="36%" />
-<col width="9%" />
+<col width="20%">
+<col width="31%">
+<col width="36%">
+<col width="9%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th></th>
 <th>Differentially Expressed</th>
 <th>Not Differentially Expressed</th>
 <th>Total</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td>In Gene Set</td>
@@ -451,7 +469,7 @@ all genes.</p>
 <p>To perform Fisher’s Exact test on the above matrix, you could write:</p>
 <pre><code>&gt; fisher.test(matrix(c(26,974,100,18259),nrow=2))
 
-    Fisher&#39;s Exact Test for Count Data
+    Fisher's Exact Test for Count Data
 
 data:  matrix(c(26, 974, 100, 18259), nrow = 2)
 p-value = 1.119e-09
@@ -460,7 +478,8 @@ alternative hypothesis: true odds ratio is not equal to 1
  3.022027 7.606742
  sample estimates:
  odds ratio
-   4.873775</code></pre></li>
+   4.873775</code></pre>
+</li>
 <li><p>Create a table (dataframe) of statistics for each comparison from 6.2,
 including gene set name, statistic estimate and p-value. Adjust the p-values
 for multiple hypotheses using the Benjamini-Hochberg (FDR) procedure and
@@ -475,12 +494,14 @@ reported in Figure 2 of the paper.</p></li>
 t-statistic, nominal p-value, and adjusted p-value columns</li>
 <li>a description of the gene set databases used, specifying the number of gene
 sets considered in each</li>
-<li>the number of significantly enriched gene sets at adjusted :math:<code>p&lt;0.05</code></li>
+<li>the number of significantly enriched gene sets at adjusted :math:<code>p&lt;0.05</code>
+</li>
 <li>a table containing the top 3 enriched gene sets for each geneset type</li>
 </ul>
 </div>
 <div id="discuss-your-findings" class="section level2 unnumbered">
-<h2>7. Discuss Your Findings</h2>
+<h2>7. Discuss Your Findings<a class="anchor" aria-label="anchor" href="#discuss-your-findings"><i class="fas fa-link"></i></a>
+</h2>
 <p>Discuss your findings with your team members and other teams. Some interesting
 questions to consider:</p>
 <ol style="list-style-type: decimal">
@@ -496,32 +517,41 @@ genes with high variance? What information might these gene provide?</li>
 </ol>
 </div>
 <div id="assignment-writeup" class="section level2 unnumbered">
-<h2>Assignment Writeup</h2>
+<h2>Assignment Writeup<a class="anchor" aria-label="anchor" href="#assignment-writeup"><i class="fas fa-link"></i></a>
+</h2>
 <p>Refer to the <a href="project-writeup-instructions.html#project-writeup-instructions">Project Writeup Instructions</a>.</p>
 
 </div>
 </div>
-  </main>
-
-  <div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page">
-      <h2>On this page</h2>
-      <div id="book-on-this-page"></div>
+  <div class="chapter-nav">
+<div class="prev"><a href="project-writeup-instructions.html">Project Writeup Instructions</a></div>
+<div class="next"><a href="project-2-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html">Project 2: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#project-1-microarray-based-tumor-classification">Project 1: Microarray Based Tumor Classification</a></li>
+<li><a class="nav-link" href="#read-the-paper-supplemental-methods">1. Read the paper &amp; supplemental methods</a></li>
+<li><a class="nav-link" href="#data-acquisition-transfer-to-remote-server">2. Data acquisition &amp; transfer to remote server</a></li>
+<li><a class="nav-link" href="#data-preprocessing-quality-control">3. Data preprocessing &amp; quality control</a></li>
+<li><a class="nav-link" href="#noise-filtering-dimensionality-reduction">4. Noise filtering &amp; dimensionality reduction</a></li>
+<li><a class="nav-link" href="#hierarchical-clustering-subtype-discovery">5. Hierarchical clustering &amp; subtype discovery</a></li>
+<li><a class="nav-link" href="#in-depth-analysis">6. In-depth Analysis</a></li>
+<li><a class="nav-link" href="#discuss-your-findings">7. Discuss Your Findings</a></li>
+<li><a class="nav-link" href="#assignment-writeup">Assignment Writeup</a></li>
+</ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-          <li><a id="book-source" href="#">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="#">Edit this page <i class="fab fa-github"></i></a></li>
+          
         </ul>
-      </div>
+</div>
     </nav>
-  </div>
+</div>
 
 </div>
 </div> <!-- .container -->
 
-<footer class="bg-primary text-light mt-5">
-  <div class="container"><div class="row">
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong>BF528 - Applications in Translational Bioinformatics</strong>" was written by . </p>
@@ -532,11 +562,7 @@ genes with high variance? What information might these gene provide?</li>
   </div>
 
 </div></div>
-</footer>
-
-
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -548,8 +574,7 @@ genes with high variance? What information might these gene provide?</li>
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
-</script>
-<script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
 for (let popover of popovers) {
   const div = document.createElement('div');
   div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
@@ -567,5 +592,4 @@ for (let popover of popovers) {
 }
 </script>
 </body>
-
 </html>

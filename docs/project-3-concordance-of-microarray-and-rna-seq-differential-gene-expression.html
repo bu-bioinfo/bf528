@@ -1,56 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <title>Project 3: Concordance of microarray and RNA-Seq differential gene expression | BF528 - Applications in Translational Bioinformatics</title>
-
-  
-   
-   <meta name="generator" content="placeholder" />
-  <meta property="og:title" content="Project 3: Concordance of microarray and RNA-Seq differential gene expression | BF528 - Applications in Translational Bioinformatics" />
-  <meta property="og:type" content="book" />
-  
-  
-  
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Project 3: Concordance of microarray and RNA-Seq differential gene expression | BF528 - Applications in Translational Bioinformatics" />
-  
-  
-  
-  <!-- JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script>
-  <script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script>
-    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet" />
-    <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script>
-    <script src="libs/bs3compat-0.3.1/transition.js"></script>
-    <script src="libs/bs3compat-0.3.1/tabs.js"></script>
-    <script src="libs/bs3compat-0.3.1/bs3compat.js"></script>
-    <link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet" />
-    <script src="libs/bs4_book-1.0.0/bs4_book.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script>
-
-  <!-- CSS -->
-  <style type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Project 3: Concordance of microarray and RNA-Seq differential gene expression | BF528 - Applications in Translational Bioinformatics</title>
+<meta name="generator" content="bookdown 0.29 with bs4_book()">
+<meta property="og:title" content="Project 3: Concordance of microarray and RNA-Seq differential gene expression | BF528 - Applications in Translational Bioinformatics">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Project 3: Concordance of microarray and RNA-Seq differential gene expression | BF528 - Applications in Translational Bioinformatics">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
-      <link rel="stylesheet" href="style.css" />
-  
+<link rel="stylesheet" href="style.css">
+<meta name="description" content="In principle, microarray and RNA-Seq measure the same thing: the genome-wide abundance of mRNA molecules. However, the technologies are fundamentally different and the results from the same...">
+<meta property="og:description" content="In principle, microarray and RNA-Seq measure the same thing: the genome-wide abundance of mRNA molecules. However, the technologies are fundamentally different and the results from the same...">
+<meta name="twitter:description" content="In principle, microarray and RNA-Seq measure the same thing: the genome-wide abundance of mRNA molecules. However, the technologies are fundamentally different and the results from the same...">
 </head>
-
 <body data-spy="scroll" data-target="#toc">
 
 <div class="container-fluid">
 <div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book">
-    <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
@@ -62,22 +38,52 @@
     <div id="main-nav" class="collapse-lg">
       <form role="search">
         <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
-      </form>
+</form>
 
-      <nav aria-label="Table of contents">
-        <h2>Table of contents</h2>
-        <div id="book-toc"></div>
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
+<li><a class="" href="introduction.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="genomics-genes-and-genomes.html"><span class="header-section-number">2</span> Genomics, Genes, and Genomes</a></li>
+<li><a class="" href="array-technologies.html"><span class="header-section-number">3</span> Array Technologies</a></li>
+<li><a class="" href="gene-sets-and-enrichment.html"><span class="header-section-number">4</span> Gene sets and enrichment</a></li>
+<li><a class="" href="nd-gen-sequencing.html"><span class="header-section-number">5</span> 2nd Gen Sequencing</a></li>
+<li><a class="" href="sequence-analysis-fundamentals.html"><span class="header-section-number">6</span> Sequence Analysis Fundamentals</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-1.html"><span class="header-section-number">7</span> Sequence Analysis - RNA-Seq 1</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-2.html"><span class="header-section-number">8</span> Sequence Analysis - RNA-Seq 2</a></li>
+<li><a class="" href="genomic-variation-and-snp-analysis.html"><span class="header-section-number">9</span> Genomic Variation and SNP Analysis</a></li>
+<li><a class="" href="biological-data-formats.html"><span class="header-section-number">10</span> Biological Data Formats</a></li>
+<li><a class="" href="sequence-visualization.html"><span class="header-section-number">11</span> Sequence Visualization</a></li>
+<li><a class="" href="sequence-analysis---chip-seq.html"><span class="header-section-number">12</span> Sequence Analysis - ChIP-Seq</a></li>
+<li><a class="" href="biological-databases.html"><span class="header-section-number">13</span> Biological Databases</a></li>
+<li><a class="" href="replicability-vs-reproducibility-strategies.html"><span class="header-section-number">14</span> Replicability vs Reproducibility Strategies</a></li>
+<li><a class="" href="computational-environment-management.html"><span class="header-section-number">15</span> Computational Environment Management</a></li>
+<li><a class="" href="computational-pipeline-strategies.html"><span class="header-section-number">16</span> Computational Pipeline Strategies</a></li>
+<li><a class="" href="single-cell-techniques.html"><span class="header-section-number">17</span> Single Cell Techniques</a></li>
+<li><a class="" href="single-cell-analysis-part-1.html"><span class="header-section-number">18</span> Single Cell Analysis Part 1</a></li>
+<li><a class="" href="single-cell-analysis-part-2.html"><span class="header-section-number">19</span> Single Cell Analysis Part 2</a></li>
+<li><a class="" href="microbiome-16s.html"><span class="header-section-number">20</span> Microbiome: 16S</a></li>
+<li><a class="" href="microbiome-metagenomics.html"><span class="header-section-number">21</span> Microbiome: Metagenomics</a></li>
+<li><a class="" href="proteomics.html"><span class="header-section-number">22</span> Proteomics</a></li>
+<li><a class="" href="metabolomics.html"><span class="header-section-number">23</span> Metabolomics</a></li>
+<li><a class="" href="integrative-genomics.html"><span class="header-section-number">24</span> Integrative Genomics</a></li>
+<li class="book-part">Projects</li>
+<li><a class="" href="project-writeup-instructions.html">Project Writeup Instructions</a></li>
+<li><a class="" href="project-1-microarray-based-tumor-classification.html">Project 1: Microarray Based Tumor Classification</a></li>
+<li><a class="" href="project-2-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html">Project 2: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></li>
+<li><a class="active" href="project-3-concordance-of-microarray-and-rna-seq-differential-gene-expression.html">Project 3: Concordance of microarray and RNA-Seq differential gene expression</a></li>
+<li><a class="" href="project-4-single-cell-rna-seq-analysis-of-pancreatic-cells.html">Project 4: Single Cell RNA-Seq Analysis of Pancreatic Cells</a></li>
+<li><a class="" href="individual-project.html">Individual Project</a></li>
+</ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="#">View book source <i class="fab fa-github"></i></a></li></p>
+          
         </div>
       </nav>
-    </div>
-  </header>
-
-  <main class="col-sm-12 col-md-9 col-lg-7" id="content">
-<div id="project-3-concordance-of-microarray-and-rna-seq-differential-gene-expression" class="section level1 unnumbered">
-<h1>Project 3: Concordance of microarray and RNA-Seq differential gene expression</h1>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="project-3-concordance-of-microarray-and-rna-seq-differential-gene-expression" class="section level1 unnumbered">
+<h1>Project 3: Concordance of microarray and RNA-Seq differential gene expression<a class="anchor" aria-label="anchor" href="#project-3-concordance-of-microarray-and-rna-seq-differential-gene-expression"><i class="fas fa-link"></i></a>
+</h1>
 <p>In principle, microarray and RNA-Seq measure the same thing: the genome-wide
 abundance of mRNA molecules. However, the technologies are fundamentally
 different and the results from the same experiments assayed using the different
@@ -138,7 +144,8 @@ expression data using limma</li>
 <li>Assignment Writeup</li>
 </ul>
 <div id="choose-a-toxgroup-read-the-paper-supplemental-methods" class="section level2 unnumbered">
-<h2>1. Choose a toxgroup, read the paper &amp; supplemental methods</h2>
+<h2>1. Choose a toxgroup, read the paper &amp; supplemental methods<a class="anchor" aria-label="anchor" href="#choose-a-toxgroup-read-the-paper-supplemental-methods"><i class="fas fa-link"></i></a>
+</h2>
 <p>Metadata files containing sample info for each toxgroup are found in
 <code>/project/bf528/project_3/toxgroups</code>. Pick one of these toxgroups to
 analyze. Each toxgroup has approximately the same number of samples; you may
@@ -152,7 +159,8 @@ reveals treatment- and transcript abundance-dependent concordance between
 RNA-seq and microarray data” Nature Biotechnology 32 (9): 926-32. PMID: 4243706</a></p>
 </div>
 <div id="rna-seq-sample-statistics-and-alignment" class="section level2 unnumbered">
-<h2>2. RNA-Seq Sample Statistics and Alignment</h2>
+<h2>2. RNA-Seq Sample Statistics and Alignment<a class="anchor" aria-label="anchor" href="#rna-seq-sample-statistics-and-alignment"><i class="fas fa-link"></i></a>
+</h2>
 <p><strong>Lead role: Data Curator</strong></p>
 <p>All of the microarray and sequencing datasets have already been downloaded for
 you from the accessions <a href="https://www.ncbi.nlm.nih.gov/sra/?term=SRP039021">SRP039021</a>, <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE55347">GSE55347</a>, and <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE47875">GSE47875</a>. To save time, we have also already processed the microarray data as described in the
@@ -168,7 +176,8 @@ IDs for the programmer’s role.</em></p></li>
 <li><p>Run fastqc on each of the fastq files you are analyzing. You may inspect the
 results from all of them, but in step 2.5 below you will run a tool that gathers
 information from many runs of fastqc and puts them into a convenient report.</p></li>
-<li><p>Align each of the samples against the rat genome using the STAR aligner.
+<li>
+<p>Align each of the samples against the rat genome using the STAR aligner.
 STAR is an alignment program, like tophat, that is designed specifically for
 spliced alignment of RNA-Seq data. Load STAR into your environment using
 <code>module load star/2.6.0c</code>. Also like tophat, STAR requires a
@@ -191,7 +200,8 @@ for you to use.</p>
 input fastq filenames. Refer to the <a href="http://foundations-in-computational-skills.readthedocs.io/en/latest/content/workshops/06_cluster_computing/06_cluster_computing.html#command-line-arguments">foundations page on bash scripting</a>
 to see how to do this. You can provide command line arguments to qsub
 scripts on the command line by adding them after the qsub command, e.g.
-<code>qsub STAR.qsub read1.fastq.gz read2.fastq.gz</code>.</p></li>
+<code>qsub STAR.qsub read1.fastq.gz read2.fastq.gz</code>.</p>
+</li>
 <li><p>STAR reports alignment statistics when it is finished running. Find these
 statistics and report them in a table along with your sample names. This
 should include uniquely aligned reads, multimapped reads, unmapped reads,
@@ -213,7 +223,8 @@ provided a skeleton qsub script for multiqc under
 </ul>
 </div>
 <div id="read-counting-with-featurecounts" class="section level2 unnumbered">
-<h2>3. Read counting with featureCounts</h2>
+<h2>3. Read counting with featureCounts<a class="anchor" aria-label="anchor" href="#read-counting-with-featurecounts"><i class="fas fa-link"></i></a>
+</h2>
 <p><strong>Lead role: Programmer</strong></p>
 <p>We will now use the alignments from STAR to count reads against a gene
 annotation using the program <code>featureCounts</code>. These counts will serve as
@@ -258,7 +269,8 @@ your samples.</li>
 </ul>
 </div>
 <div id="rna-seq-differential-expression-with-deseq2" class="section level2 unnumbered">
-<h2>4. RNA-Seq Differential Expression with DESeq2</h2>
+<h2>4. RNA-Seq Differential Expression with DESeq2<a class="anchor" aria-label="anchor" href="#rna-seq-differential-expression-with-deseq2"><i class="fas fa-link"></i></a>
+</h2>
 <p><strong>Lead Role: Programmer</strong></p>
 <p>The most basic processed form of data from RNA-Seq experiments are read counts.
 The distribution of count data have three properties that make standard
@@ -302,12 +314,14 @@ p-value. Report the number of genes significant at p-adjust &lt; 0.05.</li>
 <li>Report the top 10 DE genes from each analysis by p-value in a table</li>
 <li>Create histograms of fold change values from the significant DE genes for
 each analysis. Also create scatter plots of fold change vs nominal p-value.</li>
-<li><strong>4 person groups only:</strong> Read the DESeq2 manual to identify how to extract
+<li>
+<strong>4 person groups only:</strong> Read the DESeq2 manual to identify how to extract
 the <em>normalized</em> counts out of the DESeq2 object, and save the normalized
 counts matrix to a file. You will use this matrix for clustering in part
 <ol start="7" style="list-style-type: decimal">
-<li></li>
-</ol></li>
+<li>
+</ol>
+</li>
 </ol>
 <p><strong>Deliverables:</strong></p>
 <ul>
@@ -315,12 +329,14 @@ counts matrix to a file. You will use this matrix for clustering in part
 <li>A table of the top 10 DE genes from each of your analyses</li>
 <li>Histograms of fold change values and scatter plots of fold change vs
 nominal-pvalue from the significant DE genes</li>
-<li><strong>4 person groups only:</strong> Normalized counts matrices for each of your
+<li>
+<strong>4 person groups only:</strong> Normalized counts matrices for each of your
 analyses</li>
 </ul>
 </div>
 <div id="microarray-differential-expressoin-with-limma" class="section level2 unnumbered">
-<h2>5. Microarray Differential Expressoin with limma</h2>
+<h2>5. Microarray Differential Expressoin with limma<a class="anchor" aria-label="anchor" href="#microarray-differential-expressoin-with-limma"><i class="fas fa-link"></i></a>
+</h2>
 <p><strong>Lead Role: Analyst</strong></p>
 <p><a href="https://bioconductor.org/packages/release/bioc/html/limma.html">limma</a> is a
 highly mature Bioconductor package that implements the standard analytical
@@ -365,7 +381,8 @@ nominal-pvalue from the significant DE genes</li>
 </ul>
 </div>
 <div id="concordance-between-microarray-and-rna-seq-de-genes" class="section level2 unnumbered">
-<h2>6. Concordance between microarray and RNA-Seq DE genes</h2>
+<h2>6. Concordance between microarray and RNA-Seq DE genes<a class="anchor" aria-label="anchor" href="#concordance-between-microarray-and-rna-seq-de-genes"><i class="fas fa-link"></i></a>
+</h2>
 <p><strong>Lead Role: Analyst</strong></p>
 <p>The primary finding of the paper was that the concordance of RNA-Seq and
 microarray expression estimates depends on a number of factors, including
@@ -414,7 +431,8 @@ analyses, and the challenge plot if you so desire</li>
 </ul>
 </div>
 <div id="biological-interpretation-1" class="section level2 unnumbered">
-<h2>7. Biological Interpretation</h2>
+<h2>7. Biological Interpretation<a class="anchor" aria-label="anchor" href="#biological-interpretation-1"><i class="fas fa-link"></i></a>
+</h2>
 <p><strong>Lead role: Biologist - for 4 person groups only</strong></p>
 <p>The authors chose chemical agents that cause toxcity via five known, distinct
 mechanisms of action (MOA). The MOAs spanned a range of effect severity and
@@ -452,7 +470,8 @@ samples from each MOA cluster together</li>
 </ul>
 </div>
 <div id="discuss-your-findings-2" class="section level2 unnumbered">
-<h2>8. Discuss Your Findings</h2>
+<h2>8. Discuss Your Findings<a class="anchor" aria-label="anchor" href="#discuss-your-findings-2"><i class="fas fa-link"></i></a>
+</h2>
 <p>Discuss your findings with your team members and other teams. Some interesting
 questions to consider:</p>
 <ol style="list-style-type: decimal">
@@ -467,54 +486,69 @@ induce the a similar gene expression response, is reasonable?</li>
 </ol>
 </div>
 <div id="assignment-writeup-2" class="section level2 unnumbered">
-<h2>Assignment Writeup</h2>
+<h2>Assignment Writeup<a class="anchor" aria-label="anchor" href="#assignment-writeup-2"><i class="fas fa-link"></i></a>
+</h2>
 <p>Refer to the <a href="project-writeup-instructions.html#project-writeup-instructions">Project Writeup Instructions</a>.</p>
 
 </div>
 <div id="wang-et-al-2014-concordance-calculation" class="section level2 unnumbered">
-<h2>Wang et al 2014 Concordance Calculation</h2>
+<h2>Wang et al 2014 Concordance Calculation<a class="anchor" aria-label="anchor" href="#wang-et-al-2014-concordance-calculation"><i class="fas fa-link"></i></a>
+</h2>
 <p>Consider a differential expression experiment where two different datasets are used to identify DE genes. The DE genes from each experiment may be depicted as subsets (A and B) of all possible genes (G), as depicted in Figure 1. We indicate the number of genes in the sets A, B, and G as <span class="math inline">\(n_1\)</span>, <span class="math inline">\(n_2\)</span>, and <span class="math inline">\(N\)</span>, respectively.</p>
 <p>G represents the space of all possible genes. “All possible genes” may mean different things based on the context. For example, not every gene will be detected in an RNA-Seq experiment, and so you could argue that <span class="math inline">\(N\)</span> should be the number of genes detected, rather than the number of genes in the whole genome. Without a priori knowledge like this, <span class="math inline">\(N\)</span> should be set to the number of genes in the genome. Regardless, for genome-wide experiments, setting <span class="math inline">\(N\)</span> to the total number of genes in the genome is usually a defensible choice.</p>
-<p><img src="projects/project_3_rnaseq_2/concordance_figure1.png" width="136" /></p>
+<div class="inline-figure"><img src="projects/project_3_rnaseq_2/concordance_figure1.png" width="136"></div>
 <p>If you threw a dart at Figure 1 (and were guaranteed to hit it), the probability of hitting the area of A is <span class="math inline">\(p_A = n_1/N\)</span>, and likewise the probability of hitting B is <span class="math inline">\(p_B = n_2/N\)</span>. It follows that the probability of hitting the intersection is <span class="math inline">\(p_{A\cap B} = p_Ap_B = (n_1/N)(n_2/N)\)</span>. Therefore, the number of genes that corresponds to the intersection is <span class="math inline">\(n_{A\cap B} = Np_{A\cap B}\)</span> (they use <span class="math inline">\(n_0\)</span> in the text).</p>
 <p>If A and B are independent, there is still some probability they will overlap by chance. This probability is proportional to the size of the sets, where larger sets will result in a higher probability of overlap by chance, since they comprise a larger proportion of the overall set G. Consider Figure 2, where the size of the sets, and therefore the size of the intersection, is enlarged compared with Figure 1. Some number <span class="math inline">\(n_r\)</span> of the intersecting genes have occurred by chance. The total number of observed intersecting genes is therefore composed of a “background” part <span class="math inline">\(n_r\)</span> and a “true” part <span class="math inline">\(n_x\)</span> (they use <span class="math inline">\(x\)</span> as <span class="math inline">\(n_x\)</span> in the text), <span class="math inline">\(n_{A\&amp;B} = n_r + n_x\)</span>.</p>
-<p><img src="projects/project_3_rnaseq_2/concordance_figure2.png" width="135" /></p>
+<div class="inline-figure"><img src="projects/project_3_rnaseq_2/concordance_figure2.png" width="135"></div>
 <p>Since the probability of observing overlap by chance is dependent upon the size of the sets <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span>, the authors reason that they can compute <span class="math inline">\(n_x\)</span> by examining the probability of intersection for the set of genes that results after removing the size of the “true” overlap.</p>
 <p><span class="math display">\[ n_0 = n_x + \frac{(n_1 - n_x)(n_2 - n_x)}{N-n_x} \]</span></p>
 <p>Since <span class="math inline">\(n_0, n_1, n_2,\)</span> and <span class="math inline">\(N\)</span> are known, we can solve this equation for <span class="math inline">\(n_x\)</span> to find the background corrected number of “true” overlapping genes.</p>
 <p><span class="math display">\[ n_x = \frac{Nn_0-n_1n_2}{n_0+N-n_1-n_2} \]</span></p>
 <p>In other words, the number of genes we expect to overlap by chance depends upon the number of total genes, the size of the observed overlap, and the size of each set.</p>
 <p>Note the effect of background correction is subtle for small values of <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span>. Below are plots of observed (<span class="math inline">\(n_{A\cap B}\)</span>) versus “true” overlap (<span class="math inline">\(n_x\)</span>) using the formula presented in the paper for different values of <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span>, given a constant <span class="math inline">\(N\)</span> of 20,000 genes.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="project-3-concordance-of-microarray-and-rna-seq-differential-gene-expression.html#cb24-1" aria-hidden="true" tabindex="-1"></a>fig3 <span class="ot">&lt;-</span> <span class="fu">do.plot</span>(<span class="dv">100</span>)</span></code></pre></div>
-<p><img src="main_files/fig3-1.png" width="672" /></p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="project-3-concordance-of-microarray-and-rna-seq-differential-gene-expression.html#cb25-1" aria-hidden="true" tabindex="-1"></a>fig4 <span class="ot">&lt;-</span> <span class="fu">do.plot</span>(<span class="dv">1000</span>)</span></code></pre></div>
-<p><img src="main_files/fig4-1.png" width="672" /></p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="project-3-concordance-of-microarray-and-rna-seq-differential-gene-expression.html#cb26-1" aria-hidden="true" tabindex="-1"></a>fig5 <span class="ot">&lt;-</span> <span class="fu">do.plot</span>(<span class="dv">10000</span>)</span></code></pre></div>
-<p><img src="main_files/fig5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fig3</span> <span class="op">&lt;-</span> <span class="fu">do.plot</span><span class="op">(</span><span class="fl">100</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="main_files/fig3-1.png" width="672"></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fig4</span> <span class="op">&lt;-</span> <span class="fu">do.plot</span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="main_files/fig4-1.png" width="672"></div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fig5</span> <span class="op">&lt;-</span> <span class="fu">do.plot</span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="main_files/fig5-1.png" width="672"></div>
 
 </div>
 </div>
-  </main>
-
-  <div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page">
-      <h2>On this page</h2>
-      <div id="book-on-this-page"></div>
+  <div class="chapter-nav">
+<div class="prev"><a href="project-2-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html">Project 2: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></div>
+<div class="next"><a href="project-4-single-cell-rna-seq-analysis-of-pancreatic-cells.html">Project 4: Single Cell RNA-Seq Analysis of Pancreatic Cells</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#project-3-concordance-of-microarray-and-rna-seq-differential-gene-expression">Project 3: Concordance of microarray and RNA-Seq differential gene expression</a></li>
+<li><a class="nav-link" href="#choose-a-toxgroup-read-the-paper-supplemental-methods">1. Choose a toxgroup, read the paper &amp; supplemental methods</a></li>
+<li><a class="nav-link" href="#rna-seq-sample-statistics-and-alignment">2. RNA-Seq Sample Statistics and Alignment</a></li>
+<li><a class="nav-link" href="#read-counting-with-featurecounts">3. Read counting with featureCounts</a></li>
+<li><a class="nav-link" href="#rna-seq-differential-expression-with-deseq2">4. RNA-Seq Differential Expression with DESeq2</a></li>
+<li><a class="nav-link" href="#microarray-differential-expressoin-with-limma">5. Microarray Differential Expressoin with limma</a></li>
+<li><a class="nav-link" href="#concordance-between-microarray-and-rna-seq-de-genes">6. Concordance between microarray and RNA-Seq DE genes</a></li>
+<li><a class="nav-link" href="#biological-interpretation-1">7. Biological Interpretation</a></li>
+<li><a class="nav-link" href="#discuss-your-findings-2">8. Discuss Your Findings</a></li>
+<li><a class="nav-link" href="#assignment-writeup-2">Assignment Writeup</a></li>
+<li><a class="nav-link" href="#wang-et-al-2014-concordance-calculation">Wang et al 2014 Concordance Calculation</a></li>
+</ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-          <li><a id="book-source" href="#">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="#">Edit this page <i class="fab fa-github"></i></a></li>
+          
         </ul>
-      </div>
+</div>
     </nav>
-  </div>
+</div>
 
 </div>
 </div> <!-- .container -->
 
-<footer class="bg-primary text-light mt-5">
-  <div class="container"><div class="row">
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong>BF528 - Applications in Translational Bioinformatics</strong>" was written by . </p>
@@ -525,11 +559,7 @@ induce the a similar gene expression response, is reasonable?</li>
   </div>
 
 </div></div>
-</footer>
-
-
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -541,8 +571,7 @@ induce the a similar gene expression response, is reasonable?</li>
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
-</script>
-<script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
 for (let popover of popovers) {
   const div = document.createElement('div');
   div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
@@ -560,5 +589,4 @@ for (let popover of popovers) {
 }
 </script>
 </body>
-
 </html>

@@ -1,56 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <title>Project 2: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq | BF528 - Applications in Translational Bioinformatics</title>
-
-  
-   
-   <meta name="generator" content="placeholder" />
-  <meta property="og:title" content="Project 2: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq | BF528 - Applications in Translational Bioinformatics" />
-  <meta property="og:type" content="book" />
-  
-  
-  
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Project 2: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq | BF528 - Applications in Translational Bioinformatics" />
-  
-  
-  
-  <!-- JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script>
-  <script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script>
-    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet" />
-    <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script>
-    <script src="libs/bs3compat-0.3.1/transition.js"></script>
-    <script src="libs/bs3compat-0.3.1/tabs.js"></script>
-    <script src="libs/bs3compat-0.3.1/bs3compat.js"></script>
-    <link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet" />
-    <script src="libs/bs4_book-1.0.0/bs4_book.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script>
-
-  <!-- CSS -->
-  <style type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Project 2: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq | BF528 - Applications in Translational Bioinformatics</title>
+<meta name="generator" content="bookdown 0.29 with bs4_book()">
+<meta property="og:title" content="Project 2: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq | BF528 - Applications in Translational Bioinformatics">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Project 2: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq | BF528 - Applications in Translational Bioinformatics">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
-      <link rel="stylesheet" href="style.css" />
-  
+<link rel="stylesheet" href="style.css">
+<meta name="description" content="High-throughput sequencing technologies have helped researchers expand their understanding of genome-wide gene expression through their ability to detect potentially any mRNA molecule in a sample,...">
+<meta property="og:description" content="High-throughput sequencing technologies have helped researchers expand their understanding of genome-wide gene expression through their ability to detect potentially any mRNA molecule in a sample,...">
+<meta name="twitter:description" content="High-throughput sequencing technologies have helped researchers expand their understanding of genome-wide gene expression through their ability to detect potentially any mRNA molecule in a sample,...">
 </head>
-
 <body data-spy="scroll" data-target="#toc">
 
 <div class="container-fluid">
 <div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book">
-    <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
@@ -62,22 +38,52 @@
     <div id="main-nav" class="collapse-lg">
       <form role="search">
         <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
-      </form>
+</form>
 
-      <nav aria-label="Table of contents">
-        <h2>Table of contents</h2>
-        <div id="book-toc"></div>
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
+<li><a class="" href="introduction.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="genomics-genes-and-genomes.html"><span class="header-section-number">2</span> Genomics, Genes, and Genomes</a></li>
+<li><a class="" href="array-technologies.html"><span class="header-section-number">3</span> Array Technologies</a></li>
+<li><a class="" href="gene-sets-and-enrichment.html"><span class="header-section-number">4</span> Gene sets and enrichment</a></li>
+<li><a class="" href="nd-gen-sequencing.html"><span class="header-section-number">5</span> 2nd Gen Sequencing</a></li>
+<li><a class="" href="sequence-analysis-fundamentals.html"><span class="header-section-number">6</span> Sequence Analysis Fundamentals</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-1.html"><span class="header-section-number">7</span> Sequence Analysis - RNA-Seq 1</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-2.html"><span class="header-section-number">8</span> Sequence Analysis - RNA-Seq 2</a></li>
+<li><a class="" href="genomic-variation-and-snp-analysis.html"><span class="header-section-number">9</span> Genomic Variation and SNP Analysis</a></li>
+<li><a class="" href="biological-data-formats.html"><span class="header-section-number">10</span> Biological Data Formats</a></li>
+<li><a class="" href="sequence-visualization.html"><span class="header-section-number">11</span> Sequence Visualization</a></li>
+<li><a class="" href="sequence-analysis---chip-seq.html"><span class="header-section-number">12</span> Sequence Analysis - ChIP-Seq</a></li>
+<li><a class="" href="biological-databases.html"><span class="header-section-number">13</span> Biological Databases</a></li>
+<li><a class="" href="replicability-vs-reproducibility-strategies.html"><span class="header-section-number">14</span> Replicability vs Reproducibility Strategies</a></li>
+<li><a class="" href="computational-environment-management.html"><span class="header-section-number">15</span> Computational Environment Management</a></li>
+<li><a class="" href="computational-pipeline-strategies.html"><span class="header-section-number">16</span> Computational Pipeline Strategies</a></li>
+<li><a class="" href="single-cell-techniques.html"><span class="header-section-number">17</span> Single Cell Techniques</a></li>
+<li><a class="" href="single-cell-analysis-part-1.html"><span class="header-section-number">18</span> Single Cell Analysis Part 1</a></li>
+<li><a class="" href="single-cell-analysis-part-2.html"><span class="header-section-number">19</span> Single Cell Analysis Part 2</a></li>
+<li><a class="" href="microbiome-16s.html"><span class="header-section-number">20</span> Microbiome: 16S</a></li>
+<li><a class="" href="microbiome-metagenomics.html"><span class="header-section-number">21</span> Microbiome: Metagenomics</a></li>
+<li><a class="" href="proteomics.html"><span class="header-section-number">22</span> Proteomics</a></li>
+<li><a class="" href="metabolomics.html"><span class="header-section-number">23</span> Metabolomics</a></li>
+<li><a class="" href="integrative-genomics.html"><span class="header-section-number">24</span> Integrative Genomics</a></li>
+<li class="book-part">Projects</li>
+<li><a class="" href="project-writeup-instructions.html">Project Writeup Instructions</a></li>
+<li><a class="" href="project-1-microarray-based-tumor-classification.html">Project 1: Microarray Based Tumor Classification</a></li>
+<li><a class="active" href="project-2-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html">Project 2: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></li>
+<li><a class="" href="project-3-concordance-of-microarray-and-rna-seq-differential-gene-expression.html">Project 3: Concordance of microarray and RNA-Seq differential gene expression</a></li>
+<li><a class="" href="project-4-single-cell-rna-seq-analysis-of-pancreatic-cells.html">Project 4: Single Cell RNA-Seq Analysis of Pancreatic Cells</a></li>
+<li><a class="" href="individual-project.html">Individual Project</a></li>
+</ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="#">View book source <i class="fab fa-github"></i></a></li></p>
+          
         </div>
       </nav>
-    </div>
-  </header>
-
-  <main class="col-sm-12 col-md-9 col-lg-7" id="content">
-<div id="project-2-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq" class="section level1 unnumbered">
-<h1>Project 2: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</h1>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="project-2-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq" class="section level1 unnumbered">
+<h1>Project 2: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq<a class="anchor" aria-label="anchor" href="#project-2-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq"><i class="fas fa-link"></i></a>
+</h1>
 <p>High-throughput sequencing technologies have helped researchers expand their
 understanding of genome-wide gene expression through their ability to detect
 potentially any mRNA molecule in a sample, rather than measuring only molecules
@@ -115,12 +121,14 @@ results using DAVID</li>
 <li><a href="project-4-single-cell-rna-seq-analysis-of-pancreatic-cells.html#assignment-writeup-3">Assignment Writeup</a></li>
 </ul>
 <div id="read-the-paper-supplemental-methods-1" class="section level2 unnumbered">
-<h2>1. Read the paper &amp; supplemental methods</h2>
+<h2>1. Read the paper &amp; supplemental methods<a class="anchor" aria-label="anchor" href="#read-the-paper-supplemental-methods-1"><i class="fas fa-link"></i></a>
+</h2>
 <p>O’Meara et al. Transcriptional Reversion of Cardiac Myocyte Fate During
 Mammalian Cardiac Regeneration. Circ Res. Feb 2015. <code>PMID: 25477501 &lt;https://www.ncbi.nlm.nih.gov/pubmed/25477501&gt;</code>_</p>
 </div>
 <div id="data-acquisition-transfer-to-remote-server-1" class="section level2 unnumbered">
-<h2>2. Data acquisition &amp; transfer to remote server</h2>
+<h2>2. Data acquisition &amp; transfer to remote server<a class="anchor" aria-label="anchor" href="#data-acquisition-transfer-to-remote-server-1"><i class="fas fa-link"></i></a>
+</h2>
 <p><strong>Lead role: Data Curator</strong></p>
 <p>As in the last study, all but one of the samples for this study have been
 downloaded and prepared for you. You will download the one remaining sample
@@ -147,7 +155,8 @@ the first read in the second file.</li>
 </ol>
 </div>
 <div id="quality-control-fastq-files" class="section level2 unnumbered">
-<h2>3. Quality control FASTQ files</h2>
+<h2>3. Quality control FASTQ files<a class="anchor" aria-label="anchor" href="#quality-control-fastq-files"><i class="fas fa-link"></i></a>
+</h2>
 <p><strong>Lead role: Data Curator</strong></p>
 <p>Now that we have FASTQ files, we will begin processing them and extracting
 quality measures. We will use the FastQC package available on SCC to do this.</p>
@@ -180,7 +189,8 @@ indicate a problem with the data in your report.</li>
 </ul>
 </div>
 <div id="aligning-and-qa-using-tophat-and-rseqc" class="section level2 unnumbered">
-<h2>4. Aligning and QA using tophat and RSeQC</h2>
+<h2>4. Aligning and QA using tophat and RSeQC<a class="anchor" aria-label="anchor" href="#aligning-and-qa-using-tophat-and-rseqc"><i class="fas fa-link"></i></a>
+</h2>
 <p><strong>Lead Role: Programmer</strong></p>
 <p>Next we will align the reads to the mouse genome reference called mm9. The
 reference files are available on the cluster at
@@ -223,7 +233,8 @@ of the original reads plus any alignments discovered by TopHat. Run the
 command <code>samtools flagstat P0_1_tophat/accepted_hits.bam</code> in the directory
 where you ran TopHat and examine the results. Report these results in your
 writeup.</p></li>
-<li><p>Use the command <code>module load python samtools rseqc</code> to make the RseQC
+<li>
+<p>Use the command <code>module load python samtools rseqc</code> to make the RseQC
 utilities available. You will first need to index the BAM file using
 <code>samtools index accepted_hits.bam</code> before you can run these commands.
 After the BAM file has been indexed, and the file <code>accepted_hits.bam.bai</code>
@@ -236,7 +247,8 @@ bam_stat.py</code></pre>
 create plot images which must be downloaded to view. Examine the metrics
 output by these three tools and explain and interpret them in your report.
 When a tool requires a bed file as input, use
-<code>/project/bf528/project_2/reference/annot/mm9.bed</code>.</p></li>
+<code>/project/bf528/project_2/reference/annot/mm9.bed</code>.</p>
+</li>
 </ol>
 <p><strong>Deliverables:</strong></p>
 <ul>
@@ -246,7 +258,8 @@ and unaligned reads with percentages of total reads for each</li>
 </ul>
 </div>
 <div id="quantifying-gene-expression-with-cufflinks" class="section level2 unnumbered">
-<h2>5. Quantifying gene expression with cufflinks</h2>
+<h2>5. Quantifying gene expression with cufflinks<a class="anchor" aria-label="anchor" href="#quantifying-gene-expression-with-cufflinks"><i class="fas fa-link"></i></a>
+</h2>
 <p><strong>Lead Role: Programmer</strong></p>
 <p>Cufflinks is a tool that counts how reads map to genomic regions defined by an
 annotation, often a gene annotation like the one we have provided at
@@ -287,7 +300,8 @@ filtering (e.g. FPKM value thresholds, etc) you used</li>
 </ul>
 </div>
 <div id="identifying-differentially-expressed-genes-associated-with-myocyte-differentiation" class="section level2 unnumbered">
-<h2>6. Identifying Differentially Expressed Genes Associated with Myocyte Differentiation</h2>
+<h2>6. Identifying Differentially Expressed Genes Associated with Myocyte Differentiation<a class="anchor" aria-label="anchor" href="#identifying-differentially-expressed-genes-associated-with-myocyte-differentiation"><i class="fas fa-link"></i></a>
+</h2>
 <p><strong>Lead Role: Analyst</strong></p>
 <p>There were many experiments in this study. We are going to reproduce the
 comparison of postnatal day 0 (P0) versus Adult from Figure 1B. The output
@@ -324,7 +338,8 @@ names to separate files. The files should have one gene name on each line
 (leave genes that are separated by commas on the same line as is). Copy
 these files to your laptop or desktop, as we will be uploading them to a web
 application to perform gene set analysis.</p></li>
-<li><p>DAVID Functional Annotation Clustering groups gene sets based on the genes
+<li>
+<p>DAVID Functional Annotation Clustering groups gene sets based on the genes
 they share. The output of this tool attempts to organize the enriched gene
 sets into functionally related clusters. The Score attribute of the clusters
 is equal to the <code>-log10(average p-value)</code> from enriched gene sets. In a
@@ -345,7 +360,8 @@ group and select GOTERM_BP_FAT, GOTERM_MF_FAT, and GOTERM_CC_FAT boxes</li>
 into clusters based on functional relatedness</li>
 <li>Examine these results, and save them to file if you wish</li>
 <li>Follow this same process for the down regulated gene list</li>
-</ol></li>
+</ol>
+</li>
 </ol>
 <p><strong>Deliverables:</strong></p>
 <ul>
@@ -360,7 +376,8 @@ significance level</li>
 </ul>
 </div>
 <div id="biological-interpretation" class="section level2 unnumbered">
-<h2>7. Biological Interpretation</h2>
+<h2>7. Biological Interpretation<a class="anchor" aria-label="anchor" href="#biological-interpretation"><i class="fas fa-link"></i></a>
+</h2>
 <p><strong>Lead role: Biologist - for 4 person groups only</strong></p>
 <p>The authors used the FPKM tables to make biological interpretation of their
 experiment. We will follow their example and analyze the content of the
@@ -402,7 +419,8 @@ in the P0 vs Ad analysis.</li>
 </ul>
 </div>
 <div id="discuss-your-findings-1" class="section level2 unnumbered">
-<h2>8. Discuss Your Findings</h2>
+<h2>8. Discuss Your Findings<a class="anchor" aria-label="anchor" href="#discuss-your-findings-1"><i class="fas fa-link"></i></a>
+</h2>
 <p>Discuss your findings with your team members and other teams. Some interesting
 questions to consider:</p>
 <ol style="list-style-type: decimal">
@@ -423,32 +441,42 @@ found compare to what was reported in the paper?</li>
 </ol>
 </div>
 <div id="assignment-writeup-1" class="section level2 unnumbered">
-<h2>Assignment Writeup</h2>
+<h2>Assignment Writeup<a class="anchor" aria-label="anchor" href="#assignment-writeup-1"><i class="fas fa-link"></i></a>
+</h2>
 <p>Refer to the <a href="project-writeup-instructions.html#project-writeup-instructions">Project Writeup Instructions</a>.</p>
 
 </div>
 </div>
-  </main>
-
-  <div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page">
-      <h2>On this page</h2>
-      <div id="book-on-this-page"></div>
+  <div class="chapter-nav">
+<div class="prev"><a href="project-1-microarray-based-tumor-classification.html">Project 1: Microarray Based Tumor Classification</a></div>
+<div class="next"><a href="project-3-concordance-of-microarray-and-rna-seq-differential-gene-expression.html">Project 3: Concordance of microarray and RNA-Seq differential gene expression</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#project-2-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq">Project 2: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></li>
+<li><a class="nav-link" href="#read-the-paper-supplemental-methods-1">1. Read the paper &amp; supplemental methods</a></li>
+<li><a class="nav-link" href="#data-acquisition-transfer-to-remote-server-1">2. Data acquisition &amp; transfer to remote server</a></li>
+<li><a class="nav-link" href="#quality-control-fastq-files">3. Quality control FASTQ files</a></li>
+<li><a class="nav-link" href="#aligning-and-qa-using-tophat-and-rseqc">4. Aligning and QA using tophat and RSeQC</a></li>
+<li><a class="nav-link" href="#quantifying-gene-expression-with-cufflinks">5. Quantifying gene expression with cufflinks</a></li>
+<li><a class="nav-link" href="#identifying-differentially-expressed-genes-associated-with-myocyte-differentiation">6. Identifying Differentially Expressed Genes Associated with Myocyte Differentiation</a></li>
+<li><a class="nav-link" href="#biological-interpretation">7. Biological Interpretation</a></li>
+<li><a class="nav-link" href="#discuss-your-findings-1">8. Discuss Your Findings</a></li>
+<li><a class="nav-link" href="#assignment-writeup-1">Assignment Writeup</a></li>
+</ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-          <li><a id="book-source" href="#">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="#">Edit this page <i class="fab fa-github"></i></a></li>
+          
         </ul>
-      </div>
+</div>
     </nav>
-  </div>
+</div>
 
 </div>
 </div> <!-- .container -->
 
-<footer class="bg-primary text-light mt-5">
-  <div class="container"><div class="row">
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong>BF528 - Applications in Translational Bioinformatics</strong>" was written by . </p>
@@ -459,11 +487,7 @@ found compare to what was reported in the paper?</li>
   </div>
 
 </div></div>
-</footer>
-
-
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -475,8 +499,7 @@ found compare to what was reported in the paper?</li>
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
-</script>
-<script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
 for (let popover of popovers) {
   const div = document.createElement('div');
   div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
@@ -494,5 +517,4 @@ for (let popover of popovers) {
 }
 </script>
 </body>
-
 </html>
