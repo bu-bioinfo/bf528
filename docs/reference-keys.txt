@@ -1,4 +1,7 @@
 introduction
+introductory-slides
+computational-primer
+assignment
 genomics-genes-and-genomes
 array-technologies
 gene-sets-and-enrichment
