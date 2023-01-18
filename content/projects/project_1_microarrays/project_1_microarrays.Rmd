@@ -51,11 +51,18 @@ Contents:
 * [7. Discuss Your Findings]
 * [Assignment Writeup]
 
-## 1. Read the paper & supplemental methods {-}
+## 1. Read the paper and supplemental methods and familiarize yourself with the workflow diagram {-}
+
+**Everyone**
 
 [Marisa et al. Gene Expression Classification of Colon Cancer into Molecular
 Subtypes: Characterization, Validation, and Prognostic Value. PLoS Medicine,
 May 2013. PMID: 23700391](https://www.ncbi.nlm.nih.gov/pubmed/23700391)
+
+Below you will see an example of a conceptual workflow diagram. These are common
+figures found in presentations and publications that very concisely and intuitively
+illustrate the major steps of undertaken in the described analysis. Their intent
+is to allow others to quickly determine     
 
 ## 2. Data acquisition & transfer to remote server {-}
 

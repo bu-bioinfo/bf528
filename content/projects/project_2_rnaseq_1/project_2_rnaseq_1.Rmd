@@ -41,11 +41,26 @@ Contents:
 * [8. Discuss Your Findings]
 * [Assignment Writeup]
 
-## 1. Read the paper & supplemental methods {-}
+## 1. Read the paper and supplemental methods and create a workflow diagram for your role{-}
 
-O’Meara et al. Transcriptional Reversion of Cardiac Myocyte Fate During
-Mammalian Cardiac Regeneration. Circ Res. Feb 2015. `PMID: 25477501
-<https://www.ncbi.nlm.nih.gov/pubmed/25477501>`_
+**Everyone**
+
+[O’Meara et al. Transcriptional Reversion of Cardiac Myocyte Fate During
+Mammalian Cardiac Regeneration. Circ Res. Feb 2015. PMID: 25477501](https://www.ncbi.nlm.nih.gov/pubmed/25477501)
+
+In project 1, we gave you a simple, conceptual workflow diagram that outlined
+the major steps of the analysis and their dependencies (order). For this project,
+we ask that you generate one of your own that will be included in the written
+report. Individually, read through your assigned role and create a diagram 
+for your section. For your report, you will work as a group to connect all of your
+sections' diagrams into one overarching project workflow. These diagrams should
+include all major steps of the analysis and be linked in a manner that
+demonstrates their dependencies on other steps. Keep these diagrams simple with
+boxes representing what analysis / step is occurring and arrows or lines showing
+the dependencies between steps. Do not worry about making these diagrams
+aesthetically perfect, you may quickly make such diagrams in PowerPoint or any
+other appropriate software of your choosing. You only need to include the full
+workflow diagram detailing the entire project in your report. 
 
 ## 2. Data acquisition & transfer to remote server {-}
 

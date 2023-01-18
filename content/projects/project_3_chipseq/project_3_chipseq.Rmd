@@ -42,21 +42,25 @@ Contents:
 * 4. Generating bigWig file for correlation analysis and visualization 
 * 5. Integration with RNAseq data and counting peaks associated with DE genes
 
-## 1. Read the paper and create a workflow diagram for your role {-}
+## 1. Read the paper and supplemental methods and create a workflow diagram for your role {-}
 
 **Everyone**
-To begin, you should read the original paper to gain a sense for what
-overarching biological question they were hoping to answer as well as what
-methods they employed to do so. We have briefly explained the general structure
-of a workflow diagram and shown a few examples in lecture. We have provided you
-a skeleton for how a high-level workflow diagram for your section should be
-structured. Read through your section's instructions and attempt to fill in the
-diagram with the outlined steps keeping their dependencies in mind (i.e. which
-steps need to occur before others can). For your report, you will have a copy of
-the entire workflow from start to finish for all roles. In future projects, you
-will be asked to make these workflows for your individual role and connect them
-with your group to create a workflow for the entire project. (These workflow
-diagrams may be made in PowerPoint or any other suitable graphics illustrator)
+
+[Barutcu et al. RUNX1 Contributes to Higher-Order Chromatin Organization and 
+Gene Regulation in Breast Cancer Cells. Biochimica et Biophysica Acta 1859 
+(11): 1389–97. PMID: PMID: 27514584](https://pubmed.ncbi.nlm.nih.gov/27514584/)
+
+As for previous projects, read through your own section's instructions and
+attempt to generate a simple, conceptual workflow diagram. For your report, you
+will work as a group to connect all of your sections' diagrams into one
+overarching project workflow. These diagrams should include all major steps of
+the analysis and be linked in a manner that demonstrates their dependencies on
+other steps. Keep these diagrams simple with boxes representing what analysis /
+step is occuring and arrows or lines showing the dependencies between steps. Do
+not worry about making these diagrams aesthetically perfect, you may quickly
+make such diagrams in PowerPoint or any other appropriate software of your
+choosing. You only need to include the full workflow diagram detailing the
+entire project in your report.
 
 ## 2. Read Alignment and Mapping Statistics {-}
 
@@ -220,7 +224,7 @@ you will have to figure out how to do the following:
   HOMER or MEME-ChIP.  Both of these utilities output a directory containing
   multiple files of results.
 
-## 4. Generating bigWig file for correlation analysis and visualization 
+## 4. Generating bigWig file for correlation analysis and visualization {-}
 
 **Lead Role: Analyst** 
 DeepTools is a collection of utilities that perform various helpful functions
@@ -268,8 +272,9 @@ primarily concentrated in the promoter-TSS region of genes.
    BED file listing the TSS/TTS locations for every gene in the hg19 reference:
 
 
-![UCSC](ucsc_tablebrowser.png)
-
+```{r, echo=FALSE}
+knitr::include_graphics("projects/project_3_chipseq/ucsc_tablebrowser.png")
+```
 
 On the following page, do not change any options and you will be prompted to
 download a BED file containing the requested information. Put this BED file into
@@ -297,7 +302,7 @@ for genome-wide sequencing data.
 * Two plots (one for each IP replicate) showing the signal coverage 
   for Runx1 across hg19 genes using the TSS and TTS as reference points
 
-## 5. Integration with HIC and RNAseq data
+## 5. Integration with HIC and RNAseq data {-}
 
 **Lead Role: Biologist**
 ChIP-seq data is often used in tandem with RNA-seq results to provide a direct

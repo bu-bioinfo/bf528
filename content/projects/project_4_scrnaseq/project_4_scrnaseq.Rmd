@@ -44,12 +44,26 @@ Contents:
 * 6. Discuss Your Findings
 * Assignment Writeup
 
-## 1. Read the paper {-}
+## 1. Read the paper and supplemental methods and create a workflow diagram for your role{-}
+
+**Everyone**
 
 [Baron, Maayan, Adrian Veres, Samuel L. Wolock, Aubrey L. Faust, Renaud Gaujoux,
 Amedeo Vetere, Jennifer Hyoje Ryu, et al. 2016. "A Single-Cell Transcriptomic
 Map of the Human and Mouse Pancreas Reveals Inter- and Intra-Cell Population
 Structure." Cell Systems 3 (4): 346-60.e4. PMID: 27667365](https://www.ncbi.nlm.nih.gov/pubmed/27667365/)
+
+As for previous projects, read through your own section's instructions and
+attempt to generate a simple, conceptual workflow diagram. For your report, you
+will work as a group to connect all of your sections' diagrams into one
+overarching project workflow. These diagrams should include all major steps of
+the analysis and be linked in a manner that demonstrates their dependencies on
+other steps. Keep these diagrams simple with boxes representing what analysis /
+step is occuring and arrows or lines showing the dependencies between steps. Do
+not worry about making these diagrams aesthetically perfect, you may quickly
+make such diagrams in PowerPoint or any other appropriate software of your
+choosing. You only need to include the full workflow diagram detailing the
+entire project in your report.
 
 ## 2. Process Single Cell Sequencing Reads and Choose Barcodes {-}
 
