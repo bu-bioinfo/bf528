@@ -5,14 +5,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Project 3: ChIPseq analysis of the human transcription factor Runx1 | BF528 - Applications in Translational Bioinformatics</title>
-<meta name="generator" content="bookdown 0.29 with bs4_book()">
+<meta name="generator" content="bookdown 0.32 with bs4_book()">
 <meta property="og:title" content="Project 3: ChIPseq analysis of the human transcription factor Runx1 | BF528 - Applications in Translational Bioinformatics">
 <meta property="og:type" content="book">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Project 3: ChIPseq analysis of the human transcription factor Runx1 | BF528 - Applications in Translational Bioinformatics">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
@@ -100,12 +100,14 @@ Figure 2 and Figure 1, which comprise common preliminary analyses of ChIP-seq
 data. Each group will process the ChIP-seq data from raw reads to called peaks,
 incorporate the provided RNA-seq data and ultimately attempt to reproduce the
 findings found in the paper.</p>
-<p>Upon completion of project 3, students will be able to do the following:
-* Align reads to the human reference genome using BowTie2
-* Perform peak calling analysis and annotation with HOMER
-* Perform motif analysis using HOMER
-* Generate genomic visualizations using DeepTools, and IGV
-* Understand the basics of how to use Snakemake to automate a simple workflow</p>
+<p>Upon completion of project 3, students will be able to do the following:</p>
+<ul>
+<li>Align reads to the human reference genome using BowTie2</li>
+<li>Perform peak calling analysis and annotation with HOMER</li>
+<li>Perform motif analysis using HOMER</li>
+<li>Generate genomic visualizations using DeepTools, and IGV</li>
+<li>Understand the basics of how to use Snakemake to automate a simple workflow</li>
+</ul>
 <p>Please note that the methods for the original paper are ambiguous in important
 areas. For this project, on occasion, you will be asked to define certain
 parameters and explain your choice. It is important to remember that even if the
@@ -113,14 +115,28 @@ authors had specified a specific value for certain parameters, that does not
 mean that is the single correct option. We base our choice of these parameters
 on our background knowledge and rational assumptions. Do your best to pick
 reasonable values and justify them.</p>
-<p>Contents:
-* 1. Read the paper, and your sections’ instructions and create a workflow
-diagram
-* 2. Read Alignment and Mapping Statistifcs
-* 3. Peak Calling and Annotation using Homer
-* 4. Generating bigWig file for correlation analysis and visualization
-* 5. Integration with RNAseq data and counting peaks associated with DE genes</p>
-<p>##1. Read the paper and create a workflow diagram for your role</p>
+<p>Contents:</p>
+<ul>
+<li><ol style="list-style-type: decimal">
+<li>Read the paper, and your sections’ instructions and create a workflow
+diagram</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: decimal">
+<li>Read Alignment and Mapping Statistifcs</li>
+</ol></li>
+<li><ol start="3" style="list-style-type: decimal">
+<li>Peak Calling and Annotation using Homer</li>
+</ol></li>
+<li><ol start="4" style="list-style-type: decimal">
+<li>Generating bigWig file for correlation analysis and visualization</li>
+</ol></li>
+<li><ol start="5" style="list-style-type: decimal">
+<li>Integration with RNAseq data and counting peaks associated with DE genes</li>
+</ol></li>
+</ul>
+<div id="read-the-paper-and-create-a-workflow-diagram-for-your-role" class="section level2 unnumbered">
+<h2>1. Read the paper and create a workflow diagram for your role<a class="anchor" aria-label="anchor" href="#read-the-paper-and-create-a-workflow-diagram-for-your-role"><i class="fas fa-link"></i></a>
+</h2>
 <p><strong>Everyone</strong>
 To begin, you should read the original paper to gain a sense for what
 overarching biological question they were hoping to answer as well as what
@@ -134,6 +150,7 @@ the entire workflow from start to finish for all roles. In future projects, you
 will be asked to make these workflows for your individual role and connect them
 with your group to create a workflow for the entire project. (These workflow
 diagrams may be made in PowerPoint or any other suitable graphics illustrator)</p>
+</div>
 <div id="read-alignment-and-mapping-statistics" class="section level2 unnumbered">
 <h2>2. Read Alignment and Mapping Statistics<a class="anchor" aria-label="anchor" href="#read-alignment-and-mapping-statistics"><i class="fas fa-link"></i></a>
 </h2>
@@ -171,20 +188,20 @@ The pre-built index may be found here:
 .txt file</p></li>
 <li><p>Use Samtools sort to produce a sorted BAM file Run Samtools index on the
 sorted BAM file to create a .bai (BAM index) file</p></li>
-<li><p>Run MultiQC to produce a convenient report of the quality metrics from all
-steps</p></li>
-</ol>
+<li>
+<p>Run MultiQC to produce a convenient report of the quality metrics from all
+steps</p>
 <p>We have provided you with the alignments for the other 3 samples as BAM files in
 <code>Directory here</code>. Separately, use Samtools to output the same mapping statistics
 as in 2.4. Create a table similar to the one seen in Supplemental Figure 2b.</p>
-<ol start="7" style="list-style-type: decimal">
-<li>Run Samtools flagstat to produce mapping statistics for the other provided
+</li>
+<li><p>Run Samtools flagstat to produce mapping statistics for the other provided
 files. You are welcome to incorporate this into your Snakemake workflow, but
-it is not necessary.</li>
+it is not necessary.</p></li>
 </ol>
-<p><strong>Deliverables:</strong>
-* A sorted BAM file of alignments for SRR2919475</p>
+<p><strong>Deliverables:</strong></p>
 <ul>
+<li><p>A sorted BAM file of alignments for SRR2919475</p></li>
 <li><p>A BAM index for the sorted BAM file</p></li>
 <li><p>Table of mapping statistics for all 4 BAM files</p></li>
 <li><p>Relevant FASTQC quality plots from MultiQC</p></li>
@@ -346,12 +363,12 @@ in parameters if you do alter them.</p></li>
 matrices of values. Run plotProfile on each matrix to generate a visualization
 of the Runx1 signal coverage across hg19 genes.</p></li>
 </ol>
-<p><strong>Deliverables:</strong>
-* A heatmap showing the clustered correlation values for input and IP samples
-akin to Figure Supp2b.</p>
+<p><strong>Deliverables:</strong></p>
 <ul>
-<li>Two plots (one for each IP replicate) showing the signal coverage
-for Runx1 across hg19 genes using the TSS and TTS as reference points</li>
+<li><p>A heatmap showing the clustered correlation values for input and IP samples
+akin to Figure Supp2b.</p></li>
+<li><p>Two plots (one for each IP replicate) showing the signal coverage
+for Runx1 across hg19 genes using the TSS and TTS as reference points</p></li>
 </ul>
 </div>
 <div id="integration-with-hic-and-rnaseq-data" class="section level2" number="25.2">
@@ -404,10 +421,10 @@ download the appropriate processed HI-C data
 best to recreate this heatmap. You do not need to crop the heatmap or rotate
 it.</p></li>
 </ol>
-<p><strong>Deliverables:</strong>
-* A stacked barchart akin to figure 2d showing the percentage of DE genes that
-have a peak within +/- X distance of the TSS</p>
+<p><strong>Deliverables:</strong></p>
 <ul>
+<li><p>A stacked barchart akin to figure 2d showing the percentage of DE genes that
+have a peak within +/- X distance of the TSS</p></li>
 <li><p>A heatmap of the HI-C data for the first 5.3mb of Chromosome 10. <strong>N.B.</strong> You
 do not need to make it a triangle or rotate it.</p></li>
 <li><p>IGV visualization of the NEAT1 TSS with bigWig tracks for all 4 samples, and
@@ -424,6 +441,7 @@ the BED file of reproducible peaks</p></li>
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#project-3-chipseq-analysis-of-the-human-transcription-factor-runx1">Project 3: ChIPseq analysis of the human transcription factor Runx1</a></li>
+<li><a class="nav-link" href="#read-the-paper-and-create-a-workflow-diagram-for-your-role">1. Read the paper and create a workflow diagram for your role</a></li>
 <li><a class="nav-link" href="#read-alignment-and-mapping-statistics">2. Read Alignment and Mapping Statistics</a></li>
 <li><a class="nav-link" href="#peak-calling-and-annotation-using-homer">3. Peak Calling and Annotation using Homer</a></li>
 <li><a class="nav-link" href="#generating-bigwig-file-for-correlation-analysis-and-visualization"><span class="header-section-number">25.1</span> 4. Generating bigWig file for correlation analysis and visualization</a></li>
