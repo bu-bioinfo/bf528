@@ -26,5 +26,3 @@ proteomics
 metabolomics
 integrative-genomics
 part-projects
-generating-bigwig-file-for-correlation-analysis-and-visualization
-integration-with-hic-and-rnaseq-data
