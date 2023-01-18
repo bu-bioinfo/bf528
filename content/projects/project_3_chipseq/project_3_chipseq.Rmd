@@ -18,6 +18,7 @@ incorporate the provided RNA-seq data and ultimately attempt to reproduce the
 findings found in the paper.
 
 Upon completion of project 3, students will be able to do the following: 
+
 * Align reads to the human reference genome using BowTie2 
 * Perform peak calling analysis and annotation with HOMER
 * Perform motif analysis using HOMER 
@@ -33,6 +34,7 @@ on our background knowledge and rational assumptions. Do your best to pick
 reasonable values and justify them.
 
 Contents:
+
 * 1. Read the paper, and your sections' instructions and create a workflow
      diagram 
 * 2. Read Alignment and Mapping Statistifcs 
@@ -40,7 +42,7 @@ Contents:
 * 4. Generating bigWig file for correlation analysis and visualization 
 * 5. Integration with RNAseq data and counting peaks associated with DE genes
 
-##1. Read the paper and create a workflow diagram for your role 
+## 1. Read the paper and create a workflow diagram for your role {-}
 
 **Everyone**
 To begin, you should read the original paper to gain a sense for what
@@ -100,15 +102,16 @@ Snakemake workflow to run all of the steps below:
 6. Run MultiQC to produce a convenient report of the quality metrics from all 
    steps 
    
-We have provided you with the alignments for the other 3 samples as BAM files in
-`Directory here`. Separately, use Samtools to output the same mapping statistics
-as in 2.4. Create a table similar to the one seen in Supplemental Figure 2b.
+   We have provided you with the alignments for the other 3 samples as BAM files in
+   `Directory here`. Separately, use Samtools to output the same mapping statistics
+   as in 2.4. Create a table similar to the one seen in Supplemental Figure 2b.
 
 7. Run Samtools flagstat to produce mapping statistics for the other provided 
    files. You are welcome to incorporate this into your Snakemake workflow, but 
    it is not necessary. 
    
 **Deliverables:** 
+
 * A sorted BAM file of alignments for SRR2919475 
 
 * A BAM index for the sorted BAM file 
@@ -264,9 +267,8 @@ primarily concentrated in the promoter-TSS region of genes.
 4. Navigate to the UCSC Table Browser, use the following settings to extract a 
    BED file listing the TSS/TTS locations for every gene in the hg19 reference:
 
-```{r, echo=FALSE}
-knitr::include_graphics("ucsc_tablebrowser.png")
-```
+
+![UCSC](ucsc_tablebrowser.png)
 
 
 On the following page, do not change any options and you will be prompted to
@@ -288,6 +290,7 @@ for genome-wide sequencing data.
    of the Runx1 signal coverage across hg19 genes.
 
 **Deliverables:**
+
 * A heatmap showing the clustered correlation values for input and IP samples 
   akin to Figure Supp2b. 
   
@@ -346,6 +349,7 @@ to the GEO accession page for this publication (GSE75070).
    it.
 
 **Deliverables:** 
+
 * A stacked barchart akin to figure 2d showing the percentage of DE genes that 
   have a peak within +/- X distance of the TSS 
   
