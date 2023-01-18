@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Project 3: ChIPseq analysis of the human transcription factor Runx1 | BF528 - Applications in Translational Bioinformatics</title>
+<meta name="generator" content="bookdown 0.29 with bs4_book()">
+<meta property="og:title" content="Project 3: ChIPseq analysis of the human transcription factor Runx1 | BF528 - Applications in Translational Bioinformatics">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Project 3: ChIPseq analysis of the human transcription factor Runx1 | BF528 - Applications in Translational Bioinformatics">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+<meta name="description" content="Similar to advancing gene expression quantification from microarrays to RNA-seq, next-generation sequencing also revolutionized other wet lab assays that examine nucleotides by making them...">
+<meta property="og:description" content="Similar to advancing gene expression quantification from microarrays to RNA-seq, next-generation sequencing also revolutionized other wet lab assays that examine nucleotides by making them...">
+<meta name="twitter:description" content="Similar to advancing gene expression quantification from microarrays to RNA-seq, next-generation sequencing also revolutionized other wet lab assays that examine nucleotides by making them...">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">BF528 - Applications in Translational Bioinformatics</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
+<li><a class="" href="introduction.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="genomics-genes-and-genomes.html"><span class="header-section-number">2</span> Genomics, Genes, and Genomes</a></li>
+<li><a class="" href="array-technologies.html"><span class="header-section-number">3</span> Array Technologies</a></li>
+<li><a class="" href="gene-sets-and-enrichment.html"><span class="header-section-number">4</span> Gene sets and enrichment</a></li>
+<li><a class="" href="nd-gen-sequencing.html"><span class="header-section-number">5</span> 2nd Gen Sequencing</a></li>
+<li><a class="" href="sequence-analysis-fundamentals.html"><span class="header-section-number">6</span> Sequence Analysis Fundamentals</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-1.html"><span class="header-section-number">7</span> Sequence Analysis - RNA-Seq 1</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-2.html"><span class="header-section-number">8</span> Sequence Analysis - RNA-Seq 2</a></li>
+<li><a class="" href="genomic-variation-and-snp-analysis.html"><span class="header-section-number">9</span> Genomic Variation and SNP Analysis</a></li>
+<li><a class="" href="biological-data-formats.html"><span class="header-section-number">10</span> Biological Data Formats</a></li>
+<li><a class="" href="sequence-visualization.html"><span class="header-section-number">11</span> Sequence Visualization</a></li>
+<li><a class="" href="sequence-analysis---chip-seq.html"><span class="header-section-number">12</span> Sequence Analysis - ChIP-Seq</a></li>
+<li><a class="" href="biological-databases.html"><span class="header-section-number">13</span> Biological Databases</a></li>
+<li><a class="" href="replicability-vs-reproducibility-strategies.html"><span class="header-section-number">14</span> Replicability vs Reproducibility Strategies</a></li>
+<li><a class="" href="computational-environment-management.html"><span class="header-section-number">15</span> Computational Environment Management</a></li>
+<li><a class="" href="computational-pipeline-strategies.html"><span class="header-section-number">16</span> Computational Pipeline Strategies</a></li>
+<li><a class="" href="single-cell-techniques.html"><span class="header-section-number">17</span> Single Cell Techniques</a></li>
+<li><a class="" href="single-cell-analysis-part-1.html"><span class="header-section-number">18</span> Single Cell Analysis Part 1</a></li>
+<li><a class="" href="single-cell-analysis-part-2.html"><span class="header-section-number">19</span> Single Cell Analysis Part 2</a></li>
+<li><a class="" href="microbiome-16s.html"><span class="header-section-number">20</span> Microbiome: 16S</a></li>
+<li><a class="" href="microbiome-metagenomics.html"><span class="header-section-number">21</span> Microbiome: Metagenomics</a></li>
+<li><a class="" href="proteomics.html"><span class="header-section-number">22</span> Proteomics</a></li>
+<li><a class="" href="metabolomics.html"><span class="header-section-number">23</span> Metabolomics</a></li>
+<li><a class="" href="integrative-genomics.html"><span class="header-section-number">24</span> Integrative Genomics</a></li>
+<li class="book-part">Projects</li>
+<li><a class="" href="project-writeup-instructions.html">Project Writeup Instructions</a></li>
+<li><a class="" href="project-1-microarray-based-tumor-classification.html">Project 1: Microarray Based Tumor Classification</a></li>
+<li><a class="" href="project-2-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html">Project 2: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></li>
+<li><a class="active" href="project-3-chipseq-analysis-of-the-human-transcription-factor-runx1.html">Project 3: ChIPseq analysis of the human transcription factor Runx1</a></li>
+<li><a class="" href="project-4-single-cell-rna-seq-analysis-of-pancreatic-cells.html">Project 4: Single Cell RNA-Seq Analysis of Pancreatic Cells</a></li>
+<li><a class="" href="individual-project.html">Individual Project</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="project-3-chipseq-analysis-of-the-human-transcription-factor-runx1" class="section level1 unnumbered">
+<h1>Project 3: ChIPseq analysis of the human transcription factor Runx1<a class="anchor" aria-label="anchor" href="#project-3-chipseq-analysis-of-the-human-transcription-factor-runx1"><i class="fas fa-link"></i></a>
+</h1>
+<p>Similar to advancing gene expression quantification from microarrays to RNA-seq,
+next-generation sequencing also revolutionized other wet lab assays that examine
+nucleotides by making them (relatively) unbiased and high-throughput. One such
+set of technologies are protein-DNA binding assays including ChiP-qPCR and
+ChIP-ChIP which use antibodies and immunoprecipitation to capture chromatin
+bound by a specific protein of interest. Chromatin Immunoprecipitation
+Sequencing (ChIP-seq) is a technique that identifies genome-wide DNA binding
+sites with transcription factors and other proteins of interest by sequencing
+the DNA fragments isolated from protein-DNA complexes.</p>
+<p>Barutcu et al. (2016) used RNA-seq, ChIP-seq, and HI-C to investigate the role
+of Runx1 in the MCF7 cell line, a model line used for the study of breast
+cancer. In this project, we will reproduce several results from Supplementary
+Figure 2 and Figure 1, which comprise common preliminary analyses of ChIP-seq
+data. Each group will process the ChIP-seq data from raw reads to called peaks,
+incorporate the provided RNA-seq data and ultimately attempt to reproduce the
+findings found in the paper.</p>
+<p>Upon completion of project 3, students will be able to do the following:
+* Align reads to the human reference genome using BowTie2
+* Perform peak calling analysis and annotation with HOMER
+* Perform motif analysis using HOMER
+* Generate genomic visualizations using DeepTools, and IGV
+* Understand the basics of how to use Snakemake to automate a simple workflow</p>
+<p>Please note that the methods for the original paper are ambiguous in important
+areas. For this project, on occasion, you will be asked to define certain
+parameters and explain your choice. It is important to remember that even if the
+authors had specified a specific value for certain parameters, that does not
+mean that is the single correct option. We base our choice of these parameters
+on our background knowledge and rational assumptions. Do your best to pick
+reasonable values and justify them.</p>
+<p>Contents:
+* 1. Read the paper, and your sections’ instructions and create a workflow
+diagram
+* 2. Read Alignment and Mapping Statistifcs
+* 3. Peak Calling and Annotation using Homer
+* 4. Generating bigWig file for correlation analysis and visualization
+* 5. Integration with RNAseq data and counting peaks associated with DE genes</p>
+<p>##1. Read the paper and create a workflow diagram for your role</p>
+<p><strong>Everyone</strong>
+To begin, you should read the original paper to gain a sense for what
+overarching biological question they were hoping to answer as well as what
+methods they employed to do so. We have briefly explained the general structure
+of a workflow diagram and shown a few examples in lecture. We have provided you
+a skeleton for how a high-level workflow diagram for your section should be
+structured. Read through your section’s instructions and attempt to fill in the
+diagram with the outlined steps keeping their dependencies in mind (i.e. which
+steps need to occur before others can). For your report, you will have a copy of
+the entire workflow from start to finish for all roles. In future projects, you
+will be asked to make these workflows for your individual role and connect them
+with your group to create a workflow for the entire project. (These workflow
+diagrams may be made in PowerPoint or any other suitable graphics illustrator)</p>
+<div id="read-alignment-and-mapping-statistics" class="section level2 unnumbered">
+<h2>2. Read Alignment and Mapping Statistics<a class="anchor" aria-label="anchor" href="#read-alignment-and-mapping-statistics"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>Lead Role: Data Curator</strong>
+The data you will be working with consists of two ChIP-seq experiments,
+typically termed the IP or pulldown samples, with matching input controls for a
+total of 4 samples or FASTQ files. We have downloaded and processed three out of
+the four files already, and you will be responsible for downloading the last and
+generating a snakemake workflow that will process it in the same manner as the
+others. Your first step will be to download GSM1942111 (SRR2919475) from the GEO
+accession GSE75070. The sample itself is referred to as the ‘MCF-7 wildtype RUNX1
+ChIPseq Replicate1 Pulldown’. You may use whatever strategy you like to download
+the appropriate FASTQ file. Load all of the necessary components in modules
+before running snakemake. Though there are many workflow management tools, we
+will be using Snakemake as its syntax is highly similar to Python, a programming
+language you already have experience using. We have provided a skeleton
+snakemake file that will demonstrate and explain some of the basic concepts.
+Utilize information from the provided example snakefile called example.snake as
+well as the official Snakemake tutorial
+(<a href="https://snakemake.readthedocs.io/en/stable/tutorial/basics.html" class="uri">https://snakemake.readthedocs.io/en/stable/tutorial/basics.html</a>) to generate a
+Snakemake workflow to run all of the steps below:</p>
+<ol style="list-style-type: decimal">
+<li><p>Run FASTQC on the FASTA file</p></li>
+<li><p>Run Trimmomatic with the default settings suggested by Trimmomatic. Use the
+adapter fasta file we have provided for you located here:
+/projectnb/bf528/proj3/TruSeq3–SE.fa</p></li>
+<li><p>Align the FASTQ file against the provided hg19 human genome reference using
+BowTie2. The original publication did not specify if they adjusted any of the
+many optional parameters available. The BowTie2 manual describes several
+“pre-set” options that adjust various alignment parameters. You may look into
+and choose one that you think is appropriate or you may use default parameters.
+The pre-built index may be found here:
+/projectnb/bf528/proj3/references/GRCh37.p13.genome.bowtie</p></li>
+<li><p>Use Samtools flagstat to output a short summary of mapping statistics to a
+.txt file</p></li>
+<li><p>Use Samtools sort to produce a sorted BAM file Run Samtools index on the
+sorted BAM file to create a .bai (BAM index) file</p></li>
+<li><p>Run MultiQC to produce a convenient report of the quality metrics from all
+steps</p></li>
+</ol>
+<p>We have provided you with the alignments for the other 3 samples as BAM files in
+<code>Directory here</code>. Separately, use Samtools to output the same mapping statistics
+as in 2.4. Create a table similar to the one seen in Supplemental Figure 2b.</p>
+<ol start="7" style="list-style-type: decimal">
+<li>Run Samtools flagstat to produce mapping statistics for the other provided
+files. You are welcome to incorporate this into your Snakemake workflow, but
+it is not necessary.</li>
+</ol>
+<p><strong>Deliverables:</strong>
+* A sorted BAM file of alignments for SRR2919475</p>
+<ul>
+<li><p>A BAM index for the sorted BAM file</p></li>
+<li><p>Table of mapping statistics for all 4 BAM files</p></li>
+<li><p>Relevant FASTQC quality plots from MultiQC</p></li>
+<li><p>The completed Snakemake workflow (snakefile) that produces the above
+deliverables</p></li>
+</ul>
+</div>
+<div id="peak-calling-and-annotation-using-homer" class="section level2 unnumbered">
+<h2>3. Peak Calling and Annotation using Homer<a class="anchor" aria-label="anchor" href="#peak-calling-and-annotation-using-homer"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>Lead Role: Programmer</strong>
+We will now use the alignments from BowTie2 to perform peak calling using the
+program HOMER. The data curator will provide you with one of the sorted, indexed
+BAM files and we have provided you with the others. You will ultimately use
+these BAM files to first generate TAG directories (HOMER re-formats some of the
+BAM data into a unified format it uses for the rest of its utilities), call
+peaks, produce a set of “reproducible peaks” and remove blacklisted
+signal-artifact regions from your peak list. After generating tag directories
+for each BAM file, you will run the findPeaks utility twice to produce two sets
+of peak files for each experiment (match the replicate numbers for the IP and
+Inp). The authors of the publication performed the ChIP-seq analysis separately
+for each experiment and then generated a single set of “reproducible” peaks
+(Supp. Fig 2a). They do not disclose in their methods what procedure was used to
+generate this set. In general, there are two main ways that “reproducible” peaks
+are chosen for ChIP-seq experiments: 1. Irreproducible Discovery Rate (IDR), and
+2. Intersections / Unions of peaks. You will use the latter strategy and
+Bedtools to produce your own set of “reproducible peaks” from the two replicate
+experiments provided. Once you have generated this list of “reproducible” peaks,
+you will remove any known blacklisted signal-artifact regions, annotate your
+filtered peaks to their nearest genomic feature, and perform motif finding to
+analyze what other cofactors may be binding in your discovered peaks.</p>
+<ol style="list-style-type: decimal">
+<li><p>Load the require modules: Homer, Bedtools</p></li>
+<li><p>Generate TAG directories using the makeTagDir command in HOMER. You can run
+this step with default parameters for every option. You may refer to the
+official instructions found here: <a href="http://homer.ucsd.edu/homer/ngs/tagDir.html" class="uri">http://homer.ucsd.edu/homer/ngs/tagDir.html</a></p></li>
+<li><p>Run the findPeaks utility in HOMER.The official documentation for the
+findPeaks utility may be found here: <a href="http://homer.ucsd.edu/homer/ngs/peaks.html" class="uri">http://homer.ucsd.edu/homer/ngs/peaks.html</a>.
+Make sure you use the <code>-style factor</code> mode. N.B. You will want to run this
+twice (once for each pair of IP and Inp replicates).</p></li>
+<li><p>The findPeaks utility outputs a HOMER formatted text file. Use the pos2bed
+HOMER utility to convert your peak files to BED files.</p></li>
+<li><p>You will have two sets of peak BED files from the previous steps. For this
+step, using only Bedtools, produce a single set of “reproducible” peaks in
+BED format. Justify and explain your strategy for defining “reproducible”
+peaks in your written report. Create a simple venn diagram indicating the
+original number of peaks called in each replicate, and the number of
+“reproducible” peaks you determined. See Supplemental Figure 2c for reference.</p></li>
+<li><p>Use BedTools to remove any peaks from your list based on the provided
+blacklist located here: /projectnb/bf528/proj3/reference/hg19_blacklist.bed.
+Make sure to note in your written report how many peaks remain and were
+removed from your list of “reproducible” peaks after filtering using this
+blacklist.</p></li>
+<li><p>Using the annotatePeaks.pl utility in HOMER, annotate your list of filtered
+“reproducible” peaks to their nearest genomic feature. This utility will
+generate a simple TSV / .txt file of the results. From the annotations,
+produce a simple, labeled pie chart showing the percentage of “reproducible”
+peaks falling into the known genomic region features (intron, intergenic, TSS, TTS, etc.).
+Refer to the original figure 2a in the paper.</p></li>
+<li><p>The authors of the paper used MEME-ChIP to perform motif finding using their
+“reproducible peaks” but they do not disclose the specific parameters used to
+run the analysis. Additionally, MEME–ChIP requires the input file to be a
+FASTA file of the extracted genomic regions covered by the peaks. For our
+purposes, we will use the findMotifsGenome.pl utility in HOMER to perform
+motif finding using your “reproducible peaks” BED file after it has been
+filtered using the ENCODE blacklist. The official documentation for the
+findMotifsGenome utility is here: <a href="http://homer.ucsd.edu/homer/ngs/peakMotifs.html" class="uri">http://homer.ucsd.edu/homer/ngs/peakMotifs.html</a>.</p></li>
+</ol>
+<p><strong>OPTIONAL:</strong> If you are looking for an extra challenge, you may instead attempt
+to use MEME-ChIP to perform motif finding as they did in the paper. In general,
+you will have to figure out how to do the following:</p>
+<ol style="list-style-type: decimal">
+<li>Extract chromosome sizes from the hg19 reference</li>
+<li>Determine the average size of your peaks</li>
+<li>Use your chromosome sizes, the average size of your peaks, and BedTools to
+make a BED file containing all of your peaks expanded to around ~500bp in size.</li>
+<li>Extract the DNA sequences from the regions in your BED file from
+the provided bgzipped genomic FASTA reference for hg19.</li>
+<li>Run MEME-ChIP using your fasta file of DNA sequences covered by your peaks</li>
+</ol>
+<p><strong>Deliverables:</strong></p>
+<ul>
+<li><p>A venn diagram indicating how many peaks were discovered in each
+replicate experiment with the intersection representing the number of
+“reproducible” peaks your strategy resulted in.</p></li>
+<li><p>A single BED file of “reproducible” peaks from the two replicate experiments
+filtered for signal–artifact regions</p></li>
+<li><p>A txt file of your filtered “reproducible” peaks annotated to their nearest
+genomic feature A pie chart showing the relative proportions of “reproducible”
+peaks annotated to genomic features (intron, intergenic, TSS, TTS, etc.)</p></li>
+<li><p>Summarize the top ten enriched motifs from the output of
+HOMER or MEME-ChIP. Both of these utilities output a directory containing
+multiple files of results.</p></li>
+</ul>
+</div>
+<div id="generating-bigwig-file-for-correlation-analysis-and-visualization" class="section level2" number="25.1">
+<h2>
+<span class="header-section-number">25.1</span> 4. Generating bigWig file for correlation analysis and visualization<a class="anchor" aria-label="anchor" href="#generating-bigwig-file-for-correlation-analysis-and-visualization"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>Lead Role: Analyst</strong>
+DeepTools is a collection of utilities that perform various helpful functions
+especially in the context of ChIP-seq and genome-wide sequencing technologies.
+You will be using these utilities to generate a heatmap of clustered correlation
+metrics between all the samples, normalized coverage tracks for visualization,
+and the signal coverage plot across the TSS and TTS of all hg19 genes. We will
+first generate bigWig files of each BAM file to calculate the similarity between
+all of these files based on their binned coverage. The bamCoverage utility will
+create bigWig files, which essentially discretizes the genome into evenly sized,
+consecutive bins and counts the number of reads falling into each one. We will
+then calculate the pairwise correlation between the bins of samples and display
+this information as a clustered heatmap. Our a priori expectations are that our
+IP or pulldown samples are highly similar to each other, our input samples are
+similar to each other, and the IP and input samples are less similar when
+compared. We will then use the bigWig files to plot the normalized signal
+relative to the transcription start site (TSS) and transcription termination
+site (TTS) of all genes in the hg19 reference. This type of plot is often
+helpful for determining the potential regulatory mechanisms of the factor of
+interest. In our case, transcription factors are known to directly bind DNA and
+are commonly found located in the promoter region (near the TSS) where they will
+typically recruit other cofactors, chromatin remodelers or components of the RNA
+polymerase complex II to regulate gene expression. If we inspect the plot in
+figure 1c, we can see that the signal distribution for the Runx1 ChIP is
+primarily concentrated in the promoter-TSS region of genes.</p>
+<ol style="list-style-type: decimal">
+<li><p>Load the required modules: DeepTools</p></li>
+<li><p>Use the bamCoverage utility in DeepTools to generate a bigwig file for each
+sorted BAM file you received from the data curator. Generate a bigWig file for
+each of the 4 BAM files provided.</p></li>
+<li><p>Once you have produced all of the bigwig files, use the
+multiBigWigSummary utility and the plotCorrelation utility to produce a
+clustered heatmap of the Pearson correlation values between all the samples.
+Refer to their respective manual pages here for help:
+<a href="https://deeptools.readthedocs.io/en/develop/content/list_of_tools.html" class="uri">https://deeptools.readthedocs.io/en/develop/content/list_of_tools.html</a>.
+Compare your figure to the one found in the paper Supp Fig 2b. Make sure to
+answer the following questions in your written report: How similar are your
+correlation values? What could cause these differences to arise? Do they
+affect the overall conclusion drawn from this particular figure? What is the
+overall conclusion made from this figure by the authors?</p></li>
+<li><p>Navigate to the UCSC Table Browser, use the following settings to extract a
+BED file listing the TSS/TTS locations for every gene in the hg19 reference:</p></li>
+</ol>
+<div class="figure">
+<img src="ucsc_tablebrowser.png" alt=""><p class="caption">UCSC</p>
+</div>
+<p>On the following page, do not change any options and you will be prompted to
+download a BED file containing the requested information. Put this BED file into
+your working directory on SCC. This is a simple use case, but the UCSC table
+browser and UCSC genome browser are incredibly powerful tools and repositories
+for genome-wide sequencing data.</p>
+<ol start="5" style="list-style-type: decimal">
+<li><p>Using the bigwig files for the IP samples generated in step 1 and the BED
+file of hg19 genes from step 3, run the computeMatrix utility in DeepTools in
+the scale-regions mode twice (once for each IP sample). <strong>N.B.</strong> Remember
+that we are trying to reproduce the figure from the paper, be sure to include
+regions in a 2kb window up- and downstream of the TSS and TTS, respectively.
+You may leave every other parameter at its default value. Justify any changes
+in parameters if you do alter them.</p></li>
+<li><p>You will have run computeMatrix twice (on both replicates) and generated two
+matrices of values. Run plotProfile on each matrix to generate a visualization
+of the Runx1 signal coverage across hg19 genes.</p></li>
+</ol>
+<p><strong>Deliverables:</strong>
+* A heatmap showing the clustered correlation values for input and IP samples
+akin to Figure Supp2b.</p>
+<ul>
+<li>Two plots (one for each IP replicate) showing the signal coverage
+for Runx1 across hg19 genes using the TSS and TTS as reference points</li>
+</ul>
+</div>
+<div id="integration-with-hic-and-rnaseq-data" class="section level2" number="25.2">
+<h2>
+<span class="header-section-number">25.2</span> 5. Integration with HIC and RNAseq data<a class="anchor" aria-label="anchor" href="#integration-with-hic-and-rnaseq-data"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>Lead Role: Biologist</strong>
+ChIP-seq data is often used in tandem with RNA-seq results to provide a direct
+link between the physical binding of a factor and its subsequent effect on gene
+expression. Put simply, if we observe binding of a transcription factor in an
+important regulatory region of a gene of interest and we observe that the
+expression of this gene is altered when we knockout this transcription factor,
+we can can make the conclusion that the transcription factor is likely directly
+involved in the regulation of the expression of the gene of interest. Navigate
+to the GEO accession page for this publication (GSE75070).</p>
+<ol style="list-style-type: decimal">
+<li><p>Download the DESeq2 results (GSE75070_MCF7_shRUNX1_shNS_RNAseq_log2_foldchange.txt.gz).
+Apply the same filters and cutoffs as specified in the methods. How many DE
+genes do you find? Do they match the numbers reported in the paper?</p></li>
+<li><p>Using the list of DE genes found in step 1 and the annotated peak file
+provided to you by the programmer, recreate figure 1f and produce a stacked
+barchart or similar figure showing the proportions found from your results.
+<strong>N.B.</strong> In their figure 1f, they calculate one set of numbers relative to
+the TSS and another set relative to the ‘whole body’ of the gene. For our
+case, just use the distance to TSS found in the annotations file.</p></li>
+<li><p>Next, we will be generating visualizations of the peaks found in the promoter
+regions of two key genes reported by the paper. Download IGV
+(<a href="https://software.broadinstitute.org/software/igv/" class="uri">https://software.broadinstitute.org/software/igv/</a>) or use the newly added
+web-only interface (<a href="https://igv.org/app/" class="uri">https://igv.org/app/</a>) to load all of your bigwig tracks
+separately as well as the BED file of “reproducible peaks” on a genome
+browser. Navigate to the two genes mentioned specifically in the paper, MALAT1
+and NEAT1. Make sure to answer the following questions in your written report:
+Do you see the same general results as in figures 2d and 2e? What does this
+figure imply? Do you agree with the conclusions made by the authors? <strong>N.B.</strong>
+Although we have discouraged you from generating figures using screenshots, on
+this one occasion, we will encourage you to take a screenshot of each of these
+loci to generate your figures.</p></li>
+<li><p>Finally, we are going to attempt to reproduce the plot shown in figure 3d.
+This is a common representation of HI-C data where the frequency of
+interaction (commonly interpreted as the “strength” of the interaction)
+between two genomic bins is visualized as a heatmap. This is done for every
+pair of bins along a region, in this case, they chose a 5.3 megabase stretch
+on the p arm of chromosome 10. Although this plot looks complicated, it is in
+essence, a heatmap of the pairwise interaction matrix for all of the listed
+bins that has been cropped to only show the upper triangle above the diagonal
+(since the lower triangle is the same), rotated 45 degrees, and superimposed
+over the genomic track. Navigate to the GEO page for this experiment,
+download the appropriate processed HI-C data
+(GSE75070_HiCStein-MCF7-shGFP_hg19_chr10_C-40000-iced.matrix.gz) and do your
+best to recreate this heatmap. You do not need to crop the heatmap or rotate
+it.</p></li>
+</ol>
+<p><strong>Deliverables:</strong>
+* A stacked barchart akin to figure 2d showing the percentage of DE genes that
+have a peak within +/- X distance of the TSS</p>
+<ul>
+<li><p>A heatmap of the HI-C data for the first 5.3mb of Chromosome 10. <strong>N.B.</strong> You
+do not need to make it a triangle or rotate it.</p></li>
+<li><p>IGV visualization of the NEAT1 TSS with bigWig tracks for all 4 samples, and
+the BED file of reproducible peaks</p></li>
+<li><p>IGV visualization of the MALAT1 TSS with bigWig tracks for all 4 samples, and
+the BED file of reproducible peaks</p></li>
+</ul>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="project-2-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html">Project 2: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></div>
+<div class="next"><a href="project-4-single-cell-rna-seq-analysis-of-pancreatic-cells.html">Project 4: Single Cell RNA-Seq Analysis of Pancreatic Cells</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#project-3-chipseq-analysis-of-the-human-transcription-factor-runx1">Project 3: ChIPseq analysis of the human transcription factor Runx1</a></li>
+<li><a class="nav-link" href="#read-alignment-and-mapping-statistics">2. Read Alignment and Mapping Statistics</a></li>
+<li><a class="nav-link" href="#peak-calling-and-annotation-using-homer">3. Peak Calling and Annotation using Homer</a></li>
+<li><a class="nav-link" href="#generating-bigwig-file-for-correlation-analysis-and-visualization"><span class="header-section-number">25.1</span> 4. Generating bigWig file for correlation analysis and visualization</a></li>
+<li><a class="nav-link" href="#integration-with-hic-and-rnaseq-data"><span class="header-section-number">25.2</span> 5. Integration with HIC and RNAseq data</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>BF528 - Applications in Translational Bioinformatics</strong>" was written by . </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
