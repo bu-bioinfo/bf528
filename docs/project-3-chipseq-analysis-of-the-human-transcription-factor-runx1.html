@@ -117,14 +117,14 @@ on our background knowledge and rational assumptions. Do your best to pick
 reasonable values and justify them.</p>
 <p>Contents:</p>
 <ul>
-<li><a href="project-4-single-cell-rna-seq-analysis-of-pancreatic-cells.html#read-the-paper-and-supplemental-methods-and-create-a-workflow-diagram-for-your-role-2">1. Read the paper and supplemental methods and create a workflow diagram for your role</a></li>
+<li><a href="project-3-chipseq-analysis-of-the-human-transcription-factor-runx1.html#read-the-paper-supplemental-methods-and-create-a-workflow-diagram-for-your-role">1. Read the paper &amp; supplemental methods and create a workflow diagram for your role</a></li>
 <li><a href="project-3-chipseq-analysis-of-the-human-transcription-factor-runx1.html#read-alignment-and-mapping-statistics">2. Read Alignment and Mapping Statistics</a></li>
 <li><a href="project-3-chipseq-analysis-of-the-human-transcription-factor-runx1.html#peak-calling-and-annotation-using-homer">3. Peak Calling and Annotation using Homer</a></li>
 <li><a href="project-3-chipseq-analysis-of-the-human-transcription-factor-runx1.html#generating-bigwig-file-for-correlation-analysis-and-visualization">4. Generating bigWig file for correlation analysis and visualization</a></li>
 <li><a href="project-3-chipseq-analysis-of-the-human-transcription-factor-runx1.html#integration-with-hic-and-rnaseq-data">5. Integration with HIC and RNAseq data</a></li>
 </ul>
-<div id="read-the-paper-and-supplemental-methods-and-create-a-workflow-diagram-for-your-role-1" class="section level2 unnumbered">
-<h2>1. Read the paper and supplemental methods and create a workflow diagram for your role<a class="anchor" aria-label="anchor" href="#read-the-paper-and-supplemental-methods-and-create-a-workflow-diagram-for-your-role-1"><i class="fas fa-link"></i></a>
+<div id="read-the-paper-supplemental-methods-and-create-a-workflow-diagram-for-your-role" class="section level2 unnumbered">
+<h2>1. Read the paper &amp; supplemental methods and create a workflow diagram for your role<a class="anchor" aria-label="anchor" href="#read-the-paper-supplemental-methods-and-create-a-workflow-diagram-for-your-role"><i class="fas fa-link"></i></a>
 </h2>
 <p><strong>Everyone</strong></p>
 <p><a href="https://pubmed.ncbi.nlm.nih.gov/27514584/">Barutcu et al. RUNX1 Contributes to Higher-Order Chromatin Organization and
@@ -179,14 +179,14 @@ Snakemake workflow to run all of the steps below:</p>
 <li><p>Run FASTQC on the FASTA file</p></li>
 <li><p>Run Trimmomatic with the default settings suggested by Trimmomatic. Use the
 adapter fasta file we have provided for you located here:
-/projectnb/bf528/proj3/TruSeq3–SE.fa</p></li>
+/project/bf528/project_3_chipseq/references/TruSeq3–SE.fa</p></li>
 <li><p>Align the FASTQ file against the provided hg19 human genome reference using
 BowTie2. The original publication did not specify if they adjusted any of the
 many optional parameters available. The BowTie2 manual describes several
 “pre-set” options that adjust various alignment parameters. You may look into
 and choose one that you think is appropriate or you may use default parameters.
 The pre-built index may be found here:
-/projectnb/bf528/proj3/references/GRCh37.p13.genome.bowtie</p></li>
+/project/bf528/project_3_chipseq/references/GRCh37.p13.genome.bowtie2</p></li>
 <li><p>Use Samtools flagstat to output a short summary of mapping statistics to a
 .txt file</p></li>
 <li><p>Use Samtools sort to produce a sorted BAM file Run Samtools index on the
@@ -194,9 +194,12 @@ sorted BAM file to create a .bai (BAM index) file</p></li>
 <li>
 <p>Run MultiQC to produce a convenient report of the quality metrics from all
 steps</p>
-<p>We have provided you with the alignments for the other 3 samples as BAM files in
-<code>Directory here</code>. Separately, use Samtools to output the same mapping statistics
-as in 2.4. Create a table similar to the one seen in Supplemental Figure 2b.</p>
+<p>We have provided you with the alignments for the other 3 samples as BAM files
+in /projectnb/bf528/project_3_chipseq/provided_files/. For convenience and
+clarity, they are named runx1_rep2_sorted.bam, inp_rep1_sorted.bam, and
+inp_rep2_sorted.bam. Separately, use Samtools to output the same mapping
+statistics as in 2.4. Create a table similar to the one seen in Supplemental
+Figure 2b.</p>
 </li>
 <li><p>Run Samtools flagstat to produce mapping statistics for the other provided
 files. You are welcome to incorporate this into your Snakemake workflow, but
@@ -236,6 +239,13 @@ experiments provided. Once you have generated this list of “reproducible” pe
 you will remove any known blacklisted signal-artifact regions, annotate your
 filtered peaks to their nearest genomic feature, and perform motif finding to
 analyze what other cofactors may be binding in your discovered peaks.</p>
+<p>To allow you to get started writing and testing your code, you may use the files
+found in /projectnb/bf528/project_3_chipseq/provided_files/ as a starting point.
+Specifically, you can use the runx1_rep2_sorted.bam and inp_rep2_sorted.bam to
+start the analysis for the second set of the replicates from the study. The data
+curator will provide you with a sorted, BAM file for the alignments for the
+first replicate pulldown which you will then use in conjunction with the provided
+inp_rep1_sorted.bam to process the first set of replicates.</p>
 <ol style="list-style-type: decimal">
 <li><p>Load the require modules: Homer, Bedtools</p></li>
 <li><p>Generate TAG directories using the makeTagDir command in HOMER. You can run
@@ -254,10 +264,10 @@ peaks in your written report. Create a simple venn diagram indicating the
 original number of peaks called in each replicate, and the number of
 “reproducible” peaks you determined. See Supplemental Figure 2c for reference.</p></li>
 <li><p>Use BedTools to remove any peaks from your list based on the provided
-blacklist located here: /projectnb/bf528/proj3/reference/hg19_blacklist.bed.
-Make sure to note in your written report how many peaks remain and were
-removed from your list of “reproducible” peaks after filtering using this
-blacklist.</p></li>
+blacklist located here:
+/project/bf528/project_3_chipseq/references/hg19_blacklist.bed. Make sure to
+note in your written report how many peaks remain and were removed from your
+list of “reproducible” peaks after filtering using this blacklist.</p></li>
 <li><p>Using the annotatePeaks.pl utility in HOMER, annotate your list of filtered
 “reproducible” peaks to their nearest genomic feature. This utility will
 generate a simple TSV / .txt file of the results. From the annotations,
@@ -327,6 +337,12 @@ typically recruit other cofactors, chromatin remodelers or components of the RNA
 polymerase complex II to regulate gene expression. If we inspect the plot in
 figure 1c, we can see that the signal distribution for the Runx1 ChIP is
 primarily concentrated in the promoter-TSS region of genes.</p>
+<p>To allow you to get started writing and testing your code, you may use the files
+found in /projectnb/bf528/project_3_chipseq/provided_files/ as a starting point.
+There you will find the BAM files for the first replicate input, and the second
+replicate IP sample and second replicate input. You may use these to test your
+initial code while waiting for the data curator to provide you with the final
+BAM file representing the alignments from the first replicate IP.</p>
 <ol style="list-style-type: decimal">
 <li><p>Load the required modules: DeepTools</p></li>
 <li><p>Use the bamCoverage utility in DeepTools to generate a bigwig file for each
@@ -383,6 +399,12 @@ expression of this gene is altered when we knockout this transcription factor,
 we can can make the conclusion that the transcription factor is likely directly
 involved in the regulation of the expression of the gene of interest. Navigate
 to the GEO accession page for this publication (GSE75070).</p>
+<p>To help you get started, we have given you a list of annotated, reproducible
+peaks and a bigWig file that we have generated separately. You may find them
+in /projectnb/bf528/project_3_chipseq/provided_files/. The annotated peaks and
+bigWig file are named repr_peaks_annotation_subset.txt and example.bw, respectively.
+You may use these until your group has generated your own reproducible peak files
+and processed bigWig files.</p>
 <ol style="list-style-type: decimal">
 <li><p>Download the DESeq2 results (GSE75070_MCF7_shRUNX1_shNS_RNAseq_log2_foldchange.txt.gz).
 Apply the same filters and cutoffs as specified in the methods. How many DE
@@ -403,7 +425,7 @@ and NEAT1. Make sure to answer the following questions in your written report:
 Do you see the same general results as in figures 2d and 2e? What does this
 figure imply? Do you agree with the conclusions made by the authors? <strong>N.B.</strong>
 Although we have discouraged you from generating figures using screenshots, on
-this one occasion, we will encourage you to take a screenshot of each of these
+this one occasion, we will allow you to take a screenshot of each of these
 loci to generate your figures.</p></li>
 <li><p>Finally, we are going to attempt to reproduce the plot shown in figure 3d.
 This is a common representation of HI-C data where the frequency of
@@ -418,7 +440,9 @@ over the genomic track. Navigate to the GEO page for this experiment,
 download the appropriate processed HI-C data
 (GSE75070_HiCStein-MCF7-shGFP_hg19_chr10_C-40000-iced.matrix.gz) and do your
 best to recreate this heatmap. You do not need to crop the heatmap or rotate
-it.</p></li>
+it. If you find that your heatmap does not look similar to the one in the
+figure, try experimenting with common data transformations prior to the
+generation of the heatmap.</p></li>
 </ol>
 <p><strong>Deliverables:</strong></p>
 <ul>
@@ -446,7 +470,7 @@ the BED file of reproducible peaks</p></li>
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#project-3-chipseq-analysis-of-the-human-transcription-factor-runx1">Project 3: ChIPseq analysis of the human transcription factor Runx1</a></li>
-<li><a class="nav-link" href="#read-the-paper-and-supplemental-methods-and-create-a-workflow-diagram-for-your-role-1">1. Read the paper and supplemental methods and create a workflow diagram for your role</a></li>
+<li><a class="nav-link" href="#read-the-paper-supplemental-methods-and-create-a-workflow-diagram-for-your-role">1. Read the paper &amp; supplemental methods and create a workflow diagram for your role</a></li>
 <li><a class="nav-link" href="#read-alignment-and-mapping-statistics">2. Read Alignment and Mapping Statistics</a></li>
 <li><a class="nav-link" href="#peak-calling-and-annotation-using-homer">3. Peak Calling and Annotation using Homer</a></li>
 <li><a class="nav-link" href="#generating-bigwig-file-for-correlation-analysis-and-visualization">4. Generating bigWig file for correlation analysis and visualization</a></li>
