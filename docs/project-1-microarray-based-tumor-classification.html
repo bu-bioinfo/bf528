@@ -121,14 +121,14 @@ novel relationships among samples in a given dataset.</li>
 </ul>
 <p>Contents:</p>
 <ul>
-<li>[1. Read the paper &amp; supplemental methods]</li>
+<li><a href="project-1-microarray-based-tumor-classification.html#read-the-paper-and-supplemental-methods-and-familiarize-yourself-with-the-workflow-diagram">1. Read the paper and supplemental methods and familiarize yourself with the workflow diagram</a></li>
 <li><a href="project-2-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html#data-acquisition-transfer-to-remote-server-1">2. Data acquisition &amp; transfer to remote server</a></li>
 <li><a href="project-1-microarray-based-tumor-classification.html#data-preprocessing-quality-control">3. Data preprocessing &amp; quality control</a></li>
 <li><a href="project-1-microarray-based-tumor-classification.html#noise-filtering-dimensionality-reduction">4. Noise filtering &amp; dimensionality reduction</a></li>
 <li><a href="project-1-microarray-based-tumor-classification.html#hierarchical-clustering-subtype-discovery">5. Hierarchical clustering &amp; subtype discovery</a></li>
 <li><a href="project-1-microarray-based-tumor-classification.html#in-depth-analysis">6. In-depth Analysis</a></li>
 <li><a href="project-1-microarray-based-tumor-classification.html#discuss-your-findings">7. Discuss Your Findings</a></li>
-<li><a href="project-4-single-cell-rna-seq-analysis-of-pancreatic-cells.html#assignment-writeup-2">Assignment Writeup</a></li>
+<li><a href="project-4-single-cell-rna-seq-analysis-of-pancreatic-cells.html#assignment-writeup-3">Assignment Writeup</a></li>
 </ul>
 <div id="read-the-paper-and-supplemental-methods-and-familiarize-yourself-with-the-workflow-diagram" class="section level2 unnumbered">
 <h2>1. Read the paper and supplemental methods and familiarize yourself with the workflow diagram<a class="anchor" aria-label="anchor" href="#read-the-paper-and-supplemental-methods-and-familiarize-yourself-with-the-workflow-diagram"><i class="fas fa-link"></i></a>
@@ -138,9 +138,36 @@ novel relationships among samples in a given dataset.</li>
 Subtypes: Characterization, Validation, and Prognostic Value. PLoS Medicine,
 May 2013. PMID: 23700391</a></p>
 <p>Below you will see an example of a conceptual workflow diagram. These are common
-figures found in presentations and publications that very concisely and intuitively
-illustrate the major steps of undertaken in the described analysis. Their intent
-is to allow others to quickly determine</p>
+figures found in presentations and publications that very concisely and
+intuitively illustrate the required steps undertaken in the described analysis
+to produce the reported findings. Their intent is to allow others to quickly
+view and determine the appropriateness of the chosen methodology and assumptions
+underlying the analysis. They are also useful, in conjunction with the written
+methods sections, in facilitating the reproducibility of the study by providing
+a complete representation of the major steps and their dependencies in an easy
+to understand format.</p>
+<div class="inline-figure"><img src="projects/project_1_microarrays/workflow_diagram.png" width="1025"></div>
+<p>You will notice that not every step described in each section is included in the
+workflow diagram. For example, you’ll observe that we have left off a few steps
+from the data curator’s section including the generation of symbolic links and
+the directory structure as these steps have no impact on the actual results of
+the analysis. There are other reasonable ways to setup the data and directory
+structure that will vary from individual to individual without affecting the
+actual results. Notice, however, that we have left such steps as the Coefficient
+of Variation filtering and median variance filtering as these are crucial steps
+that greatly impact the downstream results.</p>
+<p>It might be helpful when you are first starting to individually make diagrams
+that include all of the steps for your role in order to understand the process
+you will be following (even the non-necessary steps). Then, when you are working
+in a group to combine them, you can come to a consensus as to which steps are
+superfluous for the sake of reproducing the results and which are essential.</p>
+<p>Please note that there is an inherent level of subjectivity in the generation of
+these diagrams. We are not looking for any one specific diagram / diagram
+structure. We only care that you represent the major steps of the analysis and
+that you connect them in a way that illustrates the order in which they must be
+performed. Our intent with the generation of these diagrams is to help you
+visualize and understand all of the key steps that go into a particular analysis
+and how your role connects and depends on the others.</p>
 </div>
 <div id="data-acquisition-transfer-to-remote-server" class="section level2 unnumbered">
 <h2>2. Data acquisition &amp; transfer to remote server<a class="anchor" aria-label="anchor" href="#data-acquisition-transfer-to-remote-server"><i class="fas fa-link"></i></a>
