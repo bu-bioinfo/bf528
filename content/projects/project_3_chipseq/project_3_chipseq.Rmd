@@ -39,14 +39,14 @@ reasonable values and justify them.
 
 Contents:
 
-* [1. Read the paper and supplemental methods and create a workflow diagram for your role]
+* [1. Read the paper & supplemental methods and create a workflow diagram for your role]
 * [2. Read Alignment and Mapping Statistics]
 * [3. Peak Calling and Annotation using Homer]
 * [4. Generating bigWig file for correlation analysis and visualization]
 * [5. Integration with HIC and RNAseq data]
 
 
-## 1. Read the paper and supplemental methods and create a workflow diagram for your role {-}
+## 1. Read the paper & supplemental methods and create a workflow diagram for your role {-}
 
 **Everyone**
 
@@ -105,7 +105,7 @@ Snakemake workflow to run all of the steps below:
 
 2. Run Trimmomatic with the default settings suggested by Trimmomatic. Use the
    adapter fasta file we have provided for you located here:
-   /projectnb/bf528/proj3/TruSeq3–SE.fa
+   /project/bf528/project_3_chipseq/references/TruSeq3–SE.fa
    
 3. Align the FASTQ file against the provided hg19 human genome reference using
    BowTie2. The original publication did not specify if they adjusted any of the
@@ -113,7 +113,7 @@ Snakemake workflow to run all of the steps below:
    “pre-set” options that adjust various alignment parameters. You may look into
    and choose one that you think is appropriate or you may use default parameters.
    The pre-built index may be found here:
-   /projectnb/bf528/proj3/references/GRCh37.p13.genome.bowtie
+   /project/bf528/project_3_chipseq/references/GRCh37.p13.genome.bowtie2
 
 4. Use Samtools flagstat to output a short summary of mapping statistics to a 
    .txt file 
@@ -124,9 +124,12 @@ Snakemake workflow to run all of the steps below:
 6. Run MultiQC to produce a convenient report of the quality metrics from all 
    steps 
    
-   We have provided you with the alignments for the other 3 samples as BAM files in
-   `Directory here`. Separately, use Samtools to output the same mapping statistics
-   as in 2.4. Create a table similar to the one seen in Supplemental Figure 2b.
+   We have provided you with the alignments for the other 3 samples as BAM files 
+   in /projectnb/bf528/project_3_chipseq/provided_files/. For convenience and
+   clarity, they are named runx1_rep2_sorted.bam, inp_rep1_sorted.bam, and 
+   inp_rep2_sorted.bam. Separately, use Samtools to output the same mapping 
+   statistics as in 2.4. Create a table similar to the one seen in Supplemental 
+   Figure 2b.
 
 7. Run Samtools flagstat to produce mapping statistics for the other provided 
    files. You are welcome to incorporate this into your Snakemake workflow, but 
@@ -169,6 +172,14 @@ you will remove any known blacklisted signal-artifact regions, annotate your
 filtered peaks to their nearest genomic feature, and perform motif finding to
 analyze what other cofactors may be binding in your discovered peaks.
 
+To allow you to get started writing and testing your code, you may use the files
+found in /projectnb/bf528/project_3_chipseq/provided_files/ as a starting point.
+Specifically, you can use the runx1_rep2_sorted.bam and inp_rep2_sorted.bam to
+start the analysis for the second set of the replicates from the study. The data
+curator will provide you with a sorted, BAM file for the alignments for the
+first replicate pulldown which you will then use in conjunction with the provided
+inp_rep1_sorted.bam to process the first set of replicates.
+
 1. Load the require modules: Homer, Bedtools 
 
 2. Generate TAG directories using the makeTagDir command in HOMER. You can run 
@@ -190,11 +201,11 @@ analyze what other cofactors may be binding in your discovered peaks.
    original number of peaks called in each replicate, and the number of 
    “reproducible” peaks you determined. See Supplemental Figure 2c for reference. 
 
-6. Use BedTools to remove any peaks from your list based on the provided 
-   blacklist located here: /projectnb/bf528/proj3/reference/hg19_blacklist.bed. 
-   Make sure to note in your written report how many peaks remain and were 
-   removed from your list of “reproducible” peaks after filtering using this 
-   blacklist. 
+6. Use BedTools to remove any peaks from your list based on the provided
+   blacklist located here:
+   /project/bf528/project_3_chipseq/references/hg19_blacklist.bed. Make sure to
+   note in your written report how many peaks remain and were removed from your
+   list of “reproducible” peaks after filtering using this blacklist.
 
 7. Using the annotatePeaks.pl utility in HOMER, annotate your list of filtered
    “reproducible” peaks to their nearest genomic feature. This utility will 
@@ -269,6 +280,13 @@ polymerase complex II to regulate gene expression. If we inspect the plot in
 figure 1c, we can see that the signal distribution for the Runx1 ChIP is
 primarily concentrated in the promoter-TSS region of genes.
 
+To allow you to get started writing and testing your code, you may use the files
+found in /projectnb/bf528/project_3_chipseq/provided_files/ as a starting point.
+There you will find the BAM files for the first replicate input, and the second
+replicate IP sample and second replicate input. You may use these to test your
+initial code while waiting for the data curator to provide you with the final 
+BAM file representing the alignments from the first replicate IP. 
+
 1. Load the required modules: DeepTools 
 
 2. Use the bamCoverage utility in DeepTools to generate a bigwig file for each 
@@ -332,6 +350,13 @@ we can can make the conclusion that the transcription factor is likely directly
 involved in the regulation of the expression of the gene of interest. Navigate
 to the GEO accession page for this publication (GSE75070).
 
+To help you get started, we have given you a list of annotated, reproducible 
+peaks and a bigWig file that we have generated separately. You may find them
+in /projectnb/bf528/project_3_chipseq/provided_files/. The annotated peaks and 
+bigWig file are named repr_peaks_annotation_subset.txt and example.bw, respectively.
+You may use these until your group has generated your own reproducible peak files 
+and processed bigWig files. 
+
 1. Download the DESeq2 results (GSE75070_MCF7_shRUNX1_shNS_RNAseq_log2_foldchange.txt.gz).
    Apply the same filters and cutoffs as specified in the methods. How many DE 
    genes do you find? Do they match the numbers reported in the paper? 
@@ -353,7 +378,7 @@ to the GEO accession page for this publication (GSE75070).
    Do you see the same general results as in figures 2d and 2e? What does this
    figure imply? Do you agree with the conclusions made by the authors? **N.B.**
    Although we have discouraged you from generating figures using screenshots, on
-   this one occasion, we will encourage you to take a screenshot of each of these
+   this one occasion, we will allow you to take a screenshot of each of these
    loci to generate your figures. 
 
 4. Finally, we are going to attempt to reproduce the plot shown in figure 3d. 
@@ -369,7 +394,9 @@ to the GEO accession page for this publication (GSE75070).
    download the appropriate processed HI-C data
    (GSE75070_HiCStein-MCF7-shGFP_hg19_chr10_C-40000-iced.matrix.gz) and do your
    best to recreate this heatmap. You do not need to crop the heatmap or rotate 
-   it.
+   it. If you find that your heatmap does not look similar to the one in the
+   figure, try experimenting with common data transformations prior to the 
+   generation of the heatmap. 
 
 **Deliverables:** 
 
