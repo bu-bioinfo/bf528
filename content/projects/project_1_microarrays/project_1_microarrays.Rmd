@@ -70,7 +70,7 @@ a complete representation of the major steps and their dependencies in an easy
 to understand format.
 
 ```{r, echo=FALSE}
-knitr::include_graphics("projects/project_1_microarray/workflow_diagram.png")
+knitr::include_graphics("projects/project_1_microarrays/workflow_diagram.png")
 ```
 
 You will notice that not every step described in each section is included in the
