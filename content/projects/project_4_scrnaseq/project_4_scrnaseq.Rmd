@@ -36,15 +36,15 @@ how to solve conceptual problems, often without guidance!
 
 Contents:
 
-* 1. Read the paper
-* 2. Process Single Cell Sequencing Reads and Choose Barcodes
-* 3. Processing the UMI counts matrix
-* 4. Cluster marker genes
-* 5. In-depth marker gene analysis
-* 6. Discuss Your Findings
-* Assignment Writeup
+* [1. Read the paper and supplemental methods and create a workflow diagram for your role]
+* [2. Process Single Cell Sequencing Reads and Choose Barcodes]
+* [3. Processing the UMI counts matrix]
+* [4. Cluster marker genes]
+* [5. In-depth marker gene analysis]
+* [6. Discuss Your Findings]
+* [Assignment Writeup]
 
-## 1. Read the paper and supplemental methods and create a workflow diagram for your role{-}
+## 1. Read the paper and supplemental methods and create a workflow diagram for your role {-}
 
 **Everyone**
 
