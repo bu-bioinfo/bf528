@@ -42,7 +42,7 @@ Upon the completion of project 1, students will be able to do the following:
 
 Contents:
 
-* [1. Read the paper & supplemental methods]
+* [1. Read the paper and supplemental methods and familiarize yourself with the workflow diagram]
 * [2. Data acquisition & transfer to remote server]
 * [3. Data preprocessing & quality control]
 * [4. Noise filtering & dimensionality reduction]
@@ -60,9 +60,43 @@ Subtypes: Characterization, Validation, and Prognostic Value. PLoS Medicine,
 May 2013. PMID: 23700391](https://www.ncbi.nlm.nih.gov/pubmed/23700391)
 
 Below you will see an example of a conceptual workflow diagram. These are common
-figures found in presentations and publications that very concisely and intuitively
-illustrate the major steps of undertaken in the described analysis. Their intent
-is to allow others to quickly determine     
+figures found in presentations and publications that very concisely and
+intuitively illustrate the required steps undertaken in the described analysis
+to produce the reported findings. Their intent is to allow others to quickly
+view and determine the appropriateness of the chosen methodology and assumptions
+underlying the analysis. They are also useful, in conjunction with the written
+methods sections, in facilitating the reproducibility of the study by providing
+a complete representation of the major steps and their dependencies in an easy
+to understand format.
+
+```{r, echo=FALSE}
+knitr::include_graphics("projects/project_1_microarray/workflow_diagram.png")
+```
+
+You will notice that not every step described in each section is included in the
+workflow diagram.  For example, you'll observe that we have left off a few steps
+from the data curator's section including the generation of symbolic links and
+the directory structure as these steps have no impact on the actual results of
+the analysis. There are other reasonable ways to setup the data and directory
+structure that will vary from individual to individual without affecting the
+actual results. Notice, however, that we have left such steps as the Coefficient
+of Variation filtering and median variance filtering as these are crucial steps
+that greatly impact the downstream results.
+
+It might be helpful when you are first starting to individually make diagrams
+that include all of the steps for your role in order to understand the process
+you will be following (even the non-necessary steps). Then, when you are working
+in a group to combine them, you can come to a consensus as to which steps are
+superfluous for the sake of reproducing the results and which are essential.
+
+Please note that there is an inherent level of subjectivity in the generation of
+these diagrams. We are not looking for any one specific diagram / diagram
+structure. We only care that you represent the major steps of the analysis and
+that you connect them in a way that illustrates the order in which they must be
+performed. Our intent with the generation of these diagrams is to help you
+visualize and understand all of the key steps that go into a particular analysis
+and how your role connects and depends on the others.
+
 
 ## 2. Data acquisition & transfer to remote server {-}
 

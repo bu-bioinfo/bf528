@@ -65,6 +65,20 @@ make such diagrams in PowerPoint or any other appropriate software of your
 choosing. You only need to include the full workflow diagram detailing the
 entire project in your report.
 
+It might be helpful when you are first starting to individually make diagrams
+that include all of the steps for your role in order to understand the process
+you will be following (even the non-necessary steps). Then, when you are working
+in a group to combine them, you can come to a consensus as to which steps are
+superfluous for the sake of reproducing the results and which are essential.
+
+Please note that there is an inherent level of subjectivity in the generation of
+these diagrams. We are not looking for any one specific diagram / diagram
+structure. We only care that you represent the major steps of the analysis and
+that you connect them in a way that illustrates the order in which they must be
+performed. Our intent with the generation of these diagrams is to help you
+visualize and understand all of the key steps that go into a particular analysis
+and how your role connects and depends on the others.
+
 ## 2. Process Single Cell Sequencing Reads and Choose Barcodes {-}
 
 **Lead role: Data Curator**

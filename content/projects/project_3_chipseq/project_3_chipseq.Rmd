@@ -1,4 +1,8 @@
+---
+---
+
 # Project 3: ChIPseq analysis of the human transcription factor Runx1 {-}
+
 Similar to advancing gene expression quantification from microarrays to RNA-seq,
 next-generation sequencing also revolutionized other wet lab assays that examine
 nucleotides by making them (relatively) unbiased and high-throughput. One such
@@ -35,12 +39,12 @@ reasonable values and justify them.
 
 Contents:
 
-* 1. Read the paper, and your sections' instructions and create a workflow
-     diagram 
-* 2. Read Alignment and Mapping Statistifcs 
-* 3. Peak Calling and Annotation using Homer 
-* 4. Generating bigWig file for correlation analysis and visualization 
-* 5. Integration with RNAseq data and counting peaks associated with DE genes
+* [1. Read the paper and supplemental methods and create a workflow diagram for your role]
+* [2. Read Alignment and Mapping Statistics]
+* [3. Peak Calling and Annotation using Homer]
+* [4. Generating bigWig file for correlation analysis and visualization]
+* [5. Integration with HIC and RNAseq data]
+
 
 ## 1. Read the paper and supplemental methods and create a workflow diagram for your role {-}
 
@@ -61,6 +65,20 @@ not worry about making these diagrams aesthetically perfect, you may quickly
 make such diagrams in PowerPoint or any other appropriate software of your
 choosing. You only need to include the full workflow diagram detailing the
 entire project in your report.
+
+It might be helpful when you are first starting to individually make diagrams
+that include all of the steps for your role in order to understand the process
+you will be following (even the non-necessary steps). Then, when you are working
+in a group to combine them, you can come to a consensus as to which steps are
+superfluous for the sake of reproducing the results and which are essential.
+
+Please note that there is an inherent level of subjectivity in the generation of
+these diagrams. We are not looking for any one specific diagram / diagram
+structure. We only care that you represent the major steps of the analysis and
+that you connect them in a way that illustrates the order in which they must be
+performed. Our intent with the generation of these diagrams is to help you
+visualize and understand all of the key steps that go into a particular analysis
+and how your role connects and depends on the others.
 
 ## 2. Read Alignment and Mapping Statistics {-}
 
@@ -366,3 +384,8 @@ to the GEO accession page for this publication (GSE75070).
   
 * IGV visualization of the MALAT1 TSS with bigWig tracks for all 4 samples, and 
   the BED file of reproducible peaks
+  
+## Assignment Writeup {-}
+
+Refer to the [Project Writeup Instructions].
+
