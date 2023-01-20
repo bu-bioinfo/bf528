@@ -18,48 +18,104 @@ Familiarize yourself with the material on basic command line usage found here:
 
 # Genomics, Genes, and Genomes
 
+## Genes and Genomes
+[online slides](https://docs.google.com/presentation/d/e/2PACX-1vRTcNda7r9JX_oLmuzNmpOPyUqLoQtullVFEj57KWQfbkl5X6XY6dCoHbGu2v3yuFWNp6msFeASLnQ1/pub?start=false&loop=false&delayms=60000)
+
+## SCC cluster usage
+[online slides](https://docs.google.com/presentation/d/e/2PACX-1vROPYHWi3Ec0sn5oqEfEkKKLOVsegrlI0qdK2cWxX_dRSi76tibE3dhHrDyGKLHBs4U0qj6Igh4yGfh/pub?start=false&loop=false&delayms=60000)
+
+## Assignment
+
+Familiarize yourself with the material on bash scripting and cluster computing here:
+
+[Workshop 6. Shell Scripts and Cluster Computing](http://foundations-in-computational-skills.readthedocs.io/en/latest/content/workshops/06_cluster_computing/06_cluster_computing.html)
+
 # Array Technologies
+
+## Microarrays
+[online slides](https://docs.google.com/presentation/d/e/2PACX-1vQ5tOnr9uT3vOu-1Idrc_5FZGvG80vrBggdFQTn_G76zkZAl-LY38HexjCBJR-1BHZqybRNRaWH9aHw/pub?start=false&loop=false&delayms=60000)
+
+## git
+[online slides](https://docs.google.com/presentation/d/e/2PACX-1vRDq6AzJsjbm4O-e5sZmJCLbwLdsVJteD_Vym7xJJOJiZQJKoaD9ezI7u_sYG--TWSekHaV3wys_MLe/pub?start=false&loop=false&delayms=60000)
+
+## Project Principles
+[online slides](https://docs.google.com/presentation/d/e/2PACX-1vSpq4leuEzA-nOxPjY5AaDk02K4At1H0R7DtSGd4vWxSkMtZC1hZcYcQzjiALiI4fC2Ro4lle4ZVQxG/pub?start=false&loop=false&delayms=60000)
+
+## Assignment
+Read the Project 1 Description and paper.
+
+Familiarize yourself with Workshop 4 on R
+[Workshop 4. R](http://foundations-in-computational-skills.readthedocs.io/en/latest/content/workshops/04_R/04_R.html)
 
 # Gene sets and enrichment
 
+## Gene Enrichment
+[online slides](https://docs.google.com/presentation/d/e/2PACX-1vSbmjCME7ucFrniZ1QMpK8P2hirfWNcHvBkGuuQnWxq2vdLDDFlquqB4GcMFGnKT39HyX1PNzZejH_h/pub?start=false&loop=false&delayms=60000)
+
+##R and Rstudio Primer
+[online slides](https://docs.google.com/presentation/d/e/2PACX-1vQI2jy5w0llgl_rUZUxLBBm2yQbdT3k4Zd2Et9D6S3_DBa_avsGTm4Fd-DowmgTKr5dOF60PXp4rpLI/pub?start=false&loop=false&delayms=60000)
+
 # 2nd Gen Sequencing
+[online slides](https://docs.google.com/presentation/d/e/2PACX-1vTzyfENJGLok-iFfBGnQJsLkxgi85tiRYFPo1SMEs6QMRgdRuhlglLwxOz3MrRc_Ne26chdT3TY3d6X/pub?start=false&loop=false&delayms=60000)
 
 # Sequence Analysis Fundamentals
+[online slides](https://docs.google.com/presentation/d/e/2PACX-1vQJMtfWQoTTCOFH18eA59m4RwHUS5Y44u0M2Mj9GF6uZ-7ysGL0jUjnAuQzlGpIq9r6Ml76JdRGQa9r/pub?start=false&loop=false&delayms=60000)
 
 # Sequence Analysis - RNA-Seq 1
+[online slides](https://docs.google.com/presentation/d/e/2PACX-1vTZa69m_srKP3qkG39hXLPxFj8qxFm7iyXHmafhzw280hwYRcLZC1lfW3D9e_GZMtPyUQXwTKQR6RSk/pub?start=false&loop=false&delayms=60000)
 
 # Sequence Analysis - RNA-Seq 2
+[online slides](https://docs.google.com/presentation/d/e/2PACX-1vTiGpkqsPN6GdcBsRrKeg-Z28W8b-r0BMKq74mHs6HVB4s5yyzhahddvxhtf7pRmkrzgypOyYhGeetC/pub?start=false&loop=false&delayms=60000)
 
 # Genomic Variation and SNP Analysis
+[online slides](https://docs.google.com/presentation/d/e/2PACX-1vSlxVUED6_ewePCkRq-KW94rlms2XY40aIUD3hVxQM6zgXoyTGMa4Aq4XwZHQd6Ub52prTmrWVqhOUG/pub?start=false&loop=false&delayms=3000)
 
 # Biological Data Formats
+[online slides](https://docs.google.com/presentation/d/e/2PACX-1vTAlHBQ0ciGwBMgDAOLijFpez83CWB89joeVXGCh41M_UYa00I8Ic-rF8paVdGyrk39Mg5je7OL1fNH/pub?start=false&loop=false&delayms=60000)
 
 # Sequence Visualization
+[online slides](https://docs.google.com/presentation/d/e/2PACX-1vQ2EG2cOeuX_m6GbOLy0xRiO0M6npga70kFQpEwbV6L4iMRH6zdw9KF1-mc76eoKDMhMuCfMG9nsdBj/pub?start=false&loop=false&delayms=60000)
 
 # Sequence Analysis - ChIP-Seq
+[online slides](https://docs.google.com/presentation/d/e/2PACX-1vTn4TYtzS6V5Otdwk21kkEcpJYJT85QSKI9WyV02jg4eocvZ0DIoLCOO4Hc-JXG6e26myuMmVeeCqd4/pub?start=false&loop=false&delayms=60000)
 
 # Biological Databases
+[online slides](https://docs.google.com/presentation/d/e/2PACX-1vTHx-LAMZbtve9yQ41aaLdayG9EQBf9pwWLCFzubAGzbh-h9QpWW6n60gVgvHInyyjkfW3pC6fVSIir/pub?start=false&loop=false&delayms=60000)
 
 # Replicability vs Reproducibility Strategies
+[online slides](https://docs.google.com/presentation/d/e/2PACX-1vSoklMcPz61vb1qmozSyJfk1KAcmZX_rZvAiRc-PdiCk1h8vrssgMY9ArH0MxH83K_ph7mmX2aomsT2/pub?start=false&loop=false&delayms=60000)
 
 # Computational Environment Management
+[online slides](https://docs.google.com/presentation/d/e/2PACX-1vShkoUtSv3pKEK7TnJnw6LARP7yriWz9TTYnL6mjWNyvnyVLdRc_hriGM6LmiWT-_F-OvRb91qYoiC6/pub?start=false&loop=false&delayms=60000)
 
 # Computational Pipeline Strategies
+[online slides](https://docs.google.com/presentation/d/e/2PACX-1vQ_mAwA9Lc43MC9ZeT0vTkc4zuAyIObEybtGh7DE8FOeIpocD9KNtbVuEtK36DCiEw4-2wlR-vZtndr/pub?start=false&loop=false&delayms=60000)
 
 # Single Cell Techniques
+[online slides](https://docs.google.com/presentation/d/e/2PACX-1vRmDn8Wccs3U-ackOYlQEKerZYlb7LZURl36H7WOUXDI3uZMc2Wbv5wYEb4_p5yISuemH4pd3rnTAf_/pub?start=false&loop=false&delayms=60000)
 
 # Single Cell Analysis Part 1
+[online slides](https://docs.google.com/presentation/d/e/2PACX-1vS810o9Pm9ZNPNQbiLzj_1pJBi6hW2HKWUDjJ8JL_cnINtFRAYY_JRu4pACfPUxP1lr-gtrUYldPXfK/pub?start=false&loop=false&delayms=60000)
 
 # Single Cell Analysis Part 2
+[online slides](https://docs.google.com/presentation/d/e/2PACX-1vRis1yjBJ4OTXWTLQ6DIi7BaOwL2vZfm8mv5Fp5f7c5c9o2VlK5LJTjhjlYe1c_-RDbf_FwCrW7MlO8/pub?start=false&loop=false&delayms=3000)
 
 # Microbiome: 16S
+[online slides](https://docs.google.com/presentation/d/e/2PACX-1vQt0DvUo-HvVBKEowigxFLoAQzh1-zaULnUTntOxVLIUVXzdjWlx-187v7JRshgDnPCNRlkFZ7XIhXx/pub?start=false&loop=false&delayms=60000)
 
 # Microbiome: Metagenomics
+[online slides](https://docs.google.com/presentation/d/e/2PACX-1vQnnx58Hgxn8jmE1lJizH3A_8NUCZ9_BOdUGHrr9GySVcyL5zJUXTsMorSb6j8PC8SQdnOEn5yl7KdC/pub?start=false&loop=false&delayms=60000)
 
 # Proteomics
 
+## Proteomics
+[online slides](https://docs.google.com/presentation/d/e/2PACX-1vSZYrZAckcu3gOhagpRVUChw7YP0b4y8B4BxU2ghgNdLBiCSXHEGDYweeJDIUhnXP8qIaupPpTJozCN/pub?start=false&loop=false&delayms=60000)
+
+## Docker
+[online slides](https://docs.google.com/presentation/d/e/2PACX-1vRLilR08I6jXh1bv1MxrTD5ZaQiJ2MRxfIVuDV3Hgj1P5OmQIxA8r9Bscv73-Arsi9-hmwrAr2nHrAL/pub?start=false&loop=false&delayms=60000)
+
 # Metabolomics
+[online slides](https://docs.google.com/presentation/d/e/2PACX-1vQhRAdSzUxWjR1B224cMrqoSzG1mnPNonoqwYtjOX8Jg3rwr1VIbwc70Sejo3TKCTTkyircMZJox388/pub?start=false&loop=false&delayms=3000)
 
 # Integrative Genomics
-
-# (PART) Projects
+[online slides](https://docs.google.com/presentation/d/e/2PACX-1vRmNM78YD0Ah8DHuwBwH4JmndxT8MeljqSQvknkyw-p61MNJs7UOt69FbIcu69nFwtTLzEio86WBj-t/pub?start=false&loop=false&delayms=60000)
