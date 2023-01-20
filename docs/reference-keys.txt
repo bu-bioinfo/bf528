@@ -3,8 +3,16 @@ introductory-slides
 computational-primer
 assignment
 genomics-genes-and-genomes
+genes-and-genomes
+scc-cluster-usage
+assignment-1
 array-technologies
+microarrays
+git
+project-principles
+assignment-2
 gene-sets-and-enrichment
+gene-enrichment
 nd-gen-sequencing
 sequence-analysis-fundamentals
 sequence-analysis---rna-seq-1
@@ -23,6 +31,7 @@ single-cell-analysis-part-2
 microbiome-16s
 microbiome-metagenomics
 proteomics
+proteomics-1
+docker
 metabolomics
 integrative-genomics
-part-projects
