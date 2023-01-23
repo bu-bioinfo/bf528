@@ -7,6 +7,8 @@ output: html_document
 ## Introductory slides
 [online slides](https://docs.google.com/presentation/d/e/2PACX-1vRCP0p5ARvNRpPo6KzjGdcTvT1SBVoz8W7M6see7n-ricraiwD-VgfLqb-I7OAHjTnMqhrY48iVrlSw/pub?start=false&loop=false&delayms=60000)
 
+[downloadable slides](https://docs.google.com/presentation/d/1C-KKnTbZCekB1kEKz5EWEA_EPp8pXTFZVOubXz90ZQY/export/pptx)
+
 ## Computational Primer
 [online slides](https://docs.google.com/presentation/d/e/2PACX-1vRJSQzG48GI9cZf4MemUIfXPKJ342k91ZkyioZGRdqiMDkJXYzDsqLNcEyIJkj-bikqn8r0sj8cyBif/pub?start=false&loop=false&delayms=60000)
 
