@@ -201,7 +201,8 @@ Project guidelines for group reports (1, 2, 3, and 4) are here:
 [Project Writeup Instructions]
 
 Please also take some time with your group to review and think about some of the
-questions in [Class Expectations for Group Work][Group Expectations for working collaboratively]. We have outlined a few preliminary questions to discuss with
+questions in [Class Expectations][Group Expectations for working collaboratively]. 
+We have outlined a few preliminary questions to discuss with
 your group to help set some basic, formal expectations for working together.
 
 
