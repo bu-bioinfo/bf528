@@ -14,6 +14,7 @@ Before your first TA meeting, we would like you to discuss the following
 questions as a group and come to a preliminary consensus.
 
 **Communication:**
+
 What will be our group’s primary mode of communication? (Slack, Phone, etc.)
 
 How will we collaboratively work on the project reports?
@@ -29,6 +30,7 @@ When or will we have regular group meetings to discuss our written report
 before submitting it?
 
 **Mediation:** 
+
 How will we handle when a group member does not meet the expectations agreed
 upon?
 
