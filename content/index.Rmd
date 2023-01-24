@@ -147,7 +147,7 @@ As instructor, I pledge to
 
 The five projects are as follows:
 
-1. [Microarray Based Tumor Classification]
+1. [Microarray Based Tumor Classification][Project 1: Microarray Based Tumor Classification]
 2. [Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq]
 3. [ChIP-Seq analysis of the human transcription factor Runx1]
 4. [Single Cell RNA-Seq Analysis of Pancreatic Cells]
