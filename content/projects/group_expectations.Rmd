@@ -1,0 +1,39 @@
+---
+---
+
+# Group Expectations for working collaboratively {-}
+
+The majority of this course involves working collaboratively in a group to
+reproduce key findings from scientific papers. Working as a team is a difficult
+task as everyone has their own unique style of communicating and contributing.
+This document is intended to be a starting point to facilitate discussion and
+set preliminary expectations for how you will communicate, manage conflicts and
+meet the expectations of the course.
+
+Before your first TA meeting, we would like you to discuss the following
+questions as a group and come to a preliminary consensus.
+
+**Communication:**
+What will be our group’s primary mode of communication? (Slack, Phone, etc.)
+
+How will we collaboratively work on the project reports?
+
+When will we have our sections done to work on the project report together?
+
+If my section will not be done on the agreed upon time, when will I inform the
+group?
+
+How do we share responsibilities for writing collaborative sections?
+
+When or will we have regular group meetings to discuss our written report
+before submitting it?
+
+**Mediation:** 
+How will we handle when a group member does not meet the expectations agreed
+upon?
+
+Will we address it privately first or raise the issues during our group meetings
+with our TA?
+
+If a group member is still unresponsive or not completing their
+responsibilities, when do we escalate the issue to the instructors?
