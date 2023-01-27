@@ -98,10 +98,10 @@ visualize and understand all of the key steps that go into a particular analysis
 and how your role connects and depends on the others.
 
 For this first project, you do **not** need to make a workflow diagram. Simply
-read this section and familiarize yourself with what and how they represent
-steps in a workflow. For the subsequent projects, as a group, you will make
-a single workflow diagram that describes the entire analysis you perform for 
-those projects.  
+read this section and familiarize yourself with how they visually represent the
+steps of an analysis and their dependencies. For the subsequent projects, as a
+group, you will make a single workflow diagram that summarizes the entire
+analysis you perform for those projects.
 
 
 ## 2. Data acquisition & transfer to remote server {-}
