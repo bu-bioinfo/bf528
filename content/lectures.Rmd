@@ -68,7 +68,7 @@ Familiarize yourself with Workshop 4 on R
 
 [downloadable slides](https://docs.google.com/presentation/d/1h13WgR2NabDO8vqjTzygmvgy4PCKhCzwof_qsH1_od4/export/pptx)
 
-##R and Rstudio Primer
+## R and Rstudio Primer
 [online slides](https://docs.google.com/presentation/d/1ur8SodoCJsG-0qve8VEHeo0FKqQkdLoe_hr5UVyJgxI/present?usp=sharing)
 
 [downloadable slides](https://docs.google.com/presentation/d/1ur8SodoCJsG-0qve8VEHeo0FKqQkdLoe_hr5UVyJgxI/export/pptx)
