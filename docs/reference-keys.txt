@@ -13,6 +13,7 @@ project-principles
 assignment-2
 gene-sets-and-enrichment
 gene-enrichment
+r-and-rstudio-primer
 nd-gen-sequencing
 sequence-analysis-fundamentals
 sequence-analysis---rna-seq-1
