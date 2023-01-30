@@ -83,6 +83,7 @@ and how your role connects and depends on the others.
 ## 2. Read Alignment and Mapping Statistics {-}
 
 **Lead Role: Data Curator**
+
 The data you will be working with consists of two ChIP-seq experiments,
 typically termed the IP or pulldown samples, with matching input controls for a
 total of 4 samples or FASTQ files. We have downloaded and processed three out of
@@ -105,7 +106,7 @@ Snakemake workflow to run all of the steps below:
 
 2. Run Trimmomatic with the default settings suggested by Trimmomatic. Use the
    adapter fasta file we have provided for you located here:
-   /project/bf528/project_3_chipseq/references/TruSeq3–SE.fa
+   `/project/bf528/project_3_chipseq/references/TruSeq3–SE.fa`
    
 3. Align the FASTQ file against the provided hg19 human genome reference using
    BowTie2. The original publication did not specify if they adjusted any of the
@@ -113,7 +114,7 @@ Snakemake workflow to run all of the steps below:
    “pre-set” options that adjust various alignment parameters. You may look into
    and choose one that you think is appropriate or you may use default parameters.
    The pre-built index may be found here:
-   /project/bf528/project_3_chipseq/references/GRCh37.p13.genome.bowtie2
+   `/project/bf528/project_3_chipseq/references/GRCh37.p13.genome.bowtie2`
 
 4. Use Samtools flagstat to output a short summary of mapping statistics to a 
    .txt file 
@@ -125,7 +126,7 @@ Snakemake workflow to run all of the steps below:
    steps 
    
    We have provided you with the alignments for the other 3 samples as BAM files 
-   in /projectnb/bf528/project_3_chipseq/provided_files/. For convenience and
+   in `/projectnb/bf528/project_3_chipseq/provided_files/`. For convenience and
    clarity, they are named runx1_rep2_sorted.bam, inp_rep1_sorted.bam, and 
    inp_rep2_sorted.bam. Separately, use Samtools to output the same mapping 
    statistics as in 2.4. Create a table similar to the one seen in Supplemental 
@@ -151,6 +152,7 @@ Snakemake workflow to run all of the steps below:
 ## 3. Peak Calling and Annotation using Homer {-}
 
 **Lead Role: Programmer**
+
 We will now use the alignments from BowTie2 to perform peak calling using the
 program HOMER. The data curator will provide you with one of the sorted, indexed
 BAM files and we have provided you with the others. You will ultimately use
@@ -173,7 +175,7 @@ filtered peaks to their nearest genomic feature, and perform motif finding to
 analyze what other cofactors may be binding in your discovered peaks.
 
 To allow you to get started writing and testing your code, you may use the files
-found in /projectnb/bf528/project_3_chipseq/provided_files/ as a starting point.
+found in `/projectnb/bf528/project_3_chipseq/provided_files/` as a starting point.
 Specifically, you can use the runx1_rep2_sorted.bam and inp_rep2_sorted.bam to
 start the analysis for the second set of the replicates from the study. The data
 curator will provide you with a sorted, BAM file for the alignments for the
@@ -203,7 +205,7 @@ inp_rep1_sorted.bam to process the first set of replicates.
 
 6. Use BedTools to remove any peaks from your list based on the provided
    blacklist located here:
-   /project/bf528/project_3_chipseq/references/hg19_blacklist.bed. Make sure to
+   `/project/bf528/project_3_chipseq/references/hg19_blacklist.bed`. Make sure to
    note in your written report how many peaks remain and were removed from your
    list of “reproducible” peaks after filtering using this blacklist.
 
@@ -256,6 +258,7 @@ you will have to figure out how to do the following:
 ## 4. Generating bigWig file for correlation analysis and visualization {-}
 
 **Lead Role: Analyst** 
+
 DeepTools is a collection of utilities that perform various helpful functions
 especially in the context of ChIP-seq and genome-wide sequencing technologies.
 You will be using these utilities to generate a heatmap of clustered correlation
@@ -281,7 +284,7 @@ figure 1c, we can see that the signal distribution for the Runx1 ChIP is
 primarily concentrated in the promoter-TSS region of genes.
 
 To allow you to get started writing and testing your code, you may use the files
-found in /projectnb/bf528/project_3_chipseq/provided_files/ as a starting point.
+found in `/projectnb/bf528/project_3_chipseq/provided_files/` as a starting point.
 There you will find the BAM files for the first replicate input, and the second
 replicate IP sample and second replicate input. You may use these to test your
 initial code while waiting for the data curator to provide you with the final 
@@ -341,6 +344,7 @@ for genome-wide sequencing data.
 ## 5. Integration with HIC and RNAseq data {-}
 
 **Lead Role: Biologist**
+
 ChIP-seq data is often used in tandem with RNA-seq results to provide a direct
 link between the physical binding of a factor and its subsequent effect on gene
 expression. Put simply, if we observe binding of a transcription factor in an
@@ -352,7 +356,7 @@ to the GEO accession page for this publication (GSE75070).
 
 To help you get started, we have given you a list of annotated, reproducible 
 peaks and a bigWig file that we have generated separately. You may find them
-in /projectnb/bf528/project_3_chipseq/provided_files/. The annotated peaks and 
+in `/projectnb/bf528/project_3_chipseq/provided_files/`. The annotated peaks and 
 bigWig file are named repr_peaks_annotation_subset.txt and example.bw, respectively.
 You may use these until your group has generated your own reproducible peak files 
 and processed bigWig files. 
