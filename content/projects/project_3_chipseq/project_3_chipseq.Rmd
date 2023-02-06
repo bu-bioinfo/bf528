@@ -96,7 +96,7 @@ the appropriate FASTQ file.
 
 Next, in order to get you started, we have included a skeleton outline of a
 working snakefile under
-`/projectnb/bf528/project_3_chipseq/provided_files/example.snake There are
+`/projectnb/bf528/project_3_chipseq/provided_files/example.snake`. There are
 directions and helpful tips included as commented lines in this file. Please
 copy it and the file found at the same location named `test.fastq.gz` to a
 separate directory in your group's project folder. Without editing it, try some
