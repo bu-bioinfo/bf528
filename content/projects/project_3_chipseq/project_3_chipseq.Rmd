@@ -92,15 +92,23 @@ generating a snakemake workflow that will process it in the same manner as the
 others. Your first step will be to download GSM1942111 (SRR2919475) from the GEO
 accession GSE75070. The sample itself is referred to as the 'MCF-7 wildtype RUNX1
 ChIPseq Replicate1 Pulldown'. You may use whatever strategy you like to download
-the appropriate FASTQ file. Load all of the necessary components in modules
-before running snakemake. Though there are many workflow management tools, we
-will be using Snakemake as its syntax is highly similar to Python, a programming
-language you already have experience using. We have provided a skeleton
-snakemake file that will demonstrate and explain some of the basic concepts.
-Utilize information from the provided example snakefile called example.snake as
-well as the official Snakemake tutorial
+the appropriate FASTQ file. 
+
+Next, in order to get you started, we have included a skeleton outline of a
+working snakefile under
+`/projectnb/bf528/project_3_chipseq/provided_files/example.snake There are
+directions and helpful tips included as commented lines in this file. Please
+copy it and the file found at the same location named `test.fastq.gz` to a
+separate directory in your group's project folder. Without editing it, try some
+of the commands included in the comments to get a sense for how to run snakemake
+on the CLI.
+
+Though there are many workflow management tools, we will be using Snakemake as
+its syntax is highly similar to Python, a programming language you already have
+experience using.  Utilize information from the provided `example.snake` as well
+as the official Snakemake tutorial
 (https://snakemake.readthedocs.io/en/stable/tutorial/basics.html) to generate a
-Snakemake workflow to run all of the steps below: 
+Snakemake workflow to run all of the steps below:
 
 1. Run FASTQC on the FASTA file
 
