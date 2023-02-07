@@ -44,6 +44,7 @@ Contents:
 * [3. Peak Calling and Annotation using Homer]
 * [4. Generating bigWig file for correlation analysis and visualization]
 * [5. Integration with HIC and RNAseq data]
+* [6. Consider Your Findings]
 
 
 ## 1. Read the paper & supplemental methods and create a workflow diagram for your role {-}
@@ -424,6 +425,31 @@ and processed bigWig files.
 * IGV visualization of the MALAT1 TSS with bigWig tracks for all 4 samples, and 
   the BED file of reproducible peaks
   
+## 6. Consider Your Findings {-}
+
+Discuss your findings with your team members and other teams. Some interesting
+questions to consider:
+
+1. How much agreement is there between your reported findings and theirs? What
+   are some of the key details included or missing from the publication that 
+   were necessary for reproducing their findings?
+
+2. The authors highlight NEAT1 and MALAT1 as being differentially expressed upon
+   Runx1 shRNA knockdown and also demonstrate binding of Runx1 to their respective
+   promoters. What additional experiments could be performed to begin investigating
+   the mechanism by which it regulates their expression?
+   
+3. The authors note that following Runx1 depletion, they do not observe widespread,
+   major changes in TADs, but Runx1 is bound at TAD boundaries. What are some 
+   additional experiments that could be performed to investigate the role of 
+   Runx1 in genomic architecture?
+  
+4. Most of the discussion focused on the role of Runx1 at promoters, but it has
+   been appreciated of late that binding in intergenic / intronic 
+   regions can have functional, and regulatory effects. What are some experiments
+   one could perform to investigate the potential effects of Runx1 binding to 
+   distal regulatory elements?
+
 ## Assignment Writeup {-}
 
 Refer to the [Project Writeup Instructions].
