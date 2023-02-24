@@ -21,6 +21,7 @@ sequence-analysis---rna-seq-2
 genomic-variation-and-snp-analysis
 biological-data-formats
 sequence-visualization
+sequence-analysis---atac-seq
 sequence-analysis---chip-seq
 biological-databases
 replicability-vs-reproducibility-strategies
