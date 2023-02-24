@@ -108,6 +108,11 @@ Familiarize yourself with Workshop 4 on R
 
 [downloadable slides](https://docs.google.com/presentation/d/1ObDpgPaNaWwn-a_pjeq09v1j-SjLXs0dpa9m6KTWXww/export/pptx)
 
+# Sequence Analysis - ATAC-Seq
+[online slides](https://docs.google.com/presentation/d/14FxXgKuC7Ul0G6tCN8gjjGKc89vAujQiQCcDnwuzdJA/present?usp=sharing)
+
+[downloadable slides](https://docs.google.com/presentation/d/14FxXgKuC7Ul0G6tCN8gjjGKc89vAujQiQCcDnwuzdJA/export/pptx)
+
 # Sequence Analysis - ChIP-Seq
 [online slides](https://docs.google.com/presentation/d/1JarJGLbgTdSzUW6U1TmyNAUReNVUxfvUTBJ8hLhCAWg/present?usp=sharing)
 
