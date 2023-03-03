@@ -128,9 +128,9 @@ Familiarize yourself with Workshop 4 on R
 [demo slides downloadable](https://docs.google.com/presentation/d/1zdlwxhBb2_cmTQRyVgVEpV0YyFZipW5iGRtwTb8U984/export/pptx)
 
 # Replicability vs Reproducibility Strategies
-[online slides](https://docs.google.com/presentation/d/16K1JaYKGMo8bqcKf-l1FHHNzhtqCfrHWOdQ0xuokgYU/present?usp=sharing)
+[online slides](https://docs.google.com/presentation/d/1CmIhOXuIvVwxRm4tRK5BZi5f_APmB4T8pUzrV_DJdww/present?usp=sharing)
 
-[downloadable slides](https://docs.google.com/presentation/d/16K1JaYKGMo8bqcKf-l1FHHNzhtqCfrHWOdQ0xuokgYU/export/pptx)
+[downloadable slides](https://docs.google.com/presentation/d/1CmIhOXuIvVwxRm4tRK5BZi5f_APmB4T8pUzrV_DJdww/export/pptx)
 
 # Computational Environment Management
 [online slides](https://docs.google.com/presentation/d/1daf_StRgrXxGQ8LYoY7qVWhXSUd-H5-dNeDmSAKN0RA/present?usp=sharing)
