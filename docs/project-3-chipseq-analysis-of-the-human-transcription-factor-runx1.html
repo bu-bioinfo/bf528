@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Project 3: ChIPseq analysis of the human transcription factor Runx1 | BF528 - Applications in Translational Bioinformatics</title>
-<meta name="generator" content="bookdown 0.32 with bs4_book()">
+<meta name="generator" content="bookdown 0.33 with bs4_book()">
 <meta property="og:title" content="Project 3: ChIPseq analysis of the human transcription factor Runx1 | BF528 - Applications in Translational Bioinformatics">
 <meta property="og:type" content="book">
 <meta name="twitter:card" content="summary">
@@ -162,13 +162,15 @@ and how your role connects and depends on the others.</p>
 <p><strong>Lead Role: Data Curator</strong></p>
 <p>The data you will be working with consists of two ChIP-seq experiments,
 typically termed the IP or pulldown samples, with matching input controls for a
-total of 4 samples or FASTQ files. We have downloaded and processed three out of
-the four files already, and you will be responsible for downloading the last and
-generating a snakemake workflow that will process it in the same manner as the
-others. Your first step will be to download GSM1942111 (SRR2919475) from the GEO
-accession GSE75070. The sample itself is referred to as the ‘MCF-7 wildtype RUNX1
-ChIPseq Replicate1 Pulldown’. You may use whatever strategy you like to download
-the appropriate FASTQ file.</p>
+total of 4 samples or FASTQ file. The samples labeled with rep1, both pulldown
+and input, are paired and represent a single biological replicate experiment and
+the same for rep2.</p>
+<p>We have downloaded and processed three out of the four files already, and you
+will be responsible for downloading the last and generating a snakemake workflow
+that will process it in the same manner as the others. Your first step will be
+to download GSM1942111 (SRR2919475) from the GEO accession GSE75070. The sample
+itself is referred to as the ‘MCF-7 wildtype RUNX1 ChIPseq Replicate1 Pulldown’.
+You may use whatever strategy you like to download the appropriate FASTQ file.</p>
 <p>Next, in order to get you started, we have included a skeleton outline of a
 working snakefile under
 <code>/projectnb/bf528/project_3_chipseq/provided_files/example.snake</code>. There are
@@ -177,18 +179,41 @@ copy it and the file found at the same location named <code>test.fastq.gz</code>
 separate directory in your group’s project folder. Without editing it, try some
 of the commands included in the comments to get a sense for how to run snakemake
 on the CLI.</p>
-<p>In order to use snakemake on the SCC, you can use <code>module load snakemake</code>. You’ll
-notice that you need to load a module for miniconda, then snakemake, and then
-activate the pre-set conda environment with the command it lists. If you are
-feeling adventurous, you may also walk through setting up your own conda
-environments but this is not required. See here for some helpful instructions
-on using conda on the SCC: <a href="https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/anaconda/">Conda Environments on the SCC</a>.</p>
+<p>In order to use snakemake on the SCC, you can use <code>module load snakemake</code>.
+You’ll notice that you need to load a module for miniconda, then snakemake, and
+then activate the pre-set conda environment with the command it lists. If you
+are feeling adventurous, you may also walk through setting up your own conda
+environments with snakemake and the other required tools installed but this is
+not required. See here for some helpful instructions on using conda on the SCC:
+<a href="https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/anaconda/">Conda Environments on the
+SCC</a>.</p>
+<p><strong>N.B.</strong> Snakemake allows for automatic submission of queued jobs conforming to
+various standards, including SGE, the computing cluster grid engine system used
+by the SCC. However, it still requires an active process and any interruptions
+such as closing your terminal window or internet connectivity issues will break
+the snakemake process. One common way to mitigate this is by using screen
+multiplexers such as tmux or screen, which allow you to “background” processes
+and run them “detached” from the terminal. We <strong>will not</strong> require you to use
+either of these tools. You may develop the snakemake workflow using the
+<code>test.fastq.gz</code> which should run in a short amount of time. In parallel, you
+should use qsub scripts in the style of previous projects to submit jobs
+individually for the full data file.</p>
+<p>The <code>test.fastq.gz</code> file is a subset of the original file containing only 1000
+reads, and thus, the major bottleneck for run time will simply be the waiting
+time for queued jobs on the SCC. It should run quickly enough that keeping an
+active terminal window should not be too cumbersome. If you are already familiar
+with tmux or screen, you may develop the workflow to operate on the full files
+if you feel so inclined.</p>
 <p>Though there are many workflow management tools, we will be using Snakemake as
 its syntax is highly similar to Python, a programming language you already have
-experience using. Utilize information from the provided <code>example.snake</code> as well
-as the official Snakemake tutorial
-(<a href="https://snakemake.readthedocs.io/en/stable/tutorial/basics.html" class="uri">https://snakemake.readthedocs.io/en/stable/tutorial/basics.html</a>) to generate a
-Snakemake workflow to run all of the steps below:</p>
+experience using. We have provided you two example snakefiles <code>example.snake</code>
+which has extensive comments explaining the key aspects of snakemake and
+<code>example_simple.snake</code> which provides the same skeleton code as in
+<code>example.snake</code> without the wall of text. Utilize information from the provided
+<code>example.snake</code> as well as the official Snakemake tutorial
+(<a href="https://snakemake.readthedocs.io/en/stable/tutorial/basics.html" class="uri">https://snakemake.readthedocs.io/en/stable/tutorial/basics.html</a>) to fill in the
+provided snakemake skeleton and produce a working snakemake file to run all of
+the steps below:</p>
 <ol style="list-style-type: decimal">
 <li><p>Run FASTQC on the FASTA file</p></li>
 <li><p>Run Trimmomatic with the default settings suggested by Trimmomatic. Use the
@@ -203,11 +228,14 @@ The pre-built index may be found here:
 <code>/project/bf528/project_3_chipseq/references/GRCh37.p13.genome.bowtie2</code></p></li>
 <li><p>Use Samtools flagstat to output a short summary of mapping statistics to a
 .txt file</p></li>
-<li><p>Use Samtools sort to produce a sorted BAM file Run Samtools index on the
+<li><p>Use Samtools sort to produce a sorted BAM file. Run Samtools index on the
 sorted BAM file to create a .bai (BAM index) file</p></li>
+<li><p>Run MultiQC to produce a convenient report of the quality metrics from all
+previous steps</p></li>
 <li>
-<p>Run MultiQC to produce a convenient report of the quality metrics from all
-steps</p>
+<p>Run Samtools flagstat to produce mapping statistics for the other provided
+files. You are welcome to incorporate this into your Snakemake workflow, but
+it is not necessary.</p>
 <p>We have provided you with the alignments for the other 3 samples as BAM files
 in <code>/projectnb/bf528/project_3_chipseq/provided_files/</code>. For convenience and
 clarity, they are named runx1_rep2_sorted.bam, inp_rep1_sorted.bam, and
@@ -215,18 +243,15 @@ inp_rep2_sorted.bam. Separately, use Samtools to output the same mapping
 statistics as in 2.4. Create a table similar to the one seen in Supplemental
 Figure 2b.</p>
 </li>
-<li><p>Run Samtools flagstat to produce mapping statistics for the other provided
-files. You are welcome to incorporate this into your Snakemake workflow, but
-it is not necessary.</p></li>
 </ol>
 <p><strong>Deliverables:</strong></p>
 <ul>
 <li><p>A sorted BAM file of alignments for SRR2919475</p></li>
 <li><p>A BAM index for the sorted BAM file</p></li>
 <li><p>Table of mapping statistics for all 4 BAM files</p></li>
-<li><p>Relevant FASTQC quality plots from MultiQC</p></li>
-<li><p>The completed Snakemake workflow (snakefile) that produces the above
-deliverables</p></li>
+<li><p>Relevant FASTQC quality plots from MultiQC for SRR2919475</p></li>
+<li><p>The completed Snakemake workflow (snakefile) that applies the listed workflow
+on the example fastq file.</p></li>
 </ul>
 </div>
 <div id="peak-calling-and-annotation-using-homer" class="section level2 unnumbered">
@@ -252,7 +277,7 @@ Bedtools to produce your own set of “reproducible peaks” from the two replic
 experiments provided. Once you have generated this list of “reproducible” peaks,
 you will remove any known blacklisted signal-artifact regions, annotate your
 filtered peaks to their nearest genomic feature, and perform motif finding to
-analyze what other cofactors may be binding in your discovered peaks.</p>
+infer what other factors / cofactors may be binding in your discovered peaks.</p>
 <p>To allow you to get started writing and testing your code, you may use the files
 found in <code>/projectnb/bf528/project_3_chipseq/provided_files/</code> as a starting point.
 Specifically, you can use the runx1_rep2_sorted.bam and inp_rep2_sorted.bam to
@@ -341,7 +366,7 @@ then calculate the pairwise correlation between the bins of samples and display
 this information as a clustered heatmap. Our a priori expectations are that our
 IP or pulldown samples are highly similar to each other, our input samples are
 similar to each other, and the IP and input samples are less similar when
-compared. We will then use the bigWig files to plot the normalized signal
+compared. We will then use the bigWig files to plot the signal coverage
 relative to the transcription start site (TSS) and transcription termination
 site (TTS) of all genes in the hg19 reference. This type of plot is often
 helpful for determining the potential regulatory mechanisms of the factor of
