@@ -269,7 +269,7 @@ inp_rep1_sorted.bam to process the first set of replicates.
    motif finding using your “reproducible peaks” BED file after it has been 
    filtered using the ENCODE blacklist. The official documentation for the
    findMotifsGenome utility is here: http://homer.ucsd.edu/homer/ngs/peakMotifs.html.
-   Please ensure that you set the <genome> argument as `/projectnb/bf528/project_3_chipseq/references/GRCh37.p13.genome.fa` and 
+   Please ensure that you set the genome argument as `/projectnb/bf528/project_3_chipseq/references/GRCh37.p13.genome.fa` and 
    include the additional argument `-size 200`. Your final command should look
    something like: `findMotifsGenome.pl <bed file> /projectnb/bf528/project_3_chipseq/references/GRCh37.p13.genome.fa <output_dir> -size 200`
    
