@@ -406,14 +406,15 @@ bigWig file are named repr_peaks_annotation_subset.txt and example.bw, respectiv
 You may use these until your group has generated your own reproducible peak files 
 and processed bigWig files. 
 
-1. Download the DESeq2 results (GSE75070_MCF7_shRUNX1_shNS_RNAseq_log2_foldchange.txt.gz).
-   Apply the same filters and cutoffs as specified in the methods. How many DE 
-   genes do you find? Do they match the numbers reported in the paper? 
+1. Download the DESeq2 results
+   (GSE75070_MCF7_shRUNX1_shNS_RNAseq_log2_foldchange.txt.gz). Apply the same
+   filters and cutoffs as specified in the methods of the original paper. How 
+   many DE genes do you find? Do they match the numbers reported in the paper?
 
 2. Using the list of DE genes found in step 1 and the annotated peak file 
    provided to you by the programmer, recreate figure 1f and produce a stacked 
    barchart or similar figure showing the proportions found from your results. 
-   **N.B.** In their figure 1f, they calculate one set of numbers relative to 
+   **N.B.** In their figure 2f, they calculate one set of numbers relative to 
    the TSS and another set relative to the ‘whole body’ of the gene. For our 
    case, just use the distance to TSS found in the annotations file. 
 
