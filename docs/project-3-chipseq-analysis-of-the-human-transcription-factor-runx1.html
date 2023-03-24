@@ -320,7 +320,10 @@ FASTA file of the extracted genomic regions covered by the peaks. For our
 purposes, we will use the findMotifsGenome.pl utility in HOMER to perform
 motif finding using your “reproducible peaks” BED file after it has been
 filtered using the ENCODE blacklist. The official documentation for the
-findMotifsGenome utility is here: <a href="http://homer.ucsd.edu/homer/ngs/peakMotifs.html" class="uri">http://homer.ucsd.edu/homer/ngs/peakMotifs.html</a>.</p></li>
+findMotifsGenome utility is here: <a href="http://homer.ucsd.edu/homer/ngs/peakMotifs.html" class="uri">http://homer.ucsd.edu/homer/ngs/peakMotifs.html</a>.
+Please ensure that you set the <genome> argument as <code>/projectnb/bf528/project_3_chipseq/references/GRCh37.p13.genome.fa</code> and
+include the additional argument <code>-size 200</code>. Your final command should look
+something like: <code>findMotifsGenome.pl &lt;bed file&gt; /projectnb/bf528/project_3_chipseq/references/GRCh37.p13.genome.fa &lt;output_dir&gt; -size 200</code></genome></p></li>
 </ol>
 <p><strong>OPTIONAL:</strong> If you are looking for an extra challenge, you may instead attempt
 to use MEME-ChIP to perform motif finding as they did in the paper. In general,
