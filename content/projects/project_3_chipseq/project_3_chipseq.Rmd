@@ -124,16 +124,16 @@ the snakemake process. One common way to mitigate this is by using screen
 multiplexers such as tmux or screen, which allow you to "background" processes
 and run them "detached" from the terminal. We **will not** require you to use
 either of these tools. You may develop the snakemake workflow using the
-`test.fastq.gz` which should run in a short amount of time. In parallel, you
-should use qsub scripts in the style of previous projects to submit jobs
-individually for the full data file.
+`test.fastq.gz` which should run in a short amount of time. 
 
-The `test.fastq.gz` file is a subset of the original file containing only 1000
-reads, and thus, the major bottleneck for run time will simply be the waiting
-time for queued jobs on the SCC. It should run quickly enough that keeping an
-active terminal window should not be too cumbersome. If you are already familiar
-with tmux or screen, you may develop the workflow to operate on the full files
-if you feel so inclined.
+In parallel, you should use qsub scripts in the style of previous projects to
+submit jobs individually to perform the same processing steps for the full data
+file.The `test.fastq.gz` file is a subset of the original file containing only
+1000 reads, and thus, the major bottleneck for run time will simply be the
+waiting time for queued jobs on the SCC. It should run quickly enough that
+keeping an active terminal window should not be too cumbersome. If you are
+already familiar with tmux or screen, you may develop the workflow to operate on
+the full files if you feel so inclined.
 
 Though there are many workflow management tools, we will be using Snakemake as
 its syntax is highly similar to Python, a programming language you already have
@@ -160,8 +160,8 @@ the steps below:
    The pre-built index may be found here:
    `/project/bf528/project_3_chipseq/references/GRCh37.p13.genome.bowtie2`
 
-4. Use Samtools flagstat to output a short summary of mapping statistics to a 
-   .txt file 
+4. Use Samtools flagstat to output a short summary of the mapping statistics of
+   the aligned bam to a .txt file
 
 5. Use Samtools sort to produce a sorted BAM file. Run Samtools index on the 
    sorted BAM file to create a .bai (BAM index) file 
@@ -233,7 +233,7 @@ inp_rep1_sorted.bam to process the first set of replicates.
    this step with default parameters for every option. You may refer to the 
    official instructions found here: http://homer.ucsd.edu/homer/ngs/tagDir.html
    
-3. Run the findPeaks utility in HOMER.The official documentation for the 
+3. Run the findPeaks utility in HOMER. The official documentation for the 
    findPeaks utility may be found here: http://homer.ucsd.edu/homer/ngs/peaks.html. 
    Make sure you use the `-style factor` mode. N.B. You will want to run this 
    twice (once for each pair of IP and Inp replicates). 
@@ -282,9 +282,9 @@ you will have to figure out how to do the following:
 2. Determine the average size of your peaks 
 3. Use your chromosome sizes, the average size of your peaks, and BedTools to 
    make a BED file containing all of your peaks expanded to around ~500bp in size. 
-4. Extract the DNA sequences from the regions in your BED file from
-   the provided bgzipped genomic FASTA reference for hg19. 
-5. Run MEME-ChIP using your fasta file of DNA sequences covered by your peaks
+4. Extract the DNA sequences from the regions in your BED file from a bgzipped
+   genomic FASTA file for the hg19 reference.
+5. Run MEME-ChIP using your FASTA file of DNA sequences covered by your peaks
 
 **Deliverables:** 
 
@@ -296,7 +296,9 @@ you will have to figure out how to do the following:
   filtered for signal–artifact regions 
   
 * A txt file of your filtered “reproducible” peaks annotated to their nearest 
-  genomic feature A pie chart showing the relative proportions of “reproducible”
+  genomic feature 
+  
+* A pie chart showing the relative proportions of “reproducible”
   peaks annotated to genomic features (intron, intergenic, TSS, TTS, etc.) 
   
 * Summarize the top ten enriched motifs from the output of
@@ -310,23 +312,23 @@ you will have to figure out how to do the following:
 DeepTools is a collection of utilities that perform various helpful functions
 especially in the context of ChIP-seq and genome-wide sequencing technologies.
 You will be using these utilities to generate a heatmap of clustered correlation
-metrics between all the samples, normalized coverage tracks for visualization,
-and the signal coverage plot across the TSS and TTS of all hg19 genes. We will
-first generate bigWig files of each BAM file to calculate the similarity between
-all of these files based on their binned coverage. The bamCoverage utility will
+metrics between all the samples, coverage tracks for visualization, and the
+signal coverage plot across the TSS and TTS of all hg19 genes. We will first
+generate bigWig files of each BAM file to calculate the similarity between all
+of these files based on their binned coverage. The bamCoverage utility will
 create bigWig files, which essentially discretizes the genome into evenly sized,
 consecutive bins and counts the number of reads falling into each one. We will
 then calculate the pairwise correlation between the bins of samples and display
 this information as a clustered heatmap. Our a priori expectations are that our
 IP or pulldown samples are highly similar to each other, our input samples are
 similar to each other, and the IP and input samples are less similar when
-compared. We will then use the bigWig files to plot the signal coverage
-relative to the transcription start site (TSS) and transcription termination
-site (TTS) of all genes in the hg19 reference. This type of plot is often
-helpful for determining the potential regulatory mechanisms of the factor of
-interest. In our case, transcription factors are known to directly bind DNA and
-are commonly found located in the promoter region (near the TSS) where they will
-typically recruit other cofactors, chromatin remodelers or components of the RNA
+compared. We will then use the bigWig files to plot the signal coverage relative
+to the transcription start site (TSS) and transcription termination site (TTS)
+of all genes in the hg19 reference. This type of plot is often helpful for
+determining the potential regulatory mechanisms of the factor of interest. In
+our case, transcription factors are known to directly bind DNA and are commonly
+found located in the promoter region (near the TSS) where they will typically
+recruit other cofactors, chromatin remodelers or components of the RNA
 polymerase complex II to regulate gene expression. If we inspect the plot in
 figure 1c, we can see that the signal distribution for the Runx1 ChIP is
 primarily concentrated in the promoter-TSS region of genes.
