@@ -287,13 +287,17 @@ first replicate pulldown which you will then use in conjunction with the provide
 inp_rep1_sorted.bam to process the first set of replicates.</p>
 <ol style="list-style-type: decimal">
 <li><p>Load the require modules: Homer, Bedtools</p></li>
-<li><p>Generate TAG directories using the makeTagDir command in HOMER. You can run
-this step with default parameters for every option. You may refer to the
-official instructions found here: <a href="http://homer.ucsd.edu/homer/ngs/tagDir.html" class="uri">http://homer.ucsd.edu/homer/ngs/tagDir.html</a></p></li>
+<li><p>Generate TAG directories using the makeTagDir command in HOMER for each
+sample. This will result in separate tag directories for all 4 of the samples
+in the experiment. You can run this step with default parameters for every
+option. You may refer to the official instructions found here: <a href="http://homer.ucsd.edu/homer/ngs/tagDir.html" class="uri">http://homer.ucsd.edu/homer/ngs/tagDir.html</a></p></li>
 <li><p>Run the findPeaks utility in HOMER. The official documentation for the
 findPeaks utility may be found here: <a href="http://homer.ucsd.edu/homer/ngs/peaks.html" class="uri">http://homer.ucsd.edu/homer/ngs/peaks.html</a>.
-Make sure you use the <code>-style factor</code> mode. N.B. You will want to run this
-twice (once for each pair of IP and Inp replicates).</p></li>
+Make sure you use the <code>-style factor</code> mode. <strong>N.B.</strong> You will want to run this
+twice (once for each pair of IP and Inp replicates, match the IP replicate
+number with the Input replicate number in a single findPeaks call). The
+findPeaks utility takes as input the tag directories generated in the
+previous step.</p></li>
 <li><p>The findPeaks utility outputs a HOMER formatted text file. Use the pos2bed
 HOMER utility to convert your peak files to BED files.</p></li>
 <li><p>You will have two sets of peak BED files from the previous steps. For this
@@ -475,13 +479,13 @@ loci to generate your figures.</p></li>
 This is a common representation of HI-C data where the frequency of
 interaction (commonly interpreted as the “strength” of the interaction)
 between two genomic bins is visualized as a heatmap. This is done for every
-pair of bins along a region, in this case, they chose a 5.3 megabase stretch
-on the p arm of chromosome 10. Although this plot looks complicated, it is in
-essence, a heatmap of the pairwise interaction matrix for all of the listed
-bins that has been cropped to only show the upper triangle above the diagonal
-(since the lower triangle is the same), rotated 45 degrees, and superimposed
-over the genomic track. Navigate to the GEO page for this experiment,
-download the appropriate processed HI-C data
+pair of bins along a region, in this case, they chose the first 5.3 megabase
+stretch on the p arm of chromosome 10. Although this plot looks complicated,
+it is in essence, a heatmap of the pairwise interaction matrix for all of the
+listed bins that has been cropped to only show the upper triangle above the
+diagonal (since the lower triangle is the same), rotated 45 degrees, and
+superimposed over the genomic track. Navigate to the GEO page for this
+experiment, download the appropriate processed HI-C data
 (GSE75070_HiCStein-MCF7-shGFP_hg19_chr10_C-40000-iced.matrix.gz) and do your
 best to recreate this heatmap. You do not need to crop the heatmap or rotate
 it. If you find that your heatmap does not look similar to the one in the
