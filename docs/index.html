@@ -5,14 +5,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>BF528 - Applications in Translational Bioinformatics</title>
-<meta name="generator" content="bookdown 0.33 with bs4_book()">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
 <meta property="og:title" content="BF528 - Applications in Translational Bioinformatics">
 <meta property="og:type" content="book">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BF528 - Applications in Translational Bioinformatics">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
@@ -87,11 +87,11 @@
 <h1>BF528 - Applications in Translational Bioinformatics<a class="anchor" aria-label="anchor" href="#bf528---applications-in-translational-bioinformatics"><i class="fas fa-link"></i></a>
 </h1>
 <p>Welcome to the homepage of BF528.</p>
-<p><strong>Semester: Spring 2023</strong></p>
-<p><strong>Meeting time:</strong> Monday/Friday 10:10-11:55</p>
-<p><strong>Location:</strong> SOC B57 and Zoom</p>
+<p><strong>Semester: Spring 2024</strong></p>
+<p><strong>Meeting time:</strong> Monday/Wednesday/Friday 9:05-9:55am</p>
+<p><strong>Location:</strong> CDS B62</p>
 <p><strong>Office hours:</strong>
-By appointment</p>
+By appointment (<a href="mailto:jorofino@bu.edu" class="email">jorofino@bu.edu</a>) or weekly as determined in class</p>
 <p>Contents:</p>
 <ul>
 <li><a href="index.html#course-schedule">Course Schedule</a></li>
@@ -99,81 +99,77 @@ By appointment</p>
 <li><a href="index.html#office-hours">Office Hours</a></li>
 <li><a href="index.html#course-values-and-policies">Course Values and Policies</a></li>
 </ul>
-<p>The objective of this course is expose students to the topics and technologies
-used in modern bioinformatics studies. The course covers a mix of biological
-and computational topics, including:</p>
+<div id="learning-objectives" class="section level2 unnumbered">
+<h2>Learning Objectives<a class="anchor" aria-label="anchor" href="#learning-objectives"><i class="fas fa-link"></i></a>
+</h2>
 <ul>
-<li>High throughput genomics techniques (microarrays, 2nd generation sequencing)</li>
-<li>Current high throughput sequencing assays (DNA-Seq, RNA-Seq, ChIP-Seq)</li>
-<li>Differential gene expression techniques</li>
-<li>Microbiome/metagenomics techniques</li>
-<li>Metabolomics</li>
-<li>Proteomics</li>
-<li>Systems, network, and integrative biology</li>
-<li>Basic linux cluster usage</li>
-<li>Python and R scripting</li>
-<li>Computational workflow and replication strategies</li>
-<li>Genomics data visualization techniques</li>
-<li>Biological databases</li>
+<li>Gain conceptual understanding of the assays and tools used
+in modern bioinformatics studies from how they function on a molecular level to
+the major computational analysis steps</li>
+<li>Develop proficiency in creating bioinformatics workflows with an emphasis on
+reproducibility and portability</li>
+<li>Practice analyzing bioinformatics results and interpreting them in the context
+of the underlying research question to draw meaningful biological conclusions</li>
 </ul>
-<p>This is highly hands-on course, where a portion of in-class periods are
-dedicated to concerted group work and interactive discussions. The course
-materials are focused on real-world applications of the high throughput
-genomics techniques and organized into structured <strong>group projects</strong>. Students
-are organized into groups of three or four for the entire semester, where they
-will work together to replicate results from published studies. The tasks for
-each project have been divided into four ‘roles’:</p>
-<p><strong>Data curator</strong>: identify, download, and describe relevant datasets and
-literature</p>
-<p><strong>Programmer</strong>: write code to transform the downloaded data into an
-interpretable form</p>
-<p><strong>Analyst</strong>: examine and visualize processed data to aid in interpretation</p>
-<p><strong>Biologist</strong>: connect the processed data into meaningful biological
-interpretation</p>
-<p>Each group will complete four projects over the course of the semester, and for
-each project the roles of the members rotate, such that each member fulfills
-each role once. Each group will produce a full report describing their work on
-each project, including biological background, methods, results, and
-interpretation.</p>
-<p>The first half of each in-class period will be dedicated to interactive
-discussions on special topics germane to the project material. The second half
-is dedicated to either special topics as indicated in the schedule below, or
-to discussion of the projects, sharing ideas, and communicating challenges both
-within and between groups, with the assistance of the instructors.</p>
-<p>There are no homeworks or exams, only projects.</p>
-<p>The course materials are aligned with <a href="https://github.com/bu-bioinfo/r-for-biological-sciences">BF591 R for Biological
-Sciences</a> and are
-intended to be taken in tandem, but the materials also stand alone as an
-independent class.</p>
+<p>Below you will find a selection of some of the prominent biological and
+computational topics that will be covered in the course:
+- High Throughput Sequencing Technologies (RNAseq, ChIPseq, scRNAseq)
+and various omics technologies (Proteomics, Metabolomics, etc)
+- Computational Workflow Tools (snakemake, nextflow)
+- Reproducibility and Replicability Tools (Git, Docker, Conda)
+- Bioinformatics Databases and File Formats</p>
+</div>
+<div id="course-description" class="section level2 unnumbered">
+<h2>Course Description<a class="anchor" aria-label="anchor" href="#course-description"><i class="fas fa-link"></i></a>
+</h2>
+<p>The objective of this course is to expose students to modern bioinformatics
+studies with a specific focus on the analysis of next generation sequencing
+data. The course lectures will cover a mix of both biological and computational
+topics necessary for the technical and conceptual understanding of current
+high-throughput genomics techniques. This will include brief discussions of the
+molecular mechanisms of the assays, basic data analysis workflows, and
+translating these results into biological conclusions.</p>
+<p>Students will get hands-on experience developing computational workflows that
+perform an end-to-end analysis of sequencing data from ubiquitous NGS
+technologies including RNA-sequencing, ChIP-sequencing, and Single Cell
+RNA-sequencing. The course emphasizes the importance of reproducibility,
+portability, and replicability in modern bioinformatics.</p>
+<p>Classes will be a mix of more traditional topic lectures, interactive demos and
+collaborative workshops where students will work together on discussions or
+concepts / analyses not covered fully in lectures.</p>
+<p>Projects are split into weekly tasks but the majority of your evaluation will be
+the final report produced for each project.</p>
+</div>
 <div id="course-values-and-policies" class="section level2 unnumbered">
 <h2>Course Values and Policies<a class="anchor" aria-label="anchor" href="#course-values-and-policies"><i class="fas fa-link"></i></a>
 </h2>
-<p><strong>Everyone is welcome.</strong> Every background, race, color, creed, religion, ethnic origin,
-age, sex, sexual orientation, gender identity, nationality is welcome and celebrated
-in this course. Everyone deserves respect, patience, and kindness. <em>Disrespectful language,
-discrimination, or harassment of any kind are not tolerated, and may result in removal
-from class or the University.</em> This is not merely <a href="http://www.bu.edu/policies/policy-category/harassment-discrimination/">BU
-policy</a>.
-The instructors deem these principles to be inviolable human rights. Students
-should feel safe reporting any and all instances of discrimination or harassment
-to the instructor, to any of the Bioinformatics Program leadership, or the BU
-<a href="http://www.bu.edu/eoo/">Equal Opportunity Office</a></p>
-<p><strong>Everyone brings value.</strong> Each of us brings unique experiences, skills, and
-creativity to this course. Our diversity is our greatest asset.</p>
-<p><strong>Collaboration is highly encouraged</strong>. All students are encouraged to work together and seek
-out any and all available resources when completing projects in all aspects of the course,
-including sharing both ideas and code as well as those found on the internet. Any and all
-available resources may be brought to bear. <em>However, consistent with BU policy, your reports
-should be written in your own words and represent your own work and understanding of the
-material.</em></p>
-<p><strong>A safe space for dissent.</strong> For complex topics such as those covered in this class, there
-is seldom one correct answer, approach, or solution. Disagreement fosters innovation.
-All in the course, including students and TAs, are encouraged to express constructive
-criticism and alternative ideas on any aspect of the content.</p>
-<p><strong>We are always learning.</strong> Our knowledge and understanding is always incomplete. Even experts
-are fallible. The bioinformatics field evolves rapidly, and “Rome was not built in a day.”
-Be kind to yourself and to others. You are always smarter and more knowledgable today than you
-were yesterday.</p>
+<p><strong>Everyone is welcome.</strong> Every background, race, color, creed, religion, ethnic
+origin, age, sex, sexual orientation, gender identity, nationality is welcome
+and celebrated in this course. Everyone deserves respect, patience, and
+kindness. Disrespectful language, discrimination, or harassment of any kind are
+not tolerated, and may result in removal from class or the University. The
+instructors deem these principles to be inviolable human rights. Students should
+feel safe reporting any and all instances of discrimination or harassment to the
+instructor, to any of the Bioinformatics Program leadership, or the BU Equal
+Opportunity Office</p>
+<p><strong>Everyone brings value.</strong> Each of us brings unique experiences,
+skills, and creativity to this course. Our diversity is our greatest asset.
+Collaboration is highly encouraged. All students are encouraged to work together
+and seek out any and all available resources when completing projects in all
+aspects of the course, including sharing both ideas and code as well as those
+found on the internet. Any and all available resources may be brought to bear.
+However, consistent with BU policy, your reports should be written in your own
+words and represent your own work and understanding of the material.</p>
+<p><strong>Life happens.</strong> Your mental health is important, far more important than any class.
+Make sure to take care of yourself and reach out to someone you trust (mentor,
+family member, or friend) if you ever feel you need to talk to someone. BU
+offers a number of resources through Student Health Services for managing
+situations involving grief, anxiety and depression, stress, homesickness and
+other common issues. I am also always here to listen without judgment. On a
+related note, if you need to miss class because of private matters, you do not
+need to disclose anything you aren’t comfortable sharing, please just let me
+know and I will work with you to help you catch up when you return. Your family,
+friends, and health should always come first.</p>
 </div>
 <div id="prerequisites" class="section level2 unnumbered">
 <h2>Prerequisites<a class="anchor" aria-label="anchor" href="#prerequisites"><i class="fas fa-link"></i></a>
@@ -204,438 +200,374 @@ do my best to avoid the use of idioms and slang)</li>
 <div id="project-overview" class="section level2 unnumbered">
 <h2>Project Overview<a class="anchor" aria-label="anchor" href="#project-overview"><i class="fas fa-link"></i></a>
 </h2>
-<p>The five projects are as follows:</p>
+<p>The three projects are as follows:</p>
 <ol style="list-style-type: decimal">
-<li><a href="project-1-microarray-based-tumor-classification.html#project-1-microarray-based-tumor-classification">Microarray Based Tumor Classification</a></li>
-<li><a href="project-2-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html#project-2-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq">Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></li>
-<li><a href="project-3-chipseq-analysis-of-the-human-transcription-factor-runx1.html#project-3-chipseq-analysis-of-the-human-transcription-factor-runx1">ChIP-Seq analysis of the human transcription factor Runx1</a></li>
-<li><a href="project-4-single-cell-rna-seq-analysis-of-pancreatic-cells.html#project-4-single-cell-rna-seq-analysis-of-pancreatic-cells">Single Cell RNA-Seq Analysis of Pancreatic Cells</a></li>
-<li><a href="individual-project.html#individual-project">Individual Project</a></li>
+<li>[Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq][Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq]</li>
+<li>[ChIP-Seq analysis of the human transcription factor Runx1][Project 2: ChIPseq analysis of the human transcription factor Runx1]</li>
+<li>[Single Cell RNA-Seq Analysis of Kidney Cells][Project 3: Single Cell RNA-Seq Analysis of Kidney Cells]</li>
 </ol>
-<p>In the individual project, you will choose (at least) two roles from any of the
-projects <em>that you did not previously do</em>. This will give you an opportunity to
-gain experience with tools and skills you may have missed while playing other
-roles.</p>
-<p>The roles in each project require varying amounts of effort. Since you must do
-each role exactly once, below is information about the rating of each role in
-each project with respect to the amount of <strong>computational skill/time commitment
-required</strong> to help you choose your sequence of roles:</p>
-<div class="inline-table"><table style="width:96%;" class="table table-sm">
-<colgroup>
-<col width="20%">
-<col width="17%">
-<col width="17%">
-<col width="17%">
-<col width="24%">
-</colgroup>
-<thead><tr class="header">
-<th>Role</th>
-<th>Project 1</th>
-<th>Project 2</th>
-<th>Project 3</th>
-<th>Project 4</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td>Data Curator</td>
-<td>⚫⚪⚪⚪</td>
-<td>⚫⚫⚪⚪</td>
-<td>⚫⚫⚪⚪</td>
-<td>⚫⚫⚫❗</td>
-</tr>
-<tr class="even">
-<td>Programmer</td>
-<td>⚫⚪⚪⚪</td>
-<td>⚫⚫⚪⚪</td>
-<td>⚫⚫⚫⚪</td>
-<td>⚫⚫⚪⚪</td>
-</tr>
-<tr class="odd">
-<td>Analyst</td>
-<td>⚫⚫⚪⚪</td>
-<td>⚫⚪⚪⚪</td>
-<td>⚫⚫⚫⚪</td>
-<td>⚫⚫⚪⚪</td>
-</tr>
-<tr class="even">
-<td>Biologist</td>
-<td>⚫⚪⚪⚪</td>
-<td>⚫⚪⚪⚪</td>
-<td>⚫⚪⚪⚪</td>
-<td>⚫⚫⚪⚪</td>
-</tr>
-<tr class="odd">
-<td colspan="5">⚫⚪⚪⚪ – least skill required; ⚫⚫⚫❗ – most skill required</td>
-</tr>
-</tbody>
-</table></div>
-<p>Taking these ratings into account, we provide four possible sequences for
-each member of each group. Sequence 1 through 4 involve increasingly difficult
-computational tasks:</p>
-<div class="inline-table"><table style="width:96%;" class="table table-sm">
-<colgroup>
-<col width="19%">
-<col width="19%">
-<col width="19%">
-<col width="19%">
-<col width="19%">
-</colgroup>
-<thead><tr class="header">
-<th></th>
-<th>Project 1</th>
-<th>Project 2</th>
-<th>Project 3</th>
-<th>Project 4</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td>Sequence 1</td>
-<td>Programmer</td>
-<td>Analyst</td>
-<td>Data Curator</td>
-<td>Biologist</td>
-</tr>
-<tr class="even">
-<td>Sequence 2</td>
-<td>Data Curator</td>
-<td>Biologist</td>
-<td>Analyst</td>
-<td>Programmer</td>
-</tr>
-<tr class="odd">
-<td>Sequence 3</td>
-<td>Biologist</td>
-<td>Data Curator</td>
-<td>Programmer</td>
-<td>Analyst</td>
-</tr>
-<tr class="even">
-<td>Sequence 4</td>
-<td>Analyst</td>
-<td>Programmer</td>
-<td>Biologist</td>
-<td>Data Curator</td>
-</tr>
-</tbody>
-</table></div>
-<p>These are only suggestions. These suggested sequences also only reflect the
-computational skill involved in each role; those with less biological
-background may find the biologist roles more conceptually challenging.</p>
-<p>Project guidelines for group reports (1, 2, 3, and 4) are here:
+<p>Project guidelines for the written reports (1, 2, 3, and 4) are here:
 <a href="project-writeup-instructions.html#project-writeup-instructions">Project Writeup Instructions</a></p>
-<p>Please also take some time with your group to review and think about some of the
-questions in <a href="group-expectations-for-working-collaboratively.html#group-expectations-for-working-collaboratively">Class Expectations</a>.
-We have outlined a few preliminary questions to discuss with
-your group to help set some basic, formal expectations for working together.</p>
 </div>
 <div id="grading-and-assessment" class="section level2 unnumbered">
 <h2>Grading and Assessment<a class="anchor" aria-label="anchor" href="#grading-and-assessment"><i class="fas fa-link"></i></a>
 </h2>
-<p>Group report assessment will be the same for all group members. Assessment is
-made based on the process completed by the group, not whether the study results
-were successfully replicated or not. Each students’ grade may be adjusted based
-upon the quality of their final individual project relative to their group
-reports.</p>
+<p>Grading and assessment</p>
 </div>
 <div id="course-schedule" class="section level2 unnumbered">
 <h2>Course Schedule<a class="anchor" aria-label="anchor" href="#course-schedule"><i class="fas fa-link"></i></a>
 </h2>
-<div class="inline-table"><table style="width:98%;" class="table table-sm">
+<div class="inline-table"><table style="width:97%;" class="table table-sm">
 <colgroup>
-<col width="2%">
-<col width="2%">
+<col width="4%">
 <col width="5%">
-<col width="23%">
-<col width="12%">
-<col width="50%">
-<col width="0%">
+<col width="10%">
+<col width="43%">
+<col width="32%">
 </colgroup>
 <thead><tr class="header">
 <th>No.</th>
 <th>Day</th>
 <th>Date</th>
 <th>Primary Topic</th>
-<th>Secondary Topic</th>
 <th>Project Assigned/Due</th>
-<th></th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td>1</td>
 <td>Fri</td>
-<td>1/20/2023</td>
+<td>1/19/2024</td>
 <td><a href="project-writeup-instructions.html#introduction-1">Introduction</a></td>
-<td>Command Line Interface</td>
-<td></td>
 <td></td>
 </tr>
 <tr class="even">
 <td>2</td>
 <td>Mon</td>
-<td>1/23/2023</td>
+<td>1/22/2024</td>
 <td><a href="genomics-genes-and-genomes.html#genomics-genes-and-genomes">Genomics, Genes, and Genomes</a></td>
-<td>Cluster Usage</td>
-<td></td>
-<td></td>
+<td>Assignment 0 Assigned</td>
 </tr>
 <tr class="odd">
 <td>3</td>
-<td>Fri</td>
-<td>1/27/2023</td>
-<td><a href="array-technologies.html#array-technologies">Array Technologies</a></td>
-<td>git</td>
-<td><a href="project-1-microarray-based-tumor-classification.html#project-1-microarray-based-tumor-classification">Project 1</a></td>
+<td>Wed</td>
+<td>1/24/2024</td>
+<td>[Computational Workflows] / Git &amp; Conda</td>
 <td></td>
 </tr>
 <tr class="even">
 <td>4</td>
-<td>Mon</td>
-<td>1/30/2023</td>
-<td><a href="gene-sets-and-enrichment.html#gene-sets-and-enrichment">Gene sets and enrichment</a></td>
-<td>R+RStudio Primer</td>
-<td></td>
+<td>Fri</td>
+<td>1/26/2024</td>
+<td>[Sequence Fundamentals]</td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>5</td>
-<td>Fri</td>
-<td>2/3/2023</td>
+<td>Mon</td>
+<td>1/29/2024</td>
 <td><a href="nd-gen-sequencing.html#nd-gen-sequencing">2nd Gen Sequencing</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td>Wk 1 - P1 Assigned</td>
 </tr>
 <tr class="even">
 <td>6</td>
-<td>Mon</td>
-<td>2/6/2023</td>
-<td><a href="sequence-analysis-fundamentals.html#sequence-analysis-fundamentals">Sequence Analysis Fundamentals</a></td>
-<td></td>
-<td></td>
+<td>Wed</td>
+<td>1/31/2024</td>
+<td>Science Writing</td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>7</td>
 <td>Fri</td>
-<td>2/10/2023</td>
+<td>2/2/2024</td>
 <td><a href="sequence-analysis---rna-seq-1.html#sequence-analysis---rna-seq-1">Sequence Analysis - RNA-Seq 1</a></td>
-<td></td>
-<td></td>
 <td></td>
 </tr>
 <tr class="even">
 <td>8</td>
 <td>Mon</td>
-<td>2/13/2023</td>
+<td>2/5/2024</td>
 <td><a href="sequence-analysis---rna-seq-2.html#sequence-analysis---rna-seq-2">Sequence Analysis - RNA-Seq 2</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td>Wk2 - P1 Assigned / Wk 1 - P1 Due</td>
 </tr>
 <tr class="odd">
 <td>9</td>
-<td>Fri</td>
-<td>2/17/2023</td>
-<td><a href="genomic-variation-and-snp-analysis.html#genomic-variation-and-snp-analysis">Genomic Variation and SNP Analysis</a></td>
-<td>Project 1 Review</td>
-<td>1 Due/<a href="project-2-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html#project-2-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq">Project 2</a>
-</td>
+<td>Wed</td>
+<td>2/7/2024</td>
+<td>[SCC Usage]</td>
 <td></td>
 </tr>
 <tr class="even">
 <td>10</td>
-<td>Tue</td>
-<td>2/21/2023</td>
+<td>Fri</td>
+<td>2/9/2024</td>
 <td><a href="biological-data-formats.html#biological-data-formats">Biological Data Formats</a></td>
-<td>Genome Browsers</td>
-<td></td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>11</td>
-<td>Fri</td>
-<td>2/24/2023</td>
-<td><a href="sequence-analysis---atac-seq.html#sequence-analysis---atac-seq">Sequence Analysis - ATAC-Seq</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td>Mon</td>
+<td>2/12/2024</td>
+<td><a href="gene-sets-and-enrichment.html#gene-sets-and-enrichment">Gene Sets and Enrichment</a></td>
+<td>Wk3 - P1 Assigned / Wk 2 - P1 Due</td>
 </tr>
 <tr class="even">
 <td>12</td>
-<td>Mon</td>
-<td>2/27/2023</td>
-<td><a href="sequence-analysis---chip-seq.html#sequence-analysis---chip-seq">Sequence Analysis - ChIP-Seq</a></td>
-<td></td>
-<td></td>
+<td>Wed</td>
+<td>2/14/2024</td>
+<td>Project 1 Check-In</td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>13</td>
 <td>Fri</td>
-<td>3/3/2023</td>
-<td><a href="biological-databases.html#biological-databases">Biological Databases</a></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td>Mon</td>
-<td>3/6/2023</td>
-<td>Spring Break</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>Fri</td>
-<td>3/10/2023</td>
-<td>Spring Break</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>14</td>
-<td>Mon</td>
-<td>3/13/2023</td>
+<td>2/16/2024</td>
 <td><a href="replicability-vs-reproducibility-strategies.html#replicability-vs-reproducibility-strategies">Replicability vs Reproducibility Strategies</a></td>
 <td></td>
+</tr>
+<tr class="even">
 <td></td>
+<td>Mon</td>
+<td>2/19/2024</td>
+<td>No Class</td>
 <td></td>
 </tr>
 <tr class="odd">
+<td>14</td>
+<td>Wed</td>
+<td>2/21/2024</td>
+<td>Scientific Figures (Adam)</td>
+<td>Wk4 - P1 Assigned / Wk3 - P1 Due</td>
+</tr>
+<tr class="even">
 <td>15</td>
 <td>Fri</td>
-<td>3/17/2023</td>
-<td><a href="computational-environment-management.html#computational-environment-management">Computational Environment Management</a></td>
-<td>Project 2 Review</td>
-<td colspan="2">2 Due/<a href="project-3-chipseq-analysis-of-the-human-transcription-factor-runx1.html#project-3-chipseq-analysis-of-the-human-transcription-factor-runx1">Project 3</a> |</td>
+<td>2/23/2024</td>
+<td><a href="sequence-analysis---chip-seq.html#sequence-analysis---chip-seq">Sequence Analysis - ChIP-Seq</a></td>
+<td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>16</td>
 <td>Mon</td>
-<td>3/20/2023</td>
-<td><a href="computational-pipeline-strategies.html#computational-pipeline-strategies">Computational Pipeline Strategies</a></td>
-<td>Conda+Snakemake</td>
-<td></td>
-<td></td>
+<td>2/26/2024</td>
+<td>[Genome Browsers]</td>
+<td>Wk5 - P1 Assigned / Wk4 - P1 Due</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>17</td>
-<td>Fri</td>
-<td>3/24/2023</td>
-<td><a href="single-cell-techniques.html#single-cell-techniques">Single Cell Techniques</a></td>
-<td></td>
-<td></td>
+<td>Wed</td>
+<td>2/28/2024</td>
+<td>LLMs / ChatGPT Discussion</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>18</td>
-<td>Mon</td>
-<td>3/27/2023</td>
-<td><a href="single-cell-analysis-part-1.html#single-cell-analysis-part-1">Single Cell Analysis Part 1</a></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>19</td>
 <td>Fri</td>
-<td colspan="5">3/31/2023 | <a href="single-cell-analysis-part-2.html#single-cell-analysis-part-2">Single Cell Analysis Part 2</a> | |</td>
+<td>3/1/2024</td>
+<td><a href="sequence-analysis---atac-seq.html#sequence-analysis---atac-seq">Sequence Analysis - ATAC-Seq</a></td>
+<td></td>
 </tr>
 <tr class="even">
-<td>20</td>
+<td>19</td>
 <td>Mon</td>
-<td>4/3/2023</td>
-<td><a href="microbiome-16s.html#microbiome-16s">Microbiome: 16S</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td>3/4/2024</td>
+<td><a href="biological-databases.html#biological-databases">Biological Databases</a></td>
+<td>Wk1 - P2 Assigned / P1 Report Due</td>
 </tr>
 <tr class="odd">
+<td>20</td>
+<td>Wed</td>
+<td>3/6/2024</td>
+<td>Project 1 Review and Discussion</td>
+<td></td>
+</tr>
+<tr class="even">
 <td>21</td>
 <td>Fri</td>
-<td>4/7/2023</td>
-<td><a href="microbiome-metagenomics.html#microbiome-metagenomics">Microbiome: Metagenomics</a></td>
-<td>Project 3 Review</td>
-<td>3 Due/<a href="project-4-single-cell-rna-seq-analysis-of-pancreatic-cells.html#project-4-single-cell-rna-seq-analysis-of-pancreatic-cells">Project 4</a>
-</td>
+<td>3/8/2024</td>
+<td>[Genomic Variation and SNPs]</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>22</td>
 <td>Mon</td>
-<td>4/10/2023</td>
-<td><a href="proteomics.html#proteomics-1">Proteomics</a></td>
-<td>Something Fancy</td>
-<td></td>
+<td>3/11/2024</td>
+<td>No Class</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>23</td>
-<td>Fri</td>
-<td>4/14/2023</td>
-<td><a href="metabolomics.html#metabolomics">Metabolomics</a></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>24</td>
 <td>Wed</td>
-<td>4/19/2023</td>
-<td><a href="professional-development.html#professional-development">Professional Development</a></td>
-<td></td>
-<td></td>
+<td>3/13/2024</td>
+<td>No Class</td>
 <td></td>
 </tr>
 <tr class="odd">
-<td></td>
+<td>24</td>
 <td>Fri</td>
-<td>4/21/2023</td>
-<td>Project work, no class</td>
-<td></td>
-<td></td>
+<td>3/15/2024</td>
+<td>No Class</td>
 <td></td>
 </tr>
 <tr class="even">
-<td></td>
+<td>25</td>
 <td>Mon</td>
-<td>4/24/2023</td>
-<td>Project work, no class</td>
-<td></td>
-<td></td>
-<td></td>
+<td>3/18/2024</td>
+<td>[Metagenomics]</td>
+<td>Wk2 - P2 Assigned / Wk2 - P1 Due</td>
 </tr>
 <tr class="odd">
-<td></td>
-<td>Fri</td>
-<td>4/28/2023</td>
-<td>Project work, no class</td>
-<td></td>
-<td>4 Due/<a href="individual-project.html#individual-project">Project 5</a>
-</td>
+<td>26</td>
+<td>Wed</td>
+<td>3/20/2024</td>
+<td>Genome Browsers, Pt. 2</td>
 <td></td>
 </tr>
 <tr class="even">
+<td>27</td>
+<td>Fri</td>
+<td>3/22/2024</td>
+<td>[16s Sequencing]</td>
+<td></td>
+</tr>
+<tr class="odd">
 <td>28</td>
 <td>Mon</td>
-<td>5/1/2023</td>
-<td>Project 4 Review / Course Feedback</td>
+<td>3/25/2024</td>
+<td><a href="proteomics.html#proteomics-1">Proteomics</a></td>
+<td>Wk3 - P2 Assigned / Wk2 - P2 Due</td>
+</tr>
+<tr class="even">
+<td>29</td>
+<td>Wed</td>
+<td>3/27/2024</td>
+<td>Project 2 Check-In</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>30</td>
+<td>Fri</td>
+<td>3/29/2024</td>
+<td>Metabolomics</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>31</td>
+<td>Mon</td>
+<td>4/1/2024</td>
+<td>Figure Generation, Pt. 2 (Adam)</td>
+<td>Wk4 - P2 Assigned / Wk3 - P2 due</td>
+</tr>
+<tr class="odd">
+<td>32</td>
+<td>Wed</td>
+<td>4/3/2024</td>
+<td>Nextflow</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>33</td>
+<td>Fri</td>
+<td>4/5/2024</td>
+<td>Docker</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>34</td>
+<td>Mon</td>
+<td>4/8/2024</td>
+<td>[Single Cell Part 1]</td>
+<td>Wk5 - P2 Assigned / Wk4 - P2 Due</td>
+</tr>
+<tr class="even">
+<td>35</td>
+<td>Wed</td>
+<td>4/10/2024</td>
+<td>[Single Cell Part 2]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>36</td>
+<td>Fri</td>
+<td>4/12/2024</td>
+<td>[Single Cell Part 3]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>37</td>
+<td>Mon</td>
+<td>4/15/2024</td>
+<td>No class</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>38</td>
+<td>Wed</td>
+<td>4/17/2024</td>
+<td>Project 2 Review and Discussion</td>
+<td>Wk1 - P3 Assigned / P2 Report Due</td>
+</tr>
+<tr class="even">
+<td>39</td>
+<td>Fri</td>
+<td>4/19/2024</td>
+<td>Presentation Overview</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>40</td>
+<td>Mon</td>
+<td>4/22/2024</td>
+<td>Presentations</td>
+<td>Wk2 - P3 Assigned / Wk1 - P3 Due</td>
+</tr>
+<tr class="even">
+<td>41</td>
+<td>Wed</td>
+<td>4/24/2024</td>
+<td>Project 3 Check-In</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>42</td>
+<td>Fri</td>
+<td>4/26/2024</td>
+<td>Presentations</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>43</td>
+<td>Mon</td>
+<td>4/29/2024</td>
+<td>Presentations</td>
+<td>Wk3 - P3 Assigned / Wk2 - P3 Due</td>
+</tr>
+<tr class="odd">
+<td>44</td>
+<td>Wed</td>
+<td>5/1/2024</td>
+<td>Course Feedback and Discussion</td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="odd">
 <td></td>
-<td>Fri</td>
-<td>5/12/2023</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>45</td>
+<td>Mon</td>
+<td>5/6/2024</td>
 <td>Final projects due</td>
-<td></td>
-<td>5 Due</td>
-<td></td>
+<td>P3 Report Due</td>
 </tr>
 </tbody>
 </table></div>
@@ -643,9 +575,8 @@ reports.</p>
 <div id="office-hours" class="section level2 unnumbered">
 <h2>Office Hours<a class="anchor" aria-label="anchor" href="#office-hours"><i class="fas fa-link"></i></a>
 </h2>
-<ul>
-<li>TBD</li>
-</ul>
+<p>To be determined in class by vote based on availability</p>
+
 </div>
 </div>
   <div class="chapter-nav">
@@ -655,6 +586,8 @@ reports.</p>
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#bf528---applications-in-translational-bioinformatics">BF528 - Applications in Translational Bioinformatics</a></li>
+<li><a class="nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li><a class="nav-link" href="#course-description">Course Description</a></li>
 <li><a class="nav-link" href="#course-values-and-policies">Course Values and Policies</a></li>
 <li><a class="nav-link" href="#prerequisites">Prerequisites</a></li>
 <li>
