@@ -44,3 +44,14 @@ week-2-aligning-reads-to-the-reference-genome
 week-3-quantifying-alignments-filtering-and-differential-expression
 week-4-biological-analysis-and-interpretation
 week-5-writing-a-report
+project-2-chipseq-analysis-of-the-human-transcription-factor-runx1
+table-of-contents-1
+week-1-getting-started-1
+week-2-aligning-reads-and-creating-bigwig-files
+week-3-peak-analysis-and-visualization
+week-4-integration-with-rnaseq-and-visualization
+week-5-writing-a-report-1
+project-3-single-cell-analysis-of-the-mouse-kidney
+week-1-getting-started-2
+week-2-downstream-analysis
+week-3-writing-a-report

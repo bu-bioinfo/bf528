@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>28 Project 3: Single Cell Analysis of the Mouse Kidney | BF528 - Applications in Translational Bioinformatics</title>
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="28 Project 3: Single Cell Analysis of the Mouse Kidney | BF528 - Applications in Translational Bioinformatics">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="28 Project 3: Single Cell Analysis of the Mouse Kidney | BF528 - Applications in Translational Bioinformatics">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+<meta name="description" content="This last project will be different from the previous two. I will outline the general steps you will need to perform, and certain analyses / figures / plots as deliverables, but you will have to...">
+<meta property="og:description" content="This last project will be different from the previous two. I will outline the general steps you will need to perform, and certain analyses / figures / plots as deliverables, but you will have to...">
+<meta name="twitter:description" content="This last project will be different from the previous two. I will outline the general steps you will need to perform, and certain analyses / figures / plots as deliverables, but you will have to...">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">BF528 - Applications in Translational Bioinformatics</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
+<li><a class="" href="introduction.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="genomics-genes-and-genomes.html"><span class="header-section-number">2</span> Genomics, Genes, and Genomes</a></li>
+<li><a class="" href="array-technologies.html"><span class="header-section-number">3</span> Array Technologies</a></li>
+<li><a class="" href="gene-sets-and-enrichment.html"><span class="header-section-number">4</span> Gene sets and enrichment</a></li>
+<li><a class="" href="nd-gen-sequencing.html"><span class="header-section-number">5</span> 2nd Gen Sequencing</a></li>
+<li><a class="" href="sequence-analysis-fundamentals.html"><span class="header-section-number">6</span> Sequence Analysis Fundamentals</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-1.html"><span class="header-section-number">7</span> Sequence Analysis - RNA-Seq 1</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-2.html"><span class="header-section-number">8</span> Sequence Analysis - RNA-Seq 2</a></li>
+<li><a class="" href="genomic-variation-and-snp-analysis.html"><span class="header-section-number">9</span> Genomic Variation and SNP Analysis</a></li>
+<li><a class="" href="biological-data-formats.html"><span class="header-section-number">10</span> Biological Data Formats</a></li>
+<li><a class="" href="sequence-visualization.html"><span class="header-section-number">11</span> Sequence Visualization</a></li>
+<li><a class="" href="sequence-analysis---atac-seq.html"><span class="header-section-number">12</span> Sequence Analysis - ATAC-Seq</a></li>
+<li><a class="" href="sequence-analysis---chip-seq.html"><span class="header-section-number">13</span> Sequence Analysis - ChIP-Seq</a></li>
+<li><a class="" href="biological-databases.html"><span class="header-section-number">14</span> Biological Databases</a></li>
+<li><a class="" href="replicability-vs-reproducibility-strategies.html"><span class="header-section-number">15</span> Replicability vs Reproducibility Strategies</a></li>
+<li><a class="" href="computational-environment-management.html"><span class="header-section-number">16</span> Computational Environment Management</a></li>
+<li><a class="" href="computational-pipeline-strategies.html"><span class="header-section-number">17</span> Computational Pipeline Strategies</a></li>
+<li><a class="" href="single-cell-techniques.html"><span class="header-section-number">18</span> Single Cell Techniques</a></li>
+<li><a class="" href="single-cell-analysis-part-1.html"><span class="header-section-number">19</span> Single Cell Analysis Part 1</a></li>
+<li><a class="" href="single-cell-analysis-part-2.html"><span class="header-section-number">20</span> Single Cell Analysis Part 2</a></li>
+<li><a class="" href="microbiome-16s.html"><span class="header-section-number">21</span> Microbiome: 16S</a></li>
+<li><a class="" href="microbiome-metagenomics.html"><span class="header-section-number">22</span> Microbiome: Metagenomics</a></li>
+<li><a class="" href="proteomics.html"><span class="header-section-number">23</span> Proteomics</a></li>
+<li><a class="" href="metabolomics.html"><span class="header-section-number">24</span> Metabolomics</a></li>
+<li><a class="" href="integrative-genomics.html"><span class="header-section-number">25</span> Integrative Genomics</a></li>
+<li><a class="" href="professional-development.html"><span class="header-section-number">26</span> Professional Development</a></li>
+<li><a class="" href="project-writeup-instructions.html">Project Writeup Instructions</a></li>
+<li><a class="" href="project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html">Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></li>
+<li><a class="" href="project-2-chipseq-analysis-of-the-human-transcription-factor-runx1.html"><span class="header-section-number">27</span> Project 2: ChIPseq analysis of the human transcription factor Runx1</a></li>
+<li><a class="active" href="project-3-single-cell-analysis-of-the-mouse-kidney.html"><span class="header-section-number">28</span> Project 3: Single Cell Analysis of the Mouse Kidney</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="project-3-single-cell-analysis-of-the-mouse-kidney" class="section level1" number="28">
+<h1>
+<span class="header-section-number">28</span> Project 3: Single Cell Analysis of the Mouse Kidney<a class="anchor" aria-label="anchor" href="#project-3-single-cell-analysis-of-the-mouse-kidney"><i class="fas fa-link"></i></a>
+</h1>
+<p>This last project will be different from the previous two. I will outline the general steps you will need to perform, and certain analyses / figures / plots as deliverables, but you will have to determine how to do them yourself. The instructions are intentionally open-ended and you will be asked later in your written report to state / justify your major decisions. In addition, I have broken the sections into weekly tasks as a suggestion but you will only be assessed on your final report. As always, you are welcome to use your classmates and the resources online freely for your reference.</p>
+<div id="week-1-getting-started-2" class="section level2" number="28.1">
+<h2>
+<span class="header-section-number">28.1</span> Week 1: Getting Started<a class="anchor" aria-label="anchor" href="#week-1-getting-started-2"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>Read the paper</strong></p>
+<p>This analysis is based on the data published in this study: Park, J., Shrestha, R., Qiu, C., Kondo, A., Huang, S., Werth, M., Li, M., Barasch, J., &amp; Suszták, K. (2018). Single-cell transcriptomics of the mouse kidney reveals potential cellular targets of kidney disease. Science, 360(6390), 758–763.</p>
+<p>Please read the paper to get a sense for the overall hypotheses, goals, and conclusions presented. We will be focusing mostly on the results presented in the first figure.</p>
+<p><strong>Downloading the data</strong></p>
+<p>This publication encompasses 7 total samples analyzed by single cell RNA sequencing but we will only be working with the four true wild-type samples. Out of convenience and concern for our disk space, we have downloaded and processed 3 out of the 4 of the samples meeting this criteria.</p>
+<p>Individually, please download the data associated with SRX3436301.</p>
+<p>You may find the following resource helpful for preparing the data for further processing (<a href="https://kb.10xgenomics.com/hc/en-us/articles/115003802691-How-do-I-prepare-Sequence-Read-Archive-SRA-data-from-NCBI-for-Cell-Ranger-" class="uri">https://kb.10xgenomics.com/hc/en-us/articles/115003802691-How-do-I-prepare-Sequence-Read-Archive-SRA-data-from-NCBI-for-Cell-Ranger-</a>).</p>
+<p>If you recall, the early processing steps in single cell RNA sequencing are generally the same as bulk RNA sequencing. We will be aligning these reads to the appropriate reference genome before quantifying them and generating a counts matrix. In the case of single cell RNAseq, our counts matrix will be a matrix of cells x genes as opposed to genes x samples. As this data was generated on the 10X platform, we will be using their custom software suite CellRanger to pre-process it prior to our analysis.</p>
+<pre><code>1. After you have formatted your data correctly, please use CellRanger Count to generate a BAM file of alignments of the FASTQs from sample SRX3436301 to the provided mouse reference genome. 
+    - You may do this using snakemake or a simple qsub script. Please ensure you set appropriate memory and time requests on SCC. </code></pre>
+<p>Now that you have successfully aligned this sample to the reference genome. We are going to combine the other samples and generate a single feature matrix that can be used for our downstream analysis.</p>
+<pre><code>1. Using the paths provided for the processed data (materials/project_3_scrnaseq/) from the other samples and the BAM file of alignments for sample SRX3436301, use a method to “combine” these samples as a single feature matrix
+    - You may consider using a utility like CellRanger Aggr or look into tool-specific utilities provided by Seurat or Scanpy</code></pre>
+<p>There are two main utilities for the post-alignment analysis of single cell data: 1. Scanpy and 2. Seurat. They are both feature-rich, intuitive, and offer a number of pre-built functions that perform many of the standardized operations for the analysis of single cell RNA sequencing data. For the following steps, it is recommended that you create a Jupyter Notebook (Lab) or Rmarkdown notebook if you are using either Scanpy or Seurat, respectively, to perform these analyses.</p>
+<p><strong>Single Cell RNA Analysis</strong></p>
+<p>Next we will walk through the basic downstream steps of a single cell RNAseq analysis that you will be required to perform.</p>
+<pre><code>1. Filter out low quality cells - There are a number of established metrics for determining “low” quality cells. 
+    - Provide at least one plot that demonstrates your justifications for your chosen filtering thresholds
+    - Provide a table that lists how many cells are filtered out / remain after each of your filtering thresholds</code></pre>
+</div>
+<div id="week-2-downstream-analysis" class="section level2" number="28.2">
+<h2>
+<span class="header-section-number">28.2</span> Week 2: Downstream Analysis<a class="anchor" aria-label="anchor" href="#week-2-downstream-analysis"><i class="fas fa-link"></i></a>
+</h2>
+<pre><code>1. Normalize and transform your counts matrix
+2. Identify highly variable genes (feature selection)
+    - Report the number of features you used after filtering and justify any filtering criteria used
+3. Identify clusters of cell type subpopulations. Use a clustering method of your choosing to discover clusters of cells. 
+4. Identify the number of cells contributed by each sample in each cluster.
+    - Display this information in an appropriate plot / table
+5. Identify marker genes for each cluster. Use a differential expression method to identify the marker genes in each cluster. You may use any reasonable approach to do this.
+6. Label clusters as a cell type based on marker genes. The marker genes should indicate which clusters correspond to which cell types. You may use the marker genes indicated by the authors or do your own research.
+    - You may use any reasonable method to accomplish this
+7. Visualize the clustered cells using a projection method. Use either t-SNE or UMAP to create a projection and scatter plot colored by cell cluster. 
+    - Label the plot with the cell types you previously assigned. 
+8. Visualize the top marker genes per cluster. Choose however many top marker genes you deem suitable and visualize them to show the differences.
+    - Create at leaast one plot that displays the top marker genes per cluster.</code></pre>
+</div>
+<div id="week-3-writing-a-report" class="section level2" number="28.3">
+<h2>
+<span class="header-section-number">28.3</span> Week 3: Writing a Report<a class="anchor" aria-label="anchor" href="#week-3-writing-a-report"><i class="fas fa-link"></i></a>
+</h2>
+<p>Now that you have completed each week tasks, you should have a working pipeline that processes a full ChIPseq experiment from raw data to peak calling. Now you will need to write a report that details the entire project in the style of a scientific publication. As a reminder, here is a general outline of how to structure it:</p>
+<pre><code>Introduction (1-2 paragraphs)
+    - What is the biological background of the study?
+    - Why was the study performed?
+    - What main experimental techniques were used in the study?
+
+Methods (variable)
+    - Describe any specific parameters used, software versions, or specific steps that would ultimately affect the reproducibility of the results
+
+Results (variable)
+    - Results from each step in the methods with appropriate figures / tables containing descriptive captions
+
+Discussion (1 page)
+    - Discuss and interpret the results in the context of the biological question asked by the study. Briefly state the main results and follow-on with a discussion on the implications and the biological conclusions drawn that are supported by the results. 
+    - Briefly discuss how well you managed to reproduce the results from the paper
+
+Future Directions (1-2 paragraphs)
+- List at least three follow-up experiments / questions that would be interesting to follow-up on after the paper
+- What would these experiments attempt to answer? And why would they be relevant?
+
+Challenges (1 paragraph)
+- What were the main difficulties you encountered in the project?
+
+Conclusion (1 paragraph)
+- What is the main conclusion a reader should draw from the analysis?
+
+References
+- Use consistent, proper citation format for any references (Mendeley, Zotero, Paperpile)</code></pre>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="project-2-chipseq-analysis-of-the-human-transcription-factor-runx1.html"><span class="header-section-number">27</span> Project 2: ChIPseq analysis of the human transcription factor Runx1</a></div>
+<div class="empty"></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#project-3-single-cell-analysis-of-the-mouse-kidney"><span class="header-section-number">28</span> Project 3: Single Cell Analysis of the Mouse Kidney</a></li>
+<li><a class="nav-link" href="#week-1-getting-started-2"><span class="header-section-number">28.1</span> Week 1: Getting Started</a></li>
+<li><a class="nav-link" href="#week-2-downstream-analysis"><span class="header-section-number">28.2</span> Week 2: Downstream Analysis</a></li>
+<li><a class="nav-link" href="#week-3-writing-a-report"><span class="header-section-number">28.3</span> Week 3: Writing a Report</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>BF528 - Applications in Translational Bioinformatics</strong>" was written by . </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>
