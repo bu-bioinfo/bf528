@@ -1,0 +1,325 @@
+---
+---
+
+# Project 2: ChIPseq analysis of the human transcription factor Runx1
+
+Similar to advancing gene expression quantification from microarrays to RNA-seq, next-generation sequencing also revolutionized other wet lab assays that examine nucleotides by making them (relatively) unbiased and high-throughput. One such set of technologies are protein-DNA binding assays including ChiP-qPCR and ChIP-ChIP, which use antibodies and
+immunoprecipitation to capture chromatin bound by a specific protein of interest. Chromatin Immunoprecipitation Sequencing (ChIP-seq) is a technique that identifies genome-wide DNA binding sites with transcription factors and other proteins of interest by sequencing the DNA fragments isolated from protein-DNA complexes. 
+
+Barutcu et al. (2016) used RNA-seq, ChIP-seq, and HI-C to investigate the role of Runx1 in the MCF7 cell line, a model line used for the study of breast cancer. In this project, we will reproduce several results from Supplementary Figure 2 and Figure 1, which comprise common preliminary analyses of ChIP-seq data. Each group will process the ChIP-seq data from raw reads to called peaks, incorporate the provided RNA-seq data and ultimately attempt to reproduce the findings found in the paper.
+
+Upon completion of project 3, you will have gained the following skills:
+
+- Hands-on experience with a modern ChIPseq analysis pipeline
+- Experience submitting jobs in a HPC environment 
+- Working proficiency with commonly used bioinformatics software including bowtie2, HOMER, deeptools, IGV and bedtools
+
+Please note that the methods for the original paper are ambiguous in important areas. For this project, on occasion, you will be asked to define certain parameters and explain your choice. It is important to remember that even if the authors had specified a specific value for certain parameters, that does not mean that is the single correct option. We base our choice of these parameters on our background knowledge and rational assumptions. Do your best to pick reasonable values and justify them.
+
+We will now transition entirely to using actual data (not filtered data). We have also provided you a set of subsetted files that will again enable you to quickly troubleshoot your code. Please remember that you should not run any of the described steps on the head node of the SCC. You will have to make use of snakemake and qsub as described previously to properly submit jobs to the queue. The instructions for tasks performing operations we have done before will be more brief. 
+
+## Table Of Contents
+
+[Week 1](#week-1-getting-started)
+
+[Week 2](#week-2-aligning-reads-and-creating-bigwig-files)
+
+[Week 3](#week-3-peak-analysis-and-visualization)
+
+[Week 4](#week-4-integration-with-rnaseq-and-visualization)
+
+[Week 5](#week-5-writing-a-report)
+
+
+## Week 1: Getting Started
+
+**Read the paper**
+This analysis is based on the data published in this study: *Barutcu et al. RUNX1 Contributes to Higher-Order Chromatin Organization and Gene Regulation in Breast Cancer Cells. Biochimica et Biophysica Acta 1859 (11): 1389–97. PMID: PMID: 27514584*
+
+Please read the paper to get a sense for the overall hypotheses, goals, and conclusions presented. Our analyses will be mostly attempting to reproduce Figure 2 and small sections of the supplementary material. 
+
+We may also deviate from the published methods in favor of using more up-to-date strategies and tools on occasion. However, the workflow you will develop will still capture and recreate the same core biological signals observed in the original work.
+
+**Initial Setup**
+Please follow the same general strategy as in project 1 to get set up before performing any analysis. I will briefly outline the main steps below:
+
+    1. Make a new project directory for this project
+    2. Create a new conda environment with the following packages:
+    3. Snakemake, pandas, jupyter-lab, fastqc, trimmomatic, bowtie2, samtools, HOMER, bedtools, deeptools
+        - N.B. Some tools may be stored under a different name in bioconda
+    4. Export your environment description to a .txt file
+    5. Initialize your project directory as a git repository and commit the following files:
+        - Your conda environment description .txt file
+        - A short, descriptive README
+        - The provided .gitignore (you may also copy the .gitignore from the first project)
+
+**Downloading the data**
+Last project, you downloaded two files from public repositories: the m39 gencode mouse primary assembly sequence and the matching GTF annotation file. As there were only two files, it was relatively easy to download them and you could even have done so (likely quicker) on just the command line with two short one-line commands. 
+
+For this project, you will be asked to download all of the samples associated with the GEO accession, GSE75070. There exist many valid strategies for doing this, but we will outline just one potential strategy for downloading multiple samples in a reusable and generalizable way. This method will make use of EMBL-ENA, snakemake and wget to download only the ChIPseq data files associated with this submission. By using this strategy, we avoid having to use the SRA toolkit and navigating through the GEO interface. (Not all published data is backed up by the EMBL-ENA)
+
+    1. Navigate to the EMBL ENA website (https://www.ebi.ac.uk/ena/browser/home) and search in the top right for our GEO accession, GSE75070. Open up the “Project” page for the results returned.
+    2. Download the report in the “Read Files” section as a .TSV and upload this file to your working directory using a sFTP or the OnDemand interface.
+        - This file is a standard .TSV with fields containing sample metadata information, and importantly for us, FTP links to the full FASTQ files. 
+    3. Write a snakemake rule that parses this .TSV file and extracts out the FTP paths for only the ChIPseq samples (SRR2919474, SRR2919475, SRR2919476, SRR2919477). Write only the FTP paths to a new file with each separated by a newline character. 
+    4. Write a second snakemake rule that takes this file of FTP paths and downloads each one
+        - `man wget` or `man curl` will outline strategies for downloading multiple files listed in a single .txt
+
+While this strategy may seem like a lot of work compared to alternatives, it has the benefit of being reusable for most any data stored on EMBL-ENA since all you need to do is adjust the parsing to include / exclude your desired files. 
+
+**Renaming files**
+As you can see, our data files are still named by their SRR accessions. While you could certainly construct a snakemake workflow that utilizes their original names, it is often much simpler to rename your files such that you can pre-determine what your snakemake wildcards will be. For example, we can rename the file SRR2919474.fastq.gz to runx1_ip_rep1.fastq.gz and we have already sketched out a simple, intuitive pattern for the wildcards snakemake will be using. 
+
+    1. Rename the 4 downloaded files to work with your snakemake workflow
+        - You may use the naming strategy suggested or your own
+        - You do not need to do this in snakemake
+
+For simplicity, I will refer to the data files pertaining to the Runx1 pulldown samples as IP (short for immunoprecipitation) and the control files as INP (short for input). Please note that these samples are paired, the IP and INP that end with replicate 1 originate from the same biological sample and those from replicate 2 came from the same but separate biological replicate from 1. We will be analyzing these two paired experiments separately before integrating their results. 
+
+    1. Download the gencode human primary assembly fasta and matching GTF annotations
+        - This ChIPseq experiment was performed in MCF-7 cells, which are an immortalized human cell line. Always quickly check to make sure that you are using the appropriate species’ reference genome when processing publicly available sequencing data. 
+
+    2. Generate a snakemake rule (or two) that download the latest gencode human primary assembly reference genome and its matching GTF file (GRCh38.p14)
+
+    3. Generate a genome index with bowtie2
+
+In the previous experiment, we provided you with a pre-built STAR index when you were aligning RNAseq reads against the mouse reference genome. For this project, you will need to build a bowtie2 index of your own. 
+
+    1. Please read the bowtie2 manual and specifically the section covering the command bowtie2-build 
+    2. Generate a bowtie2 index using the downloaded primary assembly fasta
+        - Leave all parameters at default
+        - Include a threads directive in your snakemake rule and request 8. 
+
+
+**Quality Control**
+Similar to last project, we are going to check some of the main quality metrics for NGS data using fastQC.
+
+    1. Create a snakemake rule that runs fastQC on our samples
+
+**Trimming**
+As we discussed in lecture, there are often occasions where our sequencing reads are “contaminated” with portions of the sequencing adapter. We did not perform adapter trimming on our reads in the last project since STAR performs local alignment and will automatically “trim” adapters by soft clipping reads (aligning only the portions that align well without enforcing end-to-end alignment). For this dataset, we will perform adapter trimming with trimmomatic, which will also trim low quality bases. 
+
+    1. Create a snakemake rule that runs trimmomatic on the FASTQ files
+        - For the provided adapter FASTA, please use the following file:
+        - Leave all other parameters at their suggested defaults for single end reads
+
+After week 1, you should have done the following:
+
+- Read the paper, focusing specifically on the analysis and interpretation of figure 2
+ - Initial setup including:
+    - Create a new project directory
+    - Create a new conda environment for this project with the listed packages
+    - Initialize your working directory as a git repository including:
+    - Your conda environment package description .txt file
+    - A short, descriptive README.md
+    - The .gitignore file provided (or copied from project 1)
+- A snakemake rule (or set of rules) that downloads the 4 ChIPseq samples associated with the GEO submission GSE75070 using the strategy outlined above
+- A snakemake rule (or set of rules) that downloads the primary assembly FASTA and matching GTF for the most up-to-date human reference genome from Gencode
+- A snakemake rule that creates a bowtie2 index using your downloaded primary assembly reference
+- A snakemake rule that runs fastQC on all 4 of your samples
+- A snakemake rule that runs trimmomatic on all 4 of your samples
+- Rename the 4 FASTQ files to a more convenient, and snakemake-ready format
+
+
+**CHALLENGE**
+Though this experiment is relatively small, there will be many occasions where you will have to work with potentially hundreds of samples. Simple solutions that work for a small dataset are not ideal at that scale. Instead of manually renaming your files, generate a snakemake rule that renames the original files to your desired naming scheme. The most straightforward way will be to utilize run and python, but there are likely other clever solutions. 
+
+## Week 2: Aligning reads and creating bigWig files
+
+Now that we have performed basic quality control on our reads, we are going to align them to the human reference genome using bowtie2. Using the index you generated last week, align each of the FASTQ files to the human reference genome. By default, bowtie2 outputs in SAM format. Typically, it is more convenient and friendly to your disk space to work with BAM files as they are compressed and nearly all utilities that operate on SAM files can also operate on BAM files. 
+
+    1. Align your reads to the human reference genome using the index you created last week 
+        - You may leave all other bowtie2 parameters at default or justify if you change any
+        - In the same command, automatically convert the bowtie2 output to a BAM file using samtools
+
+For many downstream applications, most notably visualization, the alignments in BAM files need to be sorted and indexed, in order to allow for fast and random access without searching the entire file. We will now quickly sort, and index all of our generated BAM files using samtools. Read the manual pages for the samtools sort and samtools index commands for how to use them. 
+
+    1. Generate a snakemake rule that sorts each of your BAM files
+    2. Generate another snakemake rule that creates a BAM index for your sorted files
+
+As before, we will perform a quick quality check on our alignment using samtools and then collect all of the QC information we have generated so far using MultiQC. 
+
+    1. Create a snakemake rule that runs samtools flagstat on all of your aligned files
+    2. Create a snakemake rule that runs MultiQC on your project directory
+
+Now that we have performed basic quality control, we are going to convert our aligned BAM files to a more tractable format for analysis and visualization. We will be using the deeptools package to convert the information in our BAM files to a bigWig format, which is a compressed binary indexed file that is typically used to store quantitative data associated with genomic regions. In essence, we can divide every chromosome into bins of equal and known size and count the number of alignments falling into each region. This enables a simple but intuitive plot where we can visualize the entire length of any arbitrary region in the genome and the number of alignments found in each position. This enables us to look at the “signal” coming from various regions of the genome. 
+
+This is often used in ChIPseq experiments to visualize where our factor of interest is binding. Regions with higher alignment counts, if the underlying molecular biology experiment worked, should represent regions where our factor is most likely binding. Understanding where in the genome a factor is binding is what enables the determination of what genes that factor is regulating, and the mechanisms by which it functions. 
+
+We can also use this information to make some general quantitative comparisons between our samples since they are all unified in format (i.e. each sample represents the entire genome split into the same sized bins and with an associated count). We will use this property to perform a Pearson correlation on the signal generated from each of the samples. In an ideal world, if the experiment worked exactly as intended, and both biological replicates were correctly capturing Runx1 binding sites, their signal represented in bigWig format should be exactly the same or at the very least, highly correlated. Given our knowledge of what the input control represents, we could also assume that our inputs should be substantially different than our IP samples. 
+
+
+    1. Using the bamcoverage utility in deeptools, generate a bigWig file for each sorted BAM using default parameters
+    2. Once you have produced all of the bigwig files, use the multiBigWigSummary utility and the plotCorrelation utility to produce a clustered heatmap of the Pearson correlation values between all the samples. Refer to their respective manual pages here for help: https://deeptools.readthedocs.io/en/develop/content/list_of_tools.html. 
+        - Compare your figure to the one found in the paper Supp Fig 2b. Make sure to think about some of the following questions: 
+        - How similar are your correlation values? 
+        - What could cause these differences to arise? 
+        - Do they affect the overall conclusion drawn from this particular figure? 
+        - What is the overall conclusion made from this figure by the authors?
+
+
+By the end of the second week, you should have accomplished the following:
+- Aligned your reads using bowtie2 to your previously created bowtie2 genome index for the latest Gencode human reference genome
+    - In the same command, automatically convert the output of bowtie2 (SAM) into a BAM file using samtools
+- Create a snakemake rule that sorts each of your BAM files
+- Create a snakemake rule that generates a BAM index file for your sorted BAM files
+- Create a snakemake rule that runs samtools flagstat on each of your samples
+- Create a snakemake rule that runs MultiQC to aggregate all of the outputs from QC utilities
+- Create a snakemake rule that generates a bigWig file from each of your sorted BAM files
+- Create a snakemake rule that runs multiBigwig summary to generate a single matrix containing all of the information from your bigwigs
+- Create a snakemake rule that runs plotCorrelation to generate a figure displaying the pearson correlation values between all of our samples
+
+## Week 3: Peak analysis and Visualization
+
+**Peak calling**
+Now that we have our aligned reads and performed basic quality control, we are going to proceed to peak calling using HOMER. This utility requires us to first convert the BAM files to a HOMER specific format, which is required prior to using HOMER to run downstream utilities. 
+
+    1. Generate a snakemake rule that runs the makeTagDir command in HOMER for each sample. You will have a separate tag directory for each sample. You may leave every option at default parameters.
+        - As denoted by the name, this utility creates a directory containing a multitude of output files. Please refer to the snakemake documentation on how to properly handle using directories as expected outputs. 
+
+We are now ready to perform peak calling, which will look for areas of significant enrichment in the localization of our alignments. We will be performing peak calling using the input as our background enrichment control. Please read the documentation for the findPeaks command (http://homer.ucsd.edu/homer/ngs/peaks.html) and perform peak calling on both of our replicate experiments. 
+
+    1. Generate a snakemake rule that runs findPeaks on your samples
+        - You will need this rule to run twice on each set of paired replicates
+        - Remember that Runx1 is a transcription factor that binds in relatively “narrow” patterns. 
+
+The output of findPeaks is in a homer-specific format, and for ease of use, we will convert this .txt homer peak file to a standard BED formatted file. 
+
+    1. Generate a snakemake rule that use the pos2bed utility to convert the output to a BED format
+
+Each paired experiment (IP and INP) from each replicate will have generated a set of peaks that represent likely Runx1 binding locations in the genome.  In general, there are two main ways that “reproducible” peaks are chosen for ChIP-seq experiments: 1. Irreproducible Discovery Rate (IDR), and 2. Intersections / Unions of peaks. You will use the latter strategy and Bedtools to produce your own set of “reproducible peaks” from your two peak files. 
+
+    1. Using only bedtools, generate a single list of “reproducible peaks”. You may use whatever strategy you like, but justify your choice in your report. 
+
+Experimentally, it has been shown that there are regions of the genome that are nearly always present in ChIPseq experiments at high levels. These regions are considered to be noise and signal-artifacts that are not representative of the target enrichment. It is generally advised to remove any peaks that are found in these regions as they likely represent erroneous signal. 
+
+    1. Create a snakemake rule that uses bedtools to filter out any of your reproducible peaks that fall into these blacklisted regions and output the remaining peaks to a new BED file
+
+With our now filtered list of reproducible peaks, we are going to perform a simple annotation that assigns these peaks to their nearest genomic feature. This will allow us to glean some information of which genomic regions they fall into (promoters, introns, etc.) and what genes they are in close proximity to. 
+
+    1. Use the annotatePeaks.pl utility in HOMER to annotate your list of reproducible peaks.
+        - This utility will create a simple TSV / .txt file of annotated peaks
+
+Using this same set of reproducible peaks, we are going to perform motif finding to look for enriched motifs found in our peak locations. For simplicity, we will be performing this step using HOMER. As we are using the hg39 build of the human reference genome, you should supply the path to the FASTA as specified in the instructions for running findMotifsGenome.pl. 
+
+    1. Run findMotifsGenome.pl on your list of reproducible peaks to generate a motif enrichment analysis
+
+Now that we have performed peak calling and motif analysis, we will begin to generate a set of visualizations. You have already generated bigWig representations of all of your samples, which we will now use to create a signal coverage plot of Runx1 enrichment across gene bodies. 
+
+We will be using the bigWig files to plot the signal coverage relative to the transcription start site (TSS) and transcription termination site (TTS) of all genes in the hg38 reference. This type of plot is often helpful for determining the potential regulatory mechanisms of the factor of interest. In our case, transcription factors are known to directly bind DNA and are commonly found located in the promoter region (near the TSS) where they will typically recruit other cofactors, chromatin remodelers or components of the RNA polymerase complex II to regulate gene expression. If we inspect the plot in figure 1c of the original publication, we can see that the signal distribution for the Runx1 ChIP is primarily concentrated in the promoter-TSS region of genes.
+
+We will be creating a similar plot which will provide a quick visualization of the average signal (Runx1 binding) across the gene body of all genes. To do this, we have already generated our bigWig files, but we will require the genomic coordinates of all of the genes in the hg38 genome in order to determine which bins to utilize. We will be using the UCSC table browser to extract out this information.
+
+Navigate to the UCSC Table Browser, use the following settings to extract a BED file listing the TSS/TTS locations for every gene in the hg19 reference:
+
+
+
+On the following page, do not change any options and you will be prompted to download a BED file containing the requested information. Put this BED file into your working directory on SCC. This is a simple use case, but the UCSC table browser and UCSC genome browser are incredibly powerful tools and repositories for genome-wide sequencing data.
+
+    1. Using the bigwig files for the IP samples generated earlier and the BED file of hg38 genes you just downloaded in BED format, run the computeMatrix utility in DeepTools in the scale-regions mode twice (once for each IP sample).
+        - Remember that we are trying to reproduce the figure from the paper, be sure to include regions in a 2kb window up- and downstream of the TSS and TTS, respectively. You may leave every other parameter at its default value. Justify any changes in parameters if you do alter them.
+
+    2. You will have run computeMatrix twice (on both IP replicates) and generated two matrices of values. Run plotProfile on each matrix to generate a visualization of the Runx1 signal coverage averaged across the body of all hg38 genes.
+
+
+By the end of week 3, you should have accomplished the following:
+- Generated a snakemake rule that runs the makeTagDir utility on each of your sorted BAM files
+- Create a snakemake rule that runs HOMER findPeaks on your samples using the tag directories generated previously
+    - You should generate a peak file for each set of replicates (IP rep1: INP rep1 and IP rep2: INP rep2)
+- Created a snakemake rule that converts both of your findPeaks output files to BED format
+- Created a snakemake rule that uses only bedtools to generate a new BED file containing the “reproducible” peaks
+- Create a snakemake rule that uses bedtools to filter out any “reproducible” peaks falling into blacklisted regions
+- Create a snakemake rule that performs motif finding on your list of filtered, reproducible peaks
+- Downloaded a BED file of the genomic coordinates of all refseq genes for the hg38 human reference genome using the UCSC table Browser
+- Created a snakemake rule that uses the deeptools computeMatrix utility, the aforementioned BED file of hg38 genes and the previously generated bigWig files to generate a matrix of signal values
+- Created a snakemake rule that uses the deeptools plotProfile utility to generate a simple visualization of the signal across hg38 genes using the matrix outputs from the previous step
+
+**CHALLENGE**
+The authors of the original paper use the MEME suite of tools to perform motif finding. However, they do not specify the parameters used in this analysis and the input to MEME is not a list of peaks (which is our current output). For this optional challenge, instead of performing motif finding in HOMER, use MEME-ChIP as they did in the paper to discover enriched motifs. 
+
+In general, you will have to figure out how to do the following:
+
+- Install the Meme suite into your conda environment
+- Extract chromosome sizes from the human gencode reference
+- Determine the average size of your peaks
+- Use your chromosome sizes, the average size of your peaks, and BedTools to make a BED file containing all of your peaks expanded to around ~500bp in size.
+- Extract the DNA sequences from the regions in your BED file from a bgzipped genomic FASTA file for the gencode reference.
+- Run MEME-ChIP using your FASTA file of DNA sequences covered by your peaks
+
+## Week 4: Integration with RNAseq and visualization
+
+Now that we have processed and performed basic analysis of our ChIPseq data, we will move on to attempting to reproduce figure 2f, which combines the data generated from the ChIPseq experiment and the RNAseq experiment from Figure 1. The authors produced a simple stacked bar chart displaying how often a Runx1 binding peak was observed in genes that were found to be differentially expressed in the same cell line upon Runx1 knockdown using a shRNA. 
+
+Navigate to the GEO for accession GSE75070 and locate the differential expression results for the RNAseq experimented in figure 1. 
+
+    1. Download the DESeq2 results (GSE75070_MCF7_shRUNX1_shNS_RNAseq_log2_foldchange.txt.gz) and upload this file to the SCC.
+    2. In a jupyter notebook, apply the same filters and cutoffs as specified in the methods of the original paper. How many DE genes do you find? Do they match the numbers reported in the paper?
+    3. Using the list of DE genes downloaded in step 1 and the annotated peak file you generated previously, recreate figure 2f and supplementary figure S2D and produce a single stacked barchart showing the proportions of DE genes with a Runx1 peak found within +/- 5kb, +/- 20kb, and +/- 100kb of the TSS
+        - N.B. In their figure 2f, they calculate one set of numbers relative to the TSS and another set relative to the ‘whole body’ of the gene. For our case, just calculate all of these values using the distance to TSS found in your annotations file.
+
+
+Next, we will be generating visualizations of the peaks found in the promoter regions of two key genes reported by the paper. Download IGV (https://software.broadinstitute.org/software/igv/) locally on your computer or use the newly added web-only interface (https://igv.org/app/) to load all of your bigwig tracks (runx1_rep1, runx1_rep2, inp_rep1, inp_rep2), the BED file of your “reproducible peaks”, and the human reference GTF annotation file on a genome browser of your choice. 
+
+    1. Navigate to the two genes mentioned specifically in the paper, MALAT1 and NEAT1. 
+        - Make sure to answer the following questions in your written report: 
+        - Do you see the same general results as in figures 2d and 2e?
+        - What does this figure imply? 
+        - Do you agree with the conclusions made by the authors?
+
+Although we have discouraged you from generating figures using screenshots, we are going to produce the same figure as found in 2d and 2e. 
+
+    1. Please take a screenshot of the MALAT1 and NEAT1 promoter regions displaying the signal coverage found in your bigWig files and the peak locations from your BED file of reproducible peaks.
+        - We will work in class on improving these figures to be publication-worthy
+
+In your same jupyter notebook where you created your stacked barcharts, please also generate the following figures:
+
+    1. Similar to Supplementary Figure S2A, generate a nicely formatted table that displays the number of raw reads and number of mapped reads for each sample
+    2. Similar to Supplementary Figure S2C, generate a venn diagram indicating how many peaks you discovered in each replicate experiment with the intersection representing the number of peaks you chose as your set of “reproducible” peaks
+
+At the end of week 4, you should have accomplished the following:
+- Download the processed differential expression results for the RNAseq experiment performed in Figure 1. Apply the same filters and cutoffs and generate a dataframe containing only the significantly DE genes. 
+- Using your annotated peak file and this list of DE genes, generate a stacked barchart similar to figure 2f that displays how many of the DE genes have a Runx1 ChIPseq peak located within +/-5kb, +/-20kb, or +/- 100kb of the TSS
+- A screenshot of the MALAT1 promoter region displaying all 4 of your bigWig files signal coverage (runx1_rep1, runx1_rep2, inp_rep1, inp_rep2) and your BED file of reproducible peaks
+- A screenshot of the NEAT1 promoter region displaying all 4 of your bigWig files signal coverage (runx1_rep1, runx1_rep2, inp_rep1, inp_rep2) and your BED file of reproducible peaks
+- A formatted table containing the number of raw and mapped reads for each of your samples akin to Supplementary Figure 2A
+- A venn diagram indicating how many peaks were called in each replicate experiment with the intersection representing how many peaks were considered “reproducible” using your chosen strategy / threshold
+
+**Challenge**
+
+This paper was chosen intentionally as there are sections where the published methods are sparse. One example of this is the methods used to generate supplementary figure S6A, which is a bar graph representing “% of overlapping runx1 peaks” with various transcription factors and histone marks. You’ll notice that the publication does not describe how this figure was generated. 
+
+Do your best to recreate this figure, but limit it to only the top 5 factors (AP2g, DNase1, AE2F1, MAX, PML)
+
+## Week 5: Writing a report
+
+Now that you have completed each week tasks, you should have a working pipeline that processes a full ChIPseq experiment from raw data to peak calling. Now you will need to write a report that details the entire project in the style of a scientific publication. As a reminder, here is a general outline of how to structure it: 
+
+    Introduction (1-2 paragraphs)
+        - What is the biological background of the study?
+        - Why was the study performed?
+        - What main experimental techniques were used in the study?
+
+    Methods (variable)
+        - Describe any specific parameters used, software versions, or specific steps that would ultimately affect the reproducibility of the results
+
+    Results (variable)
+        - Results from each step in the methods with appropriate figures / tables containing descriptive captions
+
+    Discussion (1 page)
+        - Discuss and interpret the results in the context of the biological question asked by the study. Briefly state the main results and follow-on with a discussion on the implications and the biological conclusions drawn that are supported by the results. 
+        - Briefly discuss how well you managed to reproduce the results from the paper
+
+    Future Directions (1-2 paragraphs)
+    - List at least three follow-up experiments / questions that would be interesting to follow-up on after the paper
+    - What would these experiments attempt to answer? And why would they be relevant?
+
+    Challenges (1 paragraph)
+    - What were the main difficulties you encountered in the project?
+
+    Conclusion (1 paragraph)
+    - What is the main conclusion a reader should draw from the analysis?
+
+    References
+    - Use consistent, proper citation format for any references (Mendeley, Zotero, Paperpile)
+
+

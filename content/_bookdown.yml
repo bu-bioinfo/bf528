@@ -3,8 +3,8 @@ rmd_files:
     - "lectures.Rmd"
     - "projects/project_reports.Rmd"
     - "projects/project_1_rnaseq/project_1_rnaseq.Rmd"
-    - "projects/project_3_chipseq/project_3_chipseq.Rmd"
-    - "projects/project_4_scrnaseq/project_4_scrnaseq.Rmd"
+    - "projects/project_2_chipseq/project_2_chipseq.Rmd"
+    - "projects/project_3_scrnaseq/project_3_scrnaseq.Rmd"
     
 delete_merged_file: true
 output_dir: "../docs"
