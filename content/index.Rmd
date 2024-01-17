@@ -135,7 +135,7 @@ The three projects are as follows:
 2. [ChIP-Seq analysis of the human transcription factor Runx1][Project 2: ChIPseq analysis of the human transcription factor Runx1]
 3. [Single Cell RNA-Seq Analysis of Kidney Cells][Project 3: Single Cell RNA-Seq Analysis of Kidney Cells]
 
-Project guidelines for the written reports (1, 2, 3, and 4) are here:
+Project guidelines for the written reports (1, 2, 3) are here:
 [Project Writeup Instructions]
 
 ## Grading and Assessment {-}
@@ -208,7 +208,7 @@ Grading and assessment
 +----+-----+-----------+-----------------------------------------------+-----------------------------------+
 | 29 | Wed | 3/27/2024 | Project 2 Check-In                            |                                   |
 +----+-----+-----------+-----------------------------------------------+-----------------------------------+
-| 30 | Fri | 3/29/2024 | Metabolomics                                  |                                   |
+| 30 | Fri | 3/29/2024 | [Metabolomics]                                |                                   |
 +----+-----+-----------+-----------------------------------------------+-----------------------------------+
 | 31 | Mon | 4/1/2024  | Figure Generation, Pt. 2 (Adam)               | Wk4 - P2 Assigned / Wk3 - P2 due  |
 +----+-----+-----------+-----------------------------------------------+-----------------------------------+
