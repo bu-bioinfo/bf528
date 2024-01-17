@@ -4,12 +4,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Introduction | BF528 - Applications in Translational Bioinformatics</title>
+<title>Single Cell Analysis Part 3 | BF528 - Applications in Translational Bioinformatics</title>
 <meta name="generator" content="bookdown 0.37 with bs4_book()">
-<meta property="og:title" content="Introduction | BF528 - Applications in Translational Bioinformatics">
+<meta property="og:title" content="Single Cell Analysis Part 3 | BF528 - Applications in Translational Bioinformatics">
 <meta property="og:type" content="book">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Introduction | BF528 - Applications in Translational Bioinformatics">
+<meta name="twitter:title" content="Single Cell Analysis Part 3 | BF528 - Applications in Translational Bioinformatics">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -18,9 +18,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="0.1 Introductory slides online slides downloadable slides  0.2 Computational Primer online slides downloadable slides  0.3 Assignment Familiarize yourself with the material on basic command line...">
-<meta property="og:description" content="0.1 Introductory slides online slides downloadable slides  0.2 Computational Primer online slides downloadable slides  0.3 Assignment Familiarize yourself with the material on basic command line...">
-<meta name="twitter:description" content="0.1 Introductory slides online slides downloadable slides  0.2 Computational Primer online slides downloadable slides  0.3 Assignment Familiarize yourself with the material on basic command line...">
+<meta name="description" content="online slides downloadable slides">
+<meta property="og:description" content="online slides downloadable slides">
+<meta name="twitter:description" content="online slides downloadable slides">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -43,7 +43,7 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
-<li><a class="active" href="introduction.html">Introduction</a></li>
+<li><a class="" href="introduction.html">Introduction</a></li>
 <li><a class="" href="genomics-genes-and-genomes.html">Genomics, Genes, and Genomes</a></li>
 <li><a class="" href="git.html">git</a></li>
 <li><a class="" href="computational-pipeline-strategies.html">Computational Pipeline Strategies</a></li>
@@ -68,7 +68,7 @@
 <li><a class="" href="docker.html">Docker</a></li>
 <li><a class="" href="single-cell-analysis-part-1.html">Single Cell Analysis Part 1</a></li>
 <li><a class="" href="single-cell-analysis-part-2.html">Single Cell Analysis Part 2</a></li>
-<li><a class="" href="single-cell-analysis-part-3.html">Single Cell Analysis Part 3</a></li>
+<li><a class="active" href="single-cell-analysis-part-3.html">Single Cell Analysis Part 3</a></li>
 <li><a class="" href="project-writeup-instructions.html">Project Writeup Instructions</a></li>
 <li><a class="" href="project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html">Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></li>
 <li><a class="" href="project-2-chipseq-analysis-of-the-human-transcription-factor-runx1.html"><span class="header-section-number">1</span> Project 2: ChIPseq analysis of the human transcription factor Runx1</a></li>
@@ -80,42 +80,19 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="introduction" class="section level1 unnumbered">
-<h1>Introduction<a class="anchor" aria-label="anchor" href="#introduction"><i class="fas fa-link"></i></a>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="single-cell-analysis-part-3" class="section level1 unnumbered">
+<h1>Single Cell Analysis Part 3<a class="anchor" aria-label="anchor" href="#single-cell-analysis-part-3"><i class="fas fa-link"></i></a>
 </h1>
-<div id="introductory-slides" class="section level2" number="0.1">
-<h2>
-<span class="header-section-number">0.1</span> Introductory slides<a class="anchor" aria-label="anchor" href="#introductory-slides"><i class="fas fa-link"></i></a>
-</h2>
-<p><a href="https://docs.google.com/presentation/d/1C-KKnTbZCekB1kEKz5EWEA_EPp8pXTFZVOubXz90ZQY/present?usp=sharing">online slides</a></p>
-<p><a href="https://docs.google.com/presentation/d/1C-KKnTbZCekB1kEKz5EWEA_EPp8pXTFZVOubXz90ZQY/export/pptx">downloadable slides</a></p>
-</div>
-<div id="computational-primer" class="section level2" number="0.2">
-<h2>
-<span class="header-section-number">0.2</span> Computational Primer<a class="anchor" aria-label="anchor" href="#computational-primer"><i class="fas fa-link"></i></a>
-</h2>
-<p><a href="https://docs.google.com/presentation/d/1FbAWxSftB0tWXEKVv17yU6luyYoJ4PlQsx8qsz6kDHE/present?usp=sharing">online slides</a></p>
-<p><a href="https://docs.google.com/presentation/d/1FbAWxSftB0tWXEKVv17yU6luyYoJ4PlQsx8qsz6kDHE/export/pptx">downloadable slides</a></p>
-</div>
-<div id="assignment" class="section level2" number="0.3">
-<h2>
-<span class="header-section-number">0.3</span> Assignment<a class="anchor" aria-label="anchor" href="#assignment"><i class="fas fa-link"></i></a>
-</h2>
-<p>Familiarize yourself with the material on basic command line usage found here:</p>
-<p><a href="http://foundations-in-computational-skills.readthedocs.io/en/latest/content/workshops/00_cli_basics/00_cli_basics.html">Workshop 0. Basic Linux and Command Line Usage</a></p>
-</div>
+<p><a href="https://docs.google.com/presentation/d/1A2cqLqpZqajCRBVDUR5zS5wbWsH8X_lbo-uwdVyAK04/present?usp=sharing">online slides</a></p>
+<p><a href="https://docs.google.com/presentation/d/1A2cqLqpZqajCRBVDUR5zS5wbWsH8X_lbo-uwdVyAK04/export/pptx">downloadable slides</a></p>
+
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="index.html">BF528 - Applications in Translational Bioinformatics</a></div>
-<div class="next"><a href="genomics-genes-and-genomes.html">Genomics, Genes, and Genomes</a></div>
+<div class="prev"><a href="single-cell-analysis-part-2.html">Single Cell Analysis Part 2</a></div>
+<div class="next"><a href="project-writeup-instructions.html">Project Writeup Instructions</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#introduction">Introduction</a></li>
-<li><a class="nav-link" href="#introductory-slides"><span class="header-section-number">0.1</span> Introductory slides</a></li>
-<li><a class="nav-link" href="#computational-primer"><span class="header-section-number">0.2</span> Computational Primer</a></li>
-<li><a class="nav-link" href="#assignment"><span class="header-section-number">0.3</span> Assignment</a></li>
-</ul>
+      <ul class="nav navbar-nav"><li><a class="nav-link" href="#single-cell-analysis-part-3">Single Cell Analysis Part 3</a></li></ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
