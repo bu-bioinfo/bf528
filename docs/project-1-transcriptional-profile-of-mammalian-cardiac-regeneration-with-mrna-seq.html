@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq | BF528 - Applications in Translational Bioinformatics</title>
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq | BF528 - Applications in Translational Bioinformatics">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq | BF528 - Applications in Translational Bioinformatics">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+<meta name="description" content="High-throughput sequencing technologies have dramatically expanded our understanding of gene expression through their ability to profile all potential mRNA molecules in an unbiased manner without...">
+<meta property="og:description" content="High-throughput sequencing technologies have dramatically expanded our understanding of gene expression through their ability to profile all potential mRNA molecules in an unbiased manner without...">
+<meta name="twitter:description" content="High-throughput sequencing technologies have dramatically expanded our understanding of gene expression through their ability to profile all potential mRNA molecules in an unbiased manner without...">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">BF528 - Applications in Translational Bioinformatics</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
+<li><a class="" href="introduction.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="genomics-genes-and-genomes.html"><span class="header-section-number">2</span> Genomics, Genes, and Genomes</a></li>
+<li><a class="" href="array-technologies.html"><span class="header-section-number">3</span> Array Technologies</a></li>
+<li><a class="" href="gene-sets-and-enrichment.html"><span class="header-section-number">4</span> Gene sets and enrichment</a></li>
+<li><a class="" href="nd-gen-sequencing.html"><span class="header-section-number">5</span> 2nd Gen Sequencing</a></li>
+<li><a class="" href="sequence-analysis-fundamentals.html"><span class="header-section-number">6</span> Sequence Analysis Fundamentals</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-1.html"><span class="header-section-number">7</span> Sequence Analysis - RNA-Seq 1</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-2.html"><span class="header-section-number">8</span> Sequence Analysis - RNA-Seq 2</a></li>
+<li><a class="" href="genomic-variation-and-snp-analysis.html"><span class="header-section-number">9</span> Genomic Variation and SNP Analysis</a></li>
+<li><a class="" href="biological-data-formats.html"><span class="header-section-number">10</span> Biological Data Formats</a></li>
+<li><a class="" href="sequence-visualization.html"><span class="header-section-number">11</span> Sequence Visualization</a></li>
+<li><a class="" href="sequence-analysis---atac-seq.html"><span class="header-section-number">12</span> Sequence Analysis - ATAC-Seq</a></li>
+<li><a class="" href="sequence-analysis---chip-seq.html"><span class="header-section-number">13</span> Sequence Analysis - ChIP-Seq</a></li>
+<li><a class="" href="biological-databases.html"><span class="header-section-number">14</span> Biological Databases</a></li>
+<li><a class="" href="replicability-vs-reproducibility-strategies.html"><span class="header-section-number">15</span> Replicability vs Reproducibility Strategies</a></li>
+<li><a class="" href="computational-environment-management.html"><span class="header-section-number">16</span> Computational Environment Management</a></li>
+<li><a class="" href="computational-pipeline-strategies.html"><span class="header-section-number">17</span> Computational Pipeline Strategies</a></li>
+<li><a class="" href="single-cell-techniques.html"><span class="header-section-number">18</span> Single Cell Techniques</a></li>
+<li><a class="" href="single-cell-analysis-part-1.html"><span class="header-section-number">19</span> Single Cell Analysis Part 1</a></li>
+<li><a class="" href="single-cell-analysis-part-2.html"><span class="header-section-number">20</span> Single Cell Analysis Part 2</a></li>
+<li><a class="" href="microbiome-16s.html"><span class="header-section-number">21</span> Microbiome: 16S</a></li>
+<li><a class="" href="microbiome-metagenomics.html"><span class="header-section-number">22</span> Microbiome: Metagenomics</a></li>
+<li><a class="" href="proteomics.html"><span class="header-section-number">23</span> Proteomics</a></li>
+<li><a class="" href="metabolomics.html"><span class="header-section-number">24</span> Metabolomics</a></li>
+<li><a class="" href="integrative-genomics.html"><span class="header-section-number">25</span> Integrative Genomics</a></li>
+<li><a class="" href="professional-development.html"><span class="header-section-number">26</span> Professional Development</a></li>
+<li><a class="" href="project-writeup-instructions.html">Project Writeup Instructions</a></li>
+<li><a class="active" href="project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html">Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></li>
+<li><a class="" href="project-3-chipseq-analysis-of-the-human-transcription-factor-runx1.html">Project 3: ChIPseq analysis of the human transcription factor Runx1</a></li>
+<li><a class="" href="project-4-single-cell-rna-seq-analysis-of-pancreatic-cells.html">Project 4: Single Cell RNA-Seq Analysis of Pancreatic Cells</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq" class="section level1 unnumbered">
+<h1>Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq<a class="anchor" aria-label="anchor" href="#project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq"><i class="fas fa-link"></i></a>
+</h1>
+<p>High-throughput sequencing technologies have dramatically expanded our understanding of gene expression through their ability to profile all potential mRNA molecules in an unbiased manner without being constrained to a small subset of pre-chosen targets like in a microarray. This agnostic approach to molecular profiling has allowed for more complex and interesting analyses that interrogate novel splice patterns and gene isoforms or the newly appreciated multifaceted functions of long non-coding RNAs. However, the overwhelming use case of RNA sequencing has been to provide information about mRNA abundance and gene expression. The ability to assay the gene expression profile of an organism and how it changes in response to various stimuli or under different disease conditions has revolutionized modern molecular biology and genomics. In this project, you will perform all steps necessary to produce a basic analysis of RNA sequencing data from mouse heart ventricles isolated across the differentiation process.</p>
+<p>Upon completion of this project, you will have gained experience with the following concepts and skills:</p>
+<ul>
+<li>Working familiarity with standard tools used to aid in reproducible bioinformatics research including, but not limited to, git, miniconda, snakemake, and jupyter / Rmarkdown notebooks</li>
+<li>Hands-on experience with a current state of the art RNAseq pipeline encompassing quality control, alignment, read quantification, and differential expression analysis</li>
+<li>Proficiency with commonly used bioinformatics tools including fastQC, multiQC, STAR, FeatureCounts (verse), DESeq2, Samtools, and HPC usage</li>
+</ul>
+<p><strong>IMPORTANT NOTES</strong></p>
+<p>This first project will ask you to understand a great many concepts in a relatively short amount of time. In order to make troubleshooting your snakemake workflows more expedient, you will be working with very small subsets of the original data. This will allow you to quickly confirm that both your snakemake workflow and the tools you are using to process and analyze the data are working as expected. The files are small enough that you will be able to perform all of the operations on the head node of the SCC and have them finish within a few seconds. Please use these files to ensure that your snakemake workflow is operating as specified.</p>
+<p>After your workflow runs successfully on the test files, we will learn about the usage of <code>qsub</code> and how to have snakemake automatically and properly submit jobs to the cluster. Then, you will use this knowledge to run your complete workflow on the full samples.</p>
+<p>It is critical that you do your best to complete the required weekly tasks in order to stay on schedule for finishing the analysis. It will be very difficult to complete everything requested if you fall behind. Please seek out myself or the TAs and we will do our best to assist you however you need. Please use the accompanying weekly checklist to keep track of all of the necessary tasks. We strongly encourage you to continue on with other tasks if you finish early.</p>
+<p>At the end of each week’s instructions, you may see a section entitled <strong>CHALLENGE</strong>, these are entirely <strong>OPTIONAL</strong>. These are steps that you are not required to do, but if you are already familiar with the material of the original task, you may choose to complete these tasks as an extra challenge.</p>
+<div id="table-of-contents" class="section level2" number="26.1">
+<h2>
+<span class="header-section-number">26.1</span> Table of Contents<a class="anchor" aria-label="anchor" href="#table-of-contents"><i class="fas fa-link"></i></a>
+</h2>
+<p><a href="project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html#week-1-getting-started">Week 1</a></p>
+<p><a href="project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html#week-2-aligning-reads-to-the-reference-genome">Week 2</a></p>
+<p><a href="project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html#week-3-quantifying-alignments-filtering-and-differential-expression">Week 3</a></p>
+<p><a href="project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html#week-4-biological-analysis-and-interpretation">Week 4</a></p>
+<p><a href="project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html#week-5-writing-a-report">Week 5</a></p>
+</div>
+<div id="week-1-getting-started" class="section level2" number="26.2">
+<h2>
+<span class="header-section-number">26.2</span> Week 1: Getting started<a class="anchor" aria-label="anchor" href="#week-1-getting-started"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>Read the paper</strong></p>
+<p>This analysis is based on the data published in this study: <em>O’Meara et al. Transcriptional Reversion of Cardiac Myocyte Fate During Mammalian Cardiac Regeneration. Circ Res. Feb 2015. PMID: 25477501</em></p>
+<p>Please read the paper to get a sense for the overall hypotheses, goals, and conclusions presented. Keep in mind we are only analyzing the data from the first figure, and only the dataset involving the samples from p0, p4, p7 and adult mouse heart ventricle cells.</p>
+<p>We will also be deviating from the published methods in favor of using more up-to-date strategies and tools. However, the workflow you will develop should still capture and recreate the same core biological signals observed in the original work.</p>
+<p><strong>Create a working directory for project 1</strong></p>
+<p>Please sign on to the SCC and navigate to our class project directory located at:
+/projectnb/bf528/students/</p>
+<pre><code>1. If you haven’t already done so, please make a directory at this location replacing your_username with your SCC username / BU ID.
+    - /projectnb/bf528/students/your_username/
+
+2. Within your directory, please make another directory which will serve to contain all of your work for project 1
+    - /projectnb/bf528/students/your_username/project_1/</code></pre>
+<p><strong>Create a conda environment for this project</strong></p>
+<p>One of the core advantages of conda is that it allows you to create multiple, independent computing environments with different sets of packages installed with conda handling dependencies. It is generally a good practice to create a distinct, self-contained conda environment for each individual dataset / experiment.</p>
+<pre><code>1. Please create a conda environment for this project, you may name it whatever is easiest for you to remember</code></pre>
+<p>Take care to activate your conda environment prior to working on any aspect of the project. Certain steps will fail outright without it activated and some will work but with potentially outdated packages.</p>
+<pre><code>2. Using the appropriate command mentioned in Assignment 0, please install the following packages: snakemake, pandas, fastqc, star, samtools, multiqc, verse, bioconductor-deseq2, bioconductor-fgsea, jupyter-lab</code></pre>
+<p>Export the details of your conda environment to a text file.</p>
+<p><strong>Initialize your working directory as a git repository</strong></p>
+<p>Accept the github classroom link sent to automatically generate a template directory and git repository that will house your work for the project.</p>
+<p><strong>Locating the data</strong></p>
+<p>For this first project, we have provided you with small subsets of the original data files. You may copy these files to your working directory or use symbolic links (man ln) to work with these files. For your convenience, we have renamed the files to be descriptive of the samples they represent following the pattern: {day}_{replicate}_{read_pair}_subsample.fastq.gz (i.e. AD_rep1_R1_subsample.fastq.gz)</p>
+<p>The files are located here: /projectnb/bf528/project_1_rnaseq/ and there are 16 total files (8 samples, paired end reads)</p>
+<pre><code>1. Using either symbolic links or `cp`, make all of these files available in your working directory (/projectnb/bf528/students/your_username/project_1/)</code></pre>
+<p>By default, snakemake will search the current working directory it is located in for any files. You can provide absolute or relative paths to other files as well. We strongly suggest that you maintain a flat directory structure. Every raw file, your snakefile, and your processed files will be located and produced in projectnb/bf528/students/your_username/project_1/. You may use subdirectories, but you will have to remember to update the paths in your snakefile accordingly.</p>
+<p><strong>Performing Quality Control</strong></p>
+<p>At this point, you should have:
+- Setup a directory for this project and initialized your environment description, the provided .gitignore, and a descriptive README to a github repo
+- Copied the files to your working directory or made symbolic links to their original locations
+- Created a new conda environment containing the requested packages
+- Activate your environment before doing any work</p>
+<p>We will begin by performing quality control on the FASTQ files generated from the experiment. fastQC is a bioinformatics software tool that calculates and generates descriptive graphics of the various quality metrics encoded in a FASTQ file. We will use this tool to quickly check the basic quality of the sequencing in this experiment.</p>
+<p>Your first task is to develop a snakemake workflow that will run fastQC on each of the 16 project files. You will have to make appropriate use of wildcards, and the expand() function to construct a working snakefile to perform these steps.</p>
+<p>You may find it helpful to utilize the following command:</p>
+<p><code>snakemake -s {insert_your_snakefile_name} --dryrun -p</code></p>
+<p>This command will instruct snakemake to print out a summary of what it plans to do based on how your snakefile is written. This command is useful for quickly troubleshooting if you have any simple errors in syntax, wildcard matching, etc. Please note that it will not actually run any of the code in your rule directives and thus will not allow you to determine if there are any issues or errors in your actual shell or python arguments / commands.</p>
+<pre><code>1. Set up your snakemake workflow to run FastQC on each of the 16 FASTQ files (8 samples)
+    - FastQC will create a .html and a .zip file for each FASTQ file. It will create these files with the following pattern: {original_filename}_fastqc.html and {original_filename}_fastqc.zip</code></pre>
+<p>You should have two rules: your rule all and the rule that runs fastQC on each of the files</p>
+<p>At the end of the first week, you should make sure to have done the following:
+- Read the paper and understand the goals and hypotheses of the original study. Focus in particular on the analyses pertaining to the dataset we are examining and make note of the interpretations and conclusions drawn by the authors.
+- Create a directory for your username under our class partition. You should also set up a separate directory for project 1 within the former directory.
+- Make a new conda environment with the specified packages for this experiment
+- Initialize a git repository for your working directory for project 1
+- Make symbolic links to all of the data files or copy the subset files to your working directory
+- Generate an initial snakemake workflow that runs fastQC on all 16 samples
+- You should have two rules: a rule all and the rule that runs fastQC
+- There will be 32 new files generated, a .html and a .zip, for each file</p>
+<p><strong>CHALLENGE</strong></p>
+<p>If you are already familiar with high performance computing environments, you no doubt understand that you should not run any intensive computational tasks on the head node.</p>
+<p>Please only attempt this section if you are proficient and knowledgeable in the use of qsub to properly submit batch jobs with appropriate resources requested. The original data files are located in our single project directory, /projectnb/bf528/project_1_rnaseq/.</p>
+<p>Reformat your snakefile to operate on the full data files; their name will not include “subsample” but otherwise follow the same exact naming conventions mentioned above.
+Using your snakemake workflow, run fastQC on all 16 original data files
+Your snakemake command used to run must include the –cluster option and appropriate qsub arguments to avoid running these jobs on the head node
+We will be discussing the appropriate usage of qsub and –cluster in week 4 of the project</p>
+</div>
+<div id="week-2-aligning-reads-to-the-reference-genome" class="section level2" number="26.3">
+<h2>
+<span class="header-section-number">26.3</span> Week 2: Aligning reads to the reference genome<a class="anchor" aria-label="anchor" href="#week-2-aligning-reads-to-the-reference-genome"><i class="fas fa-link"></i></a>
+</h2>
+<p>Now that we have performed basic quality control on the FASTQ files, we are going to align them to the mouse reference genome to generate alignments for each of our sequencing reads. We will then “count” the alignments falling into regions of interest in the mouse genome (exonic regions) and sum the alignments falling into all exons of a given gene to obtain a “gene-level” count of mRNA abundance for all genes in each sample.</p>
+<p><strong>Downloading files from public repositories</strong></p>
+<p>As we have discussed in lecture, there are many major scientific organizations that create, maintain and/or host innumerable bioinformatics resources. GENCODE, is one such organization,whose primary mission is to provide up-to-date and curated reference genomes and annotations for humans and mice. In the course of your work as a bioinformatician, you should and will have to make good use of the plethora of public resources available to you.</p>
+<pre><code>1. Please generate a snakemake rule that will download two files from the GENCODE service. You may need to make two separate snakemake rules or figure out a way to do it in one. Consider looking into the wget and curl commands, which in tandem with snakemake, will enable you to incorporate downloading these files as part of your workflow.  
+    -Navigate to the GENCODE website and select the page for Mouse. Look underneath the section entitled “Fasta files” and locate the file with content “Genome sequence, primary assembly (GRCm39)”
+    -Look under the section entitled “GTF / GFF3 files” and locate the file with the description, “It contains the comprehensive gene annotation on the primary assembly (chromosomes and scaffolds) sequence regions”
+
+2. Now that you have located both of these files, generate a snakemake rule (or two) that downloads these files
+    - Remember that snakemake rules do not always need an input</code></pre>
+<p>Some bioinformatics utilities can handle gzipped files, others cannot. For our workflow, we will need the GTF file to be uncompressed. You may generate a snakemake rule to do this or simply uncompress the file on the command line.</p>
+<p><strong>Aligning reads to the genome</strong></p>
+<p>Before aligning reads to a reference genome, most tools will need to generate a genome index, a set of files which enable fast and efficient searching through a large sequence. This step is computationally intensive and cannot be run on the head node of the SCC. For this first project, we have pre-built an appropriate STAR index for a portion of the m39 reference. Whenever you are asked to reference the STAR index, you may provide this path: /projectnb/bf528/project_1_rnaseq/m39_subset_star/</p>
+<pre><code>1. Create a snakemake rule that aligns each of your 8 samples (16 files) against the provided m39 reference genome with the following requirements in mind:
+    - Look through the most current manual and documentation for STAR and set the option to output a BAM Unsorted file
+    - Leave every other argument as default
+    - Hint: Make sure to carefully read the section on naming output files in STAR.</code></pre>
+<p><strong>Performing post-alignment QC</strong></p>
+<p>Typically after performing alignment, it is good to perform post-alignment quality control to quickly check if there appear to be any major problems with the data. We are going to primarily focus on the overall mapping rate statistic, which is simply the percentage of reads that properly map to our genome. For a well-annotated and studied organism like mouse, we typically expect very high mapping rates (&gt;80%) for standard RNAseq experiments in the absence of any errors in sample processing or library preparation.</p>
+<p>The samtools suite contains a set of highly important and incredibly useful utilities for parsing and manipulating SAM/BAM files. Take a look at the samtools manual to get a sense for its capabilities.</p>
+<pre><code>1. Create a snakemake rule that runs the samtools flagstat utility on each of your BAM files. By default, this utility prints results to stdout. Redirect and save the output to a .txt file instead.</code></pre>
+<p>You may have noticed that most of the QC utilities produce separate outputs for each sample. This dataset is on the smaller side but larger experiments can encompass hundreds of samples. Individually inspecting outputs from all of these utilities would quickly become cumbersome in such situations. We are going to utilize the MultiQC utility, which recognizes the outputs from many standard bioinformatics tools, and concatenates their outputs into a single, well-formatted and visually attractive report.</p>
+<pre><code>1. Read the multiQC manual to learn more about its operation and create a snakemake rule that runs MultiQC. The resulting .html report that will be generated should contain the metrics from the output of fastQC, STAR, and flagstats.</code></pre>
+<p>Since you are working with files that have been intentionally filtered to make them smaller, the actual outputs from fastQC, flagstats, and STAR will be misleading. Do not draw any conclusions from these reports generated on the subsetted data.</p>
+<p>At the end of week 2, you should make sure to have accomplished the following items:
+- Generated a snakemake rule (or two) tahat download the primary assembly genome FASTA for m33 and its matching GTF file
+- Make sure to uncompress the GTF file, you may do this in snakemake or on the command line
+- Generated a snakemake rule that runs STAR to generate 8 Unsorted BAM files for each of the samples in our dataset
+- Generated a snakemake rule that runs samtools flagstat on each of the BAM files and creates a .txt file for each output
+- Generated a snakemake rule that runs MultiQC on your project directory</p>
+<p><strong>CHALLENGE</strong> (only do this if you did last weeks challenge)</p>
+<p>As with last week’s challenge, please do not attempt this unless you are already familiar with qsub, and how to request appropriate computational resources on the SCC. Generating a genome index requires both a large amount of time and RAM and should not be done on the head node under any circumstances.</p>
+<pre><code>1. Using the primary assembly FASTA of the m39 genome and its matching GTF file that you downloaded, generate your own STAR index using snakemake using default parameters.
+2. Use your generated STAR index to align your samples to the full m39 genome. You will have to use qsub for this.</code></pre>
+</div>
+<div id="week-3-quantifying-alignments-filtering-and-differential-expression" class="section level2" number="26.4">
+<h2>
+<span class="header-section-number">26.4</span> Week 3: Quantifying alignments, filtering, and differential expression<a class="anchor" aria-label="anchor" href="#week-3-quantifying-alignments-filtering-and-differential-expression"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>Mapping gene IDs to gene symbols</strong></p>
+<p>There are several ways to map gene IDs to gene symbols (ENSMUSGXXXXX to Actb), including BiomaRt, which you have previously used in BF591. For this project, we will be extracting the mapping of gene IDs to gene symbols directly from the GTF used to build our genome index. Take a look at the first few lines of the GTF that you downloaded earlier or look up how information is stored and formatted in a GTF.</p>
+<p>Use <code>cat</code> or <code>head</code> to inspect the first several lines of the GTF annotation file</p>
+<pre><code>1. Generate a snakemake rule that parses this GTF and accomplishes the following:
+    - Includes the run directive to parse this file using python
+    - Parse each relevant line of the GTF and extract the ensembl gene ID and matching gene symbol
+    - Write out every pair of gene ID and gene symbol to a comma delimited text file (ENSMUSG00000023170.14,Gps2\n - an example of a single line)
+    - You may want to consider ways to ensure only unique pairs of gene IDs and symbols are saved in your output</code></pre>
+<p>We will use this mapping of IDs to symbols later on to replace the gene IDs with the more easily recognized and tractable gene symbols.</p>
+<p><strong>Quantifying the alignments</strong></p>
+<p>Now that we have aligned each of our samples to the reference genome, we need to quantify these alignments. This quantification is typically done by “counting” the alignments falling into regions of interest. These regions of interest can vary depending on your goal, but most commonly for RNAseq, we are interested in quantifying the counts of alignments mapping in exonic regions. To obtain gene level counts, the counts from all of its exonic regions are summed. This will end up generating a single file with the rows representing all of the genes in the m33 reference and the corresponding counts of how many alignments from a sample fall into the regions annotated for each gene.</p>
+<pre><code>1. Read the documentation for VERSE and create a snakemake rule that runs it on each of your 8 bam files
+    - VERSE will require your BAM file and the GTF file that matches the reference used to build the index</code></pre>
+<p>VERSE will generate a counts file (*.exon.txt) for each of your 8 samples. For most downstream applications, we will want this data in the form of a counts matrix, a single file containing all of the counts from each sample.</p>
+<pre><code>1. Create another snakemake rule that uses pandas to concatenate the VERSE output files (sample_name.exon.txt) and accomplishes the following:
+    - Creates a single dataframe where each of the samples are a column, the rows represent the gene counts and the row names are the gene IDs.
+    - Writes this dataframe to a new file for use downstream</code></pre>
+<p><strong>Visualizing count distributions and filtering</strong></p>
+<p>Now that we have a single matrix containing all of our counts, it is common to visualize the distribution of these counts as well as perform pre-filtering of the counts. Typically, this filtering is performed by setting a reasonable threshold to remove lowly expressed genes. The purpose of filtering is to reduce unnecessary computation as well as remove genes that may negatively impact downstream applications.</p>
+<p>You may have noticed that this dataset only has two replicates per timepoint. As we discussed in class, there are multiple potential meanings to a count of zero in the context of sequencing experiments. For example, it is possible we did not sequence “deep” enough to detect certain lowly expressed genes. However, it’s also possible that genes with zero counts are truly not expressed at all. In order to mitigate some of this uncertainty, we are going to apply a filter to our counts to simply remove any genes that are not expressed in all of our samples. Please note that this is a subjective choice and there is not a single correct way of filtering this data. This specific filter was chosen to avoid attempting to perform statistical tests between conditions where we only have one measurement (our filter will only retain genes that are expressed in every sample, ensuring that at worst, we are comparing 2 measurements against 2 measurements).</p>
+<p>If you remember, we have been working with datafiles that were intentionally filtered to make them much smaller and able to be processed on the head node. For the following steps, please use the provided file, /projectnb/bf528/project_1_rnaseq/verse_filtered.tsv, in place of the one you created.</p>
+<p>If and only if you have successfully completed all of the CHALLENGE steps, you may use your own filtered counts matrix instead.</p>
+<pre><code>1. Please create a jupyter notebook in your project directory
+    - You should do this using the OnDemand graphical interface
+    - Generate a plot of the distribution of counts for each sample from the single count matrix you just created in the previous step</code></pre>
+<p>Now that we have visualized the distribution of our unfiltered counts. We are going to apply the filter we outlined above:</p>
+<pre><code>1. Generate a new snakemake rule that takes the counts matrix as input, performs the described filtering, and writes this filtered counts matrix to a new file. You may do this however you like, but we recommend that you use the run directive in combination with pandas. 
+    - Go back to your jupyter notebook, and create the same plot but with the filtered counts matrix. For our next steps, we will be using the filtered counts matrix.</code></pre>
+<p><strong>Performing differential expression</strong></p>
+<p>Now that we have filtered our counts, we are going to perform differential expression with DESeq2. There are a few ways to do this, but we are going to perform this analysis in a Rmarkdown notebook in order to keep everything as organized as possible. Please create a Rmarkdown notebook in your project directory using SCC OnDemand and do all of the following work with DESeq2 in this notebook.</p>
+<pre><code>1. Please read the fantastically written DESeq2 vignette (https://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html) and perform a basic differential expression analysis comparing just the p0 and AD timepoints. 
+    - Run DESeq2 using default settings and comparing the p0 and AD samples
+    - Write out the full results from DESeq2 to a new file
+    - Report how many genes are significant at a FDR of &lt; .001</code></pre>
+<p>At the end of week 3, you should have accomplished the following:
+- Generated a snakemake rule that produces a comma delimited .txt file containing the correct mapping of ensembl gene IDs to their corresponding gene symbol from the GTF annotations
+- Generated a snakemake rule that runs VERSE on each of the BAM files
+- Generated a snakemake rule that concatenates the VERSE output files into a single dataframe
+- Generated plots showing the distribution of counts in each sample before and after filtering in a jupyter notebook
+- Performed a standard DESeq2 analysis on the filtered counts matrix, and comparing only the p0 and AD timepoints in a Rmarkdown notebook
+- In your notebook, filter the results to only contain significantly differentially expressed genes with a FDR &lt; .001</p>
+<p><strong>CHALLENGE</strong></p>
+<p>The original instructions ask you to perform the DESeq2 analysis in a Rmarkdown notebook. Snakemake is capable of running external scripts. For the extra task, generate a snakemake rule that will run DESeq2 by calling a separate Rscript. To do this, you will need to:</p>
+<pre><code>1. Encapsulate the code that runs DESeq2 in a Rscript
+    - Utilize docopt or similar tools to allow your Rscript to recognize command line arguments
+    - Determine appropriate outputs and inputs for this rule</code></pre>
+</div>
+<div id="week-4-biological-analysis-and-interpretation" class="section level2" number="26.5">
+<h2>
+<span class="header-section-number">26.5</span> Week 4: Biological Analysis and Interpretation<a class="anchor" aria-label="anchor" href="#week-4-biological-analysis-and-interpretation"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>Visualizing genes that change over time</strong></p>
+<p>There are <strong>many</strong> ways to analyze time series data including the use of likelihood ratio tests or spline regression; however, since we have replicates at each time point, we can also treat these timepoints as factors and explicitly test for genes that differ between them. Approaches like regression splines require careful interpretation of curves and choice of parameters. In our current analysis, we have simply found genes that are differentially expressed between undifferentiated cells and fully differentiated myocytes. We are going to utilize two techniques to perform a basic analysis of this data: 1. Hierarchical clustering + gene enrichment, and 2. Gene Set Enrichment Analysis (GSEA).</p>
+<p>In our analysis, we selected for genes that were differentially expressed between p0 and AD. Now, we would also like to see how the expression for these genes changes across time. To do this, we are going to subset our data to only the DE genes detected between p0 and AD and extract their normalized counts from each sample. After this, we will mean-center our counts, perform hierarchical clustering to group them into (hopefully) meaningful clusters and plot their expression patterns over time.</p>
+<p>We will be doing the following steps in your Rmarkdown / Jupyter notebook that you created previously.</p>
+<pre><code>1. Read the DESeq2 vignette, and determine how to generate a Variance Stabilized Transformed matrix of your counts
+2. Write this VST counts to a new file or save it to an appropriate variable
+3. You have previously identified genes that are significantly changed between p0 and AD. Extract out the genes that are significant at FDR &lt; .001 and subset the VST counts to only include the counts for these genes
+4. Perform mean centering but do not scale your data(i.e. subtract the mean value of the row from each value in the row, but do not scale all standard deviations to 1). 
+5. Perform hierarchical clustering using the hclust function in R
+6. Use the cutree function in R to cut the dendrogram into clusters
+7. Using the results from cutree, generate separate parallel coordinate plots for each cluster to visualize their expression over time. Make sure you address the following questions in your report:
+    - What patterns do you see in each cluster?
+    - Extract out the genes from each cluster and perform gene enrichment analysis using DAVID, enrichR, etc. to get a sense for what biological pathways or processes are enriched in each. </code></pre>
+<p>For our final analysis, we are going to perform GSEA directly on the results from the comparison analyzing the p0 and AD timepoints.</p>
+<pre><code>1. Navigate to the official MsigDB website and download the M2 Canonical Pathways gene set
+    - Upload this .gmt file to your working directory on the SCC</code></pre>
+<p>As mentioned in class, one of the distinct advantages of GSEA is that it requires no arbitrary statistical threshold and uses the data generated from all genes in your experiment.</p>
+<pre><code>1. Use the full dataframe of all results from the p0 vs AD comparison and sort your results by log2FoldChange descending
+    - Output the values of the log2FoldChange column as a named vector (names being the gene symbols)</code></pre>
+<p>Read the documentation on the fgsea package in bioconductor.</p>
+<pre><code>1. Using the named vector you generated previously and the .gmt gene set file you downloaded from MSigDB, run fgsea using default parameters 
+    - fgsea provides a built-in function to load in .gmt files in an appropriate format
+
+2. Filter your results to only retain gene sets that are significant at a FDR of &lt; .15
+    - Using just the significant genesets, generate plots or tables that display the top ten results sorted by both ascending and descending NES. (i.e. one table with the top ten gene sets with the highest NES (most positive), and one table with the top ten gene sets that have the lowest NES (most negative)</code></pre>
+<p>At the end of the final week, you should have accomplished the following:</p>
+<ul>
+<li>Generated a counts matrix containing variance stabilized transformed counts</li>
+<li>Generated a counts matrix containing VST counts for the DE genes when comparing p0 vs AD</li>
+<li>Perform mean centering on these counts</li>
+<li>Perform hierarchical clustering on these counts</li>
+<li>Used cutree to “cut” our dendrogram into 4 clusters</li>
+<li>Generate parallel coordinate plots for each of the 4 clusters displaying the normalized counts over time for our significant genes</li>
+<li>Performed basic gene enrichment using DAVID/EnrichR on the genes from each of the 4 clusters</li>
+<li>Perform GSEA using the fgsea package in R</li>
+<li>Download the mouse C2 canonical pathways geneset from MSigDB</li>
+<li>Generate a named vector of log2FoldChanges and gene symbols from all the results returned by DESeq2</li>
+<li>Filter the fgsea results to only include gene sets with a FDR &lt; .15</li>
+<li>A plot / table of the top ten gene sets ranked by NES descending</li>
+<li>A plot / table of the top ten gene sets ranked by NES ascending</li>
+</ul>
+</div>
+<div id="week-5-writing-a-report" class="section level2" number="26.6">
+<h2>
+<span class="header-section-number">26.6</span> Week 5: Writing a report<a class="anchor" aria-label="anchor" href="#week-5-writing-a-report"><i class="fas fa-link"></i></a>
+</h2>
+<p>Now that you have completed each week tasks, you should have a fully working pipeline that processes a full RNAseq experiment from raw data to differential expression. Now you will need to write a report that details the entire project in the style of a scientific publication. As a reminder, here is a general outline of how to structure it:</p>
+<pre><code>Introduction (1-2 paragraphs)
+    - What is the biological background of the study?
+    - Why was the study performed?
+    - What main experimental techniques were used in the study?
+
+Methods (variable)
+    - Describe any specific parameters used, software versions, or specific steps that would ultimately affect the reproducibility of the results
+
+Results (variable)
+    - Results from each step in the methods with appropriate figures / tables containing descriptive captions
+
+Discussion (1 page)
+    - Discuss and interpret the results in the context of the biological question asked by the study. Briefly state the main results and follow-on with a discussion on the implications and the biological conclusions drawn that are supported by the results. 
+    - Briefly discuss how well you managed to reproduce the results from the paper
+
+Future Directions (1-2 paragraphs)
+- List at least three follow-up experiments / questions that would be interesting to follow-up on after the paper
+- What would these experiments attempt to answer? And why would they be relevant?
+
+Challenges (1 paragraph)
+- What were the main difficulties you encountered in the project?
+
+Conclusion (1 paragraph)
+- What is the main conclusion a reader should draw from the analysis?
+
+References
+- Use consistent, proper citation format for any references (Mendeley, Zotero, Paperpile)</code></pre>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="project-writeup-instructions.html">Project Writeup Instructions</a></div>
+<div class="next"><a href="project-3-chipseq-analysis-of-the-human-transcription-factor-runx1.html">Project 3: ChIPseq analysis of the human transcription factor Runx1</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq">Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></li>
+<li><a class="nav-link" href="#table-of-contents"><span class="header-section-number">26.1</span> Table of Contents</a></li>
+<li><a class="nav-link" href="#week-1-getting-started"><span class="header-section-number">26.2</span> Week 1: Getting started</a></li>
+<li><a class="nav-link" href="#week-2-aligning-reads-to-the-reference-genome"><span class="header-section-number">26.3</span> Week 2: Aligning reads to the reference genome</a></li>
+<li><a class="nav-link" href="#week-3-quantifying-alignments-filtering-and-differential-expression"><span class="header-section-number">26.4</span> Week 3: Quantifying alignments, filtering, and differential expression</a></li>
+<li><a class="nav-link" href="#week-4-biological-analysis-and-interpretation"><span class="header-section-number">26.5</span> Week 4: Biological Analysis and Interpretation</a></li>
+<li><a class="nav-link" href="#week-5-writing-a-report"><span class="header-section-number">26.6</span> Week 5: Writing a report</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>BF528 - Applications in Translational Bioinformatics</strong>" was written by . </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

@@ -38,3 +38,9 @@ docker
 metabolomics
 integrative-genomics
 professional-development
+table-of-contents
+week-1-getting-started
+week-2-aligning-reads-to-the-reference-genome
+week-3-quantifying-alignments-filtering-and-differential-expression
+week-4-biological-analysis-and-interpretation
+week-5-writing-a-report
