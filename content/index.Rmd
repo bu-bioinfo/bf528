@@ -140,8 +140,14 @@ Project guidelines for the written reports (1, 2, 3) are here:
 
 ## Grading and Assessment {-}
 
-Grading and assessment 
-
+Grading and assessment will primarily be based on the final reports you write
+at the completion of each project. You will be assessed based on completeness
+(did you include all the deliverables requested?), and how well you communicate
+your results (in the style of a peer-reviewed publication). The weekly tasks will
+represent a smaller portion of your grade and will largely be checked for 
+completeness. You will be given feedback on your written reports and your final
+grade will be determined by how well you incorporate that feedback into each
+successive report. 
 
 ## Course Schedule {-}
 
