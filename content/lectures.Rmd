@@ -2,7 +2,7 @@
 output: html_document
 ---
 
-# Introduction
+# Introduction {-}
 
 ## Introductory slides
 [online slides](https://docs.google.com/presentation/d/1C-KKnTbZCekB1kEKz5EWEA_EPp8pXTFZVOubXz90ZQY/present?usp=sharing)
@@ -20,14 +20,47 @@ Familiarize yourself with the material on basic command line usage found here:
 
 [Workshop 0. Basic Linux and Command Line Usage](http://foundations-in-computational-skills.readthedocs.io/en/latest/content/workshops/00_cli_basics/00_cli_basics.html)
 
-# Genomics, Genes, and Genomes
-
-## Genes and Genomes
+# Genomics, Genes, and Genomes {-}
 [online slides](https://docs.google.com/presentation/d/1cCvxsV_aUhZs1dxR-JdZKV8JyTFscdT8FuuVYZarGvQ/present?usp=sharing)
 
 [downloadable slides](https://docs.google.com/presentation/d/1cCvxsV_aUhZs1dxR-JdZKV8JyTFscdT8FuuVYZarGvQ/export/pptx)
 
-## SCC cluster usage
+# git {-}
+[online slides](https://docs.google.com/presentation/d/17a8OwDCTyIhzgNgsJkEBWzEu2CPm9x3QKy9ZHR5tyxA/present?usp=sharing)
+
+[downloadable slides](https://docs.google.com/presentation/d/17a8OwDCTyIhzgNgsJkEBWzEu2CPm9x3QKy9ZHR5tyxA/export/pptx)
+
+# Computational Pipeline Strategies {-}
+[online slides](https://docs.google.com/presentation/d/1vQ13kTBCnXRKkn-iiDueMG3xsj3YHVza-bZJxrj47hU/present?usp=sharing)
+
+[downloadable slides](https://docs.google.com/presentation/d/1vQ13kTBCnXRKkn-iiDueMG3xsj3YHVza-bZJxrj47hU/export/pptx)
+
+# Computational Environment Management {-}
+[online slides](https://docs.google.com/presentation/d/1daf_StRgrXxGQ8LYoY7qVWhXSUd-H5-dNeDmSAKN0RA/present?usp=sharing)
+
+[downloadable slides](https://docs.google.com/presentation/d/1daf_StRgrXxGQ8LYoY7qVWhXSUd-H5-dNeDmSAKN0RA/export/pptx)
+
+# Sequence Analysis Fundamentals {-}
+[online slides](https://docs.google.com/presentation/d/1KGyfv4jAFoGD-NmN7mNbiKepA-njI3DK5paEwrQqkxk/present?usp=sharing)
+
+[downloadable slides](https://docs.google.com/presentation/d/1KGyfv4jAFoGD-NmN7mNbiKepA-njI3DK5paEwrQqkxk/export/pptx)
+
+# 2nd Gen Sequencing {-}
+[online slides](https://docs.google.com/presentation/d/1mT2c6EOB3WcyfJzXCQLukU4JZIqM8qWpfc6tde5CeAc/present?usp=sharing)
+
+[downloadable slides](https://docs.google.com/presentation/d/1mT2c6EOB3WcyfJzXCQLukU4JZIqM8qWpfc6tde5CeAc/export/pptx)
+
+# Sequence Analysis - RNA-Seq 1 {-}
+[online slides](https://docs.google.com/presentation/d/1JG4fQtjfRvM8JJ71rmpw4JoxxB11zexUaRNcnB7N5ZQ/present?usp=sharing)
+
+[downloadable slides](https://docs.google.com/presentation/d/1JG4fQtjfRvM8JJ71rmpw4JoxxB11zexUaRNcnB7N5ZQ/export/pptx)
+
+# Sequence Analysis - RNA-Seq 2 {-}
+[online slides](https://docs.google.com/presentation/d/1VRS2bGS3Gq4sMXWwJGvvCaPDGk1FoSjo6jRANzHOeNg/present?usp=sharing)
+
+[downloadable slides](https://docs.google.com/presentation/d/1VRS2bGS3Gq4sMXWwJGvvCaPDGk1FoSjo6jRANzHOeNg/export/pptx)
+
+# SCC cluster usage {-}
 [online slides](https://docs.google.com/presentation/d/1maCjOOKx1lDkDjYZVwP09ZOs8VFROM7FpzubACl1IgU/present?usp=sharing)
 
 [downloadable slides](https://docs.google.com/presentation/d/1maCjOOKx1lDkDjYZVwP09ZOs8VFROM7FpzubACl1IgU/export/pptx)
@@ -38,87 +71,37 @@ Familiarize yourself with the material on bash scripting and cluster computing h
 
 [Workshop 6. Shell Scripts and Cluster Computing](http://foundations-in-computational-skills.readthedocs.io/en/latest/content/workshops/06_cluster_computing/06_cluster_computing.html)
 
-# Array Technologies
-
-## Microarrays
-[online slides](https://docs.google.com/presentation/d/1zo2c5AYnDZRCFbrJIz-43rec35N9tz834oatCyqUBzU/present?usp=sharing)
-
-[downloadable slides](https://docs.google.com/presentation/d/1zo2c5AYnDZRCFbrJIz-43rec35N9tz834oatCyqUBzU/export/pptx)
-
-## git
-[online slides](https://docs.google.com/presentation/d/17a8OwDCTyIhzgNgsJkEBWzEu2CPm9x3QKy9ZHR5tyxA/present?usp=sharing)
-
-[downloadable slides](https://docs.google.com/presentation/d/17a8OwDCTyIhzgNgsJkEBWzEu2CPm9x3QKy9ZHR5tyxA/export/pptx)
-
-## Project Principles
-[online slides](https://docs.google.com/presentation/d/1StJwNUJu3dtENAagRQiyPTGReiG5gjcShdt7hwo5a5k/present?usp=sharing)
-
-[downloadable slides](https://docs.google.com/presentation/d/1StJwNUJu3dtENAagRQiyPTGReiG5gjcShdt7hwo5a5k/export/pptx)
-
-## Assignment
-Read the Project 1 Description and paper.
-
-Familiarize yourself with Workshop 4 on R
-[Workshop 4. R](http://foundations-in-computational-skills.readthedocs.io/en/latest/content/workshops/04_R/04_R.html)
-
-# Gene sets and enrichment
-
-## Gene Enrichment
-[online slides](https://docs.google.com/presentation/d/1h13WgR2NabDO8vqjTzygmvgy4PCKhCzwof_qsH1_od4/present?usp=sharing)
-
-[downloadable slides](https://docs.google.com/presentation/d/1h13WgR2NabDO8vqjTzygmvgy4PCKhCzwof_qsH1_od4/export/pptx)
-
-## R and Rstudio Primer
-[online slides](https://docs.google.com/presentation/d/1ur8SodoCJsG-0qve8VEHeo0FKqQkdLoe_hr5UVyJgxI/present?usp=sharing)
-
-[downloadable slides](https://docs.google.com/presentation/d/1ur8SodoCJsG-0qve8VEHeo0FKqQkdLoe_hr5UVyJgxI/export/pptx)
-
-# 2nd Gen Sequencing
-[online slides](https://docs.google.com/presentation/d/1mT2c6EOB3WcyfJzXCQLukU4JZIqM8qWpfc6tde5CeAc/present?usp=sharing)
-
-[downloadable slides](https://docs.google.com/presentation/d/1mT2c6EOB3WcyfJzXCQLukU4JZIqM8qWpfc6tde5CeAc/export/pptx)
-
-# Sequence Analysis Fundamentals
-[online slides](https://docs.google.com/presentation/d/1KGyfv4jAFoGD-NmN7mNbiKepA-njI3DK5paEwrQqkxk/present?usp=sharing)
-
-[downloadable slides](https://docs.google.com/presentation/d/1KGyfv4jAFoGD-NmN7mNbiKepA-njI3DK5paEwrQqkxk/export/pptx)
-
-# Sequence Analysis - RNA-Seq 1
-[online slides](https://docs.google.com/presentation/d/1JG4fQtjfRvM8JJ71rmpw4JoxxB11zexUaRNcnB7N5ZQ/present?usp=sharing)
-
-[downloadable slides](https://docs.google.com/presentation/d/1JG4fQtjfRvM8JJ71rmpw4JoxxB11zexUaRNcnB7N5ZQ/export/pptx)
-
-# Sequence Analysis - RNA-Seq 2
-[online slides](https://docs.google.com/presentation/d/1VRS2bGS3Gq4sMXWwJGvvCaPDGk1FoSjo6jRANzHOeNg/present?usp=sharing)
-
-[downloadable slides](https://docs.google.com/presentation/d/1VRS2bGS3Gq4sMXWwJGvvCaPDGk1FoSjo6jRANzHOeNg/export/pptx)
-
-# Genomic Variation and SNP Analysis
-[online slides](https://docs.google.com/presentation/d/1gWBIVMdS3ZejjzvoCd9WAdYkrvFs_lqZzxTeYR1LyVU/present?usp=sharing)
-
-[downloadable slides](https://docs.google.com/presentation/d/1gWBIVMdS3ZejjzvoCd9WAdYkrvFs_lqZzxTeYR1LyVU/export/pptx)
-
-# Biological Data Formats
+# Biological Data Formats {-}
 [online slides](https://docs.google.com/presentation/d/1EnSuChl1iTmnrFutZyUEYlLRUOshl4zEd2ff6_yJI0g/present?usp=sharing)
 
 [downloadable slides](https://docs.google.com/presentation/d/1EnSuChl1iTmnrFutZyUEYlLRUOshl4zEd2ff6_yJI0g/export/pptx)
 
-# Sequence Visualization
-[online slides](https://docs.google.com/presentation/d/1ObDpgPaNaWwn-a_pjeq09v1j-SjLXs0dpa9m6KTWXww/present?usp=sharing)
+# Gene sets and enrichment {-}
+[online slides](https://docs.google.com/presentation/d/1h13WgR2NabDO8vqjTzygmvgy4PCKhCzwof_qsH1_od4/present?usp=sharing)
 
-[downloadable slides](https://docs.google.com/presentation/d/1ObDpgPaNaWwn-a_pjeq09v1j-SjLXs0dpa9m6KTWXww/export/pptx)
+[downloadable slides](https://docs.google.com/presentation/d/1h13WgR2NabDO8vqjTzygmvgy4PCKhCzwof_qsH1_od4/export/pptx)
 
-# Sequence Analysis - ATAC-Seq
-[online slides](https://docs.google.com/presentation/d/14FxXgKuC7Ul0G6tCN8gjjGKc89vAujQiQCcDnwuzdJA/present?usp=sharing)
+# Replicability vs Reproducibility Strategies {-}
+[online slides](https://docs.google.com/presentation/d/1CmIhOXuIvVwxRm4tRK5BZi5f_APmB4T8pUzrV_DJdww/present?usp=sharing)
 
-[downloadable slides](https://docs.google.com/presentation/d/14FxXgKuC7Ul0G6tCN8gjjGKc89vAujQiQCcDnwuzdJA/export/pptx)
+[downloadable slides](https://docs.google.com/presentation/d/1CmIhOXuIvVwxRm4tRK5BZi5f_APmB4T8pUzrV_DJdww/export/pptx)
 
-# Sequence Analysis - ChIP-Seq
+# Sequence Analysis - ChIP-Seq {-}
 [online slides](https://docs.google.com/presentation/d/1JarJGLbgTdSzUW6U1TmyNAUReNVUxfvUTBJ8hLhCAWg/present?usp=sharing)
 
 [downloadable slides](https://docs.google.com/presentation/d/1JarJGLbgTdSzUW6U1TmyNAUReNVUxfvUTBJ8hLhCAWg/export/pptx)
 
-# Biological Databases
+# Genome Browsers {-}
+[online slides](https://docs.google.com/presentation/d/1ObDpgPaNaWwn-a_pjeq09v1j-SjLXs0dpa9m6KTWXww/present?usp=sharing)
+
+[downloadable slides](https://docs.google.com/presentation/d/1ObDpgPaNaWwn-a_pjeq09v1j-SjLXs0dpa9m6KTWXww/export/pptx)
+
+# Sequence Analysis - ATAC-Seq {-}
+[online slides](https://docs.google.com/presentation/d/14FxXgKuC7Ul0G6tCN8gjjGKc89vAujQiQCcDnwuzdJA/present?usp=sharing)
+
+[downloadable slides](https://docs.google.com/presentation/d/14FxXgKuC7Ul0G6tCN8gjjGKc89vAujQiQCcDnwuzdJA/export/pptx)
+
+# Biological Databases {-}
 [online slides](https://docs.google.com/presentation/d/16K1JaYKGMo8bqcKf-l1FHHNzhtqCfrHWOdQ0xuokgYU/present?usp=sharing)
 
 [downloadable slides](https://docs.google.com/presentation/d/16K1JaYKGMo8bqcKf-l1FHHNzhtqCfrHWOdQ0xuokgYU/export/pptx)
@@ -127,69 +110,47 @@ Familiarize yourself with Workshop 4 on R
 
 [demo slides downloadable](https://docs.google.com/presentation/d/1zdlwxhBb2_cmTQRyVgVEpV0YyFZipW5iGRtwTb8U984/export/pptx)
 
-# Replicability vs Reproducibility Strategies
-[online slides](https://docs.google.com/presentation/d/1CmIhOXuIvVwxRm4tRK5BZi5f_APmB4T8pUzrV_DJdww/present?usp=sharing)
+# Genomic Variation and SNP Analysis {-}
+[online slides](https://docs.google.com/presentation/d/1gWBIVMdS3ZejjzvoCd9WAdYkrvFs_lqZzxTeYR1LyVU/present?usp=sharing)
 
-[downloadable slides](https://docs.google.com/presentation/d/1CmIhOXuIvVwxRm4tRK5BZi5f_APmB4T8pUzrV_DJdww/export/pptx)
+[downloadable slides](https://docs.google.com/presentation/d/1gWBIVMdS3ZejjzvoCd9WAdYkrvFs_lqZzxTeYR1LyVU/export/pptx)
 
-# Computational Environment Management
-[online slides](https://docs.google.com/presentation/d/1daf_StRgrXxGQ8LYoY7qVWhXSUd-H5-dNeDmSAKN0RA/present?usp=sharing)
-
-[downloadable slides](https://docs.google.com/presentation/d/1daf_StRgrXxGQ8LYoY7qVWhXSUd-H5-dNeDmSAKN0RA/export/pptx)
-
-# Computational Pipeline Strategies
-[online slides](https://docs.google.com/presentation/d/1vQ13kTBCnXRKkn-iiDueMG3xsj3YHVza-bZJxrj47hU/present?usp=sharing)
-
-[downloadable slides](https://docs.google.com/presentation/d/1vQ13kTBCnXRKkn-iiDueMG3xsj3YHVza-bZJxrj47hU/export/pptx)
-
-# Single Cell Techniques
-[online slides](https://docs.google.com/presentation/d/16rQQp-PIxlvrm5jDYkjgonv35rhntsU1UQMc6xilvJ8/present?usp=sharing)
-
-[downloadable slides](https://docs.google.com/presentation/d/16rQQp-PIxlvrm5jDYkjgonv35rhntsU1UQMc6xilvJ8/export/pptx)
-
-# Single Cell Analysis Part 1
-[online slides](https://docs.google.com/presentation/d/1L1jbEt3h2-QTys5Fcoj1WqtNvxzo3s9vGR9vXnovEFQ/present?usp=sharing)
-
-[downloadable slides](https://docs.google.com/presentation/d/1L1jbEt3h2-QTys5Fcoj1WqtNvxzo3s9vGR9vXnovEFQ/export/pptx)
-
-# Single Cell Analysis Part 2
-[online slides](https://docs.google.com/presentation/d/1A2cqLqpZqajCRBVDUR5zS5wbWsH8X_lbo-uwdVyAK04/present?usp=sharing)
-
-[downloadable slides](https://docs.google.com/presentation/d/1A2cqLqpZqajCRBVDUR5zS5wbWsH8X_lbo-uwdVyAK04/export/pptx)
-
-# Microbiome: 16S
-[online slides](https://docs.google.com/presentation/d/1iir7MCFph7vvHLsjts0HI_zel98nrttNWCigku-VzF8/present?usp=sharing)
-
-[downloadable slides](https://docs.google.com/presentation/d/1iir7MCFph7vvHLsjts0HI_zel98nrttNWCigku-VzF8/export/pptx)
-
-# Microbiome: Metagenomics
+# Microbiome: Metagenomics {-}
 [online slides](https://docs.google.com/presentation/d/1zAmAVoMzwG6M5MSLo_qdN6kuWMSp7aXzrPF01c8zGQY/present?usp=sharing)
 
 [downloadable slides](https://docs.google.com/presentation/d/1zAmAVoMzwG6M5MSLo_qdN6kuWMSp7aXzrPF01c8zGQY/export/pptx)
 
-# Proteomics
+# Microbiome: 16S {-}
+[online slides](https://docs.google.com/presentation/d/1iir7MCFph7vvHLsjts0HI_zel98nrttNWCigku-VzF8/present?usp=sharing)
 
-## Proteomics
+[downloadable slides](https://docs.google.com/presentation/d/1iir7MCFph7vvHLsjts0HI_zel98nrttNWCigku-VzF8/export/pptx)
+
+# Proteomics {-}
 [online slides](https://docs.google.com/presentation/d/1d1Ho_YMxqxrzsrIBp2N50R5IstCQfmiwMJul6lHRFec/present?usp=sharing)
 
 [downloadable slides](https://docs.google.com/presentation/d/1d1Ho_YMxqxrzsrIBp2N50R5IstCQfmiwMJul6lHRFec/export/pptx)
 
-## Docker
-[online slides](https://docs.google.com/presentation/d/1zEVd93m51Ukp5a1N3dd0D5HayHgPfdZrKlY3tgrH64o/present?usp=sharing)
-
-[downloadable slides](https://docs.google.com/presentation/d/1zEVd93m51Ukp5a1N3dd0D5HayHgPfdZrKlY3tgrH64o/export/pptx)
-
-# Metabolomics
+# Metabolomics {-}
 [online slides](https://docs.google.com/presentation/d/1Pey4YDKdz5i0Q3t5CuvwzHPtwo55RvUaO1TWvZAD2As/present?usp=sharing)
 
 [downloadable slides](https://docs.google.com/presentation/d/1Pey4YDKdz5i0Q3t5CuvwzHPtwo55RvUaO1TWvZAD2As/export/pptx)
 
-# Integrative Genomics
-[online slides](https://docs.google.com/presentation/d/1o-3YZYlB31lVvROqSQjy3NPLJIe58e2ybpMR4IIbwoQ/present?usp=sharing)
+# Docker {-}
+[online slides](https://docs.google.com/presentation/d/1zEVd93m51Ukp5a1N3dd0D5HayHgPfdZrKlY3tgrH64o/present?usp=sharing)
 
-[downloadable slides](https://docs.google.com/presentation/d/1o-3YZYlB31lVvROqSQjy3NPLJIe58e2ybpMR4IIbwoQ/export/pptx)
+[downloadable slides](https://docs.google.com/presentation/d/1zEVd93m51Ukp5a1N3dd0D5HayHgPfdZrKlY3tgrH64o/export/pptx)
 
-# Professional Development
-[online slides](https://docs.google.com/presentation/d/19-OCTft4_bv1pg9bMxNnb25WWIuDu6jPqP50dhOHon0/present?usp=sharing)
+# Single Cell Analysis Part 1 {-}
+[online slides](https://docs.google.com/presentation/d/16rQQp-PIxlvrm5jDYkjgonv35rhntsU1UQMc6xilvJ8/present?usp=sharing)
 
-[downloadable slides](https://docs.google.com/presentation/d/19-OCTft4_bv1pg9bMxNnb25WWIuDu6jPqP50dhOHon0/export/pptx)
+[downloadable slides](https://docs.google.com/presentation/d/16rQQp-PIxlvrm5jDYkjgonv35rhntsU1UQMc6xilvJ8/export/pptx)
+
+# Single Cell Analysis Part 2 {-}
+[online slides](https://docs.google.com/presentation/d/1L1jbEt3h2-QTys5Fcoj1WqtNvxzo3s9vGR9vXnovEFQ/present?usp=sharing)
+
+[downloadable slides](https://docs.google.com/presentation/d/1L1jbEt3h2-QTys5Fcoj1WqtNvxzo3s9vGR9vXnovEFQ/export/pptx)
+
+# Single Cell Analysis Part 3 {-}
+[online slides](https://docs.google.com/presentation/d/1A2cqLqpZqajCRBVDUR5zS5wbWsH8X_lbo-uwdVyAK04/present?usp=sharing)
+
+[downloadable slides](https://docs.google.com/presentation/d/1A2cqLqpZqajCRBVDUR5zS5wbWsH8X_lbo-uwdVyAK04/export/pptx)
