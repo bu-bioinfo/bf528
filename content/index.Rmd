@@ -16,14 +16,14 @@ knitr::opts_chunk$set(cache = TRUE)
 
 Welcome to the homepage of BF528.
 
-**Semester: Spring 2023**
+**Semester: Spring 2024**
 
-**Meeting time:** Monday/Friday 10:10-11:55
+**Meeting time:** Monday/Wednesday/Friday 9:05-9:55am
 
-**Location:** SOC B57 and Zoom
+**Location:** CDS B62
 
 **Office hours:**
-By appointment
+By appointment (jorofino@bu.edu) or weekly as determined in class
 
 Contents:
 
@@ -32,93 +32,77 @@ Contents:
 - [Office Hours]
 - [Course Values and Policies]
 
-The objective of this course is expose students to the topics and technologies
-used in modern bioinformatics studies. The course covers a mix of biological
-and computational topics, including:
+## Learning Objectives {-}
+- Gain conceptual understanding of the assays and tools used
+in modern bioinformatics studies from how they function on a molecular level to
+the major computational analysis steps 
+- Develop proficiency in creating bioinformatics workflows with an emphasis on 
+reproducibility and portability
+- Practice analyzing bioinformatics results and interpreting them in the context
+of the underlying research question to draw meaningful biological conclusions
 
-* High throughput genomics techniques (microarrays, 2nd generation sequencing)
-* Current high throughput sequencing assays (DNA-Seq, RNA-Seq, ChIP-Seq)
-* Differential gene expression techniques
-* Microbiome/metagenomics techniques
-* Metabolomics
-* Proteomics
-* Systems, network, and integrative biology
-* Basic linux cluster usage
-* Python and R scripting
-* Computational workflow and replication strategies
-* Genomics data visualization techniques
-* Biological databases
 
-This is highly hands-on course, where a portion of in-class periods are
-dedicated to concerted group work and interactive discussions. The course
-materials are focused on real-world applications of the high throughput
-genomics techniques and organized into structured **group projects**. Students
-are organized into groups of three or four for the entire semester, where they
-will work together to replicate results from published studies. The tasks for
-each project have been divided into four ‘roles’:
+Below you will find a selection of some of the prominent biological and 
+computational topics that will be covered in the course:
+- High Throughput Sequencing Technologies (RNAseq, ChIPseq, scRNAseq) 
+  and various omics technologies (Proteomics, Metabolomics, etc)
+- Computational Workflow Tools (snakemake, nextflow)
+- Reproducibility and Replicability Tools (Git, Docker, Conda)
+- Bioinformatics Databases and File Formats
 
-**Data curator**: identify, download, and describe relevant datasets and
-literature
+## Course Description {-}
+The objective of this course is to expose students to modern bioinformatics
+studies with a specific focus on the analysis of next generation sequencing
+data. The course lectures will cover a mix of both biological and computational
+topics necessary for the technical and conceptual understanding of current
+high-throughput genomics techniques. This will include brief discussions of the
+molecular mechanisms of the assays, basic data analysis workflows, and
+translating these results into biological conclusions.
 
-**Programmer**: write code to transform the downloaded data into an
-interpretable form
+Students will get hands-on experience developing computational workflows that
+perform an end-to-end analysis of sequencing data from ubiquitous NGS
+technologies including RNA-sequencing, ChIP-sequencing, and Single Cell
+RNA-sequencing. The course emphasizes the importance of reproducibility,
+portability, and replicability in modern bioinformatics.
 
-**Analyst**: examine and visualize processed data to aid in interpretation
+Classes will be a mix of more traditional topic lectures, interactive demos and
+collaborative workshops where students will work together on discussions or
+concepts / analyses not covered fully in lectures.
 
-**Biologist**: connect the processed data into meaningful biological
-interpretation
-
-Each group will complete four projects over the course of the semester, and for
-each project the roles of the members rotate, such that each member fulfills
-each role once. Each group will produce a full report describing their work on
-each project, including biological background, methods, results, and
-interpretation.
-
-The first half of each in-class period will be dedicated to interactive
-discussions on special topics germane to the project material. The second half
-is dedicated to either special topics as indicated in the schedule below, or
-to discussion of the projects, sharing ideas, and communicating challenges both
-within and between groups, with the assistance of the instructors.
-
-There are no homeworks or exams, only projects.
-
-The course materials are aligned with [BF591 R for Biological
-Sciences](https://github.com/bu-bioinfo/r-for-biological-sciences) and are
-intended to be taken in tandem, but the materials also stand alone as an
-independent class.
+Projects are split into weekly tasks but the majority of your evaluation will be
+the final report produced for each project. 
 
 ## Course Values and Policies {-}
 
-**Everyone is welcome.** Every background, race, color, creed, religion, ethnic origin,
-age, sex, sexual orientation, gender identity, nationality is welcome and celebrated
-in this course. Everyone deserves respect, patience, and kindness. *Disrespectful language,
-discrimination, or harassment of any kind are not tolerated, and may result in removal
-from class or the University.* This is not merely [BU
-policy](http://www.bu.edu/policies/policy-category/harassment-discrimination/).
-The instructors deem these principles to be inviolable human rights. Students
-should feel safe reporting any and all instances of discrimination or harassment
-to the instructor, to any of the Bioinformatics Program leadership, or the BU
-[Equal Opportunity Office](http://www.bu.edu/eoo/)
+**Everyone is welcome.** Every background, race, color, creed, religion, ethnic
+origin, age, sex, sexual orientation, gender identity, nationality is welcome
+and celebrated in this course. Everyone deserves respect, patience, and
+kindness. Disrespectful language, discrimination, or harassment of any kind are
+not tolerated, and may result in removal from class or the University.  The
+instructors deem these principles to be inviolable human rights. Students should
+feel safe reporting any and all instances of discrimination or harassment to the
+instructor, to any of the Bioinformatics Program leadership, or the BU Equal
+Opportunity Office 
 
-**Everyone brings value.** Each of us brings unique experiences, skills, and
-creativity to this course. Our diversity is our greatest asset.
+**Everyone brings value.** Each of us brings unique experiences,
+skills, and creativity to this course. Our diversity is our greatest asset.
+Collaboration is highly encouraged. All students are encouraged to work together
+and seek out any and all available resources when completing projects in all
+aspects of the course, including sharing both ideas and code as well as those
+found on the internet. Any and all available resources may be brought to bear.
+However, consistent with BU policy, your reports should be written in your own
+words and represent your own work and understanding of the material. 
 
-**Collaboration is highly encouraged**. All students are encouraged to work together and seek
-out any and all available resources when completing projects in all aspects of the course,
-including sharing both ideas and code as well as those found on the internet. Any and all
-available resources may be brought to bear. *However, consistent with BU policy, your reports
-should be written in your own words and represent your own work and understanding of the
-material.*
-
-**A safe space for dissent.** For complex topics such as those covered in this class, there
-is seldom one correct answer, approach, or solution. Disagreement fosters innovation.
-All in the course, including students and TAs, are encouraged to express constructive
-criticism and alternative ideas on any aspect of the content.
-
-**We are always learning.** Our knowledge and understanding is always incomplete. Even experts
-are fallible. The bioinformatics field evolves rapidly, and "Rome was not built in a day."
-Be kind to yourself and to others. You are always smarter and more knowledgable today than you
-were yesterday.
+**Life happens.** Your mental health is important, far more important than any class.
+Make sure to take care of yourself and reach out to someone you trust (mentor,
+family member, or friend) if you ever feel you need to talk to someone. BU
+offers a number of resources through Student Health Services for managing
+situations involving grief, anxiety and depression, stress, homesickness and
+other common issues. I am also always here to listen without judgment. On a
+related note, if you need to miss class because of private matters, you do not
+need to disclose anything you aren’t comfortable sharing, please just let me
+know and I will work with you to help you catch up when you return. Your family,
+friends, and health should always come first.
 
 ## Prerequisites {-}
 
@@ -145,144 +129,122 @@ As instructor, I pledge to
 
 ## Project Overview {-}
 
-The five projects are as follows:
+The three projects are as follows:
 
-1. [Microarray Based Tumor Classification][Project 1: Microarray Based Tumor Classification]
-2. [Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq][Project 2: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq]
-3. [ChIP-Seq analysis of the human transcription factor Runx1][Project 3: ChIPseq analysis of the human transcription factor Runx1]
-4. [Single Cell RNA-Seq Analysis of Pancreatic Cells][Project 4: Single Cell RNA-Seq Analysis of Pancreatic Cells]
-5. [Individual Project]
+1. [Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq][Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq]
+2. [ChIP-Seq analysis of the human transcription factor Runx1][Project 2: ChIPseq analysis of the human transcription factor Runx1]
+3. [Single Cell RNA-Seq Analysis of Kidney Cells][Project 3: Single Cell RNA-Seq Analysis of Kidney Cells]
 
-In the individual project, you will choose (at least) two roles from any of the
-projects *that you did not previously do*. This will give you an opportunity to
-gain experience with tools and skills you may have missed while playing other
-roles.
-
-The roles in each project require varying amounts of effort. Since you must do
-each role exactly once, below is information about the rating of each role in
-each project with respect to the amount of **computational skill/time commitment
-required** to help you choose your sequence of roles:
-
-+--------------+------------+------------+------------+-----------------+
-| Role         | Project 1  | Project 2  | Project 3  | Project 4       |
-+==============+============+============+============+=================+
-| Data Curator | ⚫⚪⚪⚪   | ⚫⚫⚪⚪   | ⚫⚫⚪⚪   | ⚫⚫⚫❗        |
-+--------------+------------+------------+------------+-----------------+
-| Programmer   | ⚫⚪⚪⚪   | ⚫⚫⚪⚪   | ⚫⚫⚫⚪   | ⚫⚫⚪⚪        |
-+--------------+------------+------------+------------+-----------------+
-| Analyst      | ⚫⚫⚪⚪   | ⚫⚪⚪⚪   | ⚫⚫⚫⚪   | ⚫⚫⚪⚪        |
-+--------------+------------+------------+------------+-----------------+
-| Biologist    | ⚫⚪⚪⚪   | ⚫⚪⚪⚪   | ⚫⚪⚪⚪   | ⚫⚫⚪⚪        |
-+--------------+------------+------------+------------+-----------------+
-| ⚫⚪⚪⚪ -- least skill required; ⚫⚫⚫❗ -- most skill required     |
-+--------------+------------+------------+------------+-----------------+
-
-Taking these ratings into account, we provide four possible sequences for
-each member of each group. Sequence 1 through 4 involve increasingly difficult
-computational tasks:
-
-+--------------+--------------+--------------+--------------+--------------+
-|              | Project 1    | Project 2    | Project 3    | Project 4    |
-+==============+==============+==============+==============+==============+
-| Sequence 1   | Programmer   | Analyst      | Data Curator | Biologist    |
-+--------------+--------------+--------------+--------------+--------------+
-| Sequence 2   | Data Curator | Biologist    | Analyst      | Programmer   |
-+--------------+--------------+--------------+--------------+--------------+
-| Sequence 3   | Biologist    | Data Curator | Programmer   | Analyst      |
-+--------------+--------------+--------------+--------------+--------------+
-| Sequence 4   | Analyst      | Programmer   | Biologist    | Data Curator |
-+--------------+--------------+--------------+--------------+--------------+
-
-These are only suggestions. These suggested sequences also only reflect the
-computational skill involved in each role; those with less biological
-background may find the biologist roles more conceptually challenging.
-
-Project guidelines for group reports (1, 2, 3, and 4) are here:
+Project guidelines for the written reports (1, 2, 3, and 4) are here:
 [Project Writeup Instructions]
-
-Please also take some time with your group to review and think about some of the
-questions in [Class Expectations][Group Expectations for working collaboratively]. 
-We have outlined a few preliminary questions to discuss with
-your group to help set some basic, formal expectations for working together.
-
 
 ## Grading and Assessment {-}
 
-Group report assessment will be the same for all group members. Assessment is
-made based on the process completed by the group, not whether the study results
-were successfully replicated or not. Each students' grade may be adjusted based
-upon the quality of their final individual project relative to their group
-reports.
+Grading and assessment 
 
 
 ## Course Schedule {-}
 
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-| No.| Day | Date      | Primary Topic                                 | Secondary Topic        | Project Assigned/Due                                                                                  |
-+====+=====+===========+===============================================+========================+=======================================================================================================+
-| 1  | Fri | 1/20/2023 | [Introduction]                                | Command Line Interface |                                                                                                       |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-| 2  | Mon | 1/23/2023 | [Genomics, Genes, and Genomes]                | Cluster Usage          |                                                                                                       |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-| 3  | Fri | 1/27/2023 | [Array Technologies]                          | git                    | [Project 1][Project 1: Microarray Based Tumor Classification]                                         |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-| 4  | Mon | 1/30/2023 | [Gene sets and enrichment]                    | R+RStudio Primer       |                                                                                                       |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-| 5  | Fri | 2/3/2023  | [2nd Gen Sequencing]                          |                        |                                                                                                       |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-| 6  | Mon | 2/6/2023  | [Sequence Analysis Fundamentals]              |                        |                                                                                                       |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-| 7  | Fri | 2/10/2023 | [Sequence Analysis - RNA-Seq 1]               |                        |                                                                                                       |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-| 8  | Mon | 2/13/2023 | [Sequence Analysis - RNA-Seq 2]               |                        |                                                                                                       |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-| 9  | Fri | 2/17/2023 | [Genomic Variation and SNP Analysis]          | Project 1 Review       | 1 Due/[Project 2][Project 2: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq] |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-| 10 | Tue | 2/21/2023 | [Biological Data Formats]                     | Genome Browsers        |                                                                                                       |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-| 11 | Fri | 2/24/2023 | [Sequence Analysis - ATAC-Seq]                |                        |                                                                                                       |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-| 12 | Mon | 2/27/2023 | [Sequence Analysis - ChIP-Seq]                |                        |                                                                                                       |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-| 13 | Fri | 3/3/2023  | [Biological Databases]                        |                        |                                                                                                       |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-|    | Mon | 3/6/2023  | Spring Break                                  |                        |                                                                                                       |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-|    | Fri | 3/10/2023 | Spring Break                                  |                        |                                                                                                       |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-| 14 | Mon | 3/13/2023 | [Replicability vs Reproducibility Strategies] |                        |                                                                                                       |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-| 15 | Fri | 3/17/2023 | [Computational Environment Management]        | Project 2 Review       | 2 Due/[Project 3][Project 3: ChIPseq analysis of the human transcription factor Runx1]      |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-| 16 | Mon | 3/20/2023 | [Computational Pipeline Strategies]           | Conda+Snakemake        |                                                                                                       |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-| 17 | Fri | 3/24/2023 | [Single Cell Techniques]                      |                        |                                                                                                       |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-| 18 | Mon | 3/27/2023 | [Single Cell Analysis Part 1]                 |                        |                                                                                                       |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-| 19 | Fri | 3/31/2023  | [Single Cell Analysis Part 2]                 |                        |                                                                                                       |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-| 20 | Mon | 4/3/2023  | [Microbiome: 16S]                             |                        |                                                                                                       |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-| 21 | Fri | 4/7/2023  | [Microbiome: Metagenomics]                    | Project 3 Review       | 3 Due/[Project 4][Project 4: Single Cell RNA-Seq Analysis of Pancreatic Cells]                        |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-| 22 | Mon | 4/10/2023 | [Proteomics]                                  | Something Fancy        |                                                                                                       |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-| 23 | Fri | 4/14/2023 | [Metabolomics]                                |                        |                                                                                                       |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-| 24 | Wed | 4/19/2023 | [Professional Development]                    |                        |                                                                                                       |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-|    | Fri | 4/21/2023 | Project work, no class                        |                        |                                                                                                       |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-|    | Mon | 4/24/2023 | Project work, no class                        |                        |                                                                                                       |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-|    | Fri | 4/28/2023 | Project work, no class                        |                        | 4 Due/[Project 5][Individual Project]                                                                 |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-| 28 | Mon | 5/1/2023  | Project 4 Review / Course Feedback            |                        |                                                                                                       |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
-|    | Fri | 5/12/2023 | Final projects due                            |                        | 5 Due                                                                                                 |
-+----+-----+-----------+-----------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------------+
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| No.| Day | Date      | Primary Topic                                 | Project Assigned/Due              |
++====+=====+===========+===============================================+===================================+
+| 1  | Fri | 1/19/2024 | [Introduction]                                |                                   |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 2  | Mon | 1/22/2024 | [Genomics, Genes, and Genomes]                | Assignment 0 Assigned             |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 3  | Wed | 1/24/2024 | [Computational Workflows] / Git & Conda       |                                   |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 4  | Fri | 1/26/2024 | [Sequence Fundamentals]                       |                                   |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 5  | Mon | 1/29/2024 | [2nd Gen Sequencing]                          | Wk 1 - P1 Assigned                |           
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 6  | Wed | 1/31/2024 | Science Writing                               |                                   |           
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 7  | Fri | 2/2/2024  | [Sequence Analysis - RNA-Seq 1]               |                                   |           
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 8  | Mon | 2/5/2024  | [Sequence Analysis - RNA-Seq 2]               | Wk2 - P1 Assigned / Wk 1 - P1 Due |          
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 9  | Wed | 2/7/2024  | [SCC Usage]                                   |                                   |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 10 | Fri | 2/9/2024  | [Biological Data Formats]                     |                                   |           
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 11 | Mon | 2/12/2024 | [Gene Sets and Enrichment]                    | Wk3 - P1 Assigned / Wk 2 - P1 Due |           
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 12 | Wed | 2/14/2024 | Project 1 Check-In                            |                                   |         
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 13 | Fri | 2/16/2024 | [Replicability vs Reproducibility Strategies] |                                   |         
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+|    | Mon | 2/19/2024 | No Class                                      |                                   |         
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 14 | Wed | 2/21/2024 | Scientific Figures (Adam)                     | Wk4 - P1 Assigned / Wk3 - P1 Due  |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 15 | Fri | 2/23/2024 | [Sequence Analysis - ChIP-Seq]                |                                   |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 16 | Mon | 2/26/2024 | [Genome Browsers]                             | Wk5 - P1 Assigned / Wk4 - P1 Due  | 
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 17 | Wed | 2/28/2024 | LLMs / ChatGPT Discussion                     |                                   |         
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 18 | Fri | 3/1/2024  | [Sequence Analysis - ATAC-Seq]                |                                   |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 19 | Mon | 3/4/2024  | [Biological Databases]                        | Wk1 - P2 Assigned / P1 Report Due |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 20 | Wed | 3/6/2024  | Project 1 Review and Discussion               |                                   |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 21 | Fri | 3/8/2024  | [Genomic Variation and SNPs]                  |                                   |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 22 | Mon | 3/11/2024 | No Class                                      |                                   |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 23 | Wed | 3/13/2024 | No Class                                      |                                   |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 24 | Fri | 3/15/2024 | No Class                                      |                                   |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 25 | Mon | 3/18/2024 | [Metagenomics]                                | Wk2 - P2 Assigned / Wk2 - P1 Due  |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 26 | Wed | 3/20/2024 | Genome Browsers, Pt. 2                        |                                   |                 
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 27 | Fri | 3/22/2024 | [16s Sequencing]                              |                                   |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 28 | Mon | 3/25/2024 | [Proteomics]                                  | Wk3 - P2 Assigned / Wk2 - P2 Due  |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 29 | Wed | 3/27/2024 | Project 2 Check-In                            |                                   |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 30 | Fri | 3/29/2024 | Metabolomics                                  |                                   |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 31 | Mon | 4/1/2024  | Figure Generation, Pt. 2 (Adam)               | Wk4 - P2 Assigned / Wk3 - P2 due  |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 32 | Wed | 4/3/2024  | Nextflow                                      |                                   |                 
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 33 | Fri | 4/5/2024  | Docker                                        |                                   |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 34 | Mon | 4/8/2024  | [Single Cell Part 1]                          | Wk5 - P2 Assigned / Wk4 - P2 Due  |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 35 | Wed | 4/10/2024 | [Single Cell Part 2]                          |                                   |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 36 | Fri | 4/12/2024 | [Single Cell Part 3]                          |                                   |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 37 | Mon | 4/15/2024 | No class                                      |                                   |                 
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 38 | Wed | 4/17/2024 | Project 2 Review and Discussion               | Wk1 - P3 Assigned / P2 Report Due |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 39 | Fri | 4/19/2024 | Presentation Overview                         |                                   |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 40 | Mon | 4/22/2024 | Presentations                                 | Wk2 - P3 Assigned / Wk1 - P3 Due  |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 41 | Wed | 4/24/2024 | Project 3 Check-In                            |                                   |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 42 | Fri | 4/26/2024 | Presentations                                 |                                   |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 43 | Mon | 4/29/2024 | Presentations                                 | Wk3 - P3 Assigned / Wk2 - P3 Due  |                 
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 44 | Wed | 5/1/2024  | Course Feedback and Discussion                |                                   |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+|    |     |           |                                               |                                   |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+|    |     |           |                                               |                                   |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
+| 45 | Mon | 5/6/2024  | Final projects due                            | P3 Report Due                     |
++----+-----+-----------+-----------------------------------------------+-----------------------------------+
 
 ## Office Hours {-}
 
-* TBD
+To be determined in class by vote based on availability 
