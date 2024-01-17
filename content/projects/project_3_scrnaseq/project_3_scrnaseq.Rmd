@@ -1,0 +1,91 @@
+---
+---
+
+# Project 3: Single Cell Analysis of the Mouse Kidney
+This last project will be different from the previous two. I will outline the general steps you will need to perform, and certain analyses / figures / plots as deliverables, but you will have to determine how to do them yourself. The instructions are intentionally open-ended and you will be asked later in your written report to state / justify your major decisions. In addition, I have broken the sections into weekly tasks as a suggestion but you will only be assessed on your final report. As always, you are welcome to use your classmates and the resources online freely for your reference. 
+
+## Week 1: Getting Started
+
+**Read the paper**
+
+This analysis is based on the data published in this study: Park, J., Shrestha, R., Qiu, C., Kondo, A., Huang, S., Werth, M., Li, M., Barasch, J., & Suszták, K. (2018). Single-cell transcriptomics of the mouse kidney reveals potential cellular targets of kidney disease. Science, 360(6390), 758–763.
+
+Please read the paper to get a sense for the overall hypotheses, goals, and conclusions presented. We will be focusing mostly on the results presented in the first figure. 
+
+**Downloading the data**
+
+This publication encompasses 7 total samples analyzed by single cell RNA sequencing but we will only be working with the four true wild-type samples. Out of convenience and concern for our disk space, we have downloaded and processed 3 out of the 4 of the samples meeting this criteria. 
+ 
+Individually, please download the data associated with SRX3436301. 
+
+You may find the following resource helpful for preparing the data for further processing (https://kb.10xgenomics.com/hc/en-us/articles/115003802691-How-do-I-prepare-Sequence-Read-Archive-SRA-data-from-NCBI-for-Cell-Ranger-). 
+
+If you recall, the early processing steps in single cell RNA sequencing are generally the same as bulk RNA sequencing. We will be aligning these reads to the appropriate reference genome before quantifying them and generating a counts matrix. In the case of single cell RNAseq, our counts matrix will be a matrix of cells x genes as opposed to genes x samples. As this data was generated on the 10X platform, we will be using their custom software suite CellRanger to pre-process it prior to our analysis. 
+
+    1. After you have formatted your data correctly, please use CellRanger Count to generate a BAM file of alignments of the FASTQs from sample SRX3436301 to the provided mouse reference genome. 
+        - You may do this using snakemake or a simple qsub script. Please ensure you set appropriate memory and time requests on SCC. 
+
+Now that you have successfully aligned this sample to the reference genome. We are going to combine the other samples and generate a single feature matrix that can be used for our downstream analysis. 
+
+    1. Using the paths provided for the processed data (materials/project_3_scrnaseq/) from the other samples and the BAM file of alignments for sample SRX3436301, use a method to “combine” these samples as a single feature matrix
+        - You may consider using a utility like CellRanger Aggr or look into tool-specific utilities provided by Seurat or Scanpy
+
+There are two main utilities for the post-alignment analysis of single cell data: 1. Scanpy and 2. Seurat. They are both feature-rich, intuitive, and offer a number of pre-built functions that perform many of the standardized operations for the analysis of single cell RNA sequencing data. For the following steps, it is recommended that you create a Jupyter Notebook (Lab) or Rmarkdown notebook if you are using either Scanpy or Seurat, respectively, to perform these analyses. 
+
+**Single Cell RNA Analysis**
+
+Next we will walk through the basic downstream steps of a single cell RNAseq analysis that you will be required to perform. 
+
+    1. Filter out low quality cells - There are a number of established metrics for determining “low” quality cells. 
+        - Provide at least one plot that demonstrates your justifications for your chosen filtering thresholds
+        - Provide a table that lists how many cells are filtered out / remain after each of your filtering thresholds
+
+## Week 2: Downstream Analysis
+
+    1. Normalize and transform your counts matrix
+    2. Identify highly variable genes (feature selection)
+        - Report the number of features you used after filtering and justify any filtering criteria used
+    3. Identify clusters of cell type subpopulations. Use a clustering method of your choosing to discover clusters of cells. 
+    4. Identify the number of cells contributed by each sample in each cluster.
+        - Display this information in an appropriate plot / table
+    5. Identify marker genes for each cluster. Use a differential expression method to identify the marker genes in each cluster. You may use any reasonable approach to do this.
+    6. Label clusters as a cell type based on marker genes. The marker genes should indicate which clusters correspond to which cell types. You may use the marker genes indicated by the authors or do your own research.
+        - You may use any reasonable method to accomplish this
+    7. Visualize the clustered cells using a projection method. Use either t-SNE or UMAP to create a projection and scatter plot colored by cell cluster. 
+        - Label the plot with the cell types you previously assigned. 
+    8. Visualize the top marker genes per cluster. Choose however many top marker genes you deem suitable and visualize them to show the differences.
+        - Create at leaast one plot that displays the top marker genes per cluster.
+
+
+## Week 3: Writing a Report
+
+Now that you have completed each week tasks, you should have a working pipeline that processes a full ChIPseq experiment from raw data to peak calling. Now you will need to write a report that details the entire project in the style of a scientific publication. As a reminder, here is a general outline of how to structure it: 
+
+    Introduction (1-2 paragraphs)
+        - What is the biological background of the study?
+        - Why was the study performed?
+        - What main experimental techniques were used in the study?
+
+    Methods (variable)
+        - Describe any specific parameters used, software versions, or specific steps that would ultimately affect the reproducibility of the results
+
+    Results (variable)
+        - Results from each step in the methods with appropriate figures / tables containing descriptive captions
+
+    Discussion (1 page)
+        - Discuss and interpret the results in the context of the biological question asked by the study. Briefly state the main results and follow-on with a discussion on the implications and the biological conclusions drawn that are supported by the results. 
+        - Briefly discuss how well you managed to reproduce the results from the paper
+
+    Future Directions (1-2 paragraphs)
+    - List at least three follow-up experiments / questions that would be interesting to follow-up on after the paper
+    - What would these experiments attempt to answer? And why would they be relevant?
+
+    Challenges (1 paragraph)
+    - What were the main difficulties you encountered in the project?
+
+    Conclusion (1 paragraph)
+    - What is the main conclusion a reader should draw from the analysis?
+
+    References
+    - Use consistent, proper citation format for any references (Mendeley, Zotero, Paperpile)
+
