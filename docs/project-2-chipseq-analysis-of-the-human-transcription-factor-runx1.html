@@ -4,12 +4,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>1 Project 2: ChIPseq analysis of the human transcription factor Runx1 | BF528 - Applications in Translational Bioinformatics</title>
+<title>Project 2: ChIPseq analysis of the human transcription factor Runx1 | BF528 - Applications in Translational Bioinformatics</title>
 <meta name="generator" content="bookdown 0.37 with bs4_book()">
-<meta property="og:title" content="1 Project 2: ChIPseq analysis of the human transcription factor Runx1 | BF528 - Applications in Translational Bioinformatics">
+<meta property="og:title" content="Project 2: ChIPseq analysis of the human transcription factor Runx1 | BF528 - Applications in Translational Bioinformatics">
 <meta property="og:type" content="book">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="1 Project 2: ChIPseq analysis of the human transcription factor Runx1 | BF528 - Applications in Translational Bioinformatics">
+<meta name="twitter:title" content="Project 2: ChIPseq analysis of the human transcription factor Runx1 | BF528 - Applications in Translational Bioinformatics">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -71,8 +71,8 @@
 <li><a class="" href="single-cell-analysis-part-3.html">Single Cell Analysis Part 3</a></li>
 <li><a class="" href="project-writeup-instructions.html">Project Writeup Instructions</a></li>
 <li><a class="" href="project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html">Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></li>
-<li><a class="active" href="project-2-chipseq-analysis-of-the-human-transcription-factor-runx1.html"><span class="header-section-number">1</span> Project 2: ChIPseq analysis of the human transcription factor Runx1</a></li>
-<li><a class="" href="project-3-single-cell-analysis-of-the-mouse-kidney.html"><span class="header-section-number">2</span> Project 3: Single Cell Analysis of the Mouse Kidney</a></li>
+<li><a class="active" href="project-2-chipseq-analysis-of-the-human-transcription-factor-runx1.html">Project 2: ChIPseq analysis of the human transcription factor Runx1</a></li>
+<li><a class="" href="project-3-single-cell-analysis-of-the-mouse-kidney.html">Project 3: Single Cell Analysis of the Mouse Kidney</a></li>
 </ul>
 
         <div class="book-extra">
@@ -80,9 +80,8 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="project-2-chipseq-analysis-of-the-human-transcription-factor-runx1" class="section level1" number="1">
-<h1>
-<span class="header-section-number">1</span> Project 2: ChIPseq analysis of the human transcription factor Runx1<a class="anchor" aria-label="anchor" href="#project-2-chipseq-analysis-of-the-human-transcription-factor-runx1"><i class="fas fa-link"></i></a>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="project-2-chipseq-analysis-of-the-human-transcription-factor-runx1" class="section level1 unnumbered">
+<h1>Project 2: ChIPseq analysis of the human transcription factor Runx1<a class="anchor" aria-label="anchor" href="#project-2-chipseq-analysis-of-the-human-transcription-factor-runx1"><i class="fas fa-link"></i></a>
 </h1>
 <p>Similar to advancing gene expression quantification from microarrays to RNA-seq, next-generation sequencing also revolutionized other wet lab assays that examine nucleotides by making them (relatively) unbiased and high-throughput. One such set of technologies are protein-DNA binding assays including ChiP-qPCR and ChIP-ChIP, which use antibodies and
 immunoprecipitation to capture chromatin bound by a specific protein of interest. Chromatin Immunoprecipitation Sequencing (ChIP-seq) is a technique that identifies genome-wide DNA binding sites with transcription factors and other proteins of interest by sequencing the DNA fragments isolated from protein-DNA complexes.</p>
@@ -95,9 +94,9 @@ immunoprecipitation to capture chromatin bound by a specific protein of interest
 </ul>
 <p>Please note that the methods for the original paper are ambiguous in important areas. For this project, on occasion, you will be asked to define certain parameters and explain your choice. It is important to remember that even if the authors had specified a specific value for certain parameters, that does not mean that is the single correct option. We base our choice of these parameters on our background knowledge and rational assumptions. Do your best to pick reasonable values and justify them.</p>
 <p>We will now transition entirely to using actual data (not filtered data). We have also provided you a set of subsetted files that will again enable you to quickly troubleshoot your code. Please remember that you should not run any of the described steps on the head node of the SCC. You will have to make use of snakemake and qsub as described previously to properly submit jobs to the queue. The instructions for tasks performing operations we have done before will be more brief.</p>
-<div id="table-of-contents-1" class="section level2" number="1.1">
+<div id="table-of-contents-1" class="section level2" number="0.11">
 <h2>
-<span class="header-section-number">1.1</span> Table Of Contents<a class="anchor" aria-label="anchor" href="#table-of-contents-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.11</span> Table Of Contents<a class="anchor" aria-label="anchor" href="#table-of-contents-1"><i class="fas fa-link"></i></a>
 </h2>
 <p><a href="project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html#week-1-getting-started">Week 1</a></p>
 <p><a href="project-2-chipseq-analysis-of-the-human-transcription-factor-runx1.html#week-2-aligning-reads-and-creating-bigwig-files">Week 2</a></p>
@@ -105,9 +104,9 @@ immunoprecipitation to capture chromatin bound by a specific protein of interest
 <p><a href="project-2-chipseq-analysis-of-the-human-transcription-factor-runx1.html#week-4-integration-with-rnaseq-and-visualization">Week 4</a></p>
 <p><a href="project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html#week-5-writing-a-report">Week 5</a></p>
 </div>
-<div id="week-1-getting-started-1" class="section level2" number="1.2">
+<div id="week-1-getting-started-1" class="section level2" number="0.12">
 <h2>
-<span class="header-section-number">1.2</span> Week 1: Getting Started<a class="anchor" aria-label="anchor" href="#week-1-getting-started-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.12</span> Week 1: Getting Started<a class="anchor" aria-label="anchor" href="#week-1-getting-started-1"><i class="fas fa-link"></i></a>
 </h2>
 <p><strong>Read the paper</strong>
 This analysis is based on the data published in this study: <em>Barutcu et al. RUNX1 Contributes to Higher-Order Chromatin Organization and Gene Regulation in Breast Cancer Cells. Biochimica et Biophysica Acta 1859 (11): 1389–97. PMID: PMID: 27514584</em></p>
@@ -182,9 +181,9 @@ As we discussed in lecture, there are often occasions where our sequencing reads
 <p><strong>CHALLENGE</strong>
 Though this experiment is relatively small, there will be many occasions where you will have to work with potentially hundreds of samples. Simple solutions that work for a small dataset are not ideal at that scale. Instead of manually renaming your files, generate a snakemake rule that renames the original files to your desired naming scheme. The most straightforward way will be to utilize run and python, but there are likely other clever solutions.</p>
 </div>
-<div id="week-2-aligning-reads-and-creating-bigwig-files" class="section level2" number="1.3">
+<div id="week-2-aligning-reads-and-creating-bigwig-files" class="section level2" number="0.13">
 <h2>
-<span class="header-section-number">1.3</span> Week 2: Aligning reads and creating bigWig files<a class="anchor" aria-label="anchor" href="#week-2-aligning-reads-and-creating-bigwig-files"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.13</span> Week 2: Aligning reads and creating bigWig files<a class="anchor" aria-label="anchor" href="#week-2-aligning-reads-and-creating-bigwig-files"><i class="fas fa-link"></i></a>
 </h2>
 <p>Now that we have performed basic quality control on our reads, we are going to align them to the human reference genome using bowtie2. Using the index you generated last week, align each of the FASTQ files to the human reference genome. By default, bowtie2 outputs in SAM format. Typically, it is more convenient and friendly to your disk space to work with BAM files as they are compressed and nearly all utilities that operate on SAM files can also operate on BAM files.</p>
 <pre><code>1. Align your reads to the human reference genome using the index you created last week 
@@ -217,9 +216,9 @@ Though this experiment is relatively small, there will be many occasions where y
 - Create a snakemake rule that runs multiBigwig summary to generate a single matrix containing all of the information from your bigwigs
 - Create a snakemake rule that runs plotCorrelation to generate a figure displaying the pearson correlation values between all of our samples</p>
 </div>
-<div id="week-3-peak-analysis-and-visualization" class="section level2" number="1.4">
+<div id="week-3-peak-analysis-and-visualization" class="section level2" number="0.14">
 <h2>
-<span class="header-section-number">1.4</span> Week 3: Peak analysis and Visualization<a class="anchor" aria-label="anchor" href="#week-3-peak-analysis-and-visualization"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.14</span> Week 3: Peak analysis and Visualization<a class="anchor" aria-label="anchor" href="#week-3-peak-analysis-and-visualization"><i class="fas fa-link"></i></a>
 </h2>
 <p><strong>Peak calling</strong>
 Now that we have our aligned reads and performed basic quality control, we are going to proceed to peak calling using HOMER. This utility requires us to first convert the BAM files to a HOMER specific format, which is required prior to using HOMER to run downstream utilities.</p>
@@ -244,6 +243,7 @@ Now that we have our aligned reads and performed basic quality control, we are g
 <p>We will be using the bigWig files to plot the signal coverage relative to the transcription start site (TSS) and transcription termination site (TTS) of all genes in the hg38 reference. This type of plot is often helpful for determining the potential regulatory mechanisms of the factor of interest. In our case, transcription factors are known to directly bind DNA and are commonly found located in the promoter region (near the TSS) where they will typically recruit other cofactors, chromatin remodelers or components of the RNA polymerase complex II to regulate gene expression. If we inspect the plot in figure 1c of the original publication, we can see that the signal distribution for the Runx1 ChIP is primarily concentrated in the promoter-TSS region of genes.</p>
 <p>We will be creating a similar plot which will provide a quick visualization of the average signal (Runx1 binding) across the gene body of all genes. To do this, we have already generated our bigWig files, but we will require the genomic coordinates of all of the genes in the hg38 genome in order to determine which bins to utilize. We will be using the UCSC table browser to extract out this information.</p>
 <p>Navigate to the UCSC Table Browser, use the following settings to extract a BED file listing the TSS/TTS locations for every gene in the hg19 reference:</p>
+<div class="inline-figure"><img src="projects/project_3_chipseq/ucsc_tablebrowser.png" width="487"></div>
 <p>On the following page, do not change any options and you will be prompted to download a BED file containing the requested information. Put this BED file into your working directory on SCC. This is a simple use case, but the UCSC table browser and UCSC genome browser are incredibly powerful tools and repositories for genome-wide sequencing data.</p>
 <pre><code>1. Using the bigwig files for the IP samples generated earlier and the BED file of hg38 genes you just downloaded in BED format, run the computeMatrix utility in DeepTools in the scale-regions mode twice (once for each IP sample).
     - Remember that we are trying to reproduce the figure from the paper, be sure to include regions in a 2kb window up- and downstream of the TSS and TTS, respectively. You may leave every other parameter at its default value. Justify any changes in parameters if you do alter them.
@@ -272,9 +272,9 @@ The authors of the original paper use the MEME suite of tools to perform motif f
 <li>Run MEME-ChIP using your FASTA file of DNA sequences covered by your peaks</li>
 </ul>
 </div>
-<div id="week-4-integration-with-rnaseq-and-visualization" class="section level2" number="1.5">
+<div id="week-4-integration-with-rnaseq-and-visualization" class="section level2" number="0.15">
 <h2>
-<span class="header-section-number">1.5</span> Week 4: Integration with RNAseq and visualization<a class="anchor" aria-label="anchor" href="#week-4-integration-with-rnaseq-and-visualization"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.15</span> Week 4: Integration with RNAseq and visualization<a class="anchor" aria-label="anchor" href="#week-4-integration-with-rnaseq-and-visualization"><i class="fas fa-link"></i></a>
 </h2>
 <p>Now that we have processed and performed basic analysis of our ChIPseq data, we will move on to attempting to reproduce figure 2f, which combines the data generated from the ChIPseq experiment and the RNAseq experiment from Figure 1. The authors produced a simple stacked bar chart displaying how often a Runx1 binding peak was observed in genes that were found to be differentially expressed in the same cell line upon Runx1 knockdown using a shRNA.</p>
 <p>Navigate to the GEO for accession GSE75070 and locate the differential expression results for the RNAseq experimented in figure 1.</p>
@@ -305,10 +305,11 @@ The authors of the original paper use the MEME suite of tools to perform motif f
 <p>This paper was chosen intentionally as there are sections where the published methods are sparse. One example of this is the methods used to generate supplementary figure S6A, which is a bar graph representing “% of overlapping runx1 peaks” with various transcription factors and histone marks. You’ll notice that the publication does not describe how this figure was generated.</p>
 <p>Do your best to recreate this figure, but limit it to only the top 5 factors (AP2g, DNase1, AE2F1, MAX, PML)</p>
 </div>
-<div id="week-5-writing-a-report-1" class="section level2" number="1.6">
+<div id="week-5-writing-a-report-1" class="section level2" number="0.16">
 <h2>
-<span class="header-section-number">1.6</span> Week 5: Writing a report<a class="anchor" aria-label="anchor" href="#week-5-writing-a-report-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.16</span> Week 5: Writing a report<a class="anchor" aria-label="anchor" href="#week-5-writing-a-report-1"><i class="fas fa-link"></i></a>
 </h2>
+<p>Full writeup instructions can be found here: <a href="project-writeup-instructions.html#project-writeup-instructions">Project Writeup Instructions</a></p>
 <p>Now that you have completed each week tasks, you should have a working pipeline that processes a full ChIPseq experiment from raw data to peak calling. Now you will need to write a report that details the entire project in the style of a scientific publication. As a reminder, here is a general outline of how to structure it:</p>
 <pre><code>Introduction (1-2 paragraphs)
     - What is the biological background of the study?
@@ -342,17 +343,17 @@ References
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html">Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></div>
-<div class="next"><a href="project-3-single-cell-analysis-of-the-mouse-kidney.html"><span class="header-section-number">2</span> Project 3: Single Cell Analysis of the Mouse Kidney</a></div>
+<div class="next"><a href="project-3-single-cell-analysis-of-the-mouse-kidney.html">Project 3: Single Cell Analysis of the Mouse Kidney</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#project-2-chipseq-analysis-of-the-human-transcription-factor-runx1"><span class="header-section-number">1</span> Project 2: ChIPseq analysis of the human transcription factor Runx1</a></li>
-<li><a class="nav-link" href="#table-of-contents-1"><span class="header-section-number">1.1</span> Table Of Contents</a></li>
-<li><a class="nav-link" href="#week-1-getting-started-1"><span class="header-section-number">1.2</span> Week 1: Getting Started</a></li>
-<li><a class="nav-link" href="#week-2-aligning-reads-and-creating-bigwig-files"><span class="header-section-number">1.3</span> Week 2: Aligning reads and creating bigWig files</a></li>
-<li><a class="nav-link" href="#week-3-peak-analysis-and-visualization"><span class="header-section-number">1.4</span> Week 3: Peak analysis and Visualization</a></li>
-<li><a class="nav-link" href="#week-4-integration-with-rnaseq-and-visualization"><span class="header-section-number">1.5</span> Week 4: Integration with RNAseq and visualization</a></li>
-<li><a class="nav-link" href="#week-5-writing-a-report-1"><span class="header-section-number">1.6</span> Week 5: Writing a report</a></li>
+<li><a class="nav-link" href="#project-2-chipseq-analysis-of-the-human-transcription-factor-runx1">Project 2: ChIPseq analysis of the human transcription factor Runx1</a></li>
+<li><a class="nav-link" href="#table-of-contents-1"><span class="header-section-number">0.11</span> Table Of Contents</a></li>
+<li><a class="nav-link" href="#week-1-getting-started-1"><span class="header-section-number">0.12</span> Week 1: Getting Started</a></li>
+<li><a class="nav-link" href="#week-2-aligning-reads-and-creating-bigwig-files"><span class="header-section-number">0.13</span> Week 2: Aligning reads and creating bigWig files</a></li>
+<li><a class="nav-link" href="#week-3-peak-analysis-and-visualization"><span class="header-section-number">0.14</span> Week 3: Peak analysis and Visualization</a></li>
+<li><a class="nav-link" href="#week-4-integration-with-rnaseq-and-visualization"><span class="header-section-number">0.15</span> Week 4: Integration with RNAseq and visualization</a></li>
+<li><a class="nav-link" href="#week-5-writing-a-report-1"><span class="header-section-number">0.16</span> Week 5: Writing a report</a></li>
 </ul>
 
       <div class="book-extra">
