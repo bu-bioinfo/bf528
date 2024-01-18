@@ -1,7 +1,8 @@
 ---
 ---
 
-# Project 3: Single Cell Analysis of the Mouse Kidney
+# Project 3: Single Cell Analysis of the Mouse Kidney {-}
+
 This last project will be different from the previous two. I will outline the general steps you will need to perform, and certain analyses / figures / plots as deliverables, but you will have to determine how to do them yourself. The instructions are intentionally open-ended and you will be asked later in your written report to state / justify your major decisions. In addition, I have broken the sections into weekly tasks as a suggestion but you will only be assessed on your final report. As always, you are welcome to use your classmates and the resources online freely for your reference. 
 
 ## Week 1: Getting Started
@@ -58,6 +59,8 @@ Next we will walk through the basic downstream steps of a single cell RNAseq ana
 
 
 ## Week 3: Writing a Report
+
+Full writeup instructions can be found here: [Project Writeup Instructions]
 
 Now that you have completed each week tasks, you should have a working pipeline that processes a full ChIPseq experiment from raw data to peak calling. Now you will need to write a report that details the entire project in the style of a scientific publication. As a reminder, here is a general outline of how to structure it: 
 

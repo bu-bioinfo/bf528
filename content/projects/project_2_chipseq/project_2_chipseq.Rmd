@@ -1,7 +1,7 @@
 ---
 ---
 
-# Project 2: ChIPseq analysis of the human transcription factor Runx1
+# Project 2: ChIPseq analysis of the human transcription factor Runx1 {-}
 
 Similar to advancing gene expression quantification from microarrays to RNA-seq, next-generation sequencing also revolutionized other wet lab assays that examine nucleotides by making them (relatively) unbiased and high-throughput. One such set of technologies are protein-DNA binding assays including ChiP-qPCR and ChIP-ChIP, which use antibodies and
 immunoprecipitation to capture chromatin bound by a specific protein of interest. Chromatin Immunoprecipitation Sequencing (ChIP-seq) is a technique that identifies genome-wide DNA binding sites with transcription factors and other proteins of interest by sequencing the DNA fragments isolated from protein-DNA complexes. 
@@ -212,7 +212,9 @@ We will be creating a similar plot which will provide a quick visualization of t
 
 Navigate to the UCSC Table Browser, use the following settings to extract a BED file listing the TSS/TTS locations for every gene in the hg19 reference:
 
-
+```{r, echo=FALSE}
+knitr::include_graphics("projects/project_3_chipseq/ucsc_tablebrowser.png")
+```
 
 On the following page, do not change any options and you will be prompted to download a BED file containing the requested information. Put this BED file into your working directory on SCC. This is a simple use case, but the UCSC table browser and UCSC genome browser are incredibly powerful tools and repositories for genome-wide sequencing data.
 
@@ -291,6 +293,8 @@ This paper was chosen intentionally as there are sections where the published me
 Do your best to recreate this figure, but limit it to only the top 5 factors (AP2g, DNase1, AE2F1, MAX, PML)
 
 ## Week 5: Writing a report
+
+Full writeup instructions can be found here: [Project Writeup Instructions]
 
 Now that you have completed each week tasks, you should have a working pipeline that processes a full ChIPseq experiment from raw data to peak calling. Now you will need to write a report that details the entire project in the style of a scientific publication. As a reminder, here is a general outline of how to structure it: 
 

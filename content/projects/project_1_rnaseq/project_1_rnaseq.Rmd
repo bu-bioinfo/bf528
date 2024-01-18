@@ -318,6 +318,8 @@ At the end of the final week, you should have accomplished the following:
 
 ## Week 5: Writing a report
 
+Full writeup instructions can be found here: [Project Writeup Instructions]
+
 Now that you have completed each week tasks, you should have a fully working pipeline that processes a full RNAseq experiment from raw data to differential expression. Now you will need to write a report that details the entire project in the style of a scientific publication. As a reminder, here is a general outline of how to structure it: 
 
     Introduction (1-2 paragraphs)
