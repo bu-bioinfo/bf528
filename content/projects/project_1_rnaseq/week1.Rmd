@@ -150,6 +150,7 @@ The original data files are located in our single project directory,
 Reformat your snakefile to operate on the full data files; their name will not
 include “subsample” but otherwise follow the same exact naming conventions
 mentioned previously.
+
   1. Using your snakemake workflow, run FastQC on all 16 original data files 
   2. Add a rule that also runs MultiQC after completion of all FastQC analyses
 

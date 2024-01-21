@@ -7,3 +7,4 @@ _main*
 *.swp
 *~
 content/main_files
+.DS_Store
