@@ -65,12 +65,12 @@ the challenge from a previous week, so ensure you understand what is required.
 
 ## Table of Contents
 
-[Week 1](#week-1-getting-started)
+[Week 1](#week-1-rnaseq)
 
-[Week 2](#week-2-aligning-reads-to-the-reference-genome)
+[Week 2](#week-2-rnaseq)
 
-[Week 3](#week-3-quantifying-alignments-filtering-and-differential-expression)
+[Week 3](#week-3-rnaseq)
 
-[Week 4](#week-4-biological-analysis-and-interpretation)
+[Week 4](#week-4-rnaseq)
 
-[Week 5](#week-5-writing-a-report)
+[Week 5](#week-5-rnaseq)

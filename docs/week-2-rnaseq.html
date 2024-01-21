@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>2 Week 2: RNAseq | BF528 - Applications in Translational Bioinformatics</title>
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="2 Week 2: RNAseq | BF528 - Applications in Translational Bioinformatics">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2 Week 2: RNAseq | BF528 - Applications in Translational Bioinformatics">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+<meta name="description" content="Now that we have performed basic quality control on the FASTQ files, we are going to align them to the mouse reference genome to generate alignments for each of our sequencing reads. We will then...">
+<meta property="og:description" content="Now that we have performed basic quality control on the FASTQ files, we are going to align them to the mouse reference genome to generate alignments for each of our sequencing reads. We will then...">
+<meta name="twitter:description" content="Now that we have performed basic quality control on the FASTQ files, we are going to align them to the mouse reference genome to generate alignments for each of our sequencing reads. We will then...">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">BF528 - Applications in Translational Bioinformatics</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
+<li><a class="" href="introduction.html">Introduction</a></li>
+<li><a class="" href="genomics-genes-and-genomes.html">Genomics, Genes, and Genomes</a></li>
+<li><a class="" href="git.html">git</a></li>
+<li><a class="" href="computational-pipeline-strategies.html">Computational Pipeline Strategies</a></li>
+<li><a class="" href="computational-environment-management.html">Computational Environment Management</a></li>
+<li><a class="" href="sequence-analysis-fundamentals.html">Sequence Analysis Fundamentals</a></li>
+<li><a class="" href="nd-gen-sequencing.html">2nd Gen Sequencing</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-1.html">Sequence Analysis - RNA-Seq 1</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-2.html">Sequence Analysis - RNA-Seq 2</a></li>
+<li><a class="" href="scc-cluster-usage.html">SCC cluster usage</a></li>
+<li><a class="" href="biological-data-formats.html">Biological Data Formats</a></li>
+<li><a class="" href="gene-sets-and-enrichment.html">Gene sets and enrichment</a></li>
+<li><a class="" href="replicability-vs-reproducibility-strategies.html">Replicability vs Reproducibility Strategies</a></li>
+<li><a class="" href="sequence-analysis---chip-seq.html">Sequence Analysis - ChIP-Seq</a></li>
+<li><a class="" href="genome-browsers.html">Genome Browsers</a></li>
+<li><a class="" href="sequence-analysis---atac-seq.html">Sequence Analysis - ATAC-Seq</a></li>
+<li><a class="" href="biological-databases.html">Biological Databases</a></li>
+<li><a class="" href="genomic-variation-and-snp-analysis.html">Genomic Variation and SNP Analysis</a></li>
+<li><a class="" href="microbiome-metagenomics.html">Microbiome: Metagenomics</a></li>
+<li><a class="" href="microbiome-16s.html">Microbiome: 16S</a></li>
+<li><a class="" href="proteomics.html">Proteomics</a></li>
+<li><a class="" href="metabolomics.html">Metabolomics</a></li>
+<li><a class="" href="docker.html">Docker</a></li>
+<li><a class="" href="single-cell-analysis-part-1.html">Single Cell Analysis Part 1</a></li>
+<li><a class="" href="single-cell-analysis-part-2.html">Single Cell Analysis Part 2</a></li>
+<li><a class="" href="single-cell-analysis-part-3.html">Single Cell Analysis Part 3</a></li>
+<li><a class="" href="assignment-0-snakemake.html">Assignment 0: snakemake</a></li>
+<li><a class="" href="project-writeup-instructions.html">Project Writeup Instructions</a></li>
+<li><a class="" href="project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html">Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></li>
+<li><a class="" href="week-1-rnaseq.html"><span class="header-section-number">1</span> Week 1: RNAseq</a></li>
+<li><a class="active" href="week-2-rnaseq.html"><span class="header-section-number">2</span> Week 2: RNAseq</a></li>
+<li><a class="" href="week-3-rnaseq.html"><span class="header-section-number">3</span> Week 3: RNAseq</a></li>
+<li><a class="" href="week-4-rnaseq.html"><span class="header-section-number">4</span> Week 4: RNAseq</a></li>
+<li><a class="" href="week-5-rnaseq.html"><span class="header-section-number">5</span> Week 5: RNAseq</a></li>
+<li><a class="" href="project-2-chipseq-analysis-of-the-human-transcription-factor-runx1.html">Project 2: ChIPseq analysis of the human transcription factor Runx1</a></li>
+<li><a class="" href="project-3-single-cell-analysis-of-the-mouse-kidney.html">Project 3: Single Cell Analysis of the Mouse Kidney</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-2-rnaseq" class="section level1" number="2">
+<h1>
+<span class="header-section-number">2</span> Week 2: RNAseq<a class="anchor" aria-label="anchor" href="#week-2-rnaseq"><i class="fas fa-link"></i></a>
+</h1>
+<p>Now that we have performed basic quality control on the FASTQ files, we are
+going to align them to the mouse reference genome to generate alignments for
+each of our sequencing reads. We will then “count” the alignments falling into
+regions of interest in the mouse genome (exonic regions) and sum the alignments
+falling into all exons of a given gene to obtain a “gene-level” count of mRNA
+abundance for all genes in each sample.</p>
+<p><strong>Downloading files from public repositories</strong></p>
+<p>As we have discussed in lecture, there are many major scientific organizations
+that create, maintain and/or host innumerable bioinformatics resources. GENCODE,
+is one such organization, whose primary mission is to provide up-to-date and
+curated reference genomes and annotations for humans and mice. In the course of
+your work as a bioinformatician, you should and will have to make good use of
+the plethora of public resources available to you.</p>
+<p>Navigate to the GENCODE website and select the page for Mouse. Look underneath
+the section entitled “Fasta files” and locate the file with content “Genome
+sequence, primary assembly (GRCm39)”. This is the most up to date human
+reference genome available.</p>
+<p>Look under the section entitled “GTF / GFF3 files” and locate the file with the
+description, “It contains the comprehensive gene annotation on the primary
+assembly (chromosomes and scaffolds) sequence regions”. This file is the
+matching annotation file for the available human reference genome.</p>
+<ol style="list-style-type: decimal">
+<li><p>Please generate a snakemake rule that will download two files from the
+GENCODE service. You may need to make two separate snakemake rules or figure
+out a way to do it in one. Consider looking into the wget and curl commands,
+which in tandem with snakemake, will enable you to incorporate downloading
+these files as part of your workflow.</p></li>
+<li><p>Now that you have located both of these files, generate a snakemake rule
+(or two) that downloads these files - Remember that snakemake rules do not
+always need an input</p></li>
+</ol>
+<p>Some bioinformatics utilities can handle gzipped files, others cannot. For our
+workflow, we will need the GTF file to be uncompressed. You may generate a
+snakemake rule to do this or simply uncompress the file on the command line.</p>
+<p><strong>Aligning reads to the genome</strong></p>
+<p>Before aligning reads to a reference genome, most tools will need to generate a
+genome index, a set of files which enable fast and efficient searching through a
+large sequence. This step is computationally intensive and cannot be run on the
+head node of the SCC. For this first project, we have pre-built an appropriate
+STAR index for a portion of the m39 reference.</p>
+<ol style="list-style-type: decimal">
+<li><p>Copy the entire directory located at:
+/projectnb/bf528/materials/project_1_rnaseq/m39_subset_star/ to your samples/
+directory</p></li>
+<li><p>Create a snakemake rule that aligns each of your 8 samples (16 files)
+against the provided m39 reference genome with the following requirements in
+mind:
+- Look through the most current manual and documentation for STAR and set the
+option to output a BAM Unsorted file
+- Leave every other argument as default
+- Hint: Make sure to carefully read the section on naming output files in STAR.</p></li>
+</ol>
+<p><strong>Performing post-alignment QC</strong></p>
+<p>Typically after performing alignment, it is good to perform post-alignment
+quality control to quickly check if there appear to be any major problems with
+the data. We are going to primarily focus on the overall mapping rate statistic,
+which is simply the percentage of reads that properly map to our genome. For a
+well-annotated and studied organism like mouse, we typically expect very high
+mapping rates (&gt;80%) for standard RNAseq experiments in the absence of any
+errors in sample processing, library preparation or alignment issues.</p>
+<p>The samtools suite contains a set of highly important and incredibly useful
+utilities for parsing and manipulating SAM/BAM files. Take a look at the
+samtools manual to get a sense for its capabilities.</p>
+<ol style="list-style-type: decimal">
+<li>Create a snakemake rule that runs the samtools flagstat utility on each of
+your BAM files. By default, this utility prints results to stdout. Redirect and
+save the output to a .txt file instead.</li>
+</ol>
+<p>Since you are working with files that have been intentionally filtered to make
+them smaller, the actual outputs from fastQC, flagstats, and STAR will be
+misleading. Do not draw any conclusions from these reports generated on the
+subsetted data.</p>
+<p>At the end of week 2, you should make sure to have accomplished the following
+items:</p>
+<ul>
+<li>Generated a snakemake rule (or two) that download the primary assembly genome
+FASTA for m33 and its matching GTF file</li>
+<li>Make sure to uncompress the GTF file, you may do this in snakemake or on the
+command line</li>
+<li>Generated a snakemake rule that runs STAR to generate 8 Unsorted BAM files for
+each of the samples in our dataset</li>
+<li>Generated a snakemake rule that runs samtools flagstat on each of the
+BAM files and creates a .txt file for each output</li>
+<li>Generated a snakemake rule that runs MultiQC on your project directory</li>
+<li>Write the methods and results section for this week’s tasks in the provided
+week2.Rmd</li>
+<li>Answer any conceptual questions also found in the week2.Rmd</li>
+</ul>
+<p><strong>CHALLENGE</strong> (only do this if you did last weeks challenge)</p>
+<p>As with last week’s challenge, please do not attempt this unless you are already
+familiar with qsub, and how to request appropriate computational resources on
+the SCC. Generating a genome index requires both a large amount of time and RAM
+and should not be done on the head node under any circumstances.</p>
+<ol style="list-style-type: decimal">
+<li><p>Using the primary assembly FASTA of the m39 genome and its matching GTF file
+that you downloaded,generate your own STAR index using snakemake using default
+parameters.</p></li>
+<li><p>Use your generated STAR index to align your samples to the full m39 genome.
+You will have to use qsub for this.</p></li>
+</ol>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="week-1-rnaseq.html"><span class="header-section-number">1</span> Week 1: RNAseq</a></div>
+<div class="next"><a href="week-3-rnaseq.html"><span class="header-section-number">3</span> Week 3: RNAseq</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav"><li><a class="nav-link" href="#week-2-rnaseq"><span class="header-section-number">2</span> Week 2: RNAseq</a></li></ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>BF528 - Applications in Translational Bioinformatics</strong>" was written by . </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

@@ -1,4 +1,4 @@
-## Week 2: RNAseq
+# Week 2: RNAseq
 Now that we have performed basic quality control on the FASTQ files, we are
 going to align them to the mouse reference genome to generate alignments for
 each of our sequencing reads. We will then “count” the alignments falling into

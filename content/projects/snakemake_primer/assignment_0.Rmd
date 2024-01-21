@@ -1,4 +1,4 @@
-# Assignment 0: Getting setup with the scc, conda and snakemake {-}
+# Assignment 0: snakemake {-}
 
 This assignment is not graded or checked, but I’m happy to discuss it with you
 if you have any questions or feedback. Use it in combination with the official

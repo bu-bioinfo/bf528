@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>3 Week 3: RNAseq | BF528 - Applications in Translational Bioinformatics</title>
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="3 Week 3: RNAseq | BF528 - Applications in Translational Bioinformatics">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="3 Week 3: RNAseq | BF528 - Applications in Translational Bioinformatics">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+<meta name="description" content="Mapping gene IDs to gene symbols There are several ways to map gene IDs to gene symbols (ENSMUSGXXXXX to Actb), including BiomaRt, which you have previously used in BF591. For this project, we...">
+<meta property="og:description" content="Mapping gene IDs to gene symbols There are several ways to map gene IDs to gene symbols (ENSMUSGXXXXX to Actb), including BiomaRt, which you have previously used in BF591. For this project, we...">
+<meta name="twitter:description" content="Mapping gene IDs to gene symbols There are several ways to map gene IDs to gene symbols (ENSMUSGXXXXX to Actb), including BiomaRt, which you have previously used in BF591. For this project, we...">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">BF528 - Applications in Translational Bioinformatics</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
+<li><a class="" href="introduction.html">Introduction</a></li>
+<li><a class="" href="genomics-genes-and-genomes.html">Genomics, Genes, and Genomes</a></li>
+<li><a class="" href="git.html">git</a></li>
+<li><a class="" href="computational-pipeline-strategies.html">Computational Pipeline Strategies</a></li>
+<li><a class="" href="computational-environment-management.html">Computational Environment Management</a></li>
+<li><a class="" href="sequence-analysis-fundamentals.html">Sequence Analysis Fundamentals</a></li>
+<li><a class="" href="nd-gen-sequencing.html">2nd Gen Sequencing</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-1.html">Sequence Analysis - RNA-Seq 1</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-2.html">Sequence Analysis - RNA-Seq 2</a></li>
+<li><a class="" href="scc-cluster-usage.html">SCC cluster usage</a></li>
+<li><a class="" href="biological-data-formats.html">Biological Data Formats</a></li>
+<li><a class="" href="gene-sets-and-enrichment.html">Gene sets and enrichment</a></li>
+<li><a class="" href="replicability-vs-reproducibility-strategies.html">Replicability vs Reproducibility Strategies</a></li>
+<li><a class="" href="sequence-analysis---chip-seq.html">Sequence Analysis - ChIP-Seq</a></li>
+<li><a class="" href="genome-browsers.html">Genome Browsers</a></li>
+<li><a class="" href="sequence-analysis---atac-seq.html">Sequence Analysis - ATAC-Seq</a></li>
+<li><a class="" href="biological-databases.html">Biological Databases</a></li>
+<li><a class="" href="genomic-variation-and-snp-analysis.html">Genomic Variation and SNP Analysis</a></li>
+<li><a class="" href="microbiome-metagenomics.html">Microbiome: Metagenomics</a></li>
+<li><a class="" href="microbiome-16s.html">Microbiome: 16S</a></li>
+<li><a class="" href="proteomics.html">Proteomics</a></li>
+<li><a class="" href="metabolomics.html">Metabolomics</a></li>
+<li><a class="" href="docker.html">Docker</a></li>
+<li><a class="" href="single-cell-analysis-part-1.html">Single Cell Analysis Part 1</a></li>
+<li><a class="" href="single-cell-analysis-part-2.html">Single Cell Analysis Part 2</a></li>
+<li><a class="" href="single-cell-analysis-part-3.html">Single Cell Analysis Part 3</a></li>
+<li><a class="" href="assignment-0-snakemake.html">Assignment 0: snakemake</a></li>
+<li><a class="" href="project-writeup-instructions.html">Project Writeup Instructions</a></li>
+<li><a class="" href="project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html">Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></li>
+<li><a class="" href="week-1-rnaseq.html"><span class="header-section-number">1</span> Week 1: RNAseq</a></li>
+<li><a class="" href="week-2-rnaseq.html"><span class="header-section-number">2</span> Week 2: RNAseq</a></li>
+<li><a class="active" href="week-3-rnaseq.html"><span class="header-section-number">3</span> Week 3: RNAseq</a></li>
+<li><a class="" href="week-4-rnaseq.html"><span class="header-section-number">4</span> Week 4: RNAseq</a></li>
+<li><a class="" href="week-5-rnaseq.html"><span class="header-section-number">5</span> Week 5: RNAseq</a></li>
+<li><a class="" href="project-2-chipseq-analysis-of-the-human-transcription-factor-runx1.html">Project 2: ChIPseq analysis of the human transcription factor Runx1</a></li>
+<li><a class="" href="project-3-single-cell-analysis-of-the-mouse-kidney.html">Project 3: Single Cell Analysis of the Mouse Kidney</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-3-rnaseq" class="section level1" number="3">
+<h1>
+<span class="header-section-number">3</span> Week 3: RNAseq<a class="anchor" aria-label="anchor" href="#week-3-rnaseq"><i class="fas fa-link"></i></a>
+</h1>
+<p><strong>Mapping gene IDs to gene symbols</strong></p>
+<p>There are several ways to map gene IDs to gene symbols (ENSMUSGXXXXX to Actb),
+including BiomaRt, which you have previously used in BF591. For this project, we
+will be extracting the mapping of gene IDs to gene symbols directly from the GTF
+used to build our genome index. Take a look at the first few lines of the GTF
+that you downloaded earlier or look up how information is stored and formatted
+in a GTF.</p>
+<p>Use <code>cat</code> or <code>head</code> to inspect the first several lines of the GTF annotation file</p>
+<ol style="list-style-type: decimal">
+<li>Generate a snakemake rule that parses this GTF and accomplishes the following:
+- Includes the run directive to parse this file using python
+- Parse each relevant line of the GTF and extract the ensembl gene ID and
+matching gene symbol
+- Write out every pair of gene ID and gene symbol to a comma delimited text file (ENSMUSG00000023170.14,Gps2- an example of a single line)
+- You may want to consider ways to ensure only unique pairs of gene IDs and
+symbols are saved in your output</li>
+</ol>
+<p>We will use this mapping of IDs to symbols later on to replace the gene IDs with
+the more easily recognized and tractable gene symbols.</p>
+<p><strong>Quantifying the alignments</strong></p>
+<p>Now that we have aligned each of our samples to the reference genome, we need to
+quantify these alignments. This quantification is typically done by “counting”
+the alignments falling into regions of interest. These regions of interest can
+vary depending on your goal, but most commonly for RNAseq, we are interested in
+quantifying the counts of alignments mapping in exonic regions. To obtain gene
+level counts, the counts from all of its exonic regions are summed. This will
+end up generating a single file with the rows representing all of the genes in
+the m33 reference and the corresponding counts of how many alignments from a
+sample fall into the regions annotated for each gene.</p>
+<ol style="list-style-type: decimal">
+<li>Read the documentation for VERSE and create a snakemake rule that runs VERSE
+on each of your 8 bam files
+- VERSE will require your BAM file and the GTF file that matches the
+reference used to build the index</li>
+</ol>
+<p>VERSE will generate a counts file (*.exon.txt) for each of your 8 samples. For
+most downstream applications, we will want this data in the form of a counts
+matrix, a single file containing all of the counts from each sample.</p>
+<ol style="list-style-type: decimal">
+<li>Create another snakemake rule that uses pandas to concatenate the VERSE
+output files and accomplishes the following:
+- Creates a single dataframe where each of the samples are a column, the
+rows represent the gene counts and the row names are the gene IDs.
+- Writes this dataframe to a new file for use downstream</li>
+</ol>
+<p><strong>Visualizing count distributions and filtering</strong></p>
+<p>Now that we have a single matrix containing all of our counts, it is common to
+visualize the distribution of these counts as well as perform pre-filtering of
+the counts. Typically, this filtering is performed by setting a reasonable
+threshold to remove lowly expressed genes. The purpose of filtering is to reduce
+unnecessary computation as well as remove genes that may negatively impact
+downstream applications.</p>
+<p>You may have noticed that this dataset only has two replicates per timepoint. As
+we discussed in class, there are multiple potential meanings to a count of zero
+in the context of sequencing experiments. For example, it is possible we did not
+sequence “deep” enough to detect certain lowly expressed genes. However, it’s
+also possible that genes with zero counts are truly not expressed at all. In
+order to mitigate some of this uncertainty, we are going to apply a filter to
+our counts to simply remove any genes that are not expressed in all of our
+samples. <strong>Please note</strong> that this is a subjective choice and there is not a single
+correct way of filtering this data. This specific filter was chosen to avoid
+attempting to perform statistical tests between conditions where we only have
+one measurement (our filter will only retain genes that are expressed in every
+sample, ensuring that at worst, we are comparing 2 measurements against 2
+measurements).</p>
+<p>If you remember, we have been working with datafiles that were intentionally
+filtered to make them much smaller and able to be processed on the head node.
+For the following steps, please use the provided file,
+/projectnb/bf528/project_1_rnaseq/verse_filtered.tsv, in place of the one you
+created.</p>
+<p>If and only if you have successfully completed all of the CHALLENGE steps, you may
+use your own filtered counts matrix instead.</p>
+<ol style="list-style-type: decimal">
+<li>Please create a jupyter notebook in your project directory
+- You should do this using the OnDemand graphical interface
+- Generate a plot of the distribution of counts for each sample from the
+single count matrix you just created in the previous step</li>
+</ol>
+<p>Now that we have visualized the distribution of our unfiltered counts. We are
+going to apply the filter we outlined above:</p>
+<ol style="list-style-type: decimal">
+<li><p>Generate a new snakemake rule that takes the counts matrix as input, performs
+the described filtering, and writes this filtered counts matrix to a new file.
+You may do this however you like, but we recommend that you use the run
+directive in combination with pandas.</p></li>
+<li><p>Go back to your jupyter notebook, and create the same plot but with the
+filtered counts matrix. For our next steps, we will be using the filtered
+counts matrix.</p></li>
+</ol>
+<p><strong>Performing differential expression</strong></p>
+<p>Now that we have filtered our counts, we are going to perform differential
+expression with DESeq2. There are a few ways to do this, but we are going to
+perform this analysis in a Rmarkdown notebook in order to keep everything as
+organized as possible. Please create a Rmarkdown notebook in your project
+directory using SCC OnDemand and do all of the following work with DESeq2 in
+this notebook.</p>
+<ol style="list-style-type: decimal">
+<li>Please read the fantastically written DESeq2 vignette (<a href="https://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html" class="uri">https://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html</a>)
+and perform a basic differential expression analysis comparing just the p0 and
+AD timepoints.
+- Run DESeq2 using default settings and comparing the p0 and AD samples
+- Write out the full results from DESeq2 to a new file
+- Report how many genes are significant at a FDR of &lt; .001 in your notebook</li>
+</ol>
+<p>At the end of week 3, you should have accomplished the following:</p>
+<ul>
+<li>Generated a snakemake rule that produces a delimited .txt file containing the
+correct mapping of ensembl gene IDs to their corresponding gene symbol from the
+GTF annotations</li>
+<li>Generated a snakemake rule that runs VERSE on each of the BAM
+files</li>
+<li>Generated a snakemake rule that concatenates the VERSE output files into
+a single dataframe</li>
+<li>Generated two plots showing the distribution of counts in each sample before
+and after filtering in a jupyter notebook</li>
+<li>Performed a standard DESeq2 analysis on the filtered counts matrix, and
+comparing only the p0 and AD timepoints in a Rmarkdown notebook</li>
+<li>In your notebook, filter the results to only contain significantly
+differentially expressed genes with a FDR &lt; .001 and report the number significant
+at this threshold</li>
+<li>Write the results and methods sections for this week’s tasks in the provided
+Rmarkdown (week3.Rmd)</li>
+<li>Answer any conceptual questions contained in the week3.Rmd</li>
+</ul>
+<p><strong>CHALLENGE</strong></p>
+<p>The original instructions ask you to perform the DESeq2 analysis in a Rmarkdown
+notebook. Snakemake is capable of running external scripts. For the extra task,
+generate a snakemake rule that will run DESeq2 by calling a separate Rscript. To
+do this, you will need to:</p>
+<ol style="list-style-type: decimal">
+<li>Encapsulate the code that runs DESeq2 in a Rscript
+- Utilize docopt or similar tools to allow your Rscript to recognize command
+line arguments
+- Determine appropriate outputs and inputs for this rule</li>
+</ol>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="week-2-rnaseq.html"><span class="header-section-number">2</span> Week 2: RNAseq</a></div>
+<div class="next"><a href="week-4-rnaseq.html"><span class="header-section-number">4</span> Week 4: RNAseq</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav"><li><a class="nav-link" href="#week-3-rnaseq"><span class="header-section-number">3</span> Week 3: RNAseq</a></li></ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>BF528 - Applications in Translational Bioinformatics</strong>" was written by . </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

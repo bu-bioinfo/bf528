@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>4 Week 4: RNAseq | BF528 - Applications in Translational Bioinformatics</title>
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="4 Week 4: RNAseq | BF528 - Applications in Translational Bioinformatics">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="4 Week 4: RNAseq | BF528 - Applications in Translational Bioinformatics">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+<meta name="description" content="Visualizing genes that change over time There are many ways to analyze time series data including the use of likelihood ratio tests or spline regression; however, since we have replicates at each...">
+<meta property="og:description" content="Visualizing genes that change over time There are many ways to analyze time series data including the use of likelihood ratio tests or spline regression; however, since we have replicates at each...">
+<meta name="twitter:description" content="Visualizing genes that change over time There are many ways to analyze time series data including the use of likelihood ratio tests or spline regression; however, since we have replicates at each...">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">BF528 - Applications in Translational Bioinformatics</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
+<li><a class="" href="introduction.html">Introduction</a></li>
+<li><a class="" href="genomics-genes-and-genomes.html">Genomics, Genes, and Genomes</a></li>
+<li><a class="" href="git.html">git</a></li>
+<li><a class="" href="computational-pipeline-strategies.html">Computational Pipeline Strategies</a></li>
+<li><a class="" href="computational-environment-management.html">Computational Environment Management</a></li>
+<li><a class="" href="sequence-analysis-fundamentals.html">Sequence Analysis Fundamentals</a></li>
+<li><a class="" href="nd-gen-sequencing.html">2nd Gen Sequencing</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-1.html">Sequence Analysis - RNA-Seq 1</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-2.html">Sequence Analysis - RNA-Seq 2</a></li>
+<li><a class="" href="scc-cluster-usage.html">SCC cluster usage</a></li>
+<li><a class="" href="biological-data-formats.html">Biological Data Formats</a></li>
+<li><a class="" href="gene-sets-and-enrichment.html">Gene sets and enrichment</a></li>
+<li><a class="" href="replicability-vs-reproducibility-strategies.html">Replicability vs Reproducibility Strategies</a></li>
+<li><a class="" href="sequence-analysis---chip-seq.html">Sequence Analysis - ChIP-Seq</a></li>
+<li><a class="" href="genome-browsers.html">Genome Browsers</a></li>
+<li><a class="" href="sequence-analysis---atac-seq.html">Sequence Analysis - ATAC-Seq</a></li>
+<li><a class="" href="biological-databases.html">Biological Databases</a></li>
+<li><a class="" href="genomic-variation-and-snp-analysis.html">Genomic Variation and SNP Analysis</a></li>
+<li><a class="" href="microbiome-metagenomics.html">Microbiome: Metagenomics</a></li>
+<li><a class="" href="microbiome-16s.html">Microbiome: 16S</a></li>
+<li><a class="" href="proteomics.html">Proteomics</a></li>
+<li><a class="" href="metabolomics.html">Metabolomics</a></li>
+<li><a class="" href="docker.html">Docker</a></li>
+<li><a class="" href="single-cell-analysis-part-1.html">Single Cell Analysis Part 1</a></li>
+<li><a class="" href="single-cell-analysis-part-2.html">Single Cell Analysis Part 2</a></li>
+<li><a class="" href="single-cell-analysis-part-3.html">Single Cell Analysis Part 3</a></li>
+<li><a class="" href="assignment-0-snakemake.html">Assignment 0: snakemake</a></li>
+<li><a class="" href="project-writeup-instructions.html">Project Writeup Instructions</a></li>
+<li><a class="" href="project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html">Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></li>
+<li><a class="" href="week-1-rnaseq.html"><span class="header-section-number">1</span> Week 1: RNAseq</a></li>
+<li><a class="" href="week-2-rnaseq.html"><span class="header-section-number">2</span> Week 2: RNAseq</a></li>
+<li><a class="" href="week-3-rnaseq.html"><span class="header-section-number">3</span> Week 3: RNAseq</a></li>
+<li><a class="active" href="week-4-rnaseq.html"><span class="header-section-number">4</span> Week 4: RNAseq</a></li>
+<li><a class="" href="week-5-rnaseq.html"><span class="header-section-number">5</span> Week 5: RNAseq</a></li>
+<li><a class="" href="project-2-chipseq-analysis-of-the-human-transcription-factor-runx1.html">Project 2: ChIPseq analysis of the human transcription factor Runx1</a></li>
+<li><a class="" href="project-3-single-cell-analysis-of-the-mouse-kidney.html">Project 3: Single Cell Analysis of the Mouse Kidney</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-4-rnaseq" class="section level1" number="4">
+<h1>
+<span class="header-section-number">4</span> Week 4: RNAseq<a class="anchor" aria-label="anchor" href="#week-4-rnaseq"><i class="fas fa-link"></i></a>
+</h1>
+<p><strong>Visualizing genes that change over time</strong></p>
+<p>There are <strong>many</strong> ways to analyze time series data including the use of
+likelihood ratio tests or spline regression; however, since we have replicates
+at each time point, we can also treat these timepoints as factors and explicitly
+test for genes that differ between them. Approaches like regression splines
+require careful interpretation of curves and choice of parameters. In our
+current analysis, we have simply found genes that are differentially expressed
+between undifferentiated cells and fully differentiated myocytes. We are going
+to utilize two techniques to perform a basic analysis of this data: 1.
+Hierarchical clustering + gene enrichment, and 2. Gene Set Enrichment Analysis
+(GSEA).</p>
+<p>In our analysis, we selected for genes that were differentially expressed
+between p0 and AD. Now, we would also like to see how the expression for these
+genes changes across time. To do this, we are going to subset our data to only
+the DE genes detected between p0 and AD and extract their normalized counts from
+each sample. After this, we will mean-center our counts, perform hierarchical
+clustering to group them into (hopefully) meaningful clusters and plot their
+expression patterns over time.</p>
+<p>You may perform all of the following steps in your Rmarkdown notebook.</p>
+<ol style="list-style-type: decimal">
+<li>Read the DESeq2 vignette, and determine how to generate a Variance Stabilized
+Transformed matrix of your counts</li>
+<li>Write this VST counts to a new file or save it to an appropriate variable</li>
+<li>You have previously identified genes that are significantly changed between
+p0 and AD. Extract out the genes that are significant at FDR &lt; .001 and subset
+the VST counts to only include the counts for these genes</li>
+<li>Perform mean centering but do not scale your data (i.e. subtract the mean
+value of the row from each value in the row, but do not scale all standard
+deviations to 1).</li>
+<li>Perform hierarchical clustering using the hclust function in R</li>
+<li>Use the cutree function in R to cut the dendrogram into distinct clusters.
+- Experiment with different values and find a number that seems appropriate
+and produces “interesting” clusters</li>
+<li>Using the results from cutree, generate separate parallel coordinate plots
+for each cluster to visualize their expression over time. Make sure you address
+the following questions in your report:
+<ul>
+<li>What patterns do you see in each cluster?</li>
+<li>Extract out the genes associated with each of your major clusters, perform
+a quick enrichment analysis using DAVID, ENRICHR, etc. What are some of
+biological terms enriched in these clusters? How does their expression
+change over time and rationalize how those changes make sense in the
+context of the experiment.</li>
+</ul>
+</li>
+</ol>
+<p>For our final analysis, we are going to perform GSEA directly on the results
+from the comparison analyzing the p0 and AD timepoints.</p>
+<ol style="list-style-type: decimal">
+<li>Navigate to the official MsigDB website and download the M2 Canonica Pathways
+gene set
+<ul>
+<li>Upload this .gmt file to your results/ directory on the SCC</li>
+</ul>
+</li>
+</ol>
+<p>As mentioned in class and in BF591, one of the distinct advantages of GSEA is
+that it requires no arbitrary statistical threshold and uses the data generated
+from all genes in your experiment. You may perform these next steps however you’d
+like but we recommend you do so in your existing Rmarkdown notebook.</p>
+<ol style="list-style-type: decimal">
+<li>Use the full dataframe of all results from the p0 vs AD comparison and sort
+your results by log2FoldChange descending
+<ul>
+<li>Output the values of the log2FoldChange column as a named vector
+(names being the gene symbols)</li>
+</ul>
+</li>
+</ol>
+<p>Read the documentation on the fgsea package in bioconductor.</p>
+<ol style="list-style-type: decimal">
+<li><p>Using the named vector you generated previously and the .gmt gene set file
+you downloaded from MSigDB, run fgsea using default parameters
+- fgsea provides a built-in function to load in .gmt files in an appropriate format</p></li>
+<li><p>Filter your results to only retain gene sets that are significant at a FDR
+of &lt; .15</p></li>
+</ol>
+<ul>
+<li>Using just the significant genesets, generate plots or tables that display
+the top ten results sorted by both ascending and descending NES.
+(i.e. one table with the top ten gene sets with the highest NES (most positive),
+and one table with the top ten gene sets that have the lowest NES (most negative)</li>
+</ul>
+<p>At the end of the final week, you should have accomplished the following:</p>
+<ul>
+<li>Generated a counts matrix containing variance stabilized transformed counts</li>
+<li>Generated a counts matrix containing VST counts for the DE genes when comparing
+p0 vs AD</li>
+<li>Perform mean centering on these subset of VST counts</li>
+<li>Perform hierarchical clustering on the mean-centered counts</li>
+<li>Used cutree to “cut” our dendrogram into an appropriat enumber of clusters</li>
+<li>Generate parallel coordinate plots for each of the 4 clusters displaying the
+normalized counts over time for our significant genes</li>
+<li>Performed basic gene enrichment using DAVID/EnrichR on the genes from the
+“interesting” clusters</li>
+<li>Perform GSEA on the log2FC ranked list of all genes using the fgsea package in
+R
+<ul>
+<li>Download the mouse C2 canonical pathways geneset from MSigDB</li>
+<li>Generate a named vector of log2FoldChanges and gene symbols from all the
+results returned by DESeq2</li>
+<li>Filter the fgsea results to only include gene sets with a FDR &lt; .15</li>
+<li>A plot / table of the top ten gene sets ranked by NES descending</li>
+<li>A plot / table of the top ten gene sets ranked by NES ascending</li>
+</ul>
+</li>
+</ul>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="week-3-rnaseq.html"><span class="header-section-number">3</span> Week 3: RNAseq</a></div>
+<div class="next"><a href="week-5-rnaseq.html"><span class="header-section-number">5</span> Week 5: RNAseq</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav"><li><a class="nav-link" href="#week-4-rnaseq"><span class="header-section-number">4</span> Week 4: RNAseq</a></li></ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>BF528 - Applications in Translational Bioinformatics</strong>" was written by . </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>
