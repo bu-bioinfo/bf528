@@ -1,4 +1,4 @@
-## Week 3: Quantifying alignments, filtering, and differential expression
+## Week 3: RNAseq
 
 **Mapping gene IDs to gene symbols**
 

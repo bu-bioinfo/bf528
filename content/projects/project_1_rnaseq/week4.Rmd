@@ -1,5 +1,4 @@
-
-## Week 4: Biological Analysis and Interpretation
+## Week 4: RNAseq
 
 **Visualizing genes that change over time**
 
