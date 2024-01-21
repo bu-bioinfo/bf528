@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>1 Week 1: Getting started | BF528 - Applications in Translational Bioinformatics</title>
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="1 Week 1: Getting started | BF528 - Applications in Translational Bioinformatics">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="1 Week 1: Getting started | BF528 - Applications in Translational Bioinformatics">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+<meta name="description" content="Read the paper This analysis is based on the data published in this study: O’Meara et al. Transcriptional Reversion of Cardiac Myocyte Fate During Mammalian Cardiac Regeneration. Circ Res. Feb...">
+<meta property="og:description" content="Read the paper This analysis is based on the data published in this study: O’Meara et al. Transcriptional Reversion of Cardiac Myocyte Fate During Mammalian Cardiac Regeneration. Circ Res. Feb...">
+<meta name="twitter:description" content="Read the paper This analysis is based on the data published in this study: O’Meara et al. Transcriptional Reversion of Cardiac Myocyte Fate During Mammalian Cardiac Regeneration. Circ Res. Feb...">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">BF528 - Applications in Translational Bioinformatics</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
+<li><a class="" href="introduction.html">Introduction</a></li>
+<li><a class="" href="genomics-genes-and-genomes.html">Genomics, Genes, and Genomes</a></li>
+<li><a class="" href="git.html">git</a></li>
+<li><a class="" href="computational-pipeline-strategies.html">Computational Pipeline Strategies</a></li>
+<li><a class="" href="computational-environment-management.html">Computational Environment Management</a></li>
+<li><a class="" href="sequence-analysis-fundamentals.html">Sequence Analysis Fundamentals</a></li>
+<li><a class="" href="nd-gen-sequencing.html">2nd Gen Sequencing</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-1.html">Sequence Analysis - RNA-Seq 1</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-2.html">Sequence Analysis - RNA-Seq 2</a></li>
+<li><a class="" href="scc-cluster-usage.html">SCC cluster usage</a></li>
+<li><a class="" href="biological-data-formats.html">Biological Data Formats</a></li>
+<li><a class="" href="gene-sets-and-enrichment.html">Gene sets and enrichment</a></li>
+<li><a class="" href="replicability-vs-reproducibility-strategies.html">Replicability vs Reproducibility Strategies</a></li>
+<li><a class="" href="sequence-analysis---chip-seq.html">Sequence Analysis - ChIP-Seq</a></li>
+<li><a class="" href="genome-browsers.html">Genome Browsers</a></li>
+<li><a class="" href="sequence-analysis---atac-seq.html">Sequence Analysis - ATAC-Seq</a></li>
+<li><a class="" href="biological-databases.html">Biological Databases</a></li>
+<li><a class="" href="genomic-variation-and-snp-analysis.html">Genomic Variation and SNP Analysis</a></li>
+<li><a class="" href="microbiome-metagenomics.html">Microbiome: Metagenomics</a></li>
+<li><a class="" href="microbiome-16s.html">Microbiome: 16S</a></li>
+<li><a class="" href="proteomics.html">Proteomics</a></li>
+<li><a class="" href="metabolomics.html">Metabolomics</a></li>
+<li><a class="" href="docker.html">Docker</a></li>
+<li><a class="" href="single-cell-analysis-part-1.html">Single Cell Analysis Part 1</a></li>
+<li><a class="" href="single-cell-analysis-part-2.html">Single Cell Analysis Part 2</a></li>
+<li><a class="" href="single-cell-analysis-part-3.html">Single Cell Analysis Part 3</a></li>
+<li><a class="" href="project-writeup-instructions.html">Project Writeup Instructions</a></li>
+<li><a class="" href="project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html">Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></li>
+<li><a class="active" href="week-1-getting-started.html"><span class="header-section-number">1</span> Week 1: Getting started</a></li>
+<li><a class="" href="project-2-chipseq-analysis-of-the-human-transcription-factor-runx1.html">Project 2: ChIPseq analysis of the human transcription factor Runx1</a></li>
+<li><a class="" href="project-3-single-cell-analysis-of-the-mouse-kidney.html">Project 3: Single Cell Analysis of the Mouse Kidney</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-1-getting-started" class="section level1" number="1">
+<h1>
+<span class="header-section-number">1</span> Week 1: Getting started<a class="anchor" aria-label="anchor" href="#week-1-getting-started"><i class="fas fa-link"></i></a>
+</h1>
+<p><strong>Read the paper</strong></p>
+<p>This analysis is based on the data published in this study: <em>O’Meara et al.
+Transcriptional Reversion of Cardiac Myocyte Fate During Mammalian Cardiac
+Regeneration. Circ Res. Feb 2015. PMID: 25477501</em></p>
+<p>Please read the paper to get a sense for the overall hypotheses, goals, and
+conclusions presented. Keep in mind we are only analyzing the data from the
+first figure, and only the dataset involving the samples from p0, p4, p7 and
+adult mouse heart ventricle cells.</p>
+<p>We will also be deviating from the published methods in favor of using more
+up-to-date strategies and tools. However, the workflow you will develop should
+still capture and recreate the same core biological signals observed in the
+original work.</p>
+<p><strong>Create a working directory for project 1</strong></p>
+<p>Please sign on to the SCC and navigate to our class project directory located
+at: /projectnb/bf528/students/<em>your_username</em>/</p>
+<p>Accept the github classroom link and clone the assignment to your working
+directory.</p>
+<p><strong>Create a conda environment for this project</strong></p>
+<p>One of the core advantages of conda is that it allows you to create multiple,
+independent computing environments with different sets of packages installed
+with conda handling dependencies. It is generally a good practice to create a
+distinct, self-contained conda environment for each individual dataset /
+experiment. If you did not go through assignment 0, then please follow the
+instructions here to setup conda: <a href="https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/python-software/miniconda-modules/" class="uri">https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/python-software/miniconda-modules/</a></p>
+<pre><code>1. Please create a conda environment for this project, you may name it
+whatever is easiest for you to remember</code></pre>
+<p>Take care to activate your conda environment prior to working on any aspect of
+the project. The tools installed in these environments are only accessible when
+you have activated the environment prior.</p>
+<pre><code>2. Using the conda install command, please install
+the following packages: snakemake, pandas, fastqc, star, samtools, multiqc,
+verse, bioconductor-deseq2, bioconductor-fgsea, jupyter-lab</code></pre>
+<p><strong>Locating the data</strong></p>
+<p>For this first project, we have provided you with small subsets of the original
+data files. You should copy these files to the <code>samples/</code> folder in your working
+directory that you cloned. For your convenience, we have renamed the files to be
+descriptive of the samples they represent following the pattern:
+{timepoint}{rep}subsample_{readpair}.fastq.gz (i.e. ADrep1subsample_R1.fastq.gz
+- AD )</p>
+<p>The files are located here: /projectnb/bf528/project_1_rnaseq/ and there are 16
+total files (8 samples, paired end reads).</p>
+<pre><code>1. Using `cp`, make all of these files available in your samples/ directory       </code></pre>
+<p><strong>Performing Quality Control</strong></p>
+<p>At this point, you should have:
+- Setup a directory for this project by accepting the github classroom link
+- Copied the files to your working directory
+- Created a new conda environment containing the requested packages
+- Activate your environment before doing any work</p>
+<p>We will begin by performing quality control on the FASTQ files generated from
+the experiment. fastQC is a bioinformatics software tool that calculates and
+generates descriptive graphics of the various quality metrics encoded in a FASTQ
+file. We will use this tool to quickly check the basic quality of the sequencing
+in this experiment.</p>
+<p>Your first task is to develop the provided snakemake workflow (week1.snake) that
+will run fastQC on each of the 16 project files. You will have to make
+appropriate use of the expand() function to construct a working snakefile to
+perform these steps.</p>
+<p>You may find it helpful to utilize the following command:
+<code>snakemake -s {insert_your_snakefile_name} --dryrun -p</code></p>
+<p>This command will instruct snakemake to print out a summary of what it plans to
+do based on how your snakefile is written. This command is useful for quickly
+troubleshooting if you have any simple errors in syntax, wildcard matching, etc.
+Please note that it will not actually run any of the code in your rule
+directives and thus will not allow you to determine if there are any issues or
+errors in your actual shell or python arguments / commands.</p>
+<pre><code>1. Set up your snakemake workflow to run FastQC on each of the 16 FASTQ
+files (8 samples)
+  - Remember all produced files / data should be output to your results/
+    directory</code></pre>
+<p>By default, FastQC will create a .html and a .zip file for each FASTQ file. It
+will create these files with the following pattern:
+{original_filename}_fastqc.html and {original_filename}_fastqc.zip</p>
+<p>You may have noticed that FastQC produces separate outputs for each sample. Many
+other QC programs also operate on a file level and analyze single files at a
+time. This dataset is on the smaller side but larger experiments can encompass
+hundreds of samples. Individually inspecting outputs from all of these utilities
+would quickly become cumbersome in such situations.</p>
+<p>We are going to utilize the MultiQC utility, which recognizes the outputs from
+many standard bioinformatics tools, and concatenates their outputs into a
+single, well-formatted and visually attractive report.</p>
+<pre><code>1. Read the multiQC manual to learn more about its operation and create a
+snakemake rule that runs MultiQC.
+  - Remember to have MultiQC use your samples/ directory as an input and
+    output its results to the results/ directory</code></pre>
+<p>You should have three rules: your rule all, the rule that runs fastQC on each of
+the files, and the rule that runs multiqc.</p>
+<p>At the end of the first week, you should make sure to have done the following:</p>
+<ul>
+<li>Read the paper and understand the goals and hypotheses of the original study.
+Focus in particular on the analyses pertaining to the dataset we are examining
+and make note of the interpretations and conclusions drawn by the authors.</li>
+<li>Accept the github classroom link to setup the project in your working directory</li>
+<li>Make a new conda environment with the specified packages for this experiment</li>
+<li>Copy the subset files to your results/ directory</li>
+<li>Complete the provided snakemake workflow (week1.snake) that runs fastQC on all
+16 samples</li>
+<li>Generate a snakemake rule that runs multiqc after all fastQC reports have been
+completed</li>
+<li>Write a brief methods and results section for this week’s tasks in the provided
+markdown file (week1.Rmd)</li>
+<li>Answer any conceptual questions (also contained in the Rmd) - many of these
+questions do not have a single right answer and are designed to allow you to make
+hypotheses and think creatively about research questions.</li>
+</ul>
+<p><strong>CHALLENGE</strong></p>
+<p>If you are already familiar with high performance computing environments, you no
+doubt understand that you should not run any intensive computational tasks on
+the head node.</p>
+<p>Please only attempt this section if you are proficient and knowledgeable in the
+use of qsub to properly submit batch jobs with appropriate resources requested.</p>
+<p>The original data files are located in our single project directory,
+/projectnb/bf528/materials/project_1_rnaseq/full_files/</p>
+<p>Reformat your snakefile to operate on the full data files; their name will not
+include “subsample” but otherwise follow the same exact naming conventions
+mentioned previously.
+1. Using your snakemake workflow, run FastQC on all 16 original data files
+2. Add a rule that also runs MultiQC after completion of all FastQC analyses</p>
+<p>Your snakemake command used to run must include the –cluster option and
+appropriate qsub arguments to avoid running these jobs on the head node. We will
+be discussing the appropriate usage of qsub and –cluster in the upcoming weeks.</p>
+
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html">Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></div>
+<div class="next"><a href="project-2-chipseq-analysis-of-the-human-transcription-factor-runx1.html">Project 2: ChIPseq analysis of the human transcription factor Runx1</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav"><li><a class="nav-link" href="#week-1-getting-started"><span class="header-section-number">1</span> Week 1: Getting started</a></li></ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>BF528 - Applications in Translational Bioinformatics</strong>" was written by . </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>
