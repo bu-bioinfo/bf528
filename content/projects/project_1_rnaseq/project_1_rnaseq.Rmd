@@ -54,10 +54,14 @@ to complete everything requested if you fall behind. Please seek out myself or
 the TAs and we will do our best to assist you however you need. Please use the
 accompanying weekly checklist to keep track of all of the necessary tasks. We
 strongly encourage you to continue on with other tasks if you finish early.
+
 At the end of each week’s instructions, you may see a section entitled
 **CHALLENGE**, these are entirely **OPTIONAL**. These are steps that you are not
 required to do, but if you are already familiar with the material of the
-original task, you may choose to complete these tasks as an extra challenge.
+original task, you may choose to complete these tasks as an extra challenge. The
+nature of these challenges is such that they may require you to have performed
+the challenge from a previous week, so ensure you understand what is required. 
+
 
 ## Table of Contents
 
@@ -70,4 +74,3 @@ original task, you may choose to complete these tasks as an extra challenge.
 [Week 4](#week-4-biological-analysis-and-interpretation)
 
 [Week 5](#week-5-writing-a-report)
-

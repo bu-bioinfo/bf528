@@ -1,0 +1,149 @@
+## Week 3: Quantifying alignments, filtering, and differential expression
+
+**Mapping gene IDs to gene symbols**
+
+There are several ways to map gene IDs to gene symbols (ENSMUSGXXXXX to Actb),
+including BiomaRt, which you have previously used in BF591. For this project, we
+will be extracting the mapping of gene IDs to gene symbols directly from the GTF
+used to build our genome index. Take a look at the first few lines of the GTF
+that you downloaded earlier or look up how information is stored and formatted
+in a GTF.
+
+Use `cat` or `head` to inspect the first several lines of the GTF annotation file
+
+  1. Generate a snakemake rule that parses this GTF and accomplishes the following:
+    - Includes the run directive to parse this file using python
+    - Parse each relevant line of the GTF and extract the ensembl gene ID and 
+      matching gene symbol
+    - Write out every pair of gene ID and gene symbol to a comma delimited text file     (ENSMUSG00000023170.14,Gps2\n - an example of a single line)
+    - You may want to consider ways to ensure only unique pairs of gene IDs and 
+    symbols are saved in your output
+
+We will use this mapping of IDs to symbols later on to replace the gene IDs with
+the more easily recognized and tractable gene symbols.
+
+**Quantifying the alignments**
+
+Now that we have aligned each of our samples to the reference genome, we need to
+quantify these alignments. This quantification is typically done by “counting”
+the alignments falling into regions of interest. These regions of interest can
+vary depending on your goal, but most commonly for RNAseq, we are interested in
+quantifying the counts of alignments mapping in exonic regions. To obtain gene
+level counts, the counts from all of its exonic regions are summed. This will
+end up generating a single file with the rows representing all of the genes in
+the m33 reference and the corresponding counts of how many alignments from a
+sample fall into the regions annotated for each gene.
+
+  1. Read the documentation for VERSE and create a snakemake rule that runs VERSE 
+  on each of your 8 bam files
+    - VERSE will require your BAM file and the GTF file that matches the 
+      reference used to build the index
+
+VERSE will generate a counts file (*.exon.txt) for each of your 8 samples. For
+most downstream applications, we will want this data in the form of a counts
+matrix, a single file containing all of the counts from each sample.
+
+  1. Create another snakemake rule that uses pandas to concatenate the VERSE 
+  output files and accomplishes the following:
+    - Creates a single dataframe where each of the samples are a column, the 
+      rows represent the gene counts and the row names are the gene IDs.
+    - Writes this dataframe to a new file for use downstream
+
+
+**Visualizing count distributions and filtering**
+
+Now that we have a single matrix containing all of our counts, it is common to
+visualize the distribution of these counts as well as perform pre-filtering of
+the counts. Typically, this filtering is performed by setting a reasonable
+threshold to remove lowly expressed genes. The purpose of filtering is to reduce
+unnecessary computation as well as remove genes that may negatively impact
+downstream applications.
+
+You may have noticed that this dataset only has two replicates per timepoint. As
+we discussed in class, there are multiple potential meanings to a count of zero
+in the context of sequencing experiments. For example, it is possible we did not
+sequence “deep” enough to detect certain lowly expressed genes. However, it’s
+also possible that genes with zero counts are truly not expressed at all. In
+order to mitigate some of this uncertainty, we are going to apply a filter to
+our counts to simply remove any genes that are not expressed in all of our
+samples. **Please note** that this is a subjective choice and there is not a single
+correct way of filtering this data. This specific filter was chosen to avoid
+attempting to perform statistical tests between conditions where we only have
+one measurement (our filter will only retain genes that are expressed in every
+sample, ensuring that at worst, we are comparing 2 measurements against 2
+measurements).
+
+If you remember, we have been working with datafiles that were intentionally
+filtered to make them much smaller and able to be processed on the head node.
+For the following steps, please use the provided file,
+/projectnb/bf528/project_1_rnaseq/verse_filtered.tsv, in place of the one you
+created.
+
+If and only if you have successfully completed all of the CHALLENGE steps, you may 
+use your own filtered counts matrix instead.
+	
+  1. Please create a jupyter notebook in your project directory
+    - You should do this using the OnDemand graphical interface
+    - Generate a plot of the distribution of counts for each sample from the 
+      single count matrix you just created in the previous step
+
+Now that we have visualized the distribution of our unfiltered counts. We are
+going to apply the filter we outlined above:
+
+  1. Generate a new snakemake rule that takes the counts matrix as input, performs
+    the described filtering, and writes this filtered counts matrix to a new file.
+    You may do this however you like, but we recommend that you use the run 
+    directive in combination with pandas. 
+
+  2. Go back to your jupyter notebook, and create the same plot but with the 
+    filtered counts matrix. For our next steps, we will be using the filtered 
+    counts matrix.
+
+**Performing differential expression**
+
+Now that we have filtered our counts, we are going to perform differential
+expression with DESeq2. There are a few ways to do this, but we are going to
+perform this analysis in a Rmarkdown notebook in order to keep everything as
+organized as possible. Please create a Rmarkdown notebook in your project
+directory using SCC OnDemand and do all of the following work with DESeq2 in
+this notebook.
+
+  1. Please read the fantastically written DESeq2 vignette (https://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html)
+  and perform a basic differential expression analysis comparing just the p0 and 
+  AD timepoints.
+    - Run DESeq2 using default settings and comparing the p0 and AD samples
+    - Write out the full results from DESeq2 to a new file
+    - Report how many genes are significant at a FDR of < .001 in your notebook
+
+
+At the end of week 3, you should have accomplished the following:
+
+- Generated a snakemake rule that produces a delimited .txt file containing the 
+correct mapping of ensembl gene IDs to their corresponding gene symbol from the 
+GTF annotations
+- Generated a snakemake rule that runs VERSE on each of the BAM
+files
+- Generated a snakemake rule that concatenates the VERSE output files into
+a single dataframe
+- Generated two plots showing the distribution of counts in each sample before 
+and after filtering in a jupyter notebook
+- Performed a standard DESeq2 analysis on the filtered counts matrix, and 
+comparing only the p0 and AD timepoints in a Rmarkdown notebook 
+- In your notebook, filter the results to only contain significantly 
+differentially expressed genes with a FDR < .001 and report the number significant
+at this threshold
+- Write the results and methods sections for this week's tasks in the provided
+Rmarkdown (week3.Rmd)
+- Answer any conceptual questions contained in the week3.Rmd
+
+**CHALLENGE**
+
+The original instructions ask you to perform the DESeq2 analysis in a Rmarkdown
+notebook. Snakemake is capable of running external scripts. For the extra task,
+generate a snakemake rule that will run DESeq2 by calling a separate Rscript. To
+do this, you will need to:
+
+  1. Encapsulate the code that runs DESeq2 in a Rscript
+    - Utilize docopt or similar tools to allow your Rscript to recognize command 
+      line arguments
+    - Determine appropriate outputs and inputs for this rule

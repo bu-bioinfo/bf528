@@ -1,0 +1,35 @@
+## Week 5: Writing a report
+
+Full writeup instructions can be found here: [Project Writeup Instructions]
+
+Now that you have completed each week tasks, you should have a fully working pipeline that processes a full RNAseq experiment from raw data to differential expression. Now you will need to write a report that details the entire project in the style of a scientific publication. As a reminder, here is a general outline of how to structure it: 
+
+    Introduction (1-2 paragraphs)
+        - What is the biological background of the study?
+        - Why was the study performed?
+        - What main experimental techniques were used in the study?
+
+    Methods (variable)
+        - Describe any specific parameters used, software versions, or specific steps that would ultimately affect the reproducibility of the results
+
+    Results (variable)
+        - Results from each step in the methods with appropriate figures / tables containing descriptive captions
+
+    Discussion (1 page)
+        - Discuss and interpret the results in the context of the biological question asked by the study. Briefly state the main results and follow-on with a discussion on the implications and the biological conclusions drawn that are supported by the results. 
+        - Briefly discuss how well you managed to reproduce the results from the paper
+
+    Future Directions (1-2 paragraphs)
+    - List at least three follow-up experiments / questions that would be interesting to follow-up on after the paper
+    - What would these experiments attempt to answer? And why would they be relevant?
+
+    Challenges (1 paragraph)
+    - What were the main difficulties you encountered in the project?
+
+    Conclusion (1 paragraph)
+    - What is the main conclusion a reader should draw from the analysis?
+
+    References
+    - Use consistent, proper citation format for any references (Mendeley, Zotero, Paperpile)
+
+

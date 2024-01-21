@@ -1,0 +1,114 @@
+## Week 2: Aligning reads to the reference genome
+Now that we have performed basic quality control on the FASTQ files, we are
+going to align them to the mouse reference genome to generate alignments for
+each of our sequencing reads. We will then “count” the alignments falling into
+regions of interest in the mouse genome (exonic regions) and sum the alignments
+falling into all exons of a given gene to obtain a “gene-level” count of mRNA
+abundance for all genes in each sample.
+
+**Downloading files from public repositories**
+
+As we have discussed in lecture, there are many major scientific organizations
+that create, maintain and/or host innumerable bioinformatics resources. GENCODE,
+is one such organization, whose primary mission is to provide up-to-date and
+curated reference genomes and annotations for humans and mice. In the course of
+your work as a bioinformatician, you should and will have to make good use of
+the plethora of public resources available to you.
+
+Navigate to the GENCODE website and select the page for Mouse. Look underneath
+the section entitled “Fasta files” and locate the file with content “Genome
+sequence, primary assembly (GRCm39)”. This is the most up to date human
+reference genome available.
+
+Look under the section entitled “GTF / GFF3 files” and locate the file with the
+description, “It contains the comprehensive gene annotation on the primary
+assembly (chromosomes and scaffolds) sequence regions”. This file is the
+matching annotation file for the available human reference genome.
+
+  1. Please generate a snakemake rule that will download two files from the
+  GENCODE service. You may need to make two separate snakemake rules or figure
+  out a way to do it in one. Consider looking into the wget and curl commands,
+  which in tandem with snakemake, will enable you to incorporate downloading
+  these files as part of your workflow.
+
+  2. Now that you have located both of these files, generate a snakemake rule
+    (or two) that downloads these files - Remember that snakemake rules do not
+    always need an input
+
+Some bioinformatics utilities can handle gzipped files, others cannot. For our
+workflow, we will need the GTF file to be uncompressed. You may generate a
+snakemake rule to do this or simply uncompress the file on the command line.
+
+**Aligning reads to the genome**
+
+Before aligning reads to a reference genome, most tools will need to generate a
+genome index, a set of files which enable fast and efficient searching through a
+large sequence. This step is computationally intensive and cannot be run on the
+head node of the SCC. For this first project, we have pre-built an appropriate
+STAR index for a portion of the m39 reference.
+
+  1. Copy the entire directory located at: 
+  /projectnb/bf528/materials/project_1_rnaseq/m39_subset_star/ to your samples/
+  directory
+  
+  2. Create a snakemake rule that aligns each of your 8 samples (16 files) 
+  against the provided m39 reference genome with the following requirements in 
+  mind:
+    - Look through the most current manual and documentation for STAR and set the 
+    option to output a BAM Unsorted file
+    - Leave every other argument as default
+    - Hint: Make sure to carefully read the section on naming output files in STAR.
+
+**Performing post-alignment QC**
+
+Typically after performing alignment, it is good to perform post-alignment
+quality control to quickly check if there appear to be any major problems with
+the data. We are going to primarily focus on the overall mapping rate statistic,
+which is simply the percentage of reads that properly map to our genome. For a
+well-annotated and studied organism like mouse, we typically expect very high
+mapping rates (>80%) for standard RNAseq experiments in the absence of any
+errors in sample processing, library preparation or alignment issues. 
+
+The samtools suite contains a set of highly important and incredibly useful
+utilities for parsing and manipulating SAM/BAM files. Take a look at the
+samtools manual to get a sense for its capabilities.
+
+  1. Create a snakemake rule that runs the samtools flagstat utility on each of 
+  your BAM files. By default, this utility prints results to stdout. Redirect and
+  save the output to a .txt file instead.
+
+Since you are working with files that have been intentionally filtered to make
+them smaller, the actual outputs from fastQC, flagstats, and STAR will be
+misleading. Do not draw any conclusions from these reports generated on the
+subsetted data.
+
+At the end of week 2, you should make sure to have accomplished the following 
+items:
+
+- Generated a snakemake rule (or two) that download the primary assembly genome
+FASTA for m33 and its matching GTF file 
+- Make sure to uncompress the GTF file, you may do this in snakemake or on the 
+command line 
+- Generated a snakemake rule that runs STAR to generate 8 Unsorted BAM files for
+each of the samples in our dataset
+- Generated a snakemake rule that runs samtools flagstat on each of the
+BAM files and creates a .txt file for each output 
+- Generated a snakemake rule that runs MultiQC on your project directory
+- Write the methods and results section for this week's tasks in the provided
+week2.Rmd
+- Answer any conceptual questions also found in the week2.Rmd
+
+**CHALLENGE** (only do this if you did last weeks challenge)
+
+As with last week’s challenge, please do not attempt this unless you are already
+familiar with qsub, and how to request appropriate computational resources on
+the SCC. Generating a genome index requires both a large amount of time and RAM
+and should not be done on the head node under any circumstances.
+
+  1. Using the primary assembly FASTA of the m39 genome and its matching GTF file
+  that you downloaded,generate your own STAR index using snakemake using default
+  parameters.
+  
+  2. Use your generated STAR index to align your samples to the full m39 genome.
+  You will have to use qsub for this.
+
