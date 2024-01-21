@@ -1,4 +1,4 @@
-# Week 1: RNAseq
+# Week 1: RNAseq {-}
 
 **Read the paper**
 

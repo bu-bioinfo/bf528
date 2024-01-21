@@ -1,4 +1,4 @@
-# Week 4: RNAseq
+# Week 4: RNAseq {-}
 
 **Visualizing genes that change over time**
 
