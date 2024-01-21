@@ -203,9 +203,11 @@ use of qsub to properly submit batch jobs with appropriate resources requested.<
 /projectnb/bf528/materials/project_1_rnaseq/full_files/</p>
 <p>Reformat your snakefile to operate on the full data files; their name will not
 include “subsample” but otherwise follow the same exact naming conventions
-mentioned previously.
-1. Using your snakemake workflow, run FastQC on all 16 original data files
-2. Add a rule that also runs MultiQC after completion of all FastQC analyses</p>
+mentioned previously.</p>
+<ol style="list-style-type: decimal">
+<li>Using your snakemake workflow, run FastQC on all 16 original data files</li>
+<li>Add a rule that also runs MultiQC after completion of all FastQC analyses</li>
+</ol>
 <p>Your snakemake command used to run must include the –cluster option and
 appropriate qsub arguments to avoid running these jobs on the head node. We will
 be discussing the appropriate usage of qsub and –cluster in the upcoming weeks.</p>
