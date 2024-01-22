@@ -66,7 +66,7 @@ exact environment at a later date, on a different computer or both.
 In order to use Conda (miniconda) on the SCC, you will first need to load the
 pre-installed module for miniconda and perform a few setup steps:
 
-    1. Enter the command module load miniconda on the SCC. There will be a
+    1. Enter the command 'module load miniconda' on the SCC. There will be a
     helpful pop-up message that will instruct you to run the script
     setup_conda_scc.sh
 
