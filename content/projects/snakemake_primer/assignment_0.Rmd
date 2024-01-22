@@ -73,9 +73,10 @@ pre-installed module for miniconda and perform a few setup steps:
 This script will allow you to change the location where the packages conda
 installs are downloaded. By default, conda will save them to your personal
 directory on the SCC. As you are limited to only ~10gb in your home directory,
-you should choose to instead save them to a larger partition. Change the default
-install location for your conda environments to be your directory on our class
-partition: /projectnb/bf528/students/your_username/
+you should choose to instead save them to a larger partition. 
+
+    2. Change the default install location for your conda environments to be your 
+    directory on our class partition: /projectnb/bf528/students/your_username/
 
 There are more instructions for general conda usage and the SCC here:
 https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/python-software/miniconda-modules/
