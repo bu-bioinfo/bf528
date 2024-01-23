@@ -126,17 +126,18 @@ verse, bioconductor-deseq2, bioconductor-fgsea, jupyter-lab</code></pre>
 data files. You should copy these files to the <code>samples/</code> folder in your working
 directory that you cloned. For your convenience, we have renamed the files to be
 descriptive of the samples they represent following the pattern:
-{timepoint}{rep}subsample_{readpair}.fastq.gz (i.e. ADrep1subsample_R1.fastq.gz
-- AD )</p>
+{timepoint}{rep}subsample_{readpair}.fastq.gz (i.e. ADrep1subsample_R1.fastq.gz)</p>
 <p>The files are located here: /projectnb/bf528/project_1_rnaseq/ and there are 16
 total files (8 samples, paired end reads).</p>
 <pre><code>1. Using `cp`, make all of these files available in your samples/ directory       </code></pre>
 <p><strong>Performing Quality Control</strong></p>
-<p>At this point, you should have:
-- Setup a directory for this project by accepting the github classroom link
-- Copied the files to your working directory
-- Created a new conda environment containing the requested packages
-- Activate your environment before doing any work</p>
+<p>At this point, you should have:</p>
+<ul>
+<li>Setup a directory for this project by accepting the github classroom link</li>
+<li>Copied the files to your working directory</li>
+<li>Created a new conda environment containing the requested packages</li>
+<li>Activate your environment before doing any work</li>
+</ul>
 <p>We will begin by performing quality control on the FASTQ files generated from
 the experiment. fastQC is a bioinformatics software tool that calculates and
 generates descriptive graphics of the various quality metrics encoded in a FASTQ
