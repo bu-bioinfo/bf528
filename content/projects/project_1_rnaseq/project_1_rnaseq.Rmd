@@ -62,7 +62,19 @@ original task, you may choose to complete these tasks as an extra challenge. The
 nature of these challenges is such that they may require you to have performed
 the challenge from a previous week, so ensure you understand what is required. 
 
+In general, each week you should:
 
+  1. Complete the snakefile to run the requested tasks
+  2. Write the methods and results section for the week's tasks in the provided
+    Rmarkdown notebook
+  3. Answer any conceptual questions also found in the provided Rmarkdown
+
+Each week will become progressively more independent. For the first week's
+snakefile, we have given you the structure and partially completed one of the
+rules. For the second week, we have given you the rules you will need to
+specify. For the third week, you will need to construct the snakefile on your
+own from just the requirements listed in the assignment.
+  
 ## Table of Contents
 
 [Week 1](#week-1-rnaseq)
