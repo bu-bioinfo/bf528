@@ -106,6 +106,40 @@ original work.</p>
 at: /projectnb/bf528/students/<em>your_username</em>/</p>
 <p>Accept the github classroom link and clone the assignment to your working
 directory.</p>
+<p><strong>The structure and setup of the project</strong></p>
+<p>After you have accepted the github classroom link, clone the repo into
+your student directory (/projectnb/bf528/students/your_name/).</p>
+<p>Within /projectnb/bf528/students/your_name/project_1/, you should see the
+following structure (directories are indicated by names ending with “/”):</p>
+<pre><code>|-- results/
+    |-- Any processed data output, downloaded file, etc. should go in here, 
+        remember to provide this path as an output for any tasks
+    
+|-- samples/
+    |-- Copy the provided fastq files here, remember to provide this path 
+        when referring to your input files
+    
+|-- docs/
+    |-- This will contain a copy of each week's instructions and any
+       other documents necessary for the required tasks
+       
+|-- week1.snake
+    |-- We have provided you a template for the first week's snakefile
+    
+|-- week2.snake
+    |-- A template for the week 2 snakefile
+    
+|-- week3.snake
+    |-- A template for the week 3 snakefile
+
+|-- week(1, 2, 3).Rmd
+    |-- We have provided you with a Rmd notebook for you to quickly
+        write your preliminary methods and results for each week
+        
+|-- differential_expression.Rmd
+    |-- For the end of week 3 and the tasks for week 4, you will need
+        to perform a series of operations in R. Please use this provided 
+        notebook to do these. </code></pre>
 <p><strong>Create a conda environment for this project</strong></p>
 <p>One of the core advantages of conda is that it allows you to create multiple,
 independent computing environments with different sets of packages installed
