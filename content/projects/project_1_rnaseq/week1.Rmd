@@ -90,8 +90,8 @@ directory that you cloned. For your convenience, we have renamed the files to be
 descriptive of the samples they represent following the pattern:
 {timepoint}{rep}subsample_{readpair}.fastq.gz (i.e. ADrep1subsample_R1.fastq.gz)
 
-The files are located here: /projectnb/bf528/project_1_rnaseq/ and there are 16
-total files (8 samples, paired end reads).
+The files are located here: /projectnb/bf528/materials/project_1_rnaseq/subsampled_files 
+and there are 16 total files (8 samples, paired end reads).
 
     1. Using `cp`, make all of these files available in your samples/ directory       
 
