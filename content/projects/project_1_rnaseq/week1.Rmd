@@ -22,7 +22,7 @@ Please sign on to the SCC and navigate to our class project directory located
 at: /projectnb/bf528/students/*your_username*/
 
 Accept the github classroom link and clone the assignment to your working
-directory. 
+directory - https://classroom.github.com/a/WXj2OrjA
 
 **The structure and setup of the project**
 

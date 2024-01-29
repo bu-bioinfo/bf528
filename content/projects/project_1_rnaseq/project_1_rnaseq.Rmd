@@ -74,6 +74,9 @@ snakefile, we have given you the structure and partially completed one of the
 rules. For the second week, we have given you the rules you will need to
 specify. For the third week, you will need to construct the snakefile on your
 own from just the requirements listed in the assignment.
+
+The github classroom for this project is here: https://classroom.github.com/a/WXj2OrjA
+
   
 ## Table of Contents
 
