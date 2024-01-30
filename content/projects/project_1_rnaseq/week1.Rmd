@@ -80,7 +80,7 @@ you have activated the environment prior.
 
     2. Using the conda install command, please install
     the following packages: snakemake, pandas, fastqc, star, samtools, multiqc,
-    verse, bioconductor-deseq2, bioconductor-fgsea, jupyter-lab
+    verse, bioconductor-deseq2, bioconductor-fgsea, jupyterlab
 
 **Locating the data**
 
