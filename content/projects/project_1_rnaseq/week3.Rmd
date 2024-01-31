@@ -76,12 +76,9 @@ measurements).
 If you remember, we have been working with datafiles that were intentionally
 filtered to make them much smaller and able to be processed on the head node.
 For the following steps, please use the provided file,
-/projectnb/bf528/project_1_rnaseq/verse_filtered.tsv, in place of the one you
-created.
+/projectnb/bf528/materials/project_1_rnaseq/verse_concat.tsv, in place of the one 
+you created.
 
-If and only if you have successfully completed all of the CHALLENGE steps, you may 
-use your own filtered counts matrix instead.
-	
   1. Please create a jupyter notebook in your project directory
     - You should do this using the OnDemand graphical interface
     - Generate a plot of the distribution of counts for each sample from the 
@@ -137,6 +134,9 @@ Rmarkdown (week3.Rmd)
 - Answer any conceptual questions contained in the week3.Rmd
 
 **CHALLENGE**
+
+If and only if you have successfully completed all of the CHALLENGE steps, you may 
+use your own filtered counts matrix instead for the steps above.
 
 The original instructions ask you to perform the DESeq2 analysis in a Rmarkdown
 notebook. Snakemake is capable of running external scripts. For the extra task,
