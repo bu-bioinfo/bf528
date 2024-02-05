@@ -98,14 +98,14 @@ that you downloaded earlier or look up how information is stored and formatted
 in a GTF.</p>
 <p>Use <code>cat</code> or <code>head</code> to inspect the first several lines of the GTF annotation file</p>
 <ol style="list-style-type: decimal">
-<li>Generate a snakemake rule that parses this GTF and accomplishes the following:
-- Includes the run directive to parse this file using python
-- Parse each relevant line of the GTF and extract the ensembl gene ID and
-matching gene symbol
-- Write out every pair of gene ID and gene symbol to a comma delimited text file (ENSMUSG00000023170.14,Gps2- an example of a single line)
-- You may want to consider ways to ensure only unique pairs of gene IDs and
-symbols are saved in your output</li>
+<li>Generate a snakemake rule that parses this GTF and accomplishes the following:</li>
 </ol>
+<pre><code>- Includes the run directive to parse this file using python
+- Parse each relevant line of the GTF and extract the ensembl gene ID and 
+  matching gene symbol
+  - Write out every pair of gene ID and gene symbol to a comma delimited text file    (ENSMUSG00000023170.14,Gps2\n - an example of a single line)
+  - You may want to consider ways to ensure only unique pairs of gene IDs and 
+  symbols are saved in your output</code></pre>
 <p>We will use this mapping of IDs to symbols later on to replace the gene IDs with
 the more easily recognized and tractable gene symbols.</p>
 <p><strong>Quantifying the alignments</strong></p>
@@ -116,24 +116,25 @@ vary depending on your goal, but most commonly for RNAseq, we are interested in
 quantifying the counts of alignments mapping in exonic regions. To obtain gene
 level counts, the counts from all of its exonic regions are summed. This will
 end up generating a single file with the rows representing all of the genes in
-the m33 reference and the corresponding counts of how many alignments from a
+the m39 reference and the corresponding counts of how many alignments from a
 sample fall into the regions annotated for each gene.</p>
 <ol style="list-style-type: decimal">
 <li>Read the documentation for VERSE and create a snakemake rule that runs VERSE
 on each of your 8 bam files
 - VERSE will require your BAM file and the GTF file that matches the
-reference used to build the index</li>
+reference used to build the index
+- Ensure the outputs of VERSE are created in your <code>results/</code> directory</li>
 </ol>
 <p>VERSE will generate a counts file (*.exon.txt) for each of your 8 samples. For
 most downstream applications, we will want this data in the form of a counts
 matrix, a single file containing all of the counts from each sample.</p>
 <ol style="list-style-type: decimal">
 <li>Create another snakemake rule that uses pandas to concatenate the VERSE
-output files and accomplishes the following:
-- Creates a single dataframe where each of the samples are a column, the
-rows represent the gene counts and the row names are the gene IDs.
-- Writes this dataframe to a new file for use downstream</li>
+output files and accomplishes the following:</li>
 </ol>
+<pre><code>- Creates a single dataframe where each of the samples are a column, the 
+  rows represent the gene counts and the row names are the gene IDs.
+- Writes this dataframe to a new file for use downstream</code></pre>
 <p><strong>Visualizing count distributions and filtering</strong></p>
 <p>Now that we have a single matrix containing all of our counts, it is common to
 visualize the distribution of these counts as well as perform pre-filtering of
