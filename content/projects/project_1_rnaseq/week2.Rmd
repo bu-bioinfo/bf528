@@ -37,8 +37,7 @@ matching annotation file for the available human reference genome.
     always need an input. Make sure these files are downloaded to the `results/`
     directory
     
-  3. Manually unzip the file on the command line or create a snakemake rule to do
-    so if you are comfortable. 
+  3. Please construct a snakemake rule that also uncompresses the GTF file
 
 Some bioinformatics utilities can handle gzipped files, others cannot. For our
 workflow, we will need the GTF file to be uncompressed. 
@@ -94,8 +93,7 @@ items:
 
 - Generated a snakemake rule (or two) that download the primary assembly genome
 FASTA for m33 and its matching GTF file 
-- Make sure to uncompress the GTF file, you may do this in snakemake or on the 
-command line 
+- Generated a snakemake rule that uncompresses the GTF file
 - Generated a snakemake rule that runs STAR to generate 8 Unsorted BAM files for
 each of the samples in our dataset
 - Generated a snakemake rule that runs samtools flagstat on each of the
