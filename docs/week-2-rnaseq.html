@@ -118,11 +118,13 @@ which in tandem with snakemake, will enable you to incorporate downloading
 these files as part of your workflow.</p></li>
 <li><p>Now that you have located both of these files, generate a snakemake rule
 (or two) that downloads these files - Remember that snakemake rules do not
-always need an input</p></li>
+always need an input. Make sure these files are downloaded to the <code>results/</code>
+directory</p></li>
+<li><p>Manually unzip the file on the command line or create a snakemake rule to do
+so if you are comfortable.</p></li>
 </ol>
 <p>Some bioinformatics utilities can handle gzipped files, others cannot. For our
-workflow, we will need the GTF file to be uncompressed. You may generate a
-snakemake rule to do this or simply uncompress the file on the command line.</p>
+workflow, we will need the GTF file to be uncompressed.</p>
 <p><strong>Aligning reads to the genome</strong></p>
 <p>Before aligning reads to a reference genome, most tools will need to generate a
 genome index, a set of files which enable fast and efficient searching through a
@@ -135,12 +137,13 @@ STAR index for a portion of the m39 reference.</p>
 directory</p></li>
 <li><p>Create a snakemake rule that aligns each of your 8 samples (16 files)
 against the provided m39 reference genome with the following requirements in
-mind:
-- Look through the most current manual and documentation for STAR and set the
+mind:</p></li>
+</ol>
+<pre><code>- Look through the most current manual and documentation for STAR and set the 
 option to output a BAM Unsorted file
 - Leave every other argument as default
-- Hint: Make sure to carefully read the section on naming output files in STAR.</p></li>
-</ol>
+- Hint: Make sure to carefully read the section on naming output files in STAR.
+- Create the BAM files in the `results/` directory</code></pre>
 <p><strong>Performing post-alignment QC</strong></p>
 <p>Typically after performing alignment, it is good to perform post-alignment
 quality control to quickly check if there appear to be any major problems with
@@ -155,7 +158,8 @@ samtools manual to get a sense for its capabilities.</p>
 <ol style="list-style-type: decimal">
 <li>Create a snakemake rule that runs the samtools flagstat utility on each of
 your BAM files. By default, this utility prints results to stdout. Redirect and
-save the output to a .txt file instead.</li>
+save the output to a .txt file instead. Ensure you are creating all outputs in
+the <code>results/</code> directory</li>
 </ol>
 <p>Since you are working with files that have been intentionally filtered to make
 them smaller, the actual outputs from fastQC, flagstats, and STAR will be
