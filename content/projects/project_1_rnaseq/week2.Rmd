@@ -34,11 +34,14 @@ matching annotation file for the available human reference genome.
 
   2. Now that you have located both of these files, generate a snakemake rule
     (or two) that downloads these files - Remember that snakemake rules do not
-    always need an input
+    always need an input. Make sure these files are downloaded to the `results/`
+    directory
+    
+  3. Manually unzip the file on the command line or create a snakemake rule to do
+    so if you are comfortable. 
 
 Some bioinformatics utilities can handle gzipped files, others cannot. For our
-workflow, we will need the GTF file to be uncompressed. You may generate a
-snakemake rule to do this or simply uncompress the file on the command line.
+workflow, we will need the GTF file to be uncompressed. 
 
 **Aligning reads to the genome**
 
@@ -55,10 +58,12 @@ STAR index for a portion of the m39 reference.
   2. Create a snakemake rule that aligns each of your 8 samples (16 files) 
   against the provided m39 reference genome with the following requirements in 
   mind:
+    
     - Look through the most current manual and documentation for STAR and set the 
     option to output a BAM Unsorted file
     - Leave every other argument as default
     - Hint: Make sure to carefully read the section on naming output files in STAR.
+    - Create the BAM files in the `results/` directory
 
 **Performing post-alignment QC**
 
@@ -76,7 +81,8 @@ samtools manual to get a sense for its capabilities.
 
   1. Create a snakemake rule that runs the samtools flagstat utility on each of 
   your BAM files. By default, this utility prints results to stdout. Redirect and
-  save the output to a .txt file instead.
+  save the output to a .txt file instead. Ensure you are creating all outputs in
+  the `results/` directory
 
 Since you are working with files that have been intentionally filtered to make
 them smaller, the actual outputs from fastQC, flagstats, and STAR will be
