@@ -18,9 +18,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="Mapping gene IDs to gene symbols There are several ways to map gene IDs to gene symbols (ENSMUSGXXXXX to Actb), including BiomaRt, which you have previously used in BF591. For this project, we...">
-<meta property="og:description" content="Mapping gene IDs to gene symbols There are several ways to map gene IDs to gene symbols (ENSMUSGXXXXX to Actb), including BiomaRt, which you have previously used in BF591. For this project, we...">
-<meta name="twitter:description" content="Mapping gene IDs to gene symbols There are several ways to map gene IDs to gene symbols (ENSMUSGXXXXX to Actb), including BiomaRt, which you have previously used in BF591. For this project, we...">
+<meta name="description" content="After we have aligned our reads, we will now “count” the alignments falling into regions of interest in the mouse genome (exonic regions) and sum the alignments falling into all exons of a given...">
+<meta property="og:description" content="After we have aligned our reads, we will now “count” the alignments falling into regions of interest in the mouse genome (exonic regions) and sum the alignments falling into all exons of a given...">
+<meta name="twitter:description" content="After we have aligned our reads, we will now “count” the alignments falling into regions of interest in the mouse genome (exonic regions) and sum the alignments falling into all exons of a given...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -89,6 +89,11 @@
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-3-rnaseq" class="section level1 unnumbered">
 <h1>Week 3: RNAseq<a class="anchor" aria-label="anchor" href="#week-3-rnaseq"><i class="fas fa-link"></i></a>
 </h1>
+<p>After we have aligned our reads, we will now “count” the alignments falling into
+regions of interest in the mouse genome (exonic regions) and sum the alignments
+falling into all exons of a given gene to obtain a “gene-level” count of mRNA
+abundance for all genes in each sample. We will perform basic filtering, and then
+perform normalization and differential expression analysis using DESeq2.</p>
 <p><strong>Mapping gene IDs to gene symbols</strong></p>
 <p>There are several ways to map gene IDs to gene symbols (ENSMUSGXXXXX to Actb),
 including BiomaRt, which you have previously used in BF591. For this project, we
