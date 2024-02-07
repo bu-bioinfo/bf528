@@ -1,5 +1,11 @@
 # Week 3: RNAseq {-}
 
+After we have aligned our reads, we will now “count” the alignments falling into
+regions of interest in the mouse genome (exonic regions) and sum the alignments
+falling into all exons of a given gene to obtain a “gene-level” count of mRNA
+abundance for all genes in each sample. We will perform basic filtering, and then
+perform normalization and differential expression analysis using DESeq2. 
+
 **Mapping gene IDs to gene symbols**
 
 There are several ways to map gene IDs to gene symbols (ENSMUSGXXXXX to Actb),
