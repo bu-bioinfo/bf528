@@ -24,18 +24,12 @@ description, “It contains the comprehensive gene annotation on the primary
 assembly (chromosomes and scaffolds) sequence regions”. This file is the
 matching annotation file for the available human reference genome.
 
-  1. Please generate a snakemake rule that will download two files from the
-  GENCODE service. You may need to make two separate snakemake rules or figure
-  out a way to do it in one. Consider looking into the wget and curl commands,
-  which in tandem with snakemake, will enable you to incorporate downloading
-  these files as part of your workflow.
-
-  2. Now that you have located both of these files, generate a snakemake rule
-    (or two) that downloads these files - Remember that snakemake rules do not
+  1. Now that you have located both of these files, generate two snakemake rule
+    that download these files - Remember that snakemake rules do not
     always need an input. Make sure these files are downloaded to the `results/`
-    directory
+    directory. We have provided you a template for what you will need.
     
-  3. Please construct a snakemake rule that decompresses the GTF file and
+  2. Please construct a snakemake rule that decompresses the GTF file and
     keeps the original compressed file. 
 
 Some bioinformatics utilities can handle gzipped files, others cannot. For our
