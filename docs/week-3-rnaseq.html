@@ -92,144 +92,165 @@
 <p>After we have aligned our reads, we will now “count” the alignments falling into
 regions of interest in the mouse genome (exonic regions) and sum the alignments
 falling into all exons of a given gene to obtain a “gene-level” count of mRNA
-abundance for all genes in each sample. We will perform basic filtering, and then
-perform normalization and differential expression analysis using DESeq2.</p>
-<p><strong>Mapping gene IDs to gene symbols</strong></p>
-<p>There are several ways to map gene IDs to gene symbols (ENSMUSGXXXXX to Actb),
-including BiomaRt, which you have previously used in BF591. For this project, we
-will be extracting the mapping of gene IDs to gene symbols directly from the GTF
-used to build our genome index. Take a look at the first few lines of the GTF
-that you downloaded earlier or look up how information is stored and formatted
-in a GTF.</p>
-<p>Use <code>cat</code> or <code>head</code> to inspect the first several lines of the GTF annotation file</p>
-<ol style="list-style-type: decimal">
-<li>Generate a snakemake rule that parses this GTF and accomplishes the following:</li>
-</ol>
-<pre><code>- Includes the run directive to parse this file using python
-- Parse each relevant line of the GTF and extract the ensembl gene ID and 
-  matching gene symbol
-  - Write out every pair of gene ID and gene symbol to a comma delimited text file    (ENSMUSG00000023170.14,Gps2\n - an example of a single line)
-  - You may want to consider ways to ensure only unique pairs of gene IDs and 
-  symbols are saved in your output</code></pre>
-<p>We will use this mapping of IDs to symbols later on to replace the gene IDs with
-the more easily recognized and tractable gene symbols.</p>
-<p><strong>Quantifying the alignments</strong></p>
+abundance for all genes in each sample. We will then concatenate all of the 8
+outputs from VERSE into a single counts matrix. We will filter this counts matrix
+and generate a new filtered matrix that will be used for differential expression
+analysis. Finally, We will get experience with parsing a GTF file and extracting
+mappings of gene IDs to gene symbols (this will also be used later).</p>
+<p><strong>Counting the alignments</strong></p>
 <p>Now that we have aligned each of our samples to the reference genome, we need to
 quantify these alignments. This quantification is typically done by “counting”
 the alignments falling into regions of interest. These regions of interest can
 vary depending on your goal, but most commonly for RNAseq, we are interested in
 quantifying the counts of alignments mapping in exonic regions. To obtain gene
-level counts, the counts from all of its exonic regions are summed. This will
-end up generating a single file with the rows representing all of the genes in
-the m39 reference and the corresponding counts of how many alignments from a
-sample fall into the regions annotated for each gene.</p>
+level counts for a single gene, the counts from all of its exonic regions are
+summed. VERSE will do this for every gene and generate a single file with two
+columns: one representing the names / ids of all of the genes in the m39 reference
+and other column will be the corresponding “gene-level” count for those genes.</p>
 <ol style="list-style-type: decimal">
 <li>Read the documentation for VERSE and create a snakemake rule that runs VERSE
 on each of your 8 bam files
 - VERSE will require your BAM file and the GTF file that matches the
-reference used to build the index
-- Ensure the outputs of VERSE are created in your <code>results/</code> directory</li>
+reference used to build the index. The GTF file was downloaded and decompressed
+last week
+- Ensure the outputs of VERSE are created in your <code>results/</code> directory
+- Ensure you specify in VERSE that the alignments were generated from
+paired end reads</li>
 </ol>
 <p>VERSE will generate a counts file (*.exon.txt) for each of your 8 samples. For
 most downstream applications, we will want this data in the form of a counts
 matrix, a single file containing all of the counts from each sample.</p>
+<p><strong>Generating a counts matrix</strong></p>
+<p>We will now concatenate the VERSE output from all 8 samples into a single counts
+matrix. We are going to describe a strategy that utilizes python scripts and
+snakemake to accomplish this.</p>
+<p>We have provided you with a set of python scripts that utilize <code>argparse</code> to pass
+command line arguments directly into the script. You may find a more
+in-depth explanation of argparse <a href="https://docs.python.org/3/howto/argparse.html#argparse-tutorial">here</a></p>
+<p>By separating the actual python code from the snakefile, we will both make our
+snakefiles more readable and it will be easier for you to manually troubleshoot
+what your script is doing outside of snakemake. When finished, you will use
+snakemake to pass the required input and output files that we want created while
+directly calling the python script using the <code>shell</code> directive. While you are
+developing the code, you can troubleshoot it outside of snakemake by just running
+your script <code>python &lt;script_name&gt;.py -i &lt;input&gt; -o &lt;output&gt;</code> as you would any
+python script.</p>
 <ol style="list-style-type: decimal">
-<li>Create another snakemake rule that uses pandas to concatenate the VERSE
-output files and accomplishes the following:</li>
+<li>Copy the script, <code>concat_df.py</code> from /projectnb/bf528/materials/project_1_rnaseq/concat_df.py
+to your working directory that contains your snakefiles.</li>
 </ol>
-<pre><code>- Creates a single dataframe where each of the samples are a column, the 
-  rows represent the gene counts and the row names are the gene IDs.
-- Writes this dataframe to a new file for use downstream</code></pre>
-<p><strong>Visualizing count distributions and filtering</strong></p>
+<p>First, work directly inside the script itself, and using the <code>pandas</code> library
+in python, develop code that will concatenate the counts column from each of the
+8 samples into a single matrix (CSV) with a single column for the gene ID. The
+column names should correspond to the names of the samples and there should be
+a single column containing the gene IDs (these IDs are the same, and in the same
+order in every VERSE output file). Below is a sample of what your CSV should
+look like:</p>
+<div class="inline-figure"><img src="projects/project_1_rnaseq/sample_csv.png" width="926"></div>
+<p>When you have successfully developed your code, you will call your script
+directly from snakemake.</p>
+<pre><code>rule concat_df:
+  input:
+    verse_files = 'a list of all the outputs from verse'
+  output:
+    cts_matrix = 'whatever you want to name your output file'
+  shell:
+    '''
+    python concat_df.py -i {input.verse_files} -o {output.cts_matrix}
+    '''</code></pre>
+<p>You can see that by using argparse and snakemake, we can supply the required
+input files and output files on the command line directly to our script. By
+keeping these custom scripts separated, we can keep our workflows cleaner and
+also make it easier to troubleshoot the actual code since we can run it outside
+of snakemake as we are developing it. We will use this same strategy for the
+next task.</p>
+<p><strong>Mapping gene IDs to gene symbols</strong></p>
+<p>There are several ways to map gene IDs to gene symbols (ENSMUSGXXXXX to Actb),
+including BiomaRt, which you have previously used in BF591. For this project, we
+will be extracting the mapping of gene IDs to gene symbols directly from the GTF
+used to build our genome index. Take a look at the first few lines of the GTF
+that you downloaded earlier.</p>
+<ol style="list-style-type: decimal">
+<li>Copy the script <code>parse_gtf.py</code> from /projectnb/bf528/materials/project_1_rnaseq/parse_gtf.py
+to your working directory that contains your snakefiles.</li>
+</ol>
+<p>Develop python code to parse through the lines of a GTF and extract a mapping of
+gene IDs to gene symbols. Keep in mind the following hints:</p>
+<ol style="list-style-type: decimal">
+<li><p>You will need to parse through the file line by line, so consider making use
+of the <code><a href="https://rdrr.io/r/base/connections.html">open()</a></code> function and the <code>csv</code> module in python.</p></li>
+<li><p>On lines where the third column (feature_type) is “gene”, extract out the
+values from column 9 following the strings “gene_id” and “gene_name”. The
+gene_id will resemble the pattern ENSMUSGXXXXXXXXXXX.X and the gene_name will
+be a mix of letters and numbers representing genes in a human recognizable
+format (Htt, p53, Actb, etc.)</p></li>
+<li><p>Keep in mind that the entire GTF file is <strong>not</strong> a fully standard CSV. Column
+9 contains a set of key:value pairs within the same column. See <a href="https://www.gencodegenes.org/pages/data_format.html">here</a> for the exact specifications.</p></li>
+<li><p>Save the paired “gene_id” and “gene_name” values from the same line and write
+them out to a new delimited file.</p></li>
+</ol>
+<p>You can see below an example of what the first few lines of this output should
+look like:</p>
+<div class="inline-figure"><img src="projects/project_1_rnaseq/sample_id_mapping.png" width="277"></div>
+<p>For the output file, you may choose any commonly used delimiter (commas, tabs, etc.)
+and you can decide if you wish to have column names. The most important information
+is the mapping of gene IDs to their associated gene names, which you extracted
+from each feature in the GTF file.</p>
+<p>Once you have successfully developed your code, you will structure your snakemake
+rule in the same style as you previously did for the rule and script that
+concatenated the verse outputs together. The only change will be in the input and
+output files that you need to specify for each different rule.</p>
+<p><strong>Filtering our counts matrix</strong></p>
 <p>Now that we have a single matrix containing all of our counts, it is common to
 visualize the distribution of these counts as well as perform pre-filtering of
-the counts. Typically, this filtering is performed by setting a reasonable
-threshold to remove lowly expressed genes. The purpose of filtering is to reduce
-unnecessary computation as well as remove genes that may negatively impact
-downstream applications.</p>
-<p>You may have noticed that this dataset only has two replicates per timepoint. As
-we discussed in class, there are multiple potential meanings to a count of zero
-in the context of sequencing experiments. For example, it is possible we did not
-sequence “deep” enough to detect certain lowly expressed genes. However, it’s
-also possible that genes with zero counts are truly not expressed at all. In
-order to mitigate some of this uncertainty, we are going to apply a filter to
-our counts to simply remove any genes that are not expressed in all of our
-samples. <strong>Please note</strong> that this is a subjective choice and there is not a single
+the counts. The strategy used for pre-filtering counts will depend entirely on
+each individual dataset, and you will need to think about which thresholds /
+filters are appropriate.</p>
+<p>You may have noticed that this dataset only has two replicates per timepoint
+(i.e. ADrep1 and ADrep2). As we discussed in class, there are multiple potential
+meanings to a count of zero in the context of sequencing experiments. For example,
+it is possible we did not sequence “deep” enough to detect certain lowly expressed
+genes. However, it’s also possible that genes with zero counts are truly not
+expressed in the original samples. In order to mitigate some of this
+uncertainty, we are going to apply a filter to our counts to simply remove any
+genes that are not expressed in all of our samples.</p>
+<p><strong>Please note</strong> that this is a subjective choice and there is not a single
 correct way of filtering this data. This specific filter was chosen to avoid
 attempting to perform statistical tests between conditions where we only have
-one measurement (our filter will only retain genes that are expressed in every
-sample, ensuring that at worst, we are comparing 2 measurements against 2
-measurements).</p>
+one measurement (this filter will only retain genes that are expressed in every
+sample, ensuring that we have non-zero measurements for all of our samples.</p>
 <p>If you remember, we have been working with datafiles that were intentionally
 filtered to make them much smaller and able to be processed on the head node.
-For the following steps, please use the provided file,
-/projectnb/bf528/materials/project_1_rnaseq/verse_concat.tsv, in place of the one
-you created.</p>
+For the following steps, you may use this file to test if your code is working
+as intended, /projectnb/bf528/materials/project_1_rnaseq/test_verse_concat.csv
+This CSV contains 2000 rows and after filtering to only keep genes (rows) where
+all 8 samples have a non-zero value, it should contain 564 rows.</p>
 <ol style="list-style-type: decimal">
-<li>Please create a jupyter notebook in your project directory
-- You should do this using the OnDemand graphical interface
-- Generate a plot of the distribution of counts for each sample from the
-single count matrix you just created in the previous step</li>
-</ol>
-<p>Now that we have visualized the distribution of our unfiltered counts. We are
-going to apply the filter we outlined above:</p>
-<ol style="list-style-type: decimal">
-<li><p>Generate a new snakemake rule that takes the counts matrix as input, performs
-the described filtering, and writes this filtered counts matrix to a new file.
-You may do this however you like, but we recommend that you use the run
-directive in combination with pandas.</p></li>
-<li><p>Go back to your jupyter notebook, and create the same plot but with the
-filtered counts matrix. For our next steps, we will be using the filtered
-counts matrix.</p></li>
-</ol>
-<p><strong>Performing differential expression</strong></p>
-<p>Now that we have filtered our counts, we are going to perform differential
-expression with DESeq2. There are a few ways to do this, but we are going to
-perform this analysis in a Rmarkdown notebook in order to keep everything as
-organized as possible. Please create a Rmarkdown notebook in your project
-directory using SCC OnDemand and do all of the following work with DESeq2 in
-this notebook.</p>
-<ol style="list-style-type: decimal">
-<li>Please read the fantastically written DESeq2 vignette (<a href="https://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html" class="uri">https://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html</a>)
-and perform a basic differential expression analysis comparing just the p0 and
-AD timepoints.
-- Run DESeq2 using default settings and comparing the p0 and AD samples
-- Write out the full results from DESeq2 to a new file
-- Report how many genes are significant at a FDR of &lt; .001 in your notebook</li>
+<li><p>Develop your own python script and name it <code>filter_cts_mat.py</code></p></li>
+<li><p>This script should take an unfiltered counts matrix as input, filter that
+matrix according to the conditions above, and output the filtered matrix to
+a new file.
+- You can copy the argparse arguments from the <code>parse_gtf.py</code> script and simply
+change the code if you are still getting used to <code>argparse</code>. You will need
+to change the input and outputs to the unfiltered counts matrix and the
+name of the new filtered counts matrix you will be creating, respectively.
+- You may use the file listed above to <strong>test</strong> that your code is working as
+expected (i.e. only retaining genes (rows) where every sample has a non-zero
+count). <strong>N.B. Use this <code>test_verse_concat.csv</code> for testing purposes only!
+After you have confirmed your code works, remove this file and replace it
+with the file you generated previously</strong></p></li>
 </ol>
 <p>At the end of week 3, you should have accomplished the following:</p>
 <ul>
-<li>Generated a snakemake rule that produces a delimited .txt file containing the
-correct mapping of ensembl gene IDs to their corresponding gene symbol from the
-GTF annotations</li>
-<li>Generated a snakemake rule that runs VERSE on each of the BAM
-files</li>
-<li>Generated a snakemake rule that concatenates the VERSE output files into
-a single dataframe</li>
-<li>Generated two plots showing the distribution of counts in each sample before
-and after filtering in a jupyter notebook</li>
-<li>Performed a standard DESeq2 analysis on the filtered counts matrix, and
-comparing only the p0 and AD timepoints in a Rmarkdown notebook</li>
-<li>In your notebook, filter the results to only contain significantly
-differentially expressed genes with a FDR &lt; .001 and report the number significant
-at this threshold</li>
-<li>Write the results and methods sections for this week’s tasks in the provided
-Rmarkdown (week3.Rmd)</li>
-<li>Answer any conceptual questions contained in the week3.Rmd</li>
+<li>Generated a snakemake rule that runs VERSE on each of the BAM files</li>
+<li>Generated a snakemake rule that calls the provided script, concat_df.py, and
+concatenates the 8 output files from VERSE into a single counts matrix.</li>
+<li>Generated a snakemake rule that calls the provided script, parse_gtf.py, that
+produces a delimited .txt file containing the correct mapping of gene IDs to
+their corresponding gene symbol from the GTF annotation file</li>
+<li>Generated a snakemake rule and a python script that filter the counts matrix
+to only retain genes (rows) where every sample has a non-zero count</li>
 </ul>
-<p><strong>CHALLENGE</strong></p>
-<p>If and only if you have successfully completed all of the CHALLENGE steps, you may
-use your own filtered counts matrix instead for the steps above.</p>
-<p>The original instructions ask you to perform the DESeq2 analysis in a Rmarkdown
-notebook. Snakemake is capable of running external scripts. For the extra task,
-generate a snakemake rule that will run DESeq2 by calling a separate Rscript. To
-do this, you will need to:</p>
-<ol style="list-style-type: decimal">
-<li>Encapsulate the code that runs DESeq2 in a Rscript
-- Utilize docopt or similar tools to allow your Rscript to recognize command
-line arguments
-- Determine appropriate outputs and inputs for this rule</li>
-</ol>
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="week-2-rnaseq.html">Week 2: RNAseq</a></div>
