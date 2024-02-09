@@ -5,9 +5,31 @@ regions of interest in the mouse genome (exonic regions) and sum the alignments
 falling into all exons of a given gene to obtain a “gene-level” count of mRNA
 abundance for all genes in each sample. We will then concatenate all of the 8
 outputs from VERSE into a single counts matrix. We will filter this counts matrix
-and generate a new filtered matrix that will be used for differential expression
-analysis. Finally, We will get experience with parsing a GTF file and extracting
+and generate a new *filtered matrix* that will be used for differential expression
+analysis. Finally, we will get experience with parsing a GTF file and extracting
 mappings of gene IDs to gene symbols (this will also be used later).
+
+**Visualization of this week's tasks**
+Below, please see the general directed acyclic graph of the tasks that your
+snakefile should perform when completed. Your wildcards may be slightly different
+but your workflow should have the same structure in terms of dependencies. Use
+this as a visual reference of what jobs / tasks need to be performed in order for
+the next steps to occur. 
+
+```{r, echo=FALSE}
+knitr::include_graphics("projects/project_1_rnaseq/week3_dag.png")
+```
+
+As you can see, you will need to run VERSE for each of the 8 samples, represented
+in the diagram by the 8 boxes beginning with `verse`. After **all** outputs from
+VERSE have been produced, you will use a python script and snakemake rule to 
+concatenate those results together as seen in the `concat_verse` rule. After 
+`concat_verse` has successfully completed, you can then filter the counts matrix
+encompassed in the `filter_cts` rule. Independently, you will also develop a 
+script and snakemake rule that will parse the gtf file, represented in this diagram
+as the `txn_mapping` rule. You can see that the `txn_mapping` rule does not *depend*
+on the other rules, it only needs the decompressed GTF file to be present.
+
 
 **Counting the alignments**
 
@@ -50,7 +72,7 @@ in-depth explanation of argparse [here](https://docs.python.org/3/howto/argparse
 By separating the actual python code from the snakefile, we will both make our
 snakefiles more readable and it will be easier for you to manually troubleshoot
 what your script is doing outside of snakemake. When finished, you will use 
-snakemake to pass  the required input and output files that we want created while
+snakemake to pass the required input and output files that we want created while
 directly calling the python script using the `shell` directive. While you are 
 developing the code, you can troubleshoot it outside of snakemake by just running
 your script  `python <script_name>.py -i <input> -o <output>` as you would any
@@ -122,6 +144,10 @@ gene IDs to gene symbols. Keep in mind the following hints:
   4. Save the paired "gene_id" and "gene_name" values from the same line and write
     them out to a new delimited file. 
     
+  5. To do the actual parsing, you can consider using regular expressions if you 
+    are comfortable with them or you can try using a combination of `split()` and
+    other string manipulations in python such as slices. 
+    
 You can see below an example of what the first few lines of this output should 
 look like:
 
@@ -164,7 +190,7 @@ sample, ensuring that we have non-zero measurements for all of our samples.
 If you remember, we have been working with datafiles that were intentionally
 filtered to make them much smaller and able to be processed on the head node.
 For the following steps, you may use this file to test if your code is working
-as intended, /projectnb/bf528/materials/project_1_rnaseq/test_verse_concat.csv
+as intended, /projectnb/bf528/materials/project_1_rnaseq/test_verse_concat.csv. 
 This CSV contains 2000 rows and after filtering to only keep genes (rows) where 
 all 8 samples have a non-zero value, it should contain 564 rows. 
 
@@ -174,19 +200,20 @@ all 8 samples have a non-zero value, it should contain 564 rows.
     matrix according to the conditions above, and output the filtered matrix to 
     a new file.
     
-    - You can copy the argparse arguments from the `parse_gtf.py` script and simply
-      change the code if you are still getting used to `argparse`. You will need
-      to change the input and outputs to the unfiltered counts matrix and the
-      name of the new filtered counts matrix you will be creating, respectively. 
+Keep in mind the following suggestions:
     
-    - You may use the file listed above to **test** that your code is working as
-      expected (i.e. only retaining genes (rows) where every sample has a non-zero
-      count). **N.B. Use this `test_verse_concat.csv` for testing purposes only!
-      After you have confirmed your code works, remove this file and replace it
-      with the file you generated previously**
+  1. You can copy the argparse arguments from the `parse_gtf.py` script and simply
+    change the code if you are still getting used to `argparse`. You will need 
+    to change the input and outputs to the unfiltered counts matrix and the 
+    name of the new filtered counts matrix you will be creating, respectively. 
+    
+  2. You may use the file listed above to **test** that your code is working as
+    expected (i.e. only retaining genes (rows) where every sample has a non-zero
+    count). **N.B. Use this `test_verse_concat.csv` for testing purposes only!
+    After you have confirmed your code works, remove this file and replace it 
+    with the file you generated previously and change the name in your snakefile**
       
 At the end of week 3, you should have accomplished the following:
-
 
 - Generated a snakemake rule that runs VERSE on each of the BAM files
 - Generated a snakemake rule that calls the provided script, concat_df.py, and
@@ -194,6 +221,7 @@ At the end of week 3, you should have accomplished the following:
 - Generated a snakemake rule that calls the provided script, parse_gtf.py, that 
   produces a delimited .txt file containing the correct mapping of gene IDs to 
   their corresponding gene symbol from the GTF annotation file
-- Generated a snakemake rule and a python script that filter the counts matrix
-  to only retain genes (rows) where every sample has a non-zero count
+- Generated a snakemake rule and a python script named 'filter_cts_mat.py` that 
+  filter the counts matrix to only retain genes (rows) where every sample has a 
+  non-zero count
 
