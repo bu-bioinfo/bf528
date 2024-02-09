@@ -109,14 +109,16 @@ columns: one representing the names / ids of all of the genes in the m39 referen
 and other column will be the corresponding “gene-level” count for those genes.</p>
 <ol style="list-style-type: decimal">
 <li>Read the documentation for VERSE and create a snakemake rule that runs VERSE
-on each of your 8 bam files
-- VERSE will require your BAM file and the GTF file that matches the
-reference used to build the index. The GTF file was downloaded and decompressed
-last week
-- Ensure the outputs of VERSE are created in your <code>results/</code> directory
-- Ensure you specify in VERSE that the alignments were generated from
-paired end reads</li>
+on each of your 8 bam files</li>
 </ol>
+<pre><code>- VERSE will require your BAM file and the GTF file that matches the 
+  reference used to build the index. The GTF file was downloaded and decompressed
+  last week
+  
+- Ensure the outputs of VERSE are created in your `results/` directory
+
+- Ensure you specify in VERSE that the alignments were generated from
+  paired end reads</code></pre>
 <p>VERSE will generate a counts file (*.exon.txt) for each of your 8 samples. For
 most downstream applications, we will want this data in the form of a counts
 matrix, a single file containing all of the counts from each sample.</p>
@@ -201,9 +203,8 @@ rule in the same style as you previously did for the rule and script that
 concatenated the verse outputs together. The only change will be in the input and
 output files that you need to specify for each different rule.</p>
 <p><strong>Filtering our counts matrix</strong></p>
-<p>Now that we have a single matrix containing all of our counts, it is common to
-visualize the distribution of these counts as well as perform pre-filtering of
-the counts. The strategy used for pre-filtering counts will depend entirely on
+<p>Oftentimes, we will pre-filter our counts matrix to remove genes (rows) that have
+very few reads. The strategy used for pre-filtering counts will depend entirely on
 each individual dataset, and you will need to think about which thresholds /
 filters are appropriate.</p>
 <p>You may have noticed that this dataset only has two replicates per timepoint
@@ -229,17 +230,19 @@ all 8 samples have a non-zero value, it should contain 564 rows.</p>
 <li><p>Develop your own python script and name it <code>filter_cts_mat.py</code></p></li>
 <li><p>This script should take an unfiltered counts matrix as input, filter that
 matrix according to the conditions above, and output the filtered matrix to
-a new file.
-- You can copy the argparse arguments from the <code>parse_gtf.py</code> script and simply
-change the code if you are still getting used to <code>argparse</code>. You will need
-to change the input and outputs to the unfiltered counts matrix and the
-name of the new filtered counts matrix you will be creating, respectively.
-- You may use the file listed above to <strong>test</strong> that your code is working as
-expected (i.e. only retaining genes (rows) where every sample has a non-zero
-count). <strong>N.B. Use this <code>test_verse_concat.csv</code> for testing purposes only!
-After you have confirmed your code works, remove this file and replace it
-with the file you generated previously</strong></p></li>
+a new file.</p></li>
 </ol>
+<pre><code>- You can copy the argparse arguments from the `parse_gtf.py` script and simply
+  change the code if you are still getting used to `argparse`. You will need
+  to change the input and outputs to the unfiltered counts matrix and the
+  name of the new filtered counts matrix you will be creating, respectively. 
+
+- You may use the file listed above to **test** that your code is working as
+  expected (i.e. only retaining genes (rows) where every sample has a non-zero
+  count). **N.B. Use this `test_verse_concat.csv` for testing purposes only!
+  After you have confirmed your code works, remove this file and replace it
+  with the file you generated previously**
+  </code></pre>
 <p>At the end of week 3, you should have accomplished the following:</p>
 <ul>
 <li>Generated a snakemake rule that runs VERSE on each of the BAM files</li>
