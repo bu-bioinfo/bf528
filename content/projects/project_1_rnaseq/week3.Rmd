@@ -23,10 +23,13 @@ and other column will be the corresponding "gene-level" count for those genes.
 
   1. Read the documentation for VERSE and create a snakemake rule that runs VERSE 
   on each of your 8 bam files
+    
     - VERSE will require your BAM file and the GTF file that matches the 
       reference used to build the index. The GTF file was downloaded and decompressed
       last week
+      
     - Ensure the outputs of VERSE are created in your `results/` directory
+    
     - Ensure you specify in VERSE that the alignments were generated from
       paired end reads
 
@@ -138,9 +141,8 @@ output files that you need to specify for each different rule.
 
 **Filtering our counts matrix**
 
-Now that we have a single matrix containing all of our counts, it is common to
-visualize the distribution of these counts as well as perform pre-filtering of
-the counts. The strategy used for pre-filtering counts will depend entirely on
+Oftentimes, we will pre-filter our counts matrix to remove genes (rows) that have
+very few reads. The strategy used for pre-filtering counts will depend entirely on
 each individual dataset, and you will need to think about which thresholds / 
 filters are appropriate. 
 
@@ -171,10 +173,12 @@ all 8 samples have a non-zero value, it should contain 564 rows.
   2. This script should take an unfiltered counts matrix as input, filter that 
     matrix according to the conditions above, and output the filtered matrix to 
     a new file.
+    
     - You can copy the argparse arguments from the `parse_gtf.py` script and simply
       change the code if you are still getting used to `argparse`. You will need
       to change the input and outputs to the unfiltered counts matrix and the
       name of the new filtered counts matrix you will be creating, respectively. 
+    
     - You may use the file listed above to **test** that your code is working as
       expected (i.e. only retaining genes (rows) where every sample has a non-zero
       count). **N.B. Use this `test_verse_concat.csv` for testing purposes only!
