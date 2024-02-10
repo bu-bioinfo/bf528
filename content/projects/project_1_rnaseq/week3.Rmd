@@ -17,7 +17,7 @@ but your workflow should have the same structure in terms of dependencies. Use
 this as a visual reference of what jobs / tasks need to be performed in order for
 the next steps to occur. 
 
-```{r, echo=FALSE, out.width="100%", out.height="50%"}
+```{r, echo=FALSE, out.width="100%", out.height="100%"}
 knitr::include_graphics("projects/project_1_rnaseq/week3_dag.png")
 ```
 
