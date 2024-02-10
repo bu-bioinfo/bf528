@@ -164,7 +164,13 @@ column names should correspond to the names of the samples and there should be
 a single column containing the gene IDs (these IDs are the same, and in the same
 order in every VERSE output file). Below is a sample of what your CSV should
 look like:</p>
-<div class="inline-figure"><img src="projects/project_1_rnaseq/sample_csv.png" width="926"></div>
+<pre><code>gene,P0rep1subsample,P0rep2subsample,P4rep1subsample,P4rep2subsample,P7rep1subsample,P7rep2subsample,ADrep1subsample,ADrep2subsample
+ENSMUSG00000102693.2,0,0,0,0,0,0,0,0
+ENSMUSG00000064842.3,0,0,0,0,0,0,0,0
+...</code></pre>
+<p>Just ensure that your output is correct and that it is structured as a CSV. Your
+actual values for counts will likely all be 0 since you are generating these
+from the subsampled data.</p>
 <p>When you have successfully developed your code, you will call your script
 directly from snakemake.</p>
 <pre><code>rule concat_df:
@@ -212,7 +218,10 @@ other string manipulations in python such as slices.</p></li>
 </ol>
 <p>You can see below an example of what the first few lines of this output should
 look like:</p>
-<div class="inline-figure"><img src="projects/project_1_rnaseq/sample_id_mapping.png" width="277"></div>
+<pre><code>ENSMUSG00000102693.2,4933401J01Rik
+ENSMUSG00000064842.3,Gm26206
+ENSMUSG00000051951.6,Xkr4
+...</code></pre>
 <p>For the output file, you may choose any commonly used delimiter (commas, tabs, etc.)
 and you can decide if you wish to have column names. The most important information
 is the mapping of gene IDs to their associated gene names, which you extracted
