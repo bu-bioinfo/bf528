@@ -10,13 +10,14 @@ analysis. Finally, we will get experience with parsing a GTF file and extracting
 mappings of gene IDs to gene symbols (this will also be used later).
 
 **Visualization of this week's tasks**
+
 Below, please see the general directed acyclic graph of the tasks that your
 snakefile should perform when completed. Your wildcards may be slightly different
 but your workflow should have the same structure in terms of dependencies. Use
 this as a visual reference of what jobs / tasks need to be performed in order for
 the next steps to occur. 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, out.width=100%, out.height=50%}
 knitr::include_graphics("projects/project_1_rnaseq/week3_dag.png")
 ```
 
@@ -67,7 +68,7 @@ snakemake to accomplish this.
 
 We have provided you with a set of python scripts that utilize `argparse` to pass
 command line arguments directly into the script. You may find a more 
-in-depth explanation of argparse [here](https://docs.python.org/3/howto/argparse.html#argparse-tutorial)
+in-depth explanation of argparse [here](https://docs.python.org/3/howto/argparse.html#argparse-tutorial).
 
 By separating the actual python code from the snakefile, we will both make our
 snakefiles more readable and it will be easier for you to manually troubleshoot
@@ -211,7 +212,7 @@ Keep in mind the following suggestions:
     expected (i.e. only retaining genes (rows) where every sample has a non-zero
     count). **N.B. Use this `test_verse_concat.csv` for testing purposes only!
     After you have confirmed your code works, remove this file and replace it 
-    with the file you generated previously and change the name in your snakefile**
+    with the file you generated previously in your snakefile**
       
 At the end of week 3, you should have accomplished the following:
 
