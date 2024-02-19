@@ -18,9 +18,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="Visualizing genes that change over time There are many ways to analyze time series data including the use of likelihood ratio tests or spline regression; however, since we have replicates at each...">
-<meta property="og:description" content="Visualizing genes that change over time There are many ways to analyze time series data including the use of likelihood ratio tests or spline regression; however, since we have replicates at each...">
-<meta name="twitter:description" content="Visualizing genes that change over time There are many ways to analyze time series data including the use of likelihood ratio tests or spline regression; however, since we have replicates at each...">
+<meta name="description" content="Requesting the appropriate computing resources Certain tasks can require more memory and / or benefit from using multiple processing cores on a node. While each node on the SCC has varying amounts...">
+<meta property="og:description" content="Requesting the appropriate computing resources Certain tasks can require more memory and / or benefit from using multiple processing cores on a node. While each node on the SCC has varying amounts...">
+<meta name="twitter:description" content="Requesting the appropriate computing resources Certain tasks can require more memory and / or benefit from using multiple processing cores on a node. While each node on the SCC has varying amounts...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -89,112 +89,180 @@
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-4-rnaseq" class="section level1 unnumbered">
 <h1>Week 4: RNAseq<a class="anchor" aria-label="anchor" href="#week-4-rnaseq"><i class="fas fa-link"></i></a>
 </h1>
-<p><strong>Visualizing genes that change over time</strong></p>
+<p><strong>Requesting the appropriate computing resources</strong></p>
+<p>Certain tasks can require more memory and / or benefit from using multiple
+processing cores on a node. While each node on the SCC has varying amounts of
+resources and slightly different technical specifications, they are all generally
+quite powerful. The <code>-pe omp</code> flag in qsub is used to request a certain number of
+cores with the scheduler. <strong>N.B. You still need to request the same amount of
+cores in the command you are running. The <code>-pe omp</code> flag simply makes the scheduler
+aware of how many cores you requested.</strong></p>
+<pre><code>The omp PE is primarily intended for any jobs using multiple processors on a
+single node. The value of N can be set to any number between 1 and 28 and can
+also be set to 36. Use N=36 is to request a very large-memory (1024 GB) node. To
+make best use of available resources on the SCC, the optimal choices are N=1, 4,
+8, 16, 28, or 36.
+
+https://www.bu.edu/tech/support/research/system-usage/running-jobs/parallel-batch/#pe</code></pre>
+<p>As well as cores, certain jobs may require a specific amount of memory. As you
+know, storing information in RAM (random access memory) allows for much
+faster access and operations. When your jobs are scheduled, there is no actual
+restriction on the amount of RAM your task utilizes. However, we are on a
+<strong>shared</strong> computing cluster, and it is important to be respectful and every
+user is expected to follow “fair share” guidelines. Your job will likely be
+running on a node where other user’s tasks are also running, so it is important
+not to unduly monopolize these <strong>shared</strong> resources.</p>
+<pre><code>Memory options to the batch system are only enforced when the job is dispatched
+to the node. Once the job has been dispatched, the batch system cannot enforce
+any limits to the amount of memory the job uses on the node. Therefore each user
+is expected to follow "fair share" guidelines when submitting jobs to the
+cluster.
+
+The memory on each node on the SCC is shared by all the jobs running on that
+node. Therefore a single-processor job should not use more than the amount of
+memory available per core (TotalMemory / NumCores where TotalMemory is the total
+memory on the node and NumCores is the number of cores). For example on the
+nodes with 128GB of memory and 16 cores, if the node is fully utilized, a
+single-processor job is expected to use no more than 8GB of memory. See the
+Technical Summary for the list of nodes and the memory available on each of
+them.
+
+https://www.bu.edu/tech/support/research/system-usage/running-jobs/resources-jobs/#memory</code></pre>
+<p>In general, requesting more cores (more memory), will increase your queue time
+as these more powerful nodes are usually in high demand by other users of the SCC.
+For most of our class, you will not need to request more than 4 to 8 cores, which
+also informally “requests” 16GB and 32GB of available RAM. As you work more with
+data, you will develop your own sense for how many resources your tasks will
+require, but for our datasets and use cases, we will generally not need to specify
+anything higher than <code>-pe omp 8</code>.</p>
+<p>Below, you can see a small table provided by the SCC that denotes common memory
+and processor requests and how to specify them:</p>
+<div class="inline-figure"><img src="projects/project_1_rnaseq/scc_requesting_resources.png" width="750"></div>
+<p><strong>Running your snakemake workflow on your full data</strong></p>
+<p>We have gone over how to run jobs on the cluster using <code>qsub</code> and the SGE scheduler,
+and we will now need to swap from using the subsampled data to the full files in
+order to generate a meaningful counts matrix for differential expression.</p>
+<ol style="list-style-type: decimal">
+<li><p>Copy the full data files to your <code>samples/</code> directory. They are located in /projectnb/bf528/materials/project_1_rnaseq/full_files/</p></li>
+<li><p>You will need to reformat your snakefiles <em>slightly</em> to make snakemake
+recognize the full files, and not the subsampled files. You should <strong>not</strong> need
+to change your wildcards. Do a quick dryrun to ensure that it is working on the
+<strong>full</strong> files.</p></li>
+</ol>
+<p>For week 2 specifically, please adjust your snakemake rule that runs STAR to
+resemble the one below.</p>
+<p>A. We will be adding a <code>threads</code> directive to enable snakemake to request an
+appropriate amount of resources for the specific job of alignment, a
+computationally intensive task that also requires a large amount of memory.</p>
+<p>B. You should also notice that we have updated our STAR command to request this
+same number of cores by using the <code>--runThreadN</code> flag found in the manual. We
+can keep our command neat by using the <code>{threads}</code> invocation in our command to
+automatically substitute the number (8) specified in the <code>threads</code> directive.</p>
+<pre><code>rule star:
+    input:
+        r1 = 'samples/{name}_R1.fastq.gz',
+        r2 = 'samples/{name}_R2.fastq.gz',
+        star_dir = 'results/m39_subset_star/'
+    output: 
+        bam = 'results/{name}.Aligned.out.bam'
+    params:
+        prefix = 'results/{name}.'
+    threads: 8
+    shell:
+        '''
+        STAR --runThreadN {threads} \
+    ...other commands...
+        '''</code></pre>
+<p>You may consider also using threads in your rule that runs VERSE, but this is
+not strictly necessary as it will run perfectly fine with a single core.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Run each week’s snakefile on the full files. You will need to do these in
+order and wait for the previous snakefile to finish. Remember that unless you are
+utilizing <code>screen</code> or <code>tmux</code>, you will need to keep your internet connection and
+terminal where snakemake is running uninterrupted until snakemake is finished.
+In general, this is mostly a concern for week 2, which may take an extended
+period of time to finish (~30mins to 1hr).</li>
+</ol>
+<p>You can use the same general command to run each week’s snakefile:</p>
+<pre><code>snakemake -s weekX.snake --cluster "qsub -P bf528 -pe omp {threads}" --jobs #ofjobs</code></pre>
+<p>The important aspects in that command are the <code>--cluster</code> command which specifies
+which submit command to run. In our case, the SCC uses the SGE cluster software
+to submit, queue and schedule jobs from many different users. <code>qsub</code> is the
+primary command used by SGE to recognized jobs submitted by users.</p>
+<p>The <code>-P</code> is required to keep track of which projects are using what
+computational resources. By specifying our group, <code>bf528</code>, the SCC knows to
+attribute that usage to our group’s allotment of computing credits.</p>
+<p>The <code>-pe omp {threads}</code> will tell snakemake to use the value specified in the
+<code>threads</code> directive for each rule. For rules that do not have a <code>threads</code>
+directive, this will default to 1. For our rule that runs STAR, snakemake will
+now correctly request 8 cores (32gb of RAM), which is critical since alignment
+is a processor and memory intensive process. All other rules will request a
+single core, which is enough given their computational demands.</p>
+<p>The <code>--jobs</code> will typically be set to the number of maximum number of jobs that
+can occur at any one time. For example, in week 1, we wish to run FastQC on all
+16 files, and so we may consider specifying the # of jobs to be 16, which will
+request 16 separate nodes to run each of our fastQC tasks. These tasks can be
+run in parallel since they are not dependent on any of the other files.
+Snakemake will correctly handle cases where you need less than the specified
+number of jobs. After all 16 FastQC jobs have finished, snakemake will only
+submit a single job for MultiQC.</p>
+<p>Remember that we are on a <strong>shared</strong> computing cluster. You should be mindful
+not to request too many resources at any one time. For our projects, you will be
+fine requesting as many jobs as parallel tasks, but for your future projects, be
+mindful of the resources you request.</p>
+<p>If you were able to successfully run week1.snake, week2.snake and week3.snake,
+you should have generated a filtered counts matrix of all 8 samples. This single
+counts matrix should contain 9 columns (8 samples, gene column) and a total of
+18,187 rows including the header. These represent all of the genes that had a
+nonzero count in all of the samples across the experiment.</p>
+<p><strong>Performing differential expression</strong></p>
 <p>There are <strong>many</strong> ways to analyze time series data including the use of
 likelihood ratio tests or spline regression; however, since we have replicates
 at each time point, we can also treat these timepoints as factors and explicitly
-test for genes that differ between them. Approaches like regression splines
-require careful interpretation of curves and choice of parameters. In our
-current analysis, we have simply found genes that are differentially expressed
-between undifferentiated cells and fully differentiated myocytes. We are going
-to utilize two techniques to perform a basic analysis of this data: 1.
-Hierarchical clustering + gene enrichment, and 2. Gene Set Enrichment Analysis
-(GSEA).</p>
-<p>In our analysis, we selected for genes that were differentially expressed
-between p0 and AD. Now, we would also like to see how the expression for these
-genes changes across time. To do this, we are going to subset our data to only
-the DE genes detected between p0 and AD and extract their normalized counts from
-each sample. After this, we will mean-center our counts, perform hierarchical
-clustering to group them into (hopefully) meaningful clusters and plot their
-expression patterns over time.</p>
-<p>You may perform all of the following steps in your Rmarkdown notebook.</p>
+test for genes that differ between them. Alternative approaches like regression
+splines require careful interpretation of curves and choice of parameters.</p>
+<p>We will be performing a simple differential expression analysis to compare the
+undifferentiated (p0) myocytes with the fully differentiated (AD). This will capture
+at least some of the major groups of genes changing over time and we will be
+using DESeq2, one of the more widely accepted tools for differential expression
+using counts data. DESeq2 automatically performs normalization using its median
+of ratios method, and uses generalized linear models to test for differential
+expression.</p>
+<p>For the following analyses, work entirely in the provided Rmarkdown,
+differential_expression.Rmd. You will primarily be following the instructions
+in the DESeq2 vignette. Use a combination of <code>tidyverse</code> and base R to accomplish
+all the other listed tasks.</p>
 <ol style="list-style-type: decimal">
-<li>Read the DESeq2 vignette, and determine how to generate a Variance Stabilized
-Transformed matrix of your counts</li>
-<li>Write this VST counts to a new file or save it to an appropriate variable</li>
-<li>You have previously identified genes that are significantly changed between
-p0 and AD. Extract out the genes that are significant at FDR &lt; .001 and subset
-the VST counts to only include the counts for these genes</li>
-<li>Perform mean centering but do not scale your data (i.e. subtract the mean
-value of the row from each value in the row, but do not scale all standard
-deviations to 1).</li>
-<li>Perform hierarchical clustering using the hclust function in R</li>
-<li>Use the cutree function in R to cut the dendrogram into distinct clusters.
-- Experiment with different values and find a number that seems appropriate
-and produces “interesting” clusters</li>
-<li>Using the results from cutree, generate separate parallel coordinate plots
-for each cluster to visualize their expression over time. Make sure you address
-the following questions in your report:
-<ul>
-<li>What patterns do you see in each cluster?</li>
-<li>Extract out the genes associated with each of your major clusters, perform
-a quick enrichment analysis using DAVID, ENRICHR, etc. What are some of
-biological terms enriched in these clusters? How does their expression
-change over time and rationalize how those changes make sense in the
-context of the experiment.</li>
-</ul>
-</li>
+<li>Read the DESeq2 vignette and determine how to perform basic differential
+expression analyses using a <a href="https://www.bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#count-matrix-input">counts matrix</a> as input.</li>
 </ol>
-<p>For our final analysis, we are going to perform GSEA directly on the results
-from the comparison analyzing the p0 and AD timepoints.</p>
-<ol style="list-style-type: decimal">
-<li>Navigate to the official MsigDB website and download the M2 Canonica Pathways
-gene set
-<ul>
-<li>Upload this .gmt file to your results/ directory on the SCC</li>
-</ul>
-</li>
+<p>You will need to read in the counts matrix you generated, and create a dataframe
+containing the sample information (coldata). For our experiment, in your coldata,
+create a column called <code>timepoint</code> and include the timepoints for the various
+samples. You do <strong>not</strong> need to include information about the replicate in this
+coldata.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Perform differential expression comparing the P0 and AD timepoints, you should
+have results in the same format as the example found in the DESeq2 vignette.
+Save these results to a tibble. It should have the same number of rows as your
+filtered counts matrix.</p></li>
+<li><p>Read in your delimited file containing the mapping of gene IDs and gene names
+into the same R session. Join the gene names to your results tibble and ensure
+that you preserve all of the original information in the results tibble. The
+goal is to end up with your results matrix from DESeq2 but with gene names
+instead of / or in addition to the gene IDs.</p></li>
 </ol>
-<p>As mentioned in class and in BF591, one of the distinct advantages of GSEA is
-that it requires no arbitrary statistical threshold and uses the data generated
-from all genes in your experiment. You may perform these next steps however you’d
-like but we recommend you do so in your existing Rmarkdown notebook.</p>
-<ol style="list-style-type: decimal">
-<li>Use the full dataframe of all results from the p0 vs AD comparison and sort
-your results by log2FoldChange descending
+<p>At the end of Week 3, you should have done the following:</p>
 <ul>
-<li>Output the values of the log2FoldChange column as a named vector
-(names being the gene symbols)</li>
-</ul>
-</li>
-</ol>
-<p>Read the documentation on the fgsea package in bioconductor.</p>
-<ol style="list-style-type: decimal">
-<li><p>Using the named vector you generated previously and the .gmt gene set file
-you downloaded from MSigDB, run fgsea using default parameters
-- fgsea provides a built-in function to load in .gmt files in an appropriate format</p></li>
-<li><p>Filter your results to only retain gene sets that are significant at a FDR
-of &lt; .15</p></li>
-</ol>
-<ul>
-<li>Using just the significant genesets, generate plots or tables that display
-the top ten results sorted by both ascending and descending NES.
-(i.e. one table with the top ten gene sets with the highest NES (most positive),
-and one table with the top ten gene sets that have the lowest NES (most negative)</li>
-</ul>
-<p>At the end of the final week, you should have accomplished the following:</p>
-<ul>
-<li>Generated a counts matrix containing variance stabilized transformed counts</li>
-<li>Generated a counts matrix containing VST counts for the DE genes when comparing
-p0 vs AD</li>
-<li>Perform mean centering on these subset of VST counts</li>
-<li>Perform hierarchical clustering on the mean-centered counts</li>
-<li>Used cutree to “cut” our dendrogram into an appropriat enumber of clusters</li>
-<li>Generate parallel coordinate plots for each of the 4 clusters displaying the
-normalized counts over time for our significant genes</li>
-<li>Performed basic gene enrichment using DAVID/EnrichR on the genes from the
-“interesting” clusters</li>
-<li>Perform GSEA on the log2FC ranked list of all genes using the fgsea package in
-R
-<ul>
-<li>Download the mouse C2 canonical pathways geneset from MSigDB</li>
-<li>Generate a named vector of log2FoldChanges and gene symbols from all the
-results returned by DESeq2</li>
-<li>Filter the fgsea results to only include gene sets with a FDR &lt; .15</li>
-<li>A plot / table of the top ten gene sets ranked by NES descending</li>
-<li>A plot / table of the top ten gene sets ranked by NES ascending</li>
-</ul>
-</li>
+<li><p>Copied the full data to your <code>samples/</code> directory</p></li>
+<li><p>Slightly modify your snakefiles to run on the full files, not the subsampled
+files</p></li>
+<li><p>Run in order your week1, week2, and week3 snakefiles to completion on the full
+files</p></li>
+<li><p>Perform differential expression comparing p0 and AD timepoints in the provided
+Rmarkdown and generate a tibble containing the results</p></li>
+<li><p>Join the gene names into the results tibble while preserving all of the original
+information in the results</p></li>
 </ul>
 </div>
   <div class="chapter-nav">
