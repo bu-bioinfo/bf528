@@ -174,7 +174,9 @@ of ratios method, and uses generalized linear models to test for differential
 expression.
 
 For the following analyses, work entirely in the provided Rmarkdown,
-differential_expression.Rmd.
+differential_expression.Rmd. You will primarily be following the instructions
+in the DESeq2 vignette. Use a combination of `tidyverse` and base R to accomplish
+all the other listed tasks.
 
 1. Read the DESeq2 vignette and determine how to perform basic differential 
   expression analyses using a [counts matrix](https://www.bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#count-matrix-input) as input.
@@ -212,7 +214,3 @@ At the end of Week 3, you should have done the following:
   
 - Join the gene names into the results tibble while preserving all of the original
   information in the results
-
-
-
-
