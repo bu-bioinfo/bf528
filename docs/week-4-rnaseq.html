@@ -184,11 +184,14 @@ In general, this is mostly a concern for week 2, which may take an extended
 period of time to finish (~30mins to 1hr).</li>
 </ol>
 <p>You can use the same general command to run each week’s snakefile:</p>
-<pre><code>snakemake -s weekX.snake --cluster "qsub -P bf528 -pe omp {threads}" --jobs #ofjobs</code></pre>
-<p>The important aspects in that command are the <code>--cluster</code> command which specifies
-which submit command to run. In our case, the SCC uses the SGE cluster software
-to submit, queue and schedule jobs from many different users. <code>qsub</code> is the
-primary command used by SGE to recognized jobs submitted by users.</p>
+<pre><code>snakemake -s weekX.snake --executor cluster-generic --cluster-generic-submit-cmd "qsub -P bf528 -pe omp {threads}" --jobs #ofjobs</code></pre>
+<p>The important aspects in that command are the <code>--executor cluster-generic</code> command
+which specifies which submit command to run. In our case, the SCC uses the SGE
+cluster software to submit, queue and schedule jobs from many different users.
+<code>qsub</code> is the primary command used by SGE to recognized jobs submitted by users
+and the cluster-generic executor is snakemake’s plugin to handle SGE commands.
+The <code>--cluster-generic-submit-cmd</code> is the appropriate qsub command to request
+computational resources.</p>
 <p>The <code>-P</code> is required to keep track of which projects are using what
 computational resources. By specifying our group, <code>bf528</code>, the SCC knows to
 attribute that usage to our group’s allotment of computing credits.</p>
