@@ -18,9 +18,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="Requesting the appropriate computing resources Certain tasks can require more memory and / or benefit from using multiple processing cores on a node. While each node on the SCC has varying amounts...">
-<meta property="og:description" content="Requesting the appropriate computing resources Certain tasks can require more memory and / or benefit from using multiple processing cores on a node. While each node on the SCC has varying amounts...">
-<meta name="twitter:description" content="Requesting the appropriate computing resources Certain tasks can require more memory and / or benefit from using multiple processing cores on a node. While each node on the SCC has varying amounts...">
+<meta name="description" content="Requesting the appropriate computing resources Before we get into this week’s analysis, let’s briefly discuss the different options we have available to us on the SCC in terms of computing...">
+<meta property="og:description" content="Requesting the appropriate computing resources Before we get into this week’s analysis, let’s briefly discuss the different options we have available to us on the SCC in terms of computing...">
+<meta name="twitter:description" content="Requesting the appropriate computing resources Before we get into this week’s analysis, let’s briefly discuss the different options we have available to us on the SCC in terms of computing...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -90,13 +90,18 @@
 <h1>Week 4: RNAseq<a class="anchor" aria-label="anchor" href="#week-4-rnaseq"><i class="fas fa-link"></i></a>
 </h1>
 <p><strong>Requesting the appropriate computing resources</strong></p>
-<p>Certain tasks can require more memory and / or benefit from using multiple
-processing cores on a node. While each node on the SCC has varying amounts of
-resources and slightly different technical specifications, they are all generally
-quite powerful. The <code>-pe omp</code> flag in qsub is used to request a certain number of
-cores with the scheduler. <strong>N.B. You still need to request the same amount of
-cores in the command you are running. The <code>-pe omp</code> flag simply makes the scheduler
-aware of how many cores you requested.</strong></p>
+<p>Before we get into this week’s analysis, let’s briefly discuss the different
+options we have available to us on the SCC in terms of computing resources. Each
+node is essentially a computer with certain hardware specifications that we can
+run analyses on. In the modern day, these nodes and computers often have processors
+that contain multiple cores that can independently perform operations.</p>
+<p>Certain tasks in bioinformatics can benefit from using multiple processing cores
+on a computing node and / or require more memory. While each node on the SCC has
+varying amounts of resources and slightly different technical specifications,
+they are all generally quite powerful. The <code>-pe omp</code> flag in qsub is used to
+request a certain number of cores with the scheduler. <strong>N.B. You still need to
+request the same amount of cores in the command you are running. The <code>-pe omp</code>
+flag simply makes the scheduler aware of how many cores you requested.</strong></p>
 <pre><code>The omp PE is primarily intended for any jobs using multiple processors on a
 single node. The value of N can be set to any number between 1 and 28 and can
 also be set to 36. Use N=36 is to request a very large-memory (1024 GB) node. To
@@ -105,13 +110,13 @@ make best use of available resources on the SCC, the optimal choices are N=1, 4,
 
 https://www.bu.edu/tech/support/research/system-usage/running-jobs/parallel-batch/#pe</code></pre>
 <p>As well as cores, certain jobs may require a specific amount of memory. As you
-know, storing information in RAM (random access memory) allows for much
-faster access and operations. When your jobs are scheduled, there is no actual
-restriction on the amount of RAM your task utilizes. However, we are on a
-<strong>shared</strong> computing cluster, and it is important to be respectful and every
-user is expected to follow “fair share” guidelines. Your job will likely be
-running on a node where other user’s tasks are also running, so it is important
-not to unduly monopolize these <strong>shared</strong> resources.</p>
+know, storing information in RAM (random access memory) allows for much faster
+access and operations. When your jobs are scheduled and dispatched to the actual
+node, there is no actual restriction on the amount of RAM your task utilizes.
+However, we are on a <strong>shared</strong> computing cluster, and it is important to be
+respectful and every user is expected to follow “fair share” guidelines. Your
+job will likely be running on a node where other user’s tasks are also running,
+so it is important not to unduly monopolize these <strong>shared</strong> resources.</p>
 <pre><code>Memory options to the batch system are only enforced when the job is dispatched
 to the node. Once the job has been dispatched, the batch system cannot enforce
 any limits to the amount of memory the job uses on the node. Therefore each user
@@ -171,7 +176,7 @@ automatically substitute the number (8) specified in the <code>threads</code> di
     shell:
         '''
         STAR --runThreadN {threads} \
-    ...other commands...
+         ...other commands...
         '''</code></pre>
 <p>You may consider also using threads in your rule that runs VERSE, but this is
 not strictly necessary as it will run perfectly fine with a single core.</p>
@@ -185,13 +190,13 @@ period of time to finish (~30mins to 1hr).</li>
 </ol>
 <p>You can use the same general command to run each week’s snakefile:</p>
 <pre><code>snakemake -s weekX.snake --executor cluster-generic --cluster-generic-submit-cmd "qsub -P bf528 -pe omp {threads}" --jobs #ofjobs</code></pre>
-<p>The important aspects in that command are the <code>--executor cluster-generic</code> command
-which specifies which submit command to run. In our case, the SCC uses the SGE
-cluster software to submit, queue and schedule jobs from many different users.
-<code>qsub</code> is the primary command used by SGE to recognized jobs submitted by users
-and the cluster-generic executor is snakemake’s plugin to handle SGE commands.
-The <code>--cluster-generic-submit-cmd</code> is the appropriate qsub command to request
-computational resources.</p>
+<p>The important aspects in that command are the <code>--executor cluster-generic</code>
+command which specifies which submit command to run. In our case, the SCC uses
+the SGE cluster software to submit, queue and schedule jobs from many different
+users. <code>qsub</code> is the primary command used by SGE to recognized jobs submitted by
+users and the cluster-generic executor is snakemake’s plugin to handle SGE
+commands. What follows the <code>--cluster-generic-submit-cmd</code> should be the qsub
+command to request the appropriate amount of computational resources.</p>
 <p>The <code>-P</code> is required to keep track of which projects are using what
 computational resources. By specifying our group, <code>bf528</code>, the SCC knows to
 attribute that usage to our group’s allotment of computing credits.</p>
@@ -211,8 +216,8 @@ number of jobs. After all 16 FastQC jobs have finished, snakemake will only
 submit a single job for MultiQC.</p>
 <p>Remember that we are on a <strong>shared</strong> computing cluster. You should be mindful
 not to request too many resources at any one time. For our projects, you will be
-fine requesting as many jobs as parallel tasks, but for your future projects, be
-mindful of the resources you request.</p>
+fine requesting as many jobs (nodes) as parallel tasks, but for your future
+projects, be mindful of the resources you request.</p>
 <p>If you were able to successfully run week1.snake, week2.snake and week3.snake,
 you should have generated a filtered counts matrix of all 8 samples. This single
 counts matrix should contain 9 columns (8 samples, gene column) and a total of
@@ -222,19 +227,19 @@ nonzero count in all of the samples across the experiment.</p>
 <p>There are <strong>many</strong> ways to analyze time series data including the use of
 likelihood ratio tests or spline regression; however, since we have replicates
 at each time point, we can also treat these timepoints as factors and explicitly
-test for genes that differ between them. Alternative approaches like regression
+test for genes that differ between them. These other approaches like regression
 splines require careful interpretation of curves and choice of parameters.</p>
-<p>We will be performing a simple differential expression analysis to compare the
-undifferentiated (p0) myocytes with the fully differentiated (AD). This will capture
-at least some of the major groups of genes changing over time and we will be
-using DESeq2, one of the more widely accepted tools for differential expression
-using counts data. DESeq2 automatically performs normalization using its median
-of ratios method, and uses generalized linear models to test for differential
-expression.</p>
+<p>We will instead be performing a simple differential expression analysis to
+compare the undifferentiated (p0) myocytes with the fully differentiated (AD).
+This will capture at least some of the major groups of genes changing over time
+and we will be using DESeq2, one of the more widely accepted tools for
+differential expression using counts data. DESeq2 automatically performs
+normalization using its median of ratios method, and uses generalized linear
+models to test for differential expression.</p>
 <p>For the following analyses, work entirely in the provided Rmarkdown,
-differential_expression.Rmd. You will primarily be following the instructions
-in the DESeq2 vignette. Use a combination of <code>tidyverse</code> and base R to accomplish
-all the other listed tasks.</p>
+differential_expression.Rmd, and in an Rstudio session on scc. You will
+primarily be following the instructions in the DESeq2 vignette. Use a
+combination of <code>tidyverse</code> and base R to accomplish all the other listed tasks.</p>
 <ol style="list-style-type: decimal">
 <li>Read the DESeq2 vignette and determine how to perform basic differential
 expression analyses using a <a href="https://www.bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#count-matrix-input">counts matrix</a> as input.</li>
