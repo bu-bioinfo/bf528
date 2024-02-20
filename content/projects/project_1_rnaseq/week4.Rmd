@@ -2,13 +2,19 @@
 
 **Requesting the appropriate computing resources**
 
-Certain tasks can require more memory and / or benefit from using multiple 
-processing cores on a node. While each node on the SCC has varying amounts of 
-resources and slightly different technical specifications, they are all generally
-quite powerful. The `-pe omp` flag in qsub is used to request a certain number of
-cores with the scheduler. **N.B. You still need to request the same amount of 
-cores in the command you are running. The `-pe omp` flag simply makes the scheduler
-aware of how many cores you requested.**
+Before we get into this week's analysis, let's briefly discuss the different
+options we have available to us on the SCC in terms of computing resources. Each
+node is essentially a computer with certain hardware specifications that we can
+run analyses on. In the modern day, these nodes and computers often have processors
+that contain multiple cores that can independently perform operations. 
+
+Certain tasks in bioinformatics can benefit from using multiple processing cores
+on a computing node and / or require more memory. While each node on the SCC has
+varying amounts of resources and slightly different technical specifications,
+they are all generally quite powerful. The `-pe omp` flag in qsub is used to
+request a certain number of cores with the scheduler. **N.B. You still need to
+request the same amount of cores in the command you are running. The `-pe omp`
+flag simply makes the scheduler aware of how many cores you requested.**
 
 ```
 The omp PE is primarily intended for any jobs using multiple processors on a
@@ -21,13 +27,13 @@ https://www.bu.edu/tech/support/research/system-usage/running-jobs/parallel-batc
 ```
 
 As well as cores, certain jobs may require a specific amount of memory. As you
-know, storing information in RAM (random access memory) allows for much 
-faster access and operations. When your jobs are scheduled, there is no actual
-restriction on the amount of RAM your task utilizes. However, we are on a 
-**shared** computing cluster, and it is important to be respectful and every
-user is expected to follow "fair share" guidelines. Your job will likely be
-running on a node where other user's tasks are also running, so it is important
-not to unduly monopolize these **shared** resources.
+know, storing information in RAM (random access memory) allows for much faster
+access and operations. When your jobs are scheduled and dispatched to the actual
+node, there is no actual restriction on the amount of RAM your task utilizes.
+However, we are on a **shared** computing cluster, and it is important to be
+respectful and every user is expected to follow "fair share" guidelines. Your
+job will likely be running on a node where other user's tasks are also running,
+so it is important not to unduly monopolize these **shared** resources.
 
 ```
 Memory options to the batch system are only enforced when the job is dispatched
@@ -102,7 +108,7 @@ rule star:
 	shell:
 		'''
 		STAR --runThreadN {threads} \
-    ...other commands...
+         ...other commands...
 		'''
 ```
 
@@ -121,13 +127,13 @@ You can use the same general command to run each week's snakefile:
 ```
 snakemake -s weekX.snake --executor cluster-generic --cluster-generic-submit-cmd "qsub -P bf528 -pe omp {threads}" --jobs #ofjobs
 ```
-The important aspects in that command are the `--executor cluster-generic` command
-which specifies which submit command to run. In our case, the SCC uses the SGE 
-cluster software to submit, queue and schedule jobs from many different users. 
-`qsub` is the primary command used by SGE to recognized jobs submitted by users
-and the cluster-generic executor is snakemake's plugin to handle SGE commands. 
-The `--cluster-generic-submit-cmd` is the appropriate qsub command to request
-computational resources. 
+The important aspects in that command are the `--executor cluster-generic`
+command which specifies which submit command to run. In our case, the SCC uses
+the SGE cluster software to submit, queue and schedule jobs from many different
+users. `qsub` is the primary command used by SGE to recognized jobs submitted by
+users and the cluster-generic executor is snakemake's plugin to handle SGE
+commands. What follows the `--cluster-generic-submit-cmd` should be the qsub
+command to request the appropriate amount of computational resources.
 
 The `-P` is required to keep track of which projects are using what
 computational resources. By specifying our group, `bf528`, the SCC knows to
@@ -151,8 +157,8 @@ submit a single job for MultiQC.
 
 Remember that we are on a **shared** computing cluster. You should be mindful
 not to request too many resources at any one time. For our projects, you will be
-fine requesting as many jobs as parallel tasks, but for your future projects, be
-mindful of the resources you request.
+fine requesting as many jobs (nodes) as parallel tasks, but for your future
+projects, be mindful of the resources you request.
 
 If you were able to successfully run week1.snake, week2.snake and week3.snake, 
 you should have generated a filtered counts matrix of all 8 samples. This single
@@ -165,21 +171,21 @@ nonzero count in all of the samples across the experiment.
 There are **many** ways to analyze time series data including the use of
 likelihood ratio tests or spline regression; however, since we have replicates
 at each time point, we can also treat these timepoints as factors and explicitly
-test for genes that differ between them. Alternative approaches like regression 
+test for genes that differ between them. These other approaches like regression 
 splines require careful interpretation of curves and choice of parameters. 
 
-We will be performing a simple differential expression analysis to compare the
-undifferentiated (p0) myocytes with the fully differentiated (AD). This will capture
-at least some of the major groups of genes changing over time and we will be
-using DESeq2, one of the more widely accepted tools for differential expression
-using counts data. DESeq2 automatically performs normalization using its median
-of ratios method, and uses generalized linear models to test for differential
-expression.
+We will instead be performing a simple differential expression analysis to
+compare the undifferentiated (p0) myocytes with the fully differentiated (AD).
+This will capture at least some of the major groups of genes changing over time
+and we will be using DESeq2, one of the more widely accepted tools for
+differential expression using counts data. DESeq2 automatically performs
+normalization using its median of ratios method, and uses generalized linear
+models to test for differential expression.
 
 For the following analyses, work entirely in the provided Rmarkdown,
-differential_expression.Rmd. You will primarily be following the instructions
-in the DESeq2 vignette. Use a combination of `tidyverse` and base R to accomplish
-all the other listed tasks.
+differential_expression.Rmd, and in an Rstudio session on scc. You will
+primarily be following the instructions in the DESeq2 vignette. Use a
+combination of `tidyverse` and base R to accomplish all the other listed tasks.
 
 1. Read the DESeq2 vignette and determine how to perform basic differential 
   expression analyses using a [counts matrix](https://www.bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#count-matrix-input) as input.
