@@ -82,8 +82,12 @@ and we will now need to swap from using the subsampled data to the full files in
 order to generate a meaningful counts matrix for differential expression.
 
 1. Copy the full data files to your `samples/` directory. They are located in /projectnb/bf528/materials/project_1_rnaseq/full_files/
+
+2. Copy the full genome index to your `results/` directory. It is located in
+/projectnb/bf528/materials/project_1_rnaseq/m39_star/. You should not use the
+m39_subset_star/ as that is an index for only chromosome 19. 
     
-2. You will need to reformat your snakefiles *slightly* to make snakemake 
+3. You will need to reformat your snakefiles *slightly* to make snakemake 
 recognize the full files, and not the subsampled files. You should **not** need 
 to change your wildcards. Do a quick dryrun to ensure that it is working on the 
 **full** files.
@@ -121,7 +125,7 @@ rule star:
 You may consider also using threads in your rule that runs VERSE, but this is 
 not strictly necessary as it will run perfectly fine with a single core.
 
-3. Run each week's snakefile on the full files. You will need to do these in 
+4. Run each week's snakefile on the full files. You will need to do these in 
 order and wait for the previous snakefile to finish. Remember that unless you are
 utilizing `screen` or `tmux`, you will need to keep your internet connection and
 terminal where snakemake is running uninterrupted until snakemake is finished. 
@@ -229,8 +233,10 @@ At the end of Week 3, you should have done the following:
 
 - Copied the full data to your `samples/` directory
 
+- Copied the full star index m39_star/ to your `results/` directory
+
 - Slightly modify your snakefiles to run on the full files, not the subsampled 
-  files
+  files. Ensure your STAR rule is using the **full** STAR index.
 
 - Run in order your week1, week2, and week3 snakefiles to completion on the full
   files
