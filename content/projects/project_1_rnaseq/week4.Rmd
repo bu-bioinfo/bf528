@@ -92,6 +92,12 @@ recognize the full files, and not the subsampled files. You should **not** need
 to change your wildcards. Do a quick dryrun to ensure that it is working on the 
 **full** files.
 
+You may want to add the -f flag to your previous multiqc command. The -f flag
+will ask multiqc to force overwrite any existing reports. This will allow you to
+generate a new report with the new samples. You may also consider removing the
+subsampled data and results if you want your reports to only include the full
+samples.
+
 For week 2 specifically, please adjust your snakemake rule that runs STAR to 
 resemble the one below. 
 
@@ -237,6 +243,12 @@ At the end of Week 3, you should have done the following:
 
 - Slightly modify your snakefiles to run on the full files, not the subsampled 
   files. Ensure your STAR rule is using the **full** STAR index.
+  
+- You may want to add the -f flag to your previous multiqc command. The -f flag
+  will ask multiqc to force overwrite any existing reports. This will allow you
+  to generate a new report with the new samples. You may also consider removing
+  the subsampled data and results if you want your reports to only include the
+  full samples.
 
 - Run in order your week1, week2, and week3 snakefiles to completion on the full
   files
