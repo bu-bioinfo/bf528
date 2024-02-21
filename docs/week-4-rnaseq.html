@@ -162,6 +162,11 @@ recognize the full files, and not the subsampled files. You should <strong>not</
 to change your wildcards. Do a quick dryrun to ensure that it is working on the
 <strong>full</strong> files.</p></li>
 </ol>
+<p>You may want to add the -f flag to your previous multiqc command. The -f flag
+will ask multiqc to force overwrite any existing reports. This will allow you to
+generate a new report with the new samples. You may also consider removing the
+subsampled data and results if you want your reports to only include the full
+samples.</p>
 <p>For week 2 specifically, please adjust your snakemake rule that runs STAR to
 resemble the one below.</p>
 <p>A. We will be adding a <code>threads</code> directive to enable snakemake to request an
@@ -281,6 +286,11 @@ instead of / or in addition to the gene IDs.</p></li>
 <li><p>Copied the full star index m39_star/ to your <code>results/</code> directory</p></li>
 <li><p>Slightly modify your snakefiles to run on the full files, not the subsampled
 files. Ensure your STAR rule is using the <strong>full</strong> STAR index.</p></li>
+<li><p>You may want to add the -f flag to your previous multiqc command. The -f flag
+will ask multiqc to force overwrite any existing reports. This will allow you
+to generate a new report with the new samples. You may also consider removing
+the subsampled data and results if you want your reports to only include the
+full samples.</p></li>
 <li><p>Run in order your week1, week2, and week3 snakefiles to completion on the full
 files</p></li>
 <li><p>Perform differential expression comparing p0 and AD timepoints in the provided
