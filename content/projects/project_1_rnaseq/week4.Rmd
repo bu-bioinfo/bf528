@@ -2,6 +2,12 @@
 
 **Requesting the appropriate computing resources**
 
+**N.B. To submit jobs to the scheduler, you will need to be on a head node.
+When you are working in VSCode, you have spun up an instance on a compute node.
+To run your workflows and submit via `qsub`, you will have to be on a head 
+node. In OnDemand, you can log onto a head node via the Login Nodes tab, you 
+should probably select scc1 or scc2.**
+
 Before we get into this week's analysis, let's briefly discuss the different
 options we have available to us on the SCC in terms of computing resources. Each
 node is essentially a computer with certain hardware specifications that we can
@@ -121,6 +127,17 @@ utilizing `screen` or `tmux`, you will need to keep your internet connection and
 terminal where snakemake is running uninterrupted until snakemake is finished. 
 In general, this is mostly a concern for week 2, which may take an extended
 period of time to finish (~30mins to 1hr).
+
+Before you do this, you must run the following command with your conda environment
+active:
+
+```
+pip install snakemake-executor-plugin-cluster-generic
+
+or
+
+conda install -c conda-forge -c bioconda snakemake-executor-plugin-cluster-generic
+```
 
 You can use the same general command to run each week's snakefile:
 
