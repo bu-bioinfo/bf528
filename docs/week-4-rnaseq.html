@@ -18,9 +18,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="Requesting the appropriate computing resources Before we get into this week’s analysis, let’s briefly discuss the different options we have available to us on the SCC in terms of computing...">
-<meta property="og:description" content="Requesting the appropriate computing resources Before we get into this week’s analysis, let’s briefly discuss the different options we have available to us on the SCC in terms of computing...">
-<meta name="twitter:description" content="Requesting the appropriate computing resources Before we get into this week’s analysis, let’s briefly discuss the different options we have available to us on the SCC in terms of computing...">
+<meta name="description" content="Requesting the appropriate computing resources N.B. To submit jobs to the scheduler, you will need to be on a head node. When you are working in VSCode, you have spun up an instance on a compute...">
+<meta property="og:description" content="Requesting the appropriate computing resources N.B. To submit jobs to the scheduler, you will need to be on a head node. When you are working in VSCode, you have spun up an instance on a compute...">
+<meta name="twitter:description" content="Requesting the appropriate computing resources N.B. To submit jobs to the scheduler, you will need to be on a head node. When you are working in VSCode, you have spun up an instance on a compute...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -90,6 +90,11 @@
 <h1>Week 4: RNAseq<a class="anchor" aria-label="anchor" href="#week-4-rnaseq"><i class="fas fa-link"></i></a>
 </h1>
 <p><strong>Requesting the appropriate computing resources</strong></p>
+<p><strong>N.B. To submit jobs to the scheduler, you will need to be on a head node.
+When you are working in VSCode, you have spun up an instance on a compute node.
+To run your workflows and submit via <code>qsub</code>, you will have to be on a head
+node. In OnDemand, you can log onto a head node via the Login Nodes tab, you
+should probably select scc1 or scc2.</strong></p>
 <p>Before we get into this week’s analysis, let’s briefly discuss the different
 options we have available to us on the SCC in terms of computing resources. Each
 node is essentially a computer with certain hardware specifications that we can
@@ -188,6 +193,13 @@ terminal where snakemake is running uninterrupted until snakemake is finished.
 In general, this is mostly a concern for week 2, which may take an extended
 period of time to finish (~30mins to 1hr).</li>
 </ol>
+<p>Before you do this, you must run the following command with your conda environment
+active:</p>
+<pre><code>pip install snakemake-executor-plugin-cluster-generic
+
+or
+
+conda install -c conda-forge -c bioconda snakemake-executor-plugin-cluster-generic</code></pre>
 <p>You can use the same general command to run each week’s snakefile:</p>
 <pre><code>snakemake -s weekX.snake --executor cluster-generic --cluster-generic-submit-cmd "qsub -P bf528 -pe omp {threads}" --jobs #ofjobs</code></pre>
 <p>The important aspects in that command are the <code>--executor cluster-generic</code>
