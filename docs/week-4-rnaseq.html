@@ -154,6 +154,9 @@ and we will now need to swap from using the subsampled data to the full files in
 order to generate a meaningful counts matrix for differential expression.</p>
 <ol style="list-style-type: decimal">
 <li><p>Copy the full data files to your <code>samples/</code> directory. They are located in /projectnb/bf528/materials/project_1_rnaseq/full_files/</p></li>
+<li><p>Copy the full genome index to your <code>results/</code> directory. It is located in
+/projectnb/bf528/materials/project_1_rnaseq/m39_star/. You should not use the
+m39_subset_star/ as that is an index for only chromosome 19.</p></li>
 <li><p>You will need to reformat your snakefiles <em>slightly</em> to make snakemake
 recognize the full files, and not the subsampled files. You should <strong>not</strong> need
 to change your wildcards. Do a quick dryrun to ensure that it is working on the
@@ -185,7 +188,7 @@ automatically substitute the number (8) specified in the <code>threads</code> di
         '''</code></pre>
 <p>You may consider also using threads in your rule that runs VERSE, but this is
 not strictly necessary as it will run perfectly fine with a single core.</p>
-<ol start="3" style="list-style-type: decimal">
+<ol start="4" style="list-style-type: decimal">
 <li>Run each week’s snakefile on the full files. You will need to do these in
 order and wait for the previous snakefile to finish. Remember that unless you are
 utilizing <code>screen</code> or <code>tmux</code>, you will need to keep your internet connection and
@@ -275,8 +278,9 @@ instead of / or in addition to the gene IDs.</p></li>
 <p>At the end of Week 3, you should have done the following:</p>
 <ul>
 <li><p>Copied the full data to your <code>samples/</code> directory</p></li>
+<li><p>Copied the full star index m39_star/ to your <code>results/</code> directory</p></li>
 <li><p>Slightly modify your snakefiles to run on the full files, not the subsampled
-files</p></li>
+files. Ensure your STAR rule is using the <strong>full</strong> STAR index.</p></li>
 <li><p>Run in order your week1, week2, and week3 snakefiles to completion on the full
 files</p></li>
 <li><p>Perform differential expression comparing p0 and AD timepoints in the provided
