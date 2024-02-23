@@ -16,13 +16,13 @@ the plethora of public resources available to you.
 
 Navigate to the GENCODE website and select the page for Mouse. Look underneath
 the section entitled “Fasta files” and locate the file with content “Genome
-sequence, primary assembly (GRCm39)”. This is the most up to date human
+sequence, primary assembly (GRCm39)”. This is the most up to date mouse
 reference genome available.
 
 Look under the section entitled “GTF / GFF3 files” and locate the file with the
 description, “It contains the comprehensive gene annotation on the primary
 assembly (chromosomes and scaffolds) sequence regions”. This file is the
-matching annotation file for the available human reference genome.
+matching annotation file for the available mouse reference genome.
 
   1. Now that you have located both of these files, generate two snakemake rule
     that download these files - Remember that snakemake rules do not
