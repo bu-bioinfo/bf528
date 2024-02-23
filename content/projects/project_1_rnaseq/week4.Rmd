@@ -189,9 +189,19 @@ projects, be mindful of the resources you request.
 
 If you were able to successfully run week1.snake, week2.snake and week3.snake, 
 you should have generated a filtered counts matrix of all 8 samples. This single
-counts matrix should contain 9 columns (8 samples, gene column) and a total of 
-18,187 rows including the header. These represent all of the genes that had a 
-nonzero count in all of the samples across the experiment. 
+counts matrix should contain 9 columns (8 samples, gene column).
+
+If you used the `gencode.vM34.primary_assembly.annotation.gtf`, you should have a
+total of 57,181 rows in the unfiltered matrix and 18,166 rows in the filtered
+matrix.
+
+If you used the `gencode.vM33.primary_assembly.annotation.gtf`, you should have a 
+total of 56,942 rows in the unfiltered matrix and 18,187 rows in the filtered 
+matrix.
+
+If your numbers are slightly different, that's OK, just ensure that your filtering
+is working as expected on the test data and continue onwards. There may be some
+slight version differences that cause small differences in the counts. 
 
 **Performing differential expression**
 

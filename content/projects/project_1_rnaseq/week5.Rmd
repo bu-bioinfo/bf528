@@ -1,35 +1,76 @@
 # Week 5: RNAseq {-}
 
-Full writeup instructions can be found here: [Project Writeup Instructions]
+**GSEA**
 
-Now that you have completed each week tasks, you should have a fully working pipeline that processes a full RNAseq experiment from raw data to differential expression. Now you will need to write a report that details the entire project in the style of a scientific publication. As a reminder, here is a general outline of how to structure it: 
+At the start of this week, you should now have run your workflows for week 1, 2,
+3 to completion and generated a single filtered matrix of gene counts for all of
+the 8 samples in the RNA sequencing experiment. You should also have performed
+a basic differential expression analysis comparing P0 and AD samples in DESeq2 
+and used your mapping of gene IDs to gene names to generate a results dataframe
+containing gene names. 
 
-    Introduction (1-2 paragraphs)
-        - What is the biological background of the study?
-        - Why was the study performed?
-        - What main experimental techniques were used in the study?
+For this week, we will perform a basic GSEA analysis as well as attempt to replicate
+a few of the key figures from the paper. 
 
-    Methods (variable)
-        - Describe any specific parameters used, software versions, or specific steps that would ultimately affect the reproducibility of the results
+As we discussed, GSEA is a method that uses a ranking of all of the genes found
+in your experiment to look for enrichment in gene sets of defined biological
+functions. For simplicity, we will be using log2FoldChange as our ranking metric
+and the Canonical Pathways Set of Gene Sets from MSIGDB. This set of gene sets
+encompasses a curated list of major and essential biological pathways and processes.
 
-    Results (variable)
-        - Results from each step in the methods with appropriate figures / tables containing descriptive captions
+To begin, please install the R package `fgsea`. You can find directions [here](https://bioconductor.org/packages/release/bioc/html/fgsea.html) for more
+explanation. This package performs GSEA (albeit with slight modifications to
+the statistical testing) and we will be using it to quickly look at the major
+changes we've detected. 
 
-    Discussion (1 page)
-        - Discuss and interpret the results in the context of the biological question asked by the study. Briefly state the main results and follow-on with a discussion on the implications and the biological conclusions drawn that are supported by the results. 
-        - Briefly discuss how well you managed to reproduce the results from the paper
+  1. To perform GSEA, we will need to generate a ranked list of our gene names
+    and their associated log2fold change values. This list should contain the
+    gene names and their corresponding log2foldchange value in descending order
+    (i.e. genes with a large, positive fold change will be at the top). You can 
+    refer to the instructions found in the BF591 textbook for how you might 
+    accomplish this. [BF591 - GSEA](https://bu-bioinfo.github.io/r-for-biological-sciences/biology-bioinformatics.html#fgsea)
+    
+  2. After you generate this ranked list of **all** of the genes in your results
+    dataframe (do not filter by p-value), you will also need to read in the C2
+    gene sets into R. `fgsea` offers a built-in function, `fgsea::gmtPathways`
+    that will automatically parse and read in a .GMT file. 
+    
+  3. Perform GSEA analysis in `fgsea`. You may leave all other parameters at 
+    default but include both of these flags: `minSize = 15` and `maxSize = 500`
+    
+Take a quick look at the top twenty results with the highest positive normalized
+enrichment score (NES) and the top twenty results with the most negative NES. 
+Based on what you read in the paper and the underlying biology, do these results
+seem reasonable?
 
-    Future Directions (1-2 paragraphs)
-    - List at least three follow-up experiments / questions that would be interesting to follow-up on after the paper
-    - What would these experiments attempt to answer? And why would they be relevant?
+**Replicating Figure 1D**
 
-    Challenges (1 paragraph)
-    - What were the main difficulties you encountered in the project?
+In figure 1D, the authors are displaying the trends over time in gene expression
+for some selected genes known to be involved in the differentiation process. We
+are going to try to replicate these general results using our data. 
 
-    Conclusion (1 paragraph)
-    - What is the main conclusion a reader should draw from the analysis?
+  1. Extract out the DESeq2 normalized counts from your dds object. A quick
+    google search will lead you to the appropriate command.
+  
+  2. Using `tidyverse` and base R functions, create plots that resemble those
+    from figure 1D. 
+    
+Keep in mind the following hints:
 
-    References
-    - Use consistent, proper citation format for any references (Mendeley, Zotero, Paperpile)
+1. You will only have 4 timepoints and try to have your plots display them in
+order (P0, P4, P7, AD)
+
+2. You should take the `mean` or the `median` of the two replicate values for 
+each timepoint.
+
+3. You will likely have to use a combination of tidyverse functions to accomplish
+this, including: `filter`, `pivot_longer`, `group_by`, `dplyr::summarize`, `mutate`,
+and `ggplot`. 
+  
+4. You will have to manually construct lists in R of the chosen groups of genes
+found in the three different plots (sarcomere, mitochondria, cell cycle)
+  
+
+
 
 

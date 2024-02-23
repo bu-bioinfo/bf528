@@ -18,9 +18,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="Full writeup instructions can be found here: Project Writeup Instructions Now that you have completed each week tasks, you should have a fully working pipeline that processes a full RNAseq...">
-<meta property="og:description" content="Full writeup instructions can be found here: Project Writeup Instructions Now that you have completed each week tasks, you should have a fully working pipeline that processes a full RNAseq...">
-<meta name="twitter:description" content="Full writeup instructions can be found here: Project Writeup Instructions Now that you have completed each week tasks, you should have a fully working pipeline that processes a full RNAseq...">
+<meta name="description" content="GSEA At the start of this week, you should now have run your workflows for week 1, 2, 3 to completion and generated a single filtered matrix of gene counts for all of the 8 samples in the RNA...">
+<meta property="og:description" content="GSEA At the start of this week, you should now have run your workflows for week 1, 2, 3 to completion and generated a single filtered matrix of gene counts for all of the 8 samples in the RNA...">
+<meta name="twitter:description" content="GSEA At the start of this week, you should now have run your workflows for week 1, 2, 3 to completion and generated a single filtered matrix of gene counts for all of the 8 samples in the RNA...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -89,36 +89,64 @@
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-5-rnaseq" class="section level1 unnumbered">
 <h1>Week 5: RNAseq<a class="anchor" aria-label="anchor" href="#week-5-rnaseq"><i class="fas fa-link"></i></a>
 </h1>
-<p>Full writeup instructions can be found here: <a href="project-writeup-instructions.html#project-writeup-instructions">Project Writeup Instructions</a></p>
-<p>Now that you have completed each week tasks, you should have a fully working pipeline that processes a full RNAseq experiment from raw data to differential expression. Now you will need to write a report that details the entire project in the style of a scientific publication. As a reminder, here is a general outline of how to structure it:</p>
-<pre><code>Introduction (1-2 paragraphs)
-    - What is the biological background of the study?
-    - Why was the study performed?
-    - What main experimental techniques were used in the study?
-
-Methods (variable)
-    - Describe any specific parameters used, software versions, or specific steps that would ultimately affect the reproducibility of the results
-
-Results (variable)
-    - Results from each step in the methods with appropriate figures / tables containing descriptive captions
-
-Discussion (1 page)
-    - Discuss and interpret the results in the context of the biological question asked by the study. Briefly state the main results and follow-on with a discussion on the implications and the biological conclusions drawn that are supported by the results. 
-    - Briefly discuss how well you managed to reproduce the results from the paper
-
-Future Directions (1-2 paragraphs)
-- List at least three follow-up experiments / questions that would be interesting to follow-up on after the paper
-- What would these experiments attempt to answer? And why would they be relevant?
-
-Challenges (1 paragraph)
-- What were the main difficulties you encountered in the project?
-
-Conclusion (1 paragraph)
-- What is the main conclusion a reader should draw from the analysis?
-
-References
-- Use consistent, proper citation format for any references (Mendeley, Zotero, Paperpile)</code></pre>
-
+<p><strong>GSEA</strong></p>
+<p>At the start of this week, you should now have run your workflows for week 1, 2,
+3 to completion and generated a single filtered matrix of gene counts for all of
+the 8 samples in the RNA sequencing experiment. You should also have performed
+a basic differential expression analysis comparing P0 and AD samples in DESeq2
+and used your mapping of gene IDs to gene names to generate a results dataframe
+containing gene names.</p>
+<p>For this week, we will perform a basic GSEA analysis as well as attempt to replicate
+a few of the key figures from the paper.</p>
+<p>As we discussed, GSEA is a method that uses a ranking of all of the genes found
+in your experiment to look for enrichment in gene sets of defined biological
+functions. For simplicity, we will be using log2FoldChange as our ranking metric
+and the Canonical Pathways Set of Gene Sets from MSIGDB. This set of gene sets
+encompasses a curated list of major and essential biological pathways and processes.</p>
+<p>To begin, please install the R package <code>fgsea</code>. You can find directions <a href="https://bioconductor.org/packages/release/bioc/html/fgsea.html">here</a> for more
+explanation. This package performs GSEA (albeit with slight modifications to
+the statistical testing) and we will be using it to quickly look at the major
+changes we’ve detected.</p>
+<ol style="list-style-type: decimal">
+<li><p>To perform GSEA, we will need to generate a ranked list of our gene names
+and their associated log2fold change values. This list should contain the
+gene names and their corresponding log2foldchange value in descending order
+(i.e. genes with a large, positive fold change will be at the top). You can
+refer to the instructions found in the BF591 textbook for how you might
+accomplish this. <a href="https://bu-bioinfo.github.io/r-for-biological-sciences/biology-bioinformatics.html#fgsea">BF591 - GSEA</a></p></li>
+<li><p>After you generate this ranked list of <strong>all</strong> of the genes in your results
+dataframe (do not filter by p-value), you will also need to read in the C2
+gene sets into R. <code>fgsea</code> offers a built-in function, <code><a href="https://rdrr.io/pkg/fgsea/man/gmtPathways.html">fgsea::gmtPathways</a></code>
+that will automatically parse and read in a .GMT file.</p></li>
+<li><p>Perform GSEA analysis in <code>fgsea</code>. You may leave all other parameters at
+default but include both of these flags: <code>minSize = 15</code> and <code>maxSize = 500</code></p></li>
+</ol>
+<p>Take a quick look at the top twenty results with the highest positive normalized
+enrichment score (NES) and the top twenty results with the most negative NES.
+Based on what you read in the paper and the underlying biology, do these results
+seem reasonable?</p>
+<p><strong>Replicating Figure 1D</strong></p>
+<p>In figure 1D, the authors are displaying the trends over time in gene expression
+for some selected genes known to be involved in the differentiation process. We
+are going to try to replicate these general results using our data.</p>
+<ol style="list-style-type: decimal">
+<li><p>Extract out the DESeq2 normalized counts from your dds object. A quick
+google search will lead you to the appropriate command.</p></li>
+<li><p>Using <code>tidyverse</code> and base R functions, create plots that resemble those
+from figure 1D.</p></li>
+</ol>
+<p>Keep in mind the following hints:</p>
+<ol style="list-style-type: decimal">
+<li><p>You will only have 4 timepoints and try to have your plots display them in
+order (P0, P4, P7, AD)</p></li>
+<li><p>You should take the <code>mean</code> or the <code>median</code> of the two replicate values for
+each timepoint.</p></li>
+<li><p>You will likely have to use a combination of tidyverse functions to accomplish
+this, including: <code>filter</code>, <code>pivot_longer</code>, <code>group_by</code>, <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">dplyr::summarize</a></code>, <code>mutate</code>,
+and <code>ggplot</code>.</p></li>
+<li><p>You will have to manually construct lists in R of the chosen groups of genes
+found in the three different plots (sarcomere, mitochondria, cell cycle)</p></li>
+</ol>
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="week-4-rnaseq.html">Week 4: RNAseq</a></div>
