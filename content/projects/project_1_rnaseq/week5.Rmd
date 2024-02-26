@@ -94,7 +94,10 @@ copy them from the figure located in the paper (Figure 1D)
 
 In lieu of a report in the style of a paper, we have instead provided you with a
 markdown notebook containing a series of questions regarding this first project.
-I will send you a github classroom link specifically for this section.
+To keep things organized, the discussion questions are in a separate github
+classroom template that you can find here:
+
+                https://classroom.github.com/a/P4ll2BpZ
 
 In that document is a mix of general, technical and paper-specific questions
 meant to get you thinking about the underlying science. We have so far focused
