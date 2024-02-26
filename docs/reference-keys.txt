@@ -18,10 +18,6 @@ using-params-to-workaround-file-naming-requirements
 a-working-example-using-params-and-output
 your-turn
 table-of-contents-1
-notes
-gsea
-replicating-figure-1d
-discussion-questions
 table-of-contents-2
 week-1-getting-started
 week-2-aligning-reads-and-creating-bigwig-files
