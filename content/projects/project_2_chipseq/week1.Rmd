@@ -1,0 +1,149 @@
+# Week 1: ChIPseq {-}
+
+## Week 1: Getting Started
+
+**Read the paper**
+
+This analysis is based on the data published in this study: *Barutcu et al.
+RUNX1 Contributes to Higher-Order Chromatin Organization and Gene Regulation in
+Breast Cancer Cells. Biochimica et Biophysica Acta 1859 (11): 1389–97. PMID:
+PMID: 27514584*
+
+Please read the paper to get a sense for the overall hypotheses, goals, and
+conclusions presented. Our analyses will be mostly attempting to reproduce
+Figure 2 and small sections of the supplementary material.
+
+We may also deviate from the published methods in favor of using more up-to-date
+strategies and tools on occasion. However, the workflow you will develop will
+still capture and recreate the same core biological signals observed in the
+original work.
+
+**Initial Setup**
+
+Please thoroughly read the landing page [Project 2 - ChIPseq](#project-2-chipseq-analysis-of-the-human-transcription-factor-runx1)]
+
+I have made a large structural change to how we will be utilizing conda 
+environments with our workflows. 
+
+**An alternative to defining lists of samples in each rule**
+
+For the first project, we manually created python lists containing the name
+patterns used to drive each snakemake workflow. For this project, we will be
+employing an alternative method that stores this information in a fixed location
+in a .CSV file. Since we are creating this workflow in different snakefiles, we
+will still need to read in this information each time, but later when we connect
+our separate workflows into one, we will only need to do this once.
+
+Removing the sample information from our snakefiles / workflows also helps to
+generalize our workflows and would theoretically enable us to run the same
+workflow on a different set of samples by simply swapping in a different CSV.
+
+
+**Downloading the data**
+
+Last project, you gained some experience downloading files. For convenience, I
+have provided you in materials/project_2_chipseq/ the most up-to-date gencode
+human primary assembly reference genome and matching GTF. Please simply copy
+these files to your `results/` directory in your working directory. I have also
+provided you with a pre-built bowtie2 index for JUST chromosome 19 in this same
+location. This index will allow you to quickly test your bowtie2 command. You
+will eventually develop your own rule that creates a FULL genome index for
+bowtie2 against the human reference genome.
+
+We will, however, be incorporating the downloading of the actual data files into
+our workflows. Take a look at the provided `sample_sheet.csv` in the repo
+template you cloned. This contains all of the information about our samples and
+the `condition` column indicates which samples represent our IP and which are
+the input control. You'll also notice the column `ftp_link` and an associated
+address for where each file can be downloaded from. These are small subsampled
+files that I created and uploaded to Zenodo (an open source data sharing
+platform for science). You can use these small files to quickly test your code
+and they should run and finish quickly.
+
+You'll notice that in the first week's snakefile, I have provided you a rule that
+automatically downloads these files. At the same time, it also renames these
+files to make them more amenable to working in snakemake with wildcards. We will 
+have discussed roughly what this `rule wget_files` is doing, and how it uses a 
+`lambda` expression to define a function on the fly. Do not alter this rule as 
+it will be responsible for setting up your files with consistent naming patterns.
+
+Listed below will be the tasks you are responsible for accomplishing this week:
+
+**Quality Control**
+
+Similar to last project, we are going to check some of the main quality metrics
+for NGS data using fastQC.
+
+    1. Create a snakemake rule that runs fastqc on the 4 samples and outputs
+      its results to the results/ directory
+
+**Trimming**
+
+As we discussed in lecture, there are occasions where our sequencing reads are
+“contaminated” with portions of the sequencing adapter or the quality of the
+base calls is poor. We did not perform adapter or quality trimming on our reads
+in the last project since STAR performs local alignment and will automatically
+“trim” adapters by soft clipping reads (aligning only the portions that align
+well without enforcing end-to-end alignment). For this dataset, we will perform
+adapter trimming with trimmomatic, which will also trim low quality bases.
+
+    1. Create a snakemake rule that runs trimmomatic on the FASTQ files
+        - Use the provided adapter file in materials/project_2_chipseq/
+        - Include the following command and parameters:
+            - ILLUMINACLIP:{adapters}:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15
+
+**Building a genome index**
+
+So far, I have provided you with pre-built genome indexes. If you recall, these
+indexes are tool-specific and are file(s) that allow for more efficient searching
+of alignments in large reference sequences. For this week, I will ask you to 
+build your own complete genome index in bowtie2 for the provided human reference
+genome. 
+
+    1. Create a snakemake rule that runs bowtie2-build and generates an index
+      for the entire human reference genome
+        - Leave every parameter at default
+        
+**Swap to the full data**
+
+We will talk more about the various bioinformatics databases that store sequencing
+data, but we will be using EMBL-ENA as they store ftp links to the full FASTA
+files for most data deposited into GEO. 
+
+    1. Navigate to the EMBL-ENA website and search for the listed GEO accession
+      in the paper in the search bar.
+    
+    2. Go to the "Project" page for this accession and look under the "Read Files"
+      section.
+    
+    3. Match the SRR names found in the `sample_sheet.csv` with the files listed
+      here
+      
+    4. Swap the ftp_links value in the CSV with the FTP links for the full files
+      from EMBL-ENA.
+      
+    5. Re-run your snakemake workflow
+
+        
+**Week 1 Tasks**
+
+- Read the paper and familiarize yourself with their main goals and the general
+results they published
+
+- Understand the new strategy we will be employing to better integrate conda
+environments and have snakemake utilize specific environments for specific rules
+
+- Write a snakemake rule that runs fastqc as specified
+
+- Write a snakemake rule that runs trimmomatic as specified
+
+- Write a snakemake rule that runs bowtie2-build and generates a full genome
+index for the human reference genome
+
+- Swap your FTP links in the sample_sheet.csv with the links to the full data
+you find on the EMBl-ENA website
+
+You should now have both the subsampled data as well as the full data processed
+by your week 1 snakemake file. Going forward, you can use the subsampled data
+to troubleshoot your code before swapping your snakefiles logic to run on the
+full data. 

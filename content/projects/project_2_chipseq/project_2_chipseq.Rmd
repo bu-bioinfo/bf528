@@ -207,12 +207,11 @@ versions of software may produce highly similar but slightly different results).
 
 ## Table Of Contents {-}
 
-[Week 1](#week-1-getting-started-chipseq)
+[Week 1](#week-1-chipseq)
 
-[Week 2](#week-2-aligning-reads-and-creating-bigwig-files)
+[Week 2](#week-2-chipseq)
 
-[Week 3](#week-3-peak-analysis-and-visualization)
+[Week 3](#week-3-chipseq)
 
-[Week 4](#week-4-integration-with-rnaseq-and-visualization)
-
+[Week 4](#week-4-chipseq)
 
