@@ -41,7 +41,7 @@ reasonable values and justify them.
 Please carefully read the following sections as they describe the new strategy
 we will be employing to create a more reproducible and portable workflow. 
 
-## Changes to how we use Conda environments
+## Changes to how we use Conda environments {-}
 
 For the first project, I had you make your own conda environments and install
 all of the required packages in a single environment on your own. Some of the
@@ -117,7 +117,7 @@ before running the actual task. This will ensure that each of our major tasks
 will be run in a specific environment with only our desired tool and its direct
 dependencies installed.
 
-## Summary of Changes
+## Summary of Changes {-}
 
 1. Use the `install_packages.sh` script included in the repo to make a conda
 environment for project 2. This environment will only contain specific versions
@@ -135,12 +135,12 @@ what you'll need to do for that week. Do not under any circumstances alter the
 with the `--executor` flag), you must now include the `--sdm conda` flag at all 
 times:
 
-# running locally (only on subsampled data)
+<!-- running locally (only on subsampled data) -->
 ```
 snakemake -s your_snakefile.snake --sdm conda -c 1
 ```
 
-# running using qsub (full data)
+<!-- running using qsub (full data) -->
 ```
 snakemake -s your_snakefile.snake --sdm conda --executor cluster-generic \
 --cluster-generic-submit-cmd "your qsub command here" --jobs X
@@ -162,7 +162,7 @@ will simply activate the now existing environment.
 appropriate `conda` directive for each rule. Do not change these. These snakefile
 templates contain all of the rules you will need to complete for each week. 
 
-## Why you should not alter any of the envs/ file
+## Why you should not alter any of the envs/ file {-}
 
 I will briefly explain the importance of not altering any of the .YAML files in
 the envs/ directory. Under the hood, snakemake creates these conda environments
@@ -177,7 +177,7 @@ on our partition.
 
 For this reason, please do not alter any of the files in the envs/ directory. 
 
-## Simplifying what you need to do each week
+## Simplifying what you need to do each week {-}
 
 The directions will be more brief for this project as you should be more familiar
 with many of the fundamental concepts by this point. I have also provided you
@@ -205,7 +205,7 @@ means you should omit elements or actions that do not directly impact the data,
 and include any details which do have an effect on the results (i.e. specific
 versions of software may produce highly similar but slightly different results).
 
-## Table Of Contents
+## Table Of Contents {-}
 
 [Week 1](#week-1-getting-started-chipseq)
 
