@@ -1,6 +1,16 @@
 # Week 5: RNAseq {-}
 
-**GSEA**
+## Notes
+
+If you are having issues with this week's tasks, please prioritize answering the
+discussion questions. This will help me evaluate how well I've covered the many
+topics we've discussed as well as serve as proof of your participation in
+project 1. I will return these questions to you with comments and feedback and
+allow you to resubmit. If you address all of the feedback, that will count as
+full participation for this project. You can see read more on the discussion
+questions in the last section on this page.
+
+## GSEA
 
 At the start of this week, you should now have run your workflows for week 1, 2,
 3 to completion and generated a single filtered matrix of gene counts for all of
@@ -10,13 +20,16 @@ and used your mapping of gene IDs to gene names to generate a results dataframe
 containing gene names. 
 
 For this week, we will perform a basic GSEA analysis as well as attempt to replicate
-a few of the key figures from the paper. 
+a few of the key figures from the paper. If you haven't been able to run your
+pipelines to completion, use the provided snakefiles or contact me and I can make
+the filtered counts matrix available. 
 
 As we discussed, GSEA is a method that uses a ranking of all of the genes found
 in your experiment to look for enrichment in gene sets of defined biological
 functions. For simplicity, we will be using log2FoldChange as our ranking metric
-and the Canonical Pathways Set of Gene Sets from MSIGDB. This set of gene sets
-encompasses a curated list of major and essential biological pathways and processes.
+and the Canonical Pathways (C2) collection from MSIGDB. This collection of gene
+sets encompasses a curated list of major and essential biological pathways and
+processes.
 
 To begin, please install the R package `fgsea`. You can find directions [here](https://bioconductor.org/packages/release/bioc/html/fgsea.html) for more
 explanation. This package performs GSEA (albeit with slight modifications to
@@ -33,7 +46,10 @@ changes we've detected.
   2. After you generate this ranked list of **all** of the genes in your results
     dataframe (do not filter by p-value), you will also need to read in the C2
     gene sets into R. `fgsea` offers a built-in function, `fgsea::gmtPathways`
-    that will automatically parse and read in a .GMT file. 
+    that will automatically parse and read in a .GMT file. I have provided you
+    with the .GMT file for the C2 collection in the materials for project 1. As
+    a reminder that path is /projectnb/bf528/materials/project_1_rnaseq/ and
+    the file is named `m2.all.v2023.2.Mm.symbols.gmt`.
     
   3. Perform GSEA analysis in `fgsea`. You may leave all other parameters at 
     default but include both of these flags: `minSize = 15` and `maxSize = 500`
@@ -43,14 +59,16 @@ enrichment score (NES) and the top twenty results with the most negative NES.
 Based on what you read in the paper and the underlying biology, do these results
 seem reasonable?
 
-**Replicating Figure 1D**
+## Replicating Figure 1D
 
 In figure 1D, the authors are displaying the trends over time in gene expression
 for some selected genes known to be involved in the differentiation process. We
 are going to try to replicate these general results using our data. 
 
   1. Extract out the DESeq2 normalized counts from your dds object. A quick
-    google search will lead you to the appropriate command.
+    google search will lead you to the appropriate command. **N.B. You want the
+    DEseq2 normalized counts, NOT VST or Rlog normalized counts, those transformations
+    are used for other purposes. 
   
   2. Using `tidyverse` and base R functions, create plots that resemble those
     from figure 1D. 
@@ -58,7 +76,8 @@ are going to try to replicate these general results using our data.
 Keep in mind the following hints:
 
 1. You will only have 4 timepoints and try to have your plots display them in
-order (P0, P4, P7, AD)
+order (P0, P4, P7, AD). These represent the samples listed as `In Vivo` maturation
+in Figure 1. 
 
 2. You should take the `mean` or the `median` of the two replicate values for 
 each timepoint.
@@ -68,9 +87,33 @@ this, including: `filter`, `pivot_longer`, `group_by`, `dplyr::summarize`, `muta
 and `ggplot`. 
   
 4. You will have to manually construct lists in R of the chosen groups of genes
-found in the three different plots (sarcomere, mitochondria, cell cycle)
+found in the three different plots (sarcomere, mitochondria, cell cycle). Simply
+copy them from the figure located in the paper (Figure 1D)
   
+## Discussion Questions
 
+In lieu of a report in the style of a paper, we have instead provided you with a
+markdown notebook containing a series of questions regarding this first project.
+I will send you a github classroom link specifically for this section.
 
+In that document is a mix of general, technical and paper-specific questions
+meant to get you thinking about the underlying science. We have so far focused
+on how we technically develop a workflow and these questions are meant to help
+focus on more of the conceptual aspects of RNAseq workflows and the paper.
 
+Please answer these questions to the best of your abilities. Some are
+straightforward and touch upon topics we talked about in lecture; others are
+thought questions where we ask you to explain your reasoning. Be brief! All of
+your answers should be no more than a few sentences each.
+
+As I mentioned, this first project has been practice as we introduced a
+multitude of different tools, ideas, and concepts that we asked you to integrate
+together in a short period of time. I will not be traditionally grading you but 
+we will instead try the following:
+
+I will ask you to submit your answers by next week, after which, we will provide
+you with feedback and comments in a timely manner. We will return this document
+to you with this feedback, and ask you to resubmit your answers after another
+week. If you address all of the comments and feedback in your resubmission, you
+will receive full credit for this first project.
 
