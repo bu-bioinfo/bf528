@@ -1,6 +1,6 @@
 # Week 5: RNAseq {-}
 
-## Notes
+## Notes {-}
 
 If you are having issues with this week's tasks, please prioritize answering the
 discussion questions. This will help me evaluate how well I've covered the many
@@ -10,7 +10,7 @@ allow you to resubmit. If you address all of the feedback, that will count as
 full participation for this project. You can see read more on the discussion
 questions in the last section on this page.
 
-## GSEA
+## GSEA {-}
 
 At the start of this week, you should now have run your workflows for week 1, 2,
 3 to completion and generated a single filtered matrix of gene counts for all of
@@ -59,7 +59,7 @@ enrichment score (NES) and the top twenty results with the most negative NES.
 Based on what you read in the paper and the underlying biology, do these results
 seem reasonable?
 
-## Replicating Figure 1D
+## Replicating Figure 1D {-}
 
 In figure 1D, the authors are displaying the trends over time in gene expression
 for some selected genes known to be involved in the differentiation process. We
@@ -90,7 +90,7 @@ and `ggplot`.
 found in the three different plots (sarcomere, mitochondria, cell cycle). Simply
 copy them from the figure located in the paper (Figure 1D)
   
-## Discussion Questions
+## Discussion Questions {-}
 
 In lieu of a report in the style of a paper, we have instead provided you with a
 markdown notebook containing a series of questions regarding this first project.
