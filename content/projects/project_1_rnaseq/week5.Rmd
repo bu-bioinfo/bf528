@@ -55,9 +55,9 @@ changes we've detected.
     default but include both of these flags: `minSize = 15` and `maxSize = 500`
     
 Take a quick look at the top twenty results with the highest positive normalized
-enrichment score (NES) and the top twenty results with the most negative NES. 
+enrichment score (NES) and the top twenty results with the most negative NES.  
 Based on what you read in the paper and the underlying biology, do these results
-seem reasonable?
+seem reasonable? Are they statistically significant? 
 
 ## Replicating Figure 1D {-}
 
