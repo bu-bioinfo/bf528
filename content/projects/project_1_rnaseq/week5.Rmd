@@ -61,6 +61,8 @@ seem reasonable? Are they statistically significant?
 
 ## Replicating Figure 1D {-}
 
+As a reminder, you can find the paper here: [O'meara et al, 2016](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4344930/)
+
 In figure 1D, the authors are displaying the trends over time in gene expression
 for some selected genes known to be involved in the differentiation process. We
 are going to try to replicate these general results using our data. 
