@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Project 2 - ChIPseq analysis of the human transcription factor Runx1 | BF528 - Applications in Translational Bioinformatics</title>
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="Project 2 - ChIPseq analysis of the human transcription factor Runx1 | BF528 - Applications in Translational Bioinformatics">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Project 2 - ChIPseq analysis of the human transcription factor Runx1 | BF528 - Applications in Translational Bioinformatics">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+<meta name="description" content="Similar to advancing gene expression quantification from microarrays to RNA-seq, next-generation sequencing also revolutionized other wet lab assays that examine nucleotides by making them...">
+<meta property="og:description" content="Similar to advancing gene expression quantification from microarrays to RNA-seq, next-generation sequencing also revolutionized other wet lab assays that examine nucleotides by making them...">
+<meta name="twitter:description" content="Similar to advancing gene expression quantification from microarrays to RNA-seq, next-generation sequencing also revolutionized other wet lab assays that examine nucleotides by making them...">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">BF528 - Applications in Translational Bioinformatics</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
+<li><a class="" href="introduction.html">Introduction</a></li>
+<li><a class="" href="genomics-genes-and-genomes.html">Genomics, Genes, and Genomes</a></li>
+<li><a class="" href="git.html">git</a></li>
+<li><a class="" href="computational-pipeline-strategies.html">Computational Pipeline Strategies</a></li>
+<li><a class="" href="computational-environment-management.html">Computational Environment Management</a></li>
+<li><a class="" href="sequence-analysis-fundamentals.html">Sequence Analysis Fundamentals</a></li>
+<li><a class="" href="nd-gen-sequencing.html">2nd Gen Sequencing</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-1.html">Sequence Analysis - RNA-Seq 1</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-2.html">Sequence Analysis - RNA-Seq 2</a></li>
+<li><a class="" href="scc-cluster-usage.html">SCC cluster usage</a></li>
+<li><a class="" href="biological-data-formats.html">Biological Data Formats</a></li>
+<li><a class="" href="gene-sets-and-enrichment.html">Gene sets and enrichment</a></li>
+<li><a class="" href="replicability-vs-reproducibility-strategies.html">Replicability vs Reproducibility Strategies</a></li>
+<li><a class="" href="sequence-analysis---chip-seq.html">Sequence Analysis - ChIP-Seq</a></li>
+<li><a class="" href="genome-browsers.html">Genome Browsers</a></li>
+<li><a class="" href="sequence-analysis---atac-seq.html">Sequence Analysis - ATAC-Seq</a></li>
+<li><a class="" href="biological-databases.html">Biological Databases</a></li>
+<li><a class="" href="genomic-variation-and-snp-analysis.html">Genomic Variation and SNP Analysis</a></li>
+<li><a class="" href="microbiome-metagenomics.html">Microbiome: Metagenomics</a></li>
+<li><a class="" href="microbiome-16s.html">Microbiome: 16S</a></li>
+<li><a class="" href="proteomics.html">Proteomics</a></li>
+<li><a class="" href="metabolomics.html">Metabolomics</a></li>
+<li><a class="" href="docker.html">Docker</a></li>
+<li><a class="" href="single-cell-analysis-part-1.html">Single Cell Analysis Part 1</a></li>
+<li><a class="" href="single-cell-analysis-part-2.html">Single Cell Analysis Part 2</a></li>
+<li><a class="" href="single-cell-analysis-part-3.html">Single Cell Analysis Part 3</a></li>
+<li><a class="" href="assignment-0-snakemake.html">Assignment 0: snakemake</a></li>
+<li><a class="" href="project-writeup-instructions.html">Project Writeup Instructions</a></li>
+<li><a class="" href="project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html">Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></li>
+<li><a class="" href="week-1-rnaseq.html">Week 1: RNAseq</a></li>
+<li><a class="" href="week-2-rnaseq.html">Week 2: RNAseq</a></li>
+<li><a class="" href="week-3-rnaseq.html">Week 3: RNAseq</a></li>
+<li><a class="" href="week-4-rnaseq.html">Week 4: RNAseq</a></li>
+<li><a class="" href="week-5-rnaseq.html">Week 5: RNAseq</a></li>
+<li><a class="active" href="project-2---chipseq-analysis-of-the-human-transcription-factor-runx1.html">Project 2 - ChIPseq analysis of the human transcription factor Runx1</a></li>
+<li><a class="" href="project-3-single-cell-analysis-of-the-mouse-kidney.html">Project 3: Single Cell Analysis of the Mouse Kidney</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="project-2---chipseq-analysis-of-the-human-transcription-factor-runx1" class="section level1 unnumbered">
+<h1>Project 2 - ChIPseq analysis of the human transcription factor Runx1<a class="anchor" aria-label="anchor" href="#project-2---chipseq-analysis-of-the-human-transcription-factor-runx1"><i class="fas fa-link"></i></a>
+</h1>
+<p>Similar to advancing gene expression quantification from microarrays to RNA-seq,
+next-generation sequencing also revolutionized other wet lab assays that examine
+nucleotides by making them (relatively) unbiased and high-throughput. One such
+set of technologies are protein-DNA binding assays including ChiP-qPCR and
+ChIP-ChIP, which use antibodies and immunoprecipitation to capture chromatin
+bound by a specific protein of interest. Chromatin Immunoprecipitation
+Sequencing (ChIP-seq) is a technique that identifies genome-wide DNA binding
+sites with transcription factors and other proteins of interest by sequencing
+the DNA fragments isolated from protein-DNA complexes.</p>
+<p>Barutcu et al. (2016) used RNA-seq, ChIP-seq, and HI-C to investigate the role
+of Runx1 in the MCF7 cell line, a model line used for the study of breast
+cancer. In this project, we will reproduce several results from Supplementary
+Figure 2 and Figure 1, which comprise common preliminary analyses of ChIP-seq
+data. Each group will process the ChIP-seq data from raw reads to called peaks,
+incorporate the provided RNA-seq data and ultimately attempt to reproduce the
+findings found in the paper.</p>
+<p>Upon completion of project 2, you will have gained the following skills:</p>
+<p>Hands-on experience with a modern ChIPseq analysis pipeline</p>
+<p>(More) experience submitting jobs in a HPC environment</p>
+<p>Working proficiency with commonly used bioinformatics software tools including
+bowtie2, HOMER, deeptools, IGV and bedtools</p>
+<p>Please note that the methods for the original paper are ambiguous in important
+areas. For this project, on occasion, you will be asked to define certain
+parameters and explain your choice. It is important to remember that even if the
+authors had specified a specific value for certain parameters, that does not
+mean that is the single correct option. We base our choice of these parameters
+on our background knowledge and rational assumptions. Do your best to pick
+reasonable values and justify them.</p>
+<p>Please carefully read the following sections as they describe the new strategy
+we will be employing to create a more reproducible and portable workflow.</p>
+<div id="changes-to-how-we-use-conda-environments" class="section level2 unnumbered">
+<h2>Changes to how we use Conda environments<a class="anchor" aria-label="anchor" href="#changes-to-how-we-use-conda-environments"><i class="fas fa-link"></i></a>
+</h2>
+<p>For the first project, I had you make your own conda environments and install
+all of the required packages in a single environment on your own. Some of the
+pain points encountered were meant as a learning experience; the vast majority
+of others were unintended (sorry!) and are a consequence of setting up an
+environment in that fashion. No doubt you have experienced conda hanging while
+trying to solve package specifications or throwing some kind of error message
+frequently. Hopefully this also highlights the struggle and importance of
+following good reproducibility and portability practices in bioinformatics.</p>
+<p>For this project, we will be making a large structural change in how we use
+conda to better promote the development of reproducible and portable workflows.
+This new strategy uses functionality built-in to snakemake and allows specific
+rules to use specific conda environments.</p>
+<p>In a more professional setting, this is similar to the idea of having each task
+/ tool run in an isolated container with just that tool and its dependencies
+installed. This style of having each task run in a dedicated, isolated
+environment accomplishes several goals:</p>
+<ol style="list-style-type: decimal">
+<li><p>The environments created are light-weight since they only contain a single
+primary tool and its direct software dependencies</p></li>
+<li><p>The environments are far less likely to encounter dependency issues since it
+only needs to solve the installation of a single primary tool and its direct
+dependencies (i.e. we can avoid situations where your different tools require
+incompatible software libraries or versions and thus cannot run in the same
+environment)</p></li>
+</ol>
+<p>These environments are far more reproducible and portable for the above reasons.</p>
+<p>Before we get started, it is of vital importance that you heed the following
+instruction at alo times: <strong>Do not alter any file in the envs/ directory for any
+reason at any time</strong></p>
+<p>Here is the basic outline of the changes:</p>
+<ol style="list-style-type: decimal">
+<li><p>In your template repo, I have provided you with a <code>install_packages.sh</code> script
+that will make a conda environment for project 2 that only contains <code>snakemake</code>
+and a few python libraries including <code>pandas</code> and <code>jupyterlab</code>. Please run
+this script, <code>bash install_packages.sh</code>, it will create a conda environment
+named <code>bf528_project2</code> with specific versions of these packages. You will still
+activate this environment whenever working on the project and the rest of the
+changes will be handled by snakemake. You may change the name of the created
+environment but do not alter anything else.</p></li>
+<li><p>Also in your template repo, you can <strong>LOOK</strong> but do not alter any files in
+the <code>envs/</code> directory. These are all YAML (human readable serialization
+language) files, which are typically used to store configuration settings and
+parameters in an easy to parse format. You can see that they are named
+descriptively with the names of major packages we have likely talked about.</p></li>
+</ol>
+<p>If you inspect one, you can see that we have defined our <em>channels</em> (the same
+ones we used in conda, conda-forge listed first, followed by bioconda) and then
+we have listed our <em>dependencies</em>, which is simply a specific version of the
+package(s) we want installed. It will look something like below:</p>
+<pre><code>channels:
+- conda-forge
+- bioconda
+
+dependencies:
+- samtools=1.19.2</code></pre>
+<p>Using the commands we discuss later, snakemake will automatically create
+separate environments based on this specification and activate them for specific
+rules. I have provided you with templates for all of the snakefiles for each
+week, and you’ll see that they have an added <code>directive</code> in the form of <code>conda</code>.
+This will instruct snakemake to activate the specified environment for each rule
+before running the actual task. This will ensure that each of our major tasks
+will be run in a specific environment with only our desired tool and its direct
+dependencies installed.</p>
+</div>
+<div id="summary-of-changes" class="section level2 unnumbered">
+<h2>Summary of Changes<a class="anchor" aria-label="anchor" href="#summary-of-changes"><i class="fas fa-link"></i></a>
+</h2>
+<ol style="list-style-type: decimal">
+<li><p>Use the <code>install_packages.sh</code> script included in the repo to make a conda
+environment for project 2. This environment will only contain specific versions
+of snakemake and a few critical python libraries. Now, we will all be using the
+same exact environments and package versions.</p></li>
+<li><p>Do not under any circumstances edit any of the files located in envs/ for
+reasons that will be explained below.</p></li>
+<li><p>We have provided you with a skeleton of the snakefiles, which also lists
+what you’ll need to do for that week. Do not under any circumstances alter the
+<code>conda</code> directive.</p></li>
+<li><p>Whenever you run snakemake (whether local with the <code>-c</code> flag or using <code>qsub</code>
+with the <code>--executor</code> flag), you must now include the <code>--sdm conda</code> flag at all
+times:</p></li>
+</ol>
+<!-- running locally (only on subsampled data) --><pre><code>snakemake -s your_snakefile.snake --sdm conda -c 1</code></pre>
+<!-- running using qsub (full data) -->
+<pre><code>snakemake -s your_snakefile.snake --sdm conda --executor cluster-generic \
+--cluster-generic-submit-cmd "your qsub command here" --jobs X</code></pre>
+<p>The <code>--sdm conda</code> flag instructs snakemake to use the listed conda environment
+specified in each rule when running the actual tasks. If you do not include this
+flag, your jobs will fail since the appropriate conda environment will not be
+activated on the node where your job will run.</p>
+<ol start="5" style="list-style-type: decimal">
+<li><p>The first time you run your workflow (locally or via qsub), when provided the
+<code>--sdm conda</code> flag, snakemake will automatically create an environment for every
+YAML file defined in envs/ necessary for that workflow. This is a conda
+environment that contains just the packages listed in the YAML and snakemake
+will specifically activate specific environments as specified in the <code>conda</code>
+directive for each rule. This will happen once, and in subsequent runs, snakemake
+will simply activate the now existing environment.</p></li>
+<li><p>I have provided you with templates containing just the rule names and the
+appropriate <code>conda</code> directive for each rule. Do not change these. These snakefile
+templates contain all of the rules you will need to complete for each week.</p></li>
+</ol>
+</div>
+<div id="why-you-should-not-alter-any-of-the-envs-file" class="section level2 unnumbered">
+<h2>Why you should not alter any of the envs/ file<a class="anchor" aria-label="anchor" href="#why-you-should-not-alter-any-of-the-envs-file"><i class="fas fa-link"></i></a>
+</h2>
+<p>I will briefly explain the importance of not altering any of the .YAML files in
+the envs/ directory. Under the hood, snakemake creates these conda environments
+in your working directory in a hidden directory (.snakemake/conda/). These
+environments are named with a hash generated from the contents of the YAML file.
+Snakemake will create a new environment <strong>whenever</strong> this hash changes (i.e.
+whenever the file itself changes). This hidden directory is <strong>not</strong> automatically
+managed and so if you make changes to the .YAML files and re-run snakemake, it
+will generate an entirely new conda environment every time. This is not what we
+want as we do not want to run into issues where we use more space than we have
+on our partition.</p>
+<p>For this reason, please do not alter any of the files in the envs/ directory.</p>
+</div>
+<div id="simplifying-what-you-need-to-do-each-week" class="section level2 unnumbered">
+<h2>Simplifying what you need to do each week<a class="anchor" aria-label="anchor" href="#simplifying-what-you-need-to-do-each-week"><i class="fas fa-link"></i></a>
+</h2>
+<p>The directions will be more brief for this project as you should be more familiar
+with many of the fundamental concepts by this point. I have also provided you
+snakemake skeletons with all of the rules you’ll need to complete for that week.</p>
+<p>As we settled into a format, there has been some mixed communication on my part
+about what to do each week. For this project, I have settled on a consistent
+format that should make it more clear what is expected each week. Unless
+otherwise specified, you should accomplish three main goals each week:</p>
+<ol style="list-style-type: decimal">
+<li><p>Complete your snakefile for that week and ensure it runs from start to
+finish. Your dryrun should complete succesfully and the commands you run with
+whatever tools we are utilizing should also complete succesfully. You may use
+the provided subsampled data once again to quickly ensure your commands work on
+actual data.</p></li>
+<li><p>Using your knowledge of <code>qsub</code> and snakemake, run your completed and working
+snakefile on the full data.</p></li>
+<li><p>Write in the provided Rmarkdown notebooks a quick draft of the methods
+section for that week’s tasks. We will use these at the end to construct a draft
+of the full methods section for the entire project. Remember your methods
+section should contain just enough detail to reproduce your exact analysis. This
+means you should omit elements or actions that do not directly impact the data,
+and include any details which do have an effect on the results (i.e. specific
+versions of software may produce highly similar but slightly different results).</p></li>
+</ol>
+</div>
+<div id="table-of-contents-2" class="section level2 unnumbered">
+<h2>Table Of Contents<a class="anchor" aria-label="anchor" href="#table-of-contents-2"><i class="fas fa-link"></i></a>
+</h2>
+<p><a href="#week-1-chipseq">Week 1</a></p>
+<p><a href="#week-2-chipseq">Week 2</a></p>
+<p><a href="#week-3-chipseq">Week 3</a></p>
+<p><a href="#week-4-chipseq">Week 4</a></p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="week-5-rnaseq.html">Week 5: RNAseq</a></div>
+<div class="next"><a href="project-3-single-cell-analysis-of-the-mouse-kidney.html">Project 3: Single Cell Analysis of the Mouse Kidney</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#project-2---chipseq-analysis-of-the-human-transcription-factor-runx1">Project 2 - ChIPseq analysis of the human transcription factor Runx1</a></li>
+<li><a class="nav-link" href="#changes-to-how-we-use-conda-environments">Changes to how we use Conda environments</a></li>
+<li><a class="nav-link" href="#summary-of-changes">Summary of Changes</a></li>
+<li><a class="nav-link" href="#why-you-should-not-alter-any-of-the-envs-file">Why you should not alter any of the envs/ file</a></li>
+<li><a class="nav-link" href="#simplifying-what-you-need-to-do-each-week">Simplifying what you need to do each week</a></li>
+<li><a class="nav-link" href="#table-of-contents-2">Table Of Contents</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>BF528 - Applications in Translational Bioinformatics</strong>" was written by . </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>
