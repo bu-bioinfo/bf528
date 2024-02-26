@@ -18,9 +18,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="GSEA At the start of this week, you should now have run your workflows for week 1, 2, 3 to completion and generated a single filtered matrix of gene counts for all of the 8 samples in the RNA...">
-<meta property="og:description" content="GSEA At the start of this week, you should now have run your workflows for week 1, 2, 3 to completion and generated a single filtered matrix of gene counts for all of the 8 samples in the RNA...">
-<meta name="twitter:description" content="GSEA At the start of this week, you should now have run your workflows for week 1, 2, 3 to completion and generated a single filtered matrix of gene counts for all of the 8 samples in the RNA...">
+<meta name="description" content="0.21 Notes If you are having issues with this week’s tasks, please prioritize answering the discussion questions. This will help me evaluate how well I’ve covered the many topics we’ve discussed...">
+<meta property="og:description" content="0.21 Notes If you are having issues with this week’s tasks, please prioritize answering the discussion questions. This will help me evaluate how well I’ve covered the many topics we’ve discussed...">
+<meta name="twitter:description" content="0.21 Notes If you are having issues with this week’s tasks, please prioritize answering the discussion questions. This will help me evaluate how well I’ve covered the many topics we’ve discussed...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -89,7 +89,22 @@
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-5-rnaseq" class="section level1 unnumbered">
 <h1>Week 5: RNAseq<a class="anchor" aria-label="anchor" href="#week-5-rnaseq"><i class="fas fa-link"></i></a>
 </h1>
-<p><strong>GSEA</strong></p>
+<div id="notes" class="section level2" number="0.21">
+<h2>
+<span class="header-section-number">0.21</span> Notes<a class="anchor" aria-label="anchor" href="#notes"><i class="fas fa-link"></i></a>
+</h2>
+<p>If you are having issues with this week’s tasks, please prioritize answering the
+discussion questions. This will help me evaluate how well I’ve covered the many
+topics we’ve discussed as well as serve as proof of your participation in
+project 1. I will return these questions to you with comments and feedback and
+allow you to resubmit. If you address all of the feedback, that will count as
+full participation for this project. You can see read more on the discussion
+questions in the last section on this page.</p>
+</div>
+<div id="gsea" class="section level2" number="0.22">
+<h2>
+<span class="header-section-number">0.22</span> GSEA<a class="anchor" aria-label="anchor" href="#gsea"><i class="fas fa-link"></i></a>
+</h2>
 <p>At the start of this week, you should now have run your workflows for week 1, 2,
 3 to completion and generated a single filtered matrix of gene counts for all of
 the 8 samples in the RNA sequencing experiment. You should also have performed
@@ -97,12 +112,15 @@ a basic differential expression analysis comparing P0 and AD samples in DESeq2
 and used your mapping of gene IDs to gene names to generate a results dataframe
 containing gene names.</p>
 <p>For this week, we will perform a basic GSEA analysis as well as attempt to replicate
-a few of the key figures from the paper.</p>
+a few of the key figures from the paper. If you haven’t been able to run your
+pipelines to completion, use the provided snakefiles or contact me and I can make
+the filtered counts matrix available.</p>
 <p>As we discussed, GSEA is a method that uses a ranking of all of the genes found
 in your experiment to look for enrichment in gene sets of defined biological
 functions. For simplicity, we will be using log2FoldChange as our ranking metric
-and the Canonical Pathways Set of Gene Sets from MSIGDB. This set of gene sets
-encompasses a curated list of major and essential biological pathways and processes.</p>
+and the Canonical Pathways (C2) collection from MSIGDB. This collection of gene
+sets encompasses a curated list of major and essential biological pathways and
+processes.</p>
 <p>To begin, please install the R package <code>fgsea</code>. You can find directions <a href="https://bioconductor.org/packages/release/bioc/html/fgsea.html">here</a> for more
 explanation. This package performs GSEA (albeit with slight modifications to
 the statistical testing) and we will be using it to quickly look at the major
@@ -117,7 +135,10 @@ accomplish this. <a href="https://bu-bioinfo.github.io/r-for-biological-sciences
 <li><p>After you generate this ranked list of <strong>all</strong> of the genes in your results
 dataframe (do not filter by p-value), you will also need to read in the C2
 gene sets into R. <code>fgsea</code> offers a built-in function, <code><a href="https://rdrr.io/pkg/fgsea/man/gmtPathways.html">fgsea::gmtPathways</a></code>
-that will automatically parse and read in a .GMT file.</p></li>
+that will automatically parse and read in a .GMT file. I have provided you
+with the .GMT file for the C2 collection in the materials for project 1. As
+a reminder that path is /projectnb/bf528/materials/project_1_rnaseq/ and
+the file is named <code>m2.all.v2023.2.Mm.symbols.gmt</code>.</p></li>
 <li><p>Perform GSEA analysis in <code>fgsea</code>. You may leave all other parameters at
 default but include both of these flags: <code>minSize = 15</code> and <code>maxSize = 500</code></p></li>
 </ol>
@@ -125,35 +146,76 @@ default but include both of these flags: <code>minSize = 15</code> and <code>max
 enrichment score (NES) and the top twenty results with the most negative NES.
 Based on what you read in the paper and the underlying biology, do these results
 seem reasonable?</p>
-<p><strong>Replicating Figure 1D</strong></p>
+</div>
+<div id="replicating-figure-1d" class="section level2" number="0.23">
+<h2>
+<span class="header-section-number">0.23</span> Replicating Figure 1D<a class="anchor" aria-label="anchor" href="#replicating-figure-1d"><i class="fas fa-link"></i></a>
+</h2>
 <p>In figure 1D, the authors are displaying the trends over time in gene expression
 for some selected genes known to be involved in the differentiation process. We
 are going to try to replicate these general results using our data.</p>
 <ol style="list-style-type: decimal">
 <li><p>Extract out the DESeq2 normalized counts from your dds object. A quick
-google search will lead you to the appropriate command.</p></li>
+google search will lead you to the appropriate command. **N.B. You want the
+DEseq2 normalized counts, NOT VST or Rlog normalized counts, those transformations
+are used for other purposes.</p></li>
 <li><p>Using <code>tidyverse</code> and base R functions, create plots that resemble those
 from figure 1D.</p></li>
 </ol>
 <p>Keep in mind the following hints:</p>
 <ol style="list-style-type: decimal">
 <li><p>You will only have 4 timepoints and try to have your plots display them in
-order (P0, P4, P7, AD)</p></li>
+order (P0, P4, P7, AD). These represent the samples listed as <code>In Vivo</code> maturation
+in Figure 1.</p></li>
 <li><p>You should take the <code>mean</code> or the <code>median</code> of the two replicate values for
 each timepoint.</p></li>
 <li><p>You will likely have to use a combination of tidyverse functions to accomplish
 this, including: <code>filter</code>, <code>pivot_longer</code>, <code>group_by</code>, <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">dplyr::summarize</a></code>, <code>mutate</code>,
 and <code>ggplot</code>.</p></li>
 <li><p>You will have to manually construct lists in R of the chosen groups of genes
-found in the three different plots (sarcomere, mitochondria, cell cycle)</p></li>
+found in the three different plots (sarcomere, mitochondria, cell cycle). Simply
+copy them from the figure located in the paper (Figure 1D)</p></li>
 </ol>
+</div>
+<div id="discussion-questions" class="section level2" number="0.24">
+<h2>
+<span class="header-section-number">0.24</span> Discussion Questions<a class="anchor" aria-label="anchor" href="#discussion-questions"><i class="fas fa-link"></i></a>
+</h2>
+<p>In lieu of a report in the style of a paper, we have instead provided you with a
+markdown notebook containing a series of questions regarding this first project.
+I will send you a github classroom link specifically for this section.</p>
+<p>In that document is a mix of general, technical and paper-specific questions
+meant to get you thinking about the underlying science. We have so far focused
+on how we technically develop a workflow and these questions are meant to help
+focus on more of the conceptual aspects of RNAseq workflows and the paper.</p>
+<p>Please answer these questions to the best of your abilities. Some are
+straightforward and touch upon topics we talked about in lecture; others are
+thought questions where we ask you to explain your reasoning. Be brief! All of
+your answers should be no more than a few sentences each.</p>
+<p>As I mentioned, this first project has been practice as we introduced a
+multitude of different tools, ideas, and concepts that we asked you to integrate
+together in a short period of time. I will not be traditionally grading you but
+we will instead try the following:</p>
+<p>I will ask you to submit your answers by next week, after which, we will provide
+you with feedback and comments in a timely manner. We will return this document
+to you with this feedback, and ask you to resubmit your answers after another
+week. If you address all of the comments and feedback in your resubmission, you
+will receive full credit for this first project.</p>
+
+</div>
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="week-4-rnaseq.html">Week 4: RNAseq</a></div>
 <div class="next"><a href="project-2-chipseq-analysis-of-the-human-transcription-factor-runx1.html">Project 2: ChIPseq analysis of the human transcription factor Runx1</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav"><li><a class="nav-link" href="#week-5-rnaseq">Week 5: RNAseq</a></li></ul>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#week-5-rnaseq">Week 5: RNAseq</a></li>
+<li><a class="nav-link" href="#notes"><span class="header-section-number">0.21</span> Notes</a></li>
+<li><a class="nav-link" href="#gsea"><span class="header-section-number">0.22</span> GSEA</a></li>
+<li><a class="nav-link" href="#replicating-figure-1d"><span class="header-section-number">0.23</span> Replicating Figure 1D</a></li>
+<li><a class="nav-link" href="#discussion-questions"><span class="header-section-number">0.24</span> Discussion Questions</a></li>
+</ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
