@@ -82,26 +82,28 @@ reason at any time**
 
 Here is the basic outline of the changes:
 
-1. In your template repo, I have provided you with a `base_env.yml` file
+1. 
+In your template repo, I have provided you with a `base_env.yml` file
 that will make a conda environment for project 2 that only contains `snakemake`
 and a few python libraries including `pandas` and `jupyterlab`.
 
-  Sign on to the SCC, and run `module load miniconda` and the following command
-  **without** any environment active (your terminal should say base before your
-  username):
+Sign on to the SCC, and run `module load miniconda` and the following command
+**without** any environment active (your terminal should say base before your
+username):
 
-  ```
-  conda env create -f base_env.yml
-  ```
+```
+conda env create -f base_env.yml
+```
 
-  Conda will create an environment with only the packages listed inside the .yml
-  file. By default, this will create an environment named `bf528_project2_base`.
-  This name is specified on the first line of the file, and if you are comfortable
-  editing such a file, you may change the environment name created to one of your
-  choosing. Otherwise, this will be the name of the environment you need to 
-  activate prior to doing any work on the project as always.
+Conda will create an environment with only the packages listed inside the .yml
+file. By default, this will create an environment named `bf528_project2_base`.
+This name is specified on the first line of the file, and if you are comfortable
+editing such a file, you may change the environment name created to one of your
+choosing. Otherwise, this will be the name of the environment you need to 
+activate prior to doing any work on the project as always.
 
-2. Also in your template repo, you can **LOOK** but do not alter any files in
+2. 
+Also in your template repo, you can **LOOK** but do not alter any files in
 the `envs/` directory. These are all YAML (human readable serialization
 language) files, which are typically used to store configuration settings and
 parameters in an easily parsed and readable format. You can see that they are 
@@ -132,19 +134,23 @@ dependencies installed.
 
 ## Summary of Changes {-}
 
-1. Use the `base_env.yml` and Conda command listed above to make a conda
+1. 
+Use the `base_env.yml` and Conda command listed above to make a conda
 environment for project 2. This environment will only contain specific versions
 of snakemake and a few critical python libraries. Now, we will all be using the
 same exact environments and package versions.
 
-2. Do not under any circumstances edit any of the files located in envs/ for 
+2. 
+Do not under any circumstances edit any of the files located in envs/ for 
 reasons that will be explained below.
 
-3. We have provided you with a skeleton of the snakefiles, which also lists
+3. 
+We have provided you with a skeleton of the snakefiles, which also lists
 what you'll need to do for that week. Do not under any circumstances alter the
 `conda` directive. 
 
-4. Whenever you run snakemake (whether local with the `-c` flag or using `qsub`
+4. 
+Whenever you run snakemake (whether local with the `-c` flag or using `qsub`
 with the `--executor` flag), you must now include the `--sdm conda` flag at all 
 times:
 
@@ -158,12 +164,13 @@ snakemake -s your_snakefile.snake --sdm conda -c 1
 snakemake -s your_snakefile.snake --sdm conda --executor cluster-generic \
 --cluster-generic-submit-cmd "your qsub command here" --jobs X
 ```
-  The `--sdm conda` flag instructs snakemake to use the listed conda environment
-  specified in each rule when running the actual tasks. If you do not include this
-  flag, your jobs will fail since the appropriate conda environment will not be 
-  activated on the node where your job will run.
+The `--sdm conda` flag instructs snakemake to use the listed conda environment
+specified in each rule when running the actual tasks. If you do not include this
+flag, your jobs will fail since the appropriate conda environment will not be 
+activated on the node where your job will run.
 
-5. The first time you run your workflow (locally or via qsub), when provided the
+5. 
+The first time you run your workflow (locally or via qsub), when provided the
 `--sdm conda` flag, snakemake will automatically create an environment for every
 YAML file defined in envs/ necessary for that workflow. This is a conda
 environment that contains just the packages listed in the YAML and snakemake
@@ -171,7 +178,8 @@ will specifically activate specific environments as specified in the `conda`
 directive for each rule. This will happen once, and in subsequent runs,
 snakemake will simply activate the now existing environment.
 
-6. I have provided you with templates containing just the rule names and the
+6. 
+I have provided you with templates containing just the rule names and the
 appropriate `conda` directive for each rule. Do not change these. These
 snakefile templates contain all of the rules you will need to complete for each
 week.
@@ -202,16 +210,19 @@ part about what to do each week. For this project, I have settled on a
 consistent format that should make it more clear what is expected each week.
 Unless otherwise specified, you should accomplish three main goals each week:
 
-1. Complete your snakefile for that week and ensure it runs from start to
+1. 
+Complete your snakefile for that week and ensure it runs from start to
 finish. Your dryrun should complete successfully and the commands you run with
 whatever tools we are utilizing should also complete successfully. You may use
 the provided subsampled data once again to quickly ensure your commands work on
 actual data.
 
-2. Using your knowledge of `qsub` and snakemake, run your completed and working
+2. 
+Using your knowledge of `qsub` and snakemake, run your completed and working
 snakefile on the full data.
 
-3. Write in the provided Rmarkdown notebooks a quick draft of the methods
+3. 
+Write in the provided Rmarkdown notebooks a quick draft of the methods
 section for that week's tasks. We will use these at the end to construct a draft
 of the full methods section for the entire project. Remember your methods
 section should contain just enough detail to reproduce your exact analysis. This

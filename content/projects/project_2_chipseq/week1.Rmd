@@ -1,8 +1,8 @@
 # Week 1: ChIPseq {-}
 
-## Week 1: Getting Started
+## Week 1: Getting Started {-}
 
-**Read the paper**
+## Read the paper {-}
 
 This analysis is based on the data published in this study: *Barutcu et al.
 RUNX1 Contributes to Higher-Order Chromatin Organization and Gene Regulation in
@@ -18,7 +18,7 @@ strategies and tools on occasion. However, the workflow you will develop will
 still capture and recreate the same core biological signals observed in the
 original work.
 
-**Repo Setup**
+## Repo Setup {-}
 
 I have included a .gitignore file with every repo that should instruct git to 
 ignore any non-code related files. Do not alter or delete this file. As a 
@@ -86,14 +86,14 @@ The structure of your templated directory should resemble the following:
             have automatically configured this to just track snakefiles and text.
             Do not alter or delete this file at any time.
 
-**Initial Setup**
+## Initial Setup {-}
 
 Please thoroughly read the landing page [Project 2 - ChIPseq](#project-2-chipseq-analysis-of-the-human-transcription-factor-runx1)]
 
 I have made a large structural change to how we will be utilizing conda 
 environments with our workflows. 
 
-**An alternative to defining lists of samples in each rule**
+## An alternative to defining lists of samples in each rule {-}
 
 For the first project, we manually created python lists containing the name
 patterns used to drive each snakemake workflow. For this project, we will be
@@ -106,7 +106,7 @@ Removing the sample information from our snakefiles / workflows also helps to
 generalize our workflows and would theoretically enable us to run the same
 workflow on a different set of samples by simply swapping in a different CSV.
 
-**Downloading the data**
+## Downloading the data {-}
 
 Last project, you gained some experience downloading files. For convenience, I
 have provided you in materials/project_2_chipseq/ the most up-to-date gencode
@@ -132,7 +132,7 @@ it will be responsible for setting up your files with consistent naming patterns
 
 Listed below will be the tasks you are responsible for accomplishing this week:
 
-**Quality Control**
+## Quality Control {-}
 
 Similar to last project, we are going to check some of the main quality metrics
 for NGS data using fastQC.
@@ -140,7 +140,7 @@ for NGS data using fastQC.
     1. Create a snakemake rule that runs fastqc on the 4 samples and outputs
       its results to the results/ directory
 
-**Trimming**
+## Trimming {-}
 
 As we discussed in lecture, there are occasions where our sequencing reads are
 “contaminated” with portions of the sequencing adapter or the quality of the
@@ -155,7 +155,7 @@ adapter trimming with trimmomatic, which will also trim low quality bases.
         - Include the following command and parameters:
             - ILLUMINACLIP:{adapters}:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15
 
-**Building a genome index**
+## Building a genome index {-}
 
 So far, I have provided you with pre-built genome indexes. If you recall, these
 indexes are tool-specific and are file(s) that allow for more efficient searching
@@ -176,7 +176,7 @@ next week when testing your alignment command.
       for the entire human reference genome
         - Leave every parameter at default
         
-**Swap to the full data**
+## Swap to the full data {-}
 
 We will talk more about the various bioinformatics databases that store sequencing
 data, but we will be using EMBL-ENA as they store ftp links to the full FASTA
@@ -197,7 +197,7 @@ files for most data deposited into GEO.
     5. Re-run your snakemake workflow
 
         
-**Week 1 Tasks**
+## Week 1 Tasks {-}
 
 - Read the paper and familiarize yourself with their main goals and the general
 results they published
