@@ -1,7 +1,5 @@
 # Week 1: ChIPseq {-}
 
-## Week 1: Getting Started {-}
-
 ## Read the paper {-}
 
 This analysis is based on the data published in this study: *Barutcu et al.
@@ -88,7 +86,7 @@ The structure of your templated directory should resemble the following:
 
 ## Initial Setup {-}
 
-Please thoroughly read the landing page [Project 2 - ChIPseq](#project-2-chipseq-analysis-of-the-human-transcription-factor-runx1)]
+Please thoroughly read the landing page [Project 2 - ChIPseq](#project-2-chipseq-analysis-of-the-human-transcription-factor-runx1)
 
 I have made a large structural change to how we will be utilizing conda 
 environments with our workflows. 

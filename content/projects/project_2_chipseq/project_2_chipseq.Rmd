@@ -59,7 +59,7 @@ rules to use specific conda environments.
 
 In a more professional setting, this is similar to the idea of having each task
 / tool run in an isolated container with just that tool and its dependencies
-installed. This style of having each task run in a dedicated, isolated
+installed. This strategy of having each task run in a dedicated, isolated
 environment accomplishes several goals:
 
 1. The environments created are light-weight since they only contain a single
@@ -194,7 +194,7 @@ Snakemake will create a new environment **whenever** this hash changes (i.e.
 whenever the file itself changes). This hidden directory is **not** automatically
 managed and so if you make changes to the .YAML files and re-run snakemake, it
 will generate an entirely new conda environment every time. This is not what we
-want as we do not want to run into issues where we use more space than we have
+want as we do not wish to run into issues where we use more space than we have
 on our partition. 
 
 For this reason, please do not alter any of the files in the envs/ directory. 
@@ -215,7 +215,8 @@ Complete your snakefile for that week and ensure it runs from start to
 finish. Your dryrun should complete successfully and the commands you run with
 whatever tools we are utilizing should also complete successfully. You may use
 the provided subsampled data once again to quickly ensure your commands work on
-actual data.
+actual data. Please push your completed snakemake workflow to your repo by the
+date it's due. 
 
 2. 
 Using your knowledge of `qsub` and snakemake, run your completed and working

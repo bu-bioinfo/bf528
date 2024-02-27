@@ -1,0 +1,127 @@
+# Week 3: ChIPseq {-}
+
+## Peak calling {-}
+Now that we have our aligned reads and performed basic quality control, we are
+going to proceed to peak calling using HOMER. This utility requires us to first
+convert the BAM files to a HOMER specific format, which is required prior to
+using HOMER to run downstream utilities.
+
+    1. Generate a snakemake rule that runs the makeTagDir command in HOMER for 
+      each sample. You will have a separate tag directory for each. 
+        - Leave every option at default parameters.
+    
+As denoted by the name, this utility creates a directory containing a multitude 
+of output files. Please refer to the snakemake documentation on how to properly 
+handle using directories as expected outputs. 
+
+We are now ready to perform peak calling, which will look for areas of
+significant enrichment in the localization of our alignments. We will be
+performing peak calling using the input as our background enrichment control.
+Please read the documentation for the findPeaks command
+(http://homer.ucsd.edu/homer/ngs/peaks.html) and perform peak calling on both of
+our replicate experiments.
+
+    1. Generate a snakemake rule that runs findPeaks on your samples
+        - You will need this rule to run twice on each set of paired replicates
+        - Remember that Runx1 is a transcription factor that binds in relatively
+        “narrow” patterns.
+
+## Converting homer-specific output to BED format {-}
+
+The output of findPeaks is in a homer-specific format, and for ease of use, we
+will convert this .txt homer peak file to a standard BED formatted file.
+
+    1. Generate a snakemake rule that use the pos2bed utility to convert the
+      output to a BED format
+
+## Determining a set of reproducible peaks using bedtools {-}
+
+Each paired experiment (IP and INP) from each replicate will have generated a
+set of peaks that represent Runx1 binding locations in the genome.  In
+general, there are two main ways that “reproducible” peaks are chosen for
+ChIP-seq experiments: 1. Irreproducible Discovery Rate (IDR), and 2.
+Intersections / Unions of peaks. You will use the latter strategy and Bedtools
+to produce your own set of “reproducible peaks” from your two peak files.
+
+    1. Using only bedtools, generate a single list of “reproducible peaks”. You
+      may use whatever strategy you like and we will ask you to justify your
+      choice later.
+
+## Removing signal-artifact regions from our peak lists {-}
+
+Experimentally, it has been shown that there are regions of the genome that are
+nearly always present in ChIPseq experiments at high levels. These regions are
+considered to be noise and signal-artifacts that are not representative of the
+target enrichment. It is generally advised to remove any peaks that are found in
+these regions as they likely represent erroneous signal.
+
+    1. Create a snakemake rule that uses bedtools to filter out any of your
+      reproducible peaks that fall into these blacklisted regions and output the
+      remaining peaks to a new BED file
+
+## Annotating our peaks to their nearest genomic feature {-}
+
+With our now filtered list of reproducible peaks, we are going to perform a
+simple annotation that assigns these peaks to their nearest genomic feature.
+This will allow us to glean some information of which genomic regions they fall
+into (promoters, introns, etc.) and what genes they are in close proximity to.
+
+    1. Use the annotatePeaks.pl utility in HOMER to annotate your list of
+      reproducible peaks. - This utility will create a simple TSV / .txt file of
+      annotated peaks
+
+## Performing motif finding to look for enrichment of known binding sequences {-}
+
+Using this same set of reproducible peaks, we are going to perform motif finding
+to look for enriched motifs found in our peak locations. For simplicity, we will
+be performing this step using HOMER. As we are using the hg39 build of the human
+reference genome, you should supply the path to the FASTA as specified in the
+instructions for running findMotifsGenome.pl.
+
+    1. Run findMotifsGenome.pl on your list of reproducible peaks to generate a
+      motif enrichment analysis
+
+## Week 3 Tasks {-}
+
+- Generated a snakemake rule that runs the makeTagDir utility on each of your
+sorted BAM files
+
+- Create a snakemake rule that runs HOMER findPeaks on your samples using the
+tag directories generated previously. This should run *twice*, once for each 
+set of paired experiments (rep1 and rep2)
+
+- Created a snakemake rule that converts both of your findPeaks output files to
+BED format
+
+- Created a snakemake rule that uses only bedtools to generate a new BED file
+containing the “reproducible” peaks
+
+- Create a snakemake rule that uses bedtools to filter out any “reproducible”
+peaks falling into blacklisted regions
+
+- Create a snakemake rule that performs motif finding on your list of filtered,
+reproducible peaks
+
+**CHALLENGE**
+
+The authors of the original paper use the MEME suite of tools to perform motif
+finding. However, they do not specify the parameters used in this analysis and
+the input to MEME is not a list of peaks (which is our current output). For this
+optional challenge, instead of performing motif finding in HOMER, use MEME-ChIP
+as they did in the paper to discover enriched motifs.
+
+In general, you will have to figure out how to do the following:
+
+- Install the Meme suite into your conda environment 
+
+- Extract chromosome sizes from the human gencode reference 
+
+- Determine the average size of your peaks 
+
+- Use your chromosome sizes, the average size of your peaks, and BedTools to
+  make a BED file containing all of your peaks expanded to around ~500bp in size.
+  
+- Extract the DNA sequences from the regions in your BED file from a bgzipped
+  genomic FASTA file for the gencode reference. 
+  
+- Run MEME-ChIP using your FASTA file of DNA sequences covered by your peaks
