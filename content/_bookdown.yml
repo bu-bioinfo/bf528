@@ -10,6 +10,7 @@ rmd_files:
     - "projects/project_1_rnaseq/week4.Rmd"
     - "projects/project_1_rnaseq/week5.Rmd"
     - "projects/project_2_chipseq/project_2_chipseq.Rmd"
+    - "projects/project_2_chipseq/week1.Rmd"
     - "projects/project_3_scrnaseq/project_3_scrnaseq.Rmd"
     
 delete_merged_file: true

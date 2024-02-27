@@ -86,20 +86,20 @@ Here is the basic outline of the changes:
 that will make a conda environment for project 2 that only contains `snakemake`
 and a few python libraries including `pandas` and `jupyterlab`.
 
-Sign on to the SCC, and run `module load miniconda` and the following command
-**without** any environment active (your terminal should say base before your
-username):
+  Sign on to the SCC, and run `module load miniconda` and the following command
+  **without** any environment active (your terminal should say base before your
+  username):
 
-```
-conda env create -f base_env.yml
-```
+  ```
+  conda env create -f base_env.yml
+  ```
 
-Conda will create an environment with only the packages listed inside the .yml
-file. By default, this will create an environment named `bf528_project2_base`.
-This name is specified on the first line of the file, and if you are comfortable
-editing such a file, you may change the environment name created to one of your
-choosing. Otherwise, this will be the name of the environment you need to 
-activate prior to doing any work on the project as always.
+  Conda will create an environment with only the packages listed inside the .yml
+  file. By default, this will create an environment named `bf528_project2_base`.
+  This name is specified on the first line of the file, and if you are comfortable
+  editing such a file, you may change the environment name created to one of your
+  choosing. Otherwise, this will be the name of the environment you need to 
+  activate prior to doing any work on the project as always.
 
 2. Also in your template repo, you can **LOOK** but do not alter any files in
 the `envs/` directory. These are all YAML (human readable serialization
