@@ -106,10 +106,12 @@ data. Each group will process the ChIP-seq data from raw reads to called peaks,
 incorporate the provided RNA-seq data and ultimately attempt to reproduce the
 findings found in the paper.</p>
 <p>Upon completion of project 2, you will have gained the following skills:</p>
-<p>Hands-on experience with a modern ChIPseq analysis pipeline</p>
-<p>(More) experience submitting jobs in a HPC environment</p>
-<p>Working proficiency with commonly used bioinformatics software tools including
-bowtie2, HOMER, deeptools, IGV and bedtools</p>
+<ul>
+<li><p>Hands-on experience with a modern ChIPseq analysis pipeline</p></li>
+<li><p>(More) experience submitting jobs in a HPC environment</p></li>
+<li><p>Working proficiency with commonly used bioinformatics software tools including
+bowtie2, HOMER, deeptools, IGV and bedtools</p></li>
+</ul>
 <p>Please note that the methods for the original paper are ambiguous in important
 areas. For this project, on occasion, you will be asked to define certain
 parameters and explain your choice. It is important to remember that even if the
@@ -126,12 +128,12 @@ we will be employing to create a more reproducible and portable workflow.</p>
 all of the required packages in a single environment on your own. Some of the
 pain points encountered were meant as a learning experience; the vast majority
 of others were unintended (sorry!) and are a consequence of setting up an
-environment in that fashion. No doubt you have experienced conda hanging while
+environment in that fashion. No doubt you have experienced Conda hanging while
 trying to solve package specifications or throwing some kind of error message
-frequently. Hopefully this also highlights the struggle and importance of
+frequently. Hopefully, this also highlights the struggle and importance of
 following good reproducibility and portability practices in bioinformatics.</p>
 <p>For this project, we will be making a large structural change in how we use
-conda to better promote the development of reproducible and portable workflows.
+Conda to better promote the development of reproducible and portable workflows.
 This new strategy uses functionality built-in to snakemake and allows specific
 rules to use specific conda environments.</p>
 <p>In a more professional setting, this is similar to the idea of having each task
@@ -146,26 +148,35 @@ only needs to solve the installation of a single primary tool and its direct
 dependencies (i.e. we can avoid situations where your different tools require
 incompatible software libraries or versions and thus cannot run in the same
 environment)</p></li>
+<li><p>We can use the most up-to-date versions of software without fear of
+incompatibilities</p></li>
 </ol>
 <p>These environments are far more reproducible and portable for the above reasons.</p>
 <p>Before we get started, it is of vital importance that you heed the following
-instruction at alo times: <strong>Do not alter any file in the envs/ directory for any
+instruction at all times: <strong>Do not alter any file in the envs/ directory for any
 reason at any time</strong></p>
 <p>Here is the basic outline of the changes:</p>
 <ol style="list-style-type: decimal">
-<li><p>In your template repo, I have provided you with a <code>install_packages.sh</code> script
+<li>In your template repo, I have provided you with a <code>base_env.yml</code> file
 that will make a conda environment for project 2 that only contains <code>snakemake</code>
-and a few python libraries including <code>pandas</code> and <code>jupyterlab</code>. Please run
-this script, <code>bash install_packages.sh</code>, it will create a conda environment
-named <code>bf528_project2</code> with specific versions of these packages. You will still
-activate this environment whenever working on the project and the rest of the
-changes will be handled by snakemake. You may change the name of the created
-environment but do not alter anything else.</p></li>
-<li><p>Also in your template repo, you can <strong>LOOK</strong> but do not alter any files in
+and a few python libraries including <code>pandas</code> and <code>jupyterlab</code>.</li>
+</ol>
+<p>Sign on to the SCC, and run <code>module load miniconda</code> and the following command
+<strong>without</strong> any environment active (your terminal should say base before your
+username):</p>
+<pre><code>conda env create -f base_env.yml</code></pre>
+<p>Conda will create an environment with only the packages listed inside the .yml
+file. By default, this will create an environment named <code>bf528_project2_base</code>.
+This name is specified on the first line of the file, and if you are comfortable
+editing such a file, you may change the environment name created to one of your
+choosing. Otherwise, this will be the name of the environment you need to
+activate prior to doing any work on the project as always.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Also in your template repo, you can <strong>LOOK</strong> but do not alter any files in
 the <code>envs/</code> directory. These are all YAML (human readable serialization
 language) files, which are typically used to store configuration settings and
-parameters in an easy to parse format. You can see that they are named
-descriptively with the names of major packages we have likely talked about.</p></li>
+parameters in an easily parsed and readable format. You can see that they are
+named descriptively with the names of major packages we have discussed.</li>
 </ol>
 <p>If you inspect one, you can see that we have defined our <em>channels</em> (the same
 ones we used in conda, conda-forge listed first, followed by bioconda) and then
@@ -190,7 +201,7 @@ dependencies installed.</p>
 <h2>Summary of Changes<a class="anchor" aria-label="anchor" href="#summary-of-changes"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
-<li><p>Use the <code>install_packages.sh</code> script included in the repo to make a conda
+<li><p>Use the <code>base_env.yml</code> and Conda command listed above to make a conda
 environment for project 2. This environment will only contain specific versions
 of snakemake and a few critical python libraries. Now, we will all be using the
 same exact environments and package versions.</p></li>
@@ -217,11 +228,12 @@ activated on the node where your job will run.</p>
 YAML file defined in envs/ necessary for that workflow. This is a conda
 environment that contains just the packages listed in the YAML and snakemake
 will specifically activate specific environments as specified in the <code>conda</code>
-directive for each rule. This will happen once, and in subsequent runs, snakemake
-will simply activate the now existing environment.</p></li>
+directive for each rule. This will happen once, and in subsequent runs,
+snakemake will simply activate the now existing environment.</p></li>
 <li><p>I have provided you with templates containing just the rule names and the
-appropriate <code>conda</code> directive for each rule. Do not change these. These snakefile
-templates contain all of the rules you will need to complete for each week.</p></li>
+appropriate <code>conda</code> directive for each rule. Do not change these. These
+snakefile templates contain all of the rules you will need to complete for each
+week.</p></li>
 </ol>
 </div>
 <div id="why-you-should-not-alter-any-of-the-envs-file" class="section level2 unnumbered">
@@ -244,15 +256,15 @@ on our partition.</p>
 </h2>
 <p>The directions will be more brief for this project as you should be more familiar
 with many of the fundamental concepts by this point. I have also provided you
-snakemake skeletons with all of the rules you’ll need to complete for that week.</p>
-<p>As we settled into a format, there has been some mixed communication on my part
-about what to do each week. For this project, I have settled on a consistent
-format that should make it more clear what is expected each week. Unless
-otherwise specified, you should accomplish three main goals each week:</p>
+snakemake skeletons with all of the rules you’ll need to complete for each week.</p>
+<p>As we settled into this format, there has been some mixed communication on my
+part about what to do each week. For this project, I have settled on a
+consistent format that should make it more clear what is expected each week.
+Unless otherwise specified, you should accomplish three main goals each week:</p>
 <ol style="list-style-type: decimal">
 <li><p>Complete your snakefile for that week and ensure it runs from start to
-finish. Your dryrun should complete succesfully and the commands you run with
-whatever tools we are utilizing should also complete succesfully. You may use
+finish. Your dryrun should complete successfully and the commands you run with
+whatever tools we are utilizing should also complete successfully. You may use
 the provided subsampled data once again to quickly ensure your commands work on
 actual data.</p></li>
 <li><p>Using your knowledge of <code>qsub</code> and snakemake, run your completed and working
@@ -265,6 +277,8 @@ means you should omit elements or actions that do not directly impact the data,
 and include any details which do have an effect on the results (i.e. specific
 versions of software may produce highly similar but slightly different results).</p></li>
 </ol>
+<p>If asked, please also include any preliminary results or figures generated from
+that week in this Rmarkdown as well.</p>
 </div>
 <div id="table-of-contents-2" class="section level2 unnumbered">
 <h2>Table Of Contents<a class="anchor" aria-label="anchor" href="#table-of-contents-2"><i class="fas fa-link"></i></a>
