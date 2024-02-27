@@ -18,6 +18,74 @@ strategies and tools on occasion. However, the workflow you will develop will
 still capture and recreate the same core biological signals observed in the
 original work.
 
+**Repo Setup**
+
+I have included a .gitignore file with every repo that should instruct git to 
+ignore any non-code related files. Do not alter or delete this file. As a 
+reminder, you should not push any data to github and you should always avoid 
+adding any large files to github. Only push code and other simple text files to
+github. It's tempting to simply perform a `git add *`, but I highly encourage
+you to be more granular and intentional by explicitly listing the files in your
+`git add` commands. 
+
+The structure of your templated directory should resemble the following:
+
+    |-- results/
+        |-- Any processed data output, downloaded file, etc. should go in here. 
+            Remember to provide this path as an output for any tasks. I suggest
+            you employ a "flat" directory strategy and do not create any nested
+            directories inside results/, but you may do whatever works best for
+            you
+        
+    |-- samples/
+        |-- The provided or downloaded fastq files should go here, remember to 
+            provide this path when referring to your input files. You should
+            have both the subsampled and full data in this directory.
+    
+    |-- envs/
+        |-- Contained within are the .yml files that describe the conda 
+            environments which will now be created per rule. You should not at
+            any time alter or edit these files for any reason.
+           
+    |-- week1.snake
+        |-- We have provided you a template for the first week's snakefile. Do
+            not alter the `conda` directive in each rule at any time.
+        
+    |-- week2.snake
+        |-- A template for the week 2 snakefile. Do not alter the `conda` 
+            directive in each rule at any time.
+        
+    |-- week3.snake
+        |-- A template for the week 3 snakefile. Do not alter the `conda` 
+            directive in each rule at any time.
+    
+    |-- week(1, 2, 3)_methods.Rmd
+        |-- We have provided you with a Rmd notebook for you to quickly
+            write your preliminary methods for each week and display any 
+            preliminary results generated.
+            
+    |-- week(1, 2, 3)_dag.png and complete_dag.png
+        |-- We've discussed that workflows can be represented visually in the
+            form of a DAG (directed acyclic graph). These diagrams represent the
+            tasks and dependencies your completed workflow for each week should 
+            perform and follow. Use these as a reference to visually remind
+            yourself the goals of each week's workflow. We will discuss in class
+            how you can automatically generate these from your own snakefiles.
+            
+    |-- base_env.yml
+        |-- This is the yml file you should use to create the conda environment
+            for project 2. 
+    
+    |-- sample_sheet.csv
+        |-- A CSV file containing information regarding the samples / data files
+            for this experiment. There is a column for FTP links, which will be
+            used to download both the subsampled and full files. 
+
+    |-- .gitignore
+        |-- A file that instructs git what to track and what not to track. I 
+            have automatically configured this to just track snakefiles and text.
+            Do not alter or delete this file at any time.
+
 **Initial Setup**
 
 Please thoroughly read the landing page [Project 2 - ChIPseq](#project-2-chipseq-analysis-of-the-human-transcription-factor-runx1)]
@@ -38,17 +106,12 @@ Removing the sample information from our snakefiles / workflows also helps to
 generalize our workflows and would theoretically enable us to run the same
 workflow on a different set of samples by simply swapping in a different CSV.
 
-
 **Downloading the data**
 
 Last project, you gained some experience downloading files. For convenience, I
 have provided you in materials/project_2_chipseq/ the most up-to-date gencode
 human primary assembly reference genome and matching GTF. Please simply copy
-these files to your `results/` directory in your working directory. I have also
-provided you with a pre-built bowtie2 index for JUST chromosome 19 in this same
-location. This index will allow you to quickly test your bowtie2 command. You
-will eventually develop your own rule that creates a FULL genome index for
-bowtie2 against the human reference genome.
+these files to your `results/` directory in your working directory.
 
 We will, however, be incorporating the downloading of the actual data files into
 our workflows. Take a look at the provided `sample_sheet.csv` in the repo
@@ -98,7 +161,16 @@ So far, I have provided you with pre-built genome indexes. If you recall, these
 indexes are tool-specific and are file(s) that allow for more efficient searching
 of alignments in large reference sequences. For this week, I will ask you to 
 build your own complete genome index in bowtie2 for the provided human reference
-genome. 
+genome. For convenience, I have provided you with a fasta containing just the
+sequence of chromosome 21, which happens to be the smallest human chromosome. 
+You may use this to quickly confirm that your bowtie2-build command is working
+as expected. Keep in mind, although this is the *smallest* chromosome, it is 
+still 45 million basepairs long. When you are building this smaller index, you
+should also run it on a computing node, and not locally on the head node. It 
+should still finish quickly enough to be of use in troubleshooting.
+
+Keep the bowtie2-index generated from *just* chromosome 21 as you can use it
+next week when testing your alignment command. 
 
     1. Create a snakemake rule that runs bowtie2-build and generates an index
       for the entire human reference genome
