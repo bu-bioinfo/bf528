@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Week 1: ChIPseq | BF528 - Applications in Translational Bioinformatics</title>
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="Week 1: ChIPseq | BF528 - Applications in Translational Bioinformatics">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Week 1: ChIPseq | BF528 - Applications in Translational Bioinformatics">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+<meta name="description" content="0.21 Week 1: Getting Started Read the paper This analysis is based on the data published in this study: Barutcu et al. RUNX1 Contributes to Higher-Order Chromatin Organization and Gene Regulation...">
+<meta property="og:description" content="0.21 Week 1: Getting Started Read the paper This analysis is based on the data published in this study: Barutcu et al. RUNX1 Contributes to Higher-Order Chromatin Organization and Gene Regulation...">
+<meta name="twitter:description" content="0.21 Week 1: Getting Started Read the paper This analysis is based on the data published in this study: Barutcu et al. RUNX1 Contributes to Higher-Order Chromatin Organization and Gene Regulation...">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">BF528 - Applications in Translational Bioinformatics</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
+<li><a class="" href="introduction.html">Introduction</a></li>
+<li><a class="" href="genomics-genes-and-genomes.html">Genomics, Genes, and Genomes</a></li>
+<li><a class="" href="git.html">git</a></li>
+<li><a class="" href="computational-pipeline-strategies.html">Computational Pipeline Strategies</a></li>
+<li><a class="" href="computational-environment-management.html">Computational Environment Management</a></li>
+<li><a class="" href="sequence-analysis-fundamentals.html">Sequence Analysis Fundamentals</a></li>
+<li><a class="" href="nd-gen-sequencing.html">2nd Gen Sequencing</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-1.html">Sequence Analysis - RNA-Seq 1</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-2.html">Sequence Analysis - RNA-Seq 2</a></li>
+<li><a class="" href="scc-cluster-usage.html">SCC cluster usage</a></li>
+<li><a class="" href="biological-data-formats.html">Biological Data Formats</a></li>
+<li><a class="" href="gene-sets-and-enrichment.html">Gene sets and enrichment</a></li>
+<li><a class="" href="replicability-vs-reproducibility-strategies.html">Replicability vs Reproducibility Strategies</a></li>
+<li><a class="" href="sequence-analysis---chip-seq.html">Sequence Analysis - ChIP-Seq</a></li>
+<li><a class="" href="genome-browsers.html">Genome Browsers</a></li>
+<li><a class="" href="sequence-analysis---atac-seq.html">Sequence Analysis - ATAC-Seq</a></li>
+<li><a class="" href="biological-databases.html">Biological Databases</a></li>
+<li><a class="" href="genomic-variation-and-snp-analysis.html">Genomic Variation and SNP Analysis</a></li>
+<li><a class="" href="microbiome-metagenomics.html">Microbiome: Metagenomics</a></li>
+<li><a class="" href="microbiome-16s.html">Microbiome: 16S</a></li>
+<li><a class="" href="proteomics.html">Proteomics</a></li>
+<li><a class="" href="metabolomics.html">Metabolomics</a></li>
+<li><a class="" href="docker.html">Docker</a></li>
+<li><a class="" href="single-cell-analysis-part-1.html">Single Cell Analysis Part 1</a></li>
+<li><a class="" href="single-cell-analysis-part-2.html">Single Cell Analysis Part 2</a></li>
+<li><a class="" href="single-cell-analysis-part-3.html">Single Cell Analysis Part 3</a></li>
+<li><a class="" href="assignment-0-snakemake.html">Assignment 0: snakemake</a></li>
+<li><a class="" href="project-writeup-instructions.html">Project Writeup Instructions</a></li>
+<li><a class="" href="project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html">Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></li>
+<li><a class="" href="week-1-rnaseq.html">Week 1: RNAseq</a></li>
+<li><a class="" href="week-2-rnaseq.html">Week 2: RNAseq</a></li>
+<li><a class="" href="week-3-rnaseq.html">Week 3: RNAseq</a></li>
+<li><a class="" href="week-4-rnaseq.html">Week 4: RNAseq</a></li>
+<li><a class="" href="week-5-rnaseq.html">Week 5: RNAseq</a></li>
+<li><a class="" href="project-2---chipseq-analysis-of-the-human-transcription-factor-runx1.html">Project 2 - ChIPseq analysis of the human transcription factor Runx1</a></li>
+<li><a class="active" href="week-1-chipseq.html">Week 1: ChIPseq</a></li>
+<li><a class="" href="project-3-single-cell-analysis-of-the-mouse-kidney.html">Project 3: Single Cell Analysis of the Mouse Kidney</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-1-chipseq" class="section level1 unnumbered">
+<h1>Week 1: ChIPseq<a class="anchor" aria-label="anchor" href="#week-1-chipseq"><i class="fas fa-link"></i></a>
+</h1>
+<div id="week-1-getting-started" class="section level2" number="0.21">
+<h2>
+<span class="header-section-number">0.21</span> Week 1: Getting Started<a class="anchor" aria-label="anchor" href="#week-1-getting-started"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>Read the paper</strong></p>
+<p>This analysis is based on the data published in this study: <em>Barutcu et al.
+RUNX1 Contributes to Higher-Order Chromatin Organization and Gene Regulation in
+Breast Cancer Cells. Biochimica et Biophysica Acta 1859 (11): 1389–97. PMID:
+PMID: 27514584</em></p>
+<p>Please read the paper to get a sense for the overall hypotheses, goals, and
+conclusions presented. Our analyses will be mostly attempting to reproduce
+Figure 2 and small sections of the supplementary material.</p>
+<p>We may also deviate from the published methods in favor of using more up-to-date
+strategies and tools on occasion. However, the workflow you will develop will
+still capture and recreate the same core biological signals observed in the
+original work.</p>
+<p><strong>Repo Setup</strong></p>
+<p>I have included a .gitignore file with every repo that should instruct git to
+ignore any non-code related files. Do not alter or delete this file. As a
+reminder, you should not push any data to github and you should always avoid
+adding any large files to github. Only push code and other simple text files to
+github. It’s tempting to simply perform a <code>git add *</code>, but I highly encourage
+you to be more granular and intentional by explicitly listing the files in your
+<code>git add</code> commands.</p>
+<p>The structure of your templated directory should resemble the following:</p>
+<pre><code>|-- results/
+    |-- Any processed data output, downloaded file, etc. should go in here. 
+        Remember to provide this path as an output for any tasks. I suggest
+        you employ a "flat" directory strategy and do not create any nested
+        directories inside results/, but you may do whatever works best for
+        you
+    
+|-- samples/
+    |-- The provided or downloaded fastq files should go here, remember to 
+        provide this path when referring to your input files. You should
+        have both the subsampled and full data in this directory.
+
+|-- envs/
+    |-- Contained within are the .yml files that describe the conda 
+        environments which will now be created per rule. You should not at
+        any time alter or edit these files for any reason.
+       
+|-- week1.snake
+    |-- We have provided you a template for the first week's snakefile. Do
+        not alter the `conda` directive in each rule at any time.
+    
+|-- week2.snake
+    |-- A template for the week 2 snakefile. Do not alter the `conda` 
+        directive in each rule at any time.
+    
+|-- week3.snake
+    |-- A template for the week 3 snakefile. Do not alter the `conda` 
+        directive in each rule at any time.
+
+|-- week(1, 2, 3)_methods.Rmd
+    |-- We have provided you with a Rmd notebook for you to quickly
+        write your preliminary methods for each week and display any 
+        preliminary results generated.
+        
+|-- week(1, 2, 3)_dag.png and complete_dag.png
+    |-- We've discussed that workflows can be represented visually in the
+        form of a DAG (directed acyclic graph). These diagrams represent the
+        tasks and dependencies your completed workflow for each week should 
+        perform and follow. Use these as a reference to visually remind
+        yourself the goals of each week's workflow. We will discuss in class
+        how you can automatically generate these from your own snakefiles.
+        
+|-- base_env.yml
+    |-- This is the yml file you should use to create the conda environment
+        for project 2. 
+
+|-- sample_sheet.csv
+    |-- A CSV file containing information regarding the samples / data files
+        for this experiment. There is a column for FTP links, which will be
+        used to download both the subsampled and full files. 
+
+|-- .gitignore
+    |-- A file that instructs git what to track and what not to track. I 
+        have automatically configured this to just track snakefiles and text.
+        Do not alter or delete this file at any time.</code></pre>
+<p><strong>Initial Setup</strong></p>
+<p>Please thoroughly read the landing page <a href="#project-2-chipseq-analysis-of-the-human-transcription-factor-runx1">Project 2 - ChIPseq</a>]</p>
+<p>I have made a large structural change to how we will be utilizing conda
+environments with our workflows.</p>
+<p><strong>An alternative to defining lists of samples in each rule</strong></p>
+<p>For the first project, we manually created python lists containing the name
+patterns used to drive each snakemake workflow. For this project, we will be
+employing an alternative method that stores this information in a fixed location
+in a .CSV file. Since we are creating this workflow in different snakefiles, we
+will still need to read in this information each time, but later when we connect
+our separate workflows into one, we will only need to do this once.</p>
+<p>Removing the sample information from our snakefiles / workflows also helps to
+generalize our workflows and would theoretically enable us to run the same
+workflow on a different set of samples by simply swapping in a different CSV.</p>
+<p><strong>Downloading the data</strong></p>
+<p>Last project, you gained some experience downloading files. For convenience, I
+have provided you in materials/project_2_chipseq/ the most up-to-date gencode
+human primary assembly reference genome and matching GTF. Please simply copy
+these files to your <code>results/</code> directory in your working directory.</p>
+<p>We will, however, be incorporating the downloading of the actual data files into
+our workflows. Take a look at the provided <code>sample_sheet.csv</code> in the repo
+template you cloned. This contains all of the information about our samples and
+the <code>condition</code> column indicates which samples represent our IP and which are
+the input control. You’ll also notice the column <code>ftp_link</code> and an associated
+address for where each file can be downloaded from. These are small subsampled
+files that I created and uploaded to Zenodo (an open source data sharing
+platform for science). You can use these small files to quickly test your code
+and they should run and finish quickly.</p>
+<p>You’ll notice that in the first week’s snakefile, I have provided you a rule that
+automatically downloads these files. At the same time, it also renames these
+files to make them more amenable to working in snakemake with wildcards. We will
+have discussed roughly what this <code>rule wget_files</code> is doing, and how it uses a
+<code>lambda</code> expression to define a function on the fly. Do not alter this rule as
+it will be responsible for setting up your files with consistent naming patterns.</p>
+<p>Listed below will be the tasks you are responsible for accomplishing this week:</p>
+<p><strong>Quality Control</strong></p>
+<p>Similar to last project, we are going to check some of the main quality metrics
+for NGS data using fastQC.</p>
+<pre><code>1. Create a snakemake rule that runs fastqc on the 4 samples and outputs
+  its results to the results/ directory</code></pre>
+<p><strong>Trimming</strong></p>
+<p>As we discussed in lecture, there are occasions where our sequencing reads are
+“contaminated” with portions of the sequencing adapter or the quality of the
+base calls is poor. We did not perform adapter or quality trimming on our reads
+in the last project since STAR performs local alignment and will automatically
+“trim” adapters by soft clipping reads (aligning only the portions that align
+well without enforcing end-to-end alignment). For this dataset, we will perform
+adapter trimming with trimmomatic, which will also trim low quality bases.</p>
+<pre><code>1. Create a snakemake rule that runs trimmomatic on the FASTQ files
+    - Use the provided adapter file in materials/project_2_chipseq/
+    - Include the following command and parameters:
+        - ILLUMINACLIP:{adapters}:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15</code></pre>
+<p><strong>Building a genome index</strong></p>
+<p>So far, I have provided you with pre-built genome indexes. If you recall, these
+indexes are tool-specific and are file(s) that allow for more efficient searching
+of alignments in large reference sequences. For this week, I will ask you to
+build your own complete genome index in bowtie2 for the provided human reference
+genome. For convenience, I have provided you with a fasta containing just the
+sequence of chromosome 21, which happens to be the smallest human chromosome.
+You may use this to quickly confirm that your bowtie2-build command is working
+as expected. Keep in mind, although this is the <em>smallest</em> chromosome, it is
+still 45 million basepairs long. When you are building this smaller index, you
+should also run it on a computing node, and not locally on the head node. It
+should still finish quickly enough to be of use in troubleshooting.</p>
+<p>Keep the bowtie2-index generated from <em>just</em> chromosome 21 as you can use it
+next week when testing your alignment command.</p>
+<pre><code>1. Create a snakemake rule that runs bowtie2-build and generates an index
+  for the entire human reference genome
+    - Leave every parameter at default
+    </code></pre>
+<p><strong>Swap to the full data</strong></p>
+<p>We will talk more about the various bioinformatics databases that store sequencing
+data, but we will be using EMBL-ENA as they store ftp links to the full FASTA
+files for most data deposited into GEO.</p>
+<pre><code>1. Navigate to the EMBL-ENA website and search for the listed GEO accession
+  in the paper in the search bar.
+
+2. Go to the "Project" page for this accession and look under the "Read Files"
+  section.
+
+3. Match the SRR names found in the `sample_sheet.csv` with the files listed
+  here
+  
+4. Swap the ftp_links value in the CSV with the FTP links for the full files
+  from EMBL-ENA.
+  
+5. Re-run your snakemake workflow</code></pre>
+<p><strong>Week 1 Tasks</strong></p>
+<ul>
+<li><p>Read the paper and familiarize yourself with their main goals and the general
+results they published</p></li>
+<li><p>Understand the new strategy we will be employing to better integrate conda
+environments and have snakemake utilize specific environments for specific rules</p></li>
+<li><p>Write a snakemake rule that runs fastqc as specified</p></li>
+<li><p>Write a snakemake rule that runs trimmomatic as specified</p></li>
+<li><p>Write a snakemake rule that runs bowtie2-build and generates a full genome
+index for the human reference genome</p></li>
+<li><p>Swap your FTP links in the sample_sheet.csv with the links to the full data
+you find on the EMBl-ENA website</p></li>
+</ul>
+<p>You should now have both the subsampled data as well as the full data processed
+by your week 1 snakemake file. Going forward, you can use the subsampled data
+to troubleshoot your code before swapping your snakefiles logic to run on the
+full data.</p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="project-2---chipseq-analysis-of-the-human-transcription-factor-runx1.html">Project 2 - ChIPseq analysis of the human transcription factor Runx1</a></div>
+<div class="next"><a href="project-3-single-cell-analysis-of-the-mouse-kidney.html">Project 3: Single Cell Analysis of the Mouse Kidney</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#week-1-chipseq">Week 1: ChIPseq</a></li>
+<li><a class="nav-link" href="#week-1-getting-started"><span class="header-section-number">0.21</span> Week 1: Getting Started</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>BF528 - Applications in Translational Bioinformatics</strong>" was written by . </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>
