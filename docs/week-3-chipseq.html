@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Week 3: ChIPseq | BF528 - Applications in Translational Bioinformatics</title>
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="Week 3: ChIPseq | BF528 - Applications in Translational Bioinformatics">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Week 3: ChIPseq | BF528 - Applications in Translational Bioinformatics">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+<meta name="description" content="Peak calling Now that we have our aligned reads and performed basic quality control, we are going to proceed to peak calling using HOMER. This utility requires us to first convert the BAM files to...">
+<meta property="og:description" content="Peak calling Now that we have our aligned reads and performed basic quality control, we are going to proceed to peak calling using HOMER. This utility requires us to first convert the BAM files to...">
+<meta name="twitter:description" content="Peak calling Now that we have our aligned reads and performed basic quality control, we are going to proceed to peak calling using HOMER. This utility requires us to first convert the BAM files to...">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">BF528 - Applications in Translational Bioinformatics</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
+<li><a class="" href="introduction.html">Introduction</a></li>
+<li><a class="" href="genomics-genes-and-genomes.html">Genomics, Genes, and Genomes</a></li>
+<li><a class="" href="git.html">git</a></li>
+<li><a class="" href="computational-pipeline-strategies.html">Computational Pipeline Strategies</a></li>
+<li><a class="" href="computational-environment-management.html">Computational Environment Management</a></li>
+<li><a class="" href="sequence-analysis-fundamentals.html">Sequence Analysis Fundamentals</a></li>
+<li><a class="" href="nd-gen-sequencing.html">2nd Gen Sequencing</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-1.html">Sequence Analysis - RNA-Seq 1</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-2.html">Sequence Analysis - RNA-Seq 2</a></li>
+<li><a class="" href="scc-cluster-usage.html">SCC cluster usage</a></li>
+<li><a class="" href="biological-data-formats.html">Biological Data Formats</a></li>
+<li><a class="" href="gene-sets-and-enrichment.html">Gene sets and enrichment</a></li>
+<li><a class="" href="replicability-vs-reproducibility-strategies.html">Replicability vs Reproducibility Strategies</a></li>
+<li><a class="" href="sequence-analysis---chip-seq.html">Sequence Analysis - ChIP-Seq</a></li>
+<li><a class="" href="genome-browsers.html">Genome Browsers</a></li>
+<li><a class="" href="sequence-analysis---atac-seq.html">Sequence Analysis - ATAC-Seq</a></li>
+<li><a class="" href="biological-databases.html">Biological Databases</a></li>
+<li><a class="" href="genomic-variation-and-snp-analysis.html">Genomic Variation and SNP Analysis</a></li>
+<li><a class="" href="microbiome-metagenomics.html">Microbiome: Metagenomics</a></li>
+<li><a class="" href="microbiome-16s.html">Microbiome: 16S</a></li>
+<li><a class="" href="proteomics.html">Proteomics</a></li>
+<li><a class="" href="metabolomics.html">Metabolomics</a></li>
+<li><a class="" href="docker.html">Docker</a></li>
+<li><a class="" href="single-cell-analysis-part-1.html">Single Cell Analysis Part 1</a></li>
+<li><a class="" href="single-cell-analysis-part-2.html">Single Cell Analysis Part 2</a></li>
+<li><a class="" href="single-cell-analysis-part-3.html">Single Cell Analysis Part 3</a></li>
+<li><a class="" href="assignment-0-snakemake.html">Assignment 0: snakemake</a></li>
+<li><a class="" href="project-writeup-instructions.html">Project Writeup Instructions</a></li>
+<li><a class="" href="project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html">Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></li>
+<li><a class="" href="week-1-rnaseq.html">Week 1: RNAseq</a></li>
+<li><a class="" href="week-2-rnaseq.html">Week 2: RNAseq</a></li>
+<li><a class="" href="week-3-rnaseq.html">Week 3: RNAseq</a></li>
+<li><a class="" href="week-4-rnaseq.html">Week 4: RNAseq</a></li>
+<li><a class="" href="week-5-rnaseq.html">Week 5: RNAseq</a></li>
+<li><a class="" href="project-2---chipseq-analysis-of-the-human-transcription-factor-runx1.html">Project 2 - ChIPseq analysis of the human transcription factor Runx1</a></li>
+<li><a class="" href="week-1-chipseq.html">Week 1: ChIPseq</a></li>
+<li><a class="" href="week-2-chipseq.html">Week 2: ChIPseq</a></li>
+<li><a class="active" href="week-3-chipseq.html">Week 3: ChIPseq</a></li>
+<li><a class="" href="week-4-chipseq.html">Week 4: ChIPseq</a></li>
+<li><a class="" href="project-3-single-cell-analysis-of-the-mouse-kidney.html">Project 3: Single Cell Analysis of the Mouse Kidney</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-3-chipseq" class="section level1 unnumbered">
+<h1>Week 3: ChIPseq<a class="anchor" aria-label="anchor" href="#week-3-chipseq"><i class="fas fa-link"></i></a>
+</h1>
+<div id="peak-calling" class="section level2 unnumbered">
+<h2>Peak calling<a class="anchor" aria-label="anchor" href="#peak-calling"><i class="fas fa-link"></i></a>
+</h2>
+<p>Now that we have our aligned reads and performed basic quality control, we are
+going to proceed to peak calling using HOMER. This utility requires us to first
+convert the BAM files to a HOMER specific format, which is required prior to
+using HOMER to run downstream utilities.</p>
+<pre><code>1. Generate a snakemake rule that runs the makeTagDir command in HOMER for 
+  each sample. You will have a separate tag directory for each. 
+    - Leave every option at default parameters.</code></pre>
+<p>As denoted by the name, this utility creates a directory containing a multitude
+of output files. Please refer to the snakemake documentation on how to properly
+handle using directories as expected outputs.</p>
+<p>We are now ready to perform peak calling, which will look for areas of
+significant enrichment in the localization of our alignments. We will be
+performing peak calling using the input as our background enrichment control.
+Please read the documentation for the findPeaks command
+(<a href="http://homer.ucsd.edu/homer/ngs/peaks.html" class="uri">http://homer.ucsd.edu/homer/ngs/peaks.html</a>) and perform peak calling on both of
+our replicate experiments.</p>
+<pre><code>1. Generate a snakemake rule that runs findPeaks on your samples
+    - You will need this rule to run twice on each set of paired replicates
+    - Remember that Runx1 is a transcription factor that binds in relatively
+    “narrow” patterns.</code></pre>
+</div>
+<div id="converting-homer-specific-output-to-bed-format" class="section level2 unnumbered">
+<h2>Converting homer-specific output to BED format<a class="anchor" aria-label="anchor" href="#converting-homer-specific-output-to-bed-format"><i class="fas fa-link"></i></a>
+</h2>
+<p>The output of findPeaks is in a homer-specific format, and for ease of use, we
+will convert this .txt homer peak file to a standard BED formatted file.</p>
+<pre><code>1. Generate a snakemake rule that use the pos2bed utility to convert the
+  output to a BED format</code></pre>
+</div>
+<div id="determining-a-set-of-reproducible-peaks-using-bedtools" class="section level2 unnumbered">
+<h2>Determining a set of reproducible peaks using bedtools<a class="anchor" aria-label="anchor" href="#determining-a-set-of-reproducible-peaks-using-bedtools"><i class="fas fa-link"></i></a>
+</h2>
+<p>Each paired experiment (IP and INP) from each replicate will have generated a
+set of peaks that represent Runx1 binding locations in the genome. In
+general, there are two main ways that “reproducible” peaks are chosen for
+ChIP-seq experiments: 1. Irreproducible Discovery Rate (IDR), and 2.
+Intersections / Unions of peaks. You will use the latter strategy and Bedtools
+to produce your own set of “reproducible peaks” from your two peak files.</p>
+<pre><code>1. Using only bedtools, generate a single list of “reproducible peaks”. You
+  may use whatever strategy you like and we will ask you to justify your
+  choice later.</code></pre>
+</div>
+<div id="removing-signal-artifact-regions-from-our-peak-lists" class="section level2 unnumbered">
+<h2>Removing signal-artifact regions from our peak lists<a class="anchor" aria-label="anchor" href="#removing-signal-artifact-regions-from-our-peak-lists"><i class="fas fa-link"></i></a>
+</h2>
+<p>Experimentally, it has been shown that there are regions of the genome that are
+nearly always present in ChIPseq experiments at high levels. These regions are
+considered to be noise and signal-artifacts that are not representative of the
+target enrichment. It is generally advised to remove any peaks that are found in
+these regions as they likely represent erroneous signal.</p>
+<pre><code>1. Create a snakemake rule that uses bedtools to filter out any of your
+  reproducible peaks that fall into these blacklisted regions and output the
+  remaining peaks to a new BED file</code></pre>
+</div>
+<div id="annotating-our-peaks-to-their-nearest-genomic-feature" class="section level2 unnumbered">
+<h2>Annotating our peaks to their nearest genomic feature<a class="anchor" aria-label="anchor" href="#annotating-our-peaks-to-their-nearest-genomic-feature"><i class="fas fa-link"></i></a>
+</h2>
+<p>With our now filtered list of reproducible peaks, we are going to perform a
+simple annotation that assigns these peaks to their nearest genomic feature.
+This will allow us to glean some information of which genomic regions they fall
+into (promoters, introns, etc.) and what genes they are in close proximity to.</p>
+<pre><code>1. Use the annotatePeaks.pl utility in HOMER to annotate your list of
+  reproducible peaks. - This utility will create a simple TSV / .txt file of
+  annotated peaks</code></pre>
+</div>
+<div id="performing-motif-finding-to-look-for-enrichment-of-known-binding-sequences" class="section level2 unnumbered">
+<h2>Performing motif finding to look for enrichment of known binding sequences<a class="anchor" aria-label="anchor" href="#performing-motif-finding-to-look-for-enrichment-of-known-binding-sequences"><i class="fas fa-link"></i></a>
+</h2>
+<p>Using this same set of reproducible peaks, we are going to perform motif finding
+to look for enriched motifs found in our peak locations. For simplicity, we will
+be performing this step using HOMER. As we are using the hg39 build of the human
+reference genome, you should supply the path to the FASTA as specified in the
+instructions for running findMotifsGenome.pl.</p>
+<pre><code>1. Run findMotifsGenome.pl on your list of reproducible peaks to generate a
+  motif enrichment analysis</code></pre>
+</div>
+<div id="week-3-tasks" class="section level2 unnumbered">
+<h2>Week 3 Tasks<a class="anchor" aria-label="anchor" href="#week-3-tasks"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><p>Generated a snakemake rule that runs the makeTagDir utility on each of your
+sorted BAM files</p></li>
+<li><p>Create a snakemake rule that runs HOMER findPeaks on your samples using the
+tag directories generated previously. This should run <em>twice</em>, once for each
+set of paired experiments (rep1 and rep2)</p></li>
+<li><p>Created a snakemake rule that converts both of your findPeaks output files to
+BED format</p></li>
+<li><p>Created a snakemake rule that uses only bedtools to generate a new BED file
+containing the “reproducible” peaks</p></li>
+<li><p>Create a snakemake rule that uses bedtools to filter out any “reproducible”
+peaks falling into blacklisted regions</p></li>
+<li><p>Create a snakemake rule that performs motif finding on your list of filtered,
+reproducible peaks</p></li>
+</ul>
+<p><strong>CHALLENGE</strong></p>
+<p>The authors of the original paper use the MEME suite of tools to perform motif
+finding. However, they do not specify the parameters used in this analysis and
+the input to MEME is not a list of peaks (which is our current output). For this
+optional challenge, instead of performing motif finding in HOMER, use MEME-ChIP
+as they did in the paper to discover enriched motifs.</p>
+<p>In general, you will have to figure out how to do the following:</p>
+<ul>
+<li><p>Install the Meme suite into your conda environment</p></li>
+<li><p>Extract chromosome sizes from the human gencode reference</p></li>
+<li><p>Determine the average size of your peaks</p></li>
+<li><p>Use your chromosome sizes, the average size of your peaks, and BedTools to
+make a BED file containing all of your peaks expanded to around ~500bp in size.</p></li>
+<li><p>Extract the DNA sequences from the regions in your BED file from a bgzipped
+genomic FASTA file for the gencode reference.</p></li>
+<li><p>Run MEME-ChIP using your FASTA file of DNA sequences covered by your peaks</p></li>
+</ul>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="week-2-chipseq.html">Week 2: ChIPseq</a></div>
+<div class="next"><a href="week-4-chipseq.html">Week 4: ChIPseq</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#week-3-chipseq">Week 3: ChIPseq</a></li>
+<li><a class="nav-link" href="#peak-calling">Peak calling</a></li>
+<li><a class="nav-link" href="#converting-homer-specific-output-to-bed-format">Converting homer-specific output to BED format</a></li>
+<li><a class="nav-link" href="#determining-a-set-of-reproducible-peaks-using-bedtools">Determining a set of reproducible peaks using bedtools</a></li>
+<li><a class="nav-link" href="#removing-signal-artifact-regions-from-our-peak-lists">Removing signal-artifact regions from our peak lists</a></li>
+<li><a class="nav-link" href="#annotating-our-peaks-to-their-nearest-genomic-feature">Annotating our peaks to their nearest genomic feature</a></li>
+<li><a class="nav-link" href="#performing-motif-finding-to-look-for-enrichment-of-known-binding-sequences">Performing motif finding to look for enrichment of known binding sequences</a></li>
+<li><a class="nav-link" href="#week-3-tasks">Week 3 Tasks</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>BF528 - Applications in Translational Bioinformatics</strong>" was written by . </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

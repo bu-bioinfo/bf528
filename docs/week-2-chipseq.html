@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Week 2: ChIPseq | BF528 - Applications in Translational Bioinformatics</title>
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="Week 2: ChIPseq | BF528 - Applications in Translational Bioinformatics">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Week 2: ChIPseq | BF528 - Applications in Translational Bioinformatics">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+<meta name="description" content="Aligning reads to the reference genome Now that we have performed basic quality control on our reads, we are going to align them to the human reference genome using bowtie2. Using the index you...">
+<meta property="og:description" content="Aligning reads to the reference genome Now that we have performed basic quality control on our reads, we are going to align them to the human reference genome using bowtie2. Using the index you...">
+<meta name="twitter:description" content="Aligning reads to the reference genome Now that we have performed basic quality control on our reads, we are going to align them to the human reference genome using bowtie2. Using the index you...">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">BF528 - Applications in Translational Bioinformatics</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
+<li><a class="" href="introduction.html">Introduction</a></li>
+<li><a class="" href="genomics-genes-and-genomes.html">Genomics, Genes, and Genomes</a></li>
+<li><a class="" href="git.html">git</a></li>
+<li><a class="" href="computational-pipeline-strategies.html">Computational Pipeline Strategies</a></li>
+<li><a class="" href="computational-environment-management.html">Computational Environment Management</a></li>
+<li><a class="" href="sequence-analysis-fundamentals.html">Sequence Analysis Fundamentals</a></li>
+<li><a class="" href="nd-gen-sequencing.html">2nd Gen Sequencing</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-1.html">Sequence Analysis - RNA-Seq 1</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-2.html">Sequence Analysis - RNA-Seq 2</a></li>
+<li><a class="" href="scc-cluster-usage.html">SCC cluster usage</a></li>
+<li><a class="" href="biological-data-formats.html">Biological Data Formats</a></li>
+<li><a class="" href="gene-sets-and-enrichment.html">Gene sets and enrichment</a></li>
+<li><a class="" href="replicability-vs-reproducibility-strategies.html">Replicability vs Reproducibility Strategies</a></li>
+<li><a class="" href="sequence-analysis---chip-seq.html">Sequence Analysis - ChIP-Seq</a></li>
+<li><a class="" href="genome-browsers.html">Genome Browsers</a></li>
+<li><a class="" href="sequence-analysis---atac-seq.html">Sequence Analysis - ATAC-Seq</a></li>
+<li><a class="" href="biological-databases.html">Biological Databases</a></li>
+<li><a class="" href="genomic-variation-and-snp-analysis.html">Genomic Variation and SNP Analysis</a></li>
+<li><a class="" href="microbiome-metagenomics.html">Microbiome: Metagenomics</a></li>
+<li><a class="" href="microbiome-16s.html">Microbiome: 16S</a></li>
+<li><a class="" href="proteomics.html">Proteomics</a></li>
+<li><a class="" href="metabolomics.html">Metabolomics</a></li>
+<li><a class="" href="docker.html">Docker</a></li>
+<li><a class="" href="single-cell-analysis-part-1.html">Single Cell Analysis Part 1</a></li>
+<li><a class="" href="single-cell-analysis-part-2.html">Single Cell Analysis Part 2</a></li>
+<li><a class="" href="single-cell-analysis-part-3.html">Single Cell Analysis Part 3</a></li>
+<li><a class="" href="assignment-0-snakemake.html">Assignment 0: snakemake</a></li>
+<li><a class="" href="project-writeup-instructions.html">Project Writeup Instructions</a></li>
+<li><a class="" href="project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html">Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></li>
+<li><a class="" href="week-1-rnaseq.html">Week 1: RNAseq</a></li>
+<li><a class="" href="week-2-rnaseq.html">Week 2: RNAseq</a></li>
+<li><a class="" href="week-3-rnaseq.html">Week 3: RNAseq</a></li>
+<li><a class="" href="week-4-rnaseq.html">Week 4: RNAseq</a></li>
+<li><a class="" href="week-5-rnaseq.html">Week 5: RNAseq</a></li>
+<li><a class="" href="project-2---chipseq-analysis-of-the-human-transcription-factor-runx1.html">Project 2 - ChIPseq analysis of the human transcription factor Runx1</a></li>
+<li><a class="" href="week-1-chipseq.html">Week 1: ChIPseq</a></li>
+<li><a class="active" href="week-2-chipseq.html">Week 2: ChIPseq</a></li>
+<li><a class="" href="week-3-chipseq.html">Week 3: ChIPseq</a></li>
+<li><a class="" href="week-4-chipseq.html">Week 4: ChIPseq</a></li>
+<li><a class="" href="project-3-single-cell-analysis-of-the-mouse-kidney.html">Project 3: Single Cell Analysis of the Mouse Kidney</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-2-chipseq" class="section level1 unnumbered">
+<h1>Week 2: ChIPseq<a class="anchor" aria-label="anchor" href="#week-2-chipseq"><i class="fas fa-link"></i></a>
+</h1>
+<div id="aligning-reads-to-the-reference-genome" class="section level2 unnumbered">
+<h2>Aligning reads to the reference genome<a class="anchor" aria-label="anchor" href="#aligning-reads-to-the-reference-genome"><i class="fas fa-link"></i></a>
+</h2>
+<p>Now that we have performed basic quality control on our reads, we are going to
+align them to the human reference genome using bowtie2. Using the index you
+generated last week, align each of the FASTQ files to the human reference
+genome. By default, bowtie2 outputs in SAM format and typically, it is more
+convenient and friendly to your disk space to work with BAM files as they are
+compressed. Nearly all utilities that operate on SAM files can also
+interchangeably work with BAM files</p>
+<pre><code>1. Align your reads to the human reference genome using the index you
+  created last week 
+    - Leave all other bowtie2 parameters at default
+    - In the same command, automatically convert the bowtie2 output to a BAM
+      file using samtools</code></pre>
+</div>
+<div id="sorting-and-indexing-our-alignment-files" class="section level2 unnumbered">
+<h2>Sorting and indexing our alignment files<a class="anchor" aria-label="anchor" href="#sorting-and-indexing-our-alignment-files"><i class="fas fa-link"></i></a>
+</h2>
+<p>For many downstream applications, most notably visualization, the alignments in
+BAM files need to be sorted and indexed, in order to allow for fast and random
+access without searching the entire file. We will now sort, and index all of
+our generated BAM files using samtools. Read the manual pages for the samtools
+sort and samtools index commands for how to use them.</p>
+<pre><code>1. Generate a snakemake rule that sorts each of your BAM files 
+2. Generate another snakemake rule that creates a BAM index for your sorted 
+  files</code></pre>
+</div>
+<div id="quality-control-with-flagstats-and-multiqc" class="section level2 unnumbered">
+<h2>Quality control with flagstats and MultiQC<a class="anchor" aria-label="anchor" href="#quality-control-with-flagstats-and-multiqc"><i class="fas fa-link"></i></a>
+</h2>
+<p>As before, we will perform a quick quality check on our alignment using samtools
+and then collect all of the QC information we have generated so far using
+MultiQC.</p>
+<pre><code>1. Create a snakemake rule that runs samtools flagstat on all of your
+  aligned files
+2. Create a snakemake rule that runs MultiQC on your project directory</code></pre>
+</div>
+<div id="generating-bigwig-files-and-comparing-similarity-between-samples" class="section level2 unnumbered">
+<h2>Generating bigwig files and comparing “similarity” between samples<a class="anchor" aria-label="anchor" href="#generating-bigwig-files-and-comparing-similarity-between-samples"><i class="fas fa-link"></i></a>
+</h2>
+<p>Now that we have performed basic quality control, we are going to convert our
+aligned BAM files to a more tractable format for analysis and visualization. We
+will be using the deeptools package to convert the information in our BAM files
+to a bigWig format, which is a compressed binary indexed file that is typically
+used to store quantitative data associated with genomic regions. In essence, we
+can divide every chromosome into bins of equal and known size and count the
+number of alignments falling into each region. This enables a simple but
+intuitive plot where we can visualize the entire length of any arbitrary region
+in the genome and the number of alignments found in each region This enables
+us to look at the “signal” coming from various regions of the genome.</p>
+<p>This is often used in ChIPseq experiments to visualize where our factor of
+interest is binding. Regions with higher alignment counts, if the underlying
+molecular biology experiment worked, should represent regions where our factor
+is most likely binding. Understanding where in the genome a factor is binding is
+what enables the determination of what genes that factor is regulating, and the
+mechanisms by which it functions.</p>
+<p>We can also use this information to make some general quantitative comparisons
+between our samples since they are all unified in format (i.e. each sample
+represents the entire genome split into the same sized bins and with an
+associated count).</p>
+<p>We will use this property to perform a Pearson correlation on
+the signal generated from each of the samples. In an ideal world, if the
+experiment worked exactly as intended, and both biological replicates were
+correctly capturing Runx1 binding sites, their signal represented in bigWig
+format should be exactly the same or at the very least, highly correlated. Given
+our knowledge of what the input control represents, we could also assume that
+our inputs should be substantially different than our IP samples.</p>
+<pre><code>1. Using the bamcoverage utility in deeptools, generate a bigWig file for
+  each sorted BAM
+    - Leave all parameters at default
+  
+2. Once you have produced all of the bigwig files, use the
+  multiBigWigSummary utility and the plotCorrelation utility to produce a
+  clustered heatmap of the Pearson correlation values between all the samples.
+  Refer to their respective manual pages here for help:
+  https://deeptools.readthedocs.io/en/develop/content/list_of_tools.html</code></pre>
+</div>
+<div id="week-2-tasks" class="section level2 unnumbered">
+<h2>Week 2 Tasks<a class="anchor" aria-label="anchor" href="#week-2-tasks"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><p>Align your reads using bowtie2 to your previously created bowtie2 genome index
+for the full human reference genome. Make sure you are automatically converting
+the output of bowtie2 to a BAM file using <code>|</code> and samtools.</p></li>
+<li><p>Create a snakemake rule that sorts each of your BAM files</p></li>
+<li><p>Create a snakemake rule that generates a BAM index file for your sorted BAM
+files</p></li>
+<li><p>Create a snakemake rule that runs samtools flagstat on each of your samples</p></li>
+<li><p>Create a snakemake rule that runs MultiQC to aggregate all of the outputs from
+QC utilities</p></li>
+<li><p>Create a snakemake rule that generates a bigWig file from each of your sorted
+BAM files</p></li>
+<li><p>Create a snakemake rule that runs multiBigwig summary to generate a single
+matrix containing all of the information from your bigwigs</p></li>
+<li><p>Create a snakemake rule that runs plotCorrelation to generate a figure
+displaying the pearson correlation values between all of our samples</p></li>
+</ul>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="week-1-chipseq.html">Week 1: ChIPseq</a></div>
+<div class="next"><a href="week-3-chipseq.html">Week 3: ChIPseq</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#week-2-chipseq">Week 2: ChIPseq</a></li>
+<li><a class="nav-link" href="#aligning-reads-to-the-reference-genome">Aligning reads to the reference genome</a></li>
+<li><a class="nav-link" href="#sorting-and-indexing-our-alignment-files">Sorting and indexing our alignment files</a></li>
+<li><a class="nav-link" href="#quality-control-with-flagstats-and-multiqc">Quality control with flagstats and MultiQC</a></li>
+<li><a class="nav-link" href="#generating-bigwig-files-and-comparing-similarity-between-samples">Generating bigwig files and comparing “similarity” between samples</a></li>
+<li><a class="nav-link" href="#week-2-tasks">Week 2 Tasks</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>BF528 - Applications in Translational Bioinformatics</strong>" was written by . </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

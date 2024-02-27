@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Week 4: ChIPseq | BF528 - Applications in Translational Bioinformatics</title>
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="Week 4: ChIPseq | BF528 - Applications in Translational Bioinformatics">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Week 4: ChIPseq | BF528 - Applications in Translational Bioinformatics">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+<meta name="description" content="Plotting signal coverage across gene bodies using the bigWig files Now that we have performed peak calling and motif analysis, we will begin to generate a set of visualizations. You have already...">
+<meta property="og:description" content="Plotting signal coverage across gene bodies using the bigWig files Now that we have performed peak calling and motif analysis, we will begin to generate a set of visualizations. You have already...">
+<meta name="twitter:description" content="Plotting signal coverage across gene bodies using the bigWig files Now that we have performed peak calling and motif analysis, we will begin to generate a set of visualizations. You have already...">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">BF528 - Applications in Translational Bioinformatics</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
+<li><a class="" href="introduction.html">Introduction</a></li>
+<li><a class="" href="genomics-genes-and-genomes.html">Genomics, Genes, and Genomes</a></li>
+<li><a class="" href="git.html">git</a></li>
+<li><a class="" href="computational-pipeline-strategies.html">Computational Pipeline Strategies</a></li>
+<li><a class="" href="computational-environment-management.html">Computational Environment Management</a></li>
+<li><a class="" href="sequence-analysis-fundamentals.html">Sequence Analysis Fundamentals</a></li>
+<li><a class="" href="nd-gen-sequencing.html">2nd Gen Sequencing</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-1.html">Sequence Analysis - RNA-Seq 1</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-2.html">Sequence Analysis - RNA-Seq 2</a></li>
+<li><a class="" href="scc-cluster-usage.html">SCC cluster usage</a></li>
+<li><a class="" href="biological-data-formats.html">Biological Data Formats</a></li>
+<li><a class="" href="gene-sets-and-enrichment.html">Gene sets and enrichment</a></li>
+<li><a class="" href="replicability-vs-reproducibility-strategies.html">Replicability vs Reproducibility Strategies</a></li>
+<li><a class="" href="sequence-analysis---chip-seq.html">Sequence Analysis - ChIP-Seq</a></li>
+<li><a class="" href="genome-browsers.html">Genome Browsers</a></li>
+<li><a class="" href="sequence-analysis---atac-seq.html">Sequence Analysis - ATAC-Seq</a></li>
+<li><a class="" href="biological-databases.html">Biological Databases</a></li>
+<li><a class="" href="genomic-variation-and-snp-analysis.html">Genomic Variation and SNP Analysis</a></li>
+<li><a class="" href="microbiome-metagenomics.html">Microbiome: Metagenomics</a></li>
+<li><a class="" href="microbiome-16s.html">Microbiome: 16S</a></li>
+<li><a class="" href="proteomics.html">Proteomics</a></li>
+<li><a class="" href="metabolomics.html">Metabolomics</a></li>
+<li><a class="" href="docker.html">Docker</a></li>
+<li><a class="" href="single-cell-analysis-part-1.html">Single Cell Analysis Part 1</a></li>
+<li><a class="" href="single-cell-analysis-part-2.html">Single Cell Analysis Part 2</a></li>
+<li><a class="" href="single-cell-analysis-part-3.html">Single Cell Analysis Part 3</a></li>
+<li><a class="" href="assignment-0-snakemake.html">Assignment 0: snakemake</a></li>
+<li><a class="" href="project-writeup-instructions.html">Project Writeup Instructions</a></li>
+<li><a class="" href="project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html">Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></li>
+<li><a class="" href="week-1-rnaseq.html">Week 1: RNAseq</a></li>
+<li><a class="" href="week-2-rnaseq.html">Week 2: RNAseq</a></li>
+<li><a class="" href="week-3-rnaseq.html">Week 3: RNAseq</a></li>
+<li><a class="" href="week-4-rnaseq.html">Week 4: RNAseq</a></li>
+<li><a class="" href="week-5-rnaseq.html">Week 5: RNAseq</a></li>
+<li><a class="" href="project-2---chipseq-analysis-of-the-human-transcription-factor-runx1.html">Project 2 - ChIPseq analysis of the human transcription factor Runx1</a></li>
+<li><a class="" href="week-1-chipseq.html">Week 1: ChIPseq</a></li>
+<li><a class="" href="week-2-chipseq.html">Week 2: ChIPseq</a></li>
+<li><a class="" href="week-3-chipseq.html">Week 3: ChIPseq</a></li>
+<li><a class="active" href="week-4-chipseq.html">Week 4: ChIPseq</a></li>
+<li><a class="" href="project-3-single-cell-analysis-of-the-mouse-kidney.html">Project 3: Single Cell Analysis of the Mouse Kidney</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-4-chipseq" class="section level1 unnumbered">
+<h1>Week 4: ChIPseq<a class="anchor" aria-label="anchor" href="#week-4-chipseq"><i class="fas fa-link"></i></a>
+</h1>
+<div id="plotting-signal-coverage-across-gene-bodies-using-the-bigwig-files" class="section level2 unnumbered">
+<h2>Plotting signal coverage across gene bodies using the bigWig files<a class="anchor" aria-label="anchor" href="#plotting-signal-coverage-across-gene-bodies-using-the-bigwig-files"><i class="fas fa-link"></i></a>
+</h2>
+<p>Now that we have performed peak calling and motif analysis, we will begin to
+generate a set of visualizations. You have already generated bigWig
+representations of all of your samples, which we will now use to create a signal
+coverage plot of Runx1 enrichment across gene bodies.</p>
+<p>We will be using the bigWig files to plot the signal coverage relative to the
+transcription start site (TSS) and transcription termination site (TTS) of all
+genes in the hg38 reference. This type of plot is often helpful for determining
+the potential regulatory mechanisms of the factor of interest. In our case,
+transcription factors are known to directly bind DNA and are commonly found
+located in the promoter region (near the TSS) where they will typically recruit
+other cofactors, chromatin remodelers or components of the RNA polymerase
+complex II to regulate gene expression. If we inspect the plot in figure 1c of
+the original publication, we can see that the signal distribution for the Runx1
+ChIP is primarily concentrated in the promoter-TSS region of genes.</p>
+<p>We will be creating a similar plot which will provide a quick visualization of
+the average signal (Runx1 binding) across the gene body of all genes. In essence,
+we will scale every gene to a uniform size and display the counts of
+alignments falling in the annotated regions of the gene. This will allow us to
+quickly visualize at a very high-level (close to the TSS or TTS) where we see
+large concentrations of potential Runx1 binding in genes.</p>
+</div>
+<div id="extracting-information-from-the-ucsc-table-browser-for-all-genes" class="section level2 unnumbered">
+<h2>Extracting information from the UCSC Table Browser for all genes<a class="anchor" aria-label="anchor" href="#extracting-information-from-the-ucsc-table-browser-for-all-genes"><i class="fas fa-link"></i></a>
+</h2>
+<p>To do this, we have already generated our bigWig files, but we will require the
+genomic coordinates of all of the genes in the reference genome in order to
+determine which bins to utilize. We will be using the UCSC table browser to
+extract out this information.</p>
+<p>Navigate to the UCSC Table Browser, use the following settings to extract a BED
+file listing the TSS/TTS locations for every gene in the reference genome:</p>
+<div class="inline-figure"><img src="projects/project_3_chipseq/ucsc_tablebrowser.png" width="487"></div>
+<p>On the following page, do not change any options and you will be prompted to
+download a BED file containing the requested information.</p>
+<pre><code>1. Put this BED file into your `results/` working directory on SCC. </code></pre>
+<p>This is a simple use case, but the UCSC table browser and UCSC genome browser
+are incredibly powerful tools and repositories for genome-wide sequencing data.</p>
+</div>
+<div id="run-the-computematrix-utility-in-deeptools" class="section level2 unnumbered">
+<h2>Run the computeMatrix utility in deeptools<a class="anchor" aria-label="anchor" href="#run-the-computematrix-utility-in-deeptools"><i class="fas fa-link"></i></a>
+</h2>
+<p>The computeMatrix utility will calculate “scores” or “counts” from a bigWig file
+falling into the specified regions provided in a BED file. For our case, we are
+interested in the signal coverage found in the gene bodies of all genes in the
+reference genome.</p>
+<pre><code>1. Using the bigwig files for the IP samples generated earlier and the BED
+  file of hg38 genes you just downloaded in BED format, run the computeMatrix
+  utility in DeepTools in the scale-regions mode twice (once for each IP
+  sample).
+    - Be sure to include regions in a 2kb window up- and downstream of the
+      TSS and TTS, respectively.
+    - You may leave every other parameter at its default value. </code></pre>
+<p>You will need to run computeMatrix twice (on both IP replicates) and generate
+two matrices of values.</p>
+<pre><code>2. Run plotProfile on each matrix to generate a visualization of the Runx1 
+  signal coverage averaged across the body of all genes in the reference
+  genome</code></pre>
+</div>
+<div id="integration-with-rnaseq-results" class="section level2 unnumbered">
+<h2>Integration with RNAseq results<a class="anchor" aria-label="anchor" href="#integration-with-rnaseq-results"><i class="fas fa-link"></i></a>
+</h2>
+<p>Now that we have processed and performed basic analysis of our ChIPseq data, we
+will move on to attempting to reproduce figure 2f, which combines the data
+generated from the ChIPseq experiment and the RNAseq experiment from Figure 1.
+The authors produced a simple stacked bar chart displaying how often a Runx1
+binding peak was observed in genes that were found to be differentially
+expressed in the same cell line upon Runx1 knockdown using a shRNA.</p>
+<p>For the following sections, we have provided you with a .Rmd for week 3. If you
+are more comfortable working in jupyterlab, you may do so as well but ensure that
+you upload your notebook to your github repo.</p>
+<p>Navigate to the GEO for accession GSE75070 and locate the differential
+expression results for the RNAseq experimented in figure 1.</p>
+<pre><code>1. Download the DESeq2 results
+  (GSE75070_MCF7_shRUNX1_shNS_RNAseq_log2_foldchange.txt.gz) and upload this
+  file to the SCC.
+
+2. In a jupyter notebook, apply the same filters and cutoffs as specified in
+  the methods of the original paper. How many DE genes do you find? Do they
+  match the numbers reported in the paper?
+  
+3. Using the list of DE genes downloaded in step 1 and the annotated peak
+file you generated previously, recreate figure 2f and supplementary figure
+S2D and produce stacked barcharts showing the proportions of DE genes with a
+Runx1 peak found within +/- 5kb, +/- 20kb, and +/- 100kb of the TSS</code></pre>
+<p>N.B. In their figure 2f, they calculate one set of numbers relative to the TSS
+and another set relative to the ‘whole body’ of the gene. For our case, just
+calculate all of these values using the distance to TSS found in your
+annotations file.</p>
+</div>
+<div id="visualizing-peaks-using-a-genome-browser" class="section level2 unnumbered">
+<h2>Visualizing peaks using a genome browser<a class="anchor" aria-label="anchor" href="#visualizing-peaks-using-a-genome-browser"><i class="fas fa-link"></i></a>
+</h2>
+<p>Next, we will be generating visualizations of the peaks found in the promoter
+regions of two key genes reported by the paper. Download IGV
+(<a href="https://software.broadinstitute.org/software/igv/" class="uri">https://software.broadinstitute.org/software/igv/</a>) locally on your computer or
+use the newly added web-only interface (<a href="https://igv.org/app/" class="uri">https://igv.org/app/</a>). You will need
+to provide the following files:</p>
+<pre><code>1. bigWig files for the runx1_rep1, runx1_rep2, inp_rep1, inp_rep2 samples
+
+2. Your BED file of reproducible peaks
+
+3. The primary assembly GTF file containing the annotations for our 
+  reference genome.</code></pre>
+<p>You will have to download these files locally, but all of them are small enough
+that this should cause no issues.</p>
+<pre><code>1. Navigate to the two genes mentioned specifically in the paper, 
+  MALAT1 and NEAT1. 
+    - Do you see the same general results as in figures 2d and 2e?
+    - Do you agree with the conclusions made by the authors in these figures?</code></pre>
+<p>Although we have discouraged you from generating figures using screenshots, we
+are going to produce the same figure as found in 2d and 2e.</p>
+<pre><code>1. Please take screenshots of the MALAT1 and NEAT1 promoter regions
+  displaying the signal coverage found in your bigWig files and the peak
+  locations from your BED file of reproducible peaks.</code></pre>
+</div>
+<div id="week-4-tasks" class="section level2 unnumbered">
+<h2>Week 4 Tasks<a class="anchor" aria-label="anchor" href="#week-4-tasks"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><p>Download a BED file of the genomic coordinates of all refseq genes for the
+human reference genome using the UCSC table Browser</p></li>
+<li><p>Download the processed differential expression results for the RNAseq
+experiment performed in Figure 1. Apply the same filters and cutoffs and
+generate a dataframe containing only the significantly DE genes.</p></li>
+<li><p>Created a snakemake rule that uses the deeptools computeMatrix utility, the
+aforementioned BED file of hg38 genes and the previously generated bigWig files
+to generate a matrix of signal values</p></li>
+<li><p>Created a snakemake rule that uses the deeptools plotProfile utility to
+generate a simple visualization of the signal across hg38 genes using the matrix
+outputs from the computeMatrix step</p></li>
+</ul>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="week-3-chipseq.html">Week 3: ChIPseq</a></div>
+<div class="next"><a href="project-3-single-cell-analysis-of-the-mouse-kidney.html">Project 3: Single Cell Analysis of the Mouse Kidney</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#week-4-chipseq">Week 4: ChIPseq</a></li>
+<li><a class="nav-link" href="#plotting-signal-coverage-across-gene-bodies-using-the-bigwig-files">Plotting signal coverage across gene bodies using the bigWig files</a></li>
+<li><a class="nav-link" href="#extracting-information-from-the-ucsc-table-browser-for-all-genes">Extracting information from the UCSC Table Browser for all genes</a></li>
+<li><a class="nav-link" href="#run-the-computematrix-utility-in-deeptools">Run the computeMatrix utility in deeptools</a></li>
+<li><a class="nav-link" href="#integration-with-rnaseq-results">Integration with RNAseq results</a></li>
+<li><a class="nav-link" href="#visualizing-peaks-using-a-genome-browser">Visualizing peaks using a genome browser</a></li>
+<li><a class="nav-link" href="#week-4-tasks">Week 4 Tasks</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>BF528 - Applications in Translational Bioinformatics</strong>" was written by . </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>
