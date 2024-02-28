@@ -67,8 +67,9 @@ This will allow us to glean some information of which genomic regions they fall
 into (promoters, introns, etc.) and what genes they are in close proximity to.
 
     1. Use the annotatePeaks.pl utility in HOMER to annotate your list of
-      reproducible peaks. - This utility will create a simple TSV / .txt file of
-      annotated peaks
+      reproducible peaks. 
+        - Do not use the pre-provided HOMER options for genomes. Provide the 
+          decompressed GTF file. 
 
 ## Performing motif finding to look for enrichment of known binding sequences {-}
 
@@ -80,7 +81,10 @@ instructions for running findMotifsGenome.pl.
 
     1. Run findMotifsGenome.pl on your list of reproducible peaks to generate a
       motif enrichment analysis
-
+        - Do not use any of the provided HOMER options for the genome. You must
+          first decompress the reference genome fasta and provide this in the
+          HOMER command. 
+          
 ## Week 3 Tasks {-}
 
 - Generated a snakemake rule that runs the makeTagDir utility on each of your

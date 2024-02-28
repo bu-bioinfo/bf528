@@ -111,8 +111,9 @@ named descriptively with the names of major packages we have discussed.
 
 If you inspect one, you can see that we have defined our *channels* (the same
 ones we used in conda, conda-forge listed first, followed by bioconda) and then
-we have listed our *dependencies*, which is simply a specific version of the
-package(s) we want installed. It will look something like below:
+we have listed our *dependencies*, which are simply specific packages we want
+installed. You can also notice that I have specified a specific version.
+It will look something like below:
 
 ```
 channels:

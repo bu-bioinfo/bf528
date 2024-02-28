@@ -86,6 +86,11 @@ Familiarize yourself with the material on bash scripting and cluster computing h
 
 [downloadable slides](https://docs.google.com/presentation/d/1CmIhOXuIvVwxRm4tRK5BZi5f_APmB4T8pUzrV_DJdww/export/pptx)
 
+# Putting it all together - snakemake {-}
+[online slides](https://docs.google.com/presentation/d/1PWZwc8CViraU4Uksm3wqukczSfGawARWy5GQAx8D9S8/present?usp=sharing)
+
+[downloadable slides](https://docs.google.com/presentation/d/1PWZwc8CViraU4Uksm3wqukczSfGawARWy5GQAx8D9S8/export/pptx)
+
 # Sequence Analysis - ChIP-Seq {-}
 [online slides](https://docs.google.com/presentation/d/1JarJGLbgTdSzUW6U1TmyNAUReNVUxfvUTBJ8hLhCAWg/present?usp=sharing)
 
