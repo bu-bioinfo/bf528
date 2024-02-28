@@ -56,6 +56,7 @@
 <li><a class="" href="biological-data-formats.html">Biological Data Formats</a></li>
 <li><a class="" href="gene-sets-and-enrichment.html">Gene sets and enrichment</a></li>
 <li><a class="" href="replicability-vs-reproducibility-strategies.html">Replicability vs Reproducibility Strategies</a></li>
+<li><a class="" href="putting-it-all-together---snakemake.html">Putting it all together - snakemake</a></li>
 <li><a class="" href="sequence-analysis---chip-seq.html">Sequence Analysis - ChIP-Seq</a></li>
 <li><a class="" href="genome-browsers.html">Genome Browsers</a></li>
 <li><a class="" href="sequence-analysis---atac-seq.html">Sequence Analysis - ATAC-Seq</a></li>
@@ -158,8 +159,9 @@ simple annotation that assigns these peaks to their nearest genomic feature.
 This will allow us to glean some information of which genomic regions they fall
 into (promoters, introns, etc.) and what genes they are in close proximity to.</p>
 <pre><code>1. Use the annotatePeaks.pl utility in HOMER to annotate your list of
-  reproducible peaks. - This utility will create a simple TSV / .txt file of
-  annotated peaks</code></pre>
+  reproducible peaks. 
+    - Do not use the pre-provided HOMER options for genomes. Provide the 
+      decompressed GTF file. </code></pre>
 </div>
 <div id="performing-motif-finding-to-look-for-enrichment-of-known-binding-sequences" class="section level2 unnumbered">
 <h2>Performing motif finding to look for enrichment of known binding sequences<a class="anchor" aria-label="anchor" href="#performing-motif-finding-to-look-for-enrichment-of-known-binding-sequences"><i class="fas fa-link"></i></a>
@@ -170,7 +172,11 @@ be performing this step using HOMER. As we are using the hg39 build of the human
 reference genome, you should supply the path to the FASTA as specified in the
 instructions for running findMotifsGenome.pl.</p>
 <pre><code>1. Run findMotifsGenome.pl on your list of reproducible peaks to generate a
-  motif enrichment analysis</code></pre>
+  motif enrichment analysis
+    - Do not use any of the provided HOMER options for the genome. You must
+      first decompress the reference genome fasta and provide this in the
+      HOMER command. 
+      </code></pre>
 </div>
 <div id="week-3-tasks" class="section level2 unnumbered">
 <h2>Week 3 Tasks<a class="anchor" aria-label="anchor" href="#week-3-tasks"><i class="fas fa-link"></i></a>
