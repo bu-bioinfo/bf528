@@ -44,6 +44,15 @@ The structure of your templated directory should resemble the following:
         |-- Contained within are the .yml files that describe the conda 
             environments which will now be created per rule. You should not at
             any time alter or edit these files for any reason.
+    
+    |-- refs/
+        |-- week(1, 2, 3, 4)_dag|rulegraph.png and complete_dag|rulegraph.png
+            |-- We've discussed that workflows can be represented visually in the
+                form of a DAG (directed acyclic graph). These diagrams represent the
+                tasks and dependencies your completed workflow for each week should 
+                perform and follow. Use these as a reference to visually remind
+                yourself the goals of each week's workflow. We will discuss in class
+                how you can automatically generate these from your own snakefiles.
            
     |-- week1.snake
         |-- We have provided you a template for the first week's snakefile. Do
@@ -65,15 +74,7 @@ The structure of your templated directory should resemble the following:
         |-- We have provided you with a Rmd notebook for you to quickly
             write your preliminary methods for each week and display any 
             preliminary results generated.
-            
-    |-- week(1, 2, 3, 4)_dag|rulegraph.png and complete_dag|rulegraph.png
-        |-- We've discussed that workflows can be represented visually in the
-            form of a DAG (directed acyclic graph). These diagrams represent the
-            tasks and dependencies your completed workflow for each week should 
-            perform and follow. Use these as a reference to visually remind
-            yourself the goals of each week's workflow. We will discuss in class
-            how you can automatically generate these from your own snakefiles.
-            
+          
     |-- base_env.yml
         |-- This is the yml file you should use to create the conda environment
             for project 2. 
