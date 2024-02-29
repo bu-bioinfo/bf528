@@ -103,6 +103,9 @@ containing the “reproducible” peaks
 - Create a snakemake rule that uses bedtools to filter out any “reproducible”
 peaks falling into blacklisted regions
 
+- Create a snakemake rule that annotates the "reproducible" peaks to their
+nearest genomic feature
+
 - Create a snakemake rule that performs motif finding on your list of filtered,
 reproducible peaks
 

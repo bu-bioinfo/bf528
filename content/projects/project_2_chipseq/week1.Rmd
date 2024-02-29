@@ -56,13 +56,17 @@ The structure of your templated directory should resemble the following:
     |-- week3.snake
         |-- A template for the week 3 snakefile. Do not alter the `conda` 
             directive in each rule at any time.
+      
+    |-- week4.snake
+        |-- A template for the week 4 snakefile. Do not alter the `conda`
+            directive in each rule at any time
     
-    |-- week(1, 2, 3)_methods.Rmd
+    |-- week(1, 2, 3, 4)_methods.Rmd
         |-- We have provided you with a Rmd notebook for you to quickly
             write your preliminary methods for each week and display any 
             preliminary results generated.
             
-    |-- week(1, 2, 3)_dag.png and complete_dag.png
+    |-- week(1, 2, 3, 4)_dag|rulegraph.png and complete_dag|rulegraph.png
         |-- We've discussed that workflows can be represented visually in the
             form of a DAG (directed acyclic graph). These diagrams represent the
             tasks and dependencies your completed workflow for each week should 
