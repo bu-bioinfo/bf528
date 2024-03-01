@@ -170,7 +170,7 @@ sequence of chromosome 21, which happens to be the smallest human chromosome.
 You may use this to quickly confirm that your bowtie2-build command is working
 as expected. Keep in mind, although this is the *smallest* chromosome, it is 
 still 45 million basepairs long. When you are building this smaller index, you
-should also run it on a computing node, and not locally on the head node. It 
+should also run it on a compute node, and not locally on the head node. It 
 should still finish quickly enough to be of use in troubleshooting.
 
 Keep the bowtie2-index generated from *just* chromosome 21 as you can use it
