@@ -156,7 +156,19 @@ seem reasonable? Are they statistically significant?</p>
 <p>As a reminder, you can find the paper here: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4344930/">O’meara et al, 2016</a></p>
 <p>In figure 1D, the authors are displaying the trends over time in gene expression
 for some selected genes known to be involved in the differentiation process. We
-are going to try to replicate these general results using our data.</p>
+are going to try to replicate these general results using our data. Keep in
+mind, we will not be <strong>exactly</strong> recreating the figure. They used a different
+methodology to process their data and we will be attempting to reproduce the
+same core results from figure 1D, not the same exact figure itself.</p>
+<p>Figure 1D is simply a visualization of the changes in gene expression over time
+for groups of genes the authors identified as being biologically interesting.
+For this purpose, we will simply be using the counts as normalized by the DESeq2
+median-of-ratios method. If you wanted to perform various machine learning
+methods such as clustering of the data, you would want to consider various
+transformations that reduce the dependence of the variance on the mean (i.e. the
+heteroskedasticity of the data). Since we are simply trying to visualize the
+trends of counts over time, the DESeq2 normalized counts will suffice for
+showing the trends we are interested in.</p>
 <ol style="list-style-type: decimal">
 <li><p>Extract out the DESeq2 normalized counts from your dds object. A quick
 google search will lead you to the appropriate command. **N.B. You want the
