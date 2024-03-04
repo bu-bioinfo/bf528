@@ -198,7 +198,11 @@ files for most data deposited into GEO.
     4. Swap the ftp_links value in the CSV with the FTP links for the full files
       from EMBL-ENA.
       
-    5. Re-run your snakemake workflow
+    5. You will need to change some other columns in the `sample_sheet.csv` to
+      switch it from working on the subsampled files to full files. Full files
+      should not have the string "subsampled" in them.
+      
+    6. Re-run your snakemake workflow
 
         
 ## Week 1 Tasks {-}
@@ -217,7 +221,9 @@ environments and have snakemake utilize specific environments for specific rules
 index for the human reference genome
 
 - Swap your FTP links in the sample_sheet.csv with the links to the full data
-you find on the EMBl-ENA website
+you find on the EMBl-ENA website. You will need to change some other columns in
+the `sample_sheet.csv` to switch it from working on the subsampled files to full
+files. Full files should not have the string "subsampled" in them.
 
 You should now have both the subsampled data as well as the full data processed
 by your week 1 snakemake file. Going forward, you can use the subsampled data
