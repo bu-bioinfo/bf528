@@ -248,7 +248,17 @@ adapter trimming with trimmomatic, which will also trim low quality bases.</p>
 <pre><code>1. Create a snakemake rule that runs trimmomatic on the FASTQ files
     - Use the provided adapter file in materials/project_2_chipseq/
     - Include the following command and parameters:
-        - ILLUMINACLIP:{adapters}:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15</code></pre>
+        - ILLUMINACLIP:{adapters}:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15
+        </code></pre>
+<p>The official trimmomatic webpage will tell you to call the .jar file to run
+trimmomatic (i.e. java -jar trimmomatic.jar). Instead, you can also simply call
+it as such:</p>
+<pre><code>trimmomatic SE &lt;...your other flags and parameters...&gt;</code></pre>
+<p>It will also automatically detect the proper encoding and you do not need to
+specify -phred33.</p>
+<p>Otherwise as mentioned, you may use the set of arguments listed above and the
+syntax they provided in the official documentation to structure the correct
+command.</p>
 </div>
 <div id="building-a-genome-index" class="section level2 unnumbered">
 <h2>Building a genome index<a class="anchor" aria-label="anchor" href="#building-a-genome-index"><i class="fas fa-link"></i></a>
@@ -270,6 +280,9 @@ next week when testing your alignment command.</p>
   for the entire human reference genome
     - Leave every parameter at default
     </code></pre>
+<p>bowtie2-build will create a series of six output files. You may track these
+explicitly as your snakemake outputs or consider making use of <code>touch()</code>. Just
+remember the advantages and disadvantages of using <code>touch()</code>.</p>
 </div>
 <div id="swap-to-the-full-data" class="section level2 unnumbered">
 <h2>Swap to the full data<a class="anchor" aria-label="anchor" href="#swap-to-the-full-data"><i class="fas fa-link"></i></a>

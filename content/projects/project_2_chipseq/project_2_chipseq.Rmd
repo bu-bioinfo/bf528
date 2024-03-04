@@ -19,9 +19,9 @@ Barutcu et al. (2016) used RNA-seq, ChIP-seq, and HI-C to investigate the role
 of Runx1 in the MCF7 cell line, a model line used for the study of breast
 cancer. In this project, we will reproduce several results from Supplementary
 Figure 2 and Figure 1, which comprise common preliminary analyses of ChIP-seq
-data. Each group will process the ChIP-seq data from raw reads to called peaks,
-incorporate the provided RNA-seq data and ultimately attempt to reproduce the
-findings found in the paper.
+data. Each individual will process the ChIP-seq data from raw reads to called
+peaks, incorporate the provided RNA-seq data and ultimately attempt to reproduce
+the findings found in the paper.
 
 Upon completion of project 2, you will have gained the following skills:
 
