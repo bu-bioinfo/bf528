@@ -165,7 +165,7 @@ snakemake -s your_snakefile.snake --sdm conda -c 1
 <!-- running using qsub (full data) -->
 ```
 snakemake -s your_snakefile.snake --sdm conda --executor cluster-generic \
---cluster-generic-submit-cmd "your qsub command here" --jobs X
+--cluster-generic-submit-cmd "qsub -P bf528 -pe omp {threads}" --jobs X
 ```
 The `--sdm conda` flag instructs snakemake to use the listed conda environment
 specified in each rule when running the actual tasks. If you do not include this
