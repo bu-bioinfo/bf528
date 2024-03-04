@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Week 1: ChIPseq | BF528 - Applications in Translational Bioinformatics</title>
-<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta name="generator" content="bookdown 0.38 with bs4_book()">
 <meta property="og:title" content="Week 1: ChIPseq | BF528 - Applications in Translational Bioinformatics">
 <meta property="og:type" content="book">
 <meta name="twitter:card" content="summary">
@@ -288,7 +288,11 @@ files for most data deposited into GEO.</p>
 4. Swap the ftp_links value in the CSV with the FTP links for the full files
   from EMBL-ENA.
   
-5. Re-run your snakemake workflow</code></pre>
+5. You will need to change some other columns in the `sample_sheet.csv` to
+  switch it from working on the subsampled files to full files. Full files
+  should not have the string "subsampled" in them.
+  
+6. Re-run your snakemake workflow</code></pre>
 </div>
 <div id="week-1-tasks" class="section level2 unnumbered">
 <h2>Week 1 Tasks<a class="anchor" aria-label="anchor" href="#week-1-tasks"><i class="fas fa-link"></i></a>
@@ -303,7 +307,9 @@ environments and have snakemake utilize specific environments for specific rules
 <li><p>Write a snakemake rule that runs bowtie2-build and generates a full genome
 index for the human reference genome</p></li>
 <li><p>Swap your FTP links in the sample_sheet.csv with the links to the full data
-you find on the EMBl-ENA website</p></li>
+you find on the EMBl-ENA website. You will need to change some other columns in
+the <code>sample_sheet.csv</code> to switch it from working on the subsampled files to full
+files. Full files should not have the string “subsampled” in them.</p></li>
 </ul>
 <p>You should now have both the subsampled data as well as the full data processed
 by your week 1 snakemake file. Going forward, you can use the subsampled data
