@@ -224,7 +224,7 @@ times:</p></li>
 <!-- running locally (only on subsampled data) --><pre><code>snakemake -s your_snakefile.snake --sdm conda -c 1</code></pre>
 <!-- running using qsub (full data) -->
 <pre><code>snakemake -s your_snakefile.snake --sdm conda --executor cluster-generic \
---cluster-generic-submit-cmd "your qsub command here" --jobs X</code></pre>
+--cluster-generic-submit-cmd "qsub -P bf528 -pe omp {threads}" --jobs X</code></pre>
 <p>The <code>--sdm conda</code> flag instructs snakemake to use the listed conda environment
 specified in each rule when running the actual tasks. If you do not include this
 flag, your jobs will fail since the appropriate conda environment will not be
