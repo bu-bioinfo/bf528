@@ -160,6 +160,22 @@ adapter trimming with trimmomatic, which will also trim low quality bases.
         - Use the provided adapter file in materials/project_2_chipseq/
         - Include the following command and parameters:
             - ILLUMINACLIP:{adapters}:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15
+            
+The official trimmomatic webpage will tell you to call the .jar file to run
+trimmomatic (i.e. java -jar trimmomatic.jar). Instead, you can also simply call
+it as such:
+
+```
+trimmomatic SE <...your other flags and parameters...>
+```
+
+It will also automatically detect the proper encoding and you do not need to 
+specify -phred33.
+
+Otherwise as mentioned, you may use the set of arguments listed above and the
+syntax they provided in the official documentation to structure the correct
+command.
+
 
 ## Building a genome index {-}
 
@@ -181,6 +197,10 @@ next week when testing your alignment command.
     1. Create a snakemake rule that runs bowtie2-build and generates an index
       for the entire human reference genome
         - Leave every parameter at default
+        
+bowtie2-build will create a series of six output files. You may track these
+explicitly as your snakemake outputs or consider making use of `touch()`. Just
+remember the advantages and disadvantages of using `touch()`. 
         
 ## Swap to the full data {-}
 
