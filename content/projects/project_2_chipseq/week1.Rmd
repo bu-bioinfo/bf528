@@ -26,6 +26,8 @@ github. It's tempting to simply perform a `git add *`, but I highly encourage
 you to be more granular and intentional by explicitly listing the files in your
 `git add` commands. 
 
+The github classroom link is here: https://classroom.github.com/a/wWocEgqL
+
 The structure of your templated directory should resemble the following:
 
     |-- results/
