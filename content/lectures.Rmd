@@ -97,9 +97,9 @@ Familiarize yourself with the material on bash scripting and cluster computing h
 [downloadable slides](https://docs.google.com/presentation/d/1JarJGLbgTdSzUW6U1TmyNAUReNVUxfvUTBJ8hLhCAWg/export/pptx)
 
 # Genome Browsers {-}
-[online slides](https://docs.google.com/presentation/d/1ObDpgPaNaWwn-a_pjeq09v1j-SjLXs0dpa9m6KTWXww/present?usp=sharing)
+[online slides](https://docs.google.com/presentation/d/1fXvA2nrCqWl-SCbM_BkAoLhRq8VMShWFAqYZISk1TCA/present?usp=sharing)
 
-[downloadable slides](https://docs.google.com/presentation/d/1ObDpgPaNaWwn-a_pjeq09v1j-SjLXs0dpa9m6KTWXww/export/pptx)
+[downloadable slides](https://docs.google.com/presentation/d/1fXvA2nrCqWl-SCbM_BkAoLhRq8VMShWFAqYZISk1TCA/export/pptx)
 
 # Sequence Analysis - ATAC-Seq {-}
 [online slides](https://docs.google.com/presentation/d/14FxXgKuC7Ul0G6tCN8gjjGKc89vAujQiQCcDnwuzdJA/present?usp=sharing)
@@ -159,3 +159,5 @@ Familiarize yourself with the material on bash scripting and cluster computing h
 [online slides](https://docs.google.com/presentation/d/1A2cqLqpZqajCRBVDUR5zS5wbWsH8X_lbo-uwdVyAK04/present?usp=sharing)
 
 [downloadable slides](https://docs.google.com/presentation/d/1A2cqLqpZqajCRBVDUR5zS5wbWsH8X_lbo-uwdVyAK04/export/pptx)
+
+# 
