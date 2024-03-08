@@ -226,6 +226,12 @@ files to make them more amenable to working in snakemake with wildcards. We will
 have discussed roughly what this <code>rule wget_files</code> is doing, and how it uses a
 <code>lambda</code> expression to define a function on the fly. Do not alter this rule as
 it will be responsible for setting up your files with consistent naming patterns.</p>
+<p><strong>N.B.</strong></p>
+<p>You’ll notice that the output of the rule that downloads your files sets up one
+way to work with wildcards for this project. You may use this pattern,
+<code>{condition}_{rep}</code> along with the values from the CSV loaded in at the top of
+the snakefile, the python variables CONDITIONS and REPS, to setup your wildcards
+for this snakefile.</p>
 <p>Listed below will be the tasks you are responsible for accomplishing this week:</p>
 </div>
 <div id="quality-control" class="section level2 unnumbered">
