@@ -136,6 +136,14 @@ have discussed roughly what this `rule wget_files` is doing, and how it uses a
 `lambda` expression to define a function on the fly. Do not alter this rule as 
 it will be responsible for setting up your files with consistent naming patterns.
 
+**N.B.**
+
+You'll notice that the output of the rule that downloads your files sets up one
+way to work with wildcards for this project. You may use this pattern,
+`{condition}_{rep}` along with the values from the CSV loaded in at the top of
+the snakefile, the python variables CONDITIONS and REPS, to setup your wildcards
+for this snakefile.
+
 Listed below will be the tasks you are responsible for accomplishing this week:
 
 ## Quality Control {-}
