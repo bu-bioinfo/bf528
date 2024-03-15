@@ -107,13 +107,9 @@ Familiarize yourself with the material on bash scripting and cluster computing h
 [downloadable slides](https://docs.google.com/presentation/d/14FxXgKuC7Ul0G6tCN8gjjGKc89vAujQiQCcDnwuzdJA/export/pptx)
 
 # Biological Databases {-}
-[online slides](https://docs.google.com/presentation/d/16K1JaYKGMo8bqcKf-l1FHHNzhtqCfrHWOdQ0xuokgYU/present?usp=sharing)
+[online slides](https://docs.google.com/presentation/d/1WebY_mwEaR4BdHULyz2hRhqxTASX4o0yx2CJM6yKyhI/present?usp=sharing)
 
-[downloadable slides](https://docs.google.com/presentation/d/16K1JaYKGMo8bqcKf-l1FHHNzhtqCfrHWOdQ0xuokgYU/export/pptx)
-
-[demo slides online](https://docs.google.com/presentation/d/1zdlwxhBb2_cmTQRyVgVEpV0YyFZipW5iGRtwTb8U984/present?usp=sharing)
-
-[demo slides downloadable](https://docs.google.com/presentation/d/1zdlwxhBb2_cmTQRyVgVEpV0YyFZipW5iGRtwTb8U984/export/pptx)
+[downloadable slides](https://docs.google.com/presentation/d/1WebY_mwEaR4BdHULyz2hRhqxTASX4o0yx2CJM6yKyhI/export/pptx)
 
 # Genomic Variation and SNP Analysis {-}
 [online slides](https://docs.google.com/presentation/d/1gWBIVMdS3ZejjzvoCd9WAdYkrvFs_lqZzxTeYR1LyVU/present?usp=sharing)
