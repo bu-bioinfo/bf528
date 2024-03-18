@@ -48,7 +48,7 @@ used to store quantitative data associated with genomic regions. In essence, we
 can divide every chromosome into bins of equal and known size and count the
 number of alignments falling into each region. This enables a simple but
 intuitive plot where we can visualize the entire length of any arbitrary region
-in the genome and the number of alignments found in each region This enables
+in the genome and the number of alignments found in each region. This enables
 us to look at the “signal” coming from various regions of the genome.
 
 This is often used in ChIPseq experiments to visualize where our factor of
@@ -59,9 +59,9 @@ what enables the determination of what genes that factor is regulating, and the
 mechanisms by which it functions.
 
 We can also use this information to make some general quantitative comparisons
-between our samples since they are all unified in format (i.e. each sample
-represents the entire genome split into the same sized bins and with an
-associated count). 
+between our samples since they are all unified in format (i.e. each bigWig
+representation of a sample consists of the entire genome split into the same 
+sized bins and with an associated count). 
 
 We will use this property to perform a Pearson correlation on
 the signal generated from each of the samples. In an ideal world, if the
