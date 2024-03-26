@@ -160,10 +160,17 @@ these regions as they likely represent erroneous signal.</p>
 simple annotation that assigns these peaks to their nearest genomic feature.
 This will allow us to glean some information of which genomic regions they fall
 into (promoters, introns, etc.) and what genes they are in close proximity to.</p>
+<p>Please note that you may need to specify an older version of the human reference
+in the options for this tool (hg19). If you want to use the latest version (hg39),
+you may need to have homer install it directly. There are some instructions here
+on how to install hg39 (<a href="http://homer.ucsd.edu/homer/introduction/configure.html" class="uri">http://homer.ucsd.edu/homer/introduction/configure.html</a>)
+or if you try to use this option, run annotatePeaks.pl, and it returns an error,
+it will include the command to install genomes in the error message.</p>
+<p>Because of our conda setup, the paths you need to install new genomes into HOMER
+is specific to each of your environments.</p>
 <pre><code>1. Use the annotatePeaks.pl utility in HOMER to annotate your list of
   reproducible peaks. 
-    - Do not use the pre-provided HOMER options for genomes. Provide the 
-      decompressed GTF file. </code></pre>
+    - Provide the decompressed GTF file. </code></pre>
 </div>
 <div id="performing-motif-finding-to-look-for-enrichment-of-known-binding-sequences" class="section level2 unnumbered">
 <h2>Performing motif finding to look for enrichment of known binding sequences<a class="anchor" aria-label="anchor" href="#performing-motif-finding-to-look-for-enrichment-of-known-binding-sequences"><i class="fas fa-link"></i></a>
