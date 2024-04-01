@@ -14,7 +14,7 @@ the potential regulatory mechanisms of the factor of interest. In our case,
 transcription factors are known to directly bind DNA and are commonly found
 located in the promoter region (near the TSS) where they will typically recruit
 other cofactors, chromatin remodelers or components of the RNA polymerase
-complex II to regulate gene expression. If we inspect the plot in figure 1c of
+complex II to regulate gene expression. If we inspect the plot in figure 2b of
 the original publication, we can see that the signal distribution for the Runx1
 ChIP is primarily concentrated in the promoter-TSS region of genes.
 
