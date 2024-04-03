@@ -67,11 +67,12 @@ This will allow us to glean some information of which genomic regions they fall
 into (promoters, introns, etc.) and what genes they are in close proximity to.
 
 Please note that you may need to specify an older version of the human reference
-in the options for this tool (hg19). If you want to use the latest version (hg39),
-you may need to have homer install it directly. There are some instructions here
-on how to install hg39 (http://homer.ucsd.edu/homer/introduction/configure.html)
-or if you try to use this option, run annotatePeaks.pl, and it returns an error, 
-it will include the command to install genomes in the error message. 
+in the options for this tool (hg18/hg19). If you want to use the latest version
+(hg38), you may need to have homer install it directly. There are some
+instructions here on how to install hg39
+(http://homer.ucsd.edu/homer/introduction/configure.html) or if you try to use
+this option, run annotatePeaks.pl, and it returns an error, it will include the
+command to install genomes in the error message.
 
 Because of our conda setup, the paths you need to install new genomes into HOMER
 is specific to each of your environments. 
