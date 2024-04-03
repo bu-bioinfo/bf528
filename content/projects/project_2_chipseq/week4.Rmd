@@ -36,7 +36,7 @@ Navigate to the UCSC Table Browser, use the following settings to extract a BED
 file listing the TSS/TTS locations for every gene in the reference genome:
 
 ```{r, echo=FALSE}
-knitr::include_graphics("projects/project_2_chipseq/ucsc_tablebrowser.png")
+knitr::include_graphics("/Users/Teaching/Desktop/bf_courses/bf528/content/projects/project_2_chipseq/ucsc_tablebrowser.png")
 ```
 
 On the following page, do not change any options and you will be prompted to
