@@ -47,7 +47,7 @@ download a BED file containing the requested information.
 This is a simple use case, but the UCSC table browser and UCSC genome browser
 are incredibly powerful tools and repositories for genome-wide sequencing data.
 
-## Run the computeMatrix utility in deeptools {-}
+## Run the computeMatrix and plotProfile utilities in deeptools {-}
 
 The computeMatrix utility will calculate "scores" or "counts" from a bigWig file
 falling into the specified regions provided in a BED file. For our case, we are
