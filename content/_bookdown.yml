@@ -14,7 +14,7 @@ rmd_files:
     - "projects/project_2_chipseq/week2.Rmd"
     - "projects/project_2_chipseq/week3.Rmd"
     - "projects/project_2_chipseq/week4.Rmd"
-    - "projects/project_3_scrnaseq/project_3_scrnaseq.Rmd"
+    - "projects/project_3_individual/project_3_individual.Rmd"
     
 delete_merged_file: true
 output_dir: "../docs"

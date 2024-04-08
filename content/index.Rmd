@@ -133,7 +133,7 @@ The three projects are as follows:
 
 1. [Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq][Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq]
 2. [ChIPseq analysis of the human transcription factor Runx1][Project 2: ChIPseq analysis of the human transcription factor Runx1]
-3. [Single Cell RNA-Seq Analysis of the Mouse Kidney][Project 3: Single Cell Analysis of the Mouse Kidney]
+3. [Individual Project][Project 3: Individual Project]
 
 Project guidelines for the written reports (1, 2, 3) are here:
 [Project Writeup Instructions]
