@@ -19,6 +19,3 @@ using-params-to-workaround-file-naming-requirements
 a-working-example-using-params-and-output
 your-turn
 table-of-contents-1
-week-1-getting-started
-week-2-downstream-analysis
-week-3-writing-a-report
