@@ -2,3 +2,64 @@
 ---
 
 # Project 3: Individual Project {-}
+
+For the final project, we will provide you a choice of datasets that we will ask
+you to analyze and explore. You will need to construct a working snakemake
+workflow that performs the appropriate processing steps and produce any required
+deliverables. We will give you all of the necessary details to perform the
+analysis, but we will not tell you the source of the data. You will perform a
+basic analysis and be asked to draw some high-level biological conclusions based
+on the results you generate.
+
+There are three datasets representing a RNAseq, a ChIPseq and an ATACseq
+dataset. We haven’t worked with ATACseq data directly, so choose this option if
+you want an extra challenge. I will provide some hints for ATACseq specifically,
+but you will be asked to figure out how to perform some additional steps on your
+own.
+
+## Project Proposal {-}
+To help guide you, you will write a short project proposal outlining what you
+will be doing to process the data. We will give you feedback on your plan and
+then you will need to follow the instructions for each dataset in terms of what
+you will be asked to deliver. The proposal should be no longer than 1 page and
+include the following:
+
+  1. A detailed methods section that describes the exact steps you will perform
+  in your workflow. This should include specific software tools and their
+  versions as well as any optional parameters that would affect the reproduction
+  of your analysis
+
+  2. A list of the questions you will address and the deliverables you will
+  produce for each project. You may simply copy these from this proposal page.
+  This is just to make it clear exactly what you need to produce / address in
+  the course of your analysis
+
+Please make this proposal your README on the github repo you create for this
+project. You can look at this example to get a sense for what it should include:
+
+## Universal Project Requirements {-}
+
+Your submission will be a github repository with a single snakefile that
+represents your entire workflow. Please accept the github classroom link and
+your repo should contain the following at completion:
+
+  1. A single snakefile that performs all of the necessary steps of your
+  workflow. 
+  
+  2. An envs/ directory with .yml files that specify the environments and
+  packages each of your snakemake rules will utilize. 
+    - You may simply copy the .yml specifications for different packages from 
+      the previous projects. 
+    - If you need to use a different tool, you can simply create a new .yml file
+      in the same style as the others
+  
+  3. A jupyter notebook or Rmarkdown that summarizes the findings of the
+  experiment: 
+    - This will include any discussions requested in the project
+      description 
+    - This will include any figures / plots requested in the project
+      description 
+    - This may also include any steps that are not easily incorporated into a
+      snakemake workflow
+    - The full methods section with any corrections from the initial proposal
+
