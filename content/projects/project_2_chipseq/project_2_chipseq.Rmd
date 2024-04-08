@@ -1,7 +1,7 @@
 ---
 ---
 
-# Project 2 - ChIPseq analysis of the human transcription factor Runx1 {-}
+# Project 2: ChIPseq analysis of the human transcription factor Runx1 {-}
 
 The github classroom link is here: https://classroom.github.com/a/wWocEgqL
 
