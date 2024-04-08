@@ -1,0 +1,26 @@
+# Week 5: ChIPseq {-}
+
+## Discussion Questions {-}
+
+Please accept the github classroom link and do your best to answer the discussion
+questions for project 2.
+
+                https://classroom.github.com/a/5U-kGyNX
+
+
+Please answer these questions to the best of your abilities. Most of these
+questions are conceptual thought questions where we ask you to explain your
+reasoning. Be brief! 
+
+At the end, I've also asked you to display some of the key results / figures
+generated from the workflow. This is more for me to assay how many of you were
+able to successfully produce these results. You can compare on your own how well
+you were able to reproduce the main biological findings from the original.
+
+I will ask you to submit your answers by next week, after which, we will provide
+you with feedback and comments in a timely manner. We will return this document
+to you with this feedback, and ask you to resubmit your answers after another
+week. If you address all of the comments and feedback in your resubmission, you
+will receive full credit for this second project.
+
+
