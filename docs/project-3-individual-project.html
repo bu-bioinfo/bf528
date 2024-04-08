@@ -18,9 +18,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="A book created with bookdown.">
-<meta property="og:description" content="A book created with bookdown.">
-<meta name="twitter:description" content="A book created with bookdown.">
+<meta name="description" content="For the final project, we will provide you a choice of datasets that we will ask you to analyze and explore. You will need to construct a working snakemake workflow that performs the appropriate...">
+<meta property="og:description" content="For the final project, we will provide you a choice of datasets that we will ask you to analyze and explore. You will need to construct a working snakemake workflow that performs the appropriate...">
+<meta name="twitter:description" content="For the final project, we will provide you a choice of datasets that we will ask you to analyze and explore. You will need to construct a working snakemake workflow that performs the appropriate...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -97,14 +97,76 @@
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="project-3-individual-project" class="section level1 unnumbered">
 <h1>Project 3: Individual Project<a class="anchor" aria-label="anchor" href="#project-3-individual-project"><i class="fas fa-link"></i></a>
 </h1>
-
+<p>For the final project, we will provide you a choice of datasets that we will ask
+you to analyze and explore. You will need to construct a working snakemake
+workflow that performs the appropriate processing steps and produce any required
+deliverables. We will give you all of the necessary details to perform the
+analysis, but we will not tell you the source of the data. You will perform a
+basic analysis and be asked to draw some high-level biological conclusions based
+on the results you generate.</p>
+<p>There are three datasets representing a RNAseq, a ChIPseq and an ATACseq
+dataset. We haven’t worked with ATACseq data directly, so choose this option if
+you want an extra challenge. I will provide some hints for ATACseq specifically,
+but you will be asked to figure out how to perform some additional steps on your
+own.</p>
+<div id="project-proposal" class="section level2 unnumbered">
+<h2>Project Proposal<a class="anchor" aria-label="anchor" href="#project-proposal"><i class="fas fa-link"></i></a>
+</h2>
+<p>To help guide you, you will write a short project proposal outlining what you
+will be doing to process the data. We will give you feedback on your plan and
+then you will need to follow the instructions for each dataset in terms of what
+you will be asked to deliver. The proposal should be no longer than 1 page and
+include the following:</p>
+<ol style="list-style-type: decimal">
+<li><p>A detailed methods section that describes the exact steps you will perform
+in your workflow. This should include specific software tools and their
+versions as well as any optional parameters that would affect the reproduction
+of your analysis</p></li>
+<li><p>A list of the questions you will address and the deliverables you will
+produce for each project. You may simply copy these from this proposal page.
+This is just to make it clear exactly what you need to produce / address in
+the course of your analysis</p></li>
+</ol>
+<p>Please make this proposal your README on the github repo you create for this
+project. You can look at this example to get a sense for what it should include:</p>
+</div>
+<div id="universal-project-requirements" class="section level2 unnumbered">
+<h2>Universal Project Requirements<a class="anchor" aria-label="anchor" href="#universal-project-requirements"><i class="fas fa-link"></i></a>
+</h2>
+<p>Your submission will be a github repository with a single snakefile that
+represents your entire workflow. Please accept the github classroom link and
+your repo should contain the following at completion:</p>
+<ol style="list-style-type: decimal">
+<li><p>A single snakefile that performs all of the necessary steps of your
+workflow.</p></li>
+<li><p>An envs/ directory with .yml files that specify the environments and
+packages each of your snakemake rules will utilize.
+- You may simply copy the .yml specifications for different packages from
+the previous projects.
+- If you need to use a different tool, you can simply create a new .yml file
+in the same style as the others</p></li>
+<li><p>A jupyter notebook or Rmarkdown that summarizes the findings of the
+experiment:
+- This will include any discussions requested in the project
+description
+- This will include any figures / plots requested in the project
+description
+- This may also include any steps that are not easily incorporated into a
+snakemake workflow
+- The full methods section with any corrections from the initial proposal</p></li>
+</ol>
+</div>
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="week-5-chipseq.html">Week 5: ChIPseq</a></div>
 <div class="empty"></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav"><li><a class="nav-link" href="#project-3-individual-project">Project 3: Individual Project</a></li></ul>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#project-3-individual-project">Project 3: Individual Project</a></li>
+<li><a class="nav-link" href="#project-proposal">Project Proposal</a></li>
+<li><a class="nav-link" href="#universal-project-requirements">Universal Project Requirements</a></li>
+</ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
