@@ -247,3 +247,4 @@ that week in this Rmarkdown as well.
 
 [Week 4](#week-4-chipseq)
 
+[Week 5](#week-5-chipseq)
