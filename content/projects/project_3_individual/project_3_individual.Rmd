@@ -37,13 +37,17 @@ produce for each project.
     the course of your analysis
 
 Please make this proposal your README on the github repo you create for this
-project. You can look at this example to get a sense for what it should include:
+project. You can look at the example below to get a sense for what it should
+include and there will also be a sample report so you have an idea of how to
+format your results.
+
+
 
 ## Universal Project Requirements {-}
 
 Your submission will be a github repository with a single snakefile that
 represents your entire workflow. Please accept the github classroom link and
-your repo should contain the following at completion:
+your repo should contain at minimum the following at completion:
 
 1. A single snakefile that performs all of the necessary steps of your
 workflow. 
@@ -63,3 +67,11 @@ experiment:
     snakemake workflow
     - The full methods section with any corrections from the initial proposal
 
+
+## Table of Contents {-}
+
+[RNAseq](#project-3-rnaseq)
+
+[ChIPseq](#project-3-chipseq)
+
+[ATACseq](#project-3-atacseq)

@@ -1,0 +1,95 @@
+---
+---
+
+# Project 3: ATACseq Individual Project {-}
+
+This dataset consists of two ATACseq replicates from a human source. Remember
+that ATACseq datasets typically do not have a control. I will provide some hints
+since you have not worked with this data type before. This project will be 
+slightly more challenging than the first two.
+
+You will start by performing QC and adapter trimming as you have done for other
+experiments. I would recommend you align reads using BowTie2 with the -X 2000
+flag. After alignment, you will need to first remove any alignments to the
+mitochondrial chromosome (look at samtools view options).
+
+After this filtering, you will want to shift your reads to account for the bias
+induced by the “tagmentation” process (there are various tools to accomplish 
+this including deeptools). After this, you will want to perform a quality
+control analysis by looking at the fragment distribution sizes for your samples
+using a tool like ATACSeqQC. 
+
+You can perform peak calling using MACS3 and their recommended default
+parameters for ATACseq for each replicate. Similar to ChIPseq, you will need to
+come up with a bedtool strategy to generate a single set of “reproducible” peaks
+and then filter any peaks falling into blacklisted regions. After this, you will
+perform similar analyses to a ChIPseq.
+
+You may find the following publications helpful:
+
+https://www.nature.com/articles/nmeth.2688
+
+https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-1929-3
+
+
+**Your report must address the following topics/questions in writing:**
+
+1. Briefly remark on the quality of the sequencing reads and the alignment
+statistics, make sure to specifically mention the following:
+    - Are there any concerning aspects of the quality control of your sequencing
+      reads?
+    - Are there any concerning aspects of the quality control related to
+      alignment?
+    - Based on all of your quality control, will you exclude any samples from
+      further analysis?
+
+2. After alignment, quickly calculate how many alignments were generated from 
+each sample in total and how many alignments were against the mitochondrial 
+chromosome
+    - Report the total number of alignments per sample
+    - Report the number of alignments against the mitochondrial genome
+      
+3. After performing peak calling analysis, generating a set of reproducible 
+peaks and filtering peaks from blacklisted regions, please answer the following:
+    - How many peaks are present in each of the replicates?
+    - How many peaks are present in your set of reproducible peaks? What strategy
+      did you use to determine "reproducible" peaks?
+    - How many peaks remain after filtering out peaks overlapping blacklisted
+      regions?
+    
+4. After performing motif analysis and gene enrichment on the peak annotations,
+please answer the following:
+    - Briefly discuss the main results of both of these analyses
+    - What can chromatin accessibility let us infer biologically?
+
+  
+**Deliverables**
+
+1. Produce a fragment length distribution plot for each of the samples 
+
+2. Produce a table of how many alignments for each sample before and after 
+filtering alignments falling on the mitochondrial chromosome
+
+3. Create a signal coverage plot centered on the TSS (plotProfile) for the 
+nucleosome-free regions (NFR) and the nucleosome-bound regions (NBR)
+    - You may consider fragments (<100bp) to be those from the NFR and the rest
+      as the NBR.
+  
+4. A table containing the number of peaks called in each replicate, and the
+number of reproducible peaks
+
+5. A single BED file containing the reproducible peaks you determined from the
+experiment.
+
+6. Perform motif finding on your reproducible peaks
+    - Create a single table / figure with the most interesting results
+    
+7. Perform a gene enrichment analysis on the annotated peaks using a 
+well-validated gene enrichment tool
+    - Create a single table / figure with the most interesting results
+
+8. Produce a figure that displays the proportions of regions that appear to have
+accessible chromatin called as a peak (Promoter, Intergenic, Intron, Exon, TTS,
+etc.)
+
+
