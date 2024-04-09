@@ -70,8 +70,8 @@ experiment:
 
 ## Table of Contents {-}
 
-[RNAseq](#project-3-rnaseq)
+[RNAseq](#project-3-rnaseq-individual-project)
 
-[ChIPseq](#project-3-chipseq)
+[ChIPseq](#project-3-chipseq-individual-project)
 
-[ATACseq](#project-3-atacseq)
+[ATACseq](#project-3-atacseq-individual-project)
