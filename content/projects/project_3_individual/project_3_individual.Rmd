@@ -69,6 +69,9 @@ experiment:
     - The full methods section with any corrections from the initial proposal
 
 
+The github classroom link is here: https://classroom.github.com/a/8-QdghaF
+
+
 ## Table of Contents {-}
 
 [RNAseq](#project-3-rnaseq-individual-project)

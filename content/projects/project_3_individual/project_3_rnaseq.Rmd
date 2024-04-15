@@ -3,7 +3,7 @@
 
 # Project 3: RNAseq Individual Project {-}
 
-This dataset consists of 6 samples: 4 WT and 4 KO derived from a human source.
+This dataset consists of 6 samples: 3 WT and 3 KO derived from a human source.
 Your workflow must perform a basic differential expression analysis comparing
 between the conditions. You must perform QC at both the read and alignment level
 as we have done during the class projects. 
