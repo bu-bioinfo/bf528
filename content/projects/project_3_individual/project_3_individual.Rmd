@@ -71,6 +71,9 @@ experiment:
 
 The github classroom link is here: https://classroom.github.com/a/8-QdghaF
 
+The data for each project can be found in our class directory at:
+
+/projectnb/bf528/materials/project_3_individual/{atacseq/chipseq/rnaseq/}
 
 ## Table of Contents {-}
 
