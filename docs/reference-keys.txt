@@ -2,7 +2,6 @@ introductory-slides
 computational-primer
 assignment
 assignment-1
-section
 table-of-contents
 setting-up-your-working-directory
 conda-environments

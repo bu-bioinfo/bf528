@@ -71,7 +71,7 @@
 <li><a class="" href="single-cell-analysis-part-1.html">Single Cell Analysis Part 1</a></li>
 <li><a class="" href="single-cell-analysis-part-2.html">Single Cell Analysis Part 2</a></li>
 <li><a class="" href="single-cell-analysis-part-3.html">Single Cell Analysis Part 3</a></li>
-<li><a class="" href="section.html"><span class="header-section-number">1</span></a></li>
+<li><a class="" href="spatial-transcriptomics.html">Spatial Transcriptomics</a></li>
 <li><a class="active" href="assignment-0-snakemake.html">Assignment 0: snakemake</a></li>
 <li><a class="" href="project-writeup-instructions.html">Project Writeup Instructions</a></li>
 <li><a class="" href="project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html">Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></li>
@@ -104,9 +104,9 @@
 if you have any questions or feedback. Use it in combination with the official
 documentation (<a href="https://snakemake.readthedocs.io/en/stable/" class="uri">https://snakemake.readthedocs.io/en/stable/</a>) to familiarize
 yourself with snakemake.</p>
-<div id="table-of-contents" class="section level2" number="1.1">
+<div id="table-of-contents" class="section level2" number="0.5">
 <h2>
-<span class="header-section-number">1.1</span> Table of Contents<a class="anchor" aria-label="anchor" href="#table-of-contents"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.5</span> Table of Contents<a class="anchor" aria-label="anchor" href="#table-of-contents"><i class="fas fa-link"></i></a>
 </h2>
 <p><a href="assignment-0-snakemake.html#setting-up-your-working-directory">Setting up</a></p>
 <p><a href="assignment-0-snakemake.html#conda-environments">Conda Environments</a></p>
@@ -124,9 +124,9 @@ yourself with snakemake.</p>
 <p><a href="assignment-0-snakemake.html#a-working-example-using-params-and-output">An example of using params</a></p>
 <p><a href="assignment-0-snakemake.html#your-turn">Practice making your own workflow</a></p>
 </div>
-<div id="setting-up-your-working-directory" class="section level2" number="1.2">
+<div id="setting-up-your-working-directory" class="section level2" number="0.6">
 <h2>
-<span class="header-section-number">1.2</span> Setting up your working directory<a class="anchor" aria-label="anchor" href="#setting-up-your-working-directory"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.6</span> Setting up your working directory<a class="anchor" aria-label="anchor" href="#setting-up-your-working-directory"><i class="fas fa-link"></i></a>
 </h2>
 <p>In your previous courses, you should have received some experience working on
 the SCC. For this class, the cluster will be essential since the scale of our
@@ -140,9 +140,9 @@ directory /projectnb/bf528/students/your_username/assignment_0/
 This directory will serve to contain all of the files and processed files
 generated in the course of your analysis for this small assignment.</p>
 </div>
-<div id="conda-environments" class="section level2" number="1.3">
+<div id="conda-environments" class="section level2" number="0.7">
 <h2>
-<span class="header-section-number">1.3</span> Conda Environments<a class="anchor" aria-label="anchor" href="#conda-environments"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.7</span> Conda Environments<a class="anchor" aria-label="anchor" href="#conda-environments"><i class="fas fa-link"></i></a>
 </h2>
 <p>As we discussed in class, conda is a package management tool that enables you to
 create custom computational environments and automatically installs
@@ -200,9 +200,9 @@ The official site also hosts a complete user guide for Conda covering
 installation, basic usage, and troubleshooting
 (<a href="https://docs.conda.io/en/latest/" class="uri">https://docs.conda.io/en/latest/</a>).</p>
 </div>
-<div id="snakemake" class="section level2" number="1.4">
+<div id="snakemake" class="section level2" number="0.8">
 <h2>
-<span class="header-section-number">1.4</span> Snakemake<a class="anchor" aria-label="anchor" href="#snakemake"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.8</span> Snakemake<a class="anchor" aria-label="anchor" href="#snakemake"><i class="fas fa-link"></i></a>
 </h2>
 <p>As we will discuss in class, snakemake is a powerful workflow management tool
 that enables us to develop automated and reproducible bioinformatics pipelines.
@@ -242,9 +242,9 @@ multi_example directory. At the end, you will construct the contents of
 your.snake to run this same workflow on the four files found in the
 your_snakemake directory.</p>
 </div>
-<div id="rule-all-specifies-the-files-you-want-your-snakefile-to-produce" class="section level2" number="1.5">
+<div id="rule-all-specifies-the-files-you-want-your-snakefile-to-produce" class="section level2" number="0.9">
 <h2>
-<span class="header-section-number">1.5</span> Rule all specifies the files you want your snakefile to produce<a class="anchor" aria-label="anchor" href="#rule-all-specifies-the-files-you-want-your-snakefile-to-produce"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.9</span> Rule all specifies the files you want your snakefile to produce<a class="anchor" aria-label="anchor" href="#rule-all-specifies-the-files-you-want-your-snakefile-to-produce"><i class="fas fa-link"></i></a>
 </h2>
 <p>Navigate to the single_example/ directory, and you should see two files: ‘A.txt’
 and ‘single.snake’. A snakefile is nothing more than a simple text file which
@@ -265,9 +265,9 @@ rules in the snakefile should produce this file. As a reminder, the file
 “A_filtered.txt” does not currently exist: the snakemake workflow will generate
 this file based on the rules contained within.</p>
 </div>
-<div id="components-of-a-snakemake-rule" class="section level2" number="1.6">
+<div id="components-of-a-snakemake-rule" class="section level2" number="0.10">
 <h2>
-<span class="header-section-number">1.6</span> Components of a snakemake rule<a class="anchor" aria-label="anchor" href="#components-of-a-snakemake-rule"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.10</span> Components of a snakemake rule<a class="anchor" aria-label="anchor" href="#components-of-a-snakemake-rule"><i class="fas fa-link"></i></a>
 </h2>
 <p>Now that we have told snakemake what file we want created, let’s specify a rule
 that will actually instruct snakemake how to generate this file from our
@@ -307,9 +307,9 @@ contents of {input} and {output} with the values found in the directives, so
 <p>The actual command run will look like this:</p>
 <p><code>grep -E “^[[:alpha:]]” A.txt &gt; A_filtered.txt</code></p>
 </div>
-<div id="snakemake-workflow-with-a-single-rule" class="section level2" number="1.7">
+<div id="snakemake-workflow-with-a-single-rule" class="section level2" number="0.11">
 <h2>
-<span class="header-section-number">1.7</span> Snakemake workflow with a single rule<a class="anchor" aria-label="anchor" href="#snakemake-workflow-with-a-single-rule"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.11</span> Snakemake workflow with a single rule<a class="anchor" aria-label="anchor" href="#snakemake-workflow-with-a-single-rule"><i class="fas fa-link"></i></a>
 </h2>
 <pre><code>rule all:
     input:
@@ -332,9 +332,9 @@ will match the outputs in rule grep_filter and execute this rule, which takes as
 input our starting file “A.txt” and performs a simple grep command + redirect to
 generate our desired file “A_filtered.txt”.</p>
 </div>
-<div id="snakemake-workflow-with-multiple-rules" class="section level2" number="1.8">
+<div id="snakemake-workflow-with-multiple-rules" class="section level2" number="0.12">
 <h2>
-<span class="header-section-number">1.8</span> Snakemake workflow with multiple rules<a class="anchor" aria-label="anchor" href="#snakemake-workflow-with-multiple-rules"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.12</span> Snakemake workflow with multiple rules<a class="anchor" aria-label="anchor" href="#snakemake-workflow-with-multiple-rules"><i class="fas fa-link"></i></a>
 </h2>
 <p>Now that we have gone over the basics of snakemake, we are going to add an
 additional rule to our simple snakefile. This rule will take the output of rule
@@ -383,9 +383,9 @@ grep_filter. This process of linking input and output files as dependencies is a
 critical feature of snakemake and enables the generation of workflows that
 consist of many steps that need to be run sequentially.</p>
 </div>
-<div id="running-snakemake" class="section level2" number="1.9">
+<div id="running-snakemake" class="section level2" number="0.13">
 <h2>
-<span class="header-section-number">1.9</span> Running snakemake<a class="anchor" aria-label="anchor" href="#running-snakemake"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.13</span> Running snakemake<a class="anchor" aria-label="anchor" href="#running-snakemake"><i class="fas fa-link"></i></a>
 </h2>
 <p>Now that we have dissected the aspects of this simple snakefile, we will discuss
 how you run snakemake.</p>
@@ -515,9 +515,9 @@ command:</p>
 files, ‘A.txt’ and ‘B.txt’ using the wildcard automatically inferred from our
 rules and files.</p>
 </div>
-<div id="other-useful-snakemake-functions" class="section level2" number="1.10">
+<div id="other-useful-snakemake-functions" class="section level2" number="0.14">
 <h2>
-<span class="header-section-number">1.10</span> Other useful Snakemake functions<a class="anchor" aria-label="anchor" href="#other-useful-snakemake-functions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.14</span> Other useful Snakemake functions<a class="anchor" aria-label="anchor" href="#other-useful-snakemake-functions"><i class="fas fa-link"></i></a>
 </h2>
 <p>Now let’s look at a more complicated snakemake workflow that also performs some
 basic bioinformatics operations</p>
@@ -583,9 +583,9 @@ properly structure your wildcards to match your input files and your output
 files, snakemake will occasionally run into issues where you have ambiguous
 wildcards.</p>
 </div>
-<div id="expand-can-generate-file-names-programmatically" class="section level2" number="1.11">
+<div id="expand-can-generate-file-names-programmatically" class="section level2" number="0.15">
 <h2>
-<span class="header-section-number">1.11</span> Expand can generate file names programmatically<a class="anchor" aria-label="anchor" href="#expand-can-generate-file-names-programmatically"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.15</span> Expand can generate file names programmatically<a class="anchor" aria-label="anchor" href="#expand-can-generate-file-names-programmatically"><i class="fas fa-link"></i></a>
 </h2>
 <p>One final core function in snakemake that we need to discuss it the expand()
 function. There are times when we will want to make a snakemake rule that will
@@ -634,9 +634,9 @@ wildcards and values you specify. We can see one such example of this below:</p>
 <p>This function will create strings for all files with the values specified in
 numbers but starting with the automatically determined wildcard, {letters}.</p>
 </div>
-<div id="params-directive" class="section level2" number="1.12">
+<div id="params-directive" class="section level2" number="0.16">
 <h2>
-<span class="header-section-number">1.12</span> Params directive<a class="anchor" aria-label="anchor" href="#params-directive"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.16</span> Params directive<a class="anchor" aria-label="anchor" href="#params-directive"><i class="fas fa-link"></i></a>
 </h2>
 <p>As you may have noticed, you are required to specify output files that snakemake
 can use to verify that a job was run successfully. If snakemake receives no
@@ -675,9 +675,9 @@ case, we will not be able to use the replacement from the {output} directive in
 our actual command. This is when the usefulness of the params directive will
 become apparent.</p>
 </div>
-<div id="using-params-to-workaround-file-naming-requirements" class="section level2" number="1.13">
+<div id="using-params-to-workaround-file-naming-requirements" class="section level2" number="0.17">
 <h2>
-<span class="header-section-number">1.13</span> Using params() to workaround file naming requirements<a class="anchor" aria-label="anchor" href="#using-params-to-workaround-file-naming-requirements"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.17</span> Using params() to workaround file naming requirements<a class="anchor" aria-label="anchor" href="#using-params-to-workaround-file-naming-requirements"><i class="fas fa-link"></i></a>
 </h2>
 <p>RSeQC is a popular suite of scripts that provide useful utilities for the
 evaluation of RNAseq data quality and processing. Many of their tools ask you to
@@ -712,9 +712,9 @@ look for output files that match the exact name in the output directive, but
 this is not always the same name that we provide in the command to actually
 generate this file. We can solve this using the params directive.</p>
 </div>
-<div id="a-working-example-using-params-and-output" class="section level2" number="1.14">
+<div id="a-working-example-using-params-and-output" class="section level2" number="0.18">
 <h2>
-<span class="header-section-number">1.14</span> A working example using params and output<a class="anchor" aria-label="anchor" href="#a-working-example-using-params-and-output"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.18</span> A working example using params and output<a class="anchor" aria-label="anchor" href="#a-working-example-using-params-and-output"><i class="fas fa-link"></i></a>
 </h2>
 <pre><code>rule tricky_output_case_with_params:
     input:
@@ -745,9 +745,9 @@ enables us to more easily and flexible modify any options between runs while
 avoiding hard coding values into the actual command. The params directive also
 has access to any wildcard values for more complex situations.</p>
 </div>
-<div id="your-turn" class="section level2" number="1.15">
+<div id="your-turn" class="section level2" number="0.19">
 <h2>
-<span class="header-section-number">1.15</span> Your turn<a class="anchor" aria-label="anchor" href="#your-turn"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.19</span> Your turn<a class="anchor" aria-label="anchor" href="#your-turn"><i class="fas fa-link"></i></a>
 </h2>
 <p>Now navigate to the <code>your_snakemake directory</code> in the assignment_0 root
 directory. Take a look at the present input files and construct the snakemake
@@ -762,27 +762,27 @@ your code more portable and readable</code></pre>
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="section.html"><span class="header-section-number">1</span></a></div>
+<div class="prev"><a href="spatial-transcriptomics.html">Spatial Transcriptomics</a></div>
 <div class="next"><a href="project-writeup-instructions.html">Project Writeup Instructions</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#assignment-0-snakemake">Assignment 0: snakemake</a></li>
-<li><a class="nav-link" href="#table-of-contents"><span class="header-section-number">1.1</span> Table of Contents</a></li>
-<li><a class="nav-link" href="#setting-up-your-working-directory"><span class="header-section-number">1.2</span> Setting up your working directory</a></li>
-<li><a class="nav-link" href="#conda-environments"><span class="header-section-number">1.3</span> Conda Environments</a></li>
-<li><a class="nav-link" href="#snakemake"><span class="header-section-number">1.4</span> Snakemake</a></li>
-<li><a class="nav-link" href="#rule-all-specifies-the-files-you-want-your-snakefile-to-produce"><span class="header-section-number">1.5</span> Rule all specifies the files you want your snakefile to produce</a></li>
-<li><a class="nav-link" href="#components-of-a-snakemake-rule"><span class="header-section-number">1.6</span> Components of a snakemake rule</a></li>
-<li><a class="nav-link" href="#snakemake-workflow-with-a-single-rule"><span class="header-section-number">1.7</span> Snakemake workflow with a single rule</a></li>
-<li><a class="nav-link" href="#snakemake-workflow-with-multiple-rules"><span class="header-section-number">1.8</span> Snakemake workflow with multiple rules</a></li>
-<li><a class="nav-link" href="#running-snakemake"><span class="header-section-number">1.9</span> Running snakemake</a></li>
-<li><a class="nav-link" href="#other-useful-snakemake-functions"><span class="header-section-number">1.10</span> Other useful Snakemake functions</a></li>
-<li><a class="nav-link" href="#expand-can-generate-file-names-programmatically"><span class="header-section-number">1.11</span> Expand can generate file names programmatically</a></li>
-<li><a class="nav-link" href="#params-directive"><span class="header-section-number">1.12</span> Params directive</a></li>
-<li><a class="nav-link" href="#using-params-to-workaround-file-naming-requirements"><span class="header-section-number">1.13</span> Using params() to workaround file naming requirements</a></li>
-<li><a class="nav-link" href="#a-working-example-using-params-and-output"><span class="header-section-number">1.14</span> A working example using params and output</a></li>
-<li><a class="nav-link" href="#your-turn"><span class="header-section-number">1.15</span> Your turn</a></li>
+<li><a class="nav-link" href="#table-of-contents"><span class="header-section-number">0.5</span> Table of Contents</a></li>
+<li><a class="nav-link" href="#setting-up-your-working-directory"><span class="header-section-number">0.6</span> Setting up your working directory</a></li>
+<li><a class="nav-link" href="#conda-environments"><span class="header-section-number">0.7</span> Conda Environments</a></li>
+<li><a class="nav-link" href="#snakemake"><span class="header-section-number">0.8</span> Snakemake</a></li>
+<li><a class="nav-link" href="#rule-all-specifies-the-files-you-want-your-snakefile-to-produce"><span class="header-section-number">0.9</span> Rule all specifies the files you want your snakefile to produce</a></li>
+<li><a class="nav-link" href="#components-of-a-snakemake-rule"><span class="header-section-number">0.10</span> Components of a snakemake rule</a></li>
+<li><a class="nav-link" href="#snakemake-workflow-with-a-single-rule"><span class="header-section-number">0.11</span> Snakemake workflow with a single rule</a></li>
+<li><a class="nav-link" href="#snakemake-workflow-with-multiple-rules"><span class="header-section-number">0.12</span> Snakemake workflow with multiple rules</a></li>
+<li><a class="nav-link" href="#running-snakemake"><span class="header-section-number">0.13</span> Running snakemake</a></li>
+<li><a class="nav-link" href="#other-useful-snakemake-functions"><span class="header-section-number">0.14</span> Other useful Snakemake functions</a></li>
+<li><a class="nav-link" href="#expand-can-generate-file-names-programmatically"><span class="header-section-number">0.15</span> Expand can generate file names programmatically</a></li>
+<li><a class="nav-link" href="#params-directive"><span class="header-section-number">0.16</span> Params directive</a></li>
+<li><a class="nav-link" href="#using-params-to-workaround-file-naming-requirements"><span class="header-section-number">0.17</span> Using params() to workaround file naming requirements</a></li>
+<li><a class="nav-link" href="#a-working-example-using-params-and-output"><span class="header-section-number">0.18</span> A working example using params and output</a></li>
+<li><a class="nav-link" href="#your-turn"><span class="header-section-number">0.19</span> Your turn</a></li>
 </ul>
 
       <div class="book-extra">
