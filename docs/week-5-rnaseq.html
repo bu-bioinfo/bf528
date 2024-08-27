@@ -5,14 +5,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Week 5: RNAseq | BF528 - Applications in Translational Bioinformatics</title>
-<meta name="generator" content="bookdown 0.39 with bs4_book()">
+<meta name="generator" content="bookdown 0.40 with bs4_book()">
 <meta property="og:title" content="Week 5: RNAseq | BF528 - Applications in Translational Bioinformatics">
 <meta property="og:type" content="book">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Week 5: RNAseq | BF528 - Applications in Translational Bioinformatics">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.8.0/transition.js"></script><script src="libs/bs3compat-0.8.0/tabs.js"></script><script src="libs/bs3compat-0.8.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
@@ -143,7 +143,7 @@ refer to the instructions found in the BF591 textbook for how you might
 accomplish this. <a href="https://bu-bioinfo.github.io/r-for-biological-sciences/biology-bioinformatics.html#fgsea">BF591 - GSEA</a></p></li>
 <li><p>After you generate this ranked list of <strong>all</strong> of the genes in your results
 dataframe (do not filter by p-value), you will also need to read in the C2
-gene sets into R. <code>fgsea</code> offers a built-in function, <code><a href="https://rdrr.io/pkg/fgsea/man/gmtPathways.html">fgsea::gmtPathways</a></code>
+gene sets into R. <code>fgsea</code> offers a built-in function, <code>fgsea::gmtPathways</code>
 that will automatically parse and read in a .GMT file. I have provided you
 with the .GMT file for the C2 collection in the materials for project 1. As
 a reminder that path is /projectnb/bf528/materials/project_1_rnaseq/ and
@@ -191,7 +191,7 @@ in Figure 1.</p></li>
 <li><p>You should take the <code>mean</code> or the <code>median</code> of the two replicate values for
 each timepoint.</p></li>
 <li><p>You will likely have to use a combination of tidyverse functions to accomplish
-this, including: <code>filter</code>, <code>pivot_longer</code>, <code>group_by</code>, <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">dplyr::summarize</a></code>, <code>mutate</code>,
+this, including: <code>filter</code>, <code>pivot_longer</code>, <code>group_by</code>, <code>dplyr::summarize</code>, <code>mutate</code>,
 and <code>ggplot</code>.</p></li>
 <li><p>You will have to manually construct lists in R of the chosen groups of genes
 found in the three different plots (sarcomere, mitochondria, cell cycle). Simply

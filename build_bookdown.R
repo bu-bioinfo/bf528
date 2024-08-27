@@ -1,6 +1,3 @@
-install.packages('bookdown', repos='http://cran.us.r-project.org')
-install.packages('downlit', repos='http://cran.us.r-project.org')
-install.packages('codetools', repos='http://cran.us.r-project.org')
 bookdown::render_book("content",
     # css="style.css" is required for <link> tag in HTML index
     # so that custom block styling works

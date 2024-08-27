@@ -1,0 +1,6 @@
+services:
+  buildbook:
+    build: .
+    volumes:
+      - ./:/src
+    command: ['make', 'book']
