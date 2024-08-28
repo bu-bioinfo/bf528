@@ -18,12 +18,12 @@ Welcome to the homepage of BF528.
 
 **Semester: Spring 2024**
 
-**Meeting time:** Monday/Wednesday/Friday 9:05-9:55am
+**Meeting time:** TBA
 
-**Location:** CDS B62
+**Location:** TBA
 
 **Office hours:**
-By appointment (jorofino@bu.edu) and weekly as determined in class
+By appointment and weekly as determined in class
 
 Contents:
 
@@ -252,5 +252,4 @@ successive report.
 +----+-----+-----------+-----------------------------------------------+-----------------------------------+
 
 ## Office Hours {-}
-
-Wednesdays 10-11am, LSEB904
+TBA
