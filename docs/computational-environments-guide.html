@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Computational Environments Guide | BF528 - Applications in Translational Bioinformatics</title>
+<meta name="generator" content="bookdown 0.40 with bs4_book()">
+<meta property="og:title" content="Computational Environments Guide | BF528 - Applications in Translational Bioinformatics">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Computational Environments Guide | BF528 - Applications in Translational Bioinformatics">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.8.0/transition.js"></script><script src="libs/bs3compat-0.8.0/tabs.js"></script><script src="libs/bs3compat-0.8.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+<meta name="description" content="A software tool / program / package is at its core just code in a programming language that usually performs a certain mathematical operation or function. In bioinformatics specifically, many of...">
+<meta property="og:description" content="A software tool / program / package is at its core just code in a programming language that usually performs a certain mathematical operation or function. In bioinformatics specifically, many of...">
+<meta name="twitter:description" content="A software tool / program / package is at its core just code in a programming language that usually performs a certain mathematical operation or function. In bioinformatics specifically, many of...">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">BF528 - Applications in Translational Bioinformatics</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
+<li class="book-part">Guides</li>
+<li><a class="active" href="computational-environments-guide.html">Computational Environments Guide</a></li>
+<li class="book-part">Lectures</li>
+<li><a class="" href="introduction.html">Introduction</a></li>
+<li><a class="" href="genomics-genes-and-genomes.html">Genomics, Genes, and Genomes</a></li>
+<li><a class="" href="git.html">git</a></li>
+<li><a class="" href="computational-pipeline-strategies.html">Computational Pipeline Strategies</a></li>
+<li><a class="" href="computational-environment-management.html">Computational Environment Management</a></li>
+<li><a class="" href="sequence-analysis-fundamentals.html">Sequence Analysis Fundamentals</a></li>
+<li><a class="" href="nd-gen-sequencing.html">2nd Gen Sequencing</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-1.html">Sequence Analysis - RNA-Seq 1</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-2.html">Sequence Analysis - RNA-Seq 2</a></li>
+<li><a class="" href="scc-cluster-usage.html">SCC cluster usage</a></li>
+<li><a class="" href="biological-data-formats.html">Biological Data Formats</a></li>
+<li><a class="" href="gene-sets-and-enrichment.html">Gene sets and enrichment</a></li>
+<li><a class="" href="replicability-vs-reproducibility-strategies.html">Replicability vs Reproducibility Strategies</a></li>
+<li><a class="" href="putting-it-all-together---snakemake.html">Putting it all together - snakemake</a></li>
+<li><a class="" href="sequence-analysis---chip-seq.html">Sequence Analysis - ChIP-Seq</a></li>
+<li><a class="" href="genome-browsers.html">Genome Browsers</a></li>
+<li><a class="" href="sequence-analysis---atac-seq.html">Sequence Analysis - ATAC-Seq</a></li>
+<li><a class="" href="project-2---week-1-check-in.html">Project 2 - Week 1 Check-in</a></li>
+<li><a class="" href="biological-databases.html">Biological Databases</a></li>
+<li><a class="" href="genomic-variation-and-snp-analysis.html">Genomic Variation and SNP Analysis</a></li>
+<li><a class="" href="microbiome-metagenomics.html">Microbiome: Metagenomics</a></li>
+<li><a class="" href="microbiome-16s.html">Microbiome: 16S</a></li>
+<li><a class="" href="proteomics.html">Proteomics</a></li>
+<li><a class="" href="metabolomics.html">Metabolomics</a></li>
+<li><a class="" href="docker.html">Docker</a></li>
+<li><a class="" href="single-cell-analysis-part-1.html">Single Cell Analysis Part 1</a></li>
+<li><a class="" href="single-cell-analysis-part-2.html">Single Cell Analysis Part 2</a></li>
+<li><a class="" href="single-cell-analysis-part-3.html">Single Cell Analysis Part 3</a></li>
+<li><a class="" href="spatial-transcriptomics.html">Spatial Transcriptomics</a></li>
+<li><a class="" href="assignment-0-snakemake.html">Assignment 0: snakemake</a></li>
+<li><a class="" href="project-writeup-instructions.html">Project Writeup Instructions</a></li>
+<li><a class="" href="project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html">Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></li>
+<li><a class="" href="week-1-rnaseq.html">Week 1: RNAseq</a></li>
+<li><a class="" href="week-2-rnaseq.html">Week 2: RNAseq</a></li>
+<li><a class="" href="week-3-rnaseq.html">Week 3: RNAseq</a></li>
+<li><a class="" href="week-4-rnaseq.html">Week 4: RNAseq</a></li>
+<li><a class="" href="week-5-rnaseq.html">Week 5: RNAseq</a></li>
+<li><a class="" href="project-2-chipseq-analysis-of-the-human-transcription-factor-runx1.html">Project 2: ChIPseq analysis of the human transcription factor Runx1</a></li>
+<li><a class="" href="week-1-chipseq.html">Week 1: ChIPseq</a></li>
+<li><a class="" href="week-2-chipseq.html">Week 2: ChIPseq</a></li>
+<li><a class="" href="week-3-chipseq.html">Week 3: ChIPseq</a></li>
+<li><a class="" href="week-4-chipseq.html">Week 4: ChIPseq</a></li>
+<li><a class="" href="week-5-chipseq.html">Week 5: ChIPseq</a></li>
+<li><a class="" href="project-3-individual-project.html">Project 3: Individual Project</a></li>
+<li><a class="" href="project-3-rnaseq-individual-project.html">Project 3: RNAseq Individual Project</a></li>
+<li><a class="" href="project-3-chipseq-individual-project.html">Project 3: ChIPseq Individual Project</a></li>
+<li><a class="" href="project-3-atacseq-individual-project.html">Project 3: ATACseq Individual Project</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="computational-environments-guide" class="section level1 unnumbered">
+<h1>Computational Environments Guide<a class="anchor" aria-label="anchor" href="#computational-environments-guide"><i class="fas fa-link"></i></a>
+</h1>
+<p>A software tool / program / package is at its core just code in a programming
+language that usually performs a certain mathematical operation or function. In
+bioinformatics specifically, many of these tools will perform various
+statistical tests or data transformations or data manipulation.</p>
+<div id="dont-reinvent-the-wheel" class="section level2 unnumbered">
+<h2>Don’t reinvent the wheel!<a class="anchor" aria-label="anchor" href="#dont-reinvent-the-wheel"><i class="fas fa-link"></i></a>
+</h2>
+<p>Many of the analyses in bioinformatics have already been implemented in a
+variety of software packages maintained and released for general use.Whenever
+possible, we should make efficient use of the tools available in order to solve
+our problems, especially if someone has already solved it!</p>
+</div>
+<div id="computational-environments" class="section level2 unnumbered">
+<h2>Computational Environments<a class="anchor" aria-label="anchor" href="#computational-environments"><i class="fas fa-link"></i></a>
+</h2>
+<p>The ability to install and use these different software tools will largely
+depend upon three main factors related to the concept of computational
+environments:</p>
+<ol style="list-style-type: decimal">
+<li><p>Hardware / Operating System: Both the physical hardware and the operating
+system you are working with may affect the tools you are able to install and
+utilize. You likely have noticed that many programs and software you already
+use require you to choose specific versions tailored to an operating system or
+in some niche cases, hardware (i.e Apple silicon computers vs. intel-based,
+windows, linux).</p></li>
+<li><p>Dependencies: Software dependencies are other libraries or tools or code
+that the program in question <em>depend</em> on in order to work. Many software tools
+/ packages reuse existing code and tools and build upon their functionality.
+Certain tools may have hundreds of dependencies that enable them to function
+and any changes in those dependencies may potentially change the behavior
+of the program and its operations.</p></li>
+<li><p>Versioning: Many commonly used software tools are regularly maintained and
+updated. In addition to bug fixes, newer versions often contain updated or
+novel features that expand the scope and functionality of the original tool.
+In many cases, these new versions may require newer versions of their
+dependencies and updates may unintentionally change the outputs from
+complicated algorithms or calculations.</p></li>
+</ol>
+</div>
+<div id="why-is-this-important" class="section level2 unnumbered">
+<h2>Why is this important?<a class="anchor" aria-label="anchor" href="#why-is-this-important"><i class="fas fa-link"></i></a>
+</h2>
+<p>Science is built on the principle of reproducibility and
+that results that reveal to us the ground “truth” should be able to be
+reproduced by those performing the experiments and others. Bioinformatics
+analyses are often complex, multi-faceted analysis pipelines that utilize a
+combination of many different computational and mathematical approaches to
+transform, manipulate and analyze data.</p>
+<p>This presents a few challenges to reproducibility:</p>
+<ol style="list-style-type: decimal">
+<li><p>We often have to make certain choices on how we manipulate or transform the
+data that will lead to radically different conclusions.</p></li>
+<li><p>Some of the algorithms and techniques we use are not fully deterministic and
+may produce slightly different results when repeated.</p></li>
+<li><p>Systemic changes in the underlying code of software tools or their
+dependencies may propagate across updates and versions, leading to slight
+differences in their behavior and output.</p></li>
+</ol>
+<p>Below, we will discuss the various strategies we have for defining a computational
+environment that will allow us to use these various tools and how we can ensure
+that we (and others) can reproduce any results generated from them.</p>
+</div>
+<div id="working-locally" class="section level2 unnumbered">
+<h2>Working locally<a class="anchor" aria-label="anchor" href="#working-locally"><i class="fas fa-link"></i></a>
+</h2>
+<p>One strategy for using and installing a tool is to simply download and install
+it to your local desktop or laptop. You will need to download the appropriate
+version for your system architecture and hope that the installation process
+includes any necessary dependencies.</p>
+<p><strong>When you might want to do this</strong>:
+- You want to very quickly analyze data or perform a task
+- You want to troubleshoot or learn how a certain tool works</p>
+<p><strong>Disadvantages</strong>
+- The installation is specific to your exact hardware and operating system.
+- Difficult to keep track of version and dependencies if you need to report or
+publish them in a paper
+- May not be reproducible outside of your specific environment
+- Limited by your personal hardware specifications</p>
+</div>
+<div id="scc-modules" class="section level2 unnumbered">
+<h2>SCC Modules<a class="anchor" aria-label="anchor" href="#scc-modules"><i class="fas fa-link"></i></a>
+</h2>
+<p>The SCC IT team has very conveniently pre-installed many different, commonly
+used scientific packages and tools directly on the cluster. You may simply type
+<code>module avail</code> when signed in to a terminal connected to the SCC to see the
+available list of tools and their versions available. You may then use the
+<code>module load name_of_tool</code> command, which will allow you to use the tool and all
+of its functionalities. The module system will handle any dependencies and add
+the tool to your path for your use.</p>
+<p><strong>When you might want to do this</strong>
+- You want to very quickly analyze data or perform a task
+- You want to troubleshoot or learn how a certain tool works
+- The package isn’t available through conda or docker</p>
+<p><strong>Disadvantages</strong>
+- You are tied to only the versions pre-installed on the SCC (you may request updates but the SCC team is very busy)
+- You are still tied to a specific system architecture (SCC)
+- Difficult to keep track of version and dependencies if you need to report or
+publish them in a paper
+- May not be reproducible outside of your specific environment</p>
+</div>
+<div id="using-conda-on-the-scc" class="section level2 unnumbered">
+<h2>Using Conda on the SCC<a class="anchor" aria-label="anchor" href="#using-conda-on-the-scc"><i class="fas fa-link"></i></a>
+</h2>
+</div>
+<div id="using-containers-on-the-scc" class="section level2 unnumbered">
+<h2>Using containers on the SCC<a class="anchor" aria-label="anchor" href="#using-containers-on-the-scc"><i class="fas fa-link"></i></a>
+</h2>
+
+</div>
+</div>
+
+
+
+<div class="chapter-nav">
+<div class="prev"><a href="index.html">BF528 - Applications in Translational Bioinformatics</a></div>
+<div class="next"><a href="introduction.html">Introduction</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#computational-environments-guide">Computational Environments Guide</a></li>
+<li><a class="nav-link" href="#dont-reinvent-the-wheel">Don’t reinvent the wheel!</a></li>
+<li><a class="nav-link" href="#computational-environments">Computational Environments</a></li>
+<li><a class="nav-link" href="#why-is-this-important">Why is this important?</a></li>
+<li><a class="nav-link" href="#working-locally">Working locally</a></li>
+<li><a class="nav-link" href="#scc-modules">SCC Modules</a></li>
+<li><a class="nav-link" href="#using-conda-on-the-scc">Using Conda on the SCC</a></li>
+<li><a class="nav-link" href="#using-containers-on-the-scc">Using containers on the SCC</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+</div>
+  
+
+  
+
+</div>
+ <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>BF528 - Applications in Translational Bioinformatics</strong>" was written by . </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

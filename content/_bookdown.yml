@@ -1,5 +1,7 @@
 rmd_files:
     - "index.Rmd"
+    - "guide_part.Rmd"
+    - "computational_env.Rmd"
     - "lectures_part.Rmd"
     - "lectures.Rmd"
     - "projects/snakemake_primer/assignment_0.Rmd"

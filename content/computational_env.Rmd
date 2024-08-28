@@ -1,21 +1,17 @@
----
-output: html_document
----
-
-# Computational Environments {-}
+# Computational Environments Guide {-}
 
 A software tool / program / package is at its core just code in a programming
 language that usually performs a certain mathematical operation or function. In
 bioinformatics specifically, many of these tools will perform various
 statistical tests or data transformations or data manipulation.
 
-## Don't reinvent the wheel!
+## Don't reinvent the wheel! {-}
 Many of the analyses in bioinformatics have already been implemented in a
 variety of software packages maintained and released for general use.Whenever
 possible, we should make efficient use of the tools available in order to solve
 our problems, especially if someone has already solved it!
 
-## Computational Environments
+## Computational Environments {-}
 The ability to install and use these different software tools will largely
 depend upon three main factors related to the concept of computational
 environments:
@@ -42,7 +38,7 @@ environments:
   complicated algorithms or calculations.
   
   
-## Why is this important? 
+## Why is this important? {-}
 Science is built on the principle of reproducibility and
 that results that reveal to us the ground "truth" should be able to be
 reproduced by those performing the experiments and others. Bioinformatics
@@ -107,12 +103,12 @@ the tool to your path for your use.
   publish them in a paper
 - May not be reproducible outside of your specific environment
 
-## Using Conda on the SCC
+## Using Conda on the SCC {-}
 
 
 
 
 
 
-## Using containers on the SCC
+## Using containers on the SCC {-}
 
