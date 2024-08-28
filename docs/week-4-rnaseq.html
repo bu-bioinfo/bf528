@@ -43,6 +43,7 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
+<li class="book-part">Lectures</li>
 <li><a class="" href="introduction.html">Introduction</a></li>
 <li><a class="" href="genomics-genes-and-genomes.html">Genomics, Genes, and Genomes</a></li>
 <li><a class="" href="git.html">git</a></li>
@@ -158,7 +159,9 @@ require, but for our datasets and use cases, we will generally not need to speci
 anything higher than <code>-pe omp 8</code>.</p>
 <p>Below, you can see a small table provided by the SCC that denotes common memory
 and processor requests and how to specify them:</p>
-<div class="inline-figure"><img src="projects/project_1_rnaseq/scc_requesting_resources.png" width="750"></div>
+<div class="inline-figure">
+<img src="projects/project_1_rnaseq/scc_requesting_resources.png"><!-- -->
+</div>
 <p><strong>Running your snakemake workflow on your full data</strong></p>
 <p>We have gone over how to run jobs on the cluster using <code>qsub</code> and the SGE scheduler,
 and we will now need to swap from using the subsampled data to the full files in

@@ -43,6 +43,7 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
+<li class="book-part">Lectures</li>
 <li><a class="" href="introduction.html">Introduction</a></li>
 <li><a class="" href="genomics-genes-and-genomes.html">Genomics, Genes, and Genomes</a></li>
 <li><a class="" href="git.html">git</a></li>
@@ -376,7 +377,9 @@ generate it. Snakemake functionally works “backwards” from the requested tar
 file to determine which rules need to be run in order to generate it. If we
 visualize all of these steps in the form of a graph, it would look something
 like this (with the files generated):</p>
-<div class="inline-figure"><img src="projects/snakemake_primer/simple_dag.png" width="481"></div>
+<div class="inline-figure">
+<img src="projects/snakemake_primer/simple_dag.png"><!-- -->
+</div>
 <p>Importantly, if we had added the new rule add_line_nums, but kept our target
 file in rule all as “A_filterered.txt”, snakemake would only attempt to run rule
 grep_filter. This process of linking input and output files as dependencies is a
@@ -510,7 +513,9 @@ multi_example directory and run the multi.snake workflow using the following
 command:</p>
 <p><code>snakemake -s multi.snake -c1</code></p>
 <p>Graphically, it will perform the following tasks:</p>
-<div class="inline-figure"><img src="projects/snakemake_primer/multi_dag.png" width="422"></div>
+<div class="inline-figure">
+<img src="projects/snakemake_primer/multi_dag.png"><!-- -->
+</div>
 <p>You can see now that snakemake will run our same series of steps, but on both
 files, ‘A.txt’ and ‘B.txt’ using the wildcard automatically inferred from our
 rules and files.</p>
