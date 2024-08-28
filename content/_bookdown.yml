@@ -1,5 +1,6 @@
 rmd_files:
     - "index.Rmd"
+    - "lectures_part.Rmd"
     - "lectures.Rmd"
     - "projects/snakemake_primer/assignment_0.Rmd"
     - "projects/project_reports.Rmd"
