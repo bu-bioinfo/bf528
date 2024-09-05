@@ -1,13 +1,13 @@
 # Computational Environments Guide {-}
 
 A software tool / program / package is at its core just code in a programming
-language that usually performs a certain mathematical operation or function. In
-bioinformatics specifically, many of these tools will perform various
-statistical tests or data transformations or data manipulation.
+language that usually performs a certain function. In bioinformatics
+specifically, many of these tools will perform various statistical tests or data
+transformations or data manipulation.
 
 ## Don't reinvent the wheel! {-}
 Many of the analyses in bioinformatics have already been implemented in a
-variety of software packages maintained and released for general use.Whenever
+variety of software packages maintained and released for general use. Whenever
 possible, we should make efficient use of the tools available in order to solve
 our problems, especially if someone has already solved it!
 
@@ -39,12 +39,12 @@ environments:
   
   
 ## Why is this important? {-}
-Science is built on the principle of reproducibility and
-that results that reveal to us the ground "truth" should be able to be
-reproduced by those performing the experiments and others. Bioinformatics
-analyses are often complex, multi-faceted analysis pipelines that utilize a
-combination of many different computational and mathematical approaches to
-transform, manipulate and analyze data.
+Science is built on the principle of reproducibility and that results that
+reveal to us the ground "truth" should be able to be reproduced in the future by
+those performing the experiments and others. Bioinformatics analyses are often
+complex, multi-faceted analysis pipelines that utilize a combination of many
+different computational and mathematical approaches to transform, manipulate and
+analyze data.
 
 This presents a few challenges to reproducibility:
 
@@ -97,18 +97,121 @@ the tool to your path for your use.
 - The package isn't available through conda or docker
 
 **Disadvantages**
-- You are tied to only the versions pre-installed on the SCC (you may request updates but the SCC team is very busy)
+- You are limited to only the versions pre-installed on the SCC (you may request updates but the SCC team is very busy)
 - You are still tied to a specific system architecture (SCC)
 - Difficult to keep track of version and dependencies if you need to report or 
   publish them in a paper
 - May not be reproducible outside of your specific environment
 
+
+## Conda {-}
+
+Conda is a software package that provides package, dependency and environment 
+management for all of the common platforms. Anaconda is a set of included packages
+and miniconda. For our purposes, we will only be using miniconda. Miniconda will
+allow you to create separate environments, each containing their own packages and
+package dependencies. Miniconda will handle resolving all of the different 
+versions and package dependencies needed for the requested tools. 
+
+**When you might want to do this**
+- Conda should be the default environment management tool used if better solutions
+like containers are unavailable (more below)
+
+**Disadvantages**
+- Still tied to system architecture - conda environments may install system architecture
+specific packages
+- Miniconda will often break and not be able to resolve package dependencies
+for particularly complicated environments
+
+
+## Containers
+
+Containers package applications and their dependencies in a virtual container that
+allows it to run on any platform (linux, windows, macOS). They are isolated,
+lightweight and the best method to ensure reproducibility of your computational
+environments. 
+
+**When you might want to do this**
+- Whenever possible, containers are the most reproducible and portable method
+for ensuring standardization of packages and dependencies
+
+**Disadvantages**
+- Docker, a common containerization solution, requires root permissions, which
+are unavailable to users on the SCC and most shared clusters. 
+
+## Best Practices for conda environments / containers for BF528
+
+In order to ensure reproducibility and portability of our computational environments,
+we will use the following conventions:
+
+1. Each tool should be installed into its own separate environment / container
+  - This ensures the environment / container is lightweight
+  - It greatly reduces the chance of version or dependency conflicts between tools
+    (e.g. two tools need different versions of the same package) and allows us to 
+    use the most up-to-date version of the tool
+
+    
+2. The environment specification for the environment / container should be clear
+and transparent. For conda environments, we will encode the environment
+description into a YML file. For containers, we will strive to find up-to-date
+containers.
+
+3. We ensure that we specify the exact version of the tool we want installed
+
+For instance, if wanted to create a conda environment to run and use Samtools,
+we would create a YML file in our project directory named descriptively
+(samtools_env.yml) and use the `conda env create -f samtools_env.yml` to
+generate an environment using the specification contained within. That YML file
+may look something like the following:
+
+```
+channels:
+- conda-forge
+- bioconda
+
+dependencies:
+- samtools=1.19.2
+```
+
+You'll notice that in addition to setting the appropriate channel priority,
+conda-forge first and bioconda second, we directly specify the exact version of
+samtools that we want installed. Conda will handle installation of any necessary
+dependencies. We will keep this YML file contained within the repository in
+which it is being used. This would allow us or others to exactly recreate the
+environment in which the analysis was run. 
+
 ## Using Conda on the SCC {-}
 
+To use miniconda on the SCC, we will need to perform a few steps. **Every** time
+you wish to use miniconda, you will need to first open a terminal and load the
+module for miniconda.
 
+```
+module load miniconda
+```
 
+The **first** time you load miniconda, you will want to perform the following
+steps as described
+[here](https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/python-software/miniconda-modules/#Conda%20Modules).
+The setup_scc_condarc.sh script will automatically run and edit the conda config
+file stored in your home directory (~/.condarc). It will change the location
+where conda installs all of its packages to a directory specified. By default, it
+would install these packages into your home directory which is only allotted
+10gb.
 
+You should choose to save your environments to your student folder 
+/projectnb/bf528/students/<your_username>/. If you manually inspect your .condarc
+file (~/.condarc) with `cat` or a text editor, it should look like below:
 
+```
+envs_dirs:
+    - /projectnb/bf528/students/your_bu_username/.conda/envs
+    - ~/.conda/envs
+pkgs_dirs:
+    - /projectnb/bf528/students/your_bu_username/.conda/pkgs
+    - ~/.conda/pkgs
+env_prompt: ({name})
+```
 
 ## Using containers on the SCC {-}
 

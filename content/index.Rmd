@@ -65,9 +65,10 @@ technologies including RNA-sequencing, ChIP-sequencing, and Single Cell
 RNA-sequencing. The course emphasizes the importance of reproducibility,
 portability, and replicability in modern bioinformatics.
 
-Classes will be a mix of more traditional topic lectures, interactive demos and
-collaborative workshops where students will work together on discussions or
-concepts / analyses not covered fully in lectures.
+Classes will be traditional lectures exploring the variety of topics regarding
+next generation sequencing and labs will focus on practical activities meant
+to give you experience working with the tools and technologies needed for our
+analyses. 
 
 Projects are split into weekly tasks but the majority of your evaluation will be
 the final report produced for each project. 
@@ -93,16 +94,16 @@ found on the internet. Any and all available resources may be brought to bear.
 However, consistent with BU policy, your reports should be written in your own
 words and represent your own work and understanding of the material. 
 
-**Life happens.** Your mental health is important, far more important than any class.
-Make sure to take care of yourself and reach out to someone you trust (mentor,
-family member, or friend) if you ever feel you need to talk to someone. BU
-offers a number of resources through Student Health Services for managing
-situations involving grief, anxiety and depression, stress, homesickness and
-other common issues. I am also always here to listen without judgment. On a
-related note, if you need to miss class because of private matters, you do not
-need to disclose anything you aren’t comfortable sharing, please just let me
-know and I will work with you to help you catch up when you return. Your family,
-friends, and health should always come first.
+**Life happens.** Your mental, physical and emotional health isfar more
+important than any class. Make sure to take care of yourself and reach out to
+someone you trust (mentor, family member, or friend) if you ever feel you need
+to talk to someone. BU offers a number of resources through Student Health
+Services for managing situations involving grief, anxiety and depression,
+stress, homesickness and other common issues. I am also always here to listen
+without judgment. On a related note, if you need to miss class because of
+private matters, you do not need to disclose anything you aren’t comfortable
+sharing, please just let me know and I will work with you to help you catch up
+when you return. Your family, friends, and health should always come first.
 
 ## Prerequisites {-}
 
@@ -131,23 +132,16 @@ As instructor, I pledge to
 
 The three projects are as follows:
 
-1. [Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq][Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq]
+1. [Nextflow Practice][Nextflow Introductory Project] 
+[Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq][Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq]
 2. [ChIPseq analysis of the human transcription factor Runx1][Project 2: ChIPseq analysis of the human transcription factor Runx1]
-3. [Individual Project][Project 3: Individual Project]
+3. [scRNAseq analysis of human liver][Project 3: scRNAseq analysis of human liver]
 
-Project guidelines for the written reports (1, 2, 3) are here:
-[Project Writeup Instructions]
+]
 
 ## Grading and Assessment {-}
 
-Grading and assessment will primarily be based on the final reports you write
-at the completion of each project. You will be assessed based on completeness
-(i.e. did you include all the deliverables requested?), and how well you communicate
-your results in the style of a peer-reviewed publication. The weekly tasks will
-represent a smaller portion of your grade and will largely be checked for 
-completeness. You will be given feedback on your written reports and your final
-grade will be determined by how well you incorporate that feedback into each
-successive report. 
+
 
 ## Course Schedule {-}
 
@@ -253,3 +247,5 @@ successive report.
 
 ## Office Hours {-}
 TBA
+
+## TAs {-}

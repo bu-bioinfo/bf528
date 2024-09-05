@@ -18,9 +18,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="A software tool / program / package is at its core just code in a programming language that usually performs a certain mathematical operation or function. In bioinformatics specifically, many of...">
-<meta property="og:description" content="A software tool / program / package is at its core just code in a programming language that usually performs a certain mathematical operation or function. In bioinformatics specifically, many of...">
-<meta name="twitter:description" content="A software tool / program / package is at its core just code in a programming language that usually performs a certain mathematical operation or function. In bioinformatics specifically, many of...">
+<meta name="description" content="A software tool / program / package is at its core just code in a programming language that usually performs a certain function. In bioinformatics specifically, many of these tools will perform...">
+<meta property="og:description" content="A software tool / program / package is at its core just code in a programming language that usually performs a certain function. In bioinformatics specifically, many of these tools will perform...">
+<meta name="twitter:description" content="A software tool / program / package is at its core just code in a programming language that usually performs a certain function. In bioinformatics specifically, many of these tools will perform...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -104,14 +104,14 @@
 <h1>Computational Environments Guide<a class="anchor" aria-label="anchor" href="#computational-environments-guide"><i class="fas fa-link"></i></a>
 </h1>
 <p>A software tool / program / package is at its core just code in a programming
-language that usually performs a certain mathematical operation or function. In
-bioinformatics specifically, many of these tools will perform various
-statistical tests or data transformations or data manipulation.</p>
+language that usually performs a certain function. In bioinformatics
+specifically, many of these tools will perform various statistical tests or data
+transformations or data manipulation.</p>
 <div id="dont-reinvent-the-wheel" class="section level2 unnumbered">
 <h2>Don’t reinvent the wheel!<a class="anchor" aria-label="anchor" href="#dont-reinvent-the-wheel"><i class="fas fa-link"></i></a>
 </h2>
 <p>Many of the analyses in bioinformatics have already been implemented in a
-variety of software packages maintained and released for general use.Whenever
+variety of software packages maintained and released for general use. Whenever
 possible, we should make efficient use of the tools available in order to solve
 our problems, especially if someone has already solved it!</p>
 </div>
@@ -145,12 +145,12 @@ complicated algorithms or calculations.</p></li>
 <div id="why-is-this-important" class="section level2 unnumbered">
 <h2>Why is this important?<a class="anchor" aria-label="anchor" href="#why-is-this-important"><i class="fas fa-link"></i></a>
 </h2>
-<p>Science is built on the principle of reproducibility and
-that results that reveal to us the ground “truth” should be able to be
-reproduced by those performing the experiments and others. Bioinformatics
-analyses are often complex, multi-faceted analysis pipelines that utilize a
-combination of many different computational and mathematical approaches to
-transform, manipulate and analyze data.</p>
+<p>Science is built on the principle of reproducibility and that results that
+reveal to us the ground “truth” should be able to be reproduced in the future by
+those performing the experiments and others. Bioinformatics analyses are often
+complex, multi-faceted analysis pipelines that utilize a combination of many
+different computational and mathematical approaches to transform, manipulate and
+analyze data.</p>
 <p>This presents a few challenges to reproducibility:</p>
 <ol style="list-style-type: decimal">
 <li><p>We often have to make certain choices on how we manipulate or transform the
@@ -197,15 +197,110 @@ the tool to your path for your use.</p>
 - You want to troubleshoot or learn how a certain tool works
 - The package isn’t available through conda or docker</p>
 <p><strong>Disadvantages</strong>
-- You are tied to only the versions pre-installed on the SCC (you may request updates but the SCC team is very busy)
+- You are limited to only the versions pre-installed on the SCC (you may request updates but the SCC team is very busy)
 - You are still tied to a specific system architecture (SCC)
 - Difficult to keep track of version and dependencies if you need to report or
 publish them in a paper
 - May not be reproducible outside of your specific environment</p>
 </div>
+<div id="conda" class="section level2 unnumbered">
+<h2>Conda<a class="anchor" aria-label="anchor" href="#conda"><i class="fas fa-link"></i></a>
+</h2>
+<p>Conda is a software package that provides package, dependency and environment
+management for all of the common platforms. Anaconda is a set of included packages
+and miniconda. For our purposes, we will only be using miniconda. Miniconda will
+allow you to create separate environments, each containing their own packages and
+package dependencies. Miniconda will handle resolving all of the different
+versions and package dependencies needed for the requested tools.</p>
+<p><strong>When you might want to do this</strong>
+- Conda should be the default environment management tool used if better solutions
+like containers are unavailable (more below)</p>
+<p><strong>Disadvantages</strong>
+- Still tied to system architecture - conda environments may install system architecture
+specific packages
+- Miniconda will often break and not be able to resolve package dependencies
+for particularly complicated environments</p>
+</div>
+<div id="containers" class="section level2" number="0.1">
+<h2>
+<span class="header-section-number">0.1</span> Containers<a class="anchor" aria-label="anchor" href="#containers"><i class="fas fa-link"></i></a>
+</h2>
+<p>Containers package applications and their dependencies in a virtual container that
+allows it to run on any platform (linux, windows, macOS). They are isolated,
+lightweight and the best method to ensure reproducibility of your computational
+environments.</p>
+<p><strong>When you might want to do this</strong>
+- Whenever possible, containers are the most reproducible and portable method
+for ensuring standardization of packages and dependencies</p>
+<p><strong>Disadvantages</strong>
+- Docker, a common containerization solution, requires root permissions, which
+are unavailable to users on the SCC and most shared clusters.</p>
+</div>
+<div id="best-practices-for-conda-environments-containers-for-bf528" class="section level2" number="0.2">
+<h2>
+<span class="header-section-number">0.2</span> Best Practices for conda environments / containers for BF528<a class="anchor" aria-label="anchor" href="#best-practices-for-conda-environments-containers-for-bf528"><i class="fas fa-link"></i></a>
+</h2>
+<p>In order to ensure reproducibility and portability of our computational environments,
+we will use the following conventions:</p>
+<ol style="list-style-type: decimal">
+<li>Each tool should be installed into its own separate environment / container</li>
+</ol>
+<ul>
+<li>This ensures the environment / container is lightweight</li>
+<li>It greatly reduces the chance of version or dependency conflicts between tools
+(e.g. two tools need different versions of the same package) and allows us to
+use the most up-to-date version of the tool</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><p>The environment specification for the environment / container should be clear
+and transparent. For conda environments, we will encode the environment
+description into a YML file. For containers, we will strive to find up-to-date
+containers.</p></li>
+<li><p>We ensure that we specify the exact version of the tool we want installed</p></li>
+</ol>
+<p>For instance, if wanted to create a conda environment to run and use Samtools,
+we would create a YML file in our project directory named descriptively
+(samtools_env.yml) and use the <code>conda env create -f samtools_env.yml</code> to
+generate an environment using the specification contained within. That YML file
+may look something like the following:</p>
+<pre><code>channels:
+- conda-forge
+- bioconda
+
+dependencies:
+- samtools=1.19.2</code></pre>
+<p>You’ll notice that in addition to setting the appropriate channel priority,
+conda-forge first and bioconda second, we directly specify the exact version of
+samtools that we want installed. Conda will handle installation of any necessary
+dependencies. We will keep this YML file contained within the repository in
+which it is being used. This would allow us or others to exactly recreate the
+environment in which the analysis was run.</p>
+</div>
 <div id="using-conda-on-the-scc" class="section level2 unnumbered">
 <h2>Using Conda on the SCC<a class="anchor" aria-label="anchor" href="#using-conda-on-the-scc"><i class="fas fa-link"></i></a>
 </h2>
+<p>To use miniconda on the SCC, we will need to perform a few steps. <strong>Every</strong> time
+you wish to use miniconda, you will need to first open a terminal and load the
+module for miniconda.</p>
+<pre><code>module load miniconda</code></pre>
+<p>The <strong>first</strong> time you load miniconda, you will want to perform the following
+steps as described
+<a href="https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/python-software/miniconda-modules/#Conda%20Modules">here</a>.
+The setup_scc_condarc.sh script will automatically run and edit the conda config
+file stored in your home directory (~/.condarc). It will change the location
+where conda installs all of its packages to a directory specified. By default, it
+would install these packages into your home directory which is only allotted
+10gb.</p>
+<p>You should choose to save your environments to your student folder
+/projectnb/bf528/students/<your_username>/. If you manually inspect your .condarc
+file (~/.condarc) with <code>cat</code> or a text editor, it should look like below:</your_username></p>
+<pre><code>envs_dirs:
+    - /projectnb/bf528/students/your_bu_username/.conda/envs
+    - ~/.conda/envs
+pkgs_dirs:
+    - /projectnb/bf528/students/your_bu_username/.conda/pkgs
+    - ~/.conda/pkgs
+env_prompt: ({name})</code></pre>
 </div>
 <div id="using-containers-on-the-scc" class="section level2 unnumbered">
 <h2>Using containers on the SCC<a class="anchor" aria-label="anchor" href="#using-containers-on-the-scc"><i class="fas fa-link"></i></a>
@@ -228,6 +323,9 @@ publish them in a paper
 <li><a class="nav-link" href="#why-is-this-important">Why is this important?</a></li>
 <li><a class="nav-link" href="#working-locally">Working locally</a></li>
 <li><a class="nav-link" href="#scc-modules">SCC Modules</a></li>
+<li><a class="nav-link" href="#conda">Conda</a></li>
+<li><a class="nav-link" href="#containers"><span class="header-section-number">0.1</span> Containers</a></li>
+<li><a class="nav-link" href="#best-practices-for-conda-environments-containers-for-bf528"><span class="header-section-number">0.2</span> Best Practices for conda environments / containers for BF528</a></li>
 <li><a class="nav-link" href="#using-conda-on-the-scc">Using Conda on the SCC</a></li>
 <li><a class="nav-link" href="#using-containers-on-the-scc">Using containers on the SCC</a></li>
 </ul>
