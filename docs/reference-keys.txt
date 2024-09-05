@@ -1,5 +1,3 @@
-containers
-best-practices-for-conda-environments-containers-for-bf528
 introductory-slides
 computational-primer
 assignment

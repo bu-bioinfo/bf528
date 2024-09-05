@@ -172,15 +172,18 @@ that we (and others) can reproduce any results generated from them.</p>
 it to your local desktop or laptop. You will need to download the appropriate
 version for your system architecture and hope that the installation process
 includes any necessary dependencies.</p>
-<p><strong>When you might want to do this</strong>:
-- You want to very quickly analyze data or perform a task
-- You want to troubleshoot or learn how a certain tool works</p>
-<p><strong>Disadvantages</strong>
-- The installation is specific to your exact hardware and operating system.
-- Difficult to keep track of version and dependencies if you need to report or
-publish them in a paper
-- May not be reproducible outside of your specific environment
-- Limited by your personal hardware specifications</p>
+<p><strong>When you might want to do this</strong>:</p>
+<ul>
+<li><p>You want to very quickly analyze data or perform a task</p></li>
+<li><p>You want to troubleshoot or learn how a certain tool works</p></li>
+</ul>
+<p><strong>Disadvantages</strong></p>
+<ul>
+<li><p>The installation is specific to your exact hardware and operating system</p></li>
+<li><p>Difficult to keep track of version and dependencies if you need to report or publish them in a paper</p></li>
+<li><p>May not be reproducible outside of your specific environment</p></li>
+<li><p>Limited by your personal hardware specifications</p></li>
+</ul>
 </div>
 <div id="scc-modules" class="section level2 unnumbered">
 <h2>SCC Modules<a class="anchor" aria-label="anchor" href="#scc-modules"><i class="fas fa-link"></i></a>
@@ -192,16 +195,20 @@ available list of tools and their versions available. You may then use the
 <code>module load name_of_tool</code> command, which will allow you to use the tool and all
 of its functionalities. The module system will handle any dependencies and add
 the tool to your path for your use.</p>
-<p><strong>When you might want to do this</strong>
-- You want to very quickly analyze data or perform a task
-- You want to troubleshoot or learn how a certain tool works
-- The package isn’t available through conda or docker</p>
-<p><strong>Disadvantages</strong>
-- You are limited to only the versions pre-installed on the SCC (you may request updates but the SCC team is very busy)
-- You are still tied to a specific system architecture (SCC)
-- Difficult to keep track of version and dependencies if you need to report or
-publish them in a paper
-- May not be reproducible outside of your specific environment</p>
+<p><strong>When you might want to do this</strong></p>
+<ul>
+<li><p>You want to very quickly analyze data or perform a task</p></li>
+<li><p>You want to troubleshoot or learn how a certain tool works</p></li>
+<li><p>The package isn’t available through conda or docker</p></li>
+</ul>
+<p><strong>Disadvantages</strong></p>
+<ul>
+<li><p>You are limited to only the versions pre-installed on the SCC (you may request updates but the SCC team is very busy)</p></li>
+<li><p>You are still tied to a specific system architecture (SCC)</p></li>
+<li><p>Difficult to keep track of version and dependencies if you need to report or
+publish them in a paper</p></li>
+<li><p>May not be reproducible outside of your specific environment</p></li>
+</ul>
 </div>
 <div id="conda" class="section level2 unnumbered">
 <h2>Conda<a class="anchor" aria-label="anchor" href="#conda"><i class="fas fa-link"></i></a>
@@ -212,46 +219,52 @@ and miniconda. For our purposes, we will only be using miniconda. Miniconda will
 allow you to create separate environments, each containing their own packages and
 package dependencies. Miniconda will handle resolving all of the different
 versions and package dependencies needed for the requested tools.</p>
-<p><strong>When you might want to do this</strong>
-- Conda should be the default environment management tool used if better solutions
-like containers are unavailable (more below)</p>
-<p><strong>Disadvantages</strong>
-- Still tied to system architecture - conda environments may install system architecture
-specific packages
-- Miniconda will often break and not be able to resolve package dependencies
-for particularly complicated environments</p>
+<p><strong>When you might want to do this</strong></p>
+<ul>
+<li>Conda should be the default environment management tool used if better solutions
+like containers are unavailable (more below)</li>
+</ul>
+<p><strong>Disadvantages</strong></p>
+<ul>
+<li><p>Still tied to system architecture - conda environments may install system architecture
+specific packages</p></li>
+<li><p>Miniconda will often break and not be able to resolve package dependencies
+for particularly complicated environments</p></li>
+</ul>
 </div>
-<div id="containers" class="section level2" number="0.1">
-<h2>
-<span class="header-section-number">0.1</span> Containers<a class="anchor" aria-label="anchor" href="#containers"><i class="fas fa-link"></i></a>
+<div id="containers" class="section level2 unnumbered">
+<h2>Containers<a class="anchor" aria-label="anchor" href="#containers"><i class="fas fa-link"></i></a>
 </h2>
 <p>Containers package applications and their dependencies in a virtual container that
 allows it to run on any platform (linux, windows, macOS). They are isolated,
 lightweight and the best method to ensure reproducibility of your computational
 environments.</p>
-<p><strong>When you might want to do this</strong>
-- Whenever possible, containers are the most reproducible and portable method
-for ensuring standardization of packages and dependencies</p>
-<p><strong>Disadvantages</strong>
-- Docker, a common containerization solution, requires root permissions, which
-are unavailable to users on the SCC and most shared clusters.</p>
+<p><strong>When you might want to do this</strong></p>
+<ul>
+<li>Whenever possible, containers are the most reproducible and portable method
+for ensuring standardization of packages and dependencies</li>
+</ul>
+<p><strong>Disadvantages</strong></p>
+<ul>
+<li>Docker, a common containerization solution, requires root permissions, which
+are unavailable to users on the SCC and most shared clusters.</li>
+</ul>
 </div>
-<div id="best-practices-for-conda-environments-containers-for-bf528" class="section level2" number="0.2">
-<h2>
-<span class="header-section-number">0.2</span> Best Practices for conda environments / containers for BF528<a class="anchor" aria-label="anchor" href="#best-practices-for-conda-environments-containers-for-bf528"><i class="fas fa-link"></i></a>
+<div id="best-practices-for-conda-environments-containers-for-bf528" class="section level2 unnumbered">
+<h2>Best Practices for conda environments / containers for BF528<a class="anchor" aria-label="anchor" href="#best-practices-for-conda-environments-containers-for-bf528"><i class="fas fa-link"></i></a>
 </h2>
 <p>In order to ensure reproducibility and portability of our computational environments,
 we will use the following conventions:</p>
 <ol style="list-style-type: decimal">
-<li>Each tool should be installed into its own separate environment / container</li>
-</ol>
+<li>
+<p>Each tool should be installed into its own separate environment / container</p>
 <ul>
 <li>This ensures the environment / container is lightweight</li>
 <li>It greatly reduces the chance of version or dependency conflicts between tools
 (e.g. two tools need different versions of the same package) and allows us to
 use the most up-to-date version of the tool</li>
 </ul>
-<ol start="2" style="list-style-type: decimal">
+</li>
 <li><p>The environment specification for the environment / container should be clear
 and transparent. For conda environments, we will encode the environment
 description into a YML file. For containers, we will strive to find up-to-date
@@ -287,10 +300,10 @@ module for miniconda.</p>
 steps as described
 <a href="https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/python-software/miniconda-modules/#Conda%20Modules">here</a>.
 The setup_scc_condarc.sh script will automatically run and edit the conda config
-file stored in your home directory (~/.condarc). It will change the location
-where conda installs all of its packages to a directory specified. By default, it
-would install these packages into your home directory which is only allotted
-10gb.</p>
+file stored in your home directory, ~/.condarc.</p>
+<p>It will change the location where conda installs all of its packages to a
+directory specified. By default, it would install these packages into your home
+directory which is only allotted 10gb of storage space.</p>
 <p>You should choose to save your environments to your student folder
 /projectnb/bf528/students/<your_username>/. If you manually inspect your .condarc
 file (~/.condarc) with <code>cat</code> or a text editor, it should look like below:</your_username></p>
@@ -324,8 +337,8 @@ env_prompt: ({name})</code></pre>
 <li><a class="nav-link" href="#working-locally">Working locally</a></li>
 <li><a class="nav-link" href="#scc-modules">SCC Modules</a></li>
 <li><a class="nav-link" href="#conda">Conda</a></li>
-<li><a class="nav-link" href="#containers"><span class="header-section-number">0.1</span> Containers</a></li>
-<li><a class="nav-link" href="#best-practices-for-conda-environments-containers-for-bf528"><span class="header-section-number">0.2</span> Best Practices for conda environments / containers for BF528</a></li>
+<li><a class="nav-link" href="#containers">Containers</a></li>
+<li><a class="nav-link" href="#best-practices-for-conda-environments-containers-for-bf528">Best Practices for conda environments / containers for BF528</a></li>
 <li><a class="nav-link" href="#using-conda-on-the-scc">Using Conda on the SCC</a></li>
 <li><a class="nav-link" href="#using-containers-on-the-scc">Using containers on the SCC</a></li>
 </ul>

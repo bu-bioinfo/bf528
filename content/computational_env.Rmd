@@ -70,14 +70,19 @@ version for your system architecture and hope that the installation process
 includes any necessary dependencies.
 
 **When you might want to do this**:
+
 - You want to very quickly analyze data or perform a task
+
 - You want to troubleshoot or learn how a certain tool works
 
 **Disadvantages**
-- The installation is specific to your exact hardware and operating system. 
-- Difficult to keep track of version and dependencies if you need to report or 
-  publish them in a paper
+
+- The installation is specific to your exact hardware and operating system
+
+- Difficult to keep track of version and dependencies if you need to report or publish them in a paper
+
 - May not be reproducible outside of your specific environment
+
 - Limited by your personal hardware specifications
 
 
@@ -92,15 +97,22 @@ of its functionalities. The module system will handle any dependencies and add
 the tool to your path for your use.
 
 **When you might want to do this**
+
 - You want to very quickly analyze data or perform a task
+
 - You want to troubleshoot or learn how a certain tool works
+
 - The package isn't available through conda or docker
 
 **Disadvantages**
+
 - You are limited to only the versions pre-installed on the SCC (you may request updates but the SCC team is very busy)
+
 - You are still tied to a specific system architecture (SCC)
+
 - Difficult to keep track of version and dependencies if you need to report or 
   publish them in a paper
+  
 - May not be reproducible outside of your specific environment
 
 
@@ -114,17 +126,20 @@ package dependencies. Miniconda will handle resolving all of the different
 versions and package dependencies needed for the requested tools. 
 
 **When you might want to do this**
+
 - Conda should be the default environment management tool used if better solutions
 like containers are unavailable (more below)
 
 **Disadvantages**
+
 - Still tied to system architecture - conda environments may install system architecture
 specific packages
+
 - Miniconda will often break and not be able to resolve package dependencies
 for particularly complicated environments
 
 
-## Containers
+## Containers {-}
 
 Containers package applications and their dependencies in a virtual container that
 allows it to run on any platform (linux, windows, macOS). They are isolated,
@@ -132,23 +147,25 @@ lightweight and the best method to ensure reproducibility of your computational
 environments. 
 
 **When you might want to do this**
+
 - Whenever possible, containers are the most reproducible and portable method
 for ensuring standardization of packages and dependencies
 
 **Disadvantages**
+
 - Docker, a common containerization solution, requires root permissions, which
 are unavailable to users on the SCC and most shared clusters. 
 
-## Best Practices for conda environments / containers for BF528
+## Best Practices for conda environments / containers for BF528 {-}
 
 In order to ensure reproducibility and portability of our computational environments,
 we will use the following conventions:
 
 1. Each tool should be installed into its own separate environment / container
-  - This ensures the environment / container is lightweight
-  - It greatly reduces the chance of version or dependency conflicts between tools
-    (e.g. two tools need different versions of the same package) and allows us to 
-    use the most up-to-date version of the tool
+    - This ensures the environment / container is lightweight
+    - It greatly reduces the chance of version or dependency conflicts between tools
+      (e.g. two tools need different versions of the same package) and allows us to 
+      use the most up-to-date version of the tool
 
     
 2. The environment specification for the environment / container should be clear
@@ -194,10 +211,11 @@ The **first** time you load miniconda, you will want to perform the following
 steps as described
 [here](https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/python-software/miniconda-modules/#Conda%20Modules).
 The setup_scc_condarc.sh script will automatically run and edit the conda config
-file stored in your home directory (~/.condarc). It will change the location
-where conda installs all of its packages to a directory specified. By default, it
-would install these packages into your home directory which is only allotted
-10gb.
+file stored in your home directory, ~/.condarc. 
+
+It will change the location where conda installs all of its packages to a
+directory specified. By default, it would install these packages into your home
+directory which is only allotted 10gb of storage space.
 
 You should choose to save your environments to your student folder 
 /projectnb/bf528/students/<your_username>/. If you manually inspect your .condarc
