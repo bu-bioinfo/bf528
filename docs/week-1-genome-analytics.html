@@ -103,12 +103,18 @@
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-1-genome-analytics" class="section level1 unnumbered">
 <h1>Week 1: Genome Analytics<a class="anchor" aria-label="anchor" href="#week-1-genome-analytics"><i class="fas fa-link"></i></a>
 </h1>
-<div class="box important">
+<div class="box task">
 <p>Any tasks that you will be asked to do will be wrapped and styled as this
 section. If you are asked to answer any questions or report findings, please do
 so in the included “week#_tasks.Rmd”.</p>
 </div>
 <p>All other text will be directions or other explanatory text that you should read.</p>
+<p><strong>Project 0 Overview</strong></p>
+<p>This project will focus on getting you accustomed to how nextflow works and its
+key functions. You will be constructing a small nextflow pipeline that will
+annotate a small bacterial genome using <a href="prokka%20link">Prokka</a>, calculate some
+basic genome statistics using python (GC Content, and genome size) and extract the
+sequence for a specified region of the genome by its coordinates.</p>
 <p><strong>Objectives</strong></p>
 <ul>
 <li>Understand how to encode environment specifications for conda in YML files</li>
@@ -151,18 +157,18 @@ list specific versions of those.</p></li>
 you use to activate it and make the packages and software available to you for
 use.</p></li>
 </ul>
-<div class="box important">
+<div class="box task">
 <ol style="list-style-type: decimal">
-<li><p>For our purposes, you will be using a slightly older version of Nextflow to ensure that
-these directions do not get out of sync.</p></li>
+<li><p>For our purposes, you will be using a slightly older version of Nextflow to
+ensure that these directions do not get out of sync.</p></li>
 <li><p>Create a YML file in the <code>envs/</code> directory named <code>base_env.yml</code> and specify
 that you wish to install Nextflow version <strong>24.04.2</strong>. You may choose to name
 this environment whatever is easiest for you to remember. I named mine
 <code>nextflow_base</code>.</p></li>
 <li><p>Separately, using either <code>conda search -c conda-forge -c bioconda &lt;package-name&gt;</code> or by navigating to the tool’s website / github, report the most
 recent version available in the provided notebook.</p></li>
-<li><p>Answer the following question in the provided notebook: What is the advantage of using the most up-to-date
-versions of software? What are some disadvantages?</p></li>
+<li><p>Answer the following question in the provided notebook: What is the advantage
+of using the most up-to-date versions of software? What are some disadvantages?</p></li>
 <li>
 <p>Use the <code>conda env create -f base_env.yml</code> command to create the environment
 described in your YML file. Remember that for all work in this class, you will
@@ -174,6 +180,41 @@ following steps in your VScode terminal:</p>
 <li><code>conda activate nextflow_base</code></li>
 </ol>
 </li>
+</ol>
+</div>
+<p><strong>Adding reference files to our directory</strong>
+If you look in <directory with data>, you have been provided with a FASTA file of
+an unknown bacterial genome.</directory></p>
+<div class="task">
+<ol style="list-style-type: decimal">
+<li>Pick one of the three available genomes and copy a <strong>single</strong> FASTA file
+representing an unknown bacterial genome to your <code>refs/</code> directory.</li>
+</ol>
+</div>
+<p><strong>Generating a samplesheet</strong>
+For all of our projects, we will be encoding all of the information including
+sample metadata, and sample filepaths in a single CSV file. We will then use
+Nextflow to read the information stored within this sample sheet to drive the
+workflow and specify what files we want it to operate on.</p>
+<p>This pattern of encoding the samples we wish our workflow to process offers two
+key benefits:</p>
+<ol style="list-style-type: decimal">
+<li><p>We can very easily see all of the files associated with a particular analysis</p></li>
+<li><p>If we wanted to generalize our workflow and apply it to a different set of
+samples, we could simply supply a new CSV containing the information for those
+samples.</p></li>
+</ol>
+<div class="task">
+<ol style="list-style-type: decimal">
+<li><p>Using VScode, manually make a new text file in the top-level directory and
+generate a simple CSV with two columns named <code>name</code> and <code>path</code>. Your CSV should
+have only one row of data which specifies the name of the genome you picked
+(look at the filename) and the path to where it is located relative to the
+top-level directory (refs/)</p></li>
+<li><p>Next, under <code>params</code> in the <code>nextflow.config</code> file, add a value underneath
+the “//Reads and references” comment that encodes the path to your samplesheet.
+You may use the Nextflow shorthand $projectDir to generalize the working
+directory.</p></li>
 </ol>
 </div>
 
