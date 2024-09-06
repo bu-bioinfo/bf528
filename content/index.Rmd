@@ -141,6 +141,32 @@ The three projects are as follows:
 
 ## Grading and Assessment {-}
 
+Project 0 is an introduction to all the tools and technologies we will be
+utilizing throughout the semester. You will receive feedback on all your tasks, 
+but it will not count as part of your assessment. 
+
+**60% of your grade**:
+Projects 1 and 2 have been split into weekly tasks. These tasks will be a
+mixture of computational or analysis tasks and some discussion questions meant
+to enhance your understanding of larger concepts or the rationale underlying
+certain tasks. These tasks and answers to the discussion questions will be due
+the week following their assignment. Myself and the TAs will provide feedback on
+if you successfully completed the tasks or answered the questions and you will
+then be allowed to resubmit your work the following week. As long as you
+successfully address the given feedback upon resubmission, you will receive full
+credit for each week.
+
+**The other 40% of your grade**:
+Projects 1 and 2 were designed with scaffolding and instructions meant to aid
+you in developing these nextflow pipelines. The remaining 40% of your grade will
+be based on project 3.
+
+For project 3, you will be asked to develop a pipeline from scratch, using all
+of the principles and techniques we've utilized throughout the semester. We will
+provide minimal guidance and a list of analyses and questions you will need to
+answer. This project will involved generating a nextflow pipeline and analysis
+workflow that will process a scRNAseq experiment from raw data to biological
+analysis.
 
 
 ## Course Schedule {-}
