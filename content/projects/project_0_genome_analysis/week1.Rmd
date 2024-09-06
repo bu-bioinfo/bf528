@@ -9,15 +9,22 @@ so in the included `docs/week#_tasks.Rmd`.
 
 All other text will be directions or other explanatory text that you should read. 
 
-## Table of Contents
+## Table of Contents {-}
 
 [Project 0 Overview]
+
 [Objectives]
+
 [Getting Started]
+
 [Setting up our environment]
+
 [Adding reference files to our directory]
+
 [Generating a samplesheet]
+
 [Creating our first nextflow channel and process]
+
 [Week 1 Tasks Summary]
 
 

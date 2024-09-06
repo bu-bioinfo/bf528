@@ -3,5 +3,4 @@ introductory-slides
 computational-primer
 assignment
 assignment-1
-table-of-contents
 table-of-contents-1
