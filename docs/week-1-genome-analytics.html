@@ -18,9 +18,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="Any tasks that you will be asked to do will be wrapped and styled as this section. If you are asked to answer any questions or report findings, please do so in the included “week#_tasks.Rmd”. All...">
-<meta property="og:description" content="Any tasks that you will be asked to do will be wrapped and styled as this section. If you are asked to answer any questions or report findings, please do so in the included “week#_tasks.Rmd”. All...">
-<meta name="twitter:description" content="Any tasks that you will be asked to do will be wrapped and styled as this section. If you are asked to answer any questions or report findings, please do so in the included “week#_tasks.Rmd”. All...">
+<meta name="description" content="Any tasks that you will be asked to do will be wrapped and styled as this section. If you are asked to answer any questions or report findings, please do so in the included docs/week#_tasks.Rmd....">
+<meta property="og:description" content="Any tasks that you will be asked to do will be wrapped and styled as this section. If you are asked to answer any questions or report findings, please do so in the included docs/week#_tasks.Rmd....">
+<meta name="twitter:description" content="Any tasks that you will be asked to do will be wrapped and styled as this section. If you are asked to answer any questions or report findings, please do so in the included docs/week#_tasks.Rmd....">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -106,7 +106,7 @@
 <div class="box task">
 <p>Any tasks that you will be asked to do will be wrapped and styled as this
 section. If you are asked to answer any questions or report findings, please do
-so in the included “week#_tasks.Rmd”.</p>
+so in the included <code>docs/week#_tasks.Rmd</code>.</p>
 </div>
 <p>All other text will be directions or other explanatory text that you should read.</p>
 <p><strong>Project 0 Overview</strong></p>
@@ -138,12 +138,12 @@ it to your directory under the bf528 class space
 will be using Conda to create an environment where we just have Nextflow (and its
 direct dependencies) installed. For all project work in this class, you will need
 to remember to activate this environment as soon as you begin.</p>
-<p>Following the practices recommended here <a href="computational-environments-guide.html#computational-environments-guide">Computational Environments
-Guide</a>, we will be creating this conda
-environment directly from a YML file and this file will be version controlled
-and included in the analysis repository. Using VSCode, navigate to the <code>envs/</code>
-directory, open a new file and name it <code>base_env.yml</code>. Below see an example of
-these YML files should look like when used to create conda environments:</p>
+<p>Following the practices recommended <a href="computational-environments-guide.html#computational-environments-guide">here</a>, we
+will be creating this conda environment directly from a YML file and this file
+will be version controlled and included in the analysis repository. Using
+VSCode, navigate to the <code>envs/</code> directory, open a new file and name it
+<code>base_env.yml</code>. Below see an example of these YML files should look like when
+used to create conda environments:</p>
 <pre><code>name: name_of_env
 channels:
 - conda-forge
@@ -157,11 +157,12 @@ dependencies:
 (the channel where most bioinformatics packages are hosted) have agreed that
 conda-forge should be listed first, and bioconda second. This is the channel
 priority, and conda uses this internally to ensure that it solves dependencies
-correctly,</p></li>
-<li><p>You should specify a single package or tool in separate YML files. You should
-directly pin the exact version you desire to ensure transparency and reproducibility.</p></li>
-<li><p>Conda will take care of the software dependencies, and you generally do not
-list specific versions of those.</p></li>
+correctly</p></li>
+<li><p>You should specify a single package or tool in separate YML files. You
+should directly pin the exact version you desire to ensure transparency and
+reproducibility.</p></li>
+<li><p>Conda will take care of the minor software dependencies, and you generally
+do not attempt to manually install specific versions of those.</p></li>
 <li><p>The value after name will be the name of your conda environment and the name
 you use to activate it and make the packages and software available to you for
 use.</p></li>
@@ -192,8 +193,8 @@ to perform the following steps in your VScode terminal:</p>
 </li>
 </ol>
 </div>
-<p><strong>Adding reference files to our directory</strong>
-If you look in <directory with data>, you have been provided with a FASTA file of
+<p><strong>Adding reference files to our directory</strong></p>
+<p>If you look in <directory with data>, you have been provided with a FASTA file of
 an unknown bacterial genome.</directory></p>
 <div class="box task">
 <ol style="list-style-type: decimal">
@@ -201,8 +202,8 @@ an unknown bacterial genome.</directory></p>
 representing an unknown bacterial genome to your <code>refs/</code> directory.</li>
 </ol>
 </div>
-<p><strong>Generating a samplesheet</strong>
-For all of our projects, we will be encoding all of the information including
+<p><strong>Generating a samplesheet</strong></p>
+<p>For all of our projects, we will be encoding all of the information including
 sample metadata, and sample filepaths in a single CSV file. We will then use
 Nextflow to read the information stored within this sample sheet to drive the
 workflow and specify what files we want it to operate on.</p>
@@ -216,10 +217,10 @@ samples.</p></li>
 <div class="box task">
 <ol style="list-style-type: decimal">
 <li><p>Using VScode, manually make a new text file at the top-level of your
-directory (project-0-genome-analysis) and generate a simple CSV with two columns
-named <code>name</code> and <code>path</code> and one row of data which specifies the name of the
-genome you picked (look at the filename) and the path to where it is located
-relative to the top-level directory (refs/)</p></li>
+directory (project-0-genome-analysis) and generate a simple CSV named
+<code>samplesheet.csv</code> with two columns named <code>name</code> and <code>path</code> and one row of data
+which specifies the name of the genome you picked (look at the filename) and the
+path to where it is located relative to the top-level directory (refs/)</p></li>
 <li><p>Next open the <code>nextflow.config</code> file, and under <code>params</code> add a value
 underneath the “//Reads and references” comment that encodes the path to your
 samplesheet. You may use the Nextflow shorthand $projectDir to refer to the
@@ -240,10 +241,17 @@ accessory information will be sample identifiers, which will be used to name
 output files or specify options during runtime.</p>
 <p>As you can see from the samplesheet you generated, our first nextflow channel
 will contain two values, the name of the genome and its file path. This will
-allow us to pass this information to our first process, which will use python
-to quickly parse the sequence and calculate the GC content and length.</p>
+allow us to pass this information to our desired processes for further analysis
+or manipulation.</p>
+<p>To run nextflow, simply make sure that your environment with nextflow installed
+is activated and then use a terminal to enter the following command in the
+directory where your nextflow script (main.nf) is located:</p>
+<pre><code>nextflow run main.nf -profile local,conda</code></pre>
 <div class="box task">
 <ol style="list-style-type: decimal">
+<li><p>Take a look at the <code>nextflow.config</code> and look for the <code>profile</code> section. Answer
+the following question in the provided notebook: What do you think the option
+<code>-profile local,conda</code> is doing?</p></li>
 <li><p>Using VScode, open the <code>main.nf</code> file and begin by adding our first channel
 in the workflow declaration. This channel should read the information from the
 samplesheet and creates a tuple containing the value contained within <code>name</code> and
@@ -259,6 +267,23 @@ replace the usage of <code>view</code>, which does not assign your channel to a 
 but simply prints its contents to standard out.<br></p></li>
 </ol>
 </div>
+<p><strong>At the end of the first week, you should have done the following:</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Read through the README.md, which describes the directory structure we will be
+utilizing throughout the semester.</p></li>
+<li><p>Cloned the github classroom link for project 0 to your student directory in
+the bf528 project space.</p></li>
+<li><p>Generated a YML file in the <code>envs/</code> directory that contains the specification
+for your base environment with Nextflow version 24.04.2 installed.</p></li>
+<li><p>Copied a single genome fna (FASTA) to your <code>refs/</code> directory.</p></li>
+<li><p>Made the <code>samplesheet.csv</code> file at the top-level of your directory containing
+the columns <code>name</code> and <code>path</code> with one row being the name and path for your
+single genome file.</p></li>
+<li><p>Edited the <code>nextflow.config</code> file and added a <code>param</code> containing the path
+to your samplesheet</p></li>
+<li><p>Generated your first nextflow channel, <code>fa_ch</code>, containing a tuple with the
+name and path stored in your samplesheet.</p></li>
+</ol>
 <p>`</p>
 
 </div>
