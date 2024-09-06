@@ -13,8 +13,10 @@ All other text will be directions or other explanatory text that you should read
 This project will focus on getting you accustomed to how nextflow works and its
 key functions. You will be constructing a small nextflow pipeline that will
 annotate a small bacterial genome using [Prokka](prokka link), calculate some
-basic genome statistics using python (GC Content, and genome size) and extract the
-sequence for a specified region of the genome by its coordinates. 
+basic genome statistics using python (GC Content, and genome size) and extract
+the sequence for a specified region of the genome by its coordinates. The
+general format and structure of this repository and nextflow pipeline will be
+utilized for all other projects.
 
 **Objectives**
 
@@ -24,8 +26,14 @@ sequence for a specified region of the genome by its coordinates.
 
 **Getting Started**
 
-Please read through the provided README.md, which explains the structure of the
+:::{.box .task}
+1. Please read through the provided README.md, which explains the structure of the
 directory we are going to be working with throughout the semester. 
+
+2. Accept the provided github classroom link for project 0 on blackboard and clone
+it to your directory under the bf528 class space
+(/projectnb/bf528/students/username/)
+:::
 
 **Setting up our environments**
 
@@ -71,35 +79,35 @@ A few things to remember:
   
 :::{.box .task}
 1. For our purposes, you will be using a slightly older version of Nextflow to
-ensure that these directions do not get out of sync.
+ensure that these directions do not get out of sync. Create a YML file in the
+`envs/` directory named `base_env.yml` and specify that you wish to install
+Nextflow version **24.04.2**. Remember that the value after name in the file
+will be the name of the conda environment created, you may name this whatever
+is easiest for you to remember. We will be using this single environment all
+semester. 
 
-2. Create a YML file in the `envs/` directory named `base_env.yml` and specify
-that you wish to install Nextflow version **24.04.2**. You may choose to name
-this environment whatever is easiest for you to remember. I named mine
-`nextflow_base`.
-
-3. Separately, using either `conda search -c conda-forge -c bioconda
+2. Separately, using either `conda search -c conda-forge -c bioconda
 <package-name>` or by navigating to the tool's website / github, report the most
 recent version available in the provided notebook.
 
-4. Answer the following question in the provided notebook: What is the advantage
+3. Answer the following question in the provided notebook: What is the advantage
 of using the most up-to-date versions of software? What are some disadvantages?
 
-5. Use the `conda env create -f base_env.yml` command to create the environment
-described in your YML file. Remember that for all work in this class, you will
-want to activate this environment as soon as you log into your VSCode session
-before you start working. To do this, you will have to remember to perform the 
-following steps in your VScode terminal:
+4. In a terminal, use the `conda env create -f base_env.yml` command to create
+the environment described in your YML file. Remember that for all work in this
+class, you will want to activate this environment as soon as you log into your
+VSCode session before you start working. To do this, you will have to remember
+to perform the following steps in your VScode terminal:
 
     1. `module load miniconda`
-    2. `conda activate nextflow_base`
+    2. `conda activate name_of_nextflow_env`
 :::
 
 **Adding reference files to our directory**
 If you look in <directory with data>, you have been provided with a FASTA file of
 an unknown bacterial genome. 
 
-:::{.task}
+:::{.box .task}
 1. Pick one of the three available genomes and copy a **single** FASTA file
 representing an unknown bacterial genome to your `refs/` directory.
 :::
@@ -110,25 +118,66 @@ sample metadata, and sample filepaths in a single CSV file. We will then use
 Nextflow to read the information stored within this sample sheet to drive the
 workflow and specify what files we want it to operate on.
 
-This pattern of encoding the samples we wish our workflow to process offers two 
-key benefits:
+This pattern of encoding the samplesin this way offers two key benefits:
   
-  1. We can very easily see all of the files associated with a particular analysis
+  1. We can easily see all of the files associated with a particular analysis
   
-  2. If we wanted to generalize our workflow and apply it to a different set of
-  samples, we could simply supply a new CSV containing the information for those
+  2. We can generalize our workflow and apply it to a different set of samples
+  by simply supplying a different CSV containing the information for those
   samples.
   
-:::{.task}
-1. Using VScode, manually make a new text file in the top-level directory and
-generate a simple CSV with two columns named `name` and `path`. Your CSV should
-have only one row of data which specifies the name of the genome you picked
-(look at the filename) and the path to where it is located relative to the
-top-level directory (refs/)
+:::{.box .task}
+1. Using VScode, manually make a new text file at the top-level of your
+directory (project-0-genome-analysis) and generate a simple CSV with two columns
+named `name` and `path` and one row of data which specifies the name of the
+genome you picked (look at the filename) and the path to where it is located
+relative to the top-level directory (refs/)
 
-2. Next, under `params` in the `nextflow.config` file, add a value underneath
-the "//Reads and references" comment that encodes the path to your samplesheet.
-You may use the Nextflow shorthand $projectDir to generalize the working
-directory.
+2. Next open the `nextflow.config` file, and under `params` add a value
+underneath the "//Reads and references" comment that encodes the path to your
+samplesheet. You may use the Nextflow shorthand $projectDir to refer to the
+working directory (top-level).
 :::
 
+**Generating our first nextflow channel and process**
+
+Please refer to the nextflow lecture for more details on this section.
+
+Nextflow channels have a much more technical definition, but you may think of 
+them as a way in which nextflow sends data through a workflow. Channels are
+connected to processes through the inputs and outputs of the different steps
+of the workflow. 
+
+For our purposes, the nextflow channels we create will often follow a similar
+pattern of containing a set of files associated with a single sample, and
+associated metadata. Our channels will contain the file(s) and accessory
+information needed for whatever process or tool is being used. Often, this
+accessory information will be sample identifiers, which will be used to name
+output files or specify options during runtime.
+
+As you can see from the samplesheet you generated, our first nextflow channel
+will contain two values, the name of the genome and its file path. This will
+allow us to pass this information to our first process, which will use python
+to quickly parse the sequence and calculate the GC content and length. 
+
+:::{.box .task}
+1. Using VScode, open the `main.nf` file and begin by adding our first channel
+in the workflow declaration. This channel should read the information from the
+samplesheet and creates a tuple containing the value contained within `name` and
+`path` in that order.
+
+2. This will require a combination of nextflow functions and operators including:
+`Channel.fromPath`, `splitCsv`, `map`, `tuple` and `set`. You can also use `view`
+to see the contents of a generated channel. 
+
+3. Your channel when observed using `view` should look something like:
+[name_of_bacterial_genome, /path/to/reference/genome.fna].
+
+4. When you have successfully created this channel, you should use the `set` 
+function to assign it to a variable. Name this variable `fa_ch`. `set` should 
+replace the usage of `view`, which does not assign your channel to a variable
+but simply prints its contents to standard out.  
+:::
+
+
+`

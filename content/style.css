@@ -58,7 +58,7 @@ div.figure {
   background: #ffcc99;
 }
 .task:before {
-  content: "Important:";
+  content: "Task:";
   font-weight: bold;
 }
 .task {
