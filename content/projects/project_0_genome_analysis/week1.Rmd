@@ -83,8 +83,8 @@ want to activate this environment as soon as you log into your VSCode session
 before you start working. To do this, you will have to remember to perform the 
 following steps in your VScode terminal:
 
-  1. `module load miniconda`
-  2. `conda activate nextflow_base`
+    1. `module load miniconda`
+    2. `conda activate nextflow_base`
 :::
 
 
