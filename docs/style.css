@@ -57,10 +57,10 @@ div.figure {
 .warning {
   background: #ffcc99;
 }
-.important:before {
+.task:before {
   content: "Important:";
   font-weight: bold;
 }
-.important {
+.task {
   background: #ffffcc;
 }
