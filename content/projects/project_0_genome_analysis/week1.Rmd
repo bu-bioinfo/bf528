@@ -9,7 +9,7 @@ so in the included `docs/week#_tasks.Rmd`.
 
 All other text will be directions or other explanatory text that you should read. 
 
-## Table of Contents {-}
+## Section links {-}
 
 [Project 0 Overview]
 

@@ -2,9 +2,10 @@ rmd_files:
     - "index.Rmd"
     - "guide_part.Rmd"
     - "computational_env.Rmd"
+    - "project_part.Rmd"
+    - "projects/project_0_genome_analysis/week1.Rmd"
     - "lectures_part.Rmd"
     - "lectures.Rmd"
-    - "projects/project_0_genome_analysis/week1.Rmd"
 
 delete_merged_file: true
 output_dir: "../docs"
