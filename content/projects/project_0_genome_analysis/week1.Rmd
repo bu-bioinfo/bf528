@@ -9,7 +9,19 @@ so in the included `docs/week#_tasks.Rmd`.
 
 All other text will be directions or other explanatory text that you should read. 
 
-**Project 0 Overview**
+## Table of Contents
+
+[Project 0 Overview]
+[Objectives]
+[Getting Started]
+[Setting up our environment]
+[Adding reference files to our directory]
+[Generating a samplesheet]
+[Creating our first nextflow channel and process]
+[Week 1 Tasks Summary]
+
+
+## Project 0 Overview {-}
 
 This project will focus on getting you accustomed to how nextflow works and its
 key functions. You will be constructing a small nextflow pipeline that will
@@ -19,26 +31,26 @@ the sequence for a specified region of the genome by its coordinates. The
 general format and structure of this repository and nextflow pipeline will be
 utilized for all other projects.
 
-**Objectives**
+## Objectives {-}
 
 - Understand how to encode environment specifications for conda in YML files
-- Gain experience understanding how to run Nextflow
+- Gain experience understanding how to run Nextflow and create channels
 - Acclimate to the structure and style of projects as workflows
 
 
-**Getting Started**
+## Getting Started {-}
 
 :::{.box .task}
-1. Please read through the provided README.md, which explains the structure of the
-directory we are going to be working with throughout the semester. 
-
-2. Accept the provided github classroom link for project 0 on blackboard and clone
+1. Accept the provided github classroom link for project 0 on blackboard and clone
 it to your directory under the bf528 class space
 (/projectnb/bf528/students/username/)
+
+2. Please read through the provided README.md, which explains the structure of the
+directory we are going to be working with throughout the semester. 
 :::
 
 
-**Setting up our environments**
+## Setting up our environment {-}
 
 Before we begin working with Nextflow, we will need to install it. For this, we
 will be using Conda to create an environment where we just have Nextflow (and its
@@ -107,7 +119,8 @@ to perform the following steps in your VScode terminal:
     2. `conda activate name_of_nextflow_env`
 :::
 
-**Adding reference files to our directory**
+
+## Adding reference files to our directory {-}
 
 If you look in <directory with data>, you have been provided with a FASTA file of
 an unknown bacterial genome. 
@@ -118,7 +131,7 @@ representing an unknown bacterial genome to your `refs/` directory.
 :::
 
 
-**Generating a samplesheet**
+## Generating a samplesheet {-}
 
 For all of our projects, we will be encoding all of the information including
 sample metadata, and sample filepaths in a single CSV file. We will then use
@@ -147,7 +160,7 @@ working directory (top-level).
 :::
 
 
-**Generating our first nextflow channel and process**
+## Creating our first nextflow channel and process {-}
 
 Please refer to the nextflow lecture for more details on this section.
 
@@ -201,13 +214,13 @@ but simply prints its contents to standard out.
 :::
 
 
-**At the end of the first week, you should have done the following:**
+## Week 1 Tasks Summary {-}
 
-1. Read through the README.md, which describes the directory structure we will be
-utilizing throughout the semester.
-
-2. Cloned the github classroom link for project 0 to your student directory in
+1. Cloned the github classroom link for project 0 to your student directory in
 the bf528 project space.
+
+2. Read through the README.md, which describes the directory structure we will be
+utilizing throughout the semester.
 
 3. Generated a YML file in the `envs/` directory that contains the specification
 for your base environment with Nextflow version 24.04.2 installed. 
@@ -223,5 +236,3 @@ to your samplesheet
 
 7. Generated your first nextflow channel, `fa_ch`, containing a tuple with the
 name and path stored in your samplesheet. 
-
-`
