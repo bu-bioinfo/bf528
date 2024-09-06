@@ -14,7 +14,7 @@ knitr::opts_chunk$set(cache = TRUE)
 
 # BF528 - Applications in Translational Bioinformatics {-}
 
-Welcome to the homepage of BF528.
+Welcome to the homepage of BF528. CURRENTLY UNDER REVISION.
 
 **Semester: Spring 2024**
 

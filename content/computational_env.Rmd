@@ -116,18 +116,17 @@ the tool to your path for your use.
 - May not be reproducible outside of your specific environment
 
 
-## Conda {-}
+## Miniconda {-}
 
-Conda is a software package that provides package, dependency and environment 
-management for all of the common platforms. Anaconda is a set of included packages
-and miniconda. For our purposes, we will only be using miniconda. Miniconda will
-allow you to create separate environments, each containing their own packages and
-package dependencies. Miniconda will handle resolving all of the different 
-versions and package dependencies needed for the requested tools. 
+Miniconda is a software package that provides package, dependency and
+environment management for all of the common platforms. Miniconda will allow you
+to create separate environments, each containing their own packages and package
+dependencies. Miniconda will handle resolving all of the different versions and
+package dependencies needed for the requested tools.
 
 **When you might want to do this**
 
-- Conda should be the default environment management tool used if better solutions
+- Miniconda (conda) should be the default environment management tool used if better solutions
 like containers are unavailable (more below)
 
 **Disadvantages**
@@ -155,47 +154,6 @@ for ensuring standardization of packages and dependencies
 
 - Docker, a common containerization solution, requires root permissions, which
 are unavailable to users on the SCC and most shared clusters. 
-
-## Best Practices for conda environments / containers for BF528 {-}
-
-In order to ensure reproducibility and portability of our computational environments,
-we will use the following conventions:
-
-1. Each tool should be installed into its own separate environment / container
-    - This ensures the environment / container is lightweight
-    - It greatly reduces the chance of version or dependency conflicts between tools
-      (e.g. two tools need different versions of the same package) and allows us to 
-      use the most up-to-date version of the tool
-
-    
-2. The environment specification for the environment / container should be clear
-and transparent. For conda environments, we will encode the environment
-description into a YML file. For containers, we will strive to find up-to-date
-containers.
-
-3. We ensure that we specify the exact version of the tool we want installed
-
-For instance, if wanted to create a conda environment to run and use Samtools,
-we would create a YML file in our project directory named descriptively
-(samtools_env.yml) and use the `conda env create -f samtools_env.yml` to
-generate an environment using the specification contained within. That YML file
-may look something like the following:
-
-```
-channels:
-- conda-forge
-- bioconda
-
-dependencies:
-- samtools=1.19.2
-```
-
-You'll notice that in addition to setting the appropriate channel priority,
-conda-forge first and bioconda second, we directly specify the exact version of
-samtools that we want installed. Conda will handle installation of any necessary
-dependencies. We will keep this YML file contained within the repository in
-which it is being used. This would allow us or others to exactly recreate the
-environment in which the analysis was run. 
 
 ## Using Conda on the SCC {-}
 
@@ -231,5 +189,60 @@ pkgs_dirs:
 env_prompt: ({name})
 ```
 
-## Using containers on the SCC {-}
+When you have successfully loaded miniconda, you should see a (base) appended
+before your username in your terminal. This means conda is active and may be used.
+
+
+## Best Practices for conda environments / containers for BF528 {-}
+
+In order to ensure reproducibility and portability of our computational environments,
+we will use the following conventions:
+
+1. Each tool should be installed into its own separate environment / container
+    - This ensures the environment / container is lightweight
+    - It greatly reduces the chance of version or dependency conflicts between tools
+      (e.g. two tools need different versions of the same package) and allows us to 
+      use the most up-to-date version of the tool
+
+    
+2. The environment specification for the environment / container should be clear
+and transparent. For conda environments, we will encode the environment
+description into a YML file named appropriately. For containers, we will use 
+up-to-date containers hosted on standard registries. 
+
+3. We ensure that we specify the exact version of the tool we want installed
+
+For instance, if wanted to create a conda environment to run and use Samtools,
+we would create a YML file in our project directory named descriptively
+(samtools_env.yml) and use the `conda env create -f samtools_env.yml` to
+generate an environment using the specification contained within. That YML file
+may look something like the following:
+  
+```
+channels:
+- conda-forge
+- bioconda
+
+dependencies:
+- samtools=1.19.2
+```
+
+You'll notice that in addition to setting the appropriate channel priority,
+conda-forge first and bioconda second, we directly specify the exact version of
+samtools that we want installed. Conda will handle installation of any necessary
+dependencies. We will keep this YML file contained within the repository in
+which it is being used. This would allow us or others to exactly recreate the
+environment in which the analysis was run. 
+
+You may find which tools and versions are available on conda by using the command:
+`conda search -c conda-forge -c bioconda <tool_name>`.
+
+## How we are going to use conda environments / containers
+
+For the most part, we are not going to be directly utilizing these environments
+or containers. One of the advantages of nextflow is that it can automatically
+make use of these conda YML environment specification files or containers for
+individual tasks by specifying them in each of the modules. We will simply 
+
+
 

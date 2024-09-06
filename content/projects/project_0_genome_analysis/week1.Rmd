@@ -1,0 +1,90 @@
+# Week 1: Genome Analytics {-}
+
+:::{.box .important}
+Any tasks that you will be asked to do will be wrapped and styled as this
+section. If you are asked to answer any questions or report findings, please do
+so in the included "week#_tasks.Rmd".
+:::
+
+All other text will be directions or other explanatory text that you should read. 
+
+**Objectives**
+
+- Understand how to encode environment specifications for conda in YML files
+- Gain experience understanding how to run Nextflow
+- Acclimate to the structure and style of projects as workflows
+
+**Getting Started**
+
+Please read through the provided README.md, which explains the structure of the
+directory we are going to be working with throughout the semester. 
+
+**Setting up our environments**
+
+Before we begin working with Nextflow, we will need to install it. For this, we
+will be using Conda to create an environment where we just have Nextflow (and its
+direct dependencies) installed. For all project work in this class, you will need
+to remember to activate this environment as soon as you begin. 
+
+Following the practices recommended here [Computational Environments
+Guide][Computational Environments Guide], we will be creating this conda
+environment directly from a YML file and this file will be version controlled
+and included in the analysis repository. Using VSCode, navigate to the `envs/`
+directory, open a new file and name it `base_env.yml`. Below see an example of
+these YML files should look like when used to create conda environments:
+
+```
+name: name_of_env
+channels:
+- conda-forge
+- bioconda
+
+dependencies:
+- desired_package=version_number
+```
+
+A few things to remember:
+
+  - The order of channels is important! Developers and maintainers of Bioconda
+  (the channel where most bioinformatics packages are hosted) have agreed that
+  conda-forge should be listed first, and bioconda second. This is the channel 
+  priority, and conda uses this internally to ensure that it solves dependencies
+  correctly, 
+  
+  - You should specify a single package or tool in separate YML files. You should
+  directly pin the exact version you desire to ensure transparency and reproducibility.
+  
+  - Conda will take care of the software dependencies, and you generally do not
+  list specific versions of those. 
+  
+  - The value after name will be the name of your conda environment and the name
+  you use to activate it and make the packages and software available to you for
+  use.
+  
+:::{.box .important}
+1. For our purposes, you will be using a slightly older version of Nextflow to ensure that
+these directions do not get out of sync. 
+
+2. Create a YML file in the `envs/` directory named `base_env.yml` and specify
+that you wish to install Nextflow version **24.04.2**. You may choose to name
+this environment whatever is easiest for you to remember. I named mine
+`nextflow_base`.
+
+3. Separately, using either `conda search -c conda-forge -c bioconda
+<package-name>` or by navigating to the tool's website / github, report the most
+recent version available in the provided notebook.
+
+4. Answer the following question in the provided notebook: What is the advantage of using the most up-to-date
+versions of software? What are some disadvantages?
+
+5. Use the `conda env create -f base_env.yml` command to create the environment
+described in your YML file. Remember that for all work in this class, you will
+want to activate this environment as soon as you log into your VSCode session
+before you start working. To do this, you will have to remember to perform the 
+following steps in your VScode terminal:
+
+  1. `module load miniconda`
+  2. `conda activate nextflow_base`
+:::
+
+

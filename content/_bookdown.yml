@@ -4,7 +4,7 @@ rmd_files:
     - "computational_env.Rmd"
     - "lectures_part.Rmd"
     - "lectures.Rmd"
-    - "projects/snakemake_primer/assignment_0.Rmd"
+    - "projects/project_0_genome_analysis/week1.Rmd""
     - "projects/project_reports.Rmd"
     - "projects/project_1_rnaseq/project_1_rnaseq.Rmd"
     - "projects/project_1_rnaseq/week1.Rmd"
