@@ -207,8 +207,9 @@ we will use the following conventions:
     
 2. The environment specification for the environment / container should be clear
 and transparent. For conda environments, we will encode the environment
-description into a YML file named appropriately. For containers, we will use 
-up-to-date containers hosted on standard registries. 
+description into a YML file named appropriately. YAML files are commonly used
+for configuration files as YAML is a human-readable serialization language. For
+containers, we will use up-to-date containers hosted on standard registries.
 
 3. We ensure that we specify the exact version of the tool we want installed
 

@@ -1,12 +1,20 @@
 # Week 1: Genome Analytics {-}
 
-:::{.box .important}
+:::{.box .task}
 Any tasks that you will be asked to do will be wrapped and styled as this
 section. If you are asked to answer any questions or report findings, please do
 so in the included "week#_tasks.Rmd".
 :::
 
 All other text will be directions or other explanatory text that you should read. 
+
+**Project 0 Overview**
+
+This project will focus on getting you accustomed to how nextflow works and its
+key functions. You will be constructing a small nextflow pipeline that will
+annotate a small bacterial genome using [Prokka](prokka link), calculate some
+basic genome statistics using python (GC Content, and genome size) and extract the
+sequence for a specified region of the genome by its coordinates. 
 
 **Objectives**
 
@@ -61,9 +69,9 @@ A few things to remember:
   you use to activate it and make the packages and software available to you for
   use.
   
-:::{.box .important}
-1. For our purposes, you will be using a slightly older version of Nextflow to ensure that
-these directions do not get out of sync. 
+:::{.box .task}
+1. For our purposes, you will be using a slightly older version of Nextflow to
+ensure that these directions do not get out of sync.
 
 2. Create a YML file in the `envs/` directory named `base_env.yml` and specify
 that you wish to install Nextflow version **24.04.2**. You may choose to name
@@ -74,8 +82,8 @@ this environment whatever is easiest for you to remember. I named mine
 <package-name>` or by navigating to the tool's website / github, report the most
 recent version available in the provided notebook.
 
-4. Answer the following question in the provided notebook: What is the advantage of using the most up-to-date
-versions of software? What are some disadvantages?
+4. Answer the following question in the provided notebook: What is the advantage
+of using the most up-to-date versions of software? What are some disadvantages?
 
 5. Use the `conda env create -f base_env.yml` command to create the environment
 described in your YML file. Remember that for all work in this class, you will
@@ -87,4 +95,40 @@ following steps in your VScode terminal:
     2. `conda activate nextflow_base`
 :::
 
+**Adding reference files to our directory**
+If you look in <directory with data>, you have been provided with a FASTA file of
+an unknown bacterial genome. 
+
+:::{.task}
+1. Pick one of the three available genomes and copy a **single** FASTA file
+representing an unknown bacterial genome to your `refs/` directory.
+:::
+
+**Generating a samplesheet**
+For all of our projects, we will be encoding all of the information including
+sample metadata, and sample filepaths in a single CSV file. We will then use
+Nextflow to read the information stored within this sample sheet to drive the
+workflow and specify what files we want it to operate on.
+
+This pattern of encoding the samples we wish our workflow to process offers two 
+key benefits:
+  
+  1. We can very easily see all of the files associated with a particular analysis
+  
+  2. If we wanted to generalize our workflow and apply it to a different set of
+  samples, we could simply supply a new CSV containing the information for those
+  samples.
+  
+:::{.task}
+1. Using VScode, manually make a new text file in the top-level directory and
+generate a simple CSV with two columns named `name` and `path`. Your CSV should
+have only one row of data which specifies the name of the genome you picked
+(look at the filename) and the path to where it is located relative to the
+top-level directory (refs/)
+
+2. Next, under `params` in the `nextflow.config` file, add a value underneath
+the "//Reads and references" comment that encodes the path to your samplesheet.
+You may use the Nextflow shorthand $projectDir to generalize the working
+directory.
+:::
 
