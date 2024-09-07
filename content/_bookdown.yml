@@ -4,6 +4,7 @@ rmd_files:
     - "computational_env.Rmd"
     - "project_0_part.Rmd"
     - "projects/project_0_genome_analysis/week1.Rmd"
+    - "projects/project_0_genome_analysis/week2.Rmd"
     - "lectures_part.Rmd"
     - "lectures.Rmd"
 
