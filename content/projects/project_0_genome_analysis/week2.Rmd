@@ -1,0 +1,196 @@
+# Week 2: Genome Analytics {-}
+
+## Section Links {-}
+
+[Week 2 Overview]
+
+[Objectives]
+
+[Create YML environment files for Samtools and Prokka]
+
+[Generating your first module]
+
+[Creating your first workflow]
+
+[Making your own module]
+
+[Week 2 Tasks Summary]
+
+## Week 2 Overview {-}
+
+For this week, you will be developing your nextflow pipeline to run Prokka and a
+few samtools utilities. [Prokka](https://github.com/tseemann/prokka) is a
+prokaryotic genome annotation tool. Whole genome annotation encompasses
+identifying features of interest in given DNA sequences and labeling them with
+information regarding their potential function or gene identity. We will also be
+generating a fasta index for our genome, which will enable random access and
+searching (i.e. we can specify desired coordinates in the genome and extract the
+sequence for the given region). An index is very simply a file containing
+information about the structure of the genome file that will enable far more
+efficient searching than simply scanning from beginning to end for a target
+sequence.
+
+
+## Objectives {-}
+
+- Learn about the different components of a nextflow process
+
+- Understand how to run a process on specific samples using channels and how
+  to pass channels between processes. 
+  
+- Learn about how nextflow stages files in the `work/` directory
+
+## Create YML environment files for Samtools and Prokka {-}
+
+Just as with last week, we will need to first create the appropriate software
+environment before we can utilize the tools we need. 
+
+:::{.box .task}
+1. Generate a YML file that will create a conda environment with the most recent
+version of Prokka installed. Remember to use the conventions we've established
+including using the appropriate channel priority, only installing one major tool
+per environment, ensuring you specify the exact version of the tool and naming
+the file descriptively (e.g. prokka_env.yml)
+
+2. Generate another YML file that will create a conda environment with the most
+recent version of samtools installed.
+
+3. Make sure both of these YMLs are contained within your `envs/` directory. 
+:::
+
+## Generating your first module {-}
+
+A module in nextflow is a script that may contain functions or processes or
+workflows. For our purposes, we are going to generate modules that each contain
+a process. Because of the way modules have been designed, this will allow us to
+share or re-use the modules we generate that run certain commands in specified
+tools in different workflows. 
+
+:::{.box .task}
+1. Navigate to the `modules/` directory and open up the `main.nf` script contained
+within the `prokka/` directory. You have been provided with a representative
+example of what many nextflow processes will look like. If you remember the 
+channel you created, you made a tuple (ordered list) containing the name of the
+genome and the path to the file. If you look at the `input`, you can see that
+we declare that the input for this process is a tuple containing a value (name)
+and a path (genome). The channel that is passed to a process must have the same
+cardinality and order that is declared in the input.
+
+2. Complete lines 5 and 6 by providing the conda environment specification you
+made earlier for Prokka after the `env` option and providing the directory where
+you want the results of this process to be made available after the `publishDir`
+option.
+
+3. Look at the Prokka documentation and construct the correct command for
+running. We will be running Prokka with mostly default parameters and your
+command should include the exact options and no more: `--cpus`, `--outdir`,
+`--prefix`. Please use the name value from the channel for both the output
+directory name and output file prefix. Specify a value of `1` after the --cpus
+flag.
+
+4. You will need to specify the output that will be created by Prokka so that
+nextflow can recognize the files it needs to generate. In your command, you have
+specified the name of the output directory, use this same value as your output.
+
+4. Answer the following questions in your provided docs/week2_tasks.Rmd:
+
+    1. What does the option `label 'process_single'` specify? Can you find where
+      this value is described?
+    
+    2. What would happen if the values in our channel were switched?
+    i.e. [path/to/genome, name_of_genome] Would this process still run? Would the
+    tool still run?
+      
+Hint: Remember to make use of the "$input_value" to allow us to genericize our
+command and avoid hardcoding file names. At runtime, nextflow will properly
+replace them with the provided value. (i.e. $name will become
+name_of_genome_in_channel).
+:::
+
+## Creating your first workflow {-}
+
+Now that we have created the module that will run Prokka, we need to instruct
+nextflow what we want to do with it. This is done within the workflow declaration
+in the `main.nf` script at the top-level of the repo. You'll notice that you
+have already generated a channel within this workflow and now we will pass this
+channel to the process we just generated to run Prokka on our genome fasta file. 
+
+:::{.box .task}
+1. Look at line 1 of the main.nf script. You'll see the line:
+
+```
+include {PROKKA} from './modules/prokka'
+```
+
+Immediately, you can see that this is very similar to an `import` statement in
+python. We are making the contents of the Prokka module we just created available
+in this script. 
+
+2. Within the `workflow` declaration, below where you created your first channel,
+call this process and pass it your channel. You call the process by simply
+invoking the name within the `include` and then passing it your channel. 
+
+3. Use the following terminal command (with your nextflow environment activated):
+
+```
+nextflow run main.nf -profile local,conda
+```
+
+This will run your nextflow pipeline, which will create a channel containing
+the name of your genome and the path to its file location and supply it to the
+PROKKA process in the prokka module.
+
+4. Answer the following questions in your provided week2_tasks.Rmd when nextflow
+has finished running:
+
+    1. Where are the outputs from Prokka stored?
+    
+    2. You may have noticed a new directory has been created in your repo called
+    `work/`. What is in this directory? What do you think the advantages of 
+    generating directories this way are? What are the disadvantages?
+
+:::
+
+## Making your own module {-}
+
+As mentioned earlier, we are going to generate a FASTA index file for our
+genome. This will allow us to extract specified regions of sequence from this
+genome in a fast and efficient manner using Samtools. The index is also created
+by the samtools utility.
+
+:::{.box .task}
+1. Following the same conventions for the PROKKA module, generate a module and a 
+`main.nf` script and name the process contained within `SAMTOOLS_FAIDX`. Remember
+to supply the appropriate computational environment and to output the results to 
+our `results/` directory. 
+
+2. Look at the documentation for `samtools faidx` and complete the `shell` command
+with the proper command to index the FASTA.
+
+3. Your input declaration should be the same as the PROKKA module and match the
+shape of your `fa_ch`. 
+
+4. The `faidx` command will generate a new file named the same as the original,
+but with the additional `.fai` extension. Ensure that your output for this
+process is a `tuple` containing the original information found in the `fa_ch`
+(and the input) as well as the newly generated index file.
+
+5. Return to your `main.nf` at the top-level of your directory. Make this new
+process module you just created available in the script and run your
+`SAMTOOLS_FAIDX` process using the `fa_ch` channel.
+:::
+
+## Week 2 Tasks Summary {-}
+
+1. Generate YML environment specification files for the latest versions of
+Prokka and samtools and store them in the `envs/` directory. 
+
+2. Complete the PROKKA process in the prokka module as directed. 
+
+3. Run your pipeline with your completed PROKKA process and the `fa_ch` you
+generated last week. Answer the questions in the section containing the
+directions.
+
+4. Generate your own module for samtools_faidx and generate a working
+SAMTOOLS_FAIDX process. Make this process available in your `main.nf` script 
+and run it using the `fa_ch`. 
