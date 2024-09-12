@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Week 3: Genome Analytics | BF528 - Applications in Translational Bioinformatics</title>
+<meta name="generator" content="bookdown 0.40 with bs4_book()">
+<meta property="og:title" content="Week 3: Genome Analytics | BF528 - Applications in Translational Bioinformatics">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Week 3: Genome Analytics | BF528 - Applications in Translational Bioinformatics">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.8.0/transition.js"></script><script src="libs/bs3compat-0.8.0/tabs.js"></script><script src="libs/bs3compat-0.8.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+<meta name="description" content="Section Links Week 3 Overview Objectives Understanding the staging directory Inspecting the Prokka Output Passing outputs of processes as inputs [BLAST - Basic Local Alignment Search Tool]  Week 3...">
+<meta property="og:description" content="Section Links Week 3 Overview Objectives Understanding the staging directory Inspecting the Prokka Output Passing outputs of processes as inputs [BLAST - Basic Local Alignment Search Tool]  Week 3...">
+<meta name="twitter:description" content="Section Links Week 3 Overview Objectives Understanding the staging directory Inspecting the Prokka Output Passing outputs of processes as inputs [BLAST - Basic Local Alignment Search Tool]  Week 3...">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">BF528 - Applications in Translational Bioinformatics</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
+<li class="book-part">Guides</li>
+<li><a class="" href="computational-environments-guide.html">Computational Environments Guide</a></li>
+<li class="book-part">Project 0</li>
+<li><a class="" href="week-1-genome-analytics.html">Week 1: Genome Analytics</a></li>
+<li><a class="" href="week-2-genome-analytics.html">Week 2: Genome Analytics</a></li>
+<li><a class="active" href="week-3-genome-analytics.html">Week 3: Genome Analytics</a></li>
+<li class="book-part">Lectures</li>
+<li><a class="" href="introduction.html">Introduction</a></li>
+<li><a class="" href="genomics-genes-and-genomes.html">Genomics, Genes, and Genomes</a></li>
+<li><a class="" href="git.html">git</a></li>
+<li><a class="" href="computational-pipeline-strategies.html">Computational Pipeline Strategies</a></li>
+<li><a class="" href="computational-environment-management.html">Computational Environment Management</a></li>
+<li><a class="" href="sequence-analysis-fundamentals.html">Sequence Analysis Fundamentals</a></li>
+<li><a class="" href="nd-gen-sequencing.html">2nd Gen Sequencing</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-1.html">Sequence Analysis - RNA-Seq 1</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-2.html">Sequence Analysis - RNA-Seq 2</a></li>
+<li><a class="" href="scc-cluster-usage.html">SCC cluster usage</a></li>
+<li><a class="" href="biological-data-formats.html">Biological Data Formats</a></li>
+<li><a class="" href="gene-sets-and-enrichment.html">Gene sets and enrichment</a></li>
+<li><a class="" href="replicability-vs-reproducibility-strategies.html">Replicability vs Reproducibility Strategies</a></li>
+<li><a class="" href="putting-it-all-together---snakemake.html">Putting it all together - snakemake</a></li>
+<li><a class="" href="sequence-analysis---chip-seq.html">Sequence Analysis - ChIP-Seq</a></li>
+<li><a class="" href="genome-browsers.html">Genome Browsers</a></li>
+<li><a class="" href="sequence-analysis---atac-seq.html">Sequence Analysis - ATAC-Seq</a></li>
+<li><a class="" href="project-2---week-1-check-in.html">Project 2 - Week 1 Check-in</a></li>
+<li><a class="" href="biological-databases.html">Biological Databases</a></li>
+<li><a class="" href="genomic-variation-and-snp-analysis.html">Genomic Variation and SNP Analysis</a></li>
+<li><a class="" href="microbiome-metagenomics.html">Microbiome: Metagenomics</a></li>
+<li><a class="" href="microbiome-16s.html">Microbiome: 16S</a></li>
+<li><a class="" href="proteomics.html">Proteomics</a></li>
+<li><a class="" href="metabolomics.html">Metabolomics</a></li>
+<li><a class="" href="docker.html">Docker</a></li>
+<li><a class="" href="single-cell-analysis-part-1.html">Single Cell Analysis Part 1</a></li>
+<li><a class="" href="single-cell-analysis-part-2.html">Single Cell Analysis Part 2</a></li>
+<li><a class="" href="single-cell-analysis-part-3.html">Single Cell Analysis Part 3</a></li>
+<li><a class="" href="spatial-transcriptomics.html">Spatial Transcriptomics</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-3-genome-analytics" class="section level1 unnumbered">
+<h1>Week 3: Genome Analytics<a class="anchor" aria-label="anchor" href="#week-3-genome-analytics"><i class="fas fa-link"></i></a>
+</h1>
+<div id="section-links-2" class="section level2 unnumbered">
+<h2>Section Links<a class="anchor" aria-label="anchor" href="#section-links-2"><i class="fas fa-link"></i></a>
+</h2>
+<p><a href="week-3-genome-analytics.html#week-3-overview">Week 3 Overview</a></p>
+<p><a href="week-1-genome-analytics.html#objectives">Objectives</a></p>
+<p><a href="week-3-genome-analytics.html#understanding-the-staging-directory">Understanding the staging directory</a></p>
+<p><a href="week-3-genome-analytics.html#inspecting-the-prokka-output">Inspecting the Prokka Output</a></p>
+<p><a href="week-3-genome-analytics.html#passing-outputs-of-processes-as-inputs">Passing outputs of processes as inputs</a></p>
+<p>[BLAST - Basic Local Alignment Search Tool]</p>
+</div>
+<div id="week-3-overview" class="section level2 unnumbered">
+<h2>Week 3 Overview<a class="anchor" aria-label="anchor" href="#week-3-overview"><i class="fas fa-link"></i></a>
+</h2>
+<p>For this week, you will be inspecting the outputs of Prokka, and using the
+annotations generated to extract a specific portion of the genome sequence using
+samtools. You will also develop a simple python script that will be incorporated
+into your Nextflow pipeline that will calculate a few basic statistics on your
+chosen genome (GC content and length).</p>
+</div>
+<div id="objectives-2" class="section level2 unnumbered">
+<h2>Objectives<a class="anchor" aria-label="anchor" href="#objectives-2"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><p>Get familiar with the outputs of Prokka and the GFF file</p></li>
+<li><p>Use samtools to extract a randomly selected region from a large sequence</p></li>
+<li><p>Develop an external script that can be seamlessly incorporated into your workflow</p></li>
+</ul>
+</div>
+<div id="understanding-the-staging-directory" class="section level2 unnumbered">
+<h2>Understanding the staging directory<a class="anchor" aria-label="anchor" href="#understanding-the-staging-directory"><i class="fas fa-link"></i></a>
+</h2>
+<p>As we’ve mentioned, nextflow will “stage” files for specific processes in their
+own directories that are named specially in the <code>work/</code> directory it creates.
+These names usually follow the pattern of beginning with two letters or numbers,
+followed by an underscore, and then followed by a string of letters and numbers.</p>
+<p>This is known as a hash and you can think of it as a way of encoding data and
+information of arbitrary size to a fixed size. Nextflow will automatically stage
+each task in these separate directories for you. The main advantages of this
+strategy is that it prevents you from having to worry about file names and file name
+collisions since each task is guaranteed to run in its own new directory.</p>
+<p>When you run nextflow, you may have noticed that to the left of each process
+listed, you can see the location of where nextflow has run said task.</p>
+<div class="float">
+<img src="nextflow_run_example.png" alt="image"><div class="figcaption">image</div>
+</div>
+<p>You can navigate to these directories manually to inspect logs, output files,
+or check that the right files are being staged.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li>
+<p>Navigate to the directory in <code>work/</code> where your Prokka process ran successfully.
+Answer the following question in the provided week3_tasks.Rmd:</p>
+<ol style="list-style-type: decimal">
+<li>Explain the purpose of each file that you find in this directory. You may
+need to look up concepts such as stdout and stderr.</li>
+</ol>
+</li>
+</ol>
+</div>
+</div>
+<div id="inspecting-the-prokka-output" class="section level2 unnumbered">
+<h2>Inspecting the Prokka Output<a class="anchor" aria-label="anchor" href="#inspecting-the-prokka-output"><i class="fas fa-link"></i></a>
+</h2>
+<p>For full details, you can view the <a href="https://github.com/tseemann/prokka">Prokka</a>
+documentation for the exact files it produces. We are going to focus on the GFF
+output as that will contain some of the most important annotation information.</p>
+<p>As we discussed in lecture, a GFF file contains information used to describe genes
+and other features of DNA, RNA or protein sequences.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li>
+<p>Navigate to your <code>results/</code> directory and find the outputs created by Prokka.
+Open up the <code>&lt;replace_with_your_name&gt;.gff</code> file and answer the following questions:</p>
+<ol style="list-style-type: decimal">
+<li><p>Does this file have a regularized format? How would you parse or read this
+file?</p></li>
+<li><p>What information appears to be stored in this file?</p></li>
+</ol>
+</li>
+<li><p>Scroll through the file, and pick a random line where the 7th column is ‘+’.
+Record the values from the 4th and 5th column, they should both be numbers and
+represent an interval of the genome that has been annotated to some function
+or identity by Prokka.</p></li>
+<li>
+<p>In your <code>refs/</code> directory, create a new text file and call it
+<code>region_of_interest.txt</code> In this file, it should be a single line with the
+information you found above with the following generic format:</p>
+<pre><code>&lt;name_of_genome&gt;:&lt;value from column 4&gt;-&lt;value from column 5&gt;</code></pre>
+<p>Or for a specific example:
+<code>genome_a:100-200</code></p>
+</li>
+</ol>
+</div>
+</div>
+<div id="passing-outputs-of-processes-as-inputs" class="section level2 unnumbered">
+<h2>Passing outputs of processes as inputs<a class="anchor" aria-label="anchor" href="#passing-outputs-of-processes-as-inputs"><i class="fas fa-link"></i></a>
+</h2>
+<p>In nearly all bioinformatics pipelines, you will need to take the outputs from
+one tool and input them into another.</p>
+<p>Last week, you generated a module and process to create a genome index for your
+chosen genome. Now, we wish to use this index to enable us to quickly access
+random regions of the genome and extract their sequence. We will directly pass
+the outputs from this process to another process which will use the newly
+created index.</p>
+<p>For most index files in bioinformatics, they will be named the same as the file
+they are associated with but with an additional extension indicating that it’s
+an index. For our example, we will have two files including the original FASTA
+file:</p>
+<pre><code>genome.fna
+genome.fna.fai</code></pre>
+<p>Most utilities that use this index file will by default assume that the index
+and the original file are located in the same place. Our new process will call
+mostly the same <code>samtools faidx</code> command, but now by including the index, it
+will extract out the sequence associated with the coordinates provided in our
+<code>region_of_interest.txt</code></p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li><p>Generate a new <code>main.nf</code> script in the <code>samtools_faidx_subset</code> directory
+under <code>modules</code>. You may copy your <code>main.nf</code> from the <code>samtools_faidx</code> directory
+as the inputs, outputs, and commands will all be largely similar. Remember that
+the both the original file and index need to be in the same location for most
+tools to utilize it. You can pass the same set of inputs from your previous
+<code>samtools_faidx</code> process as input to this one. You will have one additional
+input which will be the <code>region_of_interest.txt</code> you generated previously.</p></li>
+<li><p>By default, most samtools utilities print their results to stdout. Use the <code>&gt;</code>
+tool to redirect the output to a file named <code>region.subset.fna</code>.</p></li>
+</ol>
+</div>
+</div>
+<div id="basic-local-alignment-search-tool" class="section level2 unnumbered">
+<h2>Basic Local Alignment Search Tool<a class="anchor" aria-label="anchor" href="#basic-local-alignment-search-tool"><i class="fas fa-link"></i></a>
+</h2>
+<p>For those not familiar, BLAST is an algorithm developed by the NCBI that enables
+searching for short sequence matches of a subject sequence of interest against a
+large library of known and identified sequences present in our collective
+databases. It is a remarkable tool that will take a short nucleotide or protein
+sequence and return some of the most similar sequences, which allows us to make
+strong inferences and conclusions about the potential identity and origin of our
+sequence of interest. It is a heuristic algorithm that works by first finding
+short matches between two sequences. By its nature, it is not designed to find
+or ensure it returns optimal alignments, and instead prioritizes speed.</p>
+<p>A quick google search will lead you to the BLAST website.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li>
+<p>Please select the nucleotide blast option and enter the sequence you extracted
+and placed within your <code>region_of_interest.txt</code> and leave all other options at
+default. Answer the following question in your provided week3_tasks.Rmd:</p>
+<ol style="list-style-type: decimal">
+<li><p>Please take a screenshot of the BLAST results returned from your query.
+What are some of the possible alignments of your sequence of interest? Are
+there are any commonalities in the organisms found?</p></li>
+<li><p>Just for fun: feel free to inspect more of the results from Prokka and
+query potential matches using BLAST. Can you guess what genome you chose?</p></li>
+</ol>
+</li>
+</ol>
+</div>
+
+</div>
+</div>
+
+
+
+<div class="chapter-nav">
+<div class="prev"><a href="week-2-genome-analytics.html">Week 2: Genome Analytics</a></div>
+<div class="next"><a href="introduction.html">Introduction</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#week-3-genome-analytics">Week 3: Genome Analytics</a></li>
+<li><a class="nav-link" href="#section-links-2">Section Links</a></li>
+<li><a class="nav-link" href="#week-3-overview">Week 3 Overview</a></li>
+<li><a class="nav-link" href="#objectives-2">Objectives</a></li>
+<li><a class="nav-link" href="#understanding-the-staging-directory">Understanding the staging directory</a></li>
+<li><a class="nav-link" href="#inspecting-the-prokka-output">Inspecting the Prokka Output</a></li>
+<li><a class="nav-link" href="#passing-outputs-of-processes-as-inputs">Passing outputs of processes as inputs</a></li>
+<li><a class="nav-link" href="#basic-local-alignment-search-tool">Basic Local Alignment Search Tool</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+</div>
+  
+
+  
+
+</div>
+ <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>BF528 - Applications in Translational Bioinformatics</strong>" was written by . </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

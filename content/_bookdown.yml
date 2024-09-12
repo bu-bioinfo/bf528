@@ -5,6 +5,7 @@ rmd_files:
     - "project_0_part.Rmd"
     - "projects/project_0_genome_analysis/week1.Rmd"
     - "projects/project_0_genome_analysis/week2.Rmd"
+    - "projects/project_0_genome_analysis/week3.Rmd"
     - "lectures_part.Rmd"
     - "lectures.Rmd"
 

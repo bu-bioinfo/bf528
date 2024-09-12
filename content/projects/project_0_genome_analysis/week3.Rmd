@@ -32,7 +32,7 @@ chosen genome (GC content and length).
 
 - Develop an external script that can be seamlessly incorporated into your workflow
 
-## Understanding the staging directory
+## Understanding the staging directory {-}
 
 As we've mentioned, nextflow will "stage" files for specific processes in their
 own directories that are named specially in the `work/` directory it creates.
@@ -60,7 +60,9 @@ Answer the following question in the provided week3_tasks.Rmd:
     1. Explain the purpose of each file that you find in this directory. You may
     need to look up concepts such as stdout and stderr. 
 
-## Inspecting the Prokka Output
+:::
+
+## Inspecting the Prokka Output {-}
 
 For full details, you can view the [Prokka](https://github.com/tseemann/prokka)
 documentation for the exact files it produces. We are going to focus on the GFF
@@ -98,7 +100,7 @@ information you found above with the following generic format:
 
 :::
 
-## Passing outputs of processes as inputs
+## Passing outputs of processes as inputs {-}
 
 In nearly all bioinformatics pipelines, you will need to take the outputs from
 one tool and input them into another. 
@@ -138,7 +140,7 @@ input which will be the `region_of_interest.txt` you generated previously.
 tool to redirect the output to a file named `region.subset.fna`.
 :::
 
-## BLAST - Basic Local Alignment Search Tool
+## Basic Local Alignment Search Tool {-}
 
 For those not familiar, BLAST is an algorithm developed by the NCBI that enables
 searching for short sequence matches of a subject sequence of interest against a
@@ -164,5 +166,5 @@ default. Answer the following question in your provided week3_tasks.Rmd:
 
     2. Just for fun: feel free to inspect more of the results from Prokka and
     query potential matches using BLAST. Can you guess what genome you chose?
-    
+:::    
 
