@@ -110,9 +110,8 @@ information regarding their potential function or gene identity. We will also be
 generating a fasta index for our genome, which will enable random access and
 searching (i.e. we can specify desired coordinates in the genome and extract the
 sequence for the given region). An index is very simply a file containing
-information about the structure of the genome file that will enable far more
-efficient searching than simply scanning from beginning to end for a target
-sequence.</p>
+information about the structure of a given file that will enable far more
+efficient searching than simply parsing a file from end to end exhaustively.</p>
 </div>
 <div id="objectives-1" class="section level2 unnumbered">
 <h2>Objectives<a class="anchor" aria-label="anchor" href="#objectives-1"><i class="fas fa-link"></i></a>
@@ -135,7 +134,7 @@ environment before we can utilize the tools we need.</p>
 version of Prokka installed. Remember to use the conventions we’ve established
 including using the appropriate channel priority, only installing one major tool
 per environment, ensuring you specify the exact version of the tool and naming
-the file descriptively (e.g. prokka_env.yml)</p></li>
+the file descriptively (e.g. envs/prokka_env.yml)</p></li>
 <li><p>Generate another YML file that will create a conda environment with the most
 recent version of samtools installed.</p></li>
 <li><p>Make sure both of these YMLs are contained within your <code>envs/</code> directory.</p></li>
@@ -148,8 +147,7 @@ recent version of samtools installed.</p></li>
 <p>A module in nextflow is a script that may contain functions or processes or
 workflows. For our purposes, we are going to generate modules that each contain
 a process. Because of the way modules have been designed, this will allow us to
-share or re-use the modules we generate that run certain commands in specified
-tools in different workflows.</p>
+share or re-use the modules we generate in different workflows.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
 <li><p>Navigate to the <code>modules/</code> directory and open up the <code>main.nf</code> script contained
@@ -165,14 +163,20 @@ made earlier for Prokka after the <code>env</code> option and providing the dire
 you want the results of this process to be made available after the <code>publishDir</code>
 option.</p></li>
 <li><p>Look at the Prokka documentation and construct the correct command for
-running. We will be running Prokka with mostly default parameters and your
-command should include the exact options and no more: <code>--cpus</code>, <code>--outdir</code>,
+running it. We will be running Prokka with mostly default parameters and your
+command should include these exact options and no more: <code>--cpus</code>, <code>--outdir</code>,
 <code>--prefix</code>. Please use the name value from the channel for both the output
 directory name and output file prefix. Specify a value of <code>1</code> after the –cpus
 flag.</p></li>
 <li><p>You will need to specify the output that will be created by Prokka so that
-nextflow can recognize the files it needs to generate. In your command, you have
-specified the name of the output directory, use this same value as your output.</p></li>
+nextflow can recognize the files it needs to generate. You can tell Nextflow to
+expect individual files or entire directories. If you look at the <code>output</code>, you
+can see that we’ve told Nextflow to expect <code>path("$name/")</code> to exist when the
+tool has successfully run. You may have noticed that in step 3, you were
+instructed to name the output directory Prokka creates with the value passed
+from the CSV (<code>name</code>). This will be a common pattern with these tools where we
+specify how we want the tool to name its output files, and then we tell Nextflow
+to expect those same files to be produced.</p></li>
 <li>
 <p>Answer the following questions in your provided docs/week2_tasks.Rmd:</p>
 <ol style="list-style-type: decimal">
@@ -250,7 +254,8 @@ shape of your <code>fa_ch</code>.</p></li>
 <li><p>The <code>faidx</code> command will generate a new file named the same as the original,
 but with the additional <code>.fai</code> extension. Ensure that your output for this
 process is a <code>tuple</code> containing the original information found in the <code>fa_ch</code>
-(and the input) as well as the newly generated index file.</p></li>
+(and the input) as well as the newly generated index file. This should look
+something like: [name_of_genome, /path/to/genome.fna, path/to/genome.fna.fai]</p></li>
 <li><p>Return to your <code>main.nf</code> at the top-level of your directory. Make this new
 process module you just created available in the script and run your
 <code>SAMTOOLS_FAIDX</code> process using the <code>fa_ch</code> channel.</p></li>

@@ -185,15 +185,20 @@ will be the name of the conda environment created, you may name this whatever
 is easiest for you to remember. We will be using this single environment all
 semester.</p></li>
 <li><p>Separately, using either <code>conda search -c conda-forge -c bioconda &lt;package-name&gt;</code> or by navigating to the tool’s website / github, report the most
-recent version available in the provided notebook.</p></li>
-<li><p>Answer the following question in the provided notebook: What is the advantage
-of using the most up-to-date versions of software? What are some disadvantages?</p></li>
+recent version available for Nextflow in the provided notebook.</p></li>
 <li>
-<p>In a terminal, use the <code>conda env create -f base_env.yml</code> command to create
-the environment described in your YML file. Remember that for all work in this
-class, you will want to activate this environment as soon as you log into your
-VSCode session before you start working. To do this, you will have to remember
-to perform the following steps in your VScode terminal:</p>
+<p>Answer the following questions in the provided notebook:</p>
+<ol style="list-style-type: decimal">
+<li><p>What is the advantage of using the most up-to-date versions of software?</p></li>
+<li><p>What are some disadvantages?</p></li>
+</ol>
+</li>
+<li>
+<p>Open a terminal in the top-level of your directory, use the <code>conda env create -f envs/base_env.yml</code> command to create the environment described in your YML
+file. Remember that for all work in this class, you will want to activate this
+environment as soon as you log into your VSCode session before you start
+working. To do this, you will have to remember to perform the following steps in
+your VScode terminal:</p>
 <ol style="list-style-type: decimal">
 <li><code>module load miniconda</code></li>
 <li><code>conda activate name_of_nextflow_env</code></li>
@@ -233,8 +238,9 @@ samples.</p></li>
 <li><p>Using VScode, manually make a new text file at the top-level of your
 directory (project-0-genome-analysis) and generate a simple CSV named
 <code>samplesheet.csv</code> with two columns named <code>name</code> and <code>path</code> and one row of data
-which specifies the name of the genome you picked (look at the filename) and the
-path to where it is located relative to the top-level directory (refs/)</p></li>
+which specifies the name of the genome you picked (look at the filename or the
+first line in the file) and the path to where it is located relative to the
+top-level directory (refs/<your_genome>.fna)</your_genome></p></li>
 <li><p>Next open the <code>nextflow.config</code> file, and under <code>params</code> add a value
 underneath the “//Reads and references” comment that encodes the path to your
 samplesheet. You may use the Nextflow shorthand $projectDir to refer to the
@@ -266,9 +272,13 @@ directory where your nextflow script (main.nf) is located:</p>
 <pre><code>nextflow run main.nf -profile local,conda</code></pre>
 <div class="box task">
 <ol style="list-style-type: decimal">
-<li><p>Take a look at the <code>nextflow.config</code> and look for the <code>profile</code> section. Answer
-the following question in the provided notebook: What do you think the option
-<code>-profile local,conda</code> is doing?</p></li>
+<li>
+<p>Take a look at the <code>nextflow.config</code> and look for the <code>profile</code> section. Answer
+the following question in the provided notebook:</p>
+<ol style="list-style-type: decimal">
+<li>What do you think the option <code>-profile local,conda</code> is doing?</li>
+</ol>
+</li>
 <li><p>Using VScode, open the <code>main.nf</code> file and begin by adding our first channel
 in the workflow declaration. This channel should read the information from the
 samplesheet and creates a tuple containing the value contained within <code>name</code> and
@@ -277,7 +287,7 @@ samplesheet and creates a tuple containing the value contained within <code>name
 <code>Channel.fromPath</code>, <code>splitCsv</code>, <code>map</code>, <code>tuple</code> and <code>set</code>. You can also use <code>view</code>
 to see the contents of a generated channel.</p></li>
 <li><p>Your channel when observed using <code>view</code> should look something like:
-[name_of_bacterial_genome, /path/to/reference/genome.fna].</p></li>
+[name_of_bacterial_genome, /path/to/reference/genome.fna]</p></li>
 <li><p>When you have successfully created this channel, you should use the <code>set</code>
 function to assign it to a variable. Name this variable <code>fa_ch</code>. <code>set</code> should
 replace the usage of <code>view</code>, which does not assign your channel to a variable
