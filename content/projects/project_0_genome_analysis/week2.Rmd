@@ -26,9 +26,8 @@ information regarding their potential function or gene identity. We will also be
 generating a fasta index for our genome, which will enable random access and
 searching (i.e. we can specify desired coordinates in the genome and extract the
 sequence for the given region). An index is very simply a file containing
-information about the structure of the genome file that will enable far more
-efficient searching than simply scanning from beginning to end for a target
-sequence.
+information about the structure of a given file that will enable far more
+efficient searching than simply parsing a file from end to end exhaustively.
 
 
 ## Objectives {-}
@@ -50,7 +49,7 @@ environment before we can utilize the tools we need.
 version of Prokka installed. Remember to use the conventions we've established
 including using the appropriate channel priority, only installing one major tool
 per environment, ensuring you specify the exact version of the tool and naming
-the file descriptively (e.g. prokka_env.yml)
+the file descriptively (e.g. envs/prokka_env.yml)
 
 2. Generate another YML file that will create a conda environment with the most
 recent version of samtools installed.
@@ -63,8 +62,7 @@ recent version of samtools installed.
 A module in nextflow is a script that may contain functions or processes or
 workflows. For our purposes, we are going to generate modules that each contain
 a process. Because of the way modules have been designed, this will allow us to
-share or re-use the modules we generate that run certain commands in specified
-tools in different workflows. 
+share or re-use the modules we generate in different workflows. 
 
 :::{.box .task}
 1. Navigate to the `modules/` directory and open up the `main.nf` script contained
@@ -82,15 +80,21 @@ you want the results of this process to be made available after the `publishDir`
 option.
 
 3. Look at the Prokka documentation and construct the correct command for
-running. We will be running Prokka with mostly default parameters and your
-command should include the exact options and no more: `--cpus`, `--outdir`,
+running it. We will be running Prokka with mostly default parameters and your
+command should include these exact options and no more: `--cpus`, `--outdir`,
 `--prefix`. Please use the name value from the channel for both the output
 directory name and output file prefix. Specify a value of `1` after the --cpus
 flag.
 
 4. You will need to specify the output that will be created by Prokka so that
-nextflow can recognize the files it needs to generate. In your command, you have
-specified the name of the output directory, use this same value as your output.
+nextflow can recognize the files it needs to generate. You can tell Nextflow to
+expect individual files or entire directories. If you look at the `output`, you
+can see that we've told Nextflow to expect `path("$name/")` to exist when the
+tool has successfully run. You may have noticed that in step 3, you were
+instructed to name the output directory Prokka creates with the value passed
+from the CSV (`name`). This will be a common pattern with these tools where we
+specify how we want the tool to name its output files, and then we tell Nextflow
+to expect those same files to be produced. 
 
 4. Answer the following questions in your provided docs/week2_tasks.Rmd:
 
@@ -173,7 +177,8 @@ shape of your `fa_ch`.
 4. The `faidx` command will generate a new file named the same as the original,
 but with the additional `.fai` extension. Ensure that your output for this
 process is a `tuple` containing the original information found in the `fa_ch`
-(and the input) as well as the newly generated index file.
+(and the input) as well as the newly generated index file. This should look
+something like: [name_of_genome, /path/to/genome.fna, path/to/genome.fna.fai]
 
 5. Return to your `main.nf` at the top-level of your directory. Make this new
 process module you just created available in the script and run your

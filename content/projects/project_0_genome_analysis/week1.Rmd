@@ -111,16 +111,20 @@ semester.
 
 2. Separately, using either `conda search -c conda-forge -c bioconda
 <package-name>` or by navigating to the tool's website / github, report the most
-recent version available in the provided notebook.
+recent version available for Nextflow in the provided notebook.
 
-3. Answer the following question in the provided notebook: What is the advantage
-of using the most up-to-date versions of software? What are some disadvantages?
+3. Answer the following questions in the provided notebook:
 
-4. In a terminal, use the `conda env create -f base_env.yml` command to create
-the environment described in your YML file. Remember that for all work in this
-class, you will want to activate this environment as soon as you log into your
-VSCode session before you start working. To do this, you will have to remember
-to perform the following steps in your VScode terminal:
+    1. What is the advantage of using the most up-to-date versions of software? 
+    
+    2. What are some disadvantages?
+
+4. Open a terminal in the top-level of your directory, use the `conda env create
+-f envs/base_env.yml` command to create the environment described in your YML
+file. Remember that for all work in this class, you will want to activate this
+environment as soon as you log into your VSCode session before you start
+working. To do this, you will have to remember to perform the following steps in
+your VScode terminal:
 
     1. `module load miniconda`
     2. `conda activate name_of_nextflow_env`
@@ -157,8 +161,9 @@ This pattern of encoding the samplesin this way offers two key benefits:
 1. Using VScode, manually make a new text file at the top-level of your
 directory (project-0-genome-analysis) and generate a simple CSV named
 `samplesheet.csv` with two columns named `name` and `path` and one row of data
-which specifies the name of the genome you picked (look at the filename) and the
-path to where it is located relative to the top-level directory (refs/)
+which specifies the name of the genome you picked (look at the filename or the
+first line in the file) and the path to where it is located relative to the
+top-level directory (refs/<your_genome>.fna)
 
 2. Next open the `nextflow.config` file, and under `params` add a value
 underneath the "//Reads and references" comment that encodes the path to your
@@ -199,20 +204,21 @@ nextflow run main.nf -profile local,conda
 
 :::{.box .task}
 1. Take a look at the `nextflow.config` and look for the `profile` section. Answer
-the following question in the provided notebook: What do you think the option 
-`-profile local,conda` is doing?
+the following question in the provided notebook: 
+
+    1. What do you think the option `-profile local,conda` is doing?
 
 2. Using VScode, open the `main.nf` file and begin by adding our first channel
 in the workflow declaration. This channel should read the information from the
 samplesheet and creates a tuple containing the value contained within `name` and
 `path` in that order.
 
-2. This will require a combination of nextflow functions and operators including:
+3. This will require a combination of nextflow functions and operators including:
 `Channel.fromPath`, `splitCsv`, `map`, `tuple` and `set`. You can also use `view`
 to see the contents of a generated channel. 
 
-3. Your channel when observed using `view` should look something like:
-[name_of_bacterial_genome, /path/to/reference/genome.fna].
+4. Your channel when observed using `view` should look something like:
+[name_of_bacterial_genome, /path/to/reference/genome.fna]
 
 4. When you have successfully created this channel, you should use the `set` 
 function to assign it to a variable. Name this variable `fa_ch`. `set` should 
