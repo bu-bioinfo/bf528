@@ -27,7 +27,7 @@ generating a fasta index for our genome, which will enable random access and
 searching (i.e. we can specify desired coordinates in the genome and extract the
 sequence for the given region). An index is very simply a file containing
 information about the structure of a given file that will enable far more
-efficient searching than simply parsing a file from end to end exhaustively.
+efficient searching than exhaustively parsing end-to-end.
 
 
 ## Objectives {-}
@@ -98,10 +98,10 @@ to expect those same files to be produced.
 
 4. Answer the following questions in your provided docs/week2_tasks.Rmd:
 
-    1. What does the option `label 'process_single'` specify? Can you find where
+    a. What does the option `label 'process_single'` specify? Can you find where
       this value is described?
     
-    2. What would happen if the values in our channel were switched?
+    b. What would happen if the values in our channel were switched?
     i.e. [path/to/genome, name_of_genome] Would this process still run? Would the
     tool still run?
       
@@ -147,9 +147,9 @@ PROKKA process in the prokka module.
 4. Answer the following questions in your provided week2_tasks.Rmd when nextflow
 has finished running:
 
-    1. Where are the outputs from Prokka stored?
+    a. Where are the outputs from Prokka stored?
     
-    2. You may have noticed a new directory has been created in your repo called
+    b. You may have noticed a new directory has been created in your repo called
     `work/`. What is in this directory? What do you think the advantages of 
     generating directories this way are? What are the disadvantages?
 
