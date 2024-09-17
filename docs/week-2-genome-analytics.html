@@ -112,7 +112,7 @@ generating a fasta index for our genome, which will enable random access and
 searching (i.e. we can specify desired coordinates in the genome and extract the
 sequence for the given region). An index is very simply a file containing
 information about the structure of a given file that will enable far more
-efficient searching than simply parsing a file from end to end exhaustively.</p>
+efficient searching than exhaustively parsing end-to-end.</p>
 </div>
 <div id="objectives-1" class="section level2 unnumbered">
 <h2>Objectives<a class="anchor" aria-label="anchor" href="#objectives-1"><i class="fas fa-link"></i></a>
@@ -180,7 +180,7 @@ specify how we want the tool to name its output files, and then we tell Nextflow
 to expect those same files to be produced.</p></li>
 <li>
 <p>Answer the following questions in your provided docs/week2_tasks.Rmd:</p>
-<ol style="list-style-type: decimal">
+<ol style="list-style-type: lower-alpha">
 <li><p>What does the option <code>label 'process_single'</code> specify? Can you find where
 this value is described?</p></li>
 <li><p>What would happen if the values in our channel were switched?
@@ -225,7 +225,7 @@ PROKKA process in the prokka module.</p>
 <li>
 <p>Answer the following questions in your provided week2_tasks.Rmd when nextflow
 has finished running:</p>
-<ol style="list-style-type: decimal">
+<ol style="list-style-type: lower-alpha">
 <li><p>Where are the outputs from Prokka stored?</p></li>
 <li><p>You may have noticed a new directory has been created in your repo called
 <code>work/</code>. What is in this directory? What do you think the advantages of

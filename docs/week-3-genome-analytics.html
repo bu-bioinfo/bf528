@@ -18,9 +18,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="Section Links Week 3 Overview Objectives Understanding the staging directory Inspecting the Prokka Output Passing outputs of processes as inputs [BLAST - Basic Local Alignment Search Tool]  Week 3...">
-<meta property="og:description" content="Section Links Week 3 Overview Objectives Understanding the staging directory Inspecting the Prokka Output Passing outputs of processes as inputs [BLAST - Basic Local Alignment Search Tool]  Week 3...">
-<meta name="twitter:description" content="Section Links Week 3 Overview Objectives Understanding the staging directory Inspecting the Prokka Output Passing outputs of processes as inputs [BLAST - Basic Local Alignment Search Tool]  Week 3...">
+<meta name="description" content="Section Links Week 3 Overview Objectives Understanding the staging directory Inspecting the Prokka Output Passing outputs of processes as inputs Basic Local Alignment Search Tool Developing an...">
+<meta property="og:description" content="Section Links Week 3 Overview Objectives Understanding the staging directory Inspecting the Prokka Output Passing outputs of processes as inputs Basic Local Alignment Search Tool Developing an...">
+<meta name="twitter:description" content="Section Links Week 3 Overview Objectives Understanding the staging directory Inspecting the Prokka Output Passing outputs of processes as inputs Basic Local Alignment Search Tool Developing an...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -97,7 +97,8 @@
 <p><a href="week-3-genome-analytics.html#understanding-the-staging-directory">Understanding the staging directory</a></p>
 <p><a href="week-3-genome-analytics.html#inspecting-the-prokka-output">Inspecting the Prokka Output</a></p>
 <p><a href="week-3-genome-analytics.html#passing-outputs-of-processes-as-inputs">Passing outputs of processes as inputs</a></p>
-<p>[BLAST - Basic Local Alignment Search Tool]</p>
+<p><a href="week-3-genome-analytics.html#basic-local-alignment-search-tool">Basic Local Alignment Search Tool</a></p>
+<p><a href="week-3-genome-analytics.html#developing-an-external-script">Developing an external script</a></p>
 </div>
 <div id="week-3-overview" class="section level2 unnumbered">
 <h2>Week 3 Overview<a class="anchor" aria-label="anchor" href="#week-3-overview"><i class="fas fa-link"></i></a>
@@ -126,7 +127,7 @@ These names usually follow the pattern of beginning with two letters or numbers,
 followed by an underscore, and then followed by a string of letters and numbers.</p>
 <p>This is known as a hash and you can think of it as a way of encoding data and
 information of arbitrary size to a fixed size. Nextflow will automatically stage
-each task in these separate directories for you. The main advantages of this
+each task in these separate directories for you. The main advantage of this
 strategy is that it prevents you from having to worry about file names and file name
 collisions since each task is guaranteed to run in its own new directory.</p>
 <p>When you run nextflow, you may have noticed that to the left of each process
@@ -162,7 +163,7 @@ and other features of DNA, RNA or protein sequences.</p>
 <li>
 <p>Navigate to your <code>results/</code> directory and find the outputs created by Prokka.
 Open up the <code>&lt;replace_with_your_name&gt;.gff</code> file and answer the following questions:</p>
-<ol style="list-style-type: decimal">
+<ol style="list-style-type: lower-alpha">
 <li><p>Does this file have a regularized format? How would you parse or read this
 file?</p></li>
 <li><p>What information appears to be stored in this file?</p></li>
@@ -206,16 +207,17 @@ will extract out the sequence associated with the coordinates provided in our
 <code>region_of_interest.txt</code></p>
 <div class="box task">
 <ol style="list-style-type: decimal">
-<li><p>Generate a new <code>main.nf</code> script in the <code>samtools_faidx_subset</code> directory
+<li>Generate a new <code>main.nf</code> script in the <code>samtools_faidx_subset</code> directory
 under <code>modules</code>. You may copy your <code>main.nf</code> from the <code>samtools_faidx</code> directory
 as the inputs, outputs, and commands will all be largely similar. Remember that
 the both the original file and index need to be in the same location for most
-tools to utilize it. You can pass the same set of inputs from your previous
-<code>samtools_faidx</code> process as input to this one. You will have one additional
-input which will be the <code>region_of_interest.txt</code> you generated previously.</p></li>
-<li><p>By default, most samtools utilities print their results to stdout. Use the <code>&gt;</code>
-tool to redirect the output to a file named <code>region.subset.fna</code>.</p></li>
+tools to utilize it.</li>
 </ol>
+<p>You can pass the outputs from your previous <code>samtools_faidx</code> process
+as input to this one. You will have one additional input which will be the
+<code>region_of_interest.txt</code> you generated previously. By default, most samtools
+utilities print their results to stdout. Use the <code>&gt;</code> tool to redirect the output
+to a file named <code>region.subset.fna</code>.</p>
 </div>
 </div>
 <div id="basic-local-alignment-search-tool" class="section level2 unnumbered">
@@ -229,25 +231,108 @@ sequence and return some of the most similar sequences, which allows us to make
 strong inferences and conclusions about the potential identity and origin of our
 sequence of interest. It is a heuristic algorithm that works by first finding
 short matches between two sequences. By its nature, it is not designed to find
-or ensure it returns optimal alignments, and instead prioritizes speed.</p>
-<p>A quick google search will lead you to the BLAST website.</p>
+or ensure it returns optimal alignments, and instead prioritizes speed.A quick
+google search will lead you to the BLAST website.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
 <li>
-<p>Please select the nucleotide blast option and enter the sequence you extracted
-and placed within your <code>region_of_interest.txt</code> and leave all other options at
-default. Answer the following question in your provided week3_tasks.Rmd:</p>
-<ol style="list-style-type: decimal">
+<p>Please select the nucleotide blast option and open the file you created named
+<code>your_genome.region.subset.fna</code>. Copy the sequence found within that file into
+the query section of BLAST and leave all other options at default. Answer the
+following question in your provided week3_tasks.Rmd:</p>
+<ol style="list-style-type: lower-alpha">
 <li><p>Please take a screenshot of the BLAST results returned from your query.
 What are some of the possible alignments of your sequence of interest? Are
-there are any commonalities in the organisms found?</p></li>
+there are any commonalities in the organisms found if you see multiple
+equally valid results?</p></li>
 <li><p>Just for fun: feel free to inspect more of the results from Prokka and
-query potential matches using BLAST. Can you guess what genome you chose?</p></li>
+query potential matches using BLAST. Can you guess the original identity of
+the genome you chose?</p></li>
 </ol>
 </li>
 </ol>
 </div>
+</div>
+<div id="developing-an-external-script" class="section level2 unnumbered">
+<h2>Developing an external script<a class="anchor" aria-label="anchor" href="#developing-an-external-script"><i class="fas fa-link"></i></a>
+</h2>
+<p>Many times in bioinformatics pipelines, we will need to run a custom script that
+will perform a specific analysis or operation. For this pipeline, we wish to
+calculate some basic statistics about the chosen genome. We will take advantage
+of the fact that FASTA files are simple text files with a defined format that
+can be easily parsed.</p>
+<p>Nextflow has made the incorporation of scripts into workflows very simple. You
+can place your external scripts in the <code>bin/</code> directory and nextflow will handle
+staging the <code>bin/</code> directory and adding the script to path when it executes. You
+will need to include a <a href="https://en.wikipedia.org/wiki/Shebang_(Unix)">shebang
+line</a> and change the script
+permissions to be executable prior to running your workflow.</p>
+<p>Take a look at the provided skeleton of a script in <code>bin/</code> named
+<code>genome_stats.py</code>. Examine lines 1-20, and you may also find this
+<a href="https://docs.python.org/3/library/argparse.html">documentation</a> helpful. This
+script utilizes <code>argparse</code>, a library meant to make it simple to write
+user-friendly command-line interfaces. This is one of the many methods by which
+tools and scripts enable you to set different flags or options at runtime (e.g.
+–output or -p).</p>
+<div class="box task">
+<p>In the provided week3_tasks.Rmd, please answer the following questions:</p>
+<pre><code>1. How would you change this argparse code to accept a list of file inputs?
 
+2. Why are we going to the trouble of making a separate script and nextflow
+module to run this specific code?</code></pre>
+</div>
+<p>You will develop your code to parse the genome FASTA you were provided and the
+nextflow module accompanying this script will simply be responsible for passing
+it the correct input (your FASTA file) and specifying the output file.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li>
+<p>Write valid python code below line 20 in the provided script. You may do this
+with basic python functionalities or attempt to use <a href="https://biopython.org/">Biopython</a>.
+Your code should do the following:</p>
+<ol style="list-style-type: lower-alpha">
+<li>Read in the FASTA file</li>
+<li>Parse the sequence correctly and return the GC
+Content as a percentage and the length of the genome.</li>
+<li>Output these two values to separate lines in a new file, you may include
+some text explaining what each value represents (i.e. GC Content: 64%)</li>
+</ol>
+</li>
+<li><p>Make a new directory in <code>modules</code> entitled <code>genome_stats</code> and create a
+<code>main.nf</code>. If using biopython, make an appropriate YML environment specification
+for biopython. If only using basic python, make a YML environment specification
+with python installed. You can have the inputs be the same shape and structure
+as the <code>fa_ch</code>. You will need to specify how you want the output file named.
+The shell/script portion will be the command for executing the associated <code>.py</code>
+script and providing it the appropriate inputs as specified by <code>argparse</code>. Please
+write the new file to the <code>results/</code> directory using <code>publishDir</code>.</p></li>
+<li><p>When your script is functional and your associated nextflow module complete,
+run Nextflow once more to generate the text file containing the two genome
+statistics requested.</p></li>
+</ol>
+</div>
+</div>
+<div id="week-3-tasks-summary" class="section level2" number="0.2">
+<h2>
+<span class="header-section-number">0.2</span> Week 3 Tasks Summary<a class="anchor" aria-label="anchor" href="#week-3-tasks-summary"><i class="fas fa-link"></i></a>
+</h2>
+<ol style="list-style-type: decimal">
+<li><p>Select a region of interest from the GFF generated from the output of Prokka
+and encode the information as specified in a new file <code>refs/region_of_interest.txt</code></p></li>
+<li><p>Generate a new nextflow module that takes the outputs of the <code>samtools_faidx</code>
+process as inputs along with your <code>refs/region_of_interest.txt</code>. This module
+should run samtools faidx to extract the specific sequence specified in your text
+file from the full genome file. Place this sequence in a new FASTA file called
+<code>region.subset.fna</code></p></li>
+<li><p>Explore the use of <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> and utilize
+it to query the sequence you extracted. Take a screenshot of the results and make
+sure to answer the associated questions.</p></li>
+<li><p>Develop the included <code>genome_stats.py</code> script to successfully parse the genome
+FASTA file and calculate the GC content (as a percentage of total) and the length
+of the sequence. Simultaneously, develop a new nextflow module that will call
+the script and provide the appropriate inputs on the command line. This script
+should write the results to a new text file named as you choose.</p></li>
+</ol>
 </div>
 </div>
 
@@ -267,6 +352,8 @@ query potential matches using BLAST. Can you guess what genome you chose?</p></l
 <li><a class="nav-link" href="#inspecting-the-prokka-output">Inspecting the Prokka Output</a></li>
 <li><a class="nav-link" href="#passing-outputs-of-processes-as-inputs">Passing outputs of processes as inputs</a></li>
 <li><a class="nav-link" href="#basic-local-alignment-search-tool">Basic Local Alignment Search Tool</a></li>
+<li><a class="nav-link" href="#developing-an-external-script">Developing an external script</a></li>
+<li><a class="nav-link" href="#week-3-tasks-summary"><span class="header-section-number">0.2</span> Week 3 Tasks Summary</a></li>
 </ul>
 
       <div class="book-extra">

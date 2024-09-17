@@ -235,6 +235,8 @@ write the new file to the `results/` directory using `publishDir`.
 run Nextflow once more to generate the text file containing the two genome
 statistics requested. 
 
+:::
+
 ## Week 3 Tasks Summary
 
 1. Select a region of interest from the GFF generated from the output of Prokka

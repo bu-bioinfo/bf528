@@ -166,7 +166,7 @@ dependencies:
 (the channel where most bioinformatics packages are hosted) have agreed that
 conda-forge should be listed first, and bioconda second. This is the channel
 priority, and conda uses this internally to ensure that it solves dependencies
-correctly</p></li>
+correctly.</p></li>
 <li><p>You should specify a single package or tool in separate YML files. You
 should directly pin the exact version you desire to ensure transparency and
 reproducibility.</p></li>
@@ -189,7 +189,7 @@ semester.</p></li>
 recent version available for Nextflow in the provided notebook.</p></li>
 <li>
 <p>Answer the following questions in the provided notebook:</p>
-<ol style="list-style-type: decimal">
+<ol style="list-style-type: lower-alpha">
 <li><p>What is the advantage of using the most up-to-date versions of software?</p></li>
 <li><p>What are some disadvantages?</p></li>
 </ol>
@@ -227,7 +227,7 @@ representing an unknown bacterial genome to your <code>refs/</code> directory.</
 sample metadata, and sample filepaths in a single CSV file. We will then use
 Nextflow to read the information stored within this sample sheet to drive the
 workflow and specify what files we want it to operate on.</p>
-<p>This pattern of encoding the samplesin this way offers two key benefits:</p>
+<p>This pattern of encoding the samples in this way offers two key benefits:</p>
 <ol style="list-style-type: decimal">
 <li><p>We can easily see all of the files associated with a particular analysis</p></li>
 <li><p>We can generalize our workflow and apply it to a different set of samples
@@ -241,7 +241,7 @@ directory (project-0-genome-analysis) and generate a simple CSV named
 <code>samplesheet.csv</code> with two columns named <code>name</code> and <code>path</code> and one row of data
 which specifies the name of the genome you picked (look at the filename or the
 first line in the file) and the path to where it is located relative to the
-top-level directory (refs/<your_genome>.fna)</your_genome></p></li>
+top-level directory (refs/your_genome_name.fna)</p></li>
 <li><p>Next open the <code>nextflow.config</code> file, and under <code>params</code> add a value
 underneath the “//Reads and references” comment that encodes the path to your
 samplesheet. You may use the Nextflow shorthand $projectDir to refer to the
@@ -276,7 +276,7 @@ directory where your nextflow script (main.nf) is located:</p>
 <li>
 <p>Take a look at the <code>nextflow.config</code> and look for the <code>profile</code> section. Answer
 the following question in the provided notebook:</p>
-<ol style="list-style-type: decimal">
+<ol style="list-style-type: lower-alpha">
 <li>What do you think the option <code>-profile local,conda</code> is doing?</li>
 </ol>
 </li>
