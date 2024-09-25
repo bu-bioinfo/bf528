@@ -130,9 +130,10 @@ Immediately, you can see that this is very similar to an `import` statement in
 python. We are making the contents of the Prokka module we just created available
 in this script. 
 
-2. Within the `workflow` declaration, below where you created your first channel,
-call this process and pass it your channel. You call the process by simply
-invoking the name within the `include` and then passing it your channel. 
+2. Within the `workflow` declaration, below where you created your first
+channel, call this process and pass it your channel. You call the process by
+simply invoking the name within the `{}` of your `include` statement and then
+passing it your channel.
 
 3. Use the following terminal command (with your nextflow environment activated):
 

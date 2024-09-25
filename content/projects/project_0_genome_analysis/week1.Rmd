@@ -104,10 +104,10 @@ A few things to remember:
 1. For our purposes, you will be using a slightly older version of Nextflow to
 ensure that these directions do not get out of sync. Create a YML file in the
 `envs/` directory named `base_env.yml` and specify that you wish to install
-Nextflow version **24.04.2**. Remember that the value after name in the file
-will be the name of the conda environment created, you may name this whatever
-is easiest for you to remember. We will be using this single environment all
-semester. 
+`nextflow` version **24.04.2** and `nf-test` version **0.8.4**. Remember that
+the value after name in the file will be the name of the conda environment
+created, you may name this whatever is easiest for you to remember. We will be
+using this single environment all semester.
 
 2. Separately, using either `conda search -c conda-forge -c bioconda
 <package-name>` or by navigating to the tool's website / github, report the most
@@ -133,14 +133,13 @@ your VScode terminal:
 
 ## Adding reference files to our directory {-}
 
-If you look in <directory with data>, you have been provided with a FASTA file of
-an unknown bacterial genome. 
+If you look in /projectnb/bf528/materials/project-0-genome-analytics, you have
+been provided with your choice of three (as of now) unidentified genomes. 
 
 :::{.box .task}
 1. Pick one of the three available genomes and copy a **single** FASTA file
 representing an unknown bacterial genome to your `refs/` directory.
 :::
-
 
 ## Generating a samplesheet {-}
 
@@ -155,7 +154,7 @@ This pattern of encoding the samples in this way offers two key benefits:
   
   2. We can generalize our workflow and apply it to a different set of samples
   by simply supplying a different CSV containing the information for those
-  samples.
+  samples in the same format.
   
 :::{.box .task}
 1. Using VScode, manually make a new text file at the top-level of your
@@ -249,3 +248,6 @@ to your samplesheet
 
 7. Generated your first nextflow channel, `fa_ch`, containing a tuple with the
 name and path stored in your samplesheet. 
+
+8. Make sure to answer all of the questions in the provided Rmd (some won't be
+referenced directly here)

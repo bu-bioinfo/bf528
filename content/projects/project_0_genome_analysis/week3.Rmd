@@ -153,7 +153,7 @@ sequence and return some of the most similar sequences, which allows us to make
 strong inferences and conclusions about the potential identity and origin of our
 sequence of interest. It is a heuristic algorithm that works by first finding
 short matches between two sequences. By its nature, it is not designed to find
-or ensure it returns optimal alignments, and instead prioritizes speed.A quick
+or ensure it returns optimal alignments, and instead prioritizes speed. A quick
 google search will lead you to the BLAST website.
 
 :::{.box .task}
@@ -237,7 +237,7 @@ statistics requested.
 
 :::
 
-## Week 3 Tasks Summary
+## Week 3 Tasks Summary {-}
 
 1. Select a region of interest from the GFF generated from the output of Prokka
 and encode the information as specified in a new file `refs/region_of_interest.txt`
