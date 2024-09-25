@@ -1,5 +1,4 @@
 how-we-are-going-to-use-conda-environments-containers
-week-3-tasks-summary
 introductory-slides
 computational-primer
 assignment

@@ -181,10 +181,10 @@ use.</p></li>
 <li><p>For our purposes, you will be using a slightly older version of Nextflow to
 ensure that these directions do not get out of sync. Create a YML file in the
 <code>envs/</code> directory named <code>base_env.yml</code> and specify that you wish to install
-Nextflow version <strong>24.04.2</strong>. Remember that the value after name in the file
-will be the name of the conda environment created, you may name this whatever
-is easiest for you to remember. We will be using this single environment all
-semester.</p></li>
+<code>nextflow</code> version <strong>24.04.2</strong> and <code>nf-test</code> version <strong>0.8.4</strong>. Remember that
+the value after name in the file will be the name of the conda environment
+created, you may name this whatever is easiest for you to remember. We will be
+using this single environment all semester.</p></li>
 <li><p>Separately, using either <code>conda search -c conda-forge -c bioconda &lt;package-name&gt;</code> or by navigating to the tool’s website / github, report the most
 recent version available for Nextflow in the provided notebook.</p></li>
 <li>
@@ -211,8 +211,8 @@ your VScode terminal:</p>
 <div id="adding-reference-files-to-our-directory" class="section level2 unnumbered">
 <h2>Adding reference files to our directory<a class="anchor" aria-label="anchor" href="#adding-reference-files-to-our-directory"><i class="fas fa-link"></i></a>
 </h2>
-<p>If you look in <directory with data>, you have been provided with a FASTA file of
-an unknown bacterial genome.</directory></p>
+<p>If you look in /projectnb/bf528/materials/project-0-genome-analytics, you have
+been provided with your choice of three (as of now) unidentified genomes.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
 <li>Pick one of the three available genomes and copy a <strong>single</strong> FASTA file
@@ -232,7 +232,7 @@ workflow and specify what files we want it to operate on.</p>
 <li><p>We can easily see all of the files associated with a particular analysis</p></li>
 <li><p>We can generalize our workflow and apply it to a different set of samples
 by simply supplying a different CSV containing the information for those
-samples.</p></li>
+samples in the same format.</p></li>
 </ol>
 <div class="box task">
 <ol style="list-style-type: decimal">
@@ -314,6 +314,8 @@ single genome file.</p></li>
 to your samplesheet</p></li>
 <li><p>Generated your first nextflow channel, <code>fa_ch</code>, containing a tuple with the
 name and path stored in your samplesheet.</p></li>
+<li><p>Make sure to answer all of the questions in the provided Rmd (some won’t be
+referenced directly here)</p></li>
 </ol>
 </div>
 </div>

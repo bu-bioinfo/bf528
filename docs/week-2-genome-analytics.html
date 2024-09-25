@@ -212,9 +212,10 @@ channel to the process we just generated to run Prokka on our genome fasta file.
 python. We are making the contents of the Prokka module we just created available
 in this script.</p>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Within the <code>workflow</code> declaration, below where you created your first channel,
-call this process and pass it your channel. You call the process by simply
-invoking the name within the <code>include</code> and then passing it your channel.</p></li>
+<li><p>Within the <code>workflow</code> declaration, below where you created your first
+channel, call this process and pass it your channel. You call the process by
+simply invoking the name within the <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code> of your <code>include</code> statement and then
+passing it your channel.</p></li>
 <li><p>Use the following terminal command (with your nextflow environment activated):</p></li>
 </ol>
 <pre><code>nextflow run main.nf -profile local,conda</code></pre>
