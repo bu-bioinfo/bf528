@@ -50,7 +50,9 @@ collisions since each task is guaranteed to run in its own new directory.
 When you run nextflow, you may have noticed that to the left of each process
 listed, you can see the location of where nextflow has run said task.
 
-![image](nextflow_run_example.png)
+```{r, echo=FALSE, out.width="100%", out.height="100%"}
+knitr::include_graphics("projects/project_0_genome_analysis/nextflow_run_example.png")
+```
 
 You can navigate to these directories manually to inspect logs, output files, 
 or check that the right files are being staged. 
