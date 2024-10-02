@@ -68,8 +68,8 @@ Following the practices recommended [here][Computational Environments Guide], we
 will be creating this conda environment directly from a YML file and this file
 will be version controlled and included in the analysis repository. Using
 VSCode, navigate to the `envs/` directory, open a new file and name it
-`base_env.yml`. Below see an example of these YML files should look like when
-used to create conda environments:
+`base_env.yml`. Below see an example of what these YML files should look like
+when used to create conda environments:
 
 ```
 name: name_of_env
@@ -209,7 +209,7 @@ the following question in the provided notebook:
 
 2. Using VScode, open the `main.nf` file and begin by adding our first channel
 in the workflow declaration. This channel should read the information from the
-samplesheet and creates a tuple containing the value contained within `name` and
+samplesheet and create a tuple containing the value contained within `name` and
 `path` in that order.
 
 3. This will require a combination of nextflow functions and operators including:

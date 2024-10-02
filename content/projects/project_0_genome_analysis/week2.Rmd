@@ -82,21 +82,36 @@ option.
 3. Look at the Prokka documentation and construct the correct command for
 running it. We will be running Prokka with mostly default parameters and your
 command should include these exact options and no more: `--cpus`, `--outdir`,
-`--prefix`. Please use the name value from the channel for both the output
-directory name and output file prefix. Specify a value of `1` after the --cpus
-flag.
+`--prefix` and the fasta file. Please use the name value from the channel for
+both the output directory name and output file prefix. Specify a value of `1`
+after the --cpus flag. Remember to make use of the "$input_value" to allow us to
+genericize our command and avoid hardcoding file names. At runtime, nextflow
+will properly replace them with the provided value. (i.e. $name will become
+name_of_genome_in_channel).
 
 4. You will need to specify the output that will be created by Prokka so that
-nextflow can recognize the files it needs to generate. You can tell Nextflow to
-expect individual files or entire directories. If you look at the `output`, you
-can see that we've told Nextflow to expect `path("$name/")` to exist when the
-tool has successfully run. You may have noticed that in step 3, you were
-instructed to name the output directory Prokka creates with the value passed
-from the CSV (`name`). This will be a common pattern with these tools where we
-specify how we want the tool to name its output files, and then we tell Nextflow
-to expect those same files to be produced. 
+nextflow can recognize the files that should be created if the task finishes
+successfully. You can instruct Nextflow to expect individual files or entire
+directories. If you look at the `output`, you can see that we've told Nextflow
+to expect `path("$name/")` to exist when the tool has successfully run. You may
+have noticed that in step 3, you were instructed to name the output directory
+Prokka creates with the value passed from the CSV (`name`). This will be a
+common pattern with these tools where we specify how we want the tool to name
+its output files, and then we tell Nextflow to expect those same files to be
+produced.
 
-4. Answer the following questions in your provided docs/week2_tasks.Rmd:
+The `path` output can also use standard bash wildcard expansion to flexibly
+detect files without knowing their exact name. This example below will instruct
+nextflow that when this task completes successfully, there should be a file 
+ending in the extension .bam that was created. 
+
+```
+output:
+path("*.bam")
+```
+
+
+5. Answer the following questions in your provided docs/week2_tasks.Rmd:
 
     a. What does the option `label 'process_single'` specify? Can you find where
       this value is described?
@@ -105,10 +120,6 @@ to expect those same files to be produced.
     i.e. [path/to/genome, name_of_genome] Would this process still run? Would the
     tool still run?
       
-Hint: Remember to make use of the "$input_value" to allow us to genericize our
-command and avoid hardcoding file names. At runtime, nextflow will properly
-replace them with the provided value. (i.e. $name will become
-name_of_genome_in_channel).
 :::
 
 ## Creating your first workflow {-}

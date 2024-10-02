@@ -158,9 +158,9 @@ google search will lead you to the BLAST website.
 
 :::{.box .task}
 1. Please select the nucleotide blast option and open the file you created named
-`your_genome.region.subset.fna`. Copy the sequence found within that file into
-the query section of BLAST and leave all other options at default. Answer the
-following question in your provided week3_tasks.Rmd:
+region.subset.fna`. Copy the sequence found within that file into the query
+section of BLAST and leave all other options at default. Answer the following
+question in your provided week3_tasks.Rmd:
 
     a. Please take a screenshot of the BLAST results returned from your query.
     What are some of the possible alignments of your sequence of interest? Are
