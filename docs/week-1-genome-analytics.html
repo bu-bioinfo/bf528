@@ -151,8 +151,8 @@ to remember to activate this environment as soon as you begin.</p>
 will be creating this conda environment directly from a YML file and this file
 will be version controlled and included in the analysis repository. Using
 VSCode, navigate to the <code>envs/</code> directory, open a new file and name it
-<code>base_env.yml</code>. Below see an example of these YML files should look like when
-used to create conda environments:</p>
+<code>base_env.yml</code>. Below see an example of what these YML files should look like
+when used to create conda environments:</p>
 <pre><code>name: name_of_env
 channels:
 - conda-forge
@@ -282,7 +282,7 @@ the following question in the provided notebook:</p>
 </li>
 <li><p>Using VScode, open the <code>main.nf</code> file and begin by adding our first channel
 in the workflow declaration. This channel should read the information from the
-samplesheet and creates a tuple containing the value contained within <code>name</code> and
+samplesheet and create a tuple containing the value contained within <code>name</code> and
 <code>path</code> in that order.</p></li>
 <li><p>This will require a combination of nextflow functions and operators including:
 <code>Channel.fromPath</code>, <code>splitCsv</code>, <code>map</code>, <code>tuple</code> and <code>set</code>. You can also use <code>view</code>
