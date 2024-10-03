@@ -166,13 +166,25 @@ option.</p></li>
 <li><p>Look at the Prokka documentation and construct the correct command for
 running it. We will be running Prokka with mostly default parameters and your
 command should include these exact options and no more: <code>--cpus</code>, <code>--outdir</code>,
-<code>--prefix</code> and the fasta file. Please use the name value from the channel for
+<code>--prefix</code> and <code>$genome</code>. Please use the name value from the channel for
 both the output directory name and output file prefix. Specify a value of <code>1</code>
-after the –cpus flag. Remember to make use of the “$input_value” to allow us to
-genericize our command and avoid hardcoding file names. At runtime, nextflow
-will properly replace them with the provided value. (i.e. $name will become
-name_of_genome_in_channel).</p></li>
-<li><p>You will need to specify the output that will be created by Prokka so that
+after the –cpus flag.</p></li>
+</ol>
+<p>The “$” notation will allow us to genericize our command and avoid hardcoding
+file names. At runtime, nextflow will properly replace them with the provided
+value. (i.e. $genome will be replaced by the value specified in the channel).</p>
+<pre><code>fa_ch (main.nf workflow)
+[name_of_bacterial_genome, /path/to/reference/genome.fna]
+
+modules/prokka/main.nf
+input:
+tuple val(name), path(genome)
+</code></pre>
+<p>If you match the structure of the channel with the inputs of the process, you
+will see that <code>val(name)</code> will refer to <code>name_of_bacterial_genome</code> and
+<code>path(genome)</code> with <code>/path/to/reference/genome.fna</code>.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>You will need to specify the output that will be created by Prokka so that
 nextflow can recognize the files that should be created if the task finishes
 successfully. You can instruct Nextflow to expect individual files or entire
 directories. If you look at the <code>output</code>, you can see that we’ve told Nextflow
@@ -181,7 +193,7 @@ have noticed that in step 3, you were instructed to name the output directory
 Prokka creates with the value passed from the CSV (<code>name</code>). This will be a
 common pattern with these tools where we specify how we want the tool to name
 its output files, and then we tell Nextflow to expect those same files to be
-produced.</p></li>
+produced.</li>
 </ol>
 <p>The <code>path</code> output can also use standard bash wildcard expansion to flexibly
 detect files without knowing their exact name. This example below will instruct

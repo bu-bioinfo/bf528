@@ -82,12 +82,26 @@ option.
 3. Look at the Prokka documentation and construct the correct command for
 running it. We will be running Prokka with mostly default parameters and your
 command should include these exact options and no more: `--cpus`, `--outdir`,
-`--prefix` and the fasta file. Please use the name value from the channel for
+`--prefix` and `$genome`. Please use the name value from the channel for
 both the output directory name and output file prefix. Specify a value of `1`
-after the --cpus flag. Remember to make use of the "$input_value" to allow us to
-genericize our command and avoid hardcoding file names. At runtime, nextflow
-will properly replace them with the provided value. (i.e. $name will become
-name_of_genome_in_channel).
+after the --cpus flag. 
+
+The "$" notation will allow us to genericize our command and avoid hardcoding
+file names. At runtime, nextflow will properly replace them with the provided
+value. (i.e. $genome will be replaced by the value specified in the channel).
+```
+fa_ch (main.nf workflow)
+[name_of_bacterial_genome, /path/to/reference/genome.fna]
+
+modules/prokka/main.nf
+input:
+tuple val(name), path(genome)
+
+```
+
+If you match the structure of the channel with the inputs of the process, you
+will see that `val(name)` will refer to `name_of_bacterial_genome` and
+`path(genome)` with `/path/to/reference/genome.fna`.
 
 4. You will need to specify the output that will be created by Prokka so that
 nextflow can recognize the files that should be created if the task finishes
