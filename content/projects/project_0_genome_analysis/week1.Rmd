@@ -1,15 +1,42 @@
 # Week 1: Genome Analytics {-}
 
-
 :::{.box .task}
 Any tasks that you will be asked to do will be wrapped and styled as this
 section. If you are asked to answer any questions or report findings, please do
-so in the included `docs/week#_tasks.Rmd`.
+so in the included `docs/week#_tasks.ipynb`.
 :::
 
 All other text will be directions or other explanatory text that you should read. 
 
+## Week 1 Tasks Summary {-}
+
+1. Clone the github classroom link for project 0 to your student directory in
+the bf528 project space.
+
+2. Read through the README.md, which describes the directory structure we will be
+utilizing throughout the semester.
+
+3. Generate a YML file in the `envs/` directory that contains the specification
+for your base environment with Nextflow version 24.04.2 installed. 
+
+4. Copy a single genome fna (FASTA) to your `refs/` directory.
+
+5. Make a `samplesheet.csv` file at the top-level of your directory containing
+the columns `name` and `path` with one row being the name and path for your 
+single genome file. 
+
+6. Edit the `nextflow.config` file and add a `param` called
+`samplesheet`containing the path to your samplesheet
+
+7. Generate your first nextflow channel, `fa_ch`, containing a tuple with the
+name and path values from your `samplesheet.csv` 
+
+8. Answer all of the questions in the provided jupyter notebook (some won't be
+referenced directly here)
+
 ## Section links {-}
+
+[Week 1 Tasks Summary]
 
 [Project 0 Overview]
 
@@ -24,8 +51,6 @@ All other text will be directions or other explanatory text that you should read
 [Generating a samplesheet]
 
 [Creating our first nextflow channel and process]
-
-[Week 1 Tasks Summary]
 
 
 ## Project 0 Overview {-}
@@ -54,20 +79,42 @@ it to your directory under the bf528 class space
 
 2. Please read through the provided README.md, which explains the structure of the
 directory we are going to be working with throughout the semester. 
+
+3. From now on, you should always be exclusively be working in an interactive
+VScode session. You can request sessions up to 10 days in duration but I usually
+suggest you request 24 hr sessions. VScode offers a number of benefits:
+
+    a. It has a built-in terminal and file explorer / editor
+    b. The terminal is persistent for as long as your session
+    c. You can install various extensions like syntax highlighters
+    d. The VScode session runs on a compute node, and not the head node
+    e. We can submit jobs via qsub directly from this session without being on
+      a head node
 :::
+
 
 
 ## Setting up our environment {-}
 
 Before we begin working with Nextflow, we will need to install it. For this, we
-will be using Conda to create an environment where we just have Nextflow (and its
-direct dependencies) installed. For all project work in this class, you will need
-to remember to activate this environment as soon as you begin. 
+will be using Conda to create an environment where we just have Nextflow (and
+its direct dependencies) installed. For all project work in this class, you will
+need to remember to activate this environment as soon as you begin.
+
+To begin, we are going to use the module with miniconda installed on the SCC. We
+are only going to create a single conda environment that contains Nextflow and a
+testing package. Our worklows will use their own self-contained environments or
+containers. **Whenever you begin work for this course on the SCC, you should
+make sure to first load the miniconda module using the following command**:
+
+```
+module load miniconda
+```
+
 
 Following the practices recommended [here][Computational Environments Guide], we
-will be creating this conda environment directly from a YML file and this file
-will be version controlled and included in the analysis repository. Using
-VSCode, navigate to the `envs/` directory, open a new file and name it
+will create our conda environment directly from a version controlled YML
+file. Using VSCode, navigate to the `envs/` directory, open a new file and name it
 `base_env.yml`. Below see an example of what these YML files should look like
 when used to create conda environments:
 
@@ -111,7 +158,8 @@ using this single environment all semester.
 
 2. Separately, using either `conda search -c conda-forge -c bioconda
 <package-name>` or by navigating to the tool's website / github, report the most
-recent version available for Nextflow in the provided notebook.
+recent version available for Nextflow in the provided jupyter notebook in the
+`docs/` directory.
 
 3. Answer the following questions in the provided notebook:
 
@@ -126,8 +174,10 @@ environment as soon as you log into your VSCode session before you start
 working. To do this, you will have to remember to perform the following steps in
 your VScode terminal:
 
+
     1. `module load miniconda`
     2. `conda activate name_of_nextflow_env`
+    
 :::
 
 
@@ -158,27 +208,35 @@ This pattern of encoding the samples in this way offers two key benefits:
   
 :::{.box .task}
 1. Using VScode, manually make a new text file at the top-level of your
-directory (project-0-genome-analysis) and generate a simple CSV named
-`samplesheet.csv` with two columns named `name` and `path` and one row of data
-which specifies the name of the genome you picked (look at the filename or the
-first line in the file) and the path to where it is located relative to the
-top-level directory (refs/your_genome_name.fna)
+directory (project-0-genome-analytics-your_username) and generate a simple CSV
+named `samplesheet.csv`. The columns in this CSV should be named `name` and
+`path` and look something like below:
 
-2. Next open the `nextflow.config` file, and under `params` add a value
-underneath the "//Reads and references" comment that encodes the path to your
-samplesheet. You may use the Nextflow shorthand $projectDir to refer to the
-working directory (top-level).
-:::
+```
+name,path
+genomeA,refs/genomeA.fna
+```
+
+2. Next open the `nextflow.config` file, and under `params` add a value called
+`samplesheet` underneath the "//Reads and references" comment that encodes the
+path to your samplesheet.
+
+```
+samplesheet = "$projectDir/samplesheet.csv"
+```
+
+The $projectDir is a nextflow variable that always encodes the working directory
+of the workflow. This allows you to avoid hardcoding a system-specific path. 
 
 
 ## Creating our first nextflow channel and process {-}
 
 Please refer to the nextflow lecture for more details on this section.
 
-Nextflow channels have a much more technical definition, but you may think of 
-them as a way in which nextflow sends data through a workflow. Channels are
-connected to processes through the inputs and outputs of the different steps
-of the workflow. 
+Nextflow channels have a much more technical definition, but you may think of
+them as lists of information that nextflow uses to send data through a workflow.
+Channels are connected to processes through the inputs and outputs of the
+different steps of the workflow.
 
 For our purposes, the nextflow channels we create will often follow a similar
 pattern of containing a set of files associated with a single sample, and
@@ -192,62 +250,49 @@ will contain two values, the name of the genome and its file path. This will
 allow us to pass this information to our desired processes for further analysis
 or manipulation.
 
-To run nextflow, simply make sure that your environment with nextflow installed
-is activated and then use a terminal to enter the following command in the
-directory where your nextflow script (main.nf) is located:
+We create these channels in the workflow `main.nf` and they specify in Nextflow
+which processes should be run and in what order. We will be creating our initial
+channel from the information contained within the samplesheet we just created. 
+This first channel will contain as many values as rows present in the CSV and
+it will contain the information needed to run our first process. For this first
+process, this information is a name, and the path to the file that we are going
+to operate on. 
+
+:::{.box .task}
+1. In the `main.nf`, create your first channel using a combination of
+`Channel.fromPath`, `splitCsv`, `map`, `tuple`, `params.samplesheet` and `view()`.
+The goal is to create a channel that contains the information contained within
+the CSV.
+
+Your channel when observed using `view` should look something like:
+
+[name_of_bacterial_genome, /path/to/reference/genome.fna]
+
+This is the information that is passed to various nextflow processes that enable
+nextflow to determine what processes to run on what files.
+
+2. When you believe you have successfully constructed a channel containing the
+information from the samplesheet in the same format as above, you may run 
+nextflow to test your channel output using the following command from a terminal
+at the top-level of your directory:
 
 ```
 nextflow run main.nf -profile local,conda
 ```
 
+This will run nextflow and it will print the contents of the channel you just
+created to standard out. Make sure your channel is structured as above where
+the first element of the tuple is the value encoded in the name column and the
+second element contains the value in the path column from the CSV. 
 
-:::{.box .task}
-1. Take a look at the `nextflow.config` and look for the `profile` section. Answer
+3. Take a look at the `nextflow.config` and look for the `profile` section. Answer
 the following question in the provided notebook: 
 
     a. What do you think the option `-profile local,conda` is doing?
 
-2. Using VScode, open the `main.nf` file and begin by adding our first channel
-in the workflow declaration. This channel should read the information from the
-samplesheet and create a tuple containing the value contained within `name` and
-`path` in that order.
-
-3. This will require a combination of nextflow functions and operators including:
-`Channel.fromPath`, `splitCsv`, `map`, `tuple` and `set`. You can also use `view`
-to see the contents of a generated channel. 
-
-4. Your channel when observed using `view` should look something like:
-[name_of_bacterial_genome, /path/to/reference/genome.fna]
 
 4. When you have successfully created this channel, you should use the `set` 
 function to assign it to a variable. Name this variable `fa_ch`. `set` should 
 replace the usage of `view`, which does not assign your channel to a variable
 but simply prints its contents to standard out.  
 :::
-
-
-## Week 1 Tasks Summary {-}
-
-1. Cloned the github classroom link for project 0 to your student directory in
-the bf528 project space.
-
-2. Read through the README.md, which describes the directory structure we will be
-utilizing throughout the semester.
-
-3. Generated a YML file in the `envs/` directory that contains the specification
-for your base environment with Nextflow version 24.04.2 installed. 
-
-4. Copied a single genome fna (FASTA) to your `refs/` directory.
-
-5. Made the `samplesheet.csv` file at the top-level of your directory containing
-the columns `name` and `path` with one row being the name and path for your 
-single genome file. 
-
-6. Edited the `nextflow.config` file and added a `param` containing the path
-to your samplesheet
-
-7. Generated your first nextflow channel, `fa_ch`, containing a tuple with the
-name and path stored in your samplesheet. 
-
-8. Make sure to answer all of the questions in the provided Rmd (some won't be
-referenced directly here)
