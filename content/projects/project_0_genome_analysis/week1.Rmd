@@ -227,7 +227,7 @@ samplesheet = "$projectDir/samplesheet.csv"
 
 The $projectDir is a nextflow variable that always encodes the working directory
 of the workflow. This allows you to avoid hardcoding a system-specific path. 
-
+:::
 
 ## Creating our first nextflow channel and process {-}
 
