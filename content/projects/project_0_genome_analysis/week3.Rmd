@@ -32,7 +32,7 @@ chosen genome (GC content and length).
 
 - Use samtools to extract a randomly selected region from a large sequence
 
-- Develop an external script that can be seamlessly incorporated into your workflow
+- Develop a external scripts that can be seamlessly incorporated into your workflow
 
 ## Understanding the staging directory {-}
 
@@ -46,6 +46,12 @@ information of arbitrary size to a fixed size. Nextflow will automatically stage
 each task in these separate directories for you. The main advantage of this
 strategy is that it prevents you from having to worry about file names and file name
 collisions since each task is guaranteed to run in its own new directory.
+
+Remember that these directories are self-contained and nextflow will copy the
+files in the input as well as bin/ to this new directory where your task will
+execute. You should avoid trying to manually specify paths and instead include
+any additional files you need in the input where nextflow will stage it
+automatically for you.
 
 When you run nextflow, you may have noticed that to the left of each process
 listed, you can see the location of where nextflow has run said task.
@@ -84,14 +90,11 @@ Open up the `<replace_with_your_name>.gff` file and answer the following questio
     
     b. What information appears to be stored in this file?
     
-2. Scroll through the file, and pick a random line where the 7th column is '+'. 
-Record the values from the 4th and 5th column, they should both be numbers and 
-represent an interval of the genome that has been annotated to some function 
-or identity by Prokka. 
-
-3. In your `refs/` directory, create a new text file and call it
-`region_of_interest.txt` In this file, it should be a single line with the
-information you found above with the following generic format:
+2. Look in the `bin/` directory and develop some python code in the
+`extract_region.py` script that will parse through the GFF, pick a single entry
+where the 6th field is '+' (a sequence from the plus strand) and print out that
+entries accession, start and stop coordinates to a text file in the format:
+genome:start-stop.
 
     ```
     <name_of_genome>:<value from column 4>-<value from column 5>
@@ -99,8 +102,13 @@ information you found above with the following generic format:
 
     Or for a specific example:
     ```
-    genome_a:100-200
+    genomeA:100-200
     ```
+3. You have already been provided an outline for the code as well as the nextflow
+module that will call this script (modules/extract_region/main.nf). Call this 
+process in your workflow (main.nf) and pass it the outputs from Prokka. To access
+the named outputs of a channel, you can use `<NAME OF PROCESS>.out.<EMIT NAME>`
+or for our situation, `PROKKA.out.gff`.
 
 :::
 
@@ -132,17 +140,32 @@ will extract out the sequence associated with the coordinates provided in our
 `region_of_interest.txt`
 
 :::{.box .task}
-1. Generate a new `main.nf` script in the `samtools_faidx_subset` directory
-under `modules`. You may copy your `main.nf` from the `samtools_faidx` directory
-as the inputs, outputs, and commands will all be largely similar. Remember that
-the both the original file and index need to be in the same location for most
-tools to utilize it. 
 
-You can pass the outputs from your previous `samtools_faidx` process
-as input to this one. You will have one additional input which will be the
-`region_of_interest.txt` you generated previously. By default, most samtools
-utilities print their results to stdout. Use the `>` tool to redirect the output
-to a file named `region.subset.fna`.
+1. The reason we have been passing the name metadata in our channels is that there
+are often situations where we need to combine the outputs from multiple processes
+into one channel before performing another operation. In this case, we want to 
+combine the outputs from samtools_faidx [name, path/to/genome.fna, path/to.genome.fna.fai]
+with the outputs of extract_region [name, path/to/region_of_interest.txt]. 
+
+Look for an appropriate nextflow operator that will enable you to join two channels
+based on a common key (name). The resulting channels should look something like:
+
+```
+[name, path/to/genome.fna, path/to/genome.fna.fai, path/to/region_of_interest.txt]
+```
+
+When you have successfully done this, save this channel to a new variable called
+`subset_ch`.
+
+2. Generate a new `main.nf` script in the `samtools_faidx_subset` directory
+under `modules`. You may copy your `main.nf` from the `samtools_faidx` directory
+as the inputs, outputs, and commands will all be largely similar. Modify the
+inputs to match the cardinality and order of your `subset_ch`. Use the '>` function
+in bash to save the outputs of this process to a file called 'region.subset.fna'
+
+3. Call your samtools_faidx_subset process on the subset_ch. 
+
+
 :::
 
 ## Basic Local Alignment Search Tool {-}

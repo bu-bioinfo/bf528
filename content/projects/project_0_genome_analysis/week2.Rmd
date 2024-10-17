@@ -14,7 +14,7 @@
 
 [Making your own module]
 
-[Week 2 Tasks Summary]
+[Week 2 Detailed Tasks Summary]
 
 ## Week 2 Overview {-}
 
@@ -54,7 +54,10 @@ the file descriptively (e.g. envs/prokka_env.yml)
 2. Generate another YML file that will create a conda environment with the most
 recent version of samtools installed.
 
-3. Make sure both of these YMLs are contained within your `envs/` directory. 
+3. Generate a YML file that will create a conda environment with the most
+recent version of python installed
+
+3. Make sure these YMLs are contained within your `envs/` directory. 
 :::
 
 ## Generating your first module {-}
@@ -65,30 +68,18 @@ a process. Because of the way modules have been designed, this will allow us to
 share or re-use the modules we generate in different workflows. 
 
 :::{.box .task}
+
 1. Navigate to the `modules/` directory and open up the `main.nf` script contained
 within the `prokka/` directory. You have been provided with a representative
 example of what many nextflow processes will look like. If you remember the 
 channel you created, you made a tuple (ordered list) containing the name of the
-genome and the path to the file. If you look at the `input`, you can see that
-we declare that the input for this process is a tuple containing a value (name)
-and a path (genome). The channel that is passed to a process must have the same
-cardinality and order that is declared in the input.
+genome and the path to the file. 
 
-2. Complete lines 5 and 6 by providing the conda environment specification you
-made earlier for Prokka after the `env` option and providing the directory where
-you want the results of this process to be made available after the `publishDir`
-option.
+Look at the `input`, you can see that we declare that the input for this process
+is a tuple containing a value (name) and a path (genome). The channel that is
+passed to a process must have the same cardinality and order that is declared in
+the input.
 
-3. Look at the Prokka documentation and construct the correct command for
-running it. We will be running Prokka with mostly default parameters and your
-command should include these exact options and no more: `--cpus`, `--outdir`,
-`--prefix` and `$genome`. Please use the name value from the channel for
-both the output directory name and output file prefix. Specify a value of `1`
-after the --cpus flag. 
-
-The "$" notation will allow us to genericize our command and avoid hardcoding
-file names. At runtime, nextflow will properly replace them with the provided
-value. (i.e. $genome will be replaced by the value specified in the channel).
 ```
 fa_ch (main.nf workflow)
 [name_of_bacterial_genome, /path/to/reference/genome.fna]
@@ -103,26 +94,57 @@ If you match the structure of the channel with the inputs of the process, you
 will see that `val(name)` will refer to `name_of_bacterial_genome` and
 `path(genome)` with `/path/to/reference/genome.fna`.
 
+2. Complete lines 5 and 6 by providing the conda environment specification you
+made earlier for Prokka after the `env` option and providing the directory where
+you want the results of this process to be made available after the `publishDir`
+option. Remember that all of your paths should be relative to your top-level
+working directory where the `main.nf` is located. 
+
+3. Look at the Prokka documentation and construct the correct command for
+running it. We will be running Prokka with mostly default parameters and your
+command should include these exact options and no more: `--cpus`, `--outdir`,
+`--prefix` and `$genome`. Please use the name value from the channel for
+both the output directory name and output file prefix. Specify a value of `1`
+after the --cpus flag. 
+
+The "$" notation will allow us to genericize our command and avoid hardcoding
+file names. At runtime, nextflow will properly replace them with the provided
+value. (i.e. $genome will be replaced by the value specified in the channel).
+
 4. You will need to specify the output that will be created by Prokka so that
 nextflow can recognize the files that should be created if the task finishes
 successfully. You can instruct Nextflow to expect individual files or entire
-directories. If you look at the `output`, you can see that we've told Nextflow
-to expect `path("$name/")` to exist when the tool has successfully run. You may
-have noticed that in step 3, you were instructed to name the output directory
-Prokka creates with the value passed from the CSV (`name`). This will be a
-common pattern with these tools where we specify how we want the tool to name
-its output files, and then we tell Nextflow to expect those same files to be
+directories.
+
+Look at the `output`, you can see that we've told Nextflow to expect
+`path("$name/")` to exist when the tool has successfully run. You may have
+noticed that in step 3, you were instructed to name the output directory Prokka
+creates with the value passed from the CSV (`name`). This will be a common
+pattern with these tools where we specify how we want the tool to name its
+output files, and then we tell Nextflow to expect those same files to be
 produced.
 
 The `path` output can also use standard bash wildcard expansion to flexibly
 detect files without knowing their exact name. This example below will instruct
 nextflow that when this task completes successfully, there should be a file 
-ending in the extension .bam that was created. 
+ending in the extension .txt that was created. 
 
 ```
 output:
-path("*.bam")
+path("*.txt")
 ```
+
+You may have also noticed the line: 
+
+```
+tuple val(name), path("${name}/${name}.gff"), emit: gff
+```
+
+`emit` is the nextflow way of emitting a specific output and allowing you to 
+access this specific output by name. We will use this to join the output channels
+of two processes in order to have all of the files we need for a third process. 
+
+
 
 
 5. Answer the following questions in your provided docs/week2_tasks.Rmd:
@@ -211,7 +233,7 @@ process module you just created available in the script and run your
 `SAMTOOLS_FAIDX` process using the `fa_ch` channel.
 :::
 
-## Week 2 Tasks Summary {-}
+## Week 2 Detailed Tasks Summary {-}
 
 1. Generate YML environment specification files for the latest versions of
 Prokka and samtools and store them in the `envs/` directory. 
