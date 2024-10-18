@@ -144,18 +144,6 @@ tuple val(name), path("${name}/${name}.gff"), emit: gff
 access this specific output by name. We will use this to join the output channels
 of two processes in order to have all of the files we need for a third process. 
 
-
-
-
-5. Answer the following questions in your provided docs/week2_tasks.Rmd:
-
-    a. What does the option `label 'process_single'` specify? Can you find where
-      this value is described?
-    
-    b. What would happen if the values in our channel were switched?
-    i.e. [path/to/genome, name_of_genome] Would this process still run? Would the
-    tool still run?
-      
 :::
 
 ## Creating your first workflow {-}
@@ -191,15 +179,6 @@ nextflow run main.nf -profile local,conda
 This will run your nextflow pipeline, which will create a channel containing
 the name of your genome and the path to its file location and supply it to the
 PROKKA process in the prokka module.
-
-4. Answer the following questions in your provided week2_tasks.Rmd when nextflow
-has finished running:
-
-    a. Where are the outputs from Prokka stored?
-    
-    b. You may have noticed a new directory has been created in your repo called
-    `work/`. What is in this directory? What do you think the advantages of 
-    generating directories this way are? What are the disadvantages?
 
 :::
 
