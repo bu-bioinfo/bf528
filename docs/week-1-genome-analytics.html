@@ -18,9 +18,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="Any tasks that you will be asked to do will be wrapped and styled as this section. If you are asked to answer any questions or report findings, please do so in the included docs/week#_tasks.ipynb....">
-<meta property="og:description" content="Any tasks that you will be asked to do will be wrapped and styled as this section. If you are asked to answer any questions or report findings, please do so in the included docs/week#_tasks.ipynb....">
-<meta name="twitter:description" content="Any tasks that you will be asked to do will be wrapped and styled as this section. If you are asked to answer any questions or report findings, please do so in the included docs/week#_tasks.ipynb....">
+<meta name="description" content="Any tasks that you will be asked to do will be wrapped and styled as this section. Answer any questions found in the associated docs/week#_tasks.ipynb. All other text will be directions or other...">
+<meta property="og:description" content="Any tasks that you will be asked to do will be wrapped and styled as this section. Answer any questions found in the associated docs/week#_tasks.ipynb. All other text will be directions or other...">
+<meta name="twitter:description" content="Any tasks that you will be asked to do will be wrapped and styled as this section. Answer any questions found in the associated docs/week#_tasks.ipynb. All other text will be directions or other...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -91,36 +91,12 @@
 </h1>
 <div class="box task">
 <p>Any tasks that you will be asked to do will be wrapped and styled as this
-section. If you are asked to answer any questions or report findings, please do
-so in the included <code>docs/week#_tasks.ipynb</code>.</p>
+section. Answer any questions found in the associated <code>docs/week#_tasks.ipynb</code>.</p>
 </div>
 <p>All other text will be directions or other explanatory text that you should read.</p>
-<div id="week-1-tasks-summary" class="section level2 unnumbered">
-<h2>Week 1 Tasks Summary<a class="anchor" aria-label="anchor" href="#week-1-tasks-summary"><i class="fas fa-link"></i></a>
-</h2>
-<ol style="list-style-type: decimal">
-<li><p>Clone the github classroom link for project 0 to your student directory in
-the bf528 project space.</p></li>
-<li><p>Read through the README.md, which describes the directory structure we will be
-utilizing throughout the semester.</p></li>
-<li><p>Generate a YML file in the <code>envs/</code> directory that contains the specification
-for your base environment with Nextflow version 24.04.2 installed.</p></li>
-<li><p>Copy a single genome fna (FASTA) to your <code>refs/</code> directory.</p></li>
-<li><p>Make a <code>samplesheet.csv</code> file at the top-level of your directory containing
-the columns <code>name</code> and <code>path</code> with one row being the name and path for your
-single genome file.</p></li>
-<li><p>Edit the <code>nextflow.config</code> file and add a <code>param</code> called
-<code>samplesheet</code>containing the path to your samplesheet</p></li>
-<li><p>Generate your first nextflow channel, <code>fa_ch</code>, containing a tuple with the
-name and path values from your <code>samplesheet.csv</code></p></li>
-<li><p>Answer all of the questions in the provided jupyter notebook (some won’t be
-referenced directly here)</p></li>
-</ol>
-</div>
 <div id="section-links" class="section level2 unnumbered">
 <h2>Section links<a class="anchor" aria-label="anchor" href="#section-links"><i class="fas fa-link"></i></a>
 </h2>
-<p><a href="week-1-genome-analytics.html#week-1-tasks-summary">Week 1 Tasks Summary</a></p>
 <p><a href="week-1-genome-analytics.html#project-0-overview">Project 0 Overview</a></p>
 <p><a href="week-1-genome-analytics.html#objectives">Objectives</a></p>
 <p><a href="week-1-genome-analytics.html#getting-started">Getting Started</a></p>
@@ -128,6 +104,7 @@ referenced directly here)</p></li>
 <p><a href="week-1-genome-analytics.html#adding-reference-files-to-our-directory">Adding reference files to our directory</a></p>
 <p><a href="week-1-genome-analytics.html#generating-a-samplesheet">Generating a samplesheet</a></p>
 <p><a href="week-1-genome-analytics.html#creating-our-first-nextflow-channel-and-process">Creating our first nextflow channel and process</a></p>
+<p><a href="week-1-genome-analytics.html#week-1-detailed-tasks-summary">Week 1 Detailed Tasks Summary</a></p>
 </div>
 <div id="project-0-overview" class="section level2 unnumbered">
 <h2>Project 0 Overview<a class="anchor" aria-label="anchor" href="#project-0-overview"><i class="fas fa-link"></i></a>
@@ -144,9 +121,9 @@ utilized for all other projects.</p>
 <h2>Objectives<a class="anchor" aria-label="anchor" href="#objectives"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
-<li>Understand how to encode environment specifications for conda in YML files</li>
-<li>Gain experience understanding how to run Nextflow and create channels</li>
-<li>Acclimate to the structure and style of projects as workflows</li>
+<li><p>Understand how to encode environment specifications for conda in YML files</p></li>
+<li><p>Gain experience understanding how to run Nextflow and create channels</p></li>
+<li><p>Acclimate to the structure and style of projects as workflows</p></li>
 </ul>
 </div>
 <div id="getting-started" class="section level2 unnumbered">
@@ -159,21 +136,17 @@ it to your directory under the bf528 class space
 (/projectnb/bf528/students/username/)</p></li>
 <li><p>Please read through the provided README.md, which explains the structure of the
 directory we are going to be working with throughout the semester.</p></li>
-<li>
+</ol>
+</div>
 <p>From now on, you should always be exclusively be working in an interactive
 VScode session. You can request sessions up to 10 days in duration but I usually
 suggest you request 24 hr sessions. VScode offers a number of benefits:</p>
-<ol style="list-style-type: lower-alpha">
-<li>It has a built-in terminal and file explorer / editor</li>
-<li>The terminal is persistent for as long as your session</li>
-<li>You can install various extensions like syntax highlighters</li>
-<li>The VScode session runs on a compute node, and not the head node</li>
-<li>We can submit jobs via qsub directly from this session without being on
-a head node</li>
-</ol>
-</li>
-</ol>
-</div>
+<pre><code>a. It has a built-in terminal and file explorer / editor
+b. The terminal is persistent for as long as your session
+c. You can install various extensions like syntax highlighters
+d. The VScode session runs on a compute node, and not the head node
+e. We can submit jobs via qsub directly from this session without being on
+  a head node</code></pre>
 </div>
 <div id="setting-up-our-environment" class="section level2 unnumbered">
 <h2>Setting up our environment<a class="anchor" aria-label="anchor" href="#setting-up-our-environment"><i class="fas fa-link"></i></a>
@@ -182,7 +155,7 @@ a head node</li>
 will be using Conda to create an environment where we just have Nextflow (and
 its direct dependencies) installed. For all project work in this class, you will
 need to remember to activate this environment as soon as you begin.</p>
-<p>To begin, we are going to use the module with miniconda installed on the SCC. We
+<p>To start, we are going to use the module with miniconda installed on the SCC. We
 are only going to create a single conda environment that contains Nextflow and a
 testing package. Our worklows will use their own self-contained environments or
 containers. <strong>Whenever you begin work for this course on the SCC, you should
@@ -217,24 +190,12 @@ you use to activate it and make the packages and software available to you for
 use.</p></li>
 </ul>
 <div class="box task">
-<ol style="list-style-type: decimal">
-<li><p>For our purposes, you will be using a slightly older version of Nextflow to
-ensure that these directions do not get out of sync. Create a YML file in the
-<code>envs/</code> directory named <code>base_env.yml</code> and specify that you wish to install
-<code>nextflow</code> version <strong>24.04.2</strong> and <code>nf-test</code> version <strong>0.8.4</strong>. Remember that
-the value after name in the file will be the name of the conda environment
-created, you may name this whatever is easiest for you to remember. We will be
-using this single environment all semester.</p></li>
-<li><p>Separately, using either <code>conda search -c conda-forge -c bioconda &lt;package-name&gt;</code> or by navigating to the tool’s website / github, report the most
-recent version available for Nextflow in the provided jupyter notebook in the
-<code>docs/</code> directory.</p></li>
-<li>
-<p>Answer the following questions in the provided notebook:</p>
-<ol style="list-style-type: lower-alpha">
-<li><p>What is the advantage of using the most up-to-date versions of software?</p></li>
-<li><p>What are some disadvantages?</p></li>
-</ol>
-</li>
+<p>1.Create a YML file in the <code>envs/</code> directory named <code>base_env.yml</code> and specify
+that you wish to install <code>nextflow</code> version <strong>24.04.2</strong> and <code>nf-test</code> version
+<strong>0.8.4</strong>. Remember that the value after name in the file will be the name of
+the conda environment created, you may name this whatever is easiest for you to
+remember. We will be using this single environment all semester.</p>
+<ol start="2" style="list-style-type: decimal">
 <li>
 <p>Open a terminal in the top-level of your directory, use the <code>conda env create -f envs/base_env.yml</code> command to create the environment described in your YML
 file. Remember that for all work in this class, you will want to activate this
@@ -321,41 +282,53 @@ process, this information is a name, and the path to the file that we are going
 to operate on.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
-<li>In the <code>main.nf</code>, create your first channel using a combination of
+<li><p>In the <code>main.nf</code>, create your first channel using a combination of
 <code>Channel.fromPath</code>, <code>splitCsv</code>, <code>map</code>, <code>tuple</code>, <code>params.samplesheet</code> and <code>view()</code>.
 The goal is to create a channel that contains the information contained within
-the CSV.</li>
-</ol>
-<p>Your channel when observed using <code>view</code> should look something like:</p>
-<p>[name_of_bacterial_genome, /path/to/reference/genome.fna]</p>
-<p>This is the information that is passed to various nextflow processes that enable
-nextflow to determine what processes to run on what files.</p>
-<ol start="2" style="list-style-type: decimal">
-<li>When you believe you have successfully constructed a channel containing the
+the CSV.</p></li>
+<li><p>When you believe you have successfully constructed a channel containing the
 information from the samplesheet in the same format as above, you may run
 nextflow to test your channel output using the following command from a terminal
-at the top-level of your directory:</li>
+at the top-level of your directory:</p></li>
 </ol>
 <pre><code>nextflow run main.nf -profile local,conda</code></pre>
 <p>This will run nextflow and it will print the contents of the channel you just
 created to standard out. Make sure your channel is structured as above where
 the first element of the tuple is the value encoded in the name column and the
 second element contains the value in the path column from the CSV.</p>
+<p>Your channel when observed using <code>view</code> should print to the console and look
+like the following:</p>
+<p>[name_of_bacterial_genome, /path/to/reference/genome.fna]</p>
 <ol start="3" style="list-style-type: decimal">
-<li>
-<p>Take a look at the <code>nextflow.config</code> and look for the <code>profile</code> section. Answer
-the following question in the provided notebook:</p>
-<ol style="list-style-type: lower-alpha">
-<li>What do you think the option <code>-profile local,conda</code> is doing?</li>
+<li>When you have successfully created this channel, you should use the <code>set</code>
+function to assign it to a variable. Name this variable <code>fa_ch</code>.</li>
 </ol>
-</li>
-<li><p>When you have successfully created this channel, you should use the <code>set</code>
-function to assign it to a variable. Name this variable <code>fa_ch</code>. <code>set</code> should
-replace the usage of <code>view</code>, which does not assign your channel to a variable
-but simply prints its contents to standard out.<br></p></li>
-</ol>
+<p><code>set</code> should replace the usage of <code>view</code>, which does not assign your channel to
+a variable but simply prints its contents to standard out. They are mutually
+exclusive.</p>
 </div>
-
+</div>
+<div id="week-1-detailed-tasks-summary" class="section level2 unnumbered">
+<h2>Week 1 Detailed Tasks Summary<a class="anchor" aria-label="anchor" href="#week-1-detailed-tasks-summary"><i class="fas fa-link"></i></a>
+</h2>
+<ol style="list-style-type: decimal">
+<li><p>Clone the github classroom link for project 0 to your student directory in
+the bf528 project space.</p></li>
+<li><p>Read through the README.md, which describes the directory structure we will be
+utilizing throughout the semester.</p></li>
+<li><p>Generate a YML file in the <code>envs/</code> directory that contains the specification
+for your base environment with Nextflow version 24.04.2 installed.</p></li>
+<li><p>Copy a single genome fna (FASTA) to your <code>refs/</code> directory.</p></li>
+<li><p>Make a <code>samplesheet.csv</code> file at the top-level of your directory containing
+the columns <code>name</code> and <code>path</code> with one row being the name and path for your
+single genome file.</p></li>
+<li><p>Edit the <code>nextflow.config</code> file and add a <code>param</code> called
+<code>samplesheet</code>containing the path to your samplesheet</p></li>
+<li><p>Generate your first nextflow channel, <code>fa_ch</code>, containing a tuple with the
+name and path values from your <code>samplesheet.csv</code></p></li>
+<li><p>Answer all of the questions in the provided jupyter notebook (some won’t be
+referenced directly here)</p></li>
+</ol>
 </div>
 </div>
   <div class="chapter-nav">
@@ -365,7 +338,6 @@ but simply prints its contents to standard out.<br></p></li>
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#week-1-genome-analytics">Week 1: Genome Analytics</a></li>
-<li><a class="nav-link" href="#week-1-tasks-summary">Week 1 Tasks Summary</a></li>
 <li><a class="nav-link" href="#section-links">Section links</a></li>
 <li><a class="nav-link" href="#project-0-overview">Project 0 Overview</a></li>
 <li><a class="nav-link" href="#objectives">Objectives</a></li>
@@ -374,6 +346,7 @@ but simply prints its contents to standard out.<br></p></li>
 <li><a class="nav-link" href="#adding-reference-files-to-our-directory">Adding reference files to our directory</a></li>
 <li><a class="nav-link" href="#generating-a-samplesheet">Generating a samplesheet</a></li>
 <li><a class="nav-link" href="#creating-our-first-nextflow-channel-and-process">Creating our first nextflow channel and process</a></li>
+<li><a class="nav-link" href="#week-1-detailed-tasks-summary">Week 1 Detailed Tasks Summary</a></li>
 </ul>
 
       <div class="book-extra">

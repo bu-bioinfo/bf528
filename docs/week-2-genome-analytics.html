@@ -18,9 +18,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="Section Links Week 2 Overview Objectives Create YML environment files for Samtools and Prokka Generating your first module Creating your first workflow Making your own module Week 2 Tasks Summary ...">
-<meta property="og:description" content="Section Links Week 2 Overview Objectives Create YML environment files for Samtools and Prokka Generating your first module Creating your first workflow Making your own module Week 2 Tasks Summary ...">
-<meta name="twitter:description" content="Section Links Week 2 Overview Objectives Create YML environment files for Samtools and Prokka Generating your first module Creating your first workflow Making your own module Week 2 Tasks Summary ...">
+<meta name="description" content="Section Links Week 2 Overview Objectives Create YML environment files for Samtools and Prokka Generating your first module Creating your first workflow Making your own module Week 2 Detailed Tasks...">
+<meta property="og:description" content="Section Links Week 2 Overview Objectives Create YML environment files for Samtools and Prokka Generating your first module Creating your first workflow Making your own module Week 2 Detailed Tasks...">
+<meta name="twitter:description" content="Section Links Week 2 Overview Objectives Create YML environment files for Samtools and Prokka Generating your first module Creating your first workflow Making your own module Week 2 Detailed Tasks...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -98,7 +98,7 @@
 <p><a href="week-2-genome-analytics.html#generating-your-first-module">Generating your first module</a></p>
 <p><a href="week-2-genome-analytics.html#creating-your-first-workflow">Creating your first workflow</a></p>
 <p><a href="week-2-genome-analytics.html#making-your-own-module">Making your own module</a></p>
-<p><a href="week-2-genome-analytics.html#week-2-tasks-summary">Week 2 Tasks Summary</a></p>
+<p><a href="week-2-genome-analytics.html#week-2-detailed-tasks-summary">Week 2 Detailed Tasks Summary</a></p>
 </div>
 <div id="week-2-overview" class="section level2 unnumbered">
 <h2>Week 2 Overview<a class="anchor" aria-label="anchor" href="#week-2-overview"><i class="fas fa-link"></i></a>
@@ -138,7 +138,9 @@ per environment, ensuring you specify the exact version of the tool and naming
 the file descriptively (e.g. envs/prokka_env.yml)</p></li>
 <li><p>Generate another YML file that will create a conda environment with the most
 recent version of samtools installed.</p></li>
-<li><p>Make sure both of these YMLs are contained within your <code>envs/</code> directory.</p></li>
+<li><p>Generate a YML file that will create a conda environment with the most
+recent version of python installed</p></li>
+<li><p>Make sure these YMLs are contained within your <code>envs/</code> directory.</p></li>
 </ol>
 </div>
 </div>
@@ -151,28 +153,16 @@ a process. Because of the way modules have been designed, this will allow us to
 share or re-use the modules we generate in different workflows.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
-<li><p>Navigate to the <code>modules/</code> directory and open up the <code>main.nf</code> script contained
+<li>Navigate to the <code>modules/</code> directory and open up the <code>main.nf</code> script contained
 within the <code>prokka/</code> directory. You have been provided with a representative
 example of what many nextflow processes will look like. If you remember the
 channel you created, you made a tuple (ordered list) containing the name of the
-genome and the path to the file. If you look at the <code>input</code>, you can see that
-we declare that the input for this process is a tuple containing a value (name)
-and a path (genome). The channel that is passed to a process must have the same
-cardinality and order that is declared in the input.</p></li>
-<li><p>Complete lines 5 and 6 by providing the conda environment specification you
-made earlier for Prokka after the <code>env</code> option and providing the directory where
-you want the results of this process to be made available after the <code>publishDir</code>
-option.</p></li>
-<li><p>Look at the Prokka documentation and construct the correct command for
-running it. We will be running Prokka with mostly default parameters and your
-command should include these exact options and no more: <code>--cpus</code>, <code>--outdir</code>,
-<code>--prefix</code> and <code>$genome</code>. Please use the name value from the channel for
-both the output directory name and output file prefix. Specify a value of <code>1</code>
-after the –cpus flag.</p></li>
+genome and the path to the file.</li>
 </ol>
-<p>The “$” notation will allow us to genericize our command and avoid hardcoding
-file names. At runtime, nextflow will properly replace them with the provided
-value. (i.e. $genome will be replaced by the value specified in the channel).</p>
+<p>Look at the <code>input</code>, you can see that we declare that the input for this process
+is a tuple containing a value (name) and a path (genome). The channel that is
+passed to a process must have the same cardinality and order that is declared in
+the input.</p>
 <pre><code>fa_ch (main.nf workflow)
 [name_of_bacterial_genome, /path/to/reference/genome.fna]
 
@@ -183,36 +173,46 @@ tuple val(name), path(genome)
 <p>If you match the structure of the channel with the inputs of the process, you
 will see that <code>val(name)</code> will refer to <code>name_of_bacterial_genome</code> and
 <code>path(genome)</code> with <code>/path/to/reference/genome.fna</code>.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Complete lines 5 and 6 by providing the conda environment specification you
+made earlier for Prokka after the <code>env</code> option and providing the directory where
+you want the results of this process to be made available after the <code>publishDir</code>
+option. Remember that all of your paths should be relative to your top-level
+working directory where the <code>main.nf</code> is located.</p></li>
+<li><p>Look at the Prokka documentation and construct the correct command for
+running it. We will be running Prokka with mostly default parameters and your
+command should include these exact options and no more: <code>--cpus</code>, <code>--outdir</code>,
+<code>--prefix</code> and <code>$genome</code>. Please use the name value from the channel for
+both the output directory name and output file prefix. Specify a value of <code>1</code>
+after the –cpus flag.</p></li>
+</ol>
+<p>The “$” notation will allow us to genericize our command and avoid hardcoding
+file names. At runtime, nextflow will properly replace them with the provided
+value. (i.e. $genome will be replaced by the value specified in the channel).</p>
 <ol start="4" style="list-style-type: decimal">
 <li>You will need to specify the output that will be created by Prokka so that
 nextflow can recognize the files that should be created if the task finishes
 successfully. You can instruct Nextflow to expect individual files or entire
-directories. If you look at the <code>output</code>, you can see that we’ve told Nextflow
-to expect <code>path("$name/")</code> to exist when the tool has successfully run. You may
-have noticed that in step 3, you were instructed to name the output directory
-Prokka creates with the value passed from the CSV (<code>name</code>). This will be a
-common pattern with these tools where we specify how we want the tool to name
-its output files, and then we tell Nextflow to expect those same files to be
-produced.</li>
+directories.</li>
 </ol>
+<p>Look at the <code>output</code>, you can see that we’ve told Nextflow to expect
+<code>path("$name/")</code> to exist when the tool has successfully run. You may have
+noticed that in step 3, you were instructed to name the output directory Prokka
+creates with the value passed from the CSV (<code>name</code>). This will be a common
+pattern with these tools where we specify how we want the tool to name its
+output files, and then we tell Nextflow to expect those same files to be
+produced.</p>
 <p>The <code>path</code> output can also use standard bash wildcard expansion to flexibly
 detect files without knowing their exact name. This example below will instruct
 nextflow that when this task completes successfully, there should be a file
-ending in the extension .bam that was created.</p>
+ending in the extension .txt that was created.</p>
 <pre><code>output:
-path("*.bam")</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li>
-<p>Answer the following questions in your provided docs/week2_tasks.Rmd:</p>
-<ol style="list-style-type: lower-alpha">
-<li><p>What does the option <code>label 'process_single'</code> specify? Can you find where
-this value is described?</p></li>
-<li><p>What would happen if the values in our channel were switched?
-i.e. [path/to/genome, name_of_genome] Would this process still run? Would the
-tool still run?</p></li>
-</ol>
-</li>
-</ol>
+path("*.txt")</code></pre>
+<p>You may have also noticed the line:</p>
+<pre><code>tuple val(name), path("${name}/${name}.gff"), emit: gff</code></pre>
+<p><code>emit</code> is the nextflow way of emitting a specific output and allowing you to
+access this specific output by name. We will use this to join the output channels
+of two processes in order to have all of the files we need for a third process.</p>
 </div>
 </div>
 <div id="creating-your-first-workflow" class="section level2 unnumbered">
@@ -242,18 +242,6 @@ passing it your channel.</p></li>
 <p>This will run your nextflow pipeline, which will create a channel containing
 the name of your genome and the path to its file location and supply it to the
 PROKKA process in the prokka module.</p>
-<ol start="4" style="list-style-type: decimal">
-<li>
-<p>Answer the following questions in your provided week2_tasks.Rmd when nextflow
-has finished running:</p>
-<ol style="list-style-type: lower-alpha">
-<li><p>Where are the outputs from Prokka stored?</p></li>
-<li><p>You may have noticed a new directory has been created in your repo called
-<code>work/</code>. What is in this directory? What do you think the advantages of
-generating directories this way are? What are the disadvantages?</p></li>
-</ol>
-</li>
-</ol>
 </div>
 </div>
 <div id="making-your-own-module" class="section level2 unnumbered">
@@ -284,8 +272,8 @@ process module you just created available in the script and run your
 </ol>
 </div>
 </div>
-<div id="week-2-tasks-summary" class="section level2 unnumbered">
-<h2>Week 2 Tasks Summary<a class="anchor" aria-label="anchor" href="#week-2-tasks-summary"><i class="fas fa-link"></i></a>
+<div id="week-2-detailed-tasks-summary" class="section level2 unnumbered">
+<h2>Week 2 Detailed Tasks Summary<a class="anchor" aria-label="anchor" href="#week-2-detailed-tasks-summary"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
 <li><p>Generate YML environment specification files for the latest versions of
@@ -314,7 +302,7 @@ and run it using the <code>fa_ch</code>.</p></li>
 <li><a class="nav-link" href="#generating-your-first-module">Generating your first module</a></li>
 <li><a class="nav-link" href="#creating-your-first-workflow">Creating your first workflow</a></li>
 <li><a class="nav-link" href="#making-your-own-module">Making your own module</a></li>
-<li><a class="nav-link" href="#week-2-tasks-summary">Week 2 Tasks Summary</a></li>
+<li><a class="nav-link" href="#week-2-detailed-tasks-summary">Week 2 Detailed Tasks Summary</a></li>
 </ul>
 
       <div class="book-extra">
