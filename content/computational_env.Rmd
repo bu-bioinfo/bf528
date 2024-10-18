@@ -238,12 +238,24 @@ environment in which the analysis was run.
 You may find which tools and versions are available on conda by using the command:
 `conda search -c conda-forge -c bioconda <tool_name>`.
 
-## How we are going to use conda environments / containers
+## How we are going to use conda environments / containers {-}
 
 For the most part, we are not going to be directly utilizing these environments
 or containers. One of the advantages of nextflow is that it can automatically
 make use of these conda YML environment specification files or containers for
-individual tasks by specifying them in each of the modules. We will simply 
+individual tasks by specifying them in each of the modules. Nextflow will
+automatically create these conda environments or download the container images
+necessary. 
 
+We will create a single, small conda environment that we will use directly that
+contains both Nextflow and nf-test. Otherwise, we will simply specify the exact
+conda environments we'd like created in YML files or a path to a container
+image, and nextflow will seamlessly incorporate it into our workflows.
 
+For project 0, you will be using conda environments that you specify. After
+project 0, you will be provided pre-built container images that have the
+necessary tool installed. These containers have been built using micromamba as a
+base and are hosted on the Github Container Registry.
 
+You will also get experience building Docker containers from scratch and making
+them available for use.

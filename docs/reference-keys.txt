@@ -1,4 +1,3 @@
-how-we-are-going-to-use-conda-environments-containers
 introductory-slides
 computational-primer
 assignment
