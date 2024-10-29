@@ -1,0 +1,76 @@
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq {-}
+
+High-throughput sequencing technologies have dramatically expanded our
+understanding of gene expression through their ability to profile mRNA molecules
+in an unbiased manner without being constrained to a small subset of pre-chosen
+targets like in a microarray. This agnostic approach to molecular profiling has
+allowed for more complex and interesting analyses that interrogate novel splice
+patterns and gene isoforms or the newly appreciated multifaceted functions of
+long non-coding RNAs. However, the overwhelming use case of RNA sequencing has
+been to provide information about mRNA abundance and gene expression. The
+ability to assay the gene expression profile of an organism and how it changes
+in response to various stimuli or under different disease conditions has
+revolutionized modern molecular biology and genomics. In this project, you will
+perform all steps necessary to produce a basic analysis of RNA sequencing data
+from mouse heart ventricles isolated across the differentiation process.
+
+Upon completion of this project, you will have gained experience with the
+following concepts and skills:
+- Working familiarity with standard tools used to aid in reproducible
+bioinformatics research including, but not limited to, git, miniconda,
+nextflow, and jupyter / Rmarkdown notebooks
+- Hands-on experience with a current state of the art RNAseq pipeline 
+encompassing quality control, alignment, read quantification, and differential 
+expression analysis
+- Proficiency with commonly used bioinformatics tools including fastQC, multiQC,
+STAR, FeatureCounts (verse), DESeq2, Samtools, and HPC usage
+
+
+**IMPORTANT NOTES**
+
+This first project will ask you to understand a great many concepts in a
+relatively short amount of time. In order to make troubleshooting your workflows
+more expedient, you will be working with very small subsets of the original
+data. This will allow you to quickly confirm that both your workflow and the
+tools you are using to process and analyze the data are working as expected. The
+files are small enough that you will be able to perform all of the operations
+within vsCode and have them finish within a few moments. Please use these files
+to ensure that your workflow is operating as specified.
+
+After your workflow runs successfully on the test files, we will learn about the
+usage of `qsub` and how to have nextflow automatically and properly submit jobs
+to the cluster. Then, you will use this knowledge to run your complete workflow
+on the full samples.
+
+It is critical that you do your best to complete the required weekly tasks in
+order to stay on schedule for finishing the analysis. It will be very difficult
+to complete everything requested if you fall behind. Please seek out myself or
+the TAs and we will do our best to assist you however you need. Please use the
+accompanying weekly checklist to keep track of all of the necessary tasks.
+
+In general, each week you should:
+
+  1. Complete the workflow sections to run the requested tasks
+  2. Answer any conceptual questions also found in the provided Rmarkdown
+  3. Draft a quick methods section in the accompanying notebook
+
+Each week will become progressively more independent.
+
+The github classroom for this project will be posted on Blackboard. 
+
+
+## Table of Contents
+
+[Week 1](#week-1-rnaseq)
+
+[Week 2](#week-2-rnaseq)
+
+[Week 3](#week-3-rnaseq)
+
+[Week 4](#week-4-rnaseq)
+
+[Week 5](#week-5-rnaseq)

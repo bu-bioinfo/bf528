@@ -14,7 +14,7 @@
 
 [Basic Local Alignment Search Tool]
 
-[Developing an external script]
+[Developing external scripts for workflows]
 
 [A fully operational nextflow pipeline]
 
@@ -35,22 +35,25 @@ chosen genome (GC content and length).
 
 - Use samtools to extract a randomly selected region from a large sequence
 
-- Develop a external scripts that can be seamlessly incorporated into your workflow
+- Develop external scripts that can be seamlessly incorporated into your workflow
 
-- Using operators to manipulate and join nextflow channels together
+- Use operators to manipulate and join nextflow channels together
 
 ## Understanding the staging directory {-}
 
 As we've mentioned, nextflow will "stage" files for specific processes in their
 own directories that are named specially in the `work/` directory it creates.
-These names usually follow the pattern of beginning with two letters or numbers,
-followed by an underscore, and then followed by a string of letters and numbers.
+Nextflow processes will be run in these "staged" directories, which are isolated
+from each other and contain only the files specified in the inputs. 
 
-This is known as a hash and you can think of it as a way of encoding data and
-information of arbitrary size to a fixed size. Nextflow will automatically stage
-each task in these separate directories for you. The main advantage of this
-strategy is that it prevents you from having to worry about file names and file name
-collisions since each task is guaranteed to run in its own new directory.
+These directories are named with a set pattern beginning with two letters or
+numbers, followed by an underscore, and then followed by a string of letters and
+numbers.This is known as a hash and you can think of it as a way of encoding
+data and information of arbitrary size to a fixed size. Nextflow will
+automatically stage each task in these separate directories for you. The main
+advantage of this strategy is that it prevents you from having to worry about
+file names and file name collisions since each task is guaranteed to run in its
+own new directory.
 
 Remember that these directories are self-contained and nextflow will copy the
 files in the input as well as bin/ to this new directory where your task will
@@ -66,7 +69,8 @@ knitr::include_graphics("projects/project_0_genome_analysis/nextflow_run_example
 ```
 
 You can navigate to these directories manually to inspect logs, output files, 
-or check that the right files are being staged. 
+or check that the right files are being staged. By default, unless you specify
+using `publishDir`, all of the results will be kept in this `work/` directory. 
 
 ## Inspecting the Prokka Output {-}
 
@@ -80,7 +84,7 @@ and other features of DNA, RNA or protein sequences.
 
 :::{.box .task}
     
-1. Look in the `bin/` directory and develop some python code in the
+1. Look in the `bin/` directory and develop the python code in the
 `extract_region.py` script that will parse through the GFF, pick a single entry
 where the 6th field is '+' (a sequence from the plus strand) and print out that
 entries accession, start and stop coordinates to a text file in the format:
@@ -95,8 +99,8 @@ genome:start-stop.
     genomeA:100-200
     ```
 2. You have already been provided an outline for the code as well as the nextflow
-module that will call this script (modules/extract_region/main.nf). Call this 
-process in your workflow (main.nf) and pass it the outputs from Prokka. To access
+module that will call this script (`modules/extract_region/main.nf`). Call this 
+process in your workflow (`main.nf`) and pass it the outputs from Prokka. To access
 the named outputs of a channel, you can use `<NAME OF PROCESS>.out.<EMIT NAME>`
 or for our situation, `PROKKA.out.gff`.
 
@@ -139,7 +143,7 @@ combine the outputs from samtools_faidx [name, path/to/genome.fna, path/to.genom
 with the outputs of extract_region [name, path/to/region_of_interest.txt]. 
 
 Look for an appropriate nextflow operator that will enable you to join two channels
-based on a common key (name). The resulting channels should look something like:
+based on a common key (name). The resulting channel should look something like:
 
 ```
 [name, path/to/genome.fna, path/to/genome.fna.fai, path/to/region_of_interest.txt]
@@ -152,10 +156,10 @@ When you have successfully done this, save this channel to a new variable called
 under `modules`. You may copy your `main.nf` from the `samtools_faidx` directory
 as the inputs, outputs, and commands will all be largely similar. Modify the
 inputs to match the cardinality and order of your `subset_ch`. Use the '>` function
-in bash to save the outputs of this process to a file called 'region.subset.fna'
+in bash to save the outputs of this process to a file called `region.subset.fna`
 
-3. Call your samtools_faidx_subset process on the subset_ch. 
-
+3. Call your samtools_faidx_subset process on the subset_ch by modifying your
+workflow in the `main.nf`. 
 
 :::
 
@@ -173,23 +177,24 @@ or ensure it returns optimal alignments, and instead prioritizes speed. A quick
 google search will lead you to the BLAST website.
 
 :::{.box .task}
+
 1. Please select the nucleotide blast option and open the file you created named
-region.subset.fna`. Copy the sequence found within that file into the query
-section of BLAST and leave all other options at default. Answer the following
-question in your provided week3_tasks.Rmd:
-
-    a. Please take a screenshot of the BLAST results returned from your query.
-    What are some of the possible alignments of your sequence of interest? Are
-    there are any commonalities in the organisms found if you see multiple
-    equally valid results?
+`region.subset.fna`. Copy the sequence found within that file into the query
+section of BLAST and leave all other options at default. 
 
 
-    b. Just for fun: feel free to inspect more of the results from Prokka and
-    query potential matches using BLAST. Can you guess the original identity of
-    the genome you chose?
+2. Please take a screenshot of the BLAST results returned from your query. Make
+sure to briefly address the following questions in the provided ipynb. 
+What are some of the possible alignments of your sequence of interest? Are there 
+are any commonalities in the organisms found if you see multiple equally valid 
+results?
+
+3. If you wish, you can select more annotated regions from your genome use BLAST
+to attempt to identify your genome. 
+
 :::    
 
-## Developing an external script {-}
+## Developing external scripts for workflows {-}
 
 Many times in bioinformatics pipelines, we will need to run a custom script that
 will perform a specific analysis or operation. For this pipeline, we wish to
@@ -204,9 +209,9 @@ will need to include a [shebang
 line](https://en.wikipedia.org/wiki/Shebang_(Unix)) and change the script
 permissions to be executable prior to running your workflow.
 
-You have already seen a small example of a script being incorporated into a nextflow
-workflow when you completed the extract_regions.py and its associated module. Please
-refer back to this when developing this new script. 
+You have already seen a small example of a script being incorporated into a
+nextflow workflow when you completed the extract_regions.py and its associated
+module. Please refer back to this when developing this new script.
 
 Take a look at the provided skeleton of a script in `bin/` named
 `genome_stats.py`. Examine lines 1-20, and you may also find this
@@ -221,6 +226,7 @@ nextflow module accompanying this script will simply be responsible for passing
 it the correct input (your FASTA file) and specifying the output file. 
 
 :::{.box .task}
+
 1. Write valid python code below line 20 in the provided script. You may do this
 with basic python functionalities or attempt to use [Biopython](https://biopython.org/). 
 Your code should do the following:
@@ -232,13 +238,16 @@ Your code should do the following:
     some text explaining what each value represents (i.e. GC Content: 64%)
     
 2. Make a new directory in `modules` entitled `genome_stats` and create a
-`main.nf`. If using biopython, make an appropriate YML environment specification
-for biopython. If only using basic python, make a YML environment specification
-with python installed. You can have the inputs be the same shape and structure
-as the `fa_ch`. You will need to specify how you want the output file named. 
-The shell/script portion will be the command for executing the associated `.py`
-script and providing it the appropriate inputs as specified by `argparse`. Please
-write the new file to the `results/` directory using `publishDir`.
+`main.nf` within that directory. If using biopython, make an appropriate YML
+environment specification for biopython. If only using basic python, make a YML
+environment specification with python installed. You can have 
+
+The inputs be the same shape and structure as the `fa_ch`. You will need to
+specify how you want the output file named. The shell/script portion will be the
+command for executing the associated `.py` script and providing it the
+appropriate inputs as specified by `argparse`. Please write the new file to the
+`results/` directory using `publishDir`. Name this output file using the name
+value passed in the channel (i.e. ${name}_genome_stats.txt)
 
 3. When your script is functional and your associated nextflow module complete,
 run Nextflow once more to generate the text file containing the two genome
@@ -258,12 +267,13 @@ figure out what new jobs need to be run based on the changes.
 
 :::{.box .task}
 
-1. Copy the two remaining genomes from /projectnb/bf528/materials/project-0-genome-analytics
-into your `refs/` directory. Add their information to the samplesheet.csv as you did
-previously.
+1. Copy the two remaining genomes from
+/projectnb/bf528/materials/project-0-genome-analytics into your `refs/`
+directory. Add their information to the samplesheet.csv as you did previously.
 
 2. Re-run your nextflow workflow. It should perform the exact same tasks for
 these two new genomes simultaneously.
+
 :::
 
 

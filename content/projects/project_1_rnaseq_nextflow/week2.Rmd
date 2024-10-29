@@ -1,0 +1,181 @@
+# Week 2: RNAseq {-}
+
+## Section Links {-}
+
+[Week 2 Overview]
+
+[Week 2 Objectives]
+
+[Aligning reads to the genome]
+
+[Performing post-alignment QC]
+
+[Quantifying alignments to the genome]
+
+[Week 2 Detailed Task Summary]
+
+## Week 2 Overview {-}
+
+Now that we have performed basic quality control on the FASTQ files, we are
+going to align them to the mouse reference genome to generate alignments for
+each of our sequencing reads. After alignment, we will aggregate the outputs from
+FASTQC and STAR into a single report summarizing some of the important quality
+control metrics describing our sequencing reads and the alignments. We will then
+quantify the alignments in our BAM file to the gene-level using VERSE. 
+
+
+## Objectives {-}
+
+- Run FASTQC to generate quality reports for the sequencing reads of all of the
+samples
+
+- Align your sequencing reads to the mouse reference genome using STAR
+
+- Use MultiQC to generate a single report containing the quality metrics for
+the sequencing reads and alignments
+
+- Generate gene-level counts using VERSE for each of the samples
+
+## Aligning reads to the genome {-}
+
+Last week you generated a STAR index to enable alignment of reads to the mouse
+reference genome. This week, you will use this index to align the sequencing
+reads to the genome. 
+
+Remember that paired end reads are almost always used in conjunction with each
+other (R1 and R2) and that they collectively represent the reads from a single
+sample. When we align both of these paired end reads to the genome, we will
+generate a single set of all valid alignments for the sample.
+
+By default, many alignment programs will output these alignments in SAM format.
+As discussed in lecture, the BAM format is a compressed version of SAM files that
+contains the same information. Oftentimes, we will simply choose to generate BAM
+files in place of SAM files in order to preserve disk space. 
+
+:::{.box .task}
+
+1. Look at the documentation for STAR and focus on section 3 (pg. 7) for how to 
+use STAR to run a basic mapping job. Construct a working nextflow module that
+performs basic alignment using STAR.
+
+Your STAR command should include only the following options and all others may be left
+at their default value:
+
+`--runThreadN`, `--genomeDir`, `--readFilesIn`, `--readFilesCommand`, 
+`--outFileNamePrefix`, `--outSAMtype`
+
+2. Remember that by default, nextflow stores all of the outputs for a specific
+task in the staged directory in which it ran. Often, we will want to inspect
+the output files or log files from various processes. 
+
+Ensure that your STAR module has two separate named outputs using `emit`. The two
+outputs will be the BAM file and another for the log file generated during
+alignment named with the extension `.Log.final.out`. 
+
+This log file will allow us to collect certain statistics about the alignment
+rates that are useful for quality control purposes. As a general rule of thumb,
+if there were no obvious issues with the sequencing preparation or errors in the
+alignment, we expect a substantial proportion of our reads to align to the
+reference genome. For well-annotated and studied genomes like human or mouse, we
+usually see alignment rates >70-80% for successful NGS experiments. Lower
+alignment rates are often expected for genomes that have not been sequenced to
+the same quality and depth as the more commonly used references. Make sure to
+evaluate these alignment rates in an experiment-specific context as there is no
+set threshold or cutoff that is appropriate for all cases.
+
+3. Ensure that you use the `process_high` for the `label`. 
+
+
+## Performing post-alignment QC {-}
+
+Typically after performing alignment, it is good to obtain a few post-alignment
+quality control metrics to quickly check if there appear to be any major
+problems with the data. At this step, we will typically evaluate the quality of
+the reads themselves (PHRED scores, contamination, etc.) along with the
+alignment rate to the reference genome. 
+
+As we've discussed, in larger experiments, it will quickly become cumbersome or
+unfeasible to manually inspect the results for all of our samples individually.
+Additionally, if we only look at one sample at a time, we may miss larger trends
+or biases across all of our samples. To solve this issue, we will be making use
+of MultiQC, which is a tool that simply aggregates the relevant logs and outputs
+from various bioinformatics utilities into a nicely formatted HTML report.
+
+Since you are working with files that have been intentionally filtered to make
+them smaller, the actual outputs from fastQC and STAR will be misleading. Do not
+draw any conclusions from these reports generated on the subsetted data; the
+results will only be meaningful at the end when you've switched to running this
+pipeline on the full dataset.
+
+:::{.box .task}
+
+1. Make a new module that will run MultiQC. You can specify the label as
+`process_low` and set `publishDir` to your `results/` directory. We will take
+advantage of the staging directory strategy that nextflow uses to run MultiQC.
+
+By default, MultiQC will simply scan a directory and automatically detect any
+of the common output files and logs created by the bioinformatics tools it
+supports. For your `input`, you can simply specify `path('*')` and it creates
+an HTML file as an `output`. The actual command to run MultiQC in your `shell`
+directive will be simply `multiqc .`
+
+2. The tricky part with running MultiQC and nextflow is that you will need to 
+gather all of the output files from FASTQC and STAR and ensure that multiqc only
+runs after all of the samples have been processed by both of these tools.
+
+Use a combination of `map()`, `collect()`, `mix()`, `flatten()` to create a
+single channel that contains a list with all of the output files from FASTQC and
+STAR logs for every sample and call it `multiqc_ch`. Remember that you may access
+the outputs of a previous process by using the `.out()` notation (i.e. ALIGN.out
+or FASTQC.out.zip).
+
+See below for an example of what the channel should look like:
+
+
+```
+multiqc_channel
+
+[sample1_R1_fastqc.zip, sample1_R2_fastqc.zip, sample1.Log.final.out,
+sample2_R1_fastqc.zip, sample2_R2_fastqc.zip, sample2.Log.final.out, ...]
+
+```
+:::
+
+3. Add the MultiQC module to your workflow `main.nf` and run MultiQC. MultiQC
+should run a single time and only after every alignment and fastqc process has
+finished. 
+
+4. Ensure that your `multiqc_report.html` is successfully created and contains
+the QC information from both FASTQC and STAR for all of your samples. You may
+open the HTML file through SCC ondemand. 
+:::
+
+## Quantifying alignments to the genome
+
+In RNAseq, we are interested in quantifying gene expression and comparing that
+expression across conditions. We so far have generated alignments from the reads
+from all of our samples to their appropriate reference genome. We will use the
+information contained within the GTF (what each region of the genome represents)
+to assign these alignments to features and count them. 
+
+For differential expression analysis, our feature of interest will typically be
+exons as we know that those are the regions of genes that largely comprise the
+sequences found in mRNA (which is what we are measuring and what was originally
+sequenced). We will generate a single count for every gene that will represent
+the sum of the union of all counts of alignments falling into every exon
+annotated to that gene. This gene-level count will be used as a proxy for that
+gene's expression in a particular sample.
+
+We will be using VERSE, which is a read counting tool that will quantify
+alignments into counts based on a feature of interest.
+
+:::{.box .task}
+
+1. Generate a module that runs
+[VERSE](https://kim.bio.upenn.edu/software/verse_manual.html) on each of your
+BAM files. You may leave all options at their default parameters. Be sure to
+include the `-S` flag in your final command.
+
+:::
+
+## Week 2 Detailed Task Summary

@@ -1,0 +1,76 @@
+# Week 3: RNAseq {-}
+
+After we have aligned our reads, we will now “count” the alignments falling into
+regions of interest in the mouse genome (exonic regions) and sum the alignments
+falling into all exons of a given gene to obtain a “gene-level” count of mRNA
+abundance for all genes in each sample. We will then concatenate all of the 8
+outputs from VERSE into a single counts matrix. We will filter this counts matrix
+and generate a new *filtered matrix* that will be used for differential expression
+analysis. Finally, we will get experience with parsing a GTF file and extracting
+mappings of gene IDs to gene symbols (this will also be used later).
+
+
+
+**Generating a counts matrix**
+
+2. Add the module to your workflow `main.nf` and run VERSE on all of your BAM
+files from each of your samples. 
+
+3. Generate a module that runs an external python script that will take a list
+of all of the output files from VERSE. Separately, develop a script in `bin/`
+that uses `pandas` to concatenate all 8 of the verse outputs into a single CSV
+where the rows are all of the genes from the reference genome and the columns
+are the corresponding counts from each of the samples. Add this script to your
+workflow and use it to concatenate all of the VERSE outputs into a single 
+counts matrix. 
+
+
+**Filtering our counts matrix**
+
+Oftentimes, we will pre-filter our counts matrix to remove genes (rows) that have
+very few reads. The strategy used for pre-filtering counts will depend entirely on
+each individual dataset, and you will need to think about which thresholds / 
+filters are appropriate. 
+
+You may have noticed that this dataset only has two replicates per timepoint 
+(i.e. ADrep1 and ADrep2). As we discussed in class, there are multiple potential
+meanings to a count of zero in the context of sequencing experiments. For example,
+it is possible we did not sequence “deep” enough to detect certain lowly expressed
+genes. However, it’s also possible that genes with zero counts are truly not 
+expressed in the original samples. In order to mitigate some of this 
+uncertainty, we are going to apply a filter to our counts to simply remove any 
+genes that are not expressed in all of our samples. 
+
+**Please note** that this is a subjective choice and there is not a single
+correct way of filtering this data. This specific filter was chosen to avoid
+attempting to perform statistical tests between conditions where we only have
+one measurement (this filter will only retain genes that are expressed in every
+sample, ensuring that we have non-zero measurements for all of our samples.
+
+If you remember, we have been working with datafiles that were intentionally
+filtered to make them much smaller and able to be processed on the head node.
+For the following steps, you may use this file to test if your code is working
+as intended, /projectnb/bf528/materials/project_1_rnaseq/test_verse_concat.csv. 
+This CSV contains 2000 rows and after filtering to only keep genes (rows) where 
+all 8 samples have a non-zero value, it should contain 564 rows. 
+
+  1. Develop your own python script and name it `filter_cts_mat.py` 
+  
+  2. This script should take an unfiltered counts matrix as input, filter that 
+    matrix according to the conditions above, and output the filtered matrix to 
+    a new file.
+    
+Keep in mind the following suggestions:
+    
+  1. You can copy the argparse arguments from the `parse_gtf.py` script and simply
+    change the code if you are still getting used to `argparse`. You will need 
+    to change the input and outputs to the unfiltered counts matrix and the 
+    name of the new filtered counts matrix you will be creating, respectively. 
+    
+  2. You may use the file listed above to **test** that your code is working as
+    expected (i.e. only retaining genes (rows) where every sample has a non-zero
+    count). **N.B. Use this `test_verse_concat.csv` for testing purposes only!
+    After you have confirmed your code works, remove this file and replace it 
+    with the file you generated previously in your snakefile**
+      
+

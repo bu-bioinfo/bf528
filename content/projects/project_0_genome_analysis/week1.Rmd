@@ -29,7 +29,7 @@ All other text will be directions or other explanatory text that you should read
 ## Project 0 Overview {-}
 
 This project will focus on getting you accustomed to how nextflow works and its
-key functions. You will be constructing a small nextflow pipeline that will
+key functions. You will be constructing a nextflow pipeline that will
 annotate a small bacterial genome using [Prokka](prokka link), calculate some
 basic genome statistics using python (GC Content, and genome size) and extract
 the sequence for a specified region of the genome by its coordinates. The
@@ -122,7 +122,8 @@ A few things to remember:
   use.
   
 :::{.box .task}
-1.Create a YML file in the `envs/` directory named `base_env.yml` and specify
+
+1. Create a YML file in the `envs/` directory named `base_env.yml` and specify
 that you wish to install `nextflow` version **24.04.2** and `nf-test` version
 **0.8.4**. Remember that the value after name in the file will be the name of
 the conda environment created, you may name this whatever is easiest for you to
@@ -148,11 +149,15 @@ If you look in /projectnb/bf528/materials/project-0-genome-analytics, you have
 been provided with your choice of three (as of now) unidentified genomes. 
 
 :::{.box .task}
-1. Pick one of the three available genomes and copy a **single** FASTA file
+
+1. Navigate to /projectnb/bf528/materials/project-0-genome-analytics
+
+2. Pick one of the three available genomes and copy a **single** FASTA file
 representing an unknown bacterial genome to your `refs/` directory.
 :::
 
 ## Generating a samplesheet {-}
+
 
 For all of our projects, we will be encoding all of the information including
 sample metadata, and sample filepaths in a single CSV file. We will then use
@@ -168,6 +173,7 @@ This pattern of encoding the samples in this way offers two key benefits:
   samples in the same format.
   
 :::{.box .task}
+
 1. Using VScode, manually make a new text file at the top-level of your
 directory (project-0-genome-analytics-your_username) and generate a simple CSV
 named `samplesheet.csv`. The columns in this CSV should be named `name` and
@@ -220,6 +226,7 @@ process, this information is a name, and the path to the file that we are going
 to operate on. 
 
 :::{.box .task}
+
 1. In the `main.nf`, create your first channel using a combination of
 `Channel.fromPath`, `splitCsv`, `map`, `tuple`, `params.samplesheet` and `view()`.
 The goal is to create a channel that contains the information contained within
@@ -275,5 +282,4 @@ single genome file.
 7. Generate your first nextflow channel, `fa_ch`, containing a tuple with the
 name and path values from your `samplesheet.csv` 
 
-8. Answer all of the questions in the provided jupyter notebook (some won't be
-referenced directly here)
+8. Answer all of the questions in the provided jupyter notebook

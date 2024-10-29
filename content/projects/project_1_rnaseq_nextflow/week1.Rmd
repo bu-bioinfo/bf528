@@ -1,0 +1,373 @@
+# Week 1: RNAseq {-}
+
+## Section Links {-}
+
+[Read the paper]
+
+[Create a working directory for project 1]
+
+[Locating the data]
+
+[Changes to our environment management strategy and workflow]
+
+[Generating our input channels for nextflow]
+
+[Performing quality control]
+
+[Generate a file containing the gene IDs and their corresponding mouse gene symbols]
+
+[Generate a genome index]
+
+[Week 1 Tasks Summary]
+
+## Week 1 Overview {-}
+
+
+## Objectives {-}
+
+
+
+## Read the paper {-}
+
+This analysis is based on the data published in this study: *O’Meara et al.
+Transcriptional Reversion of Cardiac Myocyte Fate During Mammalian Cardiac
+Regeneration. Circ Res. Feb 2015. PMID: 25477501*
+
+Please read the paper to get a sense for the overall hypotheses, goals, and
+conclusions presented. Keep in mind we are only analyzing the data from the
+first figure, and only the dataset involving the samples from p0, p4, p7 and
+adult mouse heart ventricle cells. 
+
+We will also be deviating from the published methods in favor of using more
+up-to-date strategies and tools. However, the workflow you will develop should
+still capture and recreate the same core biological signals observed in the
+original work.
+
+## Create a working directory for project 1 {-}
+
+:::{.box .task}
+
+Accept the github classroom link and clone the assignment to your student
+directory in /projectnb/bf528/students/*your_username*/. This link will be
+posted on the blackboard site for our class.
+
+:::
+
+## Locating the data {-}
+
+For this first project, we have provided you with small subsets of the original
+data files. You should copy these files to the `samples/` folder in your working
+directory that you cloned. For your convenience, we have renamed the files to be
+descriptive of the samples they represent following the pattern:
+{timepoint}{rep}subsample_{readpair}.fastq.gz (i.e. ADrep1subsample_R1.fastq.gz)
+
+The files are located here:
+/projectnb/bf528/materials/project_1_rnaseq/subsampled_files and there are 16
+total files. Remember that paired end reads are typically used together as both
+the _R1 and _R2 files represent sequencing reads from the same fragments. This
+means that we have 8 biological samples, and 16 actual files representing those
+samples.
+
+:::{.box .task}
+
+1. Using `cp`, make all of these files available in your samples/ directory 
+
+2. In this same directory, /projectnb/bf528/materials/project-1-rnaseq/, you will
+also find a refs directory. Copy the files contained within to your `refs/`
+directory. Encode their paths in separate params in your `nextflow.config`. 
+
+:::
+    
+
+## Changes to our environment management strategy and workflow {-}
+
+As we've discussed, conda environments are one solution to ensuring that your
+analyses are run in a reproducible and portable manner. Containers are an
+alternative technology that have a number of advantages over conda environments.
+Going forward, we will be incorporating containers specifying our computational
+environments into our pipeline.
+
+One of the advantages of container technologies is that they usually offer a
+robust ecosystem of shared containers (images) that are available in public
+repositories for anyone to reuse. We have developed a set of containers for each
+piece of software that we will be using in this course.
+
+For all future process scripts that you develop in nextflow, instead of 
+specifying the `conda` environment to execute the task with, you will instead
+specify `container` and the image (a container built with a certain specification)
+location.
+
+For this course, these containers were all built and their specifications kept
+in this public github repository: https://github.com/BF528/pipeline_containers
+Feel free to look into the repo for how the containers were built. We follow a
+similar pattern where we specify the exact environment we would like created in
+a YAML file and then generate the environment using micromamba installed in a
+container. We will get some experience later in the semester with building your
+own containers from scratch.
+
+In general, the containers will be named the same pattern:
+`ghcr.io/bf528/<name-of-tool>:latest` or `ghcr.io/bf528/fastqc:latest`.
+
+You will need to incorporate one more change to make your pipeline use 
+containers. If you look in the `nextflow.config`, you'll see a profile labeled
+singularity, which encodes some options in how to run containers using
+singularity. 
+
+**New command for running your workflow**
+
+```
+nextflow run main.nf -profile singularity,local
+```
+
+One last change that we will be making to how we run nextflow is to now make
+use of the HPC environment we are working in. When you have confirmed that
+your workflow runs on the smaller subsetted data, you will re-run your workflow
+to process the full data. You will need to change the paths in your `nextflow.config`
+to point to the full files. You will also need to specify the cluster profile
+instead of local:
+
+**New command for running your workflow once you've confirmed it works end-to-end**
+
+```
+nextflow run main.nf -profile singularity,cluster
+```
+
+The `cluster` profile includes all of the required arguments to properly schedule
+and queue jobs to run on the compute nodes of the cluster. This will be important
+as our sample files are now much larger, and we will be running relatively
+resource intensive processes that will not be allowed to run on the head nodes. 
+
+Only switch to this command when you've confirmed your workflow works from
+start to finish on the subsetted data.
+
+As always, remember to activate your conda environment containing nextflow and
+nf-test before doing any work.
+
+## Generating our input channels for nextflow {-}
+
+This RNAseq pipeline will be driven by two channels that contain the starting
+FASTQ files for each of the samples in the experiment. Nextflow has a built-in
+function to simplify the generation of channels for samples from paired-end
+sequencing experiments. The `fromFilePairs` channel function allows you to 
+detect paired end fastq files for each sample using similar pattern matching in
+bash through the use of wildcard expansion (*).
+
+:::{.box .task}
+
+1. In the `nextflow.config`, specify a parameter called `reads` that encodes the
+path to your fastq files and uses * to flexibly detect the sample name associated
+with both paired files. Refer to the nextflow documentation on `fromFilePairs`.
+
+You'll notice that this function creates a channel with a structure we've seen
+before. It creates a tuple containing the base name of the file and a list containing
+the R1 and R2 file associated with that sample. 
+
+2. In the `main.nf`, create two channels that use this value encoded in `params.reads`.
+One of these channels can be the direct output from the `fromFilePairs` method
+and you can name it `align_ch`. There should be 8 items that are present in
+this channel representing our 8 samples (and 16 files). It will look something
+like below:
+
+```
+align_ch
+
+[sample1, [sample1_R1.fastq.gz, sample1_R2.fastq.gz]]
+```
+
+3. For the other channel, look at the operators section in the nextflow
+documentation and create a channel that flattens the structure of the `align_ch`
+so that there are as many elements in the channel as there are actual files
+(16). Name this channel `fastqc_channel`. This channel should have the same
+structure: a tuple where the first value is the name of the sample and the
+second is the path to the associated file. This will look something like below:
+
+```
+fastqc_channel
+
+[sample1, sample1_R1.fastq.gz]
+[sample1, sample1_R2.fastq.gz]
+```
+
+
+:::{.box .task}
+
+Please answer the following question in the provided Rmd:
+
+  1. What are two reasons we are creating these two channels which contain the same 
+    information?
+    
+:::
+
+## Performing Quality Control {-}
+
+At this point, you should have: 
+
+- Setup a directory for this project by accepting the github classroom link
+
+- Copied the subsampled files to your working directory
+
+- Familiarized yourself with the changes to environment management and how we run our workflow
+
+- Generate two channels in your `main.nf` with the size and elements specified
+  above
+
+
+We will begin by performing quality control on the FASTQ files generated from
+the experiment. fastQC is a bioinformatics software tool that calculates and
+generates descriptive graphics of the various quality metrics encoded in a FASTQ
+file. We will use this tool to quickly check the basic quality of the sequencing
+in this experiment.
+
+:::{.box .task}
+
+1. In your envs/ directory, we have provided you a specification for a small
+conda environment you can use to test how to run fastqc. Use the same command
+as last week to generate a new environment with just fastqc installed:
+
+```
+conda env create -f envs/test_env.yml
+```
+
+2. Activate this new environment after it's created, and navigate to the `temp/`
+directory. You can view the help information for FASTQC by calling the program
+in a terminal with `fastqc -h` or for some programs `fastqc --help`. Try to 
+run FASTQC on the provided fastq file and make a note of the output files that 
+are produced and the command needed to run it. 
+
+3. Make a new process for fastqc in the `modules/` directory. Be sure to specify
+the `label` as `process_low`, the `container` with the image path described
+above and the `publishDir` to send the results of this process to your `results/`
+directory. 
+
+4. Specify the inputs of the process to match the structure of the `fastqc_channel`
+we just generated. 
+
+5. By default, FASTQC will create two output files from a single input named as 
+seen below:
+
+```
+fastqc sample1.fastq.gz
+
+Outputs:
+sample1_fastqc.html
+sample1_fastqc.zip
+```
+
+For this module, please list two named outputs, which will later allow us to use
+the individual outputs separately:
+
+
+```
+output:
+tuple val(name), path('*.zip'), emit: zip
+tuple val(name), path('*.html'), emit: html
+```
+
+This output definition will implicitly instruct nextflow that both of these
+files should exist after FASTQC has run successfully. It will capture the html
+report and zip file separately and allow you to pass these different values
+through channels separately (i.e. FASTQC.out.zip would refer
+specifically to the zip file created by the FASTQC task)
+
+Remember you can use wildcard expansions in the path output to flexibly detect
+files with certain extensions without specifying their full filename.
+
+6. The shell command should be the successful fastqc command you ran earlier. 
+Make sure to include the following argument: `-t $task.cpus`. 
+
+7. Incorporate the FASTQC process into your workflow `main.nf` and provide it the
+proper channel. 
+
+:::
+
+## Generate a file containing the gene IDs and their corresponding mouse gene symbols {-}
+
+As we've discussed, it's often more intuitive for us to use gene names rather than
+their IDs. While there are external services that can perform this for us (biomaRt), 
+it is often better to extract this information from the same GTF file associated
+with the exact version of the reference genome we are using. This will ensure
+that we are as consistent as possible with our labeling. 
+
+Whenever we need to perform operations using custom code, we are going to use
+the conventions established in project 0. We will place this script in the `bin/`
+directory and make it executable. We will then create a nextflow module that will
+provide the appropriate command line arguments to the script.
+
+:::{.box .task}
+
+1. Generate a python script that parses the GTF file you were provided and creates
+a delimited file containing the ensembl mouse ID and its corresponding gene name. 
+Please copy and modify the `argparse` code used in the project 0 script to allow
+the specification of command line arguments. The script should take the GTF as
+input and output a single text file containing the requested information. 
+
+2. Create a nextflow module that calls this script and provides the appropriate
+command line arguments necessary to run it.
+
+3. You may use the biopython (ghcr.io/bf528/biopython:latest) or the pandas
+(ghcr.io/bf528/pandas:latest) container to run this task as both of these
+contain a python installation.
+
+4. Incorporate this module to parse the GTF into your workflow `main.nf` and
+pass it the appropriate GTF input encoded as a param. 
+
+:::
+
+## Generate a genome index {-}
+
+Most alignment algorithms require an index to be generated to make the alignment
+process more efficient and expedient. These index files are typically specific
+to the tool and we will be using the STAR aligner, one of the most commonly
+used alignment tools for RNAseq. 
+
+:::{.box .task}
+
+1. Read the beginning of the [documentation](https://github.com/alexdobin/STAR)
+for how to generate a STAR index.
+
+2. Generate a module and process that creates a STAR index for our reference
+genome. This process will require two inputs, the reference genome and the
+associated GTF file. Ensure that the `label` for this module is `process_high`.
+
+3. The outputs of this process will be a directory of multiple files that all
+comprise the index. You will have to create this directory prior to running
+the STAR command. Please also be sure to include the `--runThreadN $task.cpus`
+argument in your command. Otherwise, use all of the basic options specified 
+in the manual and leave them at their default values. 
+
+4. Incorporate this process into your workflow and pass it the appropriate
+inputs from your params encoding the path to the reference genome fasta and GTF
+file.
+
+:::
+
+## Week 1 Tasks Summary {-}
+
+1. Read the paper and focus on the sections that discuss the experiment of 
+interest
+
+2. Clone the github classroom link for this project
+
+3. Copy the necessary files to your working directory. These files will include:
+
+  - The Gencode mm10 reference genome for the primary assembly
+  - The Gencode mm10 GTF for the primary assembly
+  
+4. Generate a nextflow channel called `align_ch` that has 8 total elements where
+each element is a tuple containing two elements: the name of the sample, and a
+list of both of the associated paired end files.
+
+5. Generate a nextflow channel called `fastqc_channel` that has 16 total
+elements where each element is a tuple containing two elements: the name of the
+sample, and one of the FASTQ files. 
+
+6. Generate a module that successfully runs FASTQC, add this process to your
+workflow and pass it your `fastqc_channel`.
+
+7. Develop an external script that parses the GTF and returns a delimited file
+where one column represents the ensembl mouse IDs and the value in the other 
+column is the associated MGI symbol. 
+
+8. Generate a module that successfully creates a STAR index, add this process to
+your workflow and pass it the necessary inputs encoded in your params. 
+
