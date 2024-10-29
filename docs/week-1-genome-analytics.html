@@ -49,6 +49,7 @@
 <li><a class="active" href="week-1-genome-analytics.html">Week 1: Genome Analytics</a></li>
 <li><a class="" href="week-2-genome-analytics.html">Week 2: Genome Analytics</a></li>
 <li><a class="" href="week-3-genome-analytics.html">Week 3: Genome Analytics</a></li>
+<li><a class="" href="week-4-genome-analytics.html">Week 4: Genome Analytics</a></li>
 <li class="book-part">Lectures</li>
 <li><a class="" href="introduction.html">Introduction</a></li>
 <li><a class="" href="genomics-genes-and-genomes.html">Genomics, Genes, and Genomes</a></li>
@@ -110,7 +111,7 @@ section. Answer any questions found in the associated <code>docs/week#_tasks.ipy
 <h2>Project 0 Overview<a class="anchor" aria-label="anchor" href="#project-0-overview"><i class="fas fa-link"></i></a>
 </h2>
 <p>This project will focus on getting you accustomed to how nextflow works and its
-key functions. You will be constructing a small nextflow pipeline that will
+key functions. You will be constructing a nextflow pipeline that will
 annotate a small bacterial genome using <a href="prokka%20link">Prokka</a>, calculate some
 basic genome statistics using python (GC Content, and genome size) and extract
 the sequence for a specified region of the genome by its coordinates. The
@@ -190,12 +191,12 @@ you use to activate it and make the packages and software available to you for
 use.</p></li>
 </ul>
 <div class="box task">
-<p>1.Create a YML file in the <code>envs/</code> directory named <code>base_env.yml</code> and specify
+<ol style="list-style-type: decimal">
+<li><p>Create a YML file in the <code>envs/</code> directory named <code>base_env.yml</code> and specify
 that you wish to install <code>nextflow</code> version <strong>24.04.2</strong> and <code>nf-test</code> version
 <strong>0.8.4</strong>. Remember that the value after name in the file will be the name of
 the conda environment created, you may name this whatever is easiest for you to
-remember. We will be using this single environment all semester.</p>
-<ol start="2" style="list-style-type: decimal">
+remember. We will be using this single environment all semester.</p></li>
 <li>
 <p>Open a terminal in the top-level of your directory, use the <code>conda env create -f envs/base_env.yml</code> command to create the environment described in your YML
 file. Remember that for all work in this class, you will want to activate this
@@ -217,8 +218,9 @@ your VScode terminal:</p>
 been provided with your choice of three (as of now) unidentified genomes.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
-<li>Pick one of the three available genomes and copy a <strong>single</strong> FASTA file
-representing an unknown bacterial genome to your <code>refs/</code> directory.</li>
+<li><p>Navigate to /projectnb/bf528/materials/project-0-genome-analytics</p></li>
+<li><p>Pick one of the three available genomes and copy a <strong>single</strong> FASTA file
+representing an unknown bacterial genome to your <code>refs/</code> directory.</p></li>
 </ol>
 </div>
 </div>
@@ -326,8 +328,7 @@ single genome file.</p></li>
 <code>samplesheet</code>containing the path to your samplesheet</p></li>
 <li><p>Generate your first nextflow channel, <code>fa_ch</code>, containing a tuple with the
 name and path values from your <code>samplesheet.csv</code></p></li>
-<li><p>Answer all of the questions in the provided jupyter notebook (some won’t be
-referenced directly here)</p></li>
+<li><p>Answer all of the questions in the provided jupyter notebook</p></li>
 </ol>
 </div>
 </div>

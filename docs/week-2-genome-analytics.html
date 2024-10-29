@@ -49,6 +49,7 @@
 <li><a class="" href="week-1-genome-analytics.html">Week 1: Genome Analytics</a></li>
 <li><a class="active" href="week-2-genome-analytics.html">Week 2: Genome Analytics</a></li>
 <li><a class="" href="week-3-genome-analytics.html">Week 3: Genome Analytics</a></li>
+<li><a class="" href="week-4-genome-analytics.html">Week 4: Genome Analytics</a></li>
 <li class="book-part">Lectures</li>
 <li><a class="" href="introduction.html">Introduction</a></li>
 <li><a class="" href="genomics-genes-and-genomes.html">Genomics, Genes, and Genomes</a></li>
@@ -170,10 +171,12 @@ modules/prokka/main.nf
 input:
 tuple val(name), path(genome)
 </code></pre>
-<p>If you match the structure of the channel with the inputs of the process, you
-will see that <code>val(name)</code> will refer to <code>name_of_bacterial_genome</code> and
-<code>path(genome)</code> with <code>/path/to/reference/genome.fna</code>.</p>
 <ol start="2" style="list-style-type: decimal">
+<li><p>If you match the structure of the channel with the inputs of the process, you
+will see that <code>val(name)</code> will refer to <code>name_of_bacterial_genome</code> and
+<code>path(genome)</code> with <code>/path/to/reference/genome.fna</code>.The variables in the input
+do not need to match the names in channels, they are meant to be representative
+and generalizable.</p></li>
 <li><p>Complete lines 5 and 6 by providing the conda environment specification you
 made earlier for Prokka after the <code>env</code> option and providing the directory where
 you want the results of this process to be made available after the <code>publishDir</code>
@@ -189,7 +192,7 @@ after the –cpus flag.</p></li>
 <p>The “$” notation will allow us to genericize our command and avoid hardcoding
 file names. At runtime, nextflow will properly replace them with the provided
 value. (i.e. $genome will be replaced by the value specified in the channel).</p>
-<ol start="4" style="list-style-type: decimal">
+<ol start="5" style="list-style-type: decimal">
 <li>You will need to specify the output that will be created by Prokka so that
 nextflow can recognize the files that should be created if the task finishes
 successfully. You can instruct Nextflow to expect individual files or entire
@@ -232,11 +235,21 @@ channel to the process we just generated to run Prokka on our genome fasta file.
 python. We are making the contents of the Prokka module we just created available
 in this script.</p>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Within the <code>workflow</code> declaration, below where you created your first
+<li>Within the <code>workflow</code> declaration, below where you created your first
 channel, call this process and pass it your channel. You call the process by
 simply invoking the name within the <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code> of your <code>include</code> statement and then
-passing it your channel.</p></li>
-<li><p>Use the following terminal command (with your nextflow environment activated):</p></li>
+passing it your channel in parentheses.</li>
+</ol>
+<pre><code>include {PROKKA} from './modules/prokka'
+
+workflow {
+
+  PROKKA(fa_ch)
+
+}
+</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Use the following terminal command (with your nextflow environment activated):</li>
 </ol>
 <pre><code>nextflow run main.nf -profile local,conda</code></pre>
 <p>This will run your nextflow pipeline, which will create a channel containing
@@ -256,7 +269,7 @@ by the samtools utility.</p>
 <li><p>Following the same conventions for the PROKKA module, generate a module and a
 <code>main.nf</code> script and name the process contained within <code>SAMTOOLS_FAIDX</code>. Remember
 to supply the appropriate computational environment and to output the results to
-our <code>results/</code> directory.</p></li>
+your <code>results/</code> directory.</p></li>
 <li><p>Look at the documentation for <code>samtools faidx</code> and complete the <code>shell</code> command
 with the proper command to index the FASTA.</p></li>
 <li><p>Your input declaration should be the same as the PROKKA module and match the
@@ -264,11 +277,26 @@ shape of your <code>fa_ch</code>.</p></li>
 <li><p>The <code>faidx</code> command will generate a new file named the same as the original,
 but with the additional <code>.fai</code> extension. Ensure that your output for this
 process is a <code>tuple</code> containing the original information found in the <code>fa_ch</code>
-(and the input) as well as the newly generated index file. This should look
-something like: [name_of_genome, /path/to/genome.fna, path/to/genome.fna.fai]</p></li>
-<li><p>Return to your <code>main.nf</code> at the top-level of your directory. Make this new
+(and the input) as well as the newly generated index file. The output will look
+similar to your input:</p></li>
+</ol>
+<pre><code>tuple val(name), path(genome), path("*.fai")</code></pre>
+<p>You can see that this output will pass through the same values from the input,
+(name and path to the genome fasta) but will now also include the output when
+this process finishes (which we know will end with a .fai extension).</p>
+<p>In channel form, when accessing the outputs of this process, it will resemble
+the following:</p>
+<pre><code>output:
+tuple val(name), path(genome), path("*.fai")
+
+output_channel:
+[name_of_genome, /path/to/genome.fna, path/to/genome.fna.fai]</code></pre>
+<p>Notice again how the values are in the same order and shape as declared in the
+output of this process.</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Return to your <code>main.nf</code> at the top-level of your directory. Make this new
 process module you just created available in the script and run your
-<code>SAMTOOLS_FAIDX</code> process using the <code>fa_ch</code> channel.</p></li>
+<code>SAMTOOLS_FAIDX</code> process using the <code>fa_ch</code> channel.</li>
 </ol>
 </div>
 </div>

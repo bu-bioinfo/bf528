@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Week 4: Genome Analytics | BF528 - Applications in Translational Bioinformatics</title>
+<meta name="generator" content="bookdown 0.40 with bs4_book()">
+<meta property="og:title" content="Week 4: Genome Analytics | BF528 - Applications in Translational Bioinformatics">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Week 4: Genome Analytics | BF528 - Applications in Translational Bioinformatics">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.8.0/transition.js"></script><script src="libs/bs3compat-0.8.0/tabs.js"></script><script src="libs/bs3compat-0.8.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+<meta name="description" content="Section Links Week 4 Overview Objectives Explore the use of NCBI Datasets CLI Generate a module that downloads a genome using the NCBI Datasets CLI Refactor your workflow to incorporate...">
+<meta property="og:description" content="Section Links Week 4 Overview Objectives Explore the use of NCBI Datasets CLI Generate a module that downloads a genome using the NCBI Datasets CLI Refactor your workflow to incorporate...">
+<meta name="twitter:description" content="Section Links Week 4 Overview Objectives Explore the use of NCBI Datasets CLI Generate a module that downloads a genome using the NCBI Datasets CLI Refactor your workflow to incorporate...">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">BF528 - Applications in Translational Bioinformatics</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
+<li class="book-part">Guides</li>
+<li><a class="" href="computational-environments-guide.html">Computational Environments Guide</a></li>
+<li class="book-part">Project 0</li>
+<li><a class="" href="week-1-genome-analytics.html">Week 1: Genome Analytics</a></li>
+<li><a class="" href="week-2-genome-analytics.html">Week 2: Genome Analytics</a></li>
+<li><a class="" href="week-3-genome-analytics.html">Week 3: Genome Analytics</a></li>
+<li><a class="active" href="week-4-genome-analytics.html">Week 4: Genome Analytics</a></li>
+<li class="book-part">Lectures</li>
+<li><a class="" href="introduction.html">Introduction</a></li>
+<li><a class="" href="genomics-genes-and-genomes.html">Genomics, Genes, and Genomes</a></li>
+<li><a class="" href="git.html">git</a></li>
+<li><a class="" href="computational-pipeline-strategies.html">Computational Pipeline Strategies</a></li>
+<li><a class="" href="computational-environment-management.html">Computational Environment Management</a></li>
+<li><a class="" href="sequence-analysis-fundamentals.html">Sequence Analysis Fundamentals</a></li>
+<li><a class="" href="nd-gen-sequencing.html">2nd Gen Sequencing</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-1.html">Sequence Analysis - RNA-Seq 1</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-2.html">Sequence Analysis - RNA-Seq 2</a></li>
+<li><a class="" href="scc-cluster-usage.html">SCC cluster usage</a></li>
+<li><a class="" href="biological-data-formats.html">Biological Data Formats</a></li>
+<li><a class="" href="gene-sets-and-enrichment.html">Gene sets and enrichment</a></li>
+<li><a class="" href="replicability-vs-reproducibility-strategies.html">Replicability vs Reproducibility Strategies</a></li>
+<li><a class="" href="putting-it-all-together---snakemake.html">Putting it all together - snakemake</a></li>
+<li><a class="" href="sequence-analysis---chip-seq.html">Sequence Analysis - ChIP-Seq</a></li>
+<li><a class="" href="genome-browsers.html">Genome Browsers</a></li>
+<li><a class="" href="sequence-analysis---atac-seq.html">Sequence Analysis - ATAC-Seq</a></li>
+<li><a class="" href="project-2---week-1-check-in.html">Project 2 - Week 1 Check-in</a></li>
+<li><a class="" href="biological-databases.html">Biological Databases</a></li>
+<li><a class="" href="genomic-variation-and-snp-analysis.html">Genomic Variation and SNP Analysis</a></li>
+<li><a class="" href="microbiome-metagenomics.html">Microbiome: Metagenomics</a></li>
+<li><a class="" href="microbiome-16s.html">Microbiome: 16S</a></li>
+<li><a class="" href="proteomics.html">Proteomics</a></li>
+<li><a class="" href="metabolomics.html">Metabolomics</a></li>
+<li><a class="" href="docker.html">Docker</a></li>
+<li><a class="" href="single-cell-analysis-part-1.html">Single Cell Analysis Part 1</a></li>
+<li><a class="" href="single-cell-analysis-part-2.html">Single Cell Analysis Part 2</a></li>
+<li><a class="" href="single-cell-analysis-part-3.html">Single Cell Analysis Part 3</a></li>
+<li><a class="" href="spatial-transcriptomics.html">Spatial Transcriptomics</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-4-genome-analytics" class="section level1 unnumbered">
+<h1>Week 4: Genome Analytics<a class="anchor" aria-label="anchor" href="#week-4-genome-analytics"><i class="fas fa-link"></i></a>
+</h1>
+<div id="section-links-3" class="section level2 unnumbered">
+<h2>Section Links<a class="anchor" aria-label="anchor" href="#section-links-3"><i class="fas fa-link"></i></a>
+</h2>
+<p><a href="week-4-genome-analytics.html#week-4-overview">Week 4 Overview</a></p>
+<p><a href="week-1-genome-analytics.html#objectives">Objectives</a></p>
+<p><a href="week-4-genome-analytics.html#explore-the-use-of-ncbi-datasets-cli">Explore the use of NCBI Datasets CLI</a></p>
+<p><a href="week-4-genome-analytics.html#generate-a-module-that-downloads-a-genome-using-the-ncbi-datasets-cli">Generate a module that downloads a genome using the NCBI Datasets CLI</a></p>
+<p><a href="week-4-genome-analytics.html#refactor-your-workflow-to-incorporate-downloading-a-genome-as-the-first-step">Refactor your workflow to incorporate downloading a genome as the first step</a></p>
+<p><a href="week-4-genome-analytics.html#make-a-conda-environment-with-pycirclize-and-ipykernel">Make a conda environment with pycirclize and ipykernel</a></p>
+<p><a href="week-4-genome-analytics.html#generate-a-circos-plot-of-your-new-annotated-genome-using-the-gff">Generate a Circos plot of your new annotated genome using the GFF</a></p>
+</div>
+<div id="week-4-overview" class="section level2 unnumbered">
+<h2>Week 4 Overview<a class="anchor" aria-label="anchor" href="#week-4-overview"><i class="fas fa-link"></i></a>
+</h2>
+<p>For the first weeks, you were provided pre-downloaded reference genomes to use
+in your pipeline. Oftentimes, you will want to include downloading any files
+inside your pipeline to enable it to run end-to-end without any manual
+intervention. For this week, you will make use of the NCBI datasets CLI tool to
+download a genome of your choice and incorporate this into your workflow.</p>
+</div>
+<div id="objectives-3" class="section level2 unnumbered">
+<h2>Objectives<a class="anchor" aria-label="anchor" href="#objectives-3"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><p>Explore and navigate through the NCBI genomes resource</p></li>
+<li><p>Utilize the NCBI Datasets CLI tool and incorporate it into your workflow</p></li>
+<li><p>Set up a jupyter notebook to work in VSCode with a specific Conda environment</p></li>
+<li><p>Generate a Circos plot of your newly annotated genome</p></li>
+</ul>
+</div>
+<div id="explore-the-use-of-ncbi-datasets-cli" class="section level2" number="0.1">
+<h2>
+<span class="header-section-number">0.1</span> Explore the use of NCBI Datasets CLI<a class="anchor" aria-label="anchor" href="#explore-the-use-of-ncbi-datasets-cli"><i class="fas fa-link"></i></a>
+</h2>
+<p>The NCBI Datasets CLI is the recommended means for accessing the comprehensive
+information provided by the NCBI. The NCBI has packaged together a web
+interface, API, and command line tool that enables retrieving comprehensive
+information about genomes, genes, and taxonomies. This tool makes it incredibly
+simple to download one or many genomes and any available associated annotation
+information desired.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li>Go to the NCBI genomes website (<a href="https://www.ncbi.nlm.nih.gov/home/genomes/" class="uri">https://www.ncbi.nlm.nih.gov/home/genomes/</a>)
+and search for a microbe of your choice. Browse the search results and explore
+all of the information available to you and provided by the NCBI.</li>
+</ol>
+</div>
+</div>
+<div id="generate-a-module-that-downloads-a-genome-using-the-ncbi-datasets-cli" class="section level2" number="0.2">
+<h2>
+<span class="header-section-number">0.2</span> Generate a module that downloads a genome using the NCBI Datasets CLI<a class="anchor" aria-label="anchor" href="#generate-a-module-that-downloads-a-genome-using-the-ncbi-datasets-cli"><i class="fas fa-link"></i></a>
+</h2>
+<p>While looking up your microbe of interest, navigate to the genomes section for
+your microbe of interest and find a reference genome assembly or if one does not
+exist, choose one of the available assemblies.</p>
+<p>If you look at the genome assembly page for your chosen genome, you should see
+an option for download using datasets. If you click on that option, you will be
+provided a template command for how to use the CLI tool to download various
+files associated with the chosen assembly.</p>
+<p>Make sure to note the command as well as the particular assembly name for the
+genome (GCF<em>). You will use this command and modify it so that you can provide
+any valid genome assembly (GCF</em>) and to download only the genomic FASTA file. You
+can also look at the NCBI datasets CLI <a href="https://www.ncbi.nlm.nih.gov/datasets/docs/v2/reference-docs/command-line/datasets/download/genome/">manual</a> page for more information.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li><p>Create a CSV containing two columns with the scientific name of the organism
+you chose and its associated genome accession (GCF_*) listed in the datasets
+command.</p></li>
+<li><p>Create a channel in your nextflow workflow <code>main.nf</code> containing information
+found by reading from the CSV you created.</p></li>
+<li><p>Modify the command to only download the genomic FASTA file and structure the
+module to be generalizable to any genomic accession</p></li>
+</ol>
+</div>
+</div>
+<div id="refactor-your-workflow-to-incorporate-downloading-a-genome-as-the-first-step" class="section level2" number="0.3">
+<h2>
+<span class="header-section-number">0.3</span> Refactor your workflow to incorporate downloading a genome as the first step<a class="anchor" aria-label="anchor" href="#refactor-your-workflow-to-incorporate-downloading-a-genome-as-the-first-step"><i class="fas fa-link"></i></a>
+</h2>
+<p>After you have successfully generated a module that will run the NCBI Datasets
+CLI command and download your requested genome FASTA, you will need to incorporate
+this process into your workflow.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li>Add your NCBI Datasets CLI module into your workflow <code>main.nf</code> and have your
+pipeline use the outputs of this module directly. When run from the beginning,
+your workflow should seamlessly download the requested genome and perform the
+previously described processes (Prokka, GC content, etc.)</li>
+</ol>
+</div>
+</div>
+<div id="make-a-conda-environment-with-pycirclize-and-ipykernel" class="section level2" number="0.4">
+<h2>
+<span class="header-section-number">0.4</span> Make a conda environment with pycirclize and ipykernel<a class="anchor" aria-label="anchor" href="#make-a-conda-environment-with-pycirclize-and-ipykernel"><i class="fas fa-link"></i></a>
+</h2>
+<p>We will often analyse the results of our piplines extensively in a jupyter
+notebook as it allows us to seamlessly execute code, create visualizations, and
+provide text annotations in the same place. With larger projects and complicated
+analyses, we may often require many different software packages while working in
+our notebooks and it is incredibly easy for these notebooks to become unorganized
+jumbled messes of different packages. In the interest of reproducibility, we
+will directly create a conda environment that contains all of the software we
+require for our notebooks in the style we have been using in this class. This
+way if we ever needed to share the work done in these notebooks, we can simply
+provide the environment and the actual notebook separately.</p>
+<p>With the Jupyter extension in VSCode, we can directly work with jupyter notebooks
+and also run these notebooks with specific conda environments active. The
+IPyKernel package will allow us to launch a python process as a kernel and
+execute code against a jupyter notebook. Kernels are simply programming language
+specific processes that run independently and interact with jupyter.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li><p>Make a YML file in <code>envs/</code> according to the conventions we’ve talked about
+that will create a conda environment with the latest versions of <code>pycirclize</code> and
+<code>ipykernel</code> installed. You may name it whatever is easy for you to remember.</p></li>
+<li><p>Use the <code>conda env create -f envs/&lt;your-env&gt;.yml</code> to actually create this
+environment.</p></li>
+<li><p>In VSCode, use the command palette to create a new jupyter notebook. Go to the
+top right where it says <code>Select Kernel</code> and choose the <code>Python Environments...</code>
+option and find the conda environment you just created. This will enable you to
+utilize all of the software packages installed within that environment in this
+notebook.</p></li>
+</ol>
+</div>
+</div>
+<div id="generate-a-circos-plot-of-your-new-annotated-genome-using-the-gff" class="section level2" number="0.5">
+<h2>
+<span class="header-section-number">0.5</span> Generate a Circos plot of your new annotated genome using the GFF<a class="anchor" aria-label="anchor" href="#generate-a-circos-plot-of-your-new-annotated-genome-using-the-gff"><i class="fas fa-link"></i></a>
+</h2>
+<p>If you were in BF591, we discussed briefly the purpose and usage of Circos
+plots. If not, you may look <a href="https://circos.ca/">here</a> for a brief discussion on
+these circular layout plots. While they can be difficult to interpret when
+overlaying quantitative data, we will be making a Circos plot of the genome and
+genome annotations generated by Prokka on your genome of choice. A Circos plot
+works well here because most bacterial genomes are circular and we are only
+using it to illustrate the structure of the genome and the organization of the
+genes.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li>In your notebook with your newly created conda environment as the kernel,
+use pycirclize and the GFF you generated from your genome to create a Circos
+plot of the genome and its annotations. <em>Hint</em>: You can simply copy the example
+code from pycirclize to make this plot.</li>
+</ol>
+</div>
+
+</div>
+</div>
+
+
+
+<div class="chapter-nav">
+<div class="prev"><a href="week-3-genome-analytics.html">Week 3: Genome Analytics</a></div>
+<div class="next"><a href="introduction.html">Introduction</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#week-4-genome-analytics">Week 4: Genome Analytics</a></li>
+<li><a class="nav-link" href="#section-links-3">Section Links</a></li>
+<li><a class="nav-link" href="#week-4-overview">Week 4 Overview</a></li>
+<li><a class="nav-link" href="#objectives-3">Objectives</a></li>
+<li><a class="nav-link" href="#explore-the-use-of-ncbi-datasets-cli"><span class="header-section-number">0.1</span> Explore the use of NCBI Datasets CLI</a></li>
+<li><a class="nav-link" href="#generate-a-module-that-downloads-a-genome-using-the-ncbi-datasets-cli"><span class="header-section-number">0.2</span> Generate a module that downloads a genome using the NCBI Datasets CLI</a></li>
+<li><a class="nav-link" href="#refactor-your-workflow-to-incorporate-downloading-a-genome-as-the-first-step"><span class="header-section-number">0.3</span> Refactor your workflow to incorporate downloading a genome as the first step</a></li>
+<li><a class="nav-link" href="#make-a-conda-environment-with-pycirclize-and-ipykernel"><span class="header-section-number">0.4</span> Make a conda environment with pycirclize and ipykernel</a></li>
+<li><a class="nav-link" href="#generate-a-circos-plot-of-your-new-annotated-genome-using-the-gff"><span class="header-section-number">0.5</span> Generate a Circos plot of your new annotated genome using the GFF</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+</div>
+  
+
+  
+
+</div>
+ <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>BF528 - Applications in Translational Bioinformatics</strong>" was written by . </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

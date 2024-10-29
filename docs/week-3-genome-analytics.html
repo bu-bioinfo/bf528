@@ -18,9 +18,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="Section Links Week 3 Overview Objectives Understanding the staging directory Inspecting the Prokka Output Passing outputs of processes as inputs Basic Local Alignment Search Tool Developing an...">
-<meta property="og:description" content="Section Links Week 3 Overview Objectives Understanding the staging directory Inspecting the Prokka Output Passing outputs of processes as inputs Basic Local Alignment Search Tool Developing an...">
-<meta name="twitter:description" content="Section Links Week 3 Overview Objectives Understanding the staging directory Inspecting the Prokka Output Passing outputs of processes as inputs Basic Local Alignment Search Tool Developing an...">
+<meta name="description" content="Section Links Week 3 Overview Objectives Understanding the staging directory Inspecting the Prokka Output Passing outputs of processes as inputs Basic Local Alignment Search Tool Developing...">
+<meta property="og:description" content="Section Links Week 3 Overview Objectives Understanding the staging directory Inspecting the Prokka Output Passing outputs of processes as inputs Basic Local Alignment Search Tool Developing...">
+<meta name="twitter:description" content="Section Links Week 3 Overview Objectives Understanding the staging directory Inspecting the Prokka Output Passing outputs of processes as inputs Basic Local Alignment Search Tool Developing...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -49,6 +49,7 @@
 <li><a class="" href="week-1-genome-analytics.html">Week 1: Genome Analytics</a></li>
 <li><a class="" href="week-2-genome-analytics.html">Week 2: Genome Analytics</a></li>
 <li><a class="active" href="week-3-genome-analytics.html">Week 3: Genome Analytics</a></li>
+<li><a class="" href="week-4-genome-analytics.html">Week 4: Genome Analytics</a></li>
 <li class="book-part">Lectures</li>
 <li><a class="" href="introduction.html">Introduction</a></li>
 <li><a class="" href="genomics-genes-and-genomes.html">Genomics, Genes, and Genomes</a></li>
@@ -98,7 +99,7 @@
 <p><a href="week-3-genome-analytics.html#inspecting-the-prokka-output">Inspecting the Prokka Output</a></p>
 <p><a href="week-3-genome-analytics.html#passing-outputs-of-processes-as-inputs">Passing outputs of processes as inputs</a></p>
 <p><a href="week-3-genome-analytics.html#basic-local-alignment-search-tool">Basic Local Alignment Search Tool</a></p>
-<p><a href="week-3-genome-analytics.html#developing-an-external-script">Developing an external script</a></p>
+<p><a href="week-3-genome-analytics.html#developing-external-scripts-for-workflows">Developing external scripts for workflows</a></p>
 <p><a href="week-3-genome-analytics.html#a-fully-operational-nextflow-pipeline">A fully operational nextflow pipeline</a></p>
 <p><a href="week-3-genome-analytics.html#week-3-detailed-tasks-summary">Week 3 Detailed Tasks Summary</a></p>
 </div>
@@ -117,8 +118,8 @@ chosen genome (GC content and length).</p>
 <ul>
 <li><p>Get familiar with the outputs of Prokka and the GFF file</p></li>
 <li><p>Use samtools to extract a randomly selected region from a large sequence</p></li>
-<li><p>Develop a external scripts that can be seamlessly incorporated into your workflow</p></li>
-<li><p>Using operators to manipulate and join nextflow channels together</p></li>
+<li><p>Develop external scripts that can be seamlessly incorporated into your workflow</p></li>
+<li><p>Use operators to manipulate and join nextflow channels together</p></li>
 </ul>
 </div>
 <div id="understanding-the-staging-directory" class="section level2 unnumbered">
@@ -126,13 +127,16 @@ chosen genome (GC content and length).</p>
 </h2>
 <p>As we’ve mentioned, nextflow will “stage” files for specific processes in their
 own directories that are named specially in the <code>work/</code> directory it creates.
-These names usually follow the pattern of beginning with two letters or numbers,
-followed by an underscore, and then followed by a string of letters and numbers.</p>
-<p>This is known as a hash and you can think of it as a way of encoding data and
-information of arbitrary size to a fixed size. Nextflow will automatically stage
-each task in these separate directories for you. The main advantage of this
-strategy is that it prevents you from having to worry about file names and file name
-collisions since each task is guaranteed to run in its own new directory.</p>
+Nextflow processes will be run in these “staged” directories, which are isolated
+from each other and contain only the files specified in the inputs.</p>
+<p>These directories are named with a set pattern beginning with two letters or
+numbers, followed by an underscore, and then followed by a string of letters and
+numbers.This is known as a hash and you can think of it as a way of encoding
+data and information of arbitrary size to a fixed size. Nextflow will
+automatically stage each task in these separate directories for you. The main
+advantage of this strategy is that it prevents you from having to worry about
+file names and file name collisions since each task is guaranteed to run in its
+own new directory.</p>
 <p>Remember that these directories are self-contained and nextflow will copy the
 files in the input as well as bin/ to this new directory where your task will
 execute. You should avoid trying to manually specify paths and instead include
@@ -142,7 +146,8 @@ automatically for you.</p>
 listed, you can see the location of where nextflow has run said task.</p>
 <div class="inline-figure"><img src="projects/project_0_genome_analysis/nextflow_run_example.png" width="100%" height="100%"></div>
 <p>You can navigate to these directories manually to inspect logs, output files,
-or check that the right files are being staged.</p>
+or check that the right files are being staged. By default, unless you specify
+using <code>publishDir</code>, all of the results will be kept in this <code>work/</code> directory.</p>
 </div>
 <div id="inspecting-the-prokka-output" class="section level2 unnumbered">
 <h2>Inspecting the Prokka Output<a class="anchor" aria-label="anchor" href="#inspecting-the-prokka-output"><i class="fas fa-link"></i></a>
@@ -155,7 +160,7 @@ and other features of DNA, RNA or protein sequences.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
 <li>
-<p>Look in the <code>bin/</code> directory and develop some python code in the
+<p>Look in the <code>bin/</code> directory and develop the python code in the
 <code>extract_region.py</code> script that will parse through the GFF, pick a single entry
 where the 6th field is ‘+’ (a sequence from the plus strand) and print out that
 entries accession, start and stop coordinates to a text file in the format:
@@ -165,8 +170,8 @@ genome:start-stop.</p>
 <code>genomeA:100-200</code></p>
 </li>
 <li><p>You have already been provided an outline for the code as well as the nextflow
-module that will call this script (modules/extract_region/main.nf). Call this
-process in your workflow (main.nf) and pass it the outputs from Prokka. To access
+module that will call this script (<code>modules/extract_region/main.nf</code>). Call this
+process in your workflow (<code>main.nf</code>) and pass it the outputs from Prokka. To access
 the named outputs of a channel, you can use <code>&lt;NAME OF PROCESS&gt;.out.&lt;EMIT NAME&gt;</code>
 or for our situation, <code>PROKKA.out.gff</code>.</p></li>
 </ol>
@@ -203,7 +208,7 @@ combine the outputs from samtools_faidx [name, path/to/genome.fna, path/to.genom
 with the outputs of extract_region [name, path/to/region_of_interest.txt].</li>
 </ol>
 <p>Look for an appropriate nextflow operator that will enable you to join two channels
-based on a common key (name). The resulting channels should look something like:</p>
+based on a common key (name). The resulting channel should look something like:</p>
 <pre><code>[name, path/to/genome.fna, path/to/genome.fna.fai, path/to/region_of_interest.txt]</code></pre>
 <p>When you have successfully done this, save this channel to a new variable called
 <code>subset_ch</code>.</p>
@@ -211,9 +216,9 @@ based on a common key (name). The resulting channels should look something like:
 <li><p>Generate a new <code>main.nf</code> script in the <code>samtools_faidx_subset</code> directory
 under <code>modules</code>. You may copy your <code>main.nf</code> from the <code>samtools_faidx</code> directory
 as the inputs, outputs, and commands will all be largely similar. Modify the
-inputs to match the cardinality and order of your <code>subset_ch</code>. Use the ‘&gt;` function
-in bash to save the outputs of this process to a file called ’region.subset.fna’</p></li>
-<li><p>Call your samtools_faidx_subset process on the subset_ch. </p></li>
+inputs to match the cardinality and order of your <code>subset_ch</code>. Use the ’&gt;<code>function in bash to save the outputs of this process to a file called</code>region.subset.fna`</p></li>
+<li><p>Call your samtools_faidx_subset process on the subset_ch by modifying your
+workflow in the <code>main.nf</code>.</p></li>
 </ol>
 </div>
 </div>
@@ -232,26 +237,21 @@ or ensure it returns optimal alignments, and instead prioritizes speed. A quick
 google search will lead you to the BLAST website.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
-<li>
-<p>Please select the nucleotide blast option and open the file you created named
-region.subset.fna`. Copy the sequence found within that file into the query
-section of BLAST and leave all other options at default. Answer the following
-question in your provided week3_tasks.Rmd:</p>
-<ol style="list-style-type: lower-alpha">
-<li><p>Please take a screenshot of the BLAST results returned from your query.
-What are some of the possible alignments of your sequence of interest? Are
-there are any commonalities in the organisms found if you see multiple
-equally valid results?</p></li>
-<li><p>Just for fun: feel free to inspect more of the results from Prokka and
-query potential matches using BLAST. Can you guess the original identity of
-the genome you chose?</p></li>
-</ol>
-</li>
+<li><p>Please select the nucleotide blast option and open the file you created named
+<code>region.subset.fna</code>. Copy the sequence found within that file into the query
+section of BLAST and leave all other options at default.</p></li>
+<li><p>Please take a screenshot of the BLAST results returned from your query. Make
+sure to briefly address the following questions in the provided ipynb.
+What are some of the possible alignments of your sequence of interest? Are there
+are any commonalities in the organisms found if you see multiple equally valid
+results?</p></li>
+<li><p>If you wish, you can select more annotated regions from your genome use BLAST
+to attempt to identify your genome.</p></li>
 </ol>
 </div>
 </div>
-<div id="developing-an-external-script" class="section level2 unnumbered">
-<h2>Developing an external script<a class="anchor" aria-label="anchor" href="#developing-an-external-script"><i class="fas fa-link"></i></a>
+<div id="developing-external-scripts-for-workflows" class="section level2 unnumbered">
+<h2>Developing external scripts for workflows<a class="anchor" aria-label="anchor" href="#developing-external-scripts-for-workflows"><i class="fas fa-link"></i></a>
 </h2>
 <p>Many times in bioinformatics pipelines, we will need to run a custom script that
 will perform a specific analysis or operation. For this pipeline, we wish to
@@ -264,9 +264,9 @@ staging the <code>bin/</code> directory and adding the script to path when it ex
 will need to include a <a href="https://en.wikipedia.org/wiki/Shebang_(Unix)">shebang
 line</a> and change the script
 permissions to be executable prior to running your workflow.</p>
-<p>You have already seen a small example of a script being incorporated into a nextflow
-workflow when you completed the extract_regions.py and its associated module. Please
-refer back to this when developing this new script.</p>
+<p>You have already seen a small example of a script being incorporated into a
+nextflow workflow when you completed the extract_regions.py and its associated
+module. Please refer back to this when developing this new script.</p>
 <p>Take a look at the provided skeleton of a script in <code>bin/</code> named
 <code>genome_stats.py</code>. Examine lines 1-20, and you may also find this
 <a href="https://docs.python.org/3/library/argparse.html">documentation</a> helpful. This
@@ -292,16 +292,20 @@ some text explaining what each value represents (i.e. GC Content: 64%)</li>
 </ol>
 </li>
 <li><p>Make a new directory in <code>modules</code> entitled <code>genome_stats</code> and create a
-<code>main.nf</code>. If using biopython, make an appropriate YML environment specification
-for biopython. If only using basic python, make a YML environment specification
-with python installed. You can have the inputs be the same shape and structure
-as the <code>fa_ch</code>. You will need to specify how you want the output file named.
-The shell/script portion will be the command for executing the associated <code>.py</code>
-script and providing it the appropriate inputs as specified by <code>argparse</code>. Please
-write the new file to the <code>results/</code> directory using <code>publishDir</code>.</p></li>
-<li><p>When your script is functional and your associated nextflow module complete,
+<code>main.nf</code> within that directory. If using biopython, make an appropriate YML
+environment specification for biopython. If only using basic python, make a YML
+environment specification with python installed. You can have</p></li>
+</ol>
+<p>The inputs be the same shape and structure as the <code>fa_ch</code>. You will need to
+specify how you want the output file named. The shell/script portion will be the
+command for executing the associated <code>.py</code> script and providing it the
+appropriate inputs as specified by <code>argparse</code>. Please write the new file to the
+<code>results/</code> directory using <code>publishDir</code>. Name this output file using the name
+value passed in the channel (i.e. ${name}_genome_stats.txt)</p>
+<ol start="3" style="list-style-type: decimal">
+<li>When your script is functional and your associated nextflow module complete,
 run Nextflow once more to generate the text file containing the two genome
-statistics requested.</p></li>
+statistics requested.</li>
 </ol>
 </div>
 </div>
@@ -318,9 +322,9 @@ caching strategy means that successfully run jobs will not be re-run and it will
 figure out what new jobs need to be run based on the changes.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
-<li><p>Copy the two remaining genomes from /projectnb/bf528/materials/project-0-genome-analytics
-into your <code>refs/</code> directory. Add their information to the samplesheet.csv as you did
-previously.</p></li>
+<li><p>Copy the two remaining genomes from
+/projectnb/bf528/materials/project-0-genome-analytics into your <code>refs/</code>
+directory. Add their information to the samplesheet.csv as you did previously.</p></li>
 <li><p>Re-run your nextflow workflow. It should perform the exact same tasks for
 these two new genomes simultaneously.</p></li>
 </ol>
@@ -352,12 +356,9 @@ and outputs for these two new genomes.</p></li>
 </ol>
 </div>
 </div>
-
-
-
-<div class="chapter-nav">
+  <div class="chapter-nav">
 <div class="prev"><a href="week-2-genome-analytics.html">Week 2: Genome Analytics</a></div>
-<div class="next"><a href="introduction.html">Introduction</a></div>
+<div class="next"><a href="week-4-genome-analytics.html">Week 4: Genome Analytics</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
@@ -369,7 +370,7 @@ and outputs for these two new genomes.</p></li>
 <li><a class="nav-link" href="#inspecting-the-prokka-output">Inspecting the Prokka Output</a></li>
 <li><a class="nav-link" href="#passing-outputs-of-processes-as-inputs">Passing outputs of processes as inputs</a></li>
 <li><a class="nav-link" href="#basic-local-alignment-search-tool">Basic Local Alignment Search Tool</a></li>
-<li><a class="nav-link" href="#developing-an-external-script">Developing an external script</a></li>
+<li><a class="nav-link" href="#developing-external-scripts-for-workflows">Developing external scripts for workflows</a></li>
 <li><a class="nav-link" href="#a-fully-operational-nextflow-pipeline">A fully operational nextflow pipeline</a></li>
 <li><a class="nav-link" href="#week-3-detailed-tasks-summary">Week 3 Detailed Tasks Summary</a></li>
 </ul>
@@ -381,13 +382,9 @@ and outputs for these two new genomes.</p></li>
 </div>
     </nav>
 </div>
-</div>
-  
-
-  
 
 </div>
- <!-- .container -->
+</div> <!-- .container -->
 
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 

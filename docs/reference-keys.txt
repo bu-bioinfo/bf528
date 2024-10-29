@@ -1,3 +1,8 @@
+explore-the-use-of-ncbi-datasets-cli
+generate-a-module-that-downloads-a-genome-using-the-ncbi-datasets-cli
+refactor-your-workflow-to-incorporate-downloading-a-genome-as-the-first-step
+make-a-conda-environment-with-pycirclize-and-ipykernel
+generate-a-circos-plot-of-your-new-annotated-genome-using-the-gff
 introductory-slides
 computational-primer
 assignment
