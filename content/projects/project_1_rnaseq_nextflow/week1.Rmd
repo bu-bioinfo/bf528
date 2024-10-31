@@ -187,7 +187,7 @@ fastqc_channel
 [sample1, sample1_R1.fastq.gz]
 [sample1, sample1_R2.fastq.gz]
 ```
-
+:::
 
 :::{.box .task}
 
