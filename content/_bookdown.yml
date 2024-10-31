@@ -6,6 +6,9 @@ rmd_files:
     - "projects/project_0_genome_analysis/week1.Rmd"
     - "projects/project_0_genome_analysis/week2.Rmd"
     - "projects/project_0_genome_analysis/week3.Rmd"
+    - "projects/project_0_genome_analysis/week4.Rmd"
+    - "project_1_part.Rmd"
+    - "projects/project_1_rnaseq_nextflow/week1.Rmd"
     - "lectures_part.Rmd"
     - "lectures.Rmd"
 

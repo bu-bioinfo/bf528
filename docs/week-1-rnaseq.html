@@ -18,9 +18,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="Read the paper This analysis is based on the data published in this study: O’Meara et al. Transcriptional Reversion of Cardiac Myocyte Fate During Mammalian Cardiac Regeneration. Circ Res. Feb...">
-<meta property="og:description" content="Read the paper This analysis is based on the data published in this study: O’Meara et al. Transcriptional Reversion of Cardiac Myocyte Fate During Mammalian Cardiac Regeneration. Circ Res. Feb...">
-<meta name="twitter:description" content="Read the paper This analysis is based on the data published in this study: O’Meara et al. Transcriptional Reversion of Cardiac Myocyte Fate During Mammalian Cardiac Regeneration. Circ Res. Feb...">
+<meta name="description" content="Section Links Read the paper Create a working directory for project 1 Locating the data Changes to our environment management strategy and workflow Generating our input channels for nextflow...">
+<meta property="og:description" content="Section Links Read the paper Create a working directory for project 1 Locating the data Changes to our environment management strategy and workflow Generating our input channels for nextflow...">
+<meta name="twitter:description" content="Section Links Read the paper Create a working directory for project 1 Locating the data Changes to our environment management strategy and workflow Generating our input channels for nextflow...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -45,6 +45,13 @@
 <li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
 <li class="book-part">Guides</li>
 <li><a class="" href="computational-environments-guide.html">Computational Environments Guide</a></li>
+<li class="book-part">Project 0</li>
+<li><a class="" href="week-1-genome-analytics.html">Week 1: Genome Analytics</a></li>
+<li><a class="" href="week-2-genome-analytics.html">Week 2: Genome Analytics</a></li>
+<li><a class="" href="week-3-genome-analytics.html">Week 3: Genome Analytics</a></li>
+<li><a class="" href="week-4-genome-analytics.html">Week 4: Genome Analytics</a></li>
+<li class="book-part">Project 1</li>
+<li><a class="active" href="week-1-rnaseq.html">Week 1: RNAseq</a></li>
 <li class="book-part">Lectures</li>
 <li><a class="" href="introduction.html">Introduction</a></li>
 <li><a class="" href="genomics-genes-and-genomes.html">Genomics, Genes, and Genomes</a></li>
@@ -75,24 +82,6 @@
 <li><a class="" href="single-cell-analysis-part-2.html">Single Cell Analysis Part 2</a></li>
 <li><a class="" href="single-cell-analysis-part-3.html">Single Cell Analysis Part 3</a></li>
 <li><a class="" href="spatial-transcriptomics.html">Spatial Transcriptomics</a></li>
-<li><a class="" href="week-1-genome-analytics.html">Week 1: Genome Analytics</a></li>
-<li><a class="" href="project-writeup-instructions.html">Project Writeup Instructions</a></li>
-<li><a class="" href="project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html">Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></li>
-<li><a class="active" href="week-1-rnaseq.html">Week 1: RNAseq</a></li>
-<li><a class="" href="week-2-rnaseq.html">Week 2: RNAseq</a></li>
-<li><a class="" href="week-3-rnaseq.html">Week 3: RNAseq</a></li>
-<li><a class="" href="week-4-rnaseq.html">Week 4: RNAseq</a></li>
-<li><a class="" href="week-5-rnaseq.html">Week 5: RNAseq</a></li>
-<li><a class="" href="project-2-chipseq-analysis-of-the-human-transcription-factor-runx1.html">Project 2: ChIPseq analysis of the human transcription factor Runx1</a></li>
-<li><a class="" href="week-1-chipseq.html">Week 1: ChIPseq</a></li>
-<li><a class="" href="week-2-chipseq.html">Week 2: ChIPseq</a></li>
-<li><a class="" href="week-3-chipseq.html">Week 3: ChIPseq</a></li>
-<li><a class="" href="week-4-chipseq.html">Week 4: ChIPseq</a></li>
-<li><a class="" href="week-5-chipseq.html">Week 5: ChIPseq</a></li>
-<li><a class="" href="project-3-individual-project.html">Project 3: Individual Project</a></li>
-<li><a class="" href="project-3-rnaseq-individual-project.html">Project 3: RNAseq Individual Project</a></li>
-<li><a class="" href="project-3-chipseq-individual-project.html">Project 3: ChIPseq Individual Project</a></li>
-<li><a class="" href="project-3-atacseq-individual-project.html">Project 3: ATACseq Individual Project</a></li>
 </ul>
 
         <div class="book-extra">
@@ -103,7 +92,30 @@
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-1-rnaseq" class="section level1 unnumbered">
 <h1>Week 1: RNAseq<a class="anchor" aria-label="anchor" href="#week-1-rnaseq"><i class="fas fa-link"></i></a>
 </h1>
-<p><strong>Read the paper</strong></p>
+<div id="section-links-4" class="section level2 unnumbered">
+<h2>Section Links<a class="anchor" aria-label="anchor" href="#section-links-4"><i class="fas fa-link"></i></a>
+</h2>
+<p><a href="week-1-rnaseq.html#read-the-paper">Read the paper</a></p>
+<p><a href="week-1-rnaseq.html#create-a-working-directory-for-project-1">Create a working directory for project 1</a></p>
+<p><a href="week-1-rnaseq.html#locating-the-data">Locating the data</a></p>
+<p><a href="week-1-rnaseq.html#changes-to-our-environment-management-strategy-and-workflow">Changes to our environment management strategy and workflow</a></p>
+<p><a href="week-1-rnaseq.html#generating-our-input-channels-for-nextflow">Generating our input channels for nextflow</a></p>
+<p><a href="week-1-rnaseq.html#performing-quality-control">Performing quality control</a></p>
+<p><a href="week-1-rnaseq.html#generate-a-file-containing-the-gene-ids-and-their-corresponding-mouse-gene-symbols">Generate a file containing the gene IDs and their corresponding mouse gene symbols</a></p>
+<p><a href="week-1-rnaseq.html#generate-a-genome-index">Generate a genome index</a></p>
+<p><a href="week-1-rnaseq.html#week-1-tasks-summary">Week 1 Tasks Summary</a></p>
+</div>
+<div id="week-1-overview" class="section level2 unnumbered">
+<h2>Week 1 Overview<a class="anchor" aria-label="anchor" href="#week-1-overview"><i class="fas fa-link"></i></a>
+</h2>
+</div>
+<div id="objectives-4" class="section level2 unnumbered">
+<h2>Objectives<a class="anchor" aria-label="anchor" href="#objectives-4"><i class="fas fa-link"></i></a>
+</h2>
+</div>
+<div id="read-the-paper" class="section level2 unnumbered">
+<h2>Read the paper<a class="anchor" aria-label="anchor" href="#read-the-paper"><i class="fas fa-link"></i></a>
+</h2>
 <p>This analysis is based on the data published in this study: <em>O’Meara et al.
 Transcriptional Reversion of Cardiac Myocyte Fate During Mammalian Cardiac
 Regeneration. Circ Res. Feb 2015. PMID: 25477501</em></p>
@@ -115,159 +127,306 @@ adult mouse heart ventricle cells.</p>
 up-to-date strategies and tools. However, the workflow you will develop should
 still capture and recreate the same core biological signals observed in the
 original work.</p>
-<p><strong>Create a working directory for project 1</strong></p>
-<p>Please sign on to the SCC and navigate to our class project directory located
-at: /projectnb/bf528/students/<em>your_username</em>/</p>
-<p>Accept the github classroom link and clone the assignment to your working
-directory - <a href="https://classroom.github.com/a/WXj2OrjA" class="uri">https://classroom.github.com/a/WXj2OrjA</a></p>
-<p><strong>The structure and setup of the project</strong></p>
-<p>After you have accepted the github classroom link, clone the repo into
-your student directory (/projectnb/bf528/students/your_name/).</p>
-<p>Within /projectnb/bf528/students/your_name/project_1/, you should see the
-following structure (directories are indicated by names ending with “/”):</p>
-<pre><code>|-- results/
-    |-- Any processed data output, downloaded file, etc. should go in here, 
-        remember to provide this path as an output for any tasks
-    
-|-- samples/
-    |-- Copy the provided fastq files here, remember to provide this path 
-        when referring to your input files
-    
-|-- docs/
-    |-- This will contain a copy of each week's instructions and any
-       other documents necessary for the required tasks
-       
-|-- week1.snake
-    |-- We have provided you a template for the first week's snakefile
-    
-|-- week2.snake
-    |-- A template for the week 2 snakefile
-    
-|-- week3.snake
-    |-- A template for the week 3 snakefile
-
-|-- week(1, 2, 3).Rmd
-    |-- We have provided you with a Rmd notebook for you to quickly
-        write your preliminary methods and results for each week
-        
-|-- differential_expression.Rmd
-    |-- For the end of week 3 and the tasks for week 4, you will need
-        to perform a series of operations in R. Please use this provided 
-        notebook to do these. </code></pre>
-<p><strong>Create a conda environment for this project</strong></p>
-<p>One of the core advantages of conda is that it allows you to create multiple,
-independent computing environments with different sets of packages installed
-with conda handling dependencies. It is generally a good practice to create a
-distinct, self-contained conda environment for each individual dataset /
-experiment. If you did not go through assignment 0, then please follow the
-instructions here to setup conda: <a href="https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/python-software/miniconda-modules/" class="uri">https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/python-software/miniconda-modules/</a></p>
-<pre><code>1. Please create a conda environment for this project, you may name it
-whatever is easiest for you to remember</code></pre>
-<p>Take care to activate your conda environment prior to working on any aspect of
-the project. The tools installed in these environments are only accessible when
-you have activated the environment prior.</p>
-<pre><code>2. Using the conda install command, please install
-the following packages: snakemake, pandas, fastqc, star, samtools, multiqc,
-verse, bioconductor-deseq2, bioconductor-fgsea, jupyterlab</code></pre>
-<p><strong>Locating the data</strong></p>
+</div>
+<div id="create-a-working-directory-for-project-1" class="section level2 unnumbered">
+<h2>Create a working directory for project 1<a class="anchor" aria-label="anchor" href="#create-a-working-directory-for-project-1"><i class="fas fa-link"></i></a>
+</h2>
+<div class="box task">
+<p>Accept the github classroom link and clone the assignment to your student
+directory in /projectnb/bf528/students/<em>your_username</em>/. This link will be
+posted on the blackboard site for our class.</p>
+</div>
+</div>
+<div id="locating-the-data" class="section level2 unnumbered">
+<h2>Locating the data<a class="anchor" aria-label="anchor" href="#locating-the-data"><i class="fas fa-link"></i></a>
+</h2>
 <p>For this first project, we have provided you with small subsets of the original
 data files. You should copy these files to the <code>samples/</code> folder in your working
 directory that you cloned. For your convenience, we have renamed the files to be
 descriptive of the samples they represent following the pattern:
 {timepoint}{rep}subsample_{readpair}.fastq.gz (i.e. ADrep1subsample_R1.fastq.gz)</p>
-<p>The files are located here: /projectnb/bf528/materials/project_1_rnaseq/subsampled_files
-and there are 16 total files (8 samples, paired end reads).</p>
-<pre><code>1. Using `cp`, make all of these files available in your samples/ directory       </code></pre>
-<p><strong>Performing Quality Control</strong></p>
+<p>The files are located here:
+/projectnb/bf528/materials/project_1_rnaseq/subsampled_files and there are 16
+total files. Remember that paired end reads are typically used together as both
+the _R1 and _R2 files represent sequencing reads from the same fragments. This
+means that we have 8 biological samples, and 16 actual files representing those
+samples.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li><p>Using <code>cp</code>, make all of these files available in your samples/ directory</p></li>
+<li><p>In this same directory, /projectnb/bf528/materials/project-1-rnaseq/, you will
+also find a refs directory. Copy the files contained within to your <code>refs/</code>
+directory. Encode their paths in separate params in your <code>nextflow.config</code>.</p></li>
+</ol>
+</div>
+</div>
+<div id="changes-to-our-environment-management-strategy-and-workflow" class="section level2 unnumbered">
+<h2>Changes to our environment management strategy and workflow<a class="anchor" aria-label="anchor" href="#changes-to-our-environment-management-strategy-and-workflow"><i class="fas fa-link"></i></a>
+</h2>
+<p>As we’ve discussed, conda environments are one solution to ensuring that your
+analyses are run in a reproducible and portable manner. Containers are an
+alternative technology that have a number of advantages over conda environments.
+Going forward, we will be incorporating containers specifying our computational
+environments into our pipeline.</p>
+<p>One of the advantages of container technologies is that they usually offer a
+robust ecosystem of shared containers (images) that are available in public
+repositories for anyone to reuse. We have developed a set of containers for each
+piece of software that we will be using in this course.</p>
+<p>For all future process scripts that you develop in nextflow, instead of
+specifying the <code>conda</code> environment to execute the task with, you will instead
+specify <code>container</code> and the image (a container built with a certain specification)
+location.</p>
+<p>For this course, these containers were all built and their specifications kept
+in this public github repository: <a href="https://github.com/BF528/pipeline_containers" class="uri">https://github.com/BF528/pipeline_containers</a>
+Feel free to look into the repo for how the containers were built. We follow a
+similar pattern where we specify the exact environment we would like created in
+a YAML file and then generate the environment using micromamba installed in a
+container. We will get some experience later in the semester with building your
+own containers from scratch.</p>
+<p>In general, the containers will be named the same pattern:
+<code>ghcr.io/bf528/&lt;name-of-tool&gt;:latest</code> or <code>ghcr.io/bf528/fastqc:latest</code>.</p>
+<p>You will need to incorporate one more change to make your pipeline use
+containers. If you look in the <code>nextflow.config</code>, you’ll see a profile labeled
+singularity, which encodes some options in how to run containers using
+singularity.</p>
+<p><strong>New command for running your workflow</strong></p>
+<pre><code>nextflow run main.nf -profile singularity,local</code></pre>
+<p>One last change that we will be making to how we run nextflow is to now make
+use of the HPC environment we are working in. When you have confirmed that
+your workflow runs on the smaller subsetted data, you will re-run your workflow
+to process the full data. You will need to change the paths in your <code>nextflow.config</code>
+to point to the full files. You will also need to specify the cluster profile
+instead of local:</p>
+<p><strong>New command for running your workflow once you’ve confirmed it works end-to-end</strong></p>
+<pre><code>nextflow run main.nf -profile singularity,cluster</code></pre>
+<p>The <code>cluster</code> profile includes all of the required arguments to properly schedule
+and queue jobs to run on the compute nodes of the cluster. This will be important
+as our sample files are now much larger, and we will be running relatively
+resource intensive processes that will not be allowed to run on the head nodes.</p>
+<p>Only switch to this command when you’ve confirmed your workflow works from
+start to finish on the subsetted data.</p>
+<p>As always, remember to activate your conda environment containing nextflow and
+nf-test before doing any work.</p>
+</div>
+<div id="generating-our-input-channels-for-nextflow" class="section level2 unnumbered">
+<h2>Generating our input channels for nextflow<a class="anchor" aria-label="anchor" href="#generating-our-input-channels-for-nextflow"><i class="fas fa-link"></i></a>
+</h2>
+<p>This RNAseq pipeline will be driven by two channels that contain the starting
+FASTQ files for each of the samples in the experiment. Nextflow has a built-in
+function to simplify the generation of channels for samples from paired-end
+sequencing experiments. The <code>fromFilePairs</code> channel function allows you to
+detect paired end fastq files for each sample using similar pattern matching in
+bash through the use of wildcard expansion (*).</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li>In the <code>nextflow.config</code>, specify a parameter called <code>reads</code> that encodes the
+path to your fastq files and uses * to flexibly detect the sample name associated
+with both paired files. Refer to the nextflow documentation on <code>fromFilePairs</code>.</li>
+</ol>
+<p>You’ll notice that this function creates a channel with a structure we’ve seen
+before. It creates a tuple containing the base name of the file and a list containing
+the R1 and R2 file associated with that sample.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>In the <code>main.nf</code>, create two channels that use this value encoded in <code>params.reads</code>.
+One of these channels can be the direct output from the <code>fromFilePairs</code> method
+and you can name it <code>align_ch</code>. There should be 8 items that are present in
+this channel representing our 8 samples (and 16 files). It will look something
+like below:</li>
+</ol>
+<pre><code>align_ch
+
+[sample1, [sample1_R1.fastq.gz, sample1_R2.fastq.gz]]</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>For the other channel, look at the operators section in the nextflow
+documentation and create a channel that flattens the structure of the <code>align_ch</code>
+so that there are as many elements in the channel as there are actual files
+(16). Name this channel <code>fastqc_channel</code>. This channel should have the same
+structure: a tuple where the first value is the name of the sample and the
+second is the path to the associated file. This will look something like below:</li>
+</ol>
+<pre><code>fastqc_channel
+
+[sample1, sample1_R1.fastq.gz]
+[sample1, sample1_R2.fastq.gz]</code></pre>
+</div>
+<div class="box task">
+<p>Please answer the following question in the provided Rmd:</p>
+<ol style="list-style-type: decimal">
+<li>What are two reasons we are creating these two channels which contain the same
+information?</li>
+</ol>
+</div>
+</div>
+<div id="performing-quality-control" class="section level2 unnumbered">
+<h2>Performing Quality Control<a class="anchor" aria-label="anchor" href="#performing-quality-control"><i class="fas fa-link"></i></a>
+</h2>
 <p>At this point, you should have:</p>
 <ul>
-<li>Setup a directory for this project by accepting the github classroom link</li>
-<li>Copied the files to your working directory</li>
-<li>Created a new conda environment containing the requested packages</li>
-<li>Activate your environment before doing any work</li>
+<li><p>Setup a directory for this project by accepting the github classroom link</p></li>
+<li><p>Copied the subsampled files to your working directory</p></li>
+<li><p>Familiarized yourself with the changes to environment management and how we run our workflow</p></li>
+<li><p>Generate two channels in your <code>main.nf</code> with the size and elements specified
+above</p></li>
 </ul>
 <p>We will begin by performing quality control on the FASTQ files generated from
 the experiment. fastQC is a bioinformatics software tool that calculates and
 generates descriptive graphics of the various quality metrics encoded in a FASTQ
 file. We will use this tool to quickly check the basic quality of the sequencing
 in this experiment.</p>
-<p>Your first task is to develop the provided snakemake workflow (week1.snake) that
-will run fastQC on each of the 16 project files. You will have to make
-appropriate use of the expand() function to construct a working snakefile to
-perform these steps.</p>
-<p>You may find it helpful to utilize the following command:
-<code>snakemake -s {insert_your_snakefile_name} --dryrun -p</code></p>
-<p>This command will instruct snakemake to print out a summary of what it plans to
-do based on how your snakefile is written. This command is useful for quickly
-troubleshooting if you have any simple errors in syntax, wildcard matching, etc.
-Please note that it will not actually run any of the code in your rule
-directives and thus will not allow you to determine if there are any issues or
-errors in your actual shell or python arguments / commands.</p>
-<pre><code>1. Set up your snakemake workflow to run FastQC on each of the 16 FASTQ
-files (8 samples)
-  - Remember all produced files / data should be output to your results/
-    directory</code></pre>
-<p>By default, FastQC will create a .html and a .zip file for each FASTQ file. It
-will create these files with the following pattern:
-{original_filename}_fastqc.html and {original_filename}_fastqc.zip</p>
-<p>You may have noticed that FastQC produces separate outputs for each sample. Many
-other QC programs also operate on a file level and analyze single files at a
-time. This dataset is on the smaller side but larger experiments can encompass
-hundreds of samples. Individually inspecting outputs from all of these utilities
-would quickly become cumbersome in such situations.</p>
-<p>We are going to utilize the MultiQC utility, which recognizes the outputs from
-many standard bioinformatics tools, and concatenates their outputs into a
-single, well-formatted and visually attractive report.</p>
-<pre><code>1. Read the multiQC manual to learn more about its operation and create a
-snakemake rule that runs MultiQC.
-  - Remember to have MultiQC use your samples/ directory as an input and
-    output its results to the results/ directory</code></pre>
-<p>You should have three rules: your rule all, the rule that runs fastQC on each of
-the files, and the rule that runs multiqc.</p>
-<p>At the end of the first week, you should make sure to have done the following:</p>
-<ul>
-<li>Read the paper and understand the goals and hypotheses of the original study.
-Focus in particular on the analyses pertaining to the dataset we are examining
-and make note of the interpretations and conclusions drawn by the authors.</li>
-<li>Accept the github classroom link to setup the project in your working directory</li>
-<li>Make a new conda environment with the specified packages for this experiment</li>
-<li>Copy the subset files to your results/ directory</li>
-<li>Complete the provided snakemake workflow (week1.snake) that runs fastQC on all
-16 samples</li>
-<li>Generate a snakemake rule that runs multiqc after all fastQC reports have been
-completed</li>
-<li>Write a brief methods and results section for this week’s tasks in the provided
-markdown file (week1.Rmd)</li>
-<li>Answer any conceptual questions (also contained in the Rmd) - many of these
-questions do not have a single right answer and are designed to allow you to make
-hypotheses and think creatively about research questions.</li>
-</ul>
-<p><strong>CHALLENGE</strong></p>
-<p>If you are already familiar with high performance computing environments, you no
-doubt understand that you should not run any intensive computational tasks on
-the head node.</p>
-<p>Please only attempt this section if you are proficient and knowledgeable in the
-use of qsub to properly submit batch jobs with appropriate resources requested.</p>
-<p>The original data files are located in our single project directory,
-/projectnb/bf528/materials/project_1_rnaseq/full_files/</p>
-<p>Reformat your snakefile to operate on the full data files; their name will not
-include “subsample” but otherwise follow the same exact naming conventions
-mentioned previously.</p>
+<div class="box task">
 <ol style="list-style-type: decimal">
-<li>Using your snakemake workflow, run FastQC on all 16 original data files</li>
-<li>Add a rule that also runs MultiQC after completion of all FastQC analyses</li>
+<li>In your envs/ directory, we have provided you a specification for a small
+conda environment you can use to test how to run fastqc. Use the same command
+as last week to generate a new environment with just fastqc installed:</li>
 </ol>
-<p>Your snakemake command used to run must include the –cluster option and
-appropriate qsub arguments to avoid running these jobs on the head node. We will
-be discussing the appropriate usage of qsub and –cluster in the upcoming weeks.</p>
+<pre><code>conda env create -f envs/test_env.yml</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Activate this new environment after it’s created, and navigate to the <code>temp/</code>
+directory. You can view the help information for FASTQC by calling the program
+in a terminal with <code>fastqc -h</code> or for some programs <code>fastqc --help</code>. Try to
+run FASTQC on the provided fastq file and make a note of the output files that
+are produced and the command needed to run it.</p></li>
+<li><p>Make a new process for fastqc in the <code>modules/</code> directory. Be sure to specify
+the <code>label</code> as <code>process_low</code>, the <code>container</code> with the image path described
+above and the <code>publishDir</code> to send the results of this process to your <code>results/</code>
+directory.</p></li>
+<li><p>Specify the inputs of the process to match the structure of the <code>fastqc_channel</code>
+we just generated.</p></li>
+<li><p>By default, FASTQC will create two output files from a single input named as
+seen below:</p></li>
+</ol>
+<pre><code>fastqc sample1.fastq.gz
 
+Outputs:
+sample1_fastqc.html
+sample1_fastqc.zip</code></pre>
+<p>For this module, please list two named outputs, which will later allow us to use
+the individual outputs separately:</p>
+<pre><code>output:
+tuple val(name), path('*.zip'), emit: zip
+tuple val(name), path('*.html'), emit: html</code></pre>
+<p>This output definition will implicitly instruct nextflow that both of these
+files should exist after FASTQC has run successfully. It will capture the html
+report and zip file separately and allow you to pass these different values
+through channels separately (i.e. FASTQC.out.zip would refer
+specifically to the zip file created by the FASTQC task)</p>
+<p>Remember you can use wildcard expansions in the path output to flexibly detect
+files with certain extensions without specifying their full filename.</p>
+<ol start="6" style="list-style-type: decimal">
+<li><p>The shell command should be the successful fastqc command you ran earlier.
+Make sure to include the following argument: <code>-t $task.cpus</code>.</p></li>
+<li><p>Incorporate the FASTQC process into your workflow <code>main.nf</code> and provide it the
+proper channel.</p></li>
+</ol>
 </div>
-  <div class="chapter-nav">
-<div class="prev"><a href="project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html">Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></div>
-<div class="next"><a href="week-2-rnaseq.html">Week 2: RNAseq</a></div>
+</div>
+<div id="generate-a-file-containing-the-gene-ids-and-their-corresponding-mouse-gene-symbols" class="section level2 unnumbered">
+<h2>Generate a file containing the gene IDs and their corresponding mouse gene symbols<a class="anchor" aria-label="anchor" href="#generate-a-file-containing-the-gene-ids-and-their-corresponding-mouse-gene-symbols"><i class="fas fa-link"></i></a>
+</h2>
+<p>As we’ve discussed, it’s often more intuitive for us to use gene names rather than
+their IDs. While there are external services that can perform this for us (biomaRt),
+it is often better to extract this information from the same GTF file associated
+with the exact version of the reference genome we are using. This will ensure
+that we are as consistent as possible with our labeling.</p>
+<p>Whenever we need to perform operations using custom code, we are going to use
+the conventions established in project 0. We will place this script in the <code>bin/</code>
+directory and make it executable. We will then create a nextflow module that will
+provide the appropriate command line arguments to the script.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li><p>Generate a python script that parses the GTF file you were provided and creates
+a delimited file containing the ensembl mouse ID and its corresponding gene name.
+Please copy and modify the <code>argparse</code> code used in the project 0 script to allow
+the specification of command line arguments. The script should take the GTF as
+input and output a single text file containing the requested information.</p></li>
+<li><p>Create a nextflow module that calls this script and provides the appropriate
+command line arguments necessary to run it.</p></li>
+<li><p>You may use the biopython (ghcr.io/bf528/biopython:latest) or the pandas
+(ghcr.io/bf528/pandas:latest) container to run this task as both of these
+contain a python installation.</p></li>
+<li><p>Incorporate this module to parse the GTF into your workflow <code>main.nf</code> and
+pass it the appropriate GTF input encoded as a param.</p></li>
+</ol>
+</div>
+</div>
+<div id="generate-a-genome-index" class="section level2 unnumbered">
+<h2>Generate a genome index<a class="anchor" aria-label="anchor" href="#generate-a-genome-index"><i class="fas fa-link"></i></a>
+</h2>
+<p>Most alignment algorithms require an index to be generated to make the alignment
+process more efficient and expedient. These index files are typically specific
+to the tool and we will be using the STAR aligner, one of the most commonly
+used alignment tools for RNAseq.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li><p>Read the beginning of the <a href="https://github.com/alexdobin/STAR">documentation</a>
+for how to generate a STAR index.</p></li>
+<li><p>Generate a module and process that creates a STAR index for our reference
+genome. This process will require two inputs, the reference genome and the
+associated GTF file. Ensure that the <code>label</code> for this module is <code>process_high</code>.</p></li>
+<li><p>The outputs of this process will be a directory of multiple files that all
+comprise the index. You will have to create this directory prior to running
+the STAR command. Please also be sure to include the <code>--runThreadN $task.cpus</code>
+argument in your command. Otherwise, use all of the basic options specified
+in the manual and leave them at their default values.</p></li>
+<li><p>Incorporate this process into your workflow and pass it the appropriate
+inputs from your params encoding the path to the reference genome fasta and GTF
+file.</p></li>
+</ol>
+</div>
+</div>
+<div id="week-1-tasks-summary" class="section level2 unnumbered">
+<h2>Week 1 Tasks Summary<a class="anchor" aria-label="anchor" href="#week-1-tasks-summary"><i class="fas fa-link"></i></a>
+</h2>
+<ol style="list-style-type: decimal">
+<li><p>Read the paper and focus on the sections that discuss the experiment of
+interest</p></li>
+<li><p>Clone the github classroom link for this project</p></li>
+<li><p>Copy the necessary files to your working directory. These files will include:</p></li>
+</ol>
+<ul>
+<li>The Gencode mm10 reference genome for the primary assembly</li>
+<li>The Gencode mm10 GTF for the primary assembly</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Generate a nextflow channel called <code>align_ch</code> that has 8 total elements where
+each element is a tuple containing two elements: the name of the sample, and a
+list of both of the associated paired end files.</p></li>
+<li><p>Generate a nextflow channel called <code>fastqc_channel</code> that has 16 total
+elements where each element is a tuple containing two elements: the name of the
+sample, and one of the FASTQ files.</p></li>
+<li><p>Generate a module that successfully runs FASTQC, add this process to your
+workflow and pass it your <code>fastqc_channel</code>.</p></li>
+<li><p>Develop an external script that parses the GTF and returns a delimited file
+where one column represents the ensembl mouse IDs and the value in the other
+column is the associated MGI symbol.</p></li>
+<li><p>Generate a module that successfully creates a STAR index, add this process to
+your workflow and pass it the necessary inputs encoded in your params.</p></li>
+</ol>
+</div>
+</div>
+
+
+
+<div class="chapter-nav">
+<div class="prev"><a href="week-4-genome-analytics.html">Week 4: Genome Analytics</a></div>
+<div class="next"><a href="introduction.html">Introduction</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav"><li><a class="nav-link" href="#week-1-rnaseq">Week 1: RNAseq</a></li></ul>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#week-1-rnaseq">Week 1: RNAseq</a></li>
+<li><a class="nav-link" href="#section-links-4">Section Links</a></li>
+<li><a class="nav-link" href="#week-1-overview">Week 1 Overview</a></li>
+<li><a class="nav-link" href="#objectives-4">Objectives</a></li>
+<li><a class="nav-link" href="#read-the-paper">Read the paper</a></li>
+<li><a class="nav-link" href="#create-a-working-directory-for-project-1">Create a working directory for project 1</a></li>
+<li><a class="nav-link" href="#locating-the-data">Locating the data</a></li>
+<li><a class="nav-link" href="#changes-to-our-environment-management-strategy-and-workflow">Changes to our environment management strategy and workflow</a></li>
+<li><a class="nav-link" href="#generating-our-input-channels-for-nextflow">Generating our input channels for nextflow</a></li>
+<li><a class="nav-link" href="#performing-quality-control">Performing Quality Control</a></li>
+<li><a class="nav-link" href="#generate-a-file-containing-the-gene-ids-and-their-corresponding-mouse-gene-symbols">Generate a file containing the gene IDs and their corresponding mouse gene symbols</a></li>
+<li><a class="nav-link" href="#generate-a-genome-index">Generate a genome index</a></li>
+<li><a class="nav-link" href="#week-1-tasks-summary">Week 1 Tasks Summary</a></li>
+</ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
@@ -276,9 +435,13 @@ be discussing the appropriate usage of qsub and –cluster in the upcoming weeks
 </div>
     </nav>
 </div>
+</div>
+  
+
+  
 
 </div>
-</div> <!-- .container -->
+ <!-- .container -->
 
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
