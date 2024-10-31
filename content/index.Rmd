@@ -16,11 +16,11 @@ knitr::opts_chunk$set(cache = TRUE)
 
 Welcome to the homepage of BF528. CURRENTLY UNDER REVISION.
 
-**Semester: Spring 2024**
+**Semester: Spring 2025**
 
-**Meeting time:** TBA
+**Meeting time:** Mon/Fri - 10:10-11:55am, Wed - 9:05-9:55am
 
-**Location:** TBA
+**Location:** CDS B62
 
 **Office hours:**
 By appointment and weekly as determined in class
@@ -32,15 +32,16 @@ Contents:
 - [Office Hours]
 - [Course Values and Policies]
 
-## Learning Objectives {-}
-- Gain conceptual understanding of the assays and tools used
-in modern bioinformatics studies from how they function on a molecular level to
-the major computational analysis steps 
+## Course Objectives {-}
+
+- Learn the molecular mechanisms and basic data analysis steps that underly
+common NGS techniques used to study genomics and transcriptomics
+
 - Develop proficiency in creating bioinformatics workflows with an emphasis on 
 reproducibility and portability
-- Practice analyzing bioinformatics results and interpreting them in the context
-of the underlying research question to draw meaningful biological conclusions
 
+- Gain experience generating and interpreting bioinformatics analyses in a biological
+context
 
 Below you will find a selection of some of the prominent biological and 
 computational topics that will be covered in the course:
@@ -132,12 +133,11 @@ As instructor, I pledge to
 
 The three projects are as follows:
 
-1. [Nextflow Practice][Nextflow Introductory Project] 
-[Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq][Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq]
-2. [ChIPseq analysis of the human transcription factor Runx1][Project 2: ChIPseq analysis of the human transcription factor Runx1]
-3. [scRNAseq analysis of human liver][Project 3: scRNAseq analysis of human liver]
+1. [Genome Analyistcs][Project 0: Microbial Genome Analysis] 
+2. [Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq][Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq]
+3. [ChIPseq analysis of the human transcription factor Runx1][Project 2: ChIPseq analysis of the human transcription factor Runx1]
+4. [scRNAseq analysis of human liver][Project 3: scRNAseq analysis of human liver]
 
-]
 
 ## Grading and Assessment {-}
 
@@ -155,6 +155,9 @@ if you successfully completed the tasks or answered the questions and you will
 then be allowed to resubmit your work the following week. As long as you
 successfully address the given feedback upon resubmission, you will receive full
 credit for each week.
+
+Attendance during lab sessions will also be factored into this portion of your 
+grade. 
 
 **The other 40% of your grade**:
 Projects 1 and 2 were designed with scaffolding and instructions meant to aid
