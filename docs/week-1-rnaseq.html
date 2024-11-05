@@ -18,9 +18,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="Section Links Read the paper Create a working directory for project 1 Locating the data Changes to our environment management strategy and workflow Generating our input channels for nextflow...">
-<meta property="og:description" content="Section Links Read the paper Create a working directory for project 1 Locating the data Changes to our environment management strategy and workflow Generating our input channels for nextflow...">
-<meta name="twitter:description" content="Section Links Read the paper Create a working directory for project 1 Locating the data Changes to our environment management strategy and workflow Generating our input channels for nextflow...">
+<meta name="description" content="Section Links Week 1 Overview Objectives Read the paper Create a working directory for project 1 Locating the data Changes to our environment management strategy and workflow Generating our input...">
+<meta property="og:description" content="Section Links Week 1 Overview Objectives Read the paper Create a working directory for project 1 Locating the data Changes to our environment management strategy and workflow Generating our input...">
+<meta name="twitter:description" content="Section Links Week 1 Overview Objectives Read the paper Create a working directory for project 1 Locating the data Changes to our environment management strategy and workflow Generating our input...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -95,6 +95,8 @@
 <div id="section-links-4" class="section level2 unnumbered">
 <h2>Section Links<a class="anchor" aria-label="anchor" href="#section-links-4"><i class="fas fa-link"></i></a>
 </h2>
+<p><a href="week-1-rnaseq.html#week-1-overview">Week 1 Overview</a></p>
+<p><a href="week-1-genome-analytics.html#objectives">Objectives</a></p>
 <p><a href="week-1-rnaseq.html#read-the-paper">Read the paper</a></p>
 <p><a href="week-1-rnaseq.html#create-a-working-directory-for-project-1">Create a working directory for project 1</a></p>
 <p><a href="week-1-rnaseq.html#locating-the-data">Locating the data</a></p>
@@ -108,10 +110,19 @@
 <div id="week-1-overview" class="section level2 unnumbered">
 <h2>Week 1 Overview<a class="anchor" aria-label="anchor" href="#week-1-overview"><i class="fas fa-link"></i></a>
 </h2>
+<p>A basic RNAseq analysis consists of sample quality control, alignment,
+quantification and differential expression analysis. This week, we will be
+performing quality control analysis on the sequencing reads, generating a genome
+index for alignment, and making a mapping of mouse ensembl IDs to gene names.</p>
 </div>
 <div id="objectives-4" class="section level2 unnumbered">
 <h2>Objectives<a class="anchor" aria-label="anchor" href="#objectives-4"><i class="fas fa-link"></i></a>
 </h2>
+<ul>
+<li>
+<li>
+<li>
+</ul>
 </div>
 <div id="read-the-paper" class="section level2 unnumbered">
 <h2>Read the paper<a class="anchor" aria-label="anchor" href="#read-the-paper"><i class="fas fa-link"></i></a>
@@ -153,7 +164,9 @@ means that we have 8 biological samples, and 16 actual files representing those
 samples.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
-<li><p>Using <code>cp</code>, make all of these files available in your samples/ directory</p></li>
+<li><p>Create a new directory in <code>samples/</code> called <code>subsampled_files/</code></p></li>
+<li><p>Using <code>cp</code>, make all of these files available in your <code>subsampled_files/</code>
+directory</p></li>
 <li><p>In this same directory, /projectnb/bf528/materials/project-1-rnaseq/, you will
 also find a refs directory. Copy the files contained within to your <code>refs/</code>
 directory. Encode their paths in separate params in your <code>nextflow.config</code>.</p></li>
@@ -176,8 +189,8 @@ piece of software that we will be using in this course.</p>
 specifying the <code>conda</code> environment to execute the task with, you will instead
 specify <code>container</code> and the image (a container built with a certain specification)
 location.</p>
-<p>For this course, these containers were all built and their specifications kept
-in this public github repository: <a href="https://github.com/BF528/pipeline_containers" class="uri">https://github.com/BF528/pipeline_containers</a>
+<p>For this course, these containers were all pre-built and their specifications kept
+in this public github repository: <a href="https://github.com/BF528/pipeline_containers" class="uri">https://github.com/BF528/pipeline_containers</a>.
 Feel free to look into the repo for how the containers were built. We follow a
 similar pattern where we specify the exact environment we would like created in
 a YAML file and then generate the environment using micromamba installed in a
@@ -187,24 +200,12 @@ own containers from scratch.</p>
 <code>ghcr.io/bf528/&lt;name-of-tool&gt;:latest</code> or <code>ghcr.io/bf528/fastqc:latest</code>.</p>
 <p>You will need to incorporate one more change to make your pipeline use
 containers. If you look in the <code>nextflow.config</code>, you’ll see a profile labeled
-singularity, which encodes some options in how to run containers using
-singularity.</p>
+singularity, which encodes some singularity options for nextflow to use.</p>
+<p>When running your pipeline, you will now use the <code>-profile singularity,local</code>
+option, which will have Nextflow execute tasks with the specified container image
+listed in the module.</p>
 <p><strong>New command for running your workflow</strong></p>
 <pre><code>nextflow run main.nf -profile singularity,local</code></pre>
-<p>One last change that we will be making to how we run nextflow is to now make
-use of the HPC environment we are working in. When you have confirmed that
-your workflow runs on the smaller subsetted data, you will re-run your workflow
-to process the full data. You will need to change the paths in your <code>nextflow.config</code>
-to point to the full files. You will also need to specify the cluster profile
-instead of local:</p>
-<p><strong>New command for running your workflow once you’ve confirmed it works end-to-end</strong></p>
-<pre><code>nextflow run main.nf -profile singularity,cluster</code></pre>
-<p>The <code>cluster</code> profile includes all of the required arguments to properly schedule
-and queue jobs to run on the compute nodes of the cluster. This will be important
-as our sample files are now much larger, and we will be running relatively
-resource intensive processes that will not be allowed to run on the head nodes.</p>
-<p>Only switch to this command when you’ve confirmed your workflow works from
-start to finish on the subsetted data.</p>
 <p>As always, remember to activate your conda environment containing nextflow and
 nf-test before doing any work.</p>
 </div>
@@ -219,42 +220,30 @@ detect paired end fastq files for each sample using similar pattern matching in
 bash through the use of wildcard expansion (*).</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
-<li>In the <code>nextflow.config</code>, specify a parameter called <code>reads</code> that encodes the
+<li><p>In the <code>nextflow.config</code>, specify a parameter called <code>reads</code> that encodes the
 path to your fastq files and uses * to flexibly detect the sample name associated
-with both paired files. Refer to the nextflow documentation on <code>fromFilePairs</code>.</li>
-</ol>
-<p>You’ll notice that this function creates a channel with a structure we’ve seen
-before. It creates a tuple containing the base name of the file and a list containing
-the R1 and R2 file associated with that sample.</p>
-<ol start="2" style="list-style-type: decimal">
-<li>In the <code>main.nf</code>, create two channels that use this value encoded in <code>params.reads</code>.
-One of these channels can be the direct output from the <code>fromFilePairs</code> method
-and you can name it <code>align_ch</code>. There should be 8 items that are present in
-this channel representing our 8 samples (and 16 files). It will look something
-like below:</li>
+with both paired files. Refer to the nextflow documentation on <code>fromFilePairs</code>.</p></li>
+<li><p>In your workflow <code>main.nf</code>, use the <code>Channel.fromFilePairs</code> function and the
+param you created in step 1 to create a channel called <code>align_ch</code>. You’ll notice
+that this function creates a channel with a structure we’ve seen before: a tuple
+containing the base name of the file and a list containing the R1 and R2 file
+associated with that sample.</p></li>
 </ol>
 <pre><code>align_ch
 
 [sample1, [sample1_R1.fastq.gz, sample1_R2.fastq.gz]]</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>For the other channel, look at the operators section in the nextflow
-documentation and create a channel that flattens the structure of the <code>align_ch</code>
-so that there are as many elements in the channel as there are actual files
-(16). Name this channel <code>fastqc_channel</code>. This channel should have the same
-structure: a tuple where the first value is the name of the sample and the
-second is the path to the associated file. This will look something like below:</li>
+<li>In your workflow <code>main.nf</code> create another channel using the exact logic from
+above but add an additional operation to create a channel that has as many
+elements in the channel as there are actual files (16). Name this channel
+<code>fastqc_channel</code> and it should be a list tuples where the first value is the
+name of the sample and the second is the path to the associated file. This will
+look something like below:</li>
 </ol>
 <pre><code>fastqc_channel
 
 [sample1, sample1_R1.fastq.gz]
 [sample1, sample1_R2.fastq.gz]</code></pre>
-</div>
-<div class="box task">
-<p>Please answer the following question in the provided Rmd:</p>
-<ol style="list-style-type: decimal">
-<li>What are two reasons we are creating these two channels which contain the same
-information?</li>
-</ol>
 </div>
 </div>
 <div id="performing-quality-control" class="section level2 unnumbered">
@@ -263,8 +252,9 @@ information?</li>
 <p>At this point, you should have:</p>
 <ul>
 <li><p>Setup a directory for this project by accepting the github classroom link</p></li>
-<li><p>Copied the subsampled files to your working directory</p></li>
-<li><p>Familiarized yourself with the changes to environment management and how we run our workflow</p></li>
+<li><p>Copied the subsampled files to your working directory, <code>samples/</code></p></li>
+<li><p>Familiarized yourself with the changes to environment management and how to run
+nextflow using containers</p></li>
 <li><p>Generate two channels in your <code>main.nf</code> with the size and elements specified
 above</p></li>
 </ul>
@@ -305,11 +295,11 @@ the individual outputs separately:</p>
 <pre><code>output:
 tuple val(name), path('*.zip'), emit: zip
 tuple val(name), path('*.html'), emit: html</code></pre>
-<p>This output definition will implicitly instruct nextflow that both of these
-files should exist after FASTQC has run successfully. It will capture the html
-report and zip file separately and allow you to pass these different values
-through channels separately (i.e. FASTQC.out.zip would refer
-specifically to the zip file created by the FASTQC task)</p>
+<p>This output definition will instruct nextflow that both of these files should
+exist after FASTQC has run successfully. It will capture the html report and zip
+file separately and allow you to pass these different values through channels
+separately (i.e. FASTQC.out.zip would refer specifically to the zip file created
+by the FASTQC task)</p>
 <p>Remember you can use wildcard expansions in the path output to flexibly detect
 files with certain extensions without specifying their full filename.</p>
 <ol start="6" style="list-style-type: decimal">
@@ -325,7 +315,7 @@ proper channel.</p></li>
 </h2>
 <p>As we’ve discussed, it’s often more intuitive for us to use gene names rather than
 their IDs. While there are external services that can perform this for us (biomaRt),
-it is often better to extract this information from the same GTF file associated
+it is often better to extract this information from the GTF file associated
 with the exact version of the reference genome we are using. This will ensure
 that we are as consistent as possible with our labeling.</p>
 <p>Whenever we need to perform operations using custom code, we are going to use
@@ -386,6 +376,7 @@ interest</p></li>
 <ul>
 <li>The Gencode mm10 reference genome for the primary assembly</li>
 <li>The Gencode mm10 GTF for the primary assembly</li>
+<li>The subsampled FASTQ files</li>
 </ul>
 <ol start="4" style="list-style-type: decimal">
 <li><p>Generate a nextflow channel called <code>align_ch</code> that has 8 total elements where
@@ -400,7 +391,7 @@ workflow and pass it your <code>fastqc_channel</code>.</p></li>
 where one column represents the ensembl mouse IDs and the value in the other
 column is the associated MGI symbol.</p></li>
 <li><p>Generate a module that successfully creates a STAR index, add this process to
-your workflow and pass it the necessary inputs encoded in your params.</p></li>
+your workflow and pass it the necessary inputs</p></li>
 </ol>
 </div>
 </div>
