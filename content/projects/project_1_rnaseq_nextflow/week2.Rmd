@@ -4,7 +4,7 @@
 
 [Week 2 Overview]
 
-[Week 2 Objectives]
+[Objectives]
 
 [Aligning reads to the genome]
 
@@ -12,12 +12,14 @@
 
 [Quantifying alignments to the genome]
 
+[Concatenating count outputs into a single matrix]
+
 [Week 2 Detailed Task Summary]
 
 ## Week 2 Overview {-}
 
 Now that we have performed basic quality control on the FASTQ files, we are
-going to align them to the mouse reference genome to generate alignments for
+going to map them to the mouse reference genome to generate alignments for
 each of our sequencing reads. After alignment, we will aggregate the outputs from
 FASTQC and STAR into a single report summarizing some of the important quality
 control metrics describing our sequencing reads and the alignments. We will then
@@ -26,15 +28,14 @@ quantify the alignments in our BAM file to the gene-level using VERSE.
 
 ## Objectives {-}
 
-- Run FASTQC to generate quality reports for the sequencing reads of all of the
-samples
-
 - Align your sequencing reads to the mouse reference genome using STAR
 
 - Use MultiQC to generate a single report containing the quality metrics for
 the sequencing reads and alignments
 
 - Generate gene-level counts using VERSE for each of the samples
+
+- Concatenate gene-level counts from each sample into a single counts matrix
 
 ## Aligning reads to the genome {-}
 
@@ -83,8 +84,9 @@ the same quality and depth as the more commonly used references. Make sure to
 evaluate these alignment rates in an experiment-specific context as there is no
 set threshold or cutoff that is appropriate for all cases.
 
-3. Ensure that you use the `process_high` for the `label`. 
-
+3. Ensure that you use the `process_high` for the `label` and the appropriate
+container `ghcr.io/bf528/star:latest`.
+:::
 
 ## Performing post-alignment QC {-}
 
@@ -92,7 +94,7 @@ Typically after performing alignment, it is good to obtain a few post-alignment
 quality control metrics to quickly check if there appear to be any major
 problems with the data. At this step, we will typically evaluate the quality of
 the reads themselves (PHRED scores, contamination, etc.) along with the
-alignment rate to the reference genome. 
+alignment rate to the reference genome.
 
 As we've discussed, in larger experiments, it will quickly become cumbersome or
 unfeasible to manually inspect the results for all of our samples individually.
@@ -104,8 +106,8 @@ from various bioinformatics utilities into a nicely formatted HTML report.
 Since you are working with files that have been intentionally filtered to make
 them smaller, the actual outputs from fastQC and STAR will be misleading. Do not
 draw any conclusions from these reports generated on the subsetted data; the
-results will only be meaningful at the end when you've switched to running this
-pipeline on the full dataset.
+results will only be meaningful you've switched to running this pipeline on the
+full dataset.
 
 :::{.box .task}
 
@@ -148,23 +150,25 @@ finished.
 4. Ensure that your `multiqc_report.html` is successfully created and contains
 the QC information from both FASTQC and STAR for all of your samples. You may
 open the HTML file through SCC ondemand. 
+
+5. Make sure to include the `-f` flag in your multiqc command. 
 :::
 
-## Quantifying alignments to the genome
+## Quantifying alignments to the genome {-}
 
 In RNAseq, we are interested in quantifying gene expression and comparing that
-expression across conditions. We so far have generated alignments from the reads
+expression across conditions. We have so far generated alignments from the reads
 from all of our samples to their appropriate reference genome. We will use the
 information contained within the GTF (what each region of the genome represents)
 to assign these alignments to features and count them. 
 
-For differential expression analysis, our feature of interest will typically be
-exons as we know that those are the regions of genes that largely comprise the
-sequences found in mRNA (which is what we are measuring and what was originally
-sequenced). We will generate a single count for every gene that will represent
-the sum of the union of all counts of alignments falling into every exon
-annotated to that gene. This gene-level count will be used as a proxy for that
-gene's expression in a particular sample.
+For differential expression analysis, our feature of interest will be exons as
+we know that those are the regions of genes that largely comprise the sequences
+found in mRNA (which is what we are measuring and what was originally
+sequenced). We will generate a single count for every gene representing the sum
+of the union of all counts of alignments falling into every exon annotated to
+that gene. This gene-level count will be used as a proxy for that gene's
+expression in a particular sample.
 
 We will be using VERSE, which is a read counting tool that will quantify
 alignments into counts based on a feature of interest.
@@ -176,6 +180,48 @@ alignments into counts based on a feature of interest.
 BAM files. You may leave all options at their default parameters. Be sure to
 include the `-S` flag in your final command.
 
+2. Run the VERSE module in your workflow `main.nf` and quantify the alignments
+in each of the BAM files
+
 :::
 
-## Week 2 Detailed Task Summary
+## Concatenating count outputs into a single matrix {-}
+
+After VERSE has run successfully, you will have generated a single set of counts
+for each of your samples. To perform differential expression analysis, we will
+need to combine count outputs from each sample into a single file where the rows
+are the genes and the columns are the sample counts.
+
+:::{.box .task}
+
+1. Write a python script that will concatenate all of the verse output files and
+write a single counts matrix containing all of your samples. As with any
+external script, make it executable with a proper shebang line and use argparse
+to allow the incorporation of command line arguments. I suggest you use `pandas`
+for this task and you can use the pandas container `ghcr.io/bf528/pandas:latest`.
+
+2. Generate a module that runs this script
+
+3. Create a channel in your workflow `main.nf` that consists of all of the VERSE
+outputs. Incorporate this script into your workflow and Ensure that this module
+/ script only executes after *all* of the VERSE tasks have finished.
+
+:::
+
+
+## Week 2 Detailed Task Summary {-}
+
+1. Generate a module that runs STAR to align reads to a reference genome
+  - Ensure that you output the alignments in BAM format
+  - Use all default parameters
+  - Specify the log file with extension (.Log.final.out) as a nextflow output
+  
+2. Make a module that runs MultiQC using a channel that contains all of the FASTQC
+outputs and all of the STAR output log files
+
+3. Create a module that runs VERSE on all of your output BAM files to generate
+gene-level counts for all of your samples
+ 
+4. Write a python script that uses `pandas` to concatenate all of the VERSE
+outputs into a single counts matrix. Generate an accompanying nextflow module
+that runs this python script

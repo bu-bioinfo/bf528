@@ -2,6 +2,10 @@
 
 ## Section Links {-}
 
+[Week 1 Overview]
+
+[Objectives]
+
 [Read the paper]
 
 [Create a working directory for project 1]
@@ -22,8 +26,16 @@
 
 ## Week 1 Overview {-}
 
+A basic RNAseq analysis consists of sample quality control, alignment,
+quantification and differential expression analysis. This week, we will be
+performing quality control analysis on the sequencing reads, generating a genome
+index for alignment, and making a mapping of mouse ensembl IDs to gene names.
 
 ## Objectives {-}
+
+- 
+- 
+- 
 
 
 
@@ -70,7 +82,10 @@ samples.
 
 :::{.box .task}
 
-1. Using `cp`, make all of these files available in your samples/ directory 
+1. Create a new directory in `samples/` called `subsampled_files/`
+
+2. Using `cp`, make all of these files available in your `subsampled_files/`
+directory
 
 2. In this same directory, /projectnb/bf528/materials/project-1-rnaseq/, you will
 also find a refs directory. Copy the files contained within to your `refs/`
@@ -97,8 +112,8 @@ specifying the `conda` environment to execute the task with, you will instead
 specify `container` and the image (a container built with a certain specification)
 location.
 
-For this course, these containers were all built and their specifications kept
-in this public github repository: https://github.com/BF528/pipeline_containers
+For this course, these containers were all pre-built and their specifications kept
+in this public github repository: https://github.com/BF528/pipeline_containers.
 Feel free to look into the repo for how the containers were built. We follow a
 similar pattern where we specify the exact environment we would like created in
 a YAML file and then generate the environment using micromamba installed in a
@@ -110,35 +125,17 @@ In general, the containers will be named the same pattern:
 
 You will need to incorporate one more change to make your pipeline use 
 containers. If you look in the `nextflow.config`, you'll see a profile labeled
-singularity, which encodes some options in how to run containers using
-singularity. 
+singularity, which encodes some singularity options for nextflow to use. 
+
+When running your pipeline, you will now use the `-profile singularity,local`
+option, which will have Nextflow execute tasks with the specified container image
+listed in the module.
 
 **New command for running your workflow**
 
 ```
 nextflow run main.nf -profile singularity,local
 ```
-
-One last change that we will be making to how we run nextflow is to now make
-use of the HPC environment we are working in. When you have confirmed that
-your workflow runs on the smaller subsetted data, you will re-run your workflow
-to process the full data. You will need to change the paths in your `nextflow.config`
-to point to the full files. You will also need to specify the cluster profile
-instead of local:
-
-**New command for running your workflow once you've confirmed it works end-to-end**
-
-```
-nextflow run main.nf -profile singularity,cluster
-```
-
-The `cluster` profile includes all of the required arguments to properly schedule
-and queue jobs to run on the compute nodes of the cluster. This will be important
-as our sample files are now much larger, and we will be running relatively
-resource intensive processes that will not be allowed to run on the head nodes. 
-
-Only switch to this command when you've confirmed your workflow works from
-start to finish on the subsetted data.
 
 As always, remember to activate your conda environment containing nextflow and
 nf-test before doing any work.
@@ -158,15 +155,11 @@ bash through the use of wildcard expansion (*).
 path to your fastq files and uses * to flexibly detect the sample name associated
 with both paired files. Refer to the nextflow documentation on `fromFilePairs`.
 
-You'll notice that this function creates a channel with a structure we've seen
-before. It creates a tuple containing the base name of the file and a list containing
-the R1 and R2 file associated with that sample. 
-
-2. In the `main.nf`, create two channels that use this value encoded in `params.reads`.
-One of these channels can be the direct output from the `fromFilePairs` method
-and you can name it `align_ch`. There should be 8 items that are present in
-this channel representing our 8 samples (and 16 files). It will look something
-like below:
+2. In your workflow `main.nf`, use the `Channel.fromFilePairs` function and the
+param you created in step 1 to create a channel called `align_ch`. You'll notice
+that this function creates a channel with a structure we've seen before: a tuple
+containing the base name of the file and a list containing the R1 and R2 file
+associated with that sample.
 
 ```
 align_ch
@@ -174,12 +167,13 @@ align_ch
 [sample1, [sample1_R1.fastq.gz, sample1_R2.fastq.gz]]
 ```
 
-3. For the other channel, look at the operators section in the nextflow
-documentation and create a channel that flattens the structure of the `align_ch`
-so that there are as many elements in the channel as there are actual files
-(16). Name this channel `fastqc_channel`. This channel should have the same
-structure: a tuple where the first value is the name of the sample and the
-second is the path to the associated file. This will look something like below:
+
+3. In your workflow `main.nf` create another channel using the exact logic from
+above but add an additional operation to create a channel that has as many
+elements in the channel as there are actual files (16). Name this channel
+`fastqc_channel` and it should be a list tuples where the first value is the
+name of the sample and the second is the path to the associated file. This will
+look something like below:
 
 ```
 fastqc_channel
@@ -189,14 +183,6 @@ fastqc_channel
 ```
 :::
 
-:::{.box .task}
-
-Please answer the following question in the provided Rmd:
-
-  1. What are two reasons we are creating these two channels which contain the same 
-    information?
-    
-:::
 
 ## Performing Quality Control {-}
 
@@ -204,9 +190,10 @@ At this point, you should have:
 
 - Setup a directory for this project by accepting the github classroom link
 
-- Copied the subsampled files to your working directory
+- Copied the subsampled files to your working directory, `samples/`
 
-- Familiarized yourself with the changes to environment management and how we run our workflow
+- Familiarized yourself with the changes to environment management and how to run
+nextflow using containers
 
 - Generate two channels in your `main.nf` with the size and elements specified
   above
@@ -263,11 +250,11 @@ tuple val(name), path('*.zip'), emit: zip
 tuple val(name), path('*.html'), emit: html
 ```
 
-This output definition will implicitly instruct nextflow that both of these
-files should exist after FASTQC has run successfully. It will capture the html
-report and zip file separately and allow you to pass these different values
-through channels separately (i.e. FASTQC.out.zip would refer
-specifically to the zip file created by the FASTQC task)
+This output definition will instruct nextflow that both of these files should
+exist after FASTQC has run successfully. It will capture the html report and zip
+file separately and allow you to pass these different values through channels
+separately (i.e. FASTQC.out.zip would refer specifically to the zip file created
+by the FASTQC task)
 
 Remember you can use wildcard expansions in the path output to flexibly detect
 files with certain extensions without specifying their full filename.
@@ -284,7 +271,7 @@ proper channel.
 
 As we've discussed, it's often more intuitive for us to use gene names rather than
 their IDs. While there are external services that can perform this for us (biomaRt), 
-it is often better to extract this information from the same GTF file associated
+it is often better to extract this information from the GTF file associated
 with the exact version of the reference genome we are using. This will ensure
 that we are as consistent as possible with our labeling. 
 
@@ -352,6 +339,7 @@ interest
 
   - The Gencode mm10 reference genome for the primary assembly
   - The Gencode mm10 GTF for the primary assembly
+  - The subsampled FASTQ files
   
 4. Generate a nextflow channel called `align_ch` that has 8 total elements where
 each element is a tuple containing two elements: the name of the sample, and a
@@ -369,5 +357,5 @@ where one column represents the ensembl mouse IDs and the value in the other
 column is the associated MGI symbol. 
 
 8. Generate a module that successfully creates a STAR index, add this process to
-your workflow and pass it the necessary inputs encoded in your params. 
+your workflow and pass it the necessary inputs
 
