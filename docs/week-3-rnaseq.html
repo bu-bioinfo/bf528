@@ -18,9 +18,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="After we have aligned our reads, we will now “count” the alignments falling into regions of interest in the mouse genome (exonic regions) and sum the alignments falling into all exons of a given...">
-<meta property="og:description" content="After we have aligned our reads, we will now “count” the alignments falling into regions of interest in the mouse genome (exonic regions) and sum the alignments falling into all exons of a given...">
-<meta name="twitter:description" content="After we have aligned our reads, we will now “count” the alignments falling into regions of interest in the mouse genome (exonic regions) and sum the alignments falling into all exons of a given...">
+<meta name="description" content="Section Links Week 3 Overview Objectives Switching to the full data Evaluate the QC metrics for the full data Filtering the counts matrix Performing differential expression analysis using the...">
+<meta property="og:description" content="Section Links Week 3 Overview Objectives Switching to the full data Evaluate the QC metrics for the full data Filtering the counts matrix Performing differential expression analysis using the...">
+<meta name="twitter:description" content="Section Links Week 3 Overview Objectives Switching to the full data Evaluate the QC metrics for the full data Filtering the counts matrix Performing differential expression analysis using the...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -45,6 +45,16 @@
 <li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
 <li class="book-part">Guides</li>
 <li><a class="" href="computational-environments-guide.html">Computational Environments Guide</a></li>
+<li class="book-part">Project 0</li>
+<li><a class="" href="week-1-genome-analytics.html">Week 1: Genome Analytics</a></li>
+<li><a class="" href="week-2-genome-analytics.html">Week 2: Genome Analytics</a></li>
+<li><a class="" href="week-3-genome-analytics.html">Week 3: Genome Analytics</a></li>
+<li><a class="" href="week-4-genome-analytics.html">Week 4: Genome Analytics</a></li>
+<li class="book-part">Project 1</li>
+<li><a class="" href="week-1-rnaseq.html">Week 1: RNAseq</a></li>
+<li><a class="" href="week-2-rnaseq.html">Week 2: RNAseq</a></li>
+<li><a class="active" href="week-3-rnaseq.html">Week 3: RNAseq</a></li>
+<li><a class="" href="week-4-rnaseq.html">Week 4: RNAseq</a></li>
 <li class="book-part">Lectures</li>
 <li><a class="" href="introduction.html">Introduction</a></li>
 <li><a class="" href="genomics-genes-and-genomes.html">Genomics, Genes, and Genomes</a></li>
@@ -75,24 +85,6 @@
 <li><a class="" href="single-cell-analysis-part-2.html">Single Cell Analysis Part 2</a></li>
 <li><a class="" href="single-cell-analysis-part-3.html">Single Cell Analysis Part 3</a></li>
 <li><a class="" href="spatial-transcriptomics.html">Spatial Transcriptomics</a></li>
-<li><a class="" href="week-1-genome-analytics.html">Week 1: Genome Analytics</a></li>
-<li><a class="" href="project-writeup-instructions.html">Project Writeup Instructions</a></li>
-<li><a class="" href="project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html">Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></li>
-<li><a class="" href="week-1-rnaseq.html">Week 1: RNAseq</a></li>
-<li><a class="" href="week-2-rnaseq.html">Week 2: RNAseq</a></li>
-<li><a class="active" href="week-3-rnaseq.html">Week 3: RNAseq</a></li>
-<li><a class="" href="week-4-rnaseq.html">Week 4: RNAseq</a></li>
-<li><a class="" href="week-5-rnaseq.html">Week 5: RNAseq</a></li>
-<li><a class="" href="project-2-chipseq-analysis-of-the-human-transcription-factor-runx1.html">Project 2: ChIPseq analysis of the human transcription factor Runx1</a></li>
-<li><a class="" href="week-1-chipseq.html">Week 1: ChIPseq</a></li>
-<li><a class="" href="week-2-chipseq.html">Week 2: ChIPseq</a></li>
-<li><a class="" href="week-3-chipseq.html">Week 3: ChIPseq</a></li>
-<li><a class="" href="week-4-chipseq.html">Week 4: ChIPseq</a></li>
-<li><a class="" href="week-5-chipseq.html">Week 5: ChIPseq</a></li>
-<li><a class="" href="project-3-individual-project.html">Project 3: Individual Project</a></li>
-<li><a class="" href="project-3-rnaseq-individual-project.html">Project 3: RNAseq Individual Project</a></li>
-<li><a class="" href="project-3-chipseq-individual-project.html">Project 3: ChIPseq Individual Project</a></li>
-<li><a class="" href="project-3-atacseq-individual-project.html">Project 3: ATACseq Individual Project</a></li>
 </ul>
 
         <div class="book-extra">
@@ -103,208 +95,114 @@
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-3-rnaseq" class="section level1 unnumbered">
 <h1>Week 3: RNAseq<a class="anchor" aria-label="anchor" href="#week-3-rnaseq"><i class="fas fa-link"></i></a>
 </h1>
-<p>After we have aligned our reads, we will now “count” the alignments falling into
-regions of interest in the mouse genome (exonic regions) and sum the alignments
-falling into all exons of a given gene to obtain a “gene-level” count of mRNA
-abundance for all genes in each sample. We will then concatenate all of the 8
-outputs from VERSE into a single counts matrix. We will filter this counts matrix
-and generate a new <em>filtered matrix</em> that will be used for differential expression
-analysis. Finally, we will get experience with parsing a GTF file and extracting
-mappings of gene IDs to gene symbols (this will also be used later).</p>
-<p><strong>Visualization of this week’s tasks</strong></p>
-<p>Below, please see the general directed acyclic graph of the tasks that your
-snakefile should perform when completed. Your wildcards may be slightly different
-but your workflow should have the same structure in terms of dependencies. Use
-this as a visual reference of what jobs / tasks need to be performed in order for
-the next steps to occur.</p>
-<div class="inline-figure"><img src="projects/project_1_rnaseq/week3_dag.png" width="100%" height="100%"></div>
-<p>As you can see, you will need to run VERSE for each of the 8 samples, represented
-in the diagram by the 8 boxes beginning with <code>verse</code>. After <strong>all</strong> outputs from
-VERSE have been produced, you will use a python script and snakemake rule to
-concatenate those results together as seen in the <code>concat_verse</code> rule. After
-<code>concat_verse</code> has successfully completed, you can then filter the counts matrix
-encompassed in the <code>filter_cts</code> rule. Independently, you will also develop a
-script and snakemake rule that will parse the gtf file, represented in this diagram
-as the <code>txn_mapping</code> rule. You can see that the <code>txn_mapping</code> rule does not <em>depend</em>
-on the other rules, it only needs the decompressed GTF file to be present.</p>
-<p><strong>Counting the alignments</strong></p>
-<p>Now that we have aligned each of our samples to the reference genome, we need to
-quantify these alignments. This quantification is typically done by “counting”
-the alignments falling into regions of interest. These regions of interest can
-vary depending on your goal, but most commonly for RNAseq, we are interested in
-quantifying the counts of alignments mapping in exonic regions. To obtain gene
-level counts for a single gene, the counts from all of its exonic regions are
-summed. VERSE will do this for every gene and generate a single file with two
-columns: one representing the names / ids of all of the genes in the m39 reference
-and other column will be the corresponding “gene-level” count for those genes.</p>
-<ol style="list-style-type: decimal">
-<li>Read the documentation for VERSE and create a snakemake rule that runs VERSE
-on each of your 8 bam files</li>
-</ol>
-<pre><code>- VERSE will require your BAM file and the GTF file that matches the 
-  reference used to build the index. The GTF file was downloaded and decompressed
-  last week
-  
-- Ensure the outputs of VERSE are created in your `results/` directory
-
-- Ensure you specify in VERSE that the alignments were generated from
-  paired end reads</code></pre>
-<p>VERSE will generate a counts file (*.exon.txt) for each of your 8 samples. For
-most downstream applications, we will want this data in the form of a counts
-matrix, a single file containing all of the counts from each sample.</p>
-<p><strong>Generating a counts matrix</strong></p>
-<p>We will now concatenate the VERSE output from all 8 samples into a single counts
-matrix. We are going to describe a strategy that utilizes python scripts and
-snakemake to accomplish this.</p>
-<p>We have provided you with a set of python scripts that utilize <code>argparse</code> to pass
-command line arguments directly into the script. You may find a more
-in-depth explanation of argparse <a href="https://docs.python.org/3/howto/argparse.html#argparse-tutorial">here</a>.</p>
-<p>By separating the actual python code from the snakefile, we will both make our
-snakefiles more readable and it will be easier for you to manually troubleshoot
-what your script is doing outside of snakemake. When finished, you will use
-snakemake to pass the required input and output files that we want created while
-directly calling the python script using the <code>shell</code> directive. While you are
-developing the code, you can troubleshoot it outside of snakemake by just running
-your script <code>python &lt;script_name&gt;.py -i &lt;input&gt; -o &lt;output&gt;</code> as you would any
-python script.</p>
-<ol style="list-style-type: decimal">
-<li>Copy the script, <code>concat_df.py</code> from /projectnb/bf528/materials/project_1_rnaseq/concat_df.py
-to your working directory that contains your snakefiles.</li>
-</ol>
-<p>First, work directly inside the script itself, and using the <code>pandas</code> library
-in python, develop code that will concatenate the counts column from each of the
-8 samples into a single matrix (CSV) with a single column for the gene ID. The
-column names should correspond to the names of the samples and there should be
-a single column containing the gene IDs (these IDs are the same, and in the same
-order in every VERSE output file). Below is a sample of what your CSV should
-look like:</p>
-<pre><code>gene,P0rep1subsample,P0rep2subsample,P4rep1subsample,P4rep2subsample,P7rep1subsample,P7rep2subsample,ADrep1subsample,ADrep2subsample
-ENSMUSG00000102693.2,0,0,0,0,0,0,0,0
-ENSMUSG00000064842.3,0,0,0,0,0,0,0,0
-...</code></pre>
-<p>Just ensure that your output is correct and that it is structured as a CSV. Your
-actual values for counts will likely all be 0 since you are generating these
-from the subsampled data.</p>
-<p>When you have successfully developed your code, you will call your script
-directly from snakemake.</p>
-<pre><code>rule concat_df:
-  input:
-    verse_files = 'a list of all the outputs from verse'
-  output:
-    cts_matrix = 'whatever you want to name your output file'
-  shell:
-    '''
-    python concat_df.py -i {input.verse_files} -o {output.cts_matrix}
-    '''</code></pre>
-<p>You can see that by using argparse and snakemake, we can supply the required
-input files and output files on the command line directly to our script. By
-keeping these custom scripts separated, we can keep our workflows cleaner and
-also make it easier to troubleshoot the actual code since we can run it outside
-of snakemake as we are developing it. We will use this same strategy for the
-next task.</p>
-<p><strong>Mapping gene IDs to gene symbols</strong></p>
-<p>There are several ways to map gene IDs to gene symbols (ENSMUSGXXXXX to Actb),
-including BiomaRt, which you have previously used in BF591. For this project, we
-will be extracting the mapping of gene IDs to gene symbols directly from the GTF
-used to build our genome index. Take a look at the first few lines of the GTF
-that you downloaded earlier.</p>
-<ol style="list-style-type: decimal">
-<li>Copy the script <code>parse_gtf.py</code> from /projectnb/bf528/materials/project_1_rnaseq/parse_gtf.py
-to your working directory that contains your snakefiles.</li>
-</ol>
-<p>Develop python code to parse through the lines of a GTF and extract a mapping of
-gene IDs to gene symbols. Keep in mind the following hints:</p>
-<ol style="list-style-type: decimal">
-<li><p>You will need to parse through the file line by line, so consider making use
-of the <code><a href="https://rdrr.io/r/base/connections.html">open()</a></code> function and the <code>csv</code> module in python.</p></li>
-<li><p>On lines where the third column (feature_type) is “gene”, extract out the
-values from column 9 following the strings “gene_id” and “gene_name”. The
-gene_id will resemble the pattern ENSMUSGXXXXXXXXXXX.X and the gene_name will
-be a mix of letters and numbers representing genes in a human recognizable
-format (Htt, p53, Actb, etc.)</p></li>
-<li><p>Keep in mind that the entire GTF file is <strong>not</strong> a fully standard CSV. Column
-9 contains a set of key:value pairs within the same column. See <a href="https://www.gencodegenes.org/pages/data_format.html">here</a> for the exact specifications.</p></li>
-<li><p>Save the paired “gene_id” and “gene_name” values from the same line and write
-them out to a new delimited file.</p></li>
-<li><p>To do the actual parsing, you can consider using regular expressions if you
-are comfortable with them or you can try using a combination of <code><a href="https://rdrr.io/r/base/split.html">split()</a></code> and
-other string manipulations in python such as slices.</p></li>
-</ol>
-<p>You can see below an example of what the first few lines of this output should
-look like:</p>
-<pre><code>ENSMUSG00000102693.2,4933401J01Rik
-ENSMUSG00000064842.3,Gm26206
-ENSMUSG00000051951.6,Xkr4
-...</code></pre>
-<p>For the output file, you may choose any commonly used delimiter (commas, tabs, etc.)
-and you can decide if you wish to have column names. The most important information
-is the mapping of gene IDs to their associated gene names, which you extracted
-from each feature in the GTF file.</p>
-<p>Once you have successfully developed your code, you will structure your snakemake
-rule in the same style as you previously did for the rule and script that
-concatenated the verse outputs together. The only change will be in the input and
-output files that you need to specify for each different rule.</p>
-<p><strong>Filtering our counts matrix</strong></p>
-<p>Oftentimes, we will pre-filter our counts matrix to remove genes (rows) that have
-very few reads. The strategy used for pre-filtering counts will depend entirely on
-each individual dataset, and you will need to think about which thresholds /
-filters are appropriate.</p>
-<p>You may have noticed that this dataset only has two replicates per timepoint
-(i.e. ADrep1 and ADrep2). As we discussed in class, there are multiple potential
-meanings to a count of zero in the context of sequencing experiments. For example,
-it is possible we did not sequence “deep” enough to detect certain lowly expressed
-genes. However, it’s also possible that genes with zero counts are truly not
-expressed in the original samples. In order to mitigate some of this
-uncertainty, we are going to apply a filter to our counts to simply remove any
-genes that are not expressed in all of our samples.</p>
-<p><strong>Please note</strong> that this is a subjective choice and there is not a single
-correct way of filtering this data. This specific filter was chosen to avoid
-attempting to perform statistical tests between conditions where we only have
-one measurement (this filter will only retain genes that are expressed in every
-sample, ensuring that we have non-zero measurements for all of our samples.</p>
-<p>If you remember, we have been working with datafiles that were intentionally
-filtered to make them much smaller and able to be processed on the head node.
-For the following steps, you may use this file to test if your code is working
-as intended, /projectnb/bf528/materials/project_1_rnaseq/test_verse_concat.csv.
-This CSV contains 2000 rows and after filtering to only keep genes (rows) where
-all 8 samples have a non-zero value, it should contain 564 rows.</p>
-<ol style="list-style-type: decimal">
-<li><p>Develop your own python script and name it <code>filter_cts_mat.py</code></p></li>
-<li><p>This script should take an unfiltered counts matrix as input, filter that
-matrix according to the conditions above, and output the filtered matrix to
-a new file.</p></li>
-</ol>
-<p>Keep in mind the following suggestions:</p>
-<ol style="list-style-type: decimal">
-<li><p>You can copy the argparse arguments from the <code>parse_gtf.py</code> script and simply
-change the code if you are still getting used to <code>argparse</code>. You will need
-to change the input and outputs to the unfiltered counts matrix and the
-name of the new filtered counts matrix you will be creating, respectively.</p></li>
-<li><p>You may use the file listed above to <strong>test</strong> that your code is working as
-expected (i.e. only retaining genes (rows) where every sample has a non-zero
-count). <strong>N.B. Use this <code>test_verse_concat.csv</code> for testing purposes only!
-After you have confirmed your code works, remove this file and replace it
-with the file you generated previously in your snakefile</strong></p></li>
-</ol>
-<p>At the end of week 3, you should have accomplished the following:</p>
+<div id="section-links-6" class="section level2 unnumbered">
+<h2>Section Links<a class="anchor" aria-label="anchor" href="#section-links-6"><i class="fas fa-link"></i></a>
+</h2>
+<p><a href="week-3-genome-analytics.html#week-3-overview">Week 3 Overview</a></p>
+<p><a href="week-1-genome-analytics.html#objectives">Objectives</a></p>
+<p><a href="week-3-rnaseq.html#switching-to-the-full-data">Switching to the full data</a></p>
+<p><a href="week-3-rnaseq.html#evaluate-the-qc-metrics-for-the-full-data">Evaluate the QC metrics for the full data</a></p>
+<p><a href="week-3-rnaseq.html#filtering-the-counts-matrix">Filtering the counts matrix</a></p>
+<p><a href="week-3-rnaseq.html#performing-differential-expression-analysis-using-the-filtered-counts">Performing differential expression analysis using the filtered counts</a></p>
+<p>[Basic RNAseq quality control]</p>
+</div>
+<div id="week-3-overview-1" class="section level2 unnumbered">
+<h2>Week 3 Overview<a class="anchor" aria-label="anchor" href="#week-3-overview-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>By now, your pipeline should execute all of the necessary steps to perform
+sample quality control, alignment, and quantification. This week, we will focus
+on re-running the pipeline with the full data files and beginning a basic
+differential expression analysis.</p>
+</div>
+<div id="objectives-6" class="section level2 unnumbered">
+<h2>Objectives<a class="anchor" aria-label="anchor" href="#objectives-6"><i class="fas fa-link"></i></a>
+</h2>
 <ul>
-<li>Generated a snakemake rule that runs VERSE on each of the BAM files</li>
-<li>Generated a snakemake rule that calls the provided script, concat_df.py, and
-concatenates the 8 output files from VERSE into a single counts matrix.</li>
-<li>Generated a snakemake rule that calls the provided script, parse_gtf.py, that
-produces a delimited .txt file containing the correct mapping of gene IDs to
-their corresponding gene symbol from the GTF annotation file</li>
-<li>Generated a snakemake rule and a python script named ’filter_cts_mat.py` that
-filter the counts matrix to only retain genes (rows) where every sample has a
-non-zero count</li>
+<li><p>Re-run your working pipeline on the full data files</p></li>
+<li><p>Evaluate the QC metrics for the original samples</p></li>
+<li><p>Choose a filtering strategy for your raw counts matrix</p></li>
+<li><p>Perform basic differential expression on your data using DESeq2</p></li>
+<li><p>Generate a sample-to-sample distance plot and PCA plot for your experiment</p></li>
 </ul>
+</div>
+<div id="switching-to-the-full-data" class="section level2 unnumbered">
+<h2>Switching to the full data<a class="anchor" aria-label="anchor" href="#switching-to-the-full-data"><i class="fas fa-link"></i></a>
+</h2>
+<p>Once you’ve confirmed that your pipeline works end-to-end on the subsampled files,
+we are going to properly apply our workflow to the original samples. This will
+require only a few alterations in order to do.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li><p>Create a new directory in <code>samples/</code> called <code>full_files/</code>. Copy the original
+files from <code>/projectnb/bf528/materials/project_1_rnaseq/full_files/</code> to your
+newly created directory.</p></li>
+<li><p>Edit your <code>nextflow.config</code> and change the path found in your <code>params.reads</code>
+to reflect the location of your full files.</p></li>
+</ol>
+</div>
+<p>Most of our bioinformatics experiments will involve relatively large files and
+expensive operations. Even relatively small RNAseq experiments will still involve
+aligning tens of millions of reads to genomes that are many megabases long. Now
+that we are working with these larger files, we should not and in some cases, will not, be
+able to run these tasks locally on the same node that our VSCode session is running.</p>
+<p>We will switch now to running our jobs on the cluster utilizing the <code>qsub</code> utility
+for queueing jobs to run on compute nodes. This will enable us to both request
+nodes that have faster processors / more RAM and to easily parallelize our tasks
+that can run simultaneously.</p>
+<p>To run your workflow on the cluster, switch to using the <code>cluster</code> profile option
+in place of the <code>local</code> flag. Your new nextflow command should now be:</p>
+<pre><code>nextflow run main.nf -profile singularity,cluster</code></pre>
+<p>You may examine the progress and status of your jobs by using the <code>qstat</code> utility
+as discussed in lecture and lab.</p>
+</div>
+<div id="evaluate-the-qc-metrics-for-the-full-data" class="section level2 unnumbered">
+<h2>Evaluate the QC metrics for the full data<a class="anchor" aria-label="anchor" href="#evaluate-the-qc-metrics-for-the-full-data"><i class="fas fa-link"></i></a>
+</h2>
+<p>After your pipeline has finished, inspect the MultiQC report generated from
+the full samples.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li>In your provided notebook, comment on the general quality of the sequencing
+reads. Write a paragraph in the style of a paper reporting what you find and
+any metrics that might be concerning.</li>
+</ol>
+</div>
+</div>
+<div id="filtering-the-counts-matrix" class="section level2 unnumbered">
+<h2>Filtering the counts matrix<a class="anchor" aria-label="anchor" href="#filtering-the-counts-matrix"><i class="fas fa-link"></i></a>
+</h2>
+<p>We will typically filter our counts matrices to remove genes that we believe
+will be uninformative for the DE analysis. It is important to remember that
+filtering is subjective and meant to reduce our statistical testing burden.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li>Choose a filtering strategy and apply it to your counts matrix. In the provided
+notebook, report the strategy you used and create a plot or a table that demonstrates
+the effects of your filtering on the counts.</li>
+</ol>
+</div>
+</div>
+<div id="performing-differential-expression-analysis-using-the-filtered-counts" class="section level2 unnumbered">
+<h2>Performing differential expression analysis using the filtered counts<a class="anchor" aria-label="anchor" href="#performing-differential-expression-analysis-using-the-filtered-counts"><i class="fas fa-link"></i></a>
+</h2>
+
+</div>
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="week-2-rnaseq.html">Week 2: RNAseq</a></div>
 <div class="next"><a href="week-4-rnaseq.html">Week 4: RNAseq</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav"><li><a class="nav-link" href="#week-3-rnaseq">Week 3: RNAseq</a></li></ul>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#week-3-rnaseq">Week 3: RNAseq</a></li>
+<li><a class="nav-link" href="#section-links-6">Section Links</a></li>
+<li><a class="nav-link" href="#week-3-overview-1">Week 3 Overview</a></li>
+<li><a class="nav-link" href="#objectives-6">Objectives</a></li>
+<li><a class="nav-link" href="#switching-to-the-full-data">Switching to the full data</a></li>
+<li><a class="nav-link" href="#evaluate-the-qc-metrics-for-the-full-data">Evaluate the QC metrics for the full data</a></li>
+<li><a class="nav-link" href="#filtering-the-counts-matrix">Filtering the counts matrix</a></li>
+<li><a class="nav-link" href="#performing-differential-expression-analysis-using-the-filtered-counts">Performing differential expression analysis using the filtered counts</a></li>
+</ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">

@@ -18,9 +18,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="Now that we have performed basic quality control on the FASTQ files, we are going to align them to the mouse reference genome to generate alignments for each of our sequencing reads. We will then...">
-<meta property="og:description" content="Now that we have performed basic quality control on the FASTQ files, we are going to align them to the mouse reference genome to generate alignments for each of our sequencing reads. We will then...">
-<meta name="twitter:description" content="Now that we have performed basic quality control on the FASTQ files, we are going to align them to the mouse reference genome to generate alignments for each of our sequencing reads. We will then...">
+<meta name="description" content="Section Links Week 2 Overview Objectives Aligning reads to the genome Performing post-alignment QC Quantifying alignments to the genome Concatenating count outputs into a single matrix Week 2...">
+<meta property="og:description" content="Section Links Week 2 Overview Objectives Aligning reads to the genome Performing post-alignment QC Quantifying alignments to the genome Concatenating count outputs into a single matrix Week 2...">
+<meta name="twitter:description" content="Section Links Week 2 Overview Objectives Aligning reads to the genome Performing post-alignment QC Quantifying alignments to the genome Concatenating count outputs into a single matrix Week 2...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -45,6 +45,16 @@
 <li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
 <li class="book-part">Guides</li>
 <li><a class="" href="computational-environments-guide.html">Computational Environments Guide</a></li>
+<li class="book-part">Project 0</li>
+<li><a class="" href="week-1-genome-analytics.html">Week 1: Genome Analytics</a></li>
+<li><a class="" href="week-2-genome-analytics.html">Week 2: Genome Analytics</a></li>
+<li><a class="" href="week-3-genome-analytics.html">Week 3: Genome Analytics</a></li>
+<li><a class="" href="week-4-genome-analytics.html">Week 4: Genome Analytics</a></li>
+<li class="book-part">Project 1</li>
+<li><a class="" href="week-1-rnaseq.html">Week 1: RNAseq</a></li>
+<li><a class="active" href="week-2-rnaseq.html">Week 2: RNAseq</a></li>
+<li><a class="" href="week-3-rnaseq.html">Week 3: RNAseq</a></li>
+<li><a class="" href="week-4-rnaseq.html">Week 4: RNAseq</a></li>
 <li class="book-part">Lectures</li>
 <li><a class="" href="introduction.html">Introduction</a></li>
 <li><a class="" href="genomics-genes-and-genomes.html">Genomics, Genes, and Genomes</a></li>
@@ -75,24 +85,6 @@
 <li><a class="" href="single-cell-analysis-part-2.html">Single Cell Analysis Part 2</a></li>
 <li><a class="" href="single-cell-analysis-part-3.html">Single Cell Analysis Part 3</a></li>
 <li><a class="" href="spatial-transcriptomics.html">Spatial Transcriptomics</a></li>
-<li><a class="" href="week-1-genome-analytics.html">Week 1: Genome Analytics</a></li>
-<li><a class="" href="project-writeup-instructions.html">Project Writeup Instructions</a></li>
-<li><a class="" href="project-1-transcriptional-profile-of-mammalian-cardiac-regeneration-with-mrna-seq.html">Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq</a></li>
-<li><a class="" href="week-1-rnaseq.html">Week 1: RNAseq</a></li>
-<li><a class="active" href="week-2-rnaseq.html">Week 2: RNAseq</a></li>
-<li><a class="" href="week-3-rnaseq.html">Week 3: RNAseq</a></li>
-<li><a class="" href="week-4-rnaseq.html">Week 4: RNAseq</a></li>
-<li><a class="" href="week-5-rnaseq.html">Week 5: RNAseq</a></li>
-<li><a class="" href="project-2-chipseq-analysis-of-the-human-transcription-factor-runx1.html">Project 2: ChIPseq analysis of the human transcription factor Runx1</a></li>
-<li><a class="" href="week-1-chipseq.html">Week 1: ChIPseq</a></li>
-<li><a class="" href="week-2-chipseq.html">Week 2: ChIPseq</a></li>
-<li><a class="" href="week-3-chipseq.html">Week 3: ChIPseq</a></li>
-<li><a class="" href="week-4-chipseq.html">Week 4: ChIPseq</a></li>
-<li><a class="" href="week-5-chipseq.html">Week 5: ChIPseq</a></li>
-<li><a class="" href="project-3-individual-project.html">Project 3: Individual Project</a></li>
-<li><a class="" href="project-3-rnaseq-individual-project.html">Project 3: RNAseq Individual Project</a></li>
-<li><a class="" href="project-3-chipseq-individual-project.html">Project 3: ChIPseq Individual Project</a></li>
-<li><a class="" href="project-3-atacseq-individual-project.html">Project 3: ATACseq Individual Project</a></li>
 </ul>
 
         <div class="book-extra">
@@ -103,110 +95,231 @@
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-2-rnaseq" class="section level1 unnumbered">
 <h1>Week 2: RNAseq<a class="anchor" aria-label="anchor" href="#week-2-rnaseq"><i class="fas fa-link"></i></a>
 </h1>
+<div id="section-links-5" class="section level2 unnumbered">
+<h2>Section Links<a class="anchor" aria-label="anchor" href="#section-links-5"><i class="fas fa-link"></i></a>
+</h2>
+<p><a href="week-2-genome-analytics.html#week-2-overview">Week 2 Overview</a></p>
+<p><a href="week-1-genome-analytics.html#objectives">Objectives</a></p>
+<p><a href="week-2-rnaseq.html#aligning-reads-to-the-genome">Aligning reads to the genome</a></p>
+<p><a href="week-2-rnaseq.html#performing-post-alignment-qc">Performing post-alignment QC</a></p>
+<p><a href="week-2-rnaseq.html#quantifying-alignments-to-the-genome">Quantifying alignments to the genome</a></p>
+<p><a href="week-2-rnaseq.html#concatenating-count-outputs-into-a-single-matrix">Concatenating count outputs into a single matrix</a></p>
+<p><a href="week-2-rnaseq.html#week-2-detailed-task-summary">Week 2 Detailed Task Summary</a></p>
+</div>
+<div id="week-2-overview-1" class="section level2 unnumbered">
+<h2>Week 2 Overview<a class="anchor" aria-label="anchor" href="#week-2-overview-1"><i class="fas fa-link"></i></a>
+</h2>
 <p>Now that we have performed basic quality control on the FASTQ files, we are
-going to align them to the mouse reference genome to generate alignments for
-each of our sequencing reads. We will then perform basic quality control on
-the alignments using samtools.</p>
-<p><strong>Downloading files from public repositories</strong></p>
-<p>As we have discussed in lecture, there are many major scientific organizations
-that create, maintain and/or host innumerable bioinformatics resources. GENCODE,
-is one such organization, whose primary mission is to provide up-to-date and
-curated reference genomes and annotations for humans and mice. In the course of
-your work as a bioinformatician, you should and will have to make good use of
-the plethora of public resources available to you.</p>
-<p>Navigate to the GENCODE website and select the page for Mouse. Look underneath
-the section entitled “Fasta files” and locate the file with content “Genome
-sequence, primary assembly (GRCm39)”. This is the most up to date mouse
-reference genome available.</p>
-<p>Look under the section entitled “GTF / GFF3 files” and locate the file with the
-description, “It contains the comprehensive gene annotation on the primary
-assembly (chromosomes and scaffolds) sequence regions”. This file is the
-matching annotation file for the available mouse reference genome.</p>
-<ol style="list-style-type: decimal">
-<li><p>Now that you have located both of these files, generate two snakemake rule
-that download these files - Remember that snakemake rules do not
-always need an input. Make sure these files are downloaded to the <code>results/</code>
-directory. We have provided you a template for what you will need.</p></li>
-<li><p>Please construct a snakemake rule that decompresses the GTF file and
-keeps the original compressed file.</p></li>
-</ol>
-<p>Some bioinformatics utilities can handle gzipped files, others cannot. For our
-workflow, we will need the GTF file to be uncompressed.</p>
-<p><strong>Aligning reads to the genome</strong></p>
-<p>Before aligning reads to a reference genome, most tools will need to generate a
-genome index, a set of files which enable fast and efficient searching through a
-large sequence. This step is computationally intensive and cannot be run on the
-head node of the SCC. For this first project, we have pre-built an appropriate
-STAR index for a portion of the m39 reference.</p>
-<ol style="list-style-type: decimal">
-<li><p>Copy the entire directory located at:
-/projectnb/bf528/materials/project_1_rnaseq/m39_subset_star/ to your samples/
-directory</p></li>
-<li><p>Create a snakemake rule that aligns each of your 8 samples (16 files)
-against the provided m39 reference genome with the following requirements in
-mind:</p></li>
-</ol>
-<pre><code>- Look through the most current manual and documentation for STAR and set the 
-option to output a BAM Unsorted file
-- Leave every other argument as default
-- Hint: Make sure to carefully read the section on naming output files in STAR.
-- Create the BAM files in the `results/` directory</code></pre>
-<p><strong>Performing post-alignment QC</strong></p>
-<p>Typically after performing alignment, it is good to perform post-alignment
-quality control to quickly check if there appear to be any major problems with
-the data. We are going to primarily focus on the overall mapping rate statistic,
-which is simply the percentage of reads that properly map to our genome. For a
-well-annotated and studied organism like mouse, we typically expect very high
-mapping rates (&gt;80%) for standard RNAseq experiments in the absence of any
-errors in sample processing, library preparation or alignment issues.</p>
-<p>The samtools suite contains a set of highly important and incredibly useful
-utilities for parsing and manipulating SAM/BAM files. Take a look at the
-samtools manual to get a sense for its capabilities.</p>
-<ol style="list-style-type: decimal">
-<li>Create a snakemake rule that runs the samtools flagstat utility on each of
-your BAM files. By default, this utility prints results to stdout. Redirect and
-save the output to a .txt file instead. Ensure you are creating all outputs in
-the <code>results/</code> directory</li>
-</ol>
-<p>Since you are working with files that have been intentionally filtered to make
-them smaller, the actual outputs from fastQC, flagstats, and STAR will be
-misleading. Do not draw any conclusions from these reports generated on the
-subsetted data.</p>
-<p>At the end of week 2, you should make sure to have accomplished the following
-items:</p>
+going to map them to the mouse reference genome to generate alignments for
+each of our sequencing reads. After alignment, we will aggregate the outputs from
+FASTQC and STAR into a single report summarizing some of the important quality
+control metrics describing our sequencing reads and the alignments. We will then
+quantify the alignments in our BAM file to the gene-level using VERSE.</p>
+</div>
+<div id="objectives-5" class="section level2 unnumbered">
+<h2>Objectives<a class="anchor" aria-label="anchor" href="#objectives-5"><i class="fas fa-link"></i></a>
+</h2>
 <ul>
-<li>Generated a snakemake rule (or two) that download the primary assembly genome
-FASTA for m33 and its matching GTF file</li>
-<li>Generated a snakemake rule that decompresses the GTF file and maintains the
-original compressed file</li>
-<li>Generated a snakemake rule that runs STAR to generate 8 Unsorted BAM files for
-each of the samples in our dataset</li>
-<li>Generated a snakemake rule that runs samtools flagstat on each of the
-BAM files and creates a .txt file for each output</li>
-<li>Generated a snakemake rule that runs MultiQC on your project directory</li>
-<li>Write the methods and results section for this week’s tasks in the provided
-week2.Rmd</li>
-<li>Answer any conceptual questions also found in the week2.Rmd</li>
+<li><p>Align your sequencing reads to the mouse reference genome using STAR</p></li>
+<li><p>Use MultiQC to generate a single report containing the quality metrics for
+the sequencing reads and alignments</p></li>
+<li><p>Generate gene-level counts using VERSE for each of the samples</p></li>
+<li><p>Concatenate gene-level counts from each sample into a single counts matrix</p></li>
 </ul>
-<p><strong>CHALLENGE</strong> (only do this if you did last weeks challenge)</p>
-<p>As with last week’s challenge, please do not attempt this unless you are already
-familiar with qsub, and how to request appropriate computational resources on
-the SCC. Generating a genome index requires both a large amount of time and RAM
-and should not be done on the head node under any circumstances.</p>
+</div>
+<div id="aligning-reads-to-the-genome" class="section level2 unnumbered">
+<h2>Aligning reads to the genome<a class="anchor" aria-label="anchor" href="#aligning-reads-to-the-genome"><i class="fas fa-link"></i></a>
+</h2>
+<p>Last week you generated a STAR index to enable alignment of reads to the mouse
+reference genome. This week, you will use this index to align the sequencing
+reads to the genome.</p>
+<p>Remember that paired end reads are almost always used in conjunction with each
+other (R1 and R2) and that they collectively represent the reads from a single
+sample. When we align both of these paired end reads to the genome, we will
+generate a single set of all valid alignments for the sample.</p>
+<p>By default, many alignment programs will output these alignments in SAM format.
+As discussed in lecture, the BAM format is a compressed version of SAM files that
+contains the same information. Oftentimes, we will simply choose to generate BAM
+files in place of SAM files in order to preserve disk space.</p>
+<div class="box task">
 <ol style="list-style-type: decimal">
-<li><p>Using the primary assembly FASTA of the m39 genome and its matching GTF file
-that you downloaded,generate your own STAR index using snakemake using default
-parameters.</p></li>
-<li><p>Use your generated STAR index to align your samples to the full m39 genome.
-You will have to use qsub for this.</p></li>
+<li>Look at the documentation for STAR and focus on section 3 (pg. 7) for how to
+use STAR to run a basic mapping job. Construct a working nextflow module that
+performs basic alignment using STAR.</li>
 </ol>
+<p>Your STAR command should include only the following options and all others may be left
+at their default value:</p>
+<p><code>--runThreadN</code>, <code>--genomeDir</code>, <code>--readFilesIn</code>, <code>--readFilesCommand</code>,
+<code>--outFileNamePrefix</code>, <code>--outSAMtype</code></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Remember that by default, nextflow stores all of the outputs for a specific
+task in the staged directory in which it ran. Often, we will want to inspect
+the output files or log files from various processes.</li>
+</ol>
+<p>Ensure that your STAR module has two separate named outputs using <code>emit</code>. The two
+outputs will be the BAM file and another for the log file generated during
+alignment named with the extension <code>.Log.final.out</code>.</p>
+<p>This log file will allow us to collect certain statistics about the alignment
+rates that are useful for quality control purposes. As a general rule of thumb,
+if there were no obvious issues with the sequencing preparation or errors in the
+alignment, we expect a substantial proportion of our reads to align to the
+reference genome. For well-annotated and studied genomes like human or mouse, we
+usually see alignment rates &gt;70-80% for successful NGS experiments. Lower
+alignment rates are often expected for genomes that have not been sequenced to
+the same quality and depth as the more commonly used references. Make sure to
+evaluate these alignment rates in an experiment-specific context as there is no
+set threshold or cutoff that is appropriate for all cases.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Ensure that you use the <code>process_high</code> for the <code>label</code> and the appropriate
+container <code>ghcr.io/bf528/star:latest</code>.</li>
+</ol>
+</div>
+</div>
+<div id="performing-post-alignment-qc" class="section level2 unnumbered">
+<h2>Performing post-alignment QC<a class="anchor" aria-label="anchor" href="#performing-post-alignment-qc"><i class="fas fa-link"></i></a>
+</h2>
+<p>Typically after performing alignment, it is good to obtain a few post-alignment
+quality control metrics to quickly check if there appear to be any major
+problems with the data. At this step, we will typically evaluate the quality of
+the reads themselves (PHRED scores, contamination, etc.) along with the
+alignment rate to the reference genome.</p>
+<p>As we’ve discussed, in larger experiments, it will quickly become cumbersome or
+unfeasible to manually inspect the results for all of our samples individually.
+Additionally, if we only look at one sample at a time, we may miss larger trends
+or biases across all of our samples. To solve this issue, we will be making use
+of MultiQC, which is a tool that simply aggregates the relevant logs and outputs
+from various bioinformatics utilities into a nicely formatted HTML report.</p>
+<p>Since you are working with files that have been intentionally filtered to make
+them smaller, the actual outputs from fastQC and STAR will be misleading. Do not
+draw any conclusions from these reports generated on the subsetted data; the
+results will only be meaningful you’ve switched to running this pipeline on the
+full dataset.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li>Make a new module that will run MultiQC. You can specify the label as
+<code>process_low</code> and set <code>publishDir</code> to your <code>results/</code> directory. We will take
+advantage of the staging directory strategy that nextflow uses to run MultiQC.</li>
+</ol>
+<p>By default, MultiQC will simply scan a directory and automatically detect any
+of the common output files and logs created by the bioinformatics tools it
+supports. For your <code>input</code>, you can simply specify <code>path('*')</code> and it creates
+an HTML file as an <code>output</code>. The actual command to run MultiQC in your <code>shell</code>
+directive will be simply <code>multiqc .</code></p>
+<ol start="2" style="list-style-type: decimal">
+<li>The tricky part with running MultiQC and nextflow is that you will need to
+gather all of the output files from FASTQC and STAR and ensure that multiqc only
+runs after all of the samples have been processed by both of these tools.</li>
+</ol>
+<p>Use a combination of <code>map()</code>, <code>collect()</code>, <code>mix()</code>, <code>flatten()</code> to create a
+single channel that contains a list with all of the output files from FASTQC and
+STAR logs for every sample and call it <code>multiqc_ch</code>. Remember that you may access
+the outputs of a previous process by using the <code>.out()</code> notation (i.e. ALIGN.out
+or FASTQC.out.zip).</p>
+<p>See below for an example of what the channel should look like:</p>
+<pre><code>multiqc_channel
+
+[sample1_R1_fastqc.zip, sample1_R2_fastqc.zip, sample1.Log.final.out,
+sample2_R1_fastqc.zip, sample2_R2_fastqc.zip, sample2.Log.final.out, ...]
+</code></pre>
+</div>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Add the MultiQC module to your workflow <code>main.nf</code> and run MultiQC. MultiQC
+should run a single time and only after every alignment and fastqc process has
+finished.</p></li>
+<li><p>Ensure that your <code>multiqc_report.html</code> is successfully created and contains
+the QC information from both FASTQC and STAR for all of your samples. You may
+open the HTML file through SCC ondemand.</p></li>
+<li><p>Make sure to include the <code>-f</code> flag in your multiqc command.
+:::</p></li>
+</ol>
+</div>
+<div id="quantifying-alignments-to-the-genome" class="section level2 unnumbered">
+<h2>Quantifying alignments to the genome<a class="anchor" aria-label="anchor" href="#quantifying-alignments-to-the-genome"><i class="fas fa-link"></i></a>
+</h2>
+<p>In RNAseq, we are interested in quantifying gene expression and comparing that
+expression across conditions. We have so far generated alignments from the reads
+from all of our samples to their appropriate reference genome. We will use the
+information contained within the GTF (what each region of the genome represents)
+to assign these alignments to features and count them.</p>
+<p>For differential expression analysis, our feature of interest will be exons as
+we know that those are the regions of genes that largely comprise the sequences
+found in mRNA (which is what we are measuring and what was originally
+sequenced). We will generate a single count for every gene representing the sum
+of the union of all counts of alignments falling into every exon annotated to
+that gene. This gene-level count will be used as a proxy for that gene’s
+expression in a particular sample.</p>
+<p>We will be using VERSE, which is a read counting tool that will quantify
+alignments into counts based on a feature of interest.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li><p>Generate a module that runs
+<a href="https://kim.bio.upenn.edu/software/verse_manual.html">VERSE</a> on each of your
+BAM files. You may leave all options at their default parameters. Be sure to
+include the <code>-S</code> flag in your final command.</p></li>
+<li><p>Run the VERSE module in your workflow <code>main.nf</code> and quantify the alignments
+in each of the BAM files</p></li>
+</ol>
+</div>
+</div>
+<div id="concatenating-count-outputs-into-a-single-matrix" class="section level2 unnumbered">
+<h2>Concatenating count outputs into a single matrix<a class="anchor" aria-label="anchor" href="#concatenating-count-outputs-into-a-single-matrix"><i class="fas fa-link"></i></a>
+</h2>
+<p>After VERSE has run successfully, you will have generated a single set of counts
+for each of your samples. To perform differential expression analysis, we will
+need to combine count outputs from each sample into a single file where the rows
+are the genes and the columns are the sample counts.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li><p>Write a python script that will concatenate all of the verse output files and
+write a single counts matrix containing all of your samples. As with any
+external script, make it executable with a proper shebang line and use argparse
+to allow the incorporation of command line arguments. I suggest you use <code>pandas</code>
+for this task and you can use the pandas container <code>ghcr.io/bf528/pandas:latest</code>.</p></li>
+<li><p>Generate a module that runs this script</p></li>
+<li><p>Create a channel in your workflow <code>main.nf</code> that consists of all of the VERSE
+outputs. Incorporate this script into your workflow and Ensure that this module
+/ script only executes after <em>all</em> of the VERSE tasks have finished.</p></li>
+</ol>
+</div>
+</div>
+<div id="week-2-detailed-task-summary" class="section level2 unnumbered">
+<h2>Week 2 Detailed Task Summary<a class="anchor" aria-label="anchor" href="#week-2-detailed-task-summary"><i class="fas fa-link"></i></a>
+</h2>
+<ol style="list-style-type: decimal">
+<li>Generate a module that runs STAR to align reads to a reference genome</li>
+</ol>
+<ul>
+<li>Ensure that you output the alignments in BAM format</li>
+<li>Use all default parameters</li>
+<li>Specify the log file with extension (.Log.final.out) as a nextflow output</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Make a module that runs MultiQC using a channel that contains all of the FASTQC
+outputs and all of the STAR output log files</p></li>
+<li><p>Create a module that runs VERSE on all of your output BAM files to generate
+gene-level counts for all of your samples</p></li>
+<li><p>Write a python script that uses <code>pandas</code> to concatenate all of the VERSE
+outputs into a single counts matrix. Generate an accompanying nextflow module
+that runs this python script</p></li>
+</ol>
+</div>
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="week-1-rnaseq.html">Week 1: RNAseq</a></div>
 <div class="next"><a href="week-3-rnaseq.html">Week 3: RNAseq</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav"><li><a class="nav-link" href="#week-2-rnaseq">Week 2: RNAseq</a></li></ul>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#week-2-rnaseq">Week 2: RNAseq</a></li>
+<li><a class="nav-link" href="#section-links-5">Section Links</a></li>
+<li><a class="nav-link" href="#week-2-overview-1">Week 2 Overview</a></li>
+<li><a class="nav-link" href="#objectives-5">Objectives</a></li>
+<li><a class="nav-link" href="#aligning-reads-to-the-genome">Aligning reads to the genome</a></li>
+<li><a class="nav-link" href="#performing-post-alignment-qc">Performing post-alignment QC</a></li>
+<li><a class="nav-link" href="#quantifying-alignments-to-the-genome">Quantifying alignments to the genome</a></li>
+<li><a class="nav-link" href="#concatenating-count-outputs-into-a-single-matrix">Concatenating count outputs into a single matrix</a></li>
+<li><a class="nav-link" href="#week-2-detailed-task-summary">Week 2 Detailed Task Summary</a></li>
+</ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
