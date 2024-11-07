@@ -129,14 +129,14 @@ As instructor, I pledge to
 3. Work to accommodate/prevent language related challenges (for instance I will
    do my best to avoid the use of idioms and slang)
 
-# Projects Overview
+## Projects Overview {-}
 
 - Project 0: Genome Analytics
 - Project 1: RNAseq
 - Project 2: ChIPseq
 - Project 3: scRNAseq
 
-## Project Structure
+## Project Structure {-}
 
 Each project has been split into 4 weekly parts and by the end of each, you will
 have developed a complete pipeline that will process the data from end-to-end
@@ -154,7 +154,7 @@ asked to make some general conclusions and hypotheses from your results. In the
 how well you were able to reproduce the reported results and be asked to
 speculate on any observable differences.
 
-## Project Grading
+## Project Grading {-}
 
 Project 0 will *not* be graded and is meant to serve as a gentle introduction to
 Nextflow, and the other technologies we will be utilizing throughout the semester.

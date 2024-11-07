@@ -305,10 +305,13 @@ by the FASTQC task)</p>
 <p>Remember you can use wildcard expansions in the path output to flexibly detect
 files with certain extensions without specifying their full filename.</p>
 <ol start="5" style="list-style-type: decimal">
-<li><p>The shell command should be the successful fastqc command you ran earlier.
-Make sure to include the following argument: <code>-t $task.cpus</code>.</p></li>
-<li><p>Incorporate the FASTQC process into your workflow <code>main.nf</code> and provide it the
-proper channel.</p></li>
+<li>The shell command should be the successful fastqc command you ran earlier.
+Ensure that the following argument is included in your actual fastQC command:</li>
+</ol>
+<pre><code>-t $task.cpus</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Incorporate the FASTQC process into your workflow <code>main.nf</code> and provide it the
+proper channel.</li>
 </ol>
 </div>
 </div>
@@ -359,14 +362,17 @@ associated GTF file. Ensure that the following are specified in your module:</p>
 <pre><code>label 'process_high'
 container 'ghcr.io/bf528/star:latest'</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><p>The outputs of this process will be a directory of multiple files that all
-comprise the index. You will have to create this directory prior to running
-the STAR command. Please also be sure to include the <code>--runThreadN $task.cpus</code>
-argument in your command. Otherwise, use all of the basic options specified
-in the manual and leave them at their default values.</p></li>
-<li><p>Incorporate this process into your workflow and pass it the appropriate
+<li>The outputs of this process will be a directory of multiple files that all
+comprise the index. You will have to create this directory prior to running the
+STAR command. Use all of the basic options specified in the manual and leave
+them at their default values. Be sure to also include the following argument
+in your STAR command:</li>
+</ol>
+<pre><code>--runThreadN $task.cpus</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Incorporate this process into your workflow and pass it the appropriate
 inputs from your params encoding the path to the reference genome fasta and GTF
-file.</p></li>
+file.</li>
 </ol>
 </div>
 </div>

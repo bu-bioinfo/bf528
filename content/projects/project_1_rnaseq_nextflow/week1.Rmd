@@ -248,7 +248,11 @@ Remember you can use wildcard expansions in the path output to flexibly detect
 files with certain extensions without specifying their full filename.
 
 5. The shell command should be the successful fastqc command you ran earlier. 
-Make sure to include the following argument: `-t $task.cpus`. 
+Ensure that the following argument is included in your actual fastQC command:
+
+```
+-t $task.cpus
+```
 
 6. Incorporate the FASTQC process into your workflow `main.nf` and provide it the
 proper channel. 
@@ -310,10 +314,14 @@ container 'ghcr.io/bf528/star:latest'
 ```
 
 3. The outputs of this process will be a directory of multiple files that all
-comprise the index. You will have to create this directory prior to running
-the STAR command. Please also be sure to include the `--runThreadN $task.cpus`
-argument in your command. Otherwise, use all of the basic options specified 
-in the manual and leave them at their default values. 
+comprise the index. You will have to create this directory prior to running the
+STAR command. Use all of the basic options specified in the manual and leave
+them at their default values. Be sure to also include the following argument
+in your STAR command:
+
+```
+--runThreadN $task.cpus
+```
 
 4. Incorporate this process into your workflow and pass it the appropriate
 inputs from your params encoding the path to the reference genome fasta and GTF
