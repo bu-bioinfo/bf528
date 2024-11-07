@@ -1,6 +1,3 @@
-projects-overview
-project-structure
-project-grading
 handling-memory-requests-on-the-scc
 commonly-used-core-memory-options-on-the-scc
 how-to-determine-what-resources-to-request-per-job
