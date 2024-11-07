@@ -123,6 +123,7 @@ formatted figures:
   2. The results from a DAVID or ENRICHR analysis on the significant genes at
   your chosen padj threshold.
 
+:::
 
 ## RNAseq Quality Control Plots {-}
 

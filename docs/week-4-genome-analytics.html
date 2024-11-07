@@ -43,8 +43,10 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
+<li><a class="" href="projects-overview.html"><span class="header-section-number">1</span> Projects Overview</a></li>
 <li class="book-part">Guides</li>
 <li><a class="" href="computational-environments-guide.html">Computational Environments Guide</a></li>
+<li><a class="" href="guide-for-requesting-appropriate-computational-resources-on-the-scc.html">Guide for requesting appropriate computational resources on the SCC</a></li>
 <li class="book-part">Project 0</li>
 <li><a class="" href="week-1-genome-analytics.html">Week 1: Genome Analytics</a></li>
 <li><a class="" href="week-2-genome-analytics.html">Week 2: Genome Analytics</a></li>
@@ -55,6 +57,13 @@
 <li><a class="" href="week-2-rnaseq.html">Week 2: RNAseq</a></li>
 <li><a class="" href="week-3-rnaseq.html">Week 3: RNAseq</a></li>
 <li><a class="" href="week-4-rnaseq.html">Week 4: RNAseq</a></li>
+<li class="book-part">Project 2</li>
+<li><a class="" href="week-1-chipseq.html">Week 1: ChIPseq</a></li>
+<li><a class="" href="week-2-chipseq.html">Week 2: ChIPseq</a></li>
+<li><a class="" href="week-3-chipseq.html">Week 3: ChIPseq</a></li>
+<li><a class="" href="week-4-chipseq.html">Week 4: ChIPseq</a></li>
+<li class="book-part">Final Project</li>
+<li><a class="" href="final-project---single-cell-rnaseq.html">Final Project - single cell RNAseq</a></li>
 <li class="book-part">Lectures</li>
 <li><a class="" href="introduction.html">Introduction</a></li>
 <li><a class="" href="genomics-genes-and-genomes.html">Genomics, Genes, and Genomes</a></li>
@@ -126,9 +135,8 @@ download a genome of your choice and incorporate this into your workflow.</p>
 <li><p>Generate a Circos plot of your newly annotated genome</p></li>
 </ul>
 </div>
-<div id="explore-the-use-of-ncbi-datasets-cli" class="section level2" number="0.1">
-<h2>
-<span class="header-section-number">0.1</span> Explore the use of NCBI Datasets CLI<a class="anchor" aria-label="anchor" href="#explore-the-use-of-ncbi-datasets-cli"><i class="fas fa-link"></i></a>
+<div id="explore-the-use-of-ncbi-datasets-cli" class="section level2 unnumbered">
+<h2>Explore the use of NCBI Datasets CLI<a class="anchor" aria-label="anchor" href="#explore-the-use-of-ncbi-datasets-cli"><i class="fas fa-link"></i></a>
 </h2>
 <p>The NCBI Datasets CLI is the recommended means for accessing the comprehensive
 information provided by the NCBI. The NCBI has packaged together a web
@@ -144,21 +152,21 @@ all of the information available to you and provided by the NCBI.</li>
 </ol>
 </div>
 </div>
-<div id="generate-a-module-that-downloads-a-genome-using-the-ncbi-datasets-cli" class="section level2" number="0.2">
-<h2>
-<span class="header-section-number">0.2</span> Generate a module that downloads a genome using the NCBI Datasets CLI<a class="anchor" aria-label="anchor" href="#generate-a-module-that-downloads-a-genome-using-the-ncbi-datasets-cli"><i class="fas fa-link"></i></a>
+<div id="generate-a-module-that-downloads-a-genome-using-the-ncbi-datasets-cli" class="section level2 unnumbered">
+<h2>Generate a module that downloads a genome using the NCBI Datasets CLI<a class="anchor" aria-label="anchor" href="#generate-a-module-that-downloads-a-genome-using-the-ncbi-datasets-cli"><i class="fas fa-link"></i></a>
 </h2>
-<p>While looking up your microbe of interest, navigate to the genomes section for
-your microbe of interest and find a reference genome assembly or if one does not
-exist, choose one of the available assemblies.</p>
+<p>Navigate to the genomes section for your microbe of interest and if available,
+choose the assembly marked as “reference genome” for your chosen organism. The
+representative genome will be marked with a star as seen below:</p>
+<div class="inline-figure"><img src="projects/project_0_genome_analysis/ncbi_genomes.png" width="100%" height="100%"></div>
 <p>If you look at the genome assembly page for your chosen genome, you should see
-an option for download using datasets. If you click on that option, you will be
-provided a template command for how to use the CLI tool to download various
+an option for download using <code>datasets</code>. If you click on that option, you will
+be provided a template command for how to use the CLI tool to download various
 files associated with the chosen assembly.</p>
+<div class="inline-figure"><img src="projects/project_0_genome_analysis/ncbi_download.png" width="100%" height="100%"></div>
 <p>Make sure to note the command as well as the particular assembly name for the
 genome (GCF<em>). You will use this command and modify it so that you can provide
-any valid genome assembly (GCF</em>) and to download only the genomic FASTA file. You
-can also look at the NCBI datasets CLI <a href="https://www.ncbi.nlm.nih.gov/datasets/docs/v2/reference-docs/command-line/datasets/download/genome/">manual</a> page for more information.</p>
+any valid genome assembly (GCF</em>) and to download only the genomic FASTA file.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
 <li><p>Create a CSV containing two columns with the scientific name of the organism
@@ -166,14 +174,15 @@ you chose and its associated genome accession (GCF_*) listed in the datasets
 command.</p></li>
 <li><p>Create a channel in your nextflow workflow <code>main.nf</code> containing information
 found by reading from the CSV you created.</p></li>
+<li><p>Read the <a href="https://www.ncbi.nlm.nih.gov/datasets/docs/v2/reference-docs/command-line/datasets/download/genome/">manual</a> page for running the datasets command to figure out what file it outputs and what
+each of the options specified in the observed command are doing.</p></li>
 <li><p>Modify the command to only download the genomic FASTA file and structure the
-module to be generalizable to any genomic accession</p></li>
+module to be generalizable to any genomic accession.</p></li>
 </ol>
 </div>
 </div>
-<div id="refactor-your-workflow-to-incorporate-downloading-a-genome-as-the-first-step" class="section level2" number="0.3">
-<h2>
-<span class="header-section-number">0.3</span> Refactor your workflow to incorporate downloading a genome as the first step<a class="anchor" aria-label="anchor" href="#refactor-your-workflow-to-incorporate-downloading-a-genome-as-the-first-step"><i class="fas fa-link"></i></a>
+<div id="refactor-your-workflow-to-incorporate-downloading-a-genome-as-the-first-step" class="section level2 unnumbered">
+<h2>Refactor your workflow to incorporate downloading a genome as the first step<a class="anchor" aria-label="anchor" href="#refactor-your-workflow-to-incorporate-downloading-a-genome-as-the-first-step"><i class="fas fa-link"></i></a>
 </h2>
 <p>After you have successfully generated a module that will run the NCBI Datasets
 CLI command and download your requested genome FASTA, you will need to incorporate
@@ -187,9 +196,8 @@ previously described processes (Prokka, GC content, etc.)</li>
 </ol>
 </div>
 </div>
-<div id="make-a-conda-environment-with-pycirclize-and-ipykernel" class="section level2" number="0.4">
-<h2>
-<span class="header-section-number">0.4</span> Make a conda environment with pycirclize and ipykernel<a class="anchor" aria-label="anchor" href="#make-a-conda-environment-with-pycirclize-and-ipykernel"><i class="fas fa-link"></i></a>
+<div id="make-a-conda-environment-with-pycirclize-and-ipykernel" class="section level2 unnumbered">
+<h2>Make a conda environment with pycirclize and ipykernel<a class="anchor" aria-label="anchor" href="#make-a-conda-environment-with-pycirclize-and-ipykernel"><i class="fas fa-link"></i></a>
 </h2>
 <p>We will often analyse the results of our piplines extensively in a jupyter
 notebook as it allows us to seamlessly execute code, create visualizations, and
@@ -221,12 +229,11 @@ notebook.</p></li>
 </ol>
 </div>
 </div>
-<div id="generate-a-circos-plot-of-your-new-annotated-genome-using-the-gff" class="section level2" number="0.5">
-<h2>
-<span class="header-section-number">0.5</span> Generate a Circos plot of your new annotated genome using the GFF<a class="anchor" aria-label="anchor" href="#generate-a-circos-plot-of-your-new-annotated-genome-using-the-gff"><i class="fas fa-link"></i></a>
+<div id="generate-a-circos-plot-of-your-new-annotated-genome-using-the-gff" class="section level2 unnumbered">
+<h2>Generate a Circos plot of your new annotated genome using the GFF<a class="anchor" aria-label="anchor" href="#generate-a-circos-plot-of-your-new-annotated-genome-using-the-gff"><i class="fas fa-link"></i></a>
 </h2>
 <p>If you were in BF591, we discussed briefly the purpose and usage of Circos
-plots. If not, you may look <a href="https://circos.ca/">here</a> for a brief discussion on
+plots. If not, you may look <a href="https://circos.ca/">here</a> for a short discussion on
 these circular layout plots. While they can be difficult to interpret when
 overlaying quantitative data, we will be making a Circos plot of the genome and
 genome annotations generated by Prokka on your genome of choice. A Circos plot
@@ -242,9 +249,8 @@ code from pycirclize to make this plot.</li>
 </ol>
 </div>
 </div>
-<div id="week-4-detailed-tasks-summary" class="section level2" number="0.6">
-<h2>
-<span class="header-section-number">0.6</span> Week 4 Detailed Tasks Summary<a class="anchor" aria-label="anchor" href="#week-4-detailed-tasks-summary"><i class="fas fa-link"></i></a>
+<div id="week-4-detailed-tasks-summary" class="section level2 unnumbered">
+<h2>Week 4 Detailed Tasks Summary<a class="anchor" aria-label="anchor" href="#week-4-detailed-tasks-summary"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
 <li><p>Choose a prokaryotic genome and use the NCBI genomes site to retrieve the NCBI datasets CLI command to download a genome fasta file by specifying an assembly.</p></li>
@@ -270,12 +276,12 @@ code from pycirclize to make this plot.</li>
 <li><a class="nav-link" href="#section-links-3">Section Links</a></li>
 <li><a class="nav-link" href="#week-4-overview">Week 4 Overview</a></li>
 <li><a class="nav-link" href="#objectives-3">Objectives</a></li>
-<li><a class="nav-link" href="#explore-the-use-of-ncbi-datasets-cli"><span class="header-section-number">0.1</span> Explore the use of NCBI Datasets CLI</a></li>
-<li><a class="nav-link" href="#generate-a-module-that-downloads-a-genome-using-the-ncbi-datasets-cli"><span class="header-section-number">0.2</span> Generate a module that downloads a genome using the NCBI Datasets CLI</a></li>
-<li><a class="nav-link" href="#refactor-your-workflow-to-incorporate-downloading-a-genome-as-the-first-step"><span class="header-section-number">0.3</span> Refactor your workflow to incorporate downloading a genome as the first step</a></li>
-<li><a class="nav-link" href="#make-a-conda-environment-with-pycirclize-and-ipykernel"><span class="header-section-number">0.4</span> Make a conda environment with pycirclize and ipykernel</a></li>
-<li><a class="nav-link" href="#generate-a-circos-plot-of-your-new-annotated-genome-using-the-gff"><span class="header-section-number">0.5</span> Generate a Circos plot of your new annotated genome using the GFF</a></li>
-<li><a class="nav-link" href="#week-4-detailed-tasks-summary"><span class="header-section-number">0.6</span> Week 4 Detailed Tasks Summary</a></li>
+<li><a class="nav-link" href="#explore-the-use-of-ncbi-datasets-cli">Explore the use of NCBI Datasets CLI</a></li>
+<li><a class="nav-link" href="#generate-a-module-that-downloads-a-genome-using-the-ncbi-datasets-cli">Generate a module that downloads a genome using the NCBI Datasets CLI</a></li>
+<li><a class="nav-link" href="#refactor-your-workflow-to-incorporate-downloading-a-genome-as-the-first-step">Refactor your workflow to incorporate downloading a genome as the first step</a></li>
+<li><a class="nav-link" href="#make-a-conda-environment-with-pycirclize-and-ipykernel">Make a conda environment with pycirclize and ipykernel</a></li>
+<li><a class="nav-link" href="#generate-a-circos-plot-of-your-new-annotated-genome-using-the-gff">Generate a Circos plot of your new annotated genome using the GFF</a></li>
+<li><a class="nav-link" href="#week-4-detailed-tasks-summary">Week 4 Detailed Tasks Summary</a></li>
 </ul>
 
       <div class="book-extra">

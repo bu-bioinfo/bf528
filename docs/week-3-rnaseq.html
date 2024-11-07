@@ -43,8 +43,10 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
+<li><a class="" href="projects-overview.html"><span class="header-section-number">1</span> Projects Overview</a></li>
 <li class="book-part">Guides</li>
 <li><a class="" href="computational-environments-guide.html">Computational Environments Guide</a></li>
+<li><a class="" href="guide-for-requesting-appropriate-computational-resources-on-the-scc.html">Guide for requesting appropriate computational resources on the SCC</a></li>
 <li class="book-part">Project 0</li>
 <li><a class="" href="week-1-genome-analytics.html">Week 1: Genome Analytics</a></li>
 <li><a class="" href="week-2-genome-analytics.html">Week 2: Genome Analytics</a></li>
@@ -55,6 +57,13 @@
 <li><a class="" href="week-2-rnaseq.html">Week 2: RNAseq</a></li>
 <li><a class="active" href="week-3-rnaseq.html">Week 3: RNAseq</a></li>
 <li><a class="" href="week-4-rnaseq.html">Week 4: RNAseq</a></li>
+<li class="book-part">Project 2</li>
+<li><a class="" href="week-1-chipseq.html">Week 1: ChIPseq</a></li>
+<li><a class="" href="week-2-chipseq.html">Week 2: ChIPseq</a></li>
+<li><a class="" href="week-3-chipseq.html">Week 3: ChIPseq</a></li>
+<li><a class="" href="week-4-chipseq.html">Week 4: ChIPseq</a></li>
+<li class="book-part">Final Project</li>
+<li><a class="" href="final-project---single-cell-rnaseq.html">Final Project - single cell RNAseq</a></li>
 <li class="book-part">Lectures</li>
 <li><a class="" href="introduction.html">Introduction</a></li>
 <li><a class="" href="genomics-genes-and-genomes.html">Genomics, Genes, and Genomes</a></li>
@@ -104,7 +113,8 @@
 <p><a href="week-3-rnaseq.html#evaluate-the-qc-metrics-for-the-full-data">Evaluate the QC metrics for the full data</a></p>
 <p><a href="week-3-rnaseq.html#filtering-the-counts-matrix">Filtering the counts matrix</a></p>
 <p><a href="week-3-rnaseq.html#performing-differential-expression-analysis-using-the-filtered-counts">Performing differential expression analysis using the filtered counts</a></p>
-<p>[Basic RNAseq quality control]</p>
+<p><a href="week-3-rnaseq.html#rnaseq-quality-control-plots">RNAseq Quality Control Plots</a></p>
+<p>[Basic gene set enrichment analysis]</p>
 </div>
 <div id="week-3-overview-1" class="section level2 unnumbered">
 <h2>Week 3 Overview<a class="anchor" aria-label="anchor" href="#week-3-overview-1"><i class="fas fa-link"></i></a>
@@ -177,14 +187,53 @@ filtering is subjective and meant to reduce our statistical testing burden.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
 <li>Choose a filtering strategy and apply it to your counts matrix. In the provided
-notebook, report the strategy you used and create a plot or a table that demonstrates
-the effects of your filtering on the counts.</li>
+notebook, report the strategy you used and create a plot that demonstrates
+the effects of your filtering on the counts for all of your samples.</li>
 </ol>
 </div>
 </div>
 <div id="performing-differential-expression-analysis-using-the-filtered-counts" class="section level2 unnumbered">
 <h2>Performing differential expression analysis using the filtered counts<a class="anchor" aria-label="anchor" href="#performing-differential-expression-analysis-using-the-filtered-counts"><i class="fas fa-link"></i></a>
 </h2>
+<p>Refer to the DESeq2 vignette on how to perform a basic differential expression
+analysis. For this dataset, you will simply be testing for differences between
+the condition (control vs. experimental). Choose an appropriate padj threshold
+to generate a list of statistically significant differentially expressed genes
+from your analysis.</p>
+<div class="box task">
+<p>Perform a basic differential expression analysis and produce the following as well
+formatted figures:</p>
+<ol style="list-style-type: decimal">
+<li><p>A table containing the DESeq2 results for the top ten significant genes
+ranked by padj</p></li>
+<li><p>The results from a DAVID or ENRICHR analysis on the significant genes at
+your chosen padj threshold.</p></li>
+</ol>
+</div>
+</div>
+<div id="rnaseq-quality-control-plots" class="section level2 unnumbered">
+<h2>RNAseq Quality Control Plots<a class="anchor" aria-label="anchor" href="#rnaseq-quality-control-plots"><i class="fas fa-link"></i></a>
+</h2>
+<p>It is common to produce both a PCA plot as well as a sample-to-sample distance
+matrix from our counts to assist us in our confidence in whether the differences we
+see in the differential expression analysis can likely be contributed to our biological
+condition of interest.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li><p>Choose an appropriate normalization strategy (rlog or vst) and generate a
+normalized counts matrix for the experiment</p></li>
+<li><p>Perform PCA on this normalized counts matrix and overlay the sample
+information in a biplot of PC1 vs. PC2</p></li>
+<li><p>Create a heatmap or graphic of the sample-to-sample distances for the experiment</p></li>
+<li><p>In the provided notebook, comment in no less than two paragraphs about your
+interpretations of these plots and if you believe the DE analysis was successful.</p></li>
+</ol>
+</div>
+</div>
+<div id="fgsea-analysis" class="section level2 unnumbered">
+<h2>FGSEA Analysis<a class="anchor" aria-label="anchor" href="#fgsea-analysis"><i class="fas fa-link"></i></a>
+</h2>
+<p>perform a basic FGSEA analysis and report the results</p>
 
 </div>
 </div>
@@ -202,6 +251,8 @@ the effects of your filtering on the counts.</li>
 <li><a class="nav-link" href="#evaluate-the-qc-metrics-for-the-full-data">Evaluate the QC metrics for the full data</a></li>
 <li><a class="nav-link" href="#filtering-the-counts-matrix">Filtering the counts matrix</a></li>
 <li><a class="nav-link" href="#performing-differential-expression-analysis-using-the-filtered-counts">Performing differential expression analysis using the filtered counts</a></li>
+<li><a class="nav-link" href="#rnaseq-quality-control-plots">RNAseq Quality Control Plots</a></li>
+<li><a class="nav-link" href="#fgsea-analysis">FGSEA Analysis</a></li>
 </ul>
 
       <div class="book-extra">

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Guide for requesting appropriate computational resources on the SCC | BF528 - Applications in Translational Bioinformatics</title>
+<meta name="generator" content="bookdown 0.40 with bs4_book()">
+<meta property="og:title" content="Guide for requesting appropriate computational resources on the SCC | BF528 - Applications in Translational Bioinformatics">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Guide for requesting appropriate computational resources on the SCC | BF528 - Applications in Translational Bioinformatics">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.8.0/transition.js"></script><script src="libs/bs3compat-0.8.0/tabs.js"></script><script src="libs/bs3compat-0.8.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+<meta name="description" content="As we’ve discussed in class, we can greatly speed up certain computational operations by making use of high performance computing principles. This can include leveraging multicore processors,...">
+<meta property="og:description" content="As we’ve discussed in class, we can greatly speed up certain computational operations by making use of high performance computing principles. This can include leveraging multicore processors,...">
+<meta name="twitter:description" content="As we’ve discussed in class, we can greatly speed up certain computational operations by making use of high performance computing principles. This can include leveraging multicore processors,...">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">BF528 - Applications in Translational Bioinformatics</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
+<li><a class="" href="projects-overview.html"><span class="header-section-number">1</span> Projects Overview</a></li>
+<li class="book-part">Guides</li>
+<li><a class="" href="computational-environments-guide.html">Computational Environments Guide</a></li>
+<li><a class="active" href="guide-for-requesting-appropriate-computational-resources-on-the-scc.html">Guide for requesting appropriate computational resources on the SCC</a></li>
+<li class="book-part">Project 0</li>
+<li><a class="" href="week-1-genome-analytics.html">Week 1: Genome Analytics</a></li>
+<li><a class="" href="week-2-genome-analytics.html">Week 2: Genome Analytics</a></li>
+<li><a class="" href="week-3-genome-analytics.html">Week 3: Genome Analytics</a></li>
+<li><a class="" href="week-4-genome-analytics.html">Week 4: Genome Analytics</a></li>
+<li class="book-part">Project 1</li>
+<li><a class="" href="week-1-rnaseq.html">Week 1: RNAseq</a></li>
+<li><a class="" href="week-2-rnaseq.html">Week 2: RNAseq</a></li>
+<li><a class="" href="week-3-rnaseq.html">Week 3: RNAseq</a></li>
+<li><a class="" href="week-4-rnaseq.html">Week 4: RNAseq</a></li>
+<li class="book-part">Project 2</li>
+<li><a class="" href="week-1-chipseq.html">Week 1: ChIPseq</a></li>
+<li><a class="" href="week-2-chipseq.html">Week 2: ChIPseq</a></li>
+<li><a class="" href="week-3-chipseq.html">Week 3: ChIPseq</a></li>
+<li><a class="" href="week-4-chipseq.html">Week 4: ChIPseq</a></li>
+<li class="book-part">Final Project</li>
+<li><a class="" href="final-project---single-cell-rnaseq.html">Final Project - single cell RNAseq</a></li>
+<li class="book-part">Lectures</li>
+<li><a class="" href="introduction.html">Introduction</a></li>
+<li><a class="" href="genomics-genes-and-genomes.html">Genomics, Genes, and Genomes</a></li>
+<li><a class="" href="git.html">git</a></li>
+<li><a class="" href="computational-pipeline-strategies.html">Computational Pipeline Strategies</a></li>
+<li><a class="" href="computational-environment-management.html">Computational Environment Management</a></li>
+<li><a class="" href="sequence-analysis-fundamentals.html">Sequence Analysis Fundamentals</a></li>
+<li><a class="" href="nd-gen-sequencing.html">2nd Gen Sequencing</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-1.html">Sequence Analysis - RNA-Seq 1</a></li>
+<li><a class="" href="sequence-analysis---rna-seq-2.html">Sequence Analysis - RNA-Seq 2</a></li>
+<li><a class="" href="scc-cluster-usage.html">SCC cluster usage</a></li>
+<li><a class="" href="biological-data-formats.html">Biological Data Formats</a></li>
+<li><a class="" href="gene-sets-and-enrichment.html">Gene sets and enrichment</a></li>
+<li><a class="" href="replicability-vs-reproducibility-strategies.html">Replicability vs Reproducibility Strategies</a></li>
+<li><a class="" href="putting-it-all-together---snakemake.html">Putting it all together - snakemake</a></li>
+<li><a class="" href="sequence-analysis---chip-seq.html">Sequence Analysis - ChIP-Seq</a></li>
+<li><a class="" href="genome-browsers.html">Genome Browsers</a></li>
+<li><a class="" href="sequence-analysis---atac-seq.html">Sequence Analysis - ATAC-Seq</a></li>
+<li><a class="" href="project-2---week-1-check-in.html">Project 2 - Week 1 Check-in</a></li>
+<li><a class="" href="biological-databases.html">Biological Databases</a></li>
+<li><a class="" href="genomic-variation-and-snp-analysis.html">Genomic Variation and SNP Analysis</a></li>
+<li><a class="" href="microbiome-metagenomics.html">Microbiome: Metagenomics</a></li>
+<li><a class="" href="microbiome-16s.html">Microbiome: 16S</a></li>
+<li><a class="" href="proteomics.html">Proteomics</a></li>
+<li><a class="" href="metabolomics.html">Metabolomics</a></li>
+<li><a class="" href="docker.html">Docker</a></li>
+<li><a class="" href="single-cell-analysis-part-1.html">Single Cell Analysis Part 1</a></li>
+<li><a class="" href="single-cell-analysis-part-2.html">Single Cell Analysis Part 2</a></li>
+<li><a class="" href="single-cell-analysis-part-3.html">Single Cell Analysis Part 3</a></li>
+<li><a class="" href="spatial-transcriptomics.html">Spatial Transcriptomics</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="guide-for-requesting-appropriate-computational-resources-on-the-scc" class="section level1 unnumbered">
+<h1>Guide for requesting appropriate computational resources on the SCC<a class="anchor" aria-label="anchor" href="#guide-for-requesting-appropriate-computational-resources-on-the-scc"><i class="fas fa-link"></i></a>
+</h1>
+<p>As we’ve discussed in class, we can greatly speed up certain computational
+operations by making use of high performance computing principles. This can
+include leveraging multicore processors, using nodes with more RAM available and
+making use of parallel computing to run independent tasks simultaneously on
+multiple computers.</p>
+<p>The compute nodes on the SCC are relatively heterogeneous and you can see an
+exact technical breakdown <a href="">here</a>. For operations where it is possible, we will
+often make use of multiple cores of a processor to speed up the computation.</p>
+<div id="the-qsub-command" class="section level2 unnumbered">
+<h2>The qsub command<a class="anchor" aria-label="anchor" href="#the-qsub-command"><i class="fas fa-link"></i></a>
+</h2>
+<p>The SCC makes use of SGE queuing system to manage and schedule the execution of
+large numbers of jobs on a high-performance computing cluster. This is done
+primarily through the <code>qsub</code> command which will enable the customization of
+different directives passed to the batch system.</p>
+<p>The most commonly used directives are:</p>
+<p><code>-l h_rt</code>: hard run time limit in hh:mm:ss format. Default, 12 hrs.</p>
+<p><code>-P</code>: The project to which jobs are assigned. This option is <em>mandatory</em> for all
+users and used for accounting purposes.</p>
+<p><code>-N</code>: Specifies the job name. Default is the script or command name.</p>
+<p>Other <a href="">directives</a> allow jobs to request nodes with specific amounts of memory,
+processors or even architecture. We will be making heavy use of the <code>-pe omp</code>
+directive which is primarily intended for any jobs using multiple processors on a
+single node.</p>
+</div>
+<div id="pe-omp" class="section level2 unnumbered">
+<h2>pe omp<a class="anchor" aria-label="anchor" href="#pe-omp"><i class="fas fa-link"></i></a>
+</h2>
+<p>The value of N can be set to any number between 1 and 28 and can
+also be set to 36. Use N=36 is to request a very large-memory (1024 GB) node. To
+make best use of available resources on the SCC, the optimal choices are N=1, 4,
+8, 16, 28, or 36.</p>
+<p><a href="https://www.bu.edu/tech/support/research/system-usage/running-jobs/parallel-batch/#pe" class="uri">https://www.bu.edu/tech/support/research/system-usage/running-jobs/parallel-batch/#pe</a></p>
+</div>
+<div id="handling-memory-requests-on-the-scc" class="section level2" number="1.3">
+<h2>
+<span class="header-section-number">1.3</span> Handling memory requests on the SCC<a class="anchor" aria-label="anchor" href="#handling-memory-requests-on-the-scc"><i class="fas fa-link"></i></a>
+</h2>
+<p>As well as cores, certain jobs may require a specific amount of memory. As you
+know, storing information in RAM (random access memory) allows for much faster
+access and operations. When your jobs are scheduled and dispatched to the actual
+node, there is no actual restriction on the amount of RAM your task utilizes.
+However, we are on a <strong>shared</strong> computing cluster, and it is important to be
+respectful and every user is expected to follow “fair share” guidelines. Your
+job will likely be running on a node where other user’s tasks are also running,
+so it is important not to unduly monopolize these <strong>shared</strong> resources.</p>
+<pre><code>Memory options to the batch system are only enforced when the job is dispatched
+to the node. Once the job has been dispatched, the batch system cannot enforce
+any limits to the amount of memory the job uses on the node. Therefore each user
+is expected to follow "fair share" guidelines when submitting jobs to the
+cluster.
+
+The memory on each node on the SCC is shared by all the jobs running on that
+node. Therefore a single-processor job should not use more than the amount of
+memory available per core (TotalMemory / NumCores where TotalMemory is the total
+memory on the node and NumCores is the number of cores). For example on the
+nodes with 128GB of memory and 16 cores, if the node is fully utilized, a
+single-processor job is expected to use no more than 8GB of memory. See the
+Technical Summary for the list of nodes and the memory available on each of
+them.
+
+https://www.bu.edu/tech/support/research/system-usage/running-jobs/resources-jobs/#memory</code></pre>
+</div>
+<div id="commonly-used-core-memory-options-on-the-scc" class="section level2" number="1.4">
+<h2>
+<span class="header-section-number">1.4</span> Commonly used core / memory options on the SCC<a class="anchor" aria-label="anchor" href="#commonly-used-core-memory-options-on-the-scc"><i class="fas fa-link"></i></a>
+</h2>
+<p>In general, requesting more cores (or more memory), will increase your queue
+time as these more powerful nodes are usually in high demand by other users of
+the SCC. You can look at the <code>nextflow.config</code> profiles section to look at
+exactly the resources requested via qsub command for each of the <code>labels</code> we are
+using for our tasks.</p>
+<p>Below, you can see a small table provided by the SCC that denotes common memory
+and processor requests and how to specify them:</p>
+<div class="inline-figure">
+<img src="projects/project_1_rnaseq/scc_requesting_resources.png"><!-- -->
+</div>
+<p>A few important notes on the table seen above:</p>
+<ol style="list-style-type: decimal">
+<li><p>These are the most common options, and the job queue will generally be
+faster when using the preset options seen above as there are more nodes with
+these specifications.</p></li>
+<li><p>The more powerful nodes (larger # of cores and RAM) are in high-demand. You
+want to only request these nodes if you are sure you need the resources these
+provide. The queue for these nodes can be very long and depending on the complexity
+of the request task, may be longer than the actual runtime of what you are doing.</p></li>
+</ol>
+</div>
+<div id="how-to-determine-what-resources-to-request-per-job" class="section level2" number="1.5">
+<h2>
+<span class="header-section-number">1.5</span> How to determine what resources to request per job<a class="anchor" aria-label="anchor" href="#how-to-determine-what-resources-to-request-per-job"><i class="fas fa-link"></i></a>
+</h2>
+</div>
+<div id="qstat" class="section level2" number="1.6">
+<h2>
+<span class="header-section-number">1.6</span> qstat<a class="anchor" aria-label="anchor" href="#qstat"><i class="fas fa-link"></i></a>
+</h2>
+</div>
+<div id="nextflow-log" class="section level2" number="1.7">
+<h2>
+<span class="header-section-number">1.7</span> nextflow log<a class="anchor" aria-label="anchor" href="#nextflow-log"><i class="fas fa-link"></i></a>
+</h2>
+
+</div>
+</div>
+
+
+
+<div class="chapter-nav">
+<div class="prev"><a href="computational-environments-guide.html">Computational Environments Guide</a></div>
+<div class="next"><a href="week-1-genome-analytics.html">Week 1: Genome Analytics</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#guide-for-requesting-appropriate-computational-resources-on-the-scc">Guide for requesting appropriate computational resources on the SCC</a></li>
+<li><a class="nav-link" href="#the-qsub-command">The qsub command</a></li>
+<li><a class="nav-link" href="#pe-omp">pe omp</a></li>
+<li><a class="nav-link" href="#handling-memory-requests-on-the-scc"><span class="header-section-number">1.3</span> Handling memory requests on the SCC</a></li>
+<li><a class="nav-link" href="#commonly-used-core-memory-options-on-the-scc"><span class="header-section-number">1.4</span> Commonly used core / memory options on the SCC</a></li>
+<li><a class="nav-link" href="#how-to-determine-what-resources-to-request-per-job"><span class="header-section-number">1.5</span> How to determine what resources to request per job</a></li>
+<li><a class="nav-link" href="#qstat"><span class="header-section-number">1.6</span> qstat</a></li>
+<li><a class="nav-link" href="#nextflow-log"><span class="header-section-number">1.7</span> nextflow log</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+</div>
+  
+
+  
+
+</div>
+ <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>BF528 - Applications in Translational Bioinformatics</strong>" was written by . </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

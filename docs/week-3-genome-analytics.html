@@ -43,8 +43,10 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
+<li><a class="" href="projects-overview.html"><span class="header-section-number">1</span> Projects Overview</a></li>
 <li class="book-part">Guides</li>
 <li><a class="" href="computational-environments-guide.html">Computational Environments Guide</a></li>
+<li><a class="" href="guide-for-requesting-appropriate-computational-resources-on-the-scc.html">Guide for requesting appropriate computational resources on the SCC</a></li>
 <li class="book-part">Project 0</li>
 <li><a class="" href="week-1-genome-analytics.html">Week 1: Genome Analytics</a></li>
 <li><a class="" href="week-2-genome-analytics.html">Week 2: Genome Analytics</a></li>
@@ -55,6 +57,13 @@
 <li><a class="" href="week-2-rnaseq.html">Week 2: RNAseq</a></li>
 <li><a class="" href="week-3-rnaseq.html">Week 3: RNAseq</a></li>
 <li><a class="" href="week-4-rnaseq.html">Week 4: RNAseq</a></li>
+<li class="book-part">Project 2</li>
+<li><a class="" href="week-1-chipseq.html">Week 1: ChIPseq</a></li>
+<li><a class="" href="week-2-chipseq.html">Week 2: ChIPseq</a></li>
+<li><a class="" href="week-3-chipseq.html">Week 3: ChIPseq</a></li>
+<li><a class="" href="week-4-chipseq.html">Week 4: ChIPseq</a></li>
+<li class="book-part">Final Project</li>
+<li><a class="" href="final-project---single-cell-rnaseq.html">Final Project - single cell RNAseq</a></li>
 <li class="book-part">Lectures</li>
 <li><a class="" href="introduction.html">Introduction</a></li>
 <li><a class="" href="genomics-genes-and-genomes.html">Genomics, Genes, and Genomes</a></li>
@@ -299,14 +308,14 @@ some text explaining what each value represents (i.e. GC Content: 64%)</li>
 <li><p>Make a new directory in <code>modules</code> entitled <code>genome_stats</code> and create a
 <code>main.nf</code> within that directory. If using biopython, make an appropriate YML
 environment specification for biopython. If only using basic python, make a YML
-environment specification with python installed. You can have</p></li>
+environment specification with python installed. You can have the inputs be the
+same shape and structure as the <code>fa_ch</code>.</p></li>
 </ol>
-<p>The inputs be the same shape and structure as the <code>fa_ch</code>. You will need to
-specify how you want the output file named. The shell/script portion will be the
-command for executing the associated <code>.py</code> script and providing it the
-appropriate inputs as specified by <code>argparse</code>. Please write the new file to the
-<code>results/</code> directory using <code>publishDir</code>. Name this output file using the name
-value passed in the channel (i.e. ${name}_genome_stats.txt)</p>
+<p>You will need to specify how you want the output file named. The shell/script
+portion will be the command for executing the associated <code>.py</code> script and
+providing it the appropriate inputs as specified by <code>argparse</code>. Please write the
+new file to the <code>results/</code> directory using <code>publishDir</code>. Name this output file
+using the name value passed in the channel (i.e. ${name}_genome_stats.txt)</p>
 <ol start="3" style="list-style-type: decimal">
 <li>When your script is functional and your associated nextflow module complete,
 run Nextflow once more to generate the text file containing the two genome

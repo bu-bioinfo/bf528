@@ -43,8 +43,10 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
+<li><a class="" href="projects-overview.html"><span class="header-section-number">1</span> Projects Overview</a></li>
 <li class="book-part">Guides</li>
 <li><a class="" href="computational-environments-guide.html">Computational Environments Guide</a></li>
+<li><a class="" href="guide-for-requesting-appropriate-computational-resources-on-the-scc.html">Guide for requesting appropriate computational resources on the SCC</a></li>
 <li class="book-part">Project 0</li>
 <li><a class="" href="week-1-genome-analytics.html">Week 1: Genome Analytics</a></li>
 <li><a class="" href="week-2-genome-analytics.html">Week 2: Genome Analytics</a></li>
@@ -55,6 +57,13 @@
 <li><a class="active" href="week-2-rnaseq.html">Week 2: RNAseq</a></li>
 <li><a class="" href="week-3-rnaseq.html">Week 3: RNAseq</a></li>
 <li><a class="" href="week-4-rnaseq.html">Week 4: RNAseq</a></li>
+<li class="book-part">Project 2</li>
+<li><a class="" href="week-1-chipseq.html">Week 1: ChIPseq</a></li>
+<li><a class="" href="week-2-chipseq.html">Week 2: ChIPseq</a></li>
+<li><a class="" href="week-3-chipseq.html">Week 3: ChIPseq</a></li>
+<li><a class="" href="week-4-chipseq.html">Week 4: ChIPseq</a></li>
+<li class="book-part">Final Project</li>
+<li><a class="" href="final-project---single-cell-rnaseq.html">Final Project - single cell RNAseq</a></li>
 <li class="book-part">Lectures</li>
 <li><a class="" href="introduction.html">Introduction</a></li>
 <li><a class="" href="genomics-genes-and-genomes.html">Genomics, Genes, and Genomes</a></li>
@@ -110,7 +119,7 @@
 <h2>Week 2 Overview<a class="anchor" aria-label="anchor" href="#week-2-overview-1"><i class="fas fa-link"></i></a>
 </h2>
 <p>Now that we have performed basic quality control on the FASTQ files, we are
-going to map them to the mouse reference genome to generate alignments for
+going to map them to the human reference genome to generate alignments for
 each of our sequencing reads. After alignment, we will aggregate the outputs from
 FASTQC and STAR into a single report summarizing some of the important quality
 control metrics describing our sequencing reads and the alignments. We will then
@@ -120,7 +129,7 @@ quantify the alignments in our BAM file to the gene-level using VERSE.</p>
 <h2>Objectives<a class="anchor" aria-label="anchor" href="#objectives-5"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
-<li><p>Align your sequencing reads to the mouse reference genome using STAR</p></li>
+<li><p>Align your sequencing reads to the human reference genome using STAR</p></li>
 <li><p>Use MultiQC to generate a single report containing the quality metrics for
 the sequencing reads and alignments</p></li>
 <li><p>Generate gene-level counts using VERSE for each of the samples</p></li>
@@ -130,7 +139,7 @@ the sequencing reads and alignments</p></li>
 <div id="aligning-reads-to-the-genome" class="section level2 unnumbered">
 <h2>Aligning reads to the genome<a class="anchor" aria-label="anchor" href="#aligning-reads-to-the-genome"><i class="fas fa-link"></i></a>
 </h2>
-<p>Last week you generated a STAR index to enable alignment of reads to the mouse
+<p>Last week you generated a STAR index to enable alignment of reads to the human
 reference genome. This week, you will use this index to align the sequencing
 reads to the genome.</p>
 <p>Remember that paired end reads are almost always used in conjunction with each
@@ -159,21 +168,21 @@ the output files or log files from various processes.</li>
 <p>Ensure that your STAR module has two separate named outputs using <code>emit</code>. The two
 outputs will be the BAM file and another for the log file generated during
 alignment named with the extension <code>.Log.final.out</code>.</p>
-<p>This log file will allow us to collect certain statistics about the alignment
-rates that are useful for quality control purposes. As a general rule of thumb,
-if there were no obvious issues with the sequencing preparation or errors in the
-alignment, we expect a substantial proportion of our reads to align to the
-reference genome. For well-annotated and studied genomes like human or mouse, we
-usually see alignment rates &gt;70-80% for successful NGS experiments. Lower
-alignment rates are often expected for genomes that have not been sequenced to
-the same quality and depth as the more commonly used references. Make sure to
-evaluate these alignment rates in an experiment-specific context as there is no
-set threshold or cutoff that is appropriate for all cases.</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Ensure that you use the <code>process_high</code> for the <code>label</code> and the appropriate
 container <code>ghcr.io/bf528/star:latest</code>.</li>
 </ol>
 </div>
+<p>The log file from STAR will allow us to collect certain statistics about the
+alignment rates that are useful for quality control purposes. As a general rule
+of thumb, if there were no obvious issues with the sequencing preparation or
+errors in the alignment, we expect a substantial proportion of our reads to
+align to the reference genome. For well-annotated and studied genomes like human
+or mouse, we usually see alignment rates &gt;70-80% for successful NGS experiments.
+Lower alignment rates are often expected for genomes that have not been
+sequenced to the same quality and depth as the more commonly used references.
+Make sure to evaluate these alignment rates in an experiment-specific context as
+there is no set threshold or cutoff that is appropriate for all cases.</p>
 </div>
 <div id="performing-post-alignment-qc" class="section level2 unnumbered">
 <h2>Performing post-alignment QC<a class="anchor" aria-label="anchor" href="#performing-post-alignment-qc"><i class="fas fa-link"></i></a>
@@ -190,7 +199,7 @@ or biases across all of our samples. To solve this issue, we will be making use
 of MultiQC, which is a tool that simply aggregates the relevant logs and outputs
 from various bioinformatics utilities into a nicely formatted HTML report.</p>
 <p>Since you are working with files that have been intentionally filtered to make
-them smaller, the actual outputs from fastQC and STAR will be misleading. Do not
+them smaller, the actual outputs from fastQC and STAR will be misleading. Do <em>not</em>
 draw any conclusions from these reports generated on the subsetted data; the
 results will only be meaningful you’ve switched to running this pipeline on the
 full dataset.</p>
@@ -203,10 +212,9 @@ advantage of the staging directory strategy that nextflow uses to run MultiQC.</
 <p>By default, MultiQC will simply scan a directory and automatically detect any
 of the common output files and logs created by the bioinformatics tools it
 supports. For your <code>input</code>, you can simply specify <code>path('*')</code> and it creates
-an HTML file as an <code>output</code>. The actual command to run MultiQC in your <code>shell</code>
-directive will be simply <code>multiqc .</code></p>
+an HTML file as an <code>output</code>.</p>
 <ol start="2" style="list-style-type: decimal">
-<li>The tricky part with running MultiQC and nextflow is that you will need to
+<li>The tricky part with running MultiQC and Nextflow is that you will need to
 gather all of the output files from FASTQC and STAR and ensure that multiqc only
 runs after all of the samples have been processed by both of these tools.</li>
 </ol>
@@ -221,7 +229,6 @@ or FASTQC.out.zip).</p>
 [sample1_R1_fastqc.zip, sample1_R2_fastqc.zip, sample1.Log.final.out,
 sample2_R1_fastqc.zip, sample2_R2_fastqc.zip, sample2.Log.final.out, ...]
 </code></pre>
-</div>
 <ol start="3" style="list-style-type: decimal">
 <li><p>Add the MultiQC module to your workflow <code>main.nf</code> and run MultiQC. MultiQC
 should run a single time and only after every alignment and fastqc process has
@@ -229,9 +236,9 @@ finished.</p></li>
 <li><p>Ensure that your <code>multiqc_report.html</code> is successfully created and contains
 the QC information from both FASTQC and STAR for all of your samples. You may
 open the HTML file through SCC ondemand.</p></li>
-<li><p>Make sure to include the <code>-f</code> flag in your multiqc command.
-:::</p></li>
+<li><p>Make sure to include the <code>-f</code> flag in your multiqc command.</p></li>
 </ol>
+</div>
 </div>
 <div id="quantifying-alignments-to-the-genome" class="section level2 unnumbered">
 <h2>Quantifying alignments to the genome<a class="anchor" aria-label="anchor" href="#quantifying-alignments-to-the-genome"><i class="fas fa-link"></i></a>
@@ -242,14 +249,14 @@ from all of our samples to their appropriate reference genome. We will use the
 information contained within the GTF (what each region of the genome represents)
 to assign these alignments to features and count them.</p>
 <p>For differential expression analysis, our feature of interest will be exons as
-we know that those are the regions of genes that largely comprise the sequences
-found in mRNA (which is what we are measuring and what was originally
-sequenced). We will generate a single count for every gene representing the sum
-of the union of all counts of alignments falling into every exon annotated to
-that gene. This gene-level count will be used as a proxy for that gene’s
-expression in a particular sample.</p>
+those are the regions of genes that largely comprise the sequences found in mRNA
+(which is what we are measuring and what was originally sequenced). We will
+generate a single count for every gene representing the sum of the union of all
+alignments falling into every exon annotated to that gene. This gene-level count
+will be used as a proxy for that gene’s expression in a particular sample.</p>
 <p>We will be using VERSE, which is a read counting tool that will quantify
-alignments into counts based on a feature of interest.</p>
+alignments into counts based on a feature of interest. VERSE also has built-in
+strategies for assigning counts hierarchically in the case of overlapping features.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
 <li><p>Generate a module that runs
@@ -275,10 +282,10 @@ write a single counts matrix containing all of your samples. As with any
 external script, make it executable with a proper shebang line and use argparse
 to allow the incorporation of command line arguments. I suggest you use <code>pandas</code>
 for this task and you can use the pandas container <code>ghcr.io/bf528/pandas:latest</code>.</p></li>
-<li><p>Generate a module that runs this script</p></li>
-<li><p>Create a channel in your workflow <code>main.nf</code> that consists of all of the VERSE
-outputs. Incorporate this script into your workflow and Ensure that this module
-/ script only executes after <em>all</em> of the VERSE tasks have finished.</p></li>
+<li><p>Generate a module that runs this script and create a channel in your workflow
+<code>main.nf</code> that consists of all of the VERSE outputs. Incorporate this script
+into your workflow and Ensure that this module / script only executes after
+<em>all</em> of the VERSE tasks have finished.</p></li>
 </ol>
 </div>
 </div>

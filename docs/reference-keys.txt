@@ -1,9 +1,11 @@
-explore-the-use-of-ncbi-datasets-cli
-generate-a-module-that-downloads-a-genome-using-the-ncbi-datasets-cli
-refactor-your-workflow-to-incorporate-downloading-a-genome-as-the-first-step
-make-a-conda-environment-with-pycirclize-and-ipykernel
-generate-a-circos-plot-of-your-new-annotated-genome-using-the-gff
-week-4-detailed-tasks-summary
+projects-overview
+project-structure
+project-grading
+handling-memory-requests-on-the-scc
+commonly-used-core-memory-options-on-the-scc
+how-to-determine-what-resources-to-request-per-job
+qstat
+nextflow-log
 introductory-slides
 computational-primer
 assignment

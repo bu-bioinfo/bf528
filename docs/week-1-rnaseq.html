@@ -18,9 +18,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="Section Links Week 1 Overview Objectives Read the paper Create a working directory for project 1 Locating the data Changes to our environment management strategy and workflow Generating our input...">
-<meta property="og:description" content="Section Links Week 1 Overview Objectives Read the paper Create a working directory for project 1 Locating the data Changes to our environment management strategy and workflow Generating our input...">
-<meta name="twitter:description" content="Section Links Week 1 Overview Objectives Read the paper Create a working directory for project 1 Locating the data Changes to our environment management strategy and workflow Generating our input...">
+<meta name="description" content="Section Links Week 1 Overview Objectives Create a working directory for project 1 Locating the data Changes to our environment management strategy and workflow Generating our input channels for...">
+<meta property="og:description" content="Section Links Week 1 Overview Objectives Create a working directory for project 1 Locating the data Changes to our environment management strategy and workflow Generating our input channels for...">
+<meta name="twitter:description" content="Section Links Week 1 Overview Objectives Create a working directory for project 1 Locating the data Changes to our environment management strategy and workflow Generating our input channels for...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -43,8 +43,10 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">BF528 - Applications in Translational Bioinformatics</a></li>
+<li><a class="" href="projects-overview.html"><span class="header-section-number">1</span> Projects Overview</a></li>
 <li class="book-part">Guides</li>
 <li><a class="" href="computational-environments-guide.html">Computational Environments Guide</a></li>
+<li><a class="" href="guide-for-requesting-appropriate-computational-resources-on-the-scc.html">Guide for requesting appropriate computational resources on the SCC</a></li>
 <li class="book-part">Project 0</li>
 <li><a class="" href="week-1-genome-analytics.html">Week 1: Genome Analytics</a></li>
 <li><a class="" href="week-2-genome-analytics.html">Week 2: Genome Analytics</a></li>
@@ -55,6 +57,13 @@
 <li><a class="" href="week-2-rnaseq.html">Week 2: RNAseq</a></li>
 <li><a class="" href="week-3-rnaseq.html">Week 3: RNAseq</a></li>
 <li><a class="" href="week-4-rnaseq.html">Week 4: RNAseq</a></li>
+<li class="book-part">Project 2</li>
+<li><a class="" href="week-1-chipseq.html">Week 1: ChIPseq</a></li>
+<li><a class="" href="week-2-chipseq.html">Week 2: ChIPseq</a></li>
+<li><a class="" href="week-3-chipseq.html">Week 3: ChIPseq</a></li>
+<li><a class="" href="week-4-chipseq.html">Week 4: ChIPseq</a></li>
+<li class="book-part">Final Project</li>
+<li><a class="" href="final-project---single-cell-rnaseq.html">Final Project - single cell RNAseq</a></li>
 <li class="book-part">Lectures</li>
 <li><a class="" href="introduction.html">Introduction</a></li>
 <li><a class="" href="genomics-genes-and-genomes.html">Genomics, Genes, and Genomes</a></li>
@@ -100,13 +109,12 @@
 </h2>
 <p><a href="week-1-rnaseq.html#week-1-overview">Week 1 Overview</a></p>
 <p><a href="week-1-genome-analytics.html#objectives">Objectives</a></p>
-<p><a href="week-1-rnaseq.html#read-the-paper">Read the paper</a></p>
 <p><a href="week-1-rnaseq.html#create-a-working-directory-for-project-1">Create a working directory for project 1</a></p>
 <p><a href="week-1-rnaseq.html#locating-the-data">Locating the data</a></p>
 <p><a href="week-1-rnaseq.html#changes-to-our-environment-management-strategy-and-workflow">Changes to our environment management strategy and workflow</a></p>
 <p><a href="week-1-rnaseq.html#generating-our-input-channels-for-nextflow">Generating our input channels for nextflow</a></p>
 <p><a href="week-1-rnaseq.html#performing-quality-control">Performing quality control</a></p>
-<p><a href="week-1-rnaseq.html#generate-a-file-containing-the-gene-ids-and-their-corresponding-mouse-gene-symbols">Generate a file containing the gene IDs and their corresponding mouse gene symbols</a></p>
+<p><a href="week-1-rnaseq.html#generate-a-file-containing-the-gene-ids-and-their-corresponding-human-gene-symbols">Generate a file containing the gene IDs and their corresponding human gene symbols</a></p>
 <p><a href="week-1-rnaseq.html#generate-a-genome-index">Generate a genome index</a></p>
 <p><a href="week-1-rnaseq.html#week-1-tasks-summary">Week 1 Tasks Summary</a></p>
 </div>
@@ -116,31 +124,17 @@
 <p>A basic RNAseq analysis consists of sample quality control, alignment,
 quantification and differential expression analysis. This week, we will be
 performing quality control analysis on the sequencing reads, generating a genome
-index for alignment, and making a mapping of mouse ensembl IDs to gene names.</p>
+index for alignment, and making a mapping of human ensembl IDs to gene names.</p>
 </div>
 <div id="objectives-4" class="section level2 unnumbered">
 <h2>Objectives<a class="anchor" aria-label="anchor" href="#objectives-4"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
-<li>
-<li>
-<li>
+<li><p>Perform basic quality control by running FASTQC on the sequencing reads</p></li>
+<li><p>Generate a delimited file containing the mapping of human ensembl ids to gene
+names</p></li>
+<li><p>Use STAR to create a genome index for the human reference genome</p></li>
 </ul>
-</div>
-<div id="read-the-paper" class="section level2 unnumbered">
-<h2>Read the paper<a class="anchor" aria-label="anchor" href="#read-the-paper"><i class="fas fa-link"></i></a>
-</h2>
-<p>This analysis is based on the data published in this study: <em>O’Meara et al.
-Transcriptional Reversion of Cardiac Myocyte Fate During Mammalian Cardiac
-Regeneration. Circ Res. Feb 2015. PMID: 25477501</em></p>
-<p>Please read the paper to get a sense for the overall hypotheses, goals, and
-conclusions presented. Keep in mind we are only analyzing the data from the
-first figure, and only the dataset involving the samples from p0, p4, p7 and
-adult mouse heart ventricle cells.</p>
-<p>We will also be deviating from the published methods in favor of using more
-up-to-date strategies and tools. However, the workflow you will develop should
-still capture and recreate the same core biological signals observed in the
-original work.</p>
 </div>
 <div id="create-a-working-directory-for-project-1" class="section level2 unnumbered">
 <h2>Create a working directory for project 1<a class="anchor" aria-label="anchor" href="#create-a-working-directory-for-project-1"><i class="fas fa-link"></i></a>
@@ -158,12 +152,12 @@ posted on the blackboard site for our class.</p>
 data files. You should copy these files to the <code>samples/</code> folder in your working
 directory that you cloned. For your convenience, we have renamed the files to be
 descriptive of the samples they represent following the pattern:
-{timepoint}{rep}subsample_{readpair}.fastq.gz (i.e. ADrep1subsample_R1.fastq.gz)</p>
+{condition}{rep}<em>subsample</em>{readpair}.fastq.gz (i.e. controlrep1_subsample_R1.fastq.gz)</p>
 <p>The files are located here:
-/projectnb/bf528/materials/project_1_rnaseq/subsampled_files and there are 16
+/projectnb/bf528/materials/project_1_rnaseq/subsampled_files and there are 12
 total files. Remember that paired end reads are typically used together as both
 the _R1 and _R2 files represent sequencing reads from the same fragments. This
-means that we have 8 biological samples, and 16 actual files representing those
+means that we have 6 biological samples, and 12 actual files representing those
 samples.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
@@ -218,14 +212,15 @@ nf-test before doing any work.</p>
 <p>This RNAseq pipeline will be driven by two channels that contain the starting
 FASTQ files for each of the samples in the experiment. Nextflow has a built-in
 function to simplify the generation of channels for samples from paired-end
-sequencing experiments. The <code>fromFilePairs</code> channel function allows you to
-detect paired end fastq files for each sample using similar pattern matching in
-bash through the use of wildcard expansion (*).</p>
+sequencing experiments. The <code>Channel.fromFilePairs</code> channel function allows you
+to detect paired end fastq files for each sample using similar pattern matching
+in bash through the use of wildcard expansion (*).</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
 <li><p>In the <code>nextflow.config</code>, specify a parameter called <code>reads</code> that encodes the
 path to your fastq files and uses * to flexibly detect the sample name associated
-with both paired files. Refer to the nextflow documentation on <code>fromFilePairs</code>.</p></li>
+with both paired files. Refer to the nextflow documentation on <code>fromFilePairs</code>
+found <a href="https://www.nextflow.io/docs/latest/reference/channel.html#fromfilepairs">here</a></p></li>
 <li><p>In your workflow <code>main.nf</code>, use the <code>Channel.fromFilePairs</code> function and the
 param you created in step 1 to create a channel called <code>align_ch</code>. You’ll notice
 that this function creates a channel with a structure we’ve seen before: a tuple
@@ -238,11 +233,13 @@ associated with that sample.</p></li>
 <ol start="3" style="list-style-type: decimal">
 <li>In your workflow <code>main.nf</code> create another channel using the exact logic from
 above but add an additional operation to create a channel that has as many
-elements in the channel as there are actual files (16). Name this channel
-<code>fastqc_channel</code> and it should be a list tuples where the first value is the
-name of the sample and the second is the path to the associated file. This will
-look something like below:</li>
+elements in the channel as there are actual files (16). You may find information
+on common nextflow operators that will enable this <a href="https://www.nextflow.io/docs/latest/reference/operator.html">here</a>
+</li>
 </ol>
+<p>Name this channel <code>fastqc_channel</code> and it should be a list tuples where the
+first value is the name of the sample and the second is the path to the
+associated file. This will look something like below:</p>
 <pre><code>fastqc_channel
 
 [sample1, sample1_R1.fastq.gz]
@@ -274,27 +271,30 @@ as last week to generate a new environment with just fastqc installed:</li>
 </ol>
 <pre><code>conda env create -f envs/test_env.yml</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Activate this new environment after it’s created, and navigate to the <code>temp/</code>
+<li>Activate this new environment after it’s created, and navigate to the <code>temp/</code>
 directory. You can view the help information for FASTQC by calling the program
 in a terminal with <code>fastqc -h</code> or for some programs <code>fastqc --help</code>. Try to
-run FASTQC on the provided fastq file and make a note of the output files that
-are produced and the command needed to run it.</p></li>
-<li><p>Make a new process for fastqc in the <code>modules/</code> directory. Be sure to specify
-the <code>label</code> as <code>process_low</code>, the <code>container</code> with the image path described
-above and the <code>publishDir</code> to send the results of this process to your <code>results/</code>
-directory.</p></li>
-<li><p>Specify the inputs of the process to match the structure of the <code>fastqc_channel</code>
-we just generated.</p></li>
-<li><p>By default, FASTQC will create two output files from a single input named as
-seen below:</p></li>
+run FASTQC on the provided fastq file.</li>
 </ol>
+<p>By default, FASTQC will create two output files from a single input named as
+seen below:</p>
 <pre><code>fastqc sample1.fastq.gz
 
 Outputs:
 sample1_fastqc.html
 sample1_fastqc.zip</code></pre>
-<p>For this module, please list two named outputs, which will later allow us to use
-the individual outputs separately:</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Make a new process for fastqc in the <code>modules/</code> directory. Be sure to specify
+the following in your module:</li>
+</ol>
+<pre><code>label 'process_low'
+container 'ghcr.io/bf528/fastqc:latest'
+publishDir &lt;a param containing the path to results/&gt;</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Specify the inputs of the process to match the structure of the
+<code>fastqc_channel</code> we just generated.For this module, please list two named
+outputs, which will later allow us to use the individual outputs separately:</li>
+</ol>
 <pre><code>output:
 tuple val(name), path('*.zip'), emit: zip
 tuple val(name), path('*.html'), emit: html</code></pre>
@@ -305,7 +305,7 @@ separately (i.e. FASTQC.out.zip would refer specifically to the zip file create
 by the FASTQC task)</p>
 <p>Remember you can use wildcard expansions in the path output to flexibly detect
 files with certain extensions without specifying their full filename.</p>
-<ol start="6" style="list-style-type: decimal">
+<ol start="5" style="list-style-type: decimal">
 <li><p>The shell command should be the successful fastqc command you ran earlier.
 Make sure to include the following argument: <code>-t $task.cpus</code>.</p></li>
 <li><p>Incorporate the FASTQC process into your workflow <code>main.nf</code> and provide it the
@@ -313,8 +313,8 @@ proper channel.</p></li>
 </ol>
 </div>
 </div>
-<div id="generate-a-file-containing-the-gene-ids-and-their-corresponding-mouse-gene-symbols" class="section level2 unnumbered">
-<h2>Generate a file containing the gene IDs and their corresponding mouse gene symbols<a class="anchor" aria-label="anchor" href="#generate-a-file-containing-the-gene-ids-and-their-corresponding-mouse-gene-symbols"><i class="fas fa-link"></i></a>
+<div id="generate-a-file-containing-the-gene-ids-and-their-corresponding-human-gene-symbols" class="section level2 unnumbered">
+<h2>Generate a file containing the gene IDs and their corresponding human gene symbols<a class="anchor" aria-label="anchor" href="#generate-a-file-containing-the-gene-ids-and-their-corresponding-human-gene-symbols"><i class="fas fa-link"></i></a>
 </h2>
 <p>As we’ve discussed, it’s often more intuitive for us to use gene names rather than
 their IDs. While there are external services that can perform this for us (biomaRt),
@@ -346,16 +346,20 @@ pass it the appropriate GTF input encoded as a param.</p></li>
 <h2>Generate a genome index<a class="anchor" aria-label="anchor" href="#generate-a-genome-index"><i class="fas fa-link"></i></a>
 </h2>
 <p>Most alignment algorithms require an index to be generated to make the alignment
-process more efficient and expedient. These index files are typically specific
-to the tool and we will be using the STAR aligner, one of the most commonly
-used alignment tools for RNAseq.</p>
+process more efficient and expedient. These index files are both specific to the
+tool and the reference genome used to build them. We will be using the STAR
+aligner, one of the most commonly used alignment tools for RNAseq.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
 <li><p>Read the beginning of the <a href="https://github.com/alexdobin/STAR">documentation</a>
 for how to generate a STAR index.</p></li>
 <li><p>Generate a module and process that creates a STAR index for our reference
 genome. This process will require two inputs, the reference genome and the
-associated GTF file. Ensure that the <code>label</code> for this module is <code>process_high</code>.</p></li>
+associated GTF file. Ensure that the following are specified in your module:</p></li>
+</ol>
+<pre><code>label 'process_high'
+container 'ghcr.io/bf528/star:latest'</code></pre>
+<ol start="3" style="list-style-type: decimal">
 <li><p>The outputs of this process will be a directory of multiple files that all
 comprise the index. You will have to create this directory prior to running
 the STAR command. Please also be sure to include the <code>--runThreadN $task.cpus</code>
@@ -371,30 +375,28 @@ file.</p></li>
 <h2>Week 1 Tasks Summary<a class="anchor" aria-label="anchor" href="#week-1-tasks-summary"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
-<li><p>Read the paper and focus on the sections that discuss the experiment of
-interest</p></li>
 <li><p>Clone the github classroom link for this project</p></li>
-<li><p>Copy the necessary files to your working directory. These files will include:</p></li>
+<li><p>Copy the necessary files to your working directory. These files will include
+the following:</p></li>
 </ol>
 <ul>
-<li>The Gencode mm10 reference genome for the primary assembly</li>
-<li>The Gencode mm10 GTF for the primary assembly</li>
+<li>Gencode hg38 reference genome for the primary assembly</li>
+<li>Gencode GTF for the primary assembly</li>
 <li>The subsampled FASTQ files</li>
 </ul>
-<ol start="4" style="list-style-type: decimal">
+<ol start="3" style="list-style-type: decimal">
 <li><p>Generate a nextflow channel called <code>align_ch</code> that has 8 total elements where
 each element is a tuple containing two elements: the name of the sample, and a
 list of both of the associated paired end files.</p></li>
 <li><p>Generate a nextflow channel called <code>fastqc_channel</code> that has 16 total
 elements where each element is a tuple containing two elements: the name of the
 sample, and one of the FASTQ files.</p></li>
-<li><p>Generate a module that successfully runs FASTQC, add this process to your
-workflow and pass it your <code>fastqc_channel</code>.</p></li>
-<li><p>Develop an external script that parses the GTF and returns a delimited file
+<li><p>Generate a module that successfully runs FASTQC using the <code>fastqc_channel</code></p></li>
+<li><p>Develop an external script that parses the GTF and writes a delimited file
 where one column represents the ensembl mouse IDs and the value in the other
 column is the associated MGI symbol.</p></li>
-<li><p>Generate a module that successfully creates a STAR index, add this process to
-your workflow and pass it the necessary inputs</p></li>
+<li><p>Generate a module that successfully creates a STAR index using the params
+containing the path to your reference genome assembly and GTF</p></li>
 </ol>
 </div>
 </div>
@@ -408,13 +410,12 @@ your workflow and pass it the necessary inputs</p></li>
 <li><a class="nav-link" href="#section-links-4">Section Links</a></li>
 <li><a class="nav-link" href="#week-1-overview">Week 1 Overview</a></li>
 <li><a class="nav-link" href="#objectives-4">Objectives</a></li>
-<li><a class="nav-link" href="#read-the-paper">Read the paper</a></li>
 <li><a class="nav-link" href="#create-a-working-directory-for-project-1">Create a working directory for project 1</a></li>
 <li><a class="nav-link" href="#locating-the-data">Locating the data</a></li>
 <li><a class="nav-link" href="#changes-to-our-environment-management-strategy-and-workflow">Changes to our environment management strategy and workflow</a></li>
 <li><a class="nav-link" href="#generating-our-input-channels-for-nextflow">Generating our input channels for nextflow</a></li>
 <li><a class="nav-link" href="#performing-quality-control">Performing Quality Control</a></li>
-<li><a class="nav-link" href="#generate-a-file-containing-the-gene-ids-and-their-corresponding-mouse-gene-symbols">Generate a file containing the gene IDs and their corresponding mouse gene symbols</a></li>
+<li><a class="nav-link" href="#generate-a-file-containing-the-gene-ids-and-their-corresponding-human-gene-symbols">Generate a file containing the gene IDs and their corresponding human gene symbols</a></li>
 <li><a class="nav-link" href="#generate-a-genome-index">Generate a genome index</a></li>
 <li><a class="nav-link" href="#week-1-tasks-summary">Week 1 Tasks Summary</a></li>
 </ul>

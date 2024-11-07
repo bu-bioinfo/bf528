@@ -4,12 +4,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Metabolomics | BF528 - Applications in Translational Bioinformatics</title>
+<title>Final Project - single cell RNAseq | BF528 - Applications in Translational Bioinformatics</title>
 <meta name="generator" content="bookdown 0.40 with bs4_book()">
-<meta property="og:title" content="Metabolomics | BF528 - Applications in Translational Bioinformatics">
+<meta property="og:title" content="Final Project - single cell RNAseq | BF528 - Applications in Translational Bioinformatics">
 <meta property="og:type" content="book">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Metabolomics | BF528 - Applications in Translational Bioinformatics">
+<meta name="twitter:title" content="Final Project - single cell RNAseq | BF528 - Applications in Translational Bioinformatics">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.8.0/transition.js"></script><script src="libs/bs3compat-0.8.0/tabs.js"></script><script src="libs/bs3compat-0.8.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -18,9 +18,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="online slides downloadable slides">
-<meta property="og:description" content="online slides downloadable slides">
-<meta name="twitter:description" content="online slides downloadable slides">
+<meta name="description" content="For the final project, you will be processing single cell RNAseq data from a published experiment. Your workflow will need to convert the provided BAM files back to FASTQs and re-align the reads...">
+<meta property="og:description" content="For the final project, you will be processing single cell RNAseq data from a published experiment. Your workflow will need to convert the provided BAM files back to FASTQs and re-align the reads...">
+<meta name="twitter:description" content="For the final project, you will be processing single cell RNAseq data from a published experiment. Your workflow will need to convert the provided BAM files back to FASTQs and re-align the reads...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -63,7 +63,7 @@
 <li><a class="" href="week-3-chipseq.html">Week 3: ChIPseq</a></li>
 <li><a class="" href="week-4-chipseq.html">Week 4: ChIPseq</a></li>
 <li class="book-part">Final Project</li>
-<li><a class="" href="final-project---single-cell-rnaseq.html">Final Project - single cell RNAseq</a></li>
+<li><a class="active" href="final-project---single-cell-rnaseq.html">Final Project - single cell RNAseq</a></li>
 <li class="book-part">Lectures</li>
 <li><a class="" href="introduction.html">Introduction</a></li>
 <li><a class="" href="genomics-genes-and-genomes.html">Genomics, Genes, and Genomes</a></li>
@@ -88,7 +88,7 @@
 <li><a class="" href="microbiome-metagenomics.html">Microbiome: Metagenomics</a></li>
 <li><a class="" href="microbiome-16s.html">Microbiome: 16S</a></li>
 <li><a class="" href="proteomics.html">Proteomics</a></li>
-<li><a class="active" href="metabolomics.html">Metabolomics</a></li>
+<li><a class="" href="metabolomics.html">Metabolomics</a></li>
 <li><a class="" href="docker.html">Docker</a></li>
 <li><a class="" href="single-cell-analysis-part-1.html">Single Cell Analysis Part 1</a></li>
 <li><a class="" href="single-cell-analysis-part-2.html">Single Cell Analysis Part 2</a></li>
@@ -101,18 +101,29 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="metabolomics" class="section level1 unnumbered">
-<h1>Metabolomics<a class="anchor" aria-label="anchor" href="#metabolomics"><i class="fas fa-link"></i></a>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="final-project---single-cell-rnaseq" class="section level1 unnumbered">
+<h1>Final Project - single cell RNAseq<a class="anchor" aria-label="anchor" href="#final-project---single-cell-rnaseq"><i class="fas fa-link"></i></a>
 </h1>
-<p><a href="https://docs.google.com/presentation/d/1Pey4YDKdz5i0Q3t5CuvwzHPtwo55RvUaO1TWvZAD2As/present?usp=sharing">online slides</a></p>
-<p><a href="https://docs.google.com/presentation/d/1Pey4YDKdz5i0Q3t5CuvwzHPtwo55RvUaO1TWvZAD2As/export/pptx">downloadable slides</a></p>
+<p>For the final project, you will be processing single cell RNAseq data from a
+published experiment. Your workflow will need to convert the provided BAM files
+back to FASTQs and re-align the reads to an appropriate reference genome. We
+have provided you with a docker image containing the latest version of cellranger,
+but you may also explore other valid alignment strategies (STARsolo, etc.).</p>
+<p>Once you have a successfully working pipeline, you will need to perform a basic
+analysis of the data in either Seurat or Scanpy. These directions will only give
+you a basic scaffold of what you need to do and the rest you will need to
+implement on your own.</p>
+
 </div>
-  <div class="chapter-nav">
-<div class="prev"><a href="proteomics.html">Proteomics</a></div>
-<div class="next"><a href="docker.html">Docker</a></div>
+
+
+
+<div class="chapter-nav">
+<div class="prev"><a href="week-4-chipseq.html">Week 4: ChIPseq</a></div>
+<div class="next"><a href="introduction.html">Introduction</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav"><li><a class="nav-link" href="#metabolomics">Metabolomics</a></li></ul>
+      <ul class="nav navbar-nav"><li><a class="nav-link" href="#final-project---single-cell-rnaseq">Final Project - single cell RNAseq</a></li></ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
@@ -121,9 +132,13 @@
 </div>
     </nav>
 </div>
+</div>
+  
+
+  
 
 </div>
-</div> <!-- .container -->
+ <!-- .container -->
 
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
