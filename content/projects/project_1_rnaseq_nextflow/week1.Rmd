@@ -6,8 +6,6 @@
 
 [Objectives]
 
-[Read the paper]
-
 [Create a working directory for project 1]
 
 [Locating the data]
@@ -18,7 +16,7 @@
 
 [Performing quality control]
 
-[Generate a file containing the gene IDs and their corresponding mouse gene symbols]
+[Generate a file containing the gene IDs and their corresponding human gene symbols]
 
 [Generate a genome index]
 
@@ -29,31 +27,17 @@
 A basic RNAseq analysis consists of sample quality control, alignment,
 quantification and differential expression analysis. This week, we will be
 performing quality control analysis on the sequencing reads, generating a genome
-index for alignment, and making a mapping of mouse ensembl IDs to gene names.
+index for alignment, and making a mapping of human ensembl IDs to gene names.
 
 ## Objectives {-}
 
-- 
-- 
-- 
+- Perform basic quality control by running FASTQC on the sequencing reads
 
+- Generate a delimited file containing the mapping of human ensembl ids to gene
+  names
 
+- Use STAR to create a genome index for the human reference genome
 
-## Read the paper {-}
-
-This analysis is based on the data published in this study: *O’Meara et al.
-Transcriptional Reversion of Cardiac Myocyte Fate During Mammalian Cardiac
-Regeneration. Circ Res. Feb 2015. PMID: 25477501*
-
-Please read the paper to get a sense for the overall hypotheses, goals, and
-conclusions presented. Keep in mind we are only analyzing the data from the
-first figure, and only the dataset involving the samples from p0, p4, p7 and
-adult mouse heart ventricle cells. 
-
-We will also be deviating from the published methods in favor of using more
-up-to-date strategies and tools. However, the workflow you will develop should
-still capture and recreate the same core biological signals observed in the
-original work.
 
 ## Create a working directory for project 1 {-}
 
@@ -71,13 +55,13 @@ For this first project, we have provided you with small subsets of the original
 data files. You should copy these files to the `samples/` folder in your working
 directory that you cloned. For your convenience, we have renamed the files to be
 descriptive of the samples they represent following the pattern:
-{timepoint}{rep}subsample_{readpair}.fastq.gz (i.e. ADrep1subsample_R1.fastq.gz)
+{condition}{rep}_subsample_{readpair}.fastq.gz (i.e. controlrep1_subsample_R1.fastq.gz)
 
 The files are located here:
-/projectnb/bf528/materials/project_1_rnaseq/subsampled_files and there are 16
+/projectnb/bf528/materials/project_1_rnaseq/subsampled_files and there are 12
 total files. Remember that paired end reads are typically used together as both
 the _R1 and _R2 files represent sequencing reads from the same fragments. This
-means that we have 8 biological samples, and 16 actual files representing those
+means that we have 6 biological samples, and 12 actual files representing those
 samples.
 
 :::{.box .task}
@@ -145,15 +129,16 @@ nf-test before doing any work.
 This RNAseq pipeline will be driven by two channels that contain the starting
 FASTQ files for each of the samples in the experiment. Nextflow has a built-in
 function to simplify the generation of channels for samples from paired-end
-sequencing experiments. The `fromFilePairs` channel function allows you to 
-detect paired end fastq files for each sample using similar pattern matching in
-bash through the use of wildcard expansion (*).
+sequencing experiments. The `Channel.fromFilePairs` channel function allows you
+to detect paired end fastq files for each sample using similar pattern matching
+in bash through the use of wildcard expansion (*).
 
 :::{.box .task}
 
 1. In the `nextflow.config`, specify a parameter called `reads` that encodes the
 path to your fastq files and uses * to flexibly detect the sample name associated
-with both paired files. Refer to the nextflow documentation on `fromFilePairs`.
+with both paired files. Refer to the nextflow documentation on `fromFilePairs`
+found [here](https://www.nextflow.io/docs/latest/reference/channel.html#fromfilepairs)
 
 2. In your workflow `main.nf`, use the `Channel.fromFilePairs` function and the
 param you created in step 1 to create a channel called `align_ch`. You'll notice
@@ -170,10 +155,12 @@ align_ch
 
 3. In your workflow `main.nf` create another channel using the exact logic from
 above but add an additional operation to create a channel that has as many
-elements in the channel as there are actual files (16). Name this channel
-`fastqc_channel` and it should be a list tuples where the first value is the
-name of the sample and the second is the path to the associated file. This will
-look something like below:
+elements in the channel as there are actual files (16). You may find information
+on common nextflow operators that will enable this [here](https://www.nextflow.io/docs/latest/reference/operator.html)
+
+Name this channel `fastqc_channel` and it should be a list tuples where the
+first value is the name of the sample and the second is the path to the
+associated file. This will look something like below:
 
 ```
 fastqc_channel
@@ -218,18 +205,9 @@ conda env create -f envs/test_env.yml
 2. Activate this new environment after it's created, and navigate to the `temp/`
 directory. You can view the help information for FASTQC by calling the program
 in a terminal with `fastqc -h` or for some programs `fastqc --help`. Try to 
-run FASTQC on the provided fastq file and make a note of the output files that 
-are produced and the command needed to run it. 
+run FASTQC on the provided fastq file.
 
-3. Make a new process for fastqc in the `modules/` directory. Be sure to specify
-the `label` as `process_low`, the `container` with the image path described
-above and the `publishDir` to send the results of this process to your `results/`
-directory. 
-
-4. Specify the inputs of the process to match the structure of the `fastqc_channel`
-we just generated. 
-
-5. By default, FASTQC will create two output files from a single input named as 
+By default, FASTQC will create two output files from a single input named as 
 seen below:
 
 ```
@@ -240,8 +218,18 @@ sample1_fastqc.html
 sample1_fastqc.zip
 ```
 
-For this module, please list two named outputs, which will later allow us to use
-the individual outputs separately:
+3. Make a new process for fastqc in the `modules/` directory. Be sure to specify
+the following in your module:
+
+```
+label 'process_low'
+container 'ghcr.io/bf528/fastqc:latest'
+publishDir <a param containing the path to results/>
+```
+
+4. Specify the inputs of the process to match the structure of the
+`fastqc_channel` we just generated.For this module, please list two named
+outputs, which will later allow us to use the individual outputs separately:
 
 
 ```
@@ -259,15 +247,15 @@ by the FASTQC task)
 Remember you can use wildcard expansions in the path output to flexibly detect
 files with certain extensions without specifying their full filename.
 
-6. The shell command should be the successful fastqc command you ran earlier. 
+5. The shell command should be the successful fastqc command you ran earlier. 
 Make sure to include the following argument: `-t $task.cpus`. 
 
-7. Incorporate the FASTQC process into your workflow `main.nf` and provide it the
+6. Incorporate the FASTQC process into your workflow `main.nf` and provide it the
 proper channel. 
 
 :::
 
-## Generate a file containing the gene IDs and their corresponding mouse gene symbols {-}
+## Generate a file containing the gene IDs and their corresponding human gene symbols {-}
 
 As we've discussed, it's often more intuitive for us to use gene names rather than
 their IDs. While there are external services that can perform this for us (biomaRt), 
@@ -303,9 +291,9 @@ pass it the appropriate GTF input encoded as a param.
 ## Generate a genome index {-}
 
 Most alignment algorithms require an index to be generated to make the alignment
-process more efficient and expedient. These index files are typically specific
-to the tool and we will be using the STAR aligner, one of the most commonly
-used alignment tools for RNAseq. 
+process more efficient and expedient. These index files are both specific to the
+tool and the reference genome used to build them. We will be using the STAR
+aligner, one of the most commonly used alignment tools for RNAseq.
 
 :::{.box .task}
 
@@ -314,7 +302,12 @@ for how to generate a STAR index.
 
 2. Generate a module and process that creates a STAR index for our reference
 genome. This process will require two inputs, the reference genome and the
-associated GTF file. Ensure that the `label` for this module is `process_high`.
+associated GTF file. Ensure that the following are specified in your module:
+
+```
+label 'process_high'
+container 'ghcr.io/bf528/star:latest'
+```
 
 3. The outputs of this process will be a directory of multiple files that all
 comprise the index. You will have to create this directory prior to running
@@ -330,32 +323,29 @@ file.
 
 ## Week 1 Tasks Summary {-}
 
-1. Read the paper and focus on the sections that discuss the experiment of 
-interest
+1. Clone the github classroom link for this project
 
-2. Clone the github classroom link for this project
+2. Copy the necessary files to your working directory. These files will include
+the following:
 
-3. Copy the necessary files to your working directory. These files will include:
-
-  - The Gencode mm10 reference genome for the primary assembly
-  - The Gencode mm10 GTF for the primary assembly
+  - Gencode hg38 reference genome for the primary assembly
+  - Gencode GTF for the primary assembly
   - The subsampled FASTQ files
   
-4. Generate a nextflow channel called `align_ch` that has 8 total elements where
+3. Generate a nextflow channel called `align_ch` that has 8 total elements where
 each element is a tuple containing two elements: the name of the sample, and a
 list of both of the associated paired end files.
 
-5. Generate a nextflow channel called `fastqc_channel` that has 16 total
+4. Generate a nextflow channel called `fastqc_channel` that has 16 total
 elements where each element is a tuple containing two elements: the name of the
 sample, and one of the FASTQ files. 
 
-6. Generate a module that successfully runs FASTQC, add this process to your
-workflow and pass it your `fastqc_channel`.
+5. Generate a module that successfully runs FASTQC using the `fastqc_channel`
 
-7. Develop an external script that parses the GTF and returns a delimited file
+6. Develop an external script that parses the GTF and writes a delimited file
 where one column represents the ensembl mouse IDs and the value in the other 
 column is the associated MGI symbol. 
 
-8. Generate a module that successfully creates a STAR index, add this process to
-your workflow and pass it the necessary inputs
+7. Generate a module that successfully creates a STAR index using the params
+containing the path to your reference genome assembly and GTF
 

@@ -240,14 +240,14 @@ Your code should do the following:
 2. Make a new directory in `modules` entitled `genome_stats` and create a
 `main.nf` within that directory. If using biopython, make an appropriate YML
 environment specification for biopython. If only using basic python, make a YML
-environment specification with python installed. You can have 
+environment specification with python installed. You can have the inputs be the
+same shape and structure as the `fa_ch`.
 
-The inputs be the same shape and structure as the `fa_ch`. You will need to
-specify how you want the output file named. The shell/script portion will be the
-command for executing the associated `.py` script and providing it the
-appropriate inputs as specified by `argparse`. Please write the new file to the
-`results/` directory using `publishDir`. Name this output file using the name
-value passed in the channel (i.e. ${name}_genome_stats.txt)
+You will need to specify how you want the output file named. The shell/script
+portion will be the command for executing the associated `.py` script and
+providing it the appropriate inputs as specified by `argparse`. Please write the
+new file to the `results/` directory using `publishDir`. Name this output file
+using the name value passed in the channel (i.e. ${name}_genome_stats.txt)
 
 3. When your script is functional and your associated nextflow module complete,
 run Nextflow once more to generate the text file containing the two genome

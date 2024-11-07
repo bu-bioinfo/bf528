@@ -129,48 +129,51 @@ As instructor, I pledge to
 3. Work to accommodate/prevent language related challenges (for instance I will
    do my best to avoid the use of idioms and slang)
 
-## Project Overview {-}
+# Projects Overview
 
-The three projects are as follows:
+- Project 0: Genome Analytics
+- Project 1: RNAseq
+- Project 2: ChIPseq
+- Project 3: scRNAseq
 
-1. [Genome Analyistcs][Project 0: Microbial Genome Analysis] 
-2. [Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq][Project 1: Transcriptional Profile of Mammalian Cardiac Regeneration with mRNA-Seq]
-3. [ChIPseq analysis of the human transcription factor Runx1][Project 2: ChIPseq analysis of the human transcription factor Runx1]
-4. [scRNAseq analysis of human liver][Project 3: scRNAseq analysis of human liver]
+## Project Structure
 
+Each project has been split into 4 weekly parts and by the end of each, you will
+have developed a complete pipeline that will process the data from end-to-end
+using state-of-the-art tools. In order to generate reproducible, and portable
+NGS analysis workflows, we will be employing a combination of technologies
+including Nextflow, git, Conda, Docker, and HPC.
 
-## Grading and Assessment {-}
+Subsequent projects will gradually add more complexity and tasks once you've
+gained experience with the fundamentals.
 
-Project 0 is an introduction to all the tools and technologies we will be
-utilizing throughout the semester. You will receive feedback on all your tasks, 
-but it will not count as part of your assessment. 
+The data for each of the projects come from peer-reviewed published papers.
+Prior to your analysis, you will not be informed of the source and you will be
+asked to make some general conclusions and hypotheses from your results. In the
+4th week of each project, we will reveal the original paper and you will compare
+how well you were able to reproduce the reported results and be asked to
+speculate on any observable differences.
 
-**60% of your grade**:
-Projects 1 and 2 have been split into weekly tasks. These tasks will be a
-mixture of computational or analysis tasks and some discussion questions meant
-to enhance your understanding of larger concepts or the rationale underlying
-certain tasks. These tasks and answers to the discussion questions will be due
-the week following their assignment. Myself and the TAs will provide feedback on
-if you successfully completed the tasks or answered the questions and you will
-then be allowed to resubmit your work the following week. As long as you
-successfully address the given feedback upon resubmission, you will receive full
-credit for each week.
+## Project Grading
 
-Attendance during lab sessions will also be factored into this portion of your 
-grade. 
+Project 0 will *not* be graded and is meant to serve as a gentle introduction to
+Nextflow, and the other technologies we will be utilizing throughout the semester.
 
-**The other 40% of your grade**:
-Projects 1 and 2 were designed with scaffolding and instructions meant to aid
-you in developing these nextflow pipelines. The remaining 40% of your grade will
-be based on project 3.
+Projects 1 and 2 will be graded based on your answers to weekly discussion
+questions as well as credit for completing the specified tasks on-time.
 
 For project 3, you will be asked to develop a pipeline from scratch, using all
 of the principles and techniques we've utilized throughout the semester. We will
 provide minimal guidance and a list of analyses and questions you will need to
-answer. This project will involved generating a nextflow pipeline and analysis
+answer. This project will involve generating a nextflow pipeline and analysis
 workflow that will process a scRNAseq experiment from raw data to biological
 analysis.
 
+Generally speaking the grading breakdown will be as follows:
+
+Project 1: 25%
+Project 2: 25%
+project 3: 50%
 
 ## Course Schedule {-}
 

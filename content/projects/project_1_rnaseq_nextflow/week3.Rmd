@@ -14,7 +14,9 @@
 
 [Performing differential expression analysis using the filtered counts]
 
-[Basic RNAseq quality control]
+[RNAseq Quality Control Plots]
+
+[Basic gene set enrichment analysis]
 
 ## Week 3 Overview {-}
 
@@ -97,9 +99,54 @@ filtering is subjective and meant to reduce our statistical testing burden.
 :::{.box .task}
 
 1. Choose a filtering strategy and apply it to your counts matrix. In the provided
-notebook, report the strategy you used and create a plot or a table that demonstrates
-the effects of your filtering on the counts. 
+notebook, report the strategy you used and create a plot that demonstrates
+the effects of your filtering on the counts for all of your samples.
 
 :::
 
 ## Performing differential expression analysis using the filtered counts {-}
+
+Refer to the DESeq2 vignette on how to perform a basic differential expression
+analysis. For this dataset, you will simply be testing for differences between
+the condition (control vs. experimental). Choose an appropriate padj threshold
+to generate a list of statistically significant differentially expressed genes
+from your analysis. 
+
+:::{.box .task}
+
+Perform a basic differential expression analysis and produce the following as well
+formatted figures:
+
+  1. A table containing the DESeq2 results for the top ten significant genes 
+  ranked by padj
+  
+  2. The results from a DAVID or ENRICHR analysis on the significant genes at
+  your chosen padj threshold.
+
+
+## RNAseq Quality Control Plots {-}
+
+It is common to produce both a PCA plot as well as a sample-to-sample distance
+matrix from our counts to assist us in our confidence in whether the differences we 
+see in the differential expression analysis can likely be contributed to our biological
+condition of interest.
+
+:::{.box .task}
+
+1. Choose an appropriate normalization strategy (rlog or vst) and generate a
+normalized counts matrix for the experiment
+
+2. Perform PCA on this normalized counts matrix and overlay the sample
+information in a biplot of PC1 vs. PC2
+
+3. Create a heatmap or graphic of the sample-to-sample distances for the experiment
+
+4. In the provided notebook, comment in no less than two paragraphs about your
+interpretations of these plots and if you believe the DE analysis was successful.
+
+:::
+
+## FGSEA Analysis {-}
+
+perform a basic FGSEA analysis and report the results
+

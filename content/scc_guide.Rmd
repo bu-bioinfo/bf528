@@ -1,0 +1,104 @@
+# Guide for requesting appropriate computational resources on the SCC {-}
+
+As we've discussed in class, we can greatly speed up certain computational
+operations by making use of high performance computing principles. This can
+include leveraging multicore processors, using nodes with more RAM available and
+making use of parallel computing to run independent tasks simultaneously on
+multiple computers.
+
+The compute nodes on the SCC are relatively heterogeneous and you can see an
+exact technical breakdown [here](). For operations where it is possible, we will
+often make use of multiple cores of a processor to speed up the computation.
+
+## The qsub command {-}
+
+The SCC makes use of SGE queuing system to manage and schedule the execution of
+large numbers of jobs on a high-performance computing cluster. This is done
+primarily through the `qsub` command which will enable the customization of
+different directives passed to the batch system.
+
+The most commonly used directives are:
+
+`-l h_rt`: hard run time limit in hh:mm:ss format. Default, 12 hrs. 
+
+`-P`: The project to which jobs are assigned. This option is *mandatory* for all
+      users and used for accounting purposes.
+      
+`-N`: Specifies the job name. Default is the script or command name.  
+
+Other [directives]() allow jobs to request nodes with specific amounts of memory, 
+processors or even architecture. We will be making heavy use of the `-pe omp`
+directive which is primarily intended for any jobs using multiple processors on a
+single node. 
+
+## pe omp {-}
+
+The value of N can be set to any number between 1 and 28 and can
+also be set to 36. Use N=36 is to request a very large-memory (1024 GB) node. To
+make best use of available resources on the SCC, the optimal choices are N=1, 4,
+8, 16, 28, or 36.
+
+https://www.bu.edu/tech/support/research/system-usage/running-jobs/parallel-batch/#pe
+
+## Handling memory requests on the SCC
+
+As well as cores, certain jobs may require a specific amount of memory. As you
+know, storing information in RAM (random access memory) allows for much faster
+access and operations. When your jobs are scheduled and dispatched to the actual
+node, there is no actual restriction on the amount of RAM your task utilizes.
+However, we are on a **shared** computing cluster, and it is important to be
+respectful and every user is expected to follow "fair share" guidelines. Your
+job will likely be running on a node where other user's tasks are also running,
+so it is important not to unduly monopolize these **shared** resources.
+
+```
+Memory options to the batch system are only enforced when the job is dispatched
+to the node. Once the job has been dispatched, the batch system cannot enforce
+any limits to the amount of memory the job uses on the node. Therefore each user
+is expected to follow "fair share" guidelines when submitting jobs to the
+cluster.
+
+The memory on each node on the SCC is shared by all the jobs running on that
+node. Therefore a single-processor job should not use more than the amount of
+memory available per core (TotalMemory / NumCores where TotalMemory is the total
+memory on the node and NumCores is the number of cores). For example on the
+nodes with 128GB of memory and 16 cores, if the node is fully utilized, a
+single-processor job is expected to use no more than 8GB of memory. See the
+Technical Summary for the list of nodes and the memory available on each of
+them.
+
+https://www.bu.edu/tech/support/research/system-usage/running-jobs/resources-jobs/#memory
+```
+
+## Commonly used core / memory options on the SCC
+
+In general, requesting more cores (or more memory), will increase your queue
+time as these more powerful nodes are usually in high demand by other users of
+the SCC. You can look at the `nextflow.config` profiles section to look at
+exactly the resources requested via qsub command for each of the `labels` we are
+using for our tasks.
+
+Below, you can see a small table provided by the SCC that denotes common memory
+and processor requests and how to specify them: 
+
+```{r, echo=FALSE}
+knitr::include_graphics("projects/project_1_rnaseq/scc_requesting_resources.png")
+```
+
+A few important notes on the table seen above:
+
+  1. These are the most common options, and the job queue will generally be
+  faster when using the preset options seen above as there are more nodes with 
+  these specifications.
+  
+  2. The more powerful nodes (larger # of cores and RAM) are in high-demand. You
+  want to only request these nodes if you are sure you need the resources these
+  provide. The queue for these nodes can be very long and depending on the complexity
+  of the request task, may be longer than the actual runtime of what you are doing. 
+  
+  
+## How to determine what resources to request per job
+
+## qstat
+
+## nextflow log
