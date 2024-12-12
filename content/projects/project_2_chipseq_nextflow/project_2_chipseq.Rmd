@@ -1,0 +1,250 @@
+---
+---
+
+# Project 2: ChIPseq analysis of the human transcription factor Runx1 {-}
+
+The github classroom link is here: https://classroom.github.com/a/wWocEgqL
+
+Similar to advancing gene expression quantification from microarrays to RNA-seq,
+next-generation sequencing also revolutionized other wet lab assays that examine
+nucleotides by making them (relatively) unbiased and high-throughput. One such
+set of technologies are protein-DNA binding assays including ChiP-qPCR and
+ChIP-ChIP, which use antibodies and immunoprecipitation to capture chromatin
+bound by a specific protein of interest. Chromatin Immunoprecipitation
+Sequencing (ChIP-seq) is a technique that identifies genome-wide DNA binding
+sites with transcription factors and other proteins of interest by sequencing
+the DNA fragments isolated from protein-DNA complexes.
+
+Barutcu et al. (2016) used RNA-seq, ChIP-seq, and HI-C to investigate the role
+of Runx1 in the MCF7 cell line, a model line used for the study of breast
+cancer. In this project, we will reproduce several results from Supplementary
+Figure 2 and Figure 1, which comprise common preliminary analyses of ChIP-seq
+data. Each individual will process the ChIP-seq data from raw reads to called
+peaks, incorporate the provided RNA-seq data and ultimately attempt to reproduce
+the findings found in the paper.
+
+Upon completion of project 2, you will have gained the following skills:
+
+- Hands-on experience with a modern ChIPseq analysis pipeline
+
+- (More) experience submitting jobs in a HPC environment
+
+- Working proficiency with commonly used bioinformatics software tools including
+bowtie2, HOMER, deeptools, IGV and bedtools
+
+Please note that the methods for the original paper are ambiguous in important
+areas. For this project, on occasion, you will be asked to define certain
+parameters and explain your choice. It is important to remember that even if the
+authors had specified a specific value for certain parameters, that does not
+mean that is the single correct option. We base our choice of these parameters
+on our background knowledge and rational assumptions. Do your best to pick
+reasonable values and justify them.
+
+Please carefully read the following sections as they describe the new strategy
+we will be employing to create a more reproducible and portable workflow. 
+
+## Changes to how we use Conda environments {-}
+
+For the first project, I had you make your own conda environments and install
+all of the required packages in a single environment on your own. Some of the
+pain points encountered were meant as a learning experience; the vast majority
+of others were unintended (sorry!) and are a consequence of setting up an
+environment in that fashion. No doubt you have experienced Conda hanging while
+trying to solve package specifications or throwing some kind of error message 
+frequently. Hopefully, this also highlights the struggle and importance of 
+following good reproducibility and portability practices in bioinformatics. 
+
+For this project, we will be making a large structural change in how we use
+Conda to better promote the development of reproducible and portable workflows.
+This new strategy uses functionality built-in to snakemake and allows specific
+rules to use specific conda environments. 
+
+In a more professional setting, this is similar to the idea of having each task
+/ tool run in an isolated container with just that tool and its dependencies
+installed. This strategy of having each task run in a dedicated, isolated
+environment accomplishes several goals:
+
+1. The environments created are light-weight since they only contain a single
+primary tool and its direct software dependencies
+
+2. The environments are far less likely to encounter dependency issues since it
+only needs to solve the installation of a single primary tool and its direct
+dependencies (i.e. we can avoid situations where your different tools require
+incompatible software libraries or versions and thus cannot run in the same
+environment)
+
+3. We can use the most up-to-date versions of software without fear of
+incompatibilities
+
+These environments are far more reproducible and portable for the above reasons.
+
+Before we get started, it is of vital importance that you heed the following
+instruction at all times: **Do not alter any file in the envs/ directory for any
+reason at any time**
+
+Here is the basic outline of the changes:
+
+1. 
+In your template repo, I have provided you with a `base_env.yml` file
+that will make a conda environment for project 2 that only contains `snakemake`
+and a few python libraries including `pandas` and `jupyterlab`.
+
+Sign on to the SCC, and run `module load miniconda` and the following command
+**without** any environment active (your terminal should say base before your
+username):
+
+```
+conda env create -f base_env.yml
+```
+
+Conda will create an environment with only the packages listed inside the .yml
+file. By default, this will create an environment named `bf528_project2_base`.
+This name is specified on the first line of the file, and if you are comfortable
+editing such a file, you may change the environment name created to one of your
+choosing. Otherwise, this will be the name of the environment you need to 
+activate prior to doing any work on the project as always.
+
+2. 
+Also in your template repo, you can **LOOK** but do not alter any files in
+the `envs/` directory. These are all YAML (human readable serialization
+language) files, which are typically used to store configuration settings and
+parameters in an easily parsed and readable format. You can see that they are 
+named descriptively with the names of major packages we have discussed.
+
+If you inspect one, you can see that we have defined our *channels* (the same
+ones we used in conda, conda-forge listed first, followed by bioconda) and then
+we have listed our *dependencies*, which are simply specific packages we want
+installed. You can also notice that I have specified a specific version.
+It will look something like below:
+
+```
+channels:
+- conda-forge
+- bioconda
+
+dependencies:
+- samtools=1.19.2
+```
+
+Using the commands we discuss later, snakemake will automatically create
+separate environments based on this specification and activate them for specific
+rules. I have provided you with templates for all of the snakefiles for each
+week, and you'll see that they have an added `directive` in the form of `conda`.
+This will instruct snakemake to activate the specified environment for each rule
+before running the actual task. This will ensure that each of our major tasks
+will be run in a specific environment with only our desired tool and its direct
+dependencies installed.
+
+## Summary of Changes {-}
+
+1. 
+Use the `base_env.yml` and Conda command listed above to make a conda
+environment for project 2. This environment will only contain specific versions
+of snakemake and a few critical python libraries. Now, we will all be using the
+same exact environments and package versions.
+
+2. 
+Do not under any circumstances edit any of the files located in envs/ for 
+reasons that will be explained below.
+
+3. 
+We have provided you with a skeleton of the snakefiles, which also lists
+what you'll need to do for that week. Do not under any circumstances alter the
+`conda` directive. 
+
+4. 
+Whenever you run snakemake (whether local with the `-c` flag or using `qsub`
+with the `--executor` flag), you must now include the `--sdm conda` flag at all 
+times:
+
+<!-- running locally (only on subsampled data) -->
+```
+snakemake -s your_snakefile.snake --sdm conda -c 1
+```
+
+<!-- running using qsub (full data) -->
+```
+snakemake -s your_snakefile.snake --sdm conda --executor cluster-generic \
+--cluster-generic-submit-cmd "qsub -P bf528 -pe omp {threads}" --jobs X
+```
+The `--sdm conda` flag instructs snakemake to use the listed conda environment
+specified in each rule when running the actual tasks. If you do not include this
+flag, your jobs will fail since the appropriate conda environment will not be 
+activated on the node where your job will run.
+
+5. 
+The first time you run your workflow (locally or via qsub), when provided the
+`--sdm conda` flag, snakemake will automatically create an environment for every
+YAML file defined in envs/ necessary for that workflow. This is a conda
+environment that contains just the packages listed in the YAML and snakemake
+will specifically activate specific environments as specified in the `conda`
+directive for each rule. This will happen once, and in subsequent runs,
+snakemake will simply activate the now existing environment.
+
+6. 
+I have provided you with templates containing just the rule names and the
+appropriate `conda` directive for each rule. Do not change these. These
+snakefile templates contain all of the rules you will need to complete for each
+week.
+
+## Why you should not alter any of the envs/ file {-}
+
+I will briefly explain the importance of not altering any of the .YAML files in
+the envs/ directory. Under the hood, snakemake creates these conda environments
+in your working directory in a hidden directory (.snakemake/conda/). These
+environments are named with a hash generated from the contents of the YAML file.
+Snakemake will create a new environment **whenever** this hash changes (i.e.
+whenever the file itself changes). This hidden directory is **not** automatically
+managed and so if you make changes to the .YAML files and re-run snakemake, it
+will generate an entirely new conda environment every time. This is not what we
+want as we do not wish to run into issues where we use more space than we have
+on our partition. 
+
+For this reason, please do not alter any of the files in the envs/ directory. 
+
+## Simplifying what you need to do each week {-}
+
+The directions will be more brief for this project as you should be more familiar
+with many of the fundamental concepts by this point. I have also provided you
+snakemake skeletons with all of the rules you'll need to complete for each week.
+
+As we settled into this format, there has been some mixed communication on my
+part about what to do each week. For this project, I have settled on a
+consistent format that should make it more clear what is expected each week.
+Unless otherwise specified, you should accomplish three main goals each week:
+
+1. 
+Complete your snakefile for that week and ensure it runs from start to
+finish. Your dryrun should complete successfully and the commands you run with
+whatever tools we are utilizing should also complete successfully. You may use
+the provided subsampled data once again to quickly ensure your commands work on
+actual data. Please push your completed snakemake workflow to your repo by the
+date it's due. 
+
+2. 
+Using your knowledge of `qsub` and snakemake, run your completed and working
+snakefile on the full data.
+
+3. 
+Write in the provided Rmarkdown notebooks a quick draft of the methods
+section for that week's tasks. We will use these at the end to construct a draft
+of the full methods section for the entire project. Remember your methods
+section should contain just enough detail to reproduce your exact analysis. This
+means you should omit elements or actions that do not directly impact the data,
+and include any details which do have an effect on the results (i.e. specific
+versions of software may produce highly similar but slightly different results).
+
+If asked, please also include any preliminary results or figures generated from
+that week in this Rmarkdown as well. 
+
+## Table Of Contents {-}
+
+[Week 1](#week-1-chipseq)
+
+[Week 2](#week-2-chipseq)
+
+[Week 3](#week-3-chipseq)
+
+[Week 4](#week-4-chipseq)
+
+[Week 5](#week-5-chipseq)

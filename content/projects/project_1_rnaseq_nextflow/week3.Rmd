@@ -90,6 +90,10 @@ any metrics that might be concerning.
 
 :::
 
+## Choosing a filtering strategy for your raw counts
+
+
+
 ## Filtering the counts matrix {-}
 
 We will typically filter our counts matrices to remove genes that we believe

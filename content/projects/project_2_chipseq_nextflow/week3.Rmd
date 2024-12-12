@@ -1,0 +1,12 @@
+# Week 3: ChIPseq {-}
+
+## Download HG38 gene BED from UCSC table browser
+
+## ComputeMatrix for IP samples
+
+## Plotprofile for IP samples
+
+## Annotate peaks
+
+
+## FindMotifs

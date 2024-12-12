@@ -1,0 +1,73 @@
+# Week 1: ChIPseq {-}
+
+## Quality Control, Genome indexing and alignment
+
+From the first project, you have knowledge of the initial steps that are shared
+by a wide variety of NGS experiments. Quality control is performed on
+the sequencing reads, an index is built for the  species of interest and reads
+are aligned to the reference.
+
+For RNAseq, it is important to use a splice-aware aligner when aligning against
+a reference **genome** since our sequences originated from mRNA. For ChIPseq 
+experiments, our reads originated from DNA sequences and we can use a non-splice
+aware algorithm to map our reads to the reference genome. 
+
+Between project 1 and the early labs we did, you should have working modules
+that perform quality control using FASTQC, build a genome index using bowtie2,
+and align reads to a genome. We are going to take advantage of the modularity of
+nextflow by simply copying these previous modules and incorporating them into
+this workflow.
+
+
+:::{.box .task}
+
+1. Copy the subsampled files from /projectnb/bf528/materials/project-2-chipseq/subsampled_files/
+to a new directory called `subsampled_files/` in your `samples/` directory
+
+2. Encode the names of the file and the paths in a samplesheet at the top level
+of your directory
+
+3. Update your workflow `main.nf` to perform quality control using FastQC and 
+trimmomatic, build a bowtie2 index for the human reference genome and align the
+reads to the reference genome.
+
+:::
+
+## Running multiqc to evaluate sequencing QC
+
+Just like in project 1, we are going to use multiqc to collect the various
+quality control metrics from our pipeline so far. 
+
+:::{.box .task}
+
+1. Make a channel in your workflow `main.nf` that collects all of the relevant
+QC outputs needed for multiqc. 
+
+2. Copy your previous multiqc module and incorporate it into your workflow
+
+:::
+
+## Sorting and indexing the alignments
+
+Many subsequent analyses on our BAM files will require them to be both sorted
+and indexed. Just like for large sequences in FASTA files, sorting and indexing
+the alignments will allow us to perform much more efficient operations on them. 
+
+
+:::{.box .task}
+
+1. Create a module that will both sort and index your BAM files using Samtools. 
+This will need to be a multi-line command as indexing can only occur on the fully
+sorted file. 
+
+:::
+
+## Generating bigWig representations of our BAM files
+
+Now that we have sorted and indexed our alignments, we are going to generate
+bigWig files or coverage tracks containing the number of reads per genomic
+interval or bin. We will use these coverage tracks for calculating
+correlation between our samples and visualizing the read coverage in specific
+regions of interest. 
+
+

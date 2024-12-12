@@ -14,7 +14,7 @@
 
 [Make a conda environment with pycirclize and ipykernel]
 
-[Generate a Circos plot of your new annotated genome using the GFF]
+[Generate a Circos plot of one of your new annotated genome using the GFF]
 
 [Week 4 Detailed Tasks Summary]
 
@@ -79,18 +79,34 @@ any valid genome assembly (GCF*) and to download only the genomic FASTA file.
 
 :::{.box .task}
 
-1. Create a CSV containing two columns with the scientific name of the organism
-you chose and its associated genome accession (GCF_*) listed in the datasets
-command. 
+1. Copy your previous workflow `main.nf` to a new file called `complete.nf`. This
+will be the new workflow that you will be modifying for this week. 
 
-2.  Create a channel in your nextflow workflow `main.nf` containing information
+2. Copy the provided CSV
+(/projectnb/bf528/materials/project-0-genome-analytics/ncbi_samplesheet.csv) and
+add the genome you chose and its associated genome accession (GCF_*) listed in
+the datasets command.
+
+3.  Create a channel in your nextflow workflow `complete.nf` containing information
 found by reading from the CSV you created.
 
-3. Read the [manual](https://www.ncbi.nlm.nih.gov/datasets/docs/v2/reference-docs/command-line/datasets/download/genome/) page for running the datasets command to figure out what file it outputs and what
-each of the options specified in the observed command are doing.
+4. Read the [manual](https://www.ncbi.nlm.nih.gov/datasets/docs/v2/reference-docs/command-line/datasets/download/genome/) page for running the datasets command.
 
-3. Modify the command to only download the genomic FASTA file and structure the
-module to be generalizable to any genomic accession.
+5. Complete the provided NCBI datasets module by using the correct command
+for downloading files you observed before. You only need to download the genome
+and do not need the other files. 
+
+6. By default, the NCBI datasets command will download a .zip file containing
+several nested directories containing  metadata files and the requested files.
+Include a second shell command after your NCBI datasets command that unzips the
+file.
+
+7. Examine the provided output for this module and note how it contains a tuple
+with the metadata value passed in the input, and the `.fna` file for your
+selected accession. Remember that we can use the * glob pattern matching syntax
+in the output to flexibly capture different files and  ** to recurse through
+directories. Note that because of the staging directory strategy, the paths for
+this file are all relative.
 
 
 :::
@@ -98,23 +114,30 @@ module to be generalizable to any genomic accession.
 
 ## Refactor your workflow to incorporate downloading a genome as the first step {-}
 
-After you have successfully generated a module that will run the NCBI Datasets
+After you have successfully completed the module that will run the NCBI Datasets
 CLI command and download your requested genome FASTA, you will need to incorporate
-this process into your workflow. 
+this process into your workflow `complete.nf`.
 
 :::{.box .task}
 
-1. Add your NCBI Datasets CLI module into your workflow `main.nf` and have your
+1. Add your NCBI Datasets CLI module into your workflow `complete.nf` and have your
 pipeline use the outputs of this module directly. When run from the beginning,
-your workflow should seamlessly download the requested genome and perform the 
-previously described processes (Prokka, GC content, etc.)
+your workflow should seamlessly download the requested genome and perform the
+previously described processes (Prokka, GC content, etc.). You should accomplish
+this by making it so you can pass the outputs of your NCBI Datasets CLI process
+directly to the downstream processes in your workflow `complete.nf`. Remember to
+make sure that the outputs of your NCBI datasets CLI module match what is
+expected by the other modules' inputs.
+
+2. Remember that we can use the `NAME_OF_PROCESS.out` command to pass the
+outputs of a specific process to another. 
 
 :::
 
 
 ## Make a conda environment with pycirclize and ipykernel {-}
 
-We will often analyse the results of our piplines extensively in a jupyter
+We will often analyse the results of our pipelines extensively in a jupyter
 notebook as it allows us to seamlessly execute code, create visualizations, and
 provide text annotations in the same place. With larger projects and complicated
 analyses, we may often require many different software packages while working in
@@ -148,7 +171,7 @@ notebook.
 
 :::
 
-## Generate a Circos plot of your new annotated genome using the GFF {-}
+## Generate a Circos plot of one of your new annotated genome using the GFF {-}
 
 If you were in BF591, we discussed briefly the purpose and usage of Circos
 plots. If not, you may look [here](https://circos.ca/) for a short discussion on
@@ -162,7 +185,7 @@ genes.
 :::{.box .task}
 
 1. In your notebook with your newly created conda environment as the kernel,
-use pycirclize and the GFF you generated from your genome to create a Circos
+use pycirclize and the GFF you generated from one genome to create a Circos
 plot of the genome and its annotations. *Hint*: You can simply copy the example
 code from pycirclize to make this plot.
 
@@ -178,7 +201,7 @@ code from pycirclize to make this plot.
 
 4. Create a channel containing the information from the CSV and run the NCBI datasets CLI module using this channel
 
-5. Refactor the rest of your workflow main.nf to use the outputs from your NCBI datasets CLI command to run the complete pipeline
+5. Modify your `complete.nf` to use the outputs from your NCBI datasets CLI command to run the full pipeline
 
 6. Create a conda environment containing the latest versions of ipykernel and pycirclize
 

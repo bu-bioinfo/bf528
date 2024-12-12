@@ -55,10 +55,10 @@ For this first project, we have provided you with small subsets of the original
 data files. You should copy these files to the `samples/` folder in your working
 directory that you cloned. For your convenience, we have renamed the files to be
 descriptive of the samples they represent following the pattern:
-{condition}{rep}_subsample_{readpair}.fastq.gz (i.e. controlrep1_subsample_R1.fastq.gz)
+{condition}_{rep}_{readpair}.subset.fastq.gz (i.e. control_rep1_R1.subset.fastq.gz)
 
 The files are located here:
-/projectnb/bf528/materials/project_1_rnaseq/subsampled_files and there are 12
+/projectnb/bf528/materials/project-1-rnaseq/subsampled_files and there are 12
 total files. Remember that paired end reads are typically used together as both
 the _R1 and _R2 files represent sequencing reads from the same fragments. This
 means that we have 6 biological samples, and 12 actual files representing those
@@ -78,7 +78,7 @@ directory. Encode their paths in separate params in your `nextflow.config`.
 :::
     
 
-## Changes to our environment management strategy and workflow {-}
+## Using singularity containers with nextflow instead of conda environments {-}
 
 As we've discussed, conda environments are one solution to ensuring that your
 analyses are run in a reproducible and portable manner. Containers are an
@@ -94,7 +94,15 @@ piece of software that we will be using in this course.
 For all future process scripts that you develop in nextflow, instead of 
 specifying the `conda` environment to execute the task with, you will instead
 specify `container` and the image (a container built with a certain specification)
-location.
+location. For example:
+
+```
+process FASTQC {
+  container 'ghcr.io/bf528/fastqc:latest'
+  ...
+
+}
+```
 
 For this course, these containers were all pre-built and their specifications kept
 in this public github repository: https://github.com/BF528/pipeline_containers.
@@ -104,18 +112,20 @@ a YAML file and then generate the environment using micromamba installed in a
 container. We will get some experience later in the semester with building your
 own containers from scratch.
 
-In general, the containers will be named the same pattern:
+In general, the containers will be named following the same pattern:
 `ghcr.io/bf528/<name-of-tool>:latest` or `ghcr.io/bf528/fastqc:latest`.
 
-You will need to incorporate one more change to make your pipeline use 
+**New command for running your workflow**
+
+You will need to incorporate one more change to make your pipeline use these
 containers. If you look in the `nextflow.config`, you'll see a profile labeled
 singularity, which encodes some singularity options for nextflow to use. 
 
 When running your pipeline, you will now use the `-profile singularity,local`
 option, which will have Nextflow execute tasks with the specified container image
-listed in the module.
+listed in the module. The config contains some common options that nextflow will
+automatically add to the singularity command when run with the specified profile. 
 
-**New command for running your workflow**
 
 ```
 nextflow run main.nf -profile singularity,local
@@ -137,8 +147,9 @@ in bash through the use of wildcard expansion (*).
 
 1. In the `nextflow.config`, specify a parameter called `reads` that encodes the
 path to your fastq files and uses * to flexibly detect the sample name associated
-with both paired files. Refer to the nextflow documentation on `fromFilePairs`
-found [here](https://www.nextflow.io/docs/latest/reference/channel.html#fromfilepairs)
+with both paired files. Refer to the nextflow documentation [here](https://www.nextflow.io/docs/latest/reference/channel.html#fromfilepairs)
+
+2. Change explanation of where to encode path with *
 
 2. In your workflow `main.nf`, use the `Channel.fromFilePairs` function and the
 param you created in step 1 to create a channel called `align_ch`. You'll notice
@@ -194,8 +205,8 @@ in this experiment.
 
 :::{.box .task}
 
-1. In your envs/ directory, we have provided you a specification for a small
-conda environment you can use to test how to run fastqc. Use the same command
+1. In your envs/ directory, make a YML specification file to create a conda 
+environment with the latest version of FASTQC installed. Use the same command
 as last week to generate a new environment with just fastqc installed:
 
 ```

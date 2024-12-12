@@ -1,0 +1,152 @@
+# Week 4: ChIPseq {-}
+
+## Plotting signal coverage across gene bodies using the bigWig files {-}
+
+Now that we have performed peak calling and motif analysis, we will begin to
+generate a set of visualizations. You have already generated bigWig
+representations of all of your samples, which we will now use to create a signal
+coverage plot of Runx1 enrichment across gene bodies.
+
+We will be using the bigWig files to plot the signal coverage relative to the
+transcription start site (TSS) and transcription termination site (TTS) of all
+genes in the hg38 reference. This type of plot is often helpful for determining
+the potential regulatory mechanisms of the factor of interest. In our case,
+transcription factors are known to directly bind DNA and are commonly found
+located in the promoter region (near the TSS) where they will typically recruit
+other cofactors, chromatin remodelers or components of the RNA polymerase
+complex II to regulate gene expression. If we inspect the plot in figure 2b of
+the original publication, we can see that the signal distribution for the Runx1
+ChIP is primarily concentrated in the promoter-TSS region of genes.
+
+We will be creating a similar plot which will provide a quick visualization of
+the average signal (Runx1 binding) across the gene body of all genes. In essence,
+we will scale every gene to a uniform size and display the counts of 
+alignments falling in the annotated regions of the gene. This will allow us to
+quickly visualize at a very high-level (close to the TSS or TTS) where we see 
+large concentrations of potential Runx1 binding in genes.
+
+## Extracting information from the UCSC Table Browser for all genes {-}
+
+To do this, we have already generated our bigWig files, but we will require the
+genomic coordinates of all of the genes in the reference genome in order to
+determine which bins to utilize. We will be using the UCSC table browser to
+extract out this information.
+
+Navigate to the UCSC Table Browser, use the following settings to extract a BED
+file listing the TSS/TTS locations for every gene in the reference genome:
+
+```{r, echo=FALSE}
+knitr::include_graphics("projects/project_2_chipseq/ucsc_tablebrowser.png")
+```
+
+On the following page, do not change any options and you will be prompted to
+download a BED file containing the requested information. 
+
+    1. Put this BED file into your `results/` working directory on SCC. 
+
+This is a simple use case, but the UCSC table browser and UCSC genome browser
+are incredibly powerful tools and repositories for genome-wide sequencing data.
+
+## Run the computeMatrix and plotProfile utilities in deeptools {-}
+
+The computeMatrix utility will calculate "scores" or "counts" from a bigWig file
+falling into the specified regions provided in a BED file. For our case, we are
+interested in the signal coverage found in the gene bodies of all genes in the 
+reference genome.
+
+    1. Using the bigwig files for the IP samples generated earlier and the BED
+      file of hg38 genes you just downloaded in BED format, run the computeMatrix
+      utility in DeepTools in the scale-regions mode twice (once for each IP
+      sample).
+        - Be sure to include regions in a 2kb window up- and downstream of the
+          TSS and TTS, respectively.
+        - You may leave every other parameter at its default value. 
+
+
+You will need to run computeMatrix twice (on both IP replicates) and generate
+two matrices of values. 
+
+    2. Run plotProfile on each matrix to generate a visualization of the Runx1 
+      signal coverage averaged across the body of all genes in the reference
+      genome
+
+## Integration with RNAseq results {-}
+
+Now that we have processed and performed basic analysis of our ChIPseq data, we
+will move on to attempting to reproduce figure 2f, which combines the data
+generated from the ChIPseq experiment and the RNAseq experiment from Figure 1.
+The authors produced a simple stacked bar chart displaying how often a Runx1
+binding peak was observed in genes that were found to be differentially
+expressed in the same cell line upon Runx1 knockdown using a shRNA.
+
+For the following sections, we have provided you with a .Rmd for week 3. If you 
+are more comfortable working in jupyterlab, you may do so as well but ensure that
+you upload your notebook to your github repo.
+
+Navigate to the GEO for accession GSE75070 and locate the differential
+expression results for the RNAseq experimented in figure 1.
+
+    1. Download the DESeq2 results
+      (GSE75070_MCF7_shRUNX1_shNS_RNAseq_log2_foldchange.txt.gz) and upload this
+      file to the SCC.
+    
+    2. In a jupyter notebook, apply the same filters and cutoffs as specified in
+      the methods of the original paper. How many DE genes do you find? Do they
+      match the numbers reported in the paper?
+      
+    3. Using the list of DE genes downloaded in step 1 and the annotated peak
+    file you generated previously, recreate figure 2f and supplementary figure
+    S2D and produce stacked barcharts showing the proportions of DE genes with a
+    Runx1 peak found within +/- 5kb, +/- 20kb, and +/- 100kb of the TSS
+    
+N.B. In their figure 2f, they calculate one set of numbers relative to the TSS
+and another set relative to the ‘whole body’ of the gene. For our case, just
+calculate all of these values using the distance to TSS found in your
+annotations file.
+
+## Visualizing peaks using a genome browser {-}
+
+Next, we will be generating visualizations of the peaks found in the promoter
+regions of two key genes reported by the paper. Download IGV
+(https://software.broadinstitute.org/software/igv/) locally on your computer or
+use the newly added web-only interface (https://igv.org/app/). You will need
+to provide the following files:
+
+    1. bigWig files for the runx1_rep1, runx1_rep2, inp_rep1, inp_rep2 samples
+    
+    2. Your BED file of reproducible peaks
+    
+    3. The primary assembly GTF file containing the annotations for our 
+      reference genome.
+    
+You will have to download these files locally, but all of them are small enough
+that this should cause no issues. 
+
+    1. Navigate to the two genes mentioned specifically in the paper, 
+      MALAT1 and NEAT1. 
+        - Do you see the same general results as in figures 2d and 2e?
+        - Do you agree with the conclusions made by the authors in these figures?
+
+Although we have discouraged you from generating figures using screenshots, we
+are going to produce the same figure as found in 2d and 2e.
+
+    1. Please take screenshots of the MALAT1 and NEAT1 promoter regions
+      displaying the signal coverage found in your bigWig files and the peak
+      locations from your BED file of reproducible peaks.
+
+## Week 4 Tasks {-}
+
+- Download a BED file of the genomic coordinates of all refseq genes for the
+human reference genome using the UCSC table Browser
+
+- Download the processed differential expression results for the RNAseq
+experiment performed in Figure 1. Apply the same filters and cutoffs and
+generate a dataframe containing only the significantly DE genes.
+
+- Created a snakemake rule that uses the deeptools computeMatrix utility, the
+aforementioned BED file of hg38 genes and the previously generated bigWig files
+to generate a matrix of signal values
+
+- Created a snakemake rule that uses the deeptools plotProfile utility to
+generate a simple visualization of the signal across hg38 genes using the matrix
+outputs from the computeMatrix step

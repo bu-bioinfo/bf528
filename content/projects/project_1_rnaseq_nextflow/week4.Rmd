@@ -13,4 +13,5 @@
 
 ## Read the original paper {-}
 
-
+The original publication and reporting of the results came from the paper
+posted on blackboard. 

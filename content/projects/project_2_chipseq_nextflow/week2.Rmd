@@ -1,0 +1,12 @@
+# Week 2: ChIPseq {-}
+
+## PLotting correlation between Bigwigs
+
+
+
+## Calling peaks
+
+## Intersecting Peaks
+
+## Filtering peaks from blacklist
+

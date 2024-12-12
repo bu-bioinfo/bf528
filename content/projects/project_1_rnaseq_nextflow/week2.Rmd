@@ -55,9 +55,10 @@ files in place of SAM files in order to preserve disk space.
 
 :::{.box .task}
 
-1. Look at the documentation for STAR and focus on section 3 (pg. 7) for how to 
-use STAR to run a basic mapping job. Construct a working nextflow module that
-performs basic alignment using STAR.
+1. Look at the documentation for
+[STAR](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf) and
+focus on section 3 (pg. 7) for how to use STAR to run a basic mapping job.
+Construct a working nextflow module that performs basic alignment using STAR.
 
 Your STAR command should include only the following options and all others may be left
 at their default value:
@@ -112,7 +113,8 @@ full dataset.
 
 :::{.box .task}
 
-1. Make a new module that will run MultiQC. You can specify the label as
+1. Make a new module that will run
+[MultiQC](https://github.com/MultiQC/MultiQC). You can specify the label as
 `process_low` and set `publishDir` to your `results/` directory. We will take
 advantage of the staging directory strategy that nextflow uses to run MultiQC.
 

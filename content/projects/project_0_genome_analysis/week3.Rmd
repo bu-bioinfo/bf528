@@ -14,6 +14,8 @@
 
 [Basic Local Alignment Search Tool]
 
+[Genome kmer analysis]
+
 [Developing external scripts for workflows]
 
 [A fully operational nextflow pipeline]
@@ -194,6 +196,69 @@ to attempt to identify your genome.
 
 :::    
 
+## Genome kmer analysis
+
+As we talked about in lecture, kmers are a useful tool for various flavors of
+genome analysis. Kmers allow for fast and efficient analysis of genetic 
+data due to their relative computational simplicity. The kmer content of a genome
+measures the complexity of the genome (amongst other things) and the distribution
+of kmers may serve as a unique signature of individual genomes. 
+
+While counting kmers can be accomplished with just a few lines of python code, 
+more advanced data structures and algorithms are necessary to make the analysis of
+larger genomes, and more deeply sequenced datasets more computationally tractable. 
+
+We will be using [Jellyfish](https://github.com/gmarcais/Jellyfish) to
+efficiently count the unique and distinct kmers over a range of different values
+of k for all our microbial genomes.
+
+:::{.box .task}
+
+1. Create a YML file that specifies a conda environment with the latest version
+of jellyfish. **N.B.** Ensure that you specify the package `kmer-jellyfish` as
+there exists an entirely unrelated package named `jellyfish`. 
+
+2. In your workflow `main.nf`, use the [channel factories](https://nextflow.io/docs/latest/reference/channel.html)
+reference to create a channel that contains a range of numbers from 1 to 21. 
+
+3. Also in the `main.nf`, find an appropriate [nextflow operator](https://www.nextflow.io/docs/latest/reference/operator.html) and
+create a channel containing the pairwise combinations of your genome files and
+the numbered range above. See below for a *fake* example of what this channel
+would look like for one genome and a range of 1 to 3:
+
+
+```
+[genome1, /path/to/fa, 1]
+[genome1, /path/to/fa, 2]
+[genome1, /path/to/fa, 3]
+
+```
+
+4. Create a module that will run jellyfish and perform two operations,
+`jellyfish count` and `jellyfish stats`. `jellyfish count` will count the total
+number of kmers for a given value of k for a specific file. `jellyfish stats`
+will access the file created from `jellyfish count` and neatly summarize the
+kmers for a given size k into total, distinct and unique counts. Output the
+summarized stats into a new text file named with the following pattern:
+
+`<name_of_genome>_<value-of-k>mers.txt` or `genome1_6mers.txt`
+
+Use publishDir to copy these output files to your `results/` directory. 
+
+Hints:
+
+1. Multi-line shell commands will execute one after another.
+
+2. We can take advantage of the staging directory by simply making a file with 
+the first `jellyfish` command and then running the second command using that
+named file. 
+
+3. Your `jellyfish count` command will need to include the following arguments
+and appopriate values: `-s 100M`, `-m`, `-o`, and the input fasta file. 
+
+:::
+
+
 ## Developing external scripts for workflows {-}
 
 Many times in bioinformatics pipelines, we will need to run a custom script that
@@ -227,9 +292,13 @@ it the correct input (your FASTA file) and specifying the output file.
 
 :::{.box .task}
 
-1. Write valid python code below line 20 in the provided script. You may do this
-with basic python functionalities or attempt to use [Biopython](https://biopython.org/). 
-Your code should do the following:
+1. Create an appropriate YML file to create a conda environment with the latest
+version of biopython installed. 
+
+2. Write valid python code below line 20 in the provided script. Use biopython
+to read in the FASTA file and return the GC content. You may refer to the biopython
+section on [SeqIO](https://biopython.org/wiki/SeqIO) for how to accomplish this. 
+Your script should use biopython to do the following:
 
     a. Read in the FASTA file 
     b. Parse the sequence correctly and return the GC
@@ -237,10 +306,8 @@ Your code should do the following:
     c. Output these two values to separate lines in a  new file, you may include
     some text explaining what each value represents (i.e. GC Content: 64%)
     
-2. Make a new directory in `modules` entitled `genome_stats` and create a
-`main.nf` within that directory. If using biopython, make an appropriate YML
-environment specification for biopython. If only using basic python, make a YML
-environment specification with python installed. You can have the inputs be the
+3. Make a new directory in `modules` entitled `genome_stats` and create a
+`main.nf` within that directory. The inputs for this module will be the
 same shape and structure as the `fa_ch`.
 
 You will need to specify how you want the output file named. The shell/script
@@ -249,7 +316,7 @@ providing it the appropriate inputs as specified by `argparse`. Please write the
 new file to the `results/` directory using `publishDir`. Name this output file
 using the name value passed in the channel (i.e. ${name}_genome_stats.txt)
 
-3. When your script is functional and your associated nextflow module complete,
+4. When your script is functional and your associated nextflow module complete,
 run Nextflow once more to generate the text file containing the two genome
 statistics requested. 
 :::
@@ -258,18 +325,21 @@ statistics requested.
 
 By this point, your nextflow pipeline should be working end-to-end. It should
 read from the samplesheet.csv you created to drive a workflow that will index
-the genome, extract a region, and calculate some basic statistics describing
-that genome. The reason we have stressed making your code generalizable, including
-avoiding using hardcoded paths or values, is so that your workflow can operate
-on new samples by simply adding them to the CSV and re-running nextflow. Nextflow's
-caching strategy means that successfully run jobs will not be re-run and it will
-figure out what new jobs need to be run based on the changes. 
+the genome, extract a region, perform a simple kmer analysis, and calculate some
+basic statistics describing that genome. The reason we have stressed making your
+code generalizable, including avoiding using hardcoded paths or values, is so
+that your workflow can operate on new samples by simply adding them to the CSV
+and re-running nextflow. Nextflow's caching strategy means that successfully run
+jobs will not be re-run and it will figure out what new jobs need to be run
+based on the changes.
 
 :::{.box .task}
 
 1. Copy the two remaining genomes from
 /projectnb/bf528/materials/project-0-genome-analytics into your `refs/`
 directory. Add their information to the samplesheet.csv as you did previously.
+Make sure to not include spaces in any values and instead use underscores to
+separate words. 
 
 2. Re-run your nextflow workflow. It should perform the exact same tasks for
 these two new genomes simultaneously.
@@ -292,13 +362,18 @@ file from the full genome file. Place this sequence in a new FASTA file called
 it to query the sequence you extracted. Take a screenshot of the results and make
 sure to answer the associated questions. 
 
-4. Develop the included `genome_stats.py` script to successfully parse the genome
-FASTA file and calculate the GC content (as a percentage of total) and the length 
-of the sequence. Simultaneously, develop a new nextflow module that will call
-the script and provide the appropriate inputs on the command line. This script
-should write the results to a new text file named as you choose. 
+4. Create a module that runs `jellyfish count` and `jellyfish stats` for a range
+of k values (1 to 21). This output should create a single txt file containing
+the output from `jellyfish` stats and named descriptively as described above.
 
-5. Copy the two genomes from our project directory you did not choose initially,
+5. Develop the included `genome_stats.py` script to successfully parse the
+genome FASTA file and calculate the GC content (as a percentage of total) and
+the length of the sequence using biopython. Simultaneously, develop a new
+nextflow module that will call the script and provide the appropriate inputs on
+the command line. This script should write the results to a new text file named
+as you choose.
+
+6. Copy the two genomes from our project directory you did not choose initially,
 and re-run your nextflow pipeline by first adding their information to the
 samplesheet.csv. Nextflow should automatically generate all of the same tasks
 and outputs for these two new genomes.
