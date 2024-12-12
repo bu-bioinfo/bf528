@@ -29,12 +29,12 @@ All other text will be directions or other explanatory text that you should read
 ## Project 0 Overview {-}
 
 This project will focus on getting you accustomed to how nextflow works and its
-key functions. You will be constructing a nextflow pipeline that will
-annotate a small bacterial genome using [Prokka](prokka link), calculate some
-basic genome statistics using python (GC Content, and genome size) and extract
-the sequence for a specified region of the genome by its coordinates. The
-general format and structure of this repository and nextflow pipeline will be
-utilized for all other projects.
+key functions. You will be constructing a nextflow pipeline that will annotate a
+small bacterial genome using [Prokka](https://github.com/tseemann/prokka),
+calculate basic genome statistics using biopython (GC Content, and genome size),
+perform a simple kmer analysis and extract the sequence for a specified region
+of the genome by its coordinates. The general format and structure of this
+repository and nextflow pipeline will be utilized for all other projects.
 
 ## Objectives {-}
 
@@ -110,9 +110,9 @@ A few things to remember:
   priority, and conda uses this internally to ensure that it solves dependencies
   correctly.
   
-  - You should specify a single package or tool in separate YML files. You
-  should directly pin the exact version you desire to ensure transparency and
-  reproducibility.
+  - You should specify a single package or tool in separate YML files whenever
+  possible. You should directly pin the exact version you desire to ensure
+  transparency and reproducibility.
   
   - Conda will take care of the minor software dependencies, and you generally
   do not attempt to manually install specific versions of those.

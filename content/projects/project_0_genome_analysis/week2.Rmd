@@ -54,9 +54,6 @@ the file descriptively (e.g. envs/prokka_env.yml)
 2. Generate another YML file that will create a conda environment with the most
 recent version of samtools installed.
 
-3. Generate a YML file that will create a conda environment with the most
-recent version of python installed
-
 3. Make sure these YMLs are contained within your `envs/` directory. 
 :::
 
@@ -97,10 +94,9 @@ do not need to match the names in channels, they are meant to be representative
 and generalizable. 
 
 3. Complete lines 5 and 6 by providing the conda environment specification you
-made earlier for Prokka after the `env` option and providing the directory where
-you want the results of this process to be made available after the `publishDir`
-option. Remember that all of your paths should be relative to your top-level
-working directory where the `main.nf` is located. 
+made earlier for Prokka after the `env` option and providing the `params.outdir`
+to the `publishDir` option. Remember that all of your paths should be relative
+to your top-level working directory where the `main.nf` is located.
 
 4. Look at the Prokka documentation and construct the correct command for
 running it. We will be running Prokka with mostly default parameters and your
@@ -139,21 +135,17 @@ path("*.txt")
 You may have also noticed the line: 
 
 ```
-tuple val(name), path("${name}/${name}.gff"), emit: gff
+tuple val(name), path("**/*.gff"), emit: gff
 ```
 
-`emit` is the nextflow way of emitting a specific output and allowing you to 
-access this specific output by name. We will use this to join the output channels
-of two processes in order to have all of the files we need for a third process.
-You'll notice that we specified a path within a directory. This is the directory
-that will be created when Prokka completes successfully and we are specifying 
-that we want to output the GFF file contained within that directory. You can 
-also see that we know what the name of this file will be because we use the same
-value from the input (`name`) in the prokka command to instruct it how to name the output
-directory and files contained within. This value in `name` is also in the output
-where we tell nextflow to expect these same files to be created when the process
-finishes. 
-
+`emit` is the nextflow way of emitting a specific output and allowing you to
+access this specific output by name. We will use this to join the output
+channels of two processes in order to have all of the files we need for a third
+process. You'll notice that we specified a path within a directory. This is the
+directory that will be created when Prokka completes successfully and we are
+specifying that we want to output the GFF file contained within that directory.
+The `**` and `*` act similarly to the bash operators and allow for globbing or
+listing matching files / file patterns.
 :::
 
 ## Creating your first workflow {-}

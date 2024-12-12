@@ -24,7 +24,8 @@ For the first weeks, you were provided pre-downloaded reference genomes to use
 in your pipeline. Oftentimes, you will want to include downloading any files
 inside your pipeline to enable it to run end-to-end without any manual
 intervention. For this week, you will make use of the NCBI datasets CLI tool to
-download a genome of your choice and incorporate this into your workflow.
+download a genome of your choice and automatically process it using the workflow
+you have previously developed. 
 
 ## Objectives {-}
 
@@ -92,9 +93,9 @@ found by reading from the CSV you created.
 
 4. Read the [manual](https://www.ncbi.nlm.nih.gov/datasets/docs/v2/reference-docs/command-line/datasets/download/genome/) page for running the datasets command.
 
-5. Complete the provided NCBI datasets module by using the correct command
-for downloading files you observed before. You only need to download the genome
-and do not need the other files. 
+5. Complete the provided NCBI datasets module by using the correct command for
+downloading files using the ` datasets download genome` command. You only need
+to download the genome FASTAS and do not need the other files.
 
 6. By default, the NCBI datasets command will download a .zip file containing
 several nested directories containing  metadata files and the requested files.
@@ -107,7 +108,6 @@ selected accession. Remember that we can use the * glob pattern matching syntax
 in the output to flexibly capture different files and  ** to recurse through
 directories. Note that because of the staging directory strategy, the paths for
 this file are all relative.
-
 
 :::
 
@@ -130,7 +130,8 @@ make sure that the outputs of your NCBI datasets CLI module match what is
 expected by the other modules' inputs.
 
 2. Remember that we can use the `NAME_OF_PROCESS.out` command to pass the
-outputs of a specific process to another. 
+outputs of a specific process to another. Ensure that the output channels match
+what is expected by the inputs for the other processes. 
 
 :::
 
@@ -160,8 +161,8 @@ specific processes that run independently and interact with jupyter.
 that will create a conda environment with the latest versions of `pycirclize` and
 `ipykernel` installed. You may name it whatever is easy for you to remember. 
 
-2. Use the `conda env create -f envs/<your-env>.yml` to actually create this
-environment. 
+2. Use the `conda env create -f envs/<name_of_yml_from_above>.yml` to actually
+create this environment.
 
 3. In VSCode, use the command palette to create a new jupyter notebook. Go to the
 top right where it says `Select Kernel` and choose the `Python Environments...`
