@@ -152,8 +152,6 @@ per environment, ensuring you specify the exact version of the tool and naming
 the file descriptively (e.g. envs/prokka_env.yml)</p></li>
 <li><p>Generate another YML file that will create a conda environment with the most
 recent version of samtools installed.</p></li>
-<li><p>Generate a YML file that will create a conda environment with the most
-recent version of python installed</p></li>
 <li><p>Make sure these YMLs are contained within your <code>envs/</code> directory.</p></li>
 </ol>
 </div>
@@ -191,10 +189,9 @@ will see that <code>val(name)</code> will refer to <code>name_of_bacterial_genom
 do not need to match the names in channels, they are meant to be representative
 and generalizable.</p></li>
 <li><p>Complete lines 5 and 6 by providing the conda environment specification you
-made earlier for Prokka after the <code>env</code> option and providing the directory where
-you want the results of this process to be made available after the <code>publishDir</code>
-option. Remember that all of your paths should be relative to your top-level
-working directory where the <code>main.nf</code> is located.</p></li>
+made earlier for Prokka after the <code>env</code> option and providing the <code>params.outdir</code>
+to the <code>publishDir</code> option. Remember that all of your paths should be relative
+to your top-level working directory where the <code>main.nf</code> is located.</p></li>
 <li><p>Look at the Prokka documentation and construct the correct command for
 running it. We will be running Prokka with mostly default parameters and your
 command should include these exact options and no more: <code>--cpus</code>, <code>--outdir</code>,
@@ -225,18 +222,15 @@ ending in the extension .txt that was created.</p>
 <pre><code>output:
 path("*.txt")</code></pre>
 <p>You may have also noticed the line:</p>
-<pre><code>tuple val(name), path("${name}/${name}.gff"), emit: gff</code></pre>
+<pre><code>tuple val(name), path("**/*.gff"), emit: gff</code></pre>
 <p><code>emit</code> is the nextflow way of emitting a specific output and allowing you to
-access this specific output by name. We will use this to join the output channels
-of two processes in order to have all of the files we need for a third process.
-You’ll notice that we specified a path within a directory. This is the directory
-that will be created when Prokka completes successfully and we are specifying
-that we want to output the GFF file contained within that directory. You can
-also see that we know what the name of this file will be because we use the same
-value from the input (<code>name</code>) in the prokka command to instruct it how to name the output
-directory and files contained within. This value in <code>name</code> is also in the output
-where we tell nextflow to expect these same files to be created when the process
-finishes.</p>
+access this specific output by name. We will use this to join the output
+channels of two processes in order to have all of the files we need for a third
+process. You’ll notice that we specified a path within a directory. This is the
+directory that will be created when Prokka completes successfully and we are
+specifying that we want to output the GFF file contained within that directory.
+The <code>**</code> and <code>*</code> act similarly to the bash operators and allow for globbing or
+listing matching files / file patterns.</p>
 </div>
 </div>
 <div id="creating-your-first-workflow" class="section level2 unnumbered">

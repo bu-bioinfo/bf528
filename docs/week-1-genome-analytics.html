@@ -124,12 +124,12 @@ section. Answer any questions found in the associated <code>docs/week#_tasks.ipy
 <h2>Project 0 Overview<a class="anchor" aria-label="anchor" href="#project-0-overview"><i class="fas fa-link"></i></a>
 </h2>
 <p>This project will focus on getting you accustomed to how nextflow works and its
-key functions. You will be constructing a nextflow pipeline that will
-annotate a small bacterial genome using <a href="prokka%20link">Prokka</a>, calculate some
-basic genome statistics using python (GC Content, and genome size) and extract
-the sequence for a specified region of the genome by its coordinates. The
-general format and structure of this repository and nextflow pipeline will be
-utilized for all other projects.</p>
+key functions. You will be constructing a nextflow pipeline that will annotate a
+small bacterial genome using <a href="https://github.com/tseemann/prokka">Prokka</a>,
+calculate basic genome statistics using biopython (GC Content, and genome size),
+perform a simple kmer analysis and extract the sequence for a specified region
+of the genome by its coordinates. The general format and structure of this
+repository and nextflow pipeline will be utilized for all other projects.</p>
 </div>
 <div id="objectives" class="section level2 unnumbered">
 <h2>Objectives<a class="anchor" aria-label="anchor" href="#objectives"><i class="fas fa-link"></i></a>
@@ -194,9 +194,9 @@ dependencies:
 conda-forge should be listed first, and bioconda second. This is the channel
 priority, and conda uses this internally to ensure that it solves dependencies
 correctly.</p></li>
-<li><p>You should specify a single package or tool in separate YML files. You
-should directly pin the exact version you desire to ensure transparency and
-reproducibility.</p></li>
+<li><p>You should specify a single package or tool in separate YML files whenever
+possible. You should directly pin the exact version you desire to ensure
+transparency and reproducibility.</p></li>
 <li><p>Conda will take care of the minor software dependencies, and you generally
 do not attempt to manually install specific versions of those.</p></li>
 <li><p>The value after name will be the name of your conda environment and the name

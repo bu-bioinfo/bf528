@@ -122,7 +122,8 @@
 in your pipeline. Oftentimes, you will want to include downloading any files
 inside your pipeline to enable it to run end-to-end without any manual
 intervention. For this week, you will make use of the NCBI datasets CLI tool to
-download a genome of your choice and incorporate this into your workflow.</p>
+download a genome of your choice and automatically process it using the workflow
+you have previously developed.</p>
 </div>
 <div id="objectives-3" class="section level2 unnumbered">
 <h2>Objectives<a class="anchor" aria-label="anchor" href="#objectives-3"><i class="fas fa-link"></i></a>
@@ -177,9 +178,9 @@ the datasets command.</p></li>
 <li><p>Create a channel in your nextflow workflow <code>complete.nf</code> containing information
 found by reading from the CSV you created.</p></li>
 <li><p>Read the <a href="https://www.ncbi.nlm.nih.gov/datasets/docs/v2/reference-docs/command-line/datasets/download/genome/">manual</a> page for running the datasets command.</p></li>
-<li><p>Complete the provided NCBI datasets module by using the correct command
-for downloading files you observed before. You only need to download the genome
-and do not need the other files.</p></li>
+<li><p>Complete the provided NCBI datasets module by using the correct command for
+downloading files using the <code>datasets download genome</code> command. You only need
+to download the genome FASTAS and do not need the other files.</p></li>
 <li><p>By default, the NCBI datasets command will download a .zip file containing
 several nested directories containing metadata files and the requested files.
 Include a second shell command after your NCBI datasets command that unzips the
@@ -210,7 +211,8 @@ directly to the downstream processes in your workflow <code>complete.nf</code>. 
 make sure that the outputs of your NCBI datasets CLI module match what is
 expected by the other modules’ inputs.</p></li>
 <li><p>Remember that we can use the <code>NAME_OF_PROCESS.out</code> command to pass the
-outputs of a specific process to another.</p></li>
+outputs of a specific process to another. Ensure that the output channels match
+what is expected by the inputs for the other processes.</p></li>
 </ol>
 </div>
 </div>
@@ -237,8 +239,8 @@ specific processes that run independently and interact with jupyter.</p>
 <li><p>Make a YML file in <code>envs/</code> according to the conventions we’ve talked about
 that will create a conda environment with the latest versions of <code>pycirclize</code> and
 <code>ipykernel</code> installed. You may name it whatever is easy for you to remember.</p></li>
-<li><p>Use the <code>conda env create -f envs/&lt;your-env&gt;.yml</code> to actually create this
-environment.</p></li>
+<li><p>Use the <code>conda env create -f envs/&lt;name_of_yml_from_above&gt;.yml</code> to actually
+create this environment.</p></li>
 <li><p>In VSCode, use the command palette to create a new jupyter notebook. Go to the
 top right where it says <code>Select Kernel</code> and choose the <code>Python Environments...</code>
 option and find the conda environment you just created. This will enable you to
