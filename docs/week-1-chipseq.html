@@ -18,9 +18,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="Repo Setup I have included a .gitignore file with every repo that should instruct git to ignore any non-code related files. Do not alter or delete this file. As a reminder, you should not push any...">
-<meta property="og:description" content="Repo Setup I have included a .gitignore file with every repo that should instruct git to ignore any non-code related files. Do not alter or delete this file. As a reminder, you should not push any...">
-<meta name="twitter:description" content="Repo Setup I have included a .gitignore file with every repo that should instruct git to ignore any non-code related files. Do not alter or delete this file. As a reminder, you should not push any...">
+<meta name="description" content="0.8 Quality Control, Genome indexing and alignment From the first project, you have knowledge of the initial steps that are shared by a wide variety of NGS experiments. Quality control is...">
+<meta property="og:description" content="0.8 Quality Control, Genome indexing and alignment From the first project, you have knowledge of the initial steps that are shared by a wide variety of NGS experiments. Quality control is...">
+<meta name="twitter:description" content="0.8 Quality Control, Genome indexing and alignment From the first project, you have knowledge of the initial steps that are shared by a wide variety of NGS experiments. Quality control is...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -103,233 +103,73 @@
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-1-chipseq" class="section level1 unnumbered">
 <h1>Week 1: ChIPseq<a class="anchor" aria-label="anchor" href="#week-1-chipseq"><i class="fas fa-link"></i></a>
 </h1>
-<div id="repo-setup" class="section level2 unnumbered">
-<h2>Repo Setup<a class="anchor" aria-label="anchor" href="#repo-setup"><i class="fas fa-link"></i></a>
+<div id="quality-control-genome-indexing-and-alignment" class="section level2" number="0.8">
+<h2>
+<span class="header-section-number">0.8</span> Quality Control, Genome indexing and alignment<a class="anchor" aria-label="anchor" href="#quality-control-genome-indexing-and-alignment"><i class="fas fa-link"></i></a>
 </h2>
-<p>I have included a .gitignore file with every repo that should instruct git to
-ignore any non-code related files. Do not alter or delete this file. As a
-reminder, you should not push any data to github and you should always avoid
-adding any large files to github. Only push code and other simple text files to
-github. It’s tempting to simply perform a <code>git add *</code>, but I highly encourage
-you to be more granular and intentional by explicitly listing the files in your
-<code>git add</code> commands.</p>
-<p>The github classroom link is here: <a href="https://classroom.github.com/a/wWocEgqL" class="uri">https://classroom.github.com/a/wWocEgqL</a></p>
-<p>The structure of your templated directory should resemble the following:</p>
-<pre><code>|-- results/
-    |-- Any processed data output, downloaded file, etc. should go in here. 
-        Remember to provide this path as an output for any tasks. I suggest
-        you employ a "flat" directory strategy and do not create any nested
-        directories inside results/, but you may do whatever works best for
-        you
-    
-|-- samples/
-    |-- The provided or downloaded fastq files should go here, remember to 
-        provide this path when referring to your input files. You should
-        have both the subsampled and full data in this directory.
-
-|-- envs/
-    |-- Contained within are the .yml files that describe the conda 
-        environments which will now be created per rule. You should not at
-        any time alter or edit these files for any reason.
-
-|-- refs/
-    |-- week(1, 2, 3, 4)_dag|rulegraph.png and complete_dag|rulegraph.png
-        |-- We've discussed that workflows can be represented visually in the
-            form of a DAG (directed acyclic graph). These diagrams represent the
-            tasks and dependencies your completed workflow for each week should 
-            perform and follow. Use these as a reference to visually remind
-            yourself the goals of each week's workflow. We will discuss in class
-            how you can automatically generate these from your own snakefiles.
-
-|-- docs/
-    |-- week(1, 2, 3, 4)_methods.Rmd
-        |-- We have provided you with a Rmd notebook for you to quickly
-            write your preliminary methods for each week and display any 
-            preliminary results generated.
-       
-|-- week1.snake
-    |-- We have provided you a template for the first week's snakefile. Do
-        not alter the `conda` directive in each rule at any time.
-    
-|-- week2.snake
-    |-- A template for the week 2 snakefile. Do not alter the `conda` 
-        directive in each rule at any time.
-    
-|-- week3.snake
-    |-- A template for the week 3 snakefile. Do not alter the `conda` 
-        directive in each rule at any time.
-  
-|-- week4.snake
-    |-- A template for the week 4 snakefile. Do not alter the `conda`
-        directive in each rule at any time
-      
-|-- base_env.yml
-    |-- This is the yml file you should use to create the conda environment
-        for project 2. 
-
-|-- sample_sheet.csv
-    |-- A CSV file containing information regarding the samples / data files
-        for this experiment. There is a column for FTP links, which will be
-        used to download both the subsampled and full files. 
-
-|-- .gitignore
-    |-- A file that instructs git what to track and what not to track. I 
-        have automatically configured this to just track snakefiles and text.
-        Do not alter or delete this file at any time.</code></pre>
+<p>From the first project, you have knowledge of the initial steps that are shared
+by a wide variety of NGS experiments. Quality control is performed on
+the sequencing reads, an index is built for the species of interest and reads
+are aligned to the reference.</p>
+<p>For RNAseq, it is important to use a splice-aware aligner when aligning against
+a reference <strong>genome</strong> since our sequences originated from mRNA. For ChIPseq
+experiments, our reads originated from DNA sequences and we can use a non-splice
+aware algorithm to map our reads to the reference genome.</p>
+<p>Between project 1 and the early labs we did, you should have working modules
+that perform quality control using FASTQC, build a genome index using bowtie2,
+and align reads to a genome. We are going to take advantage of the modularity of
+nextflow by simply copying these previous modules and incorporating them into
+this workflow.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li><p>Copy the subsampled files from /projectnb/bf528/materials/project-2-chipseq/subsampled_files/
+to a new directory called <code>subsampled_files/</code> in your <code>samples/</code> directory</p></li>
+<li><p>Encode the names of the file and the paths in a samplesheet at the top level
+of your directory</p></li>
+<li><p>Update your workflow <code>main.nf</code> to perform quality control using FastQC and
+trimmomatic, build a bowtie2 index for the human reference genome and align the
+reads to the reference genome.</p></li>
+</ol>
 </div>
-<div id="initial-setup" class="section level2 unnumbered">
-<h2>Initial Setup<a class="anchor" aria-label="anchor" href="#initial-setup"><i class="fas fa-link"></i></a>
-</h2>
-<p>Please thoroughly read the landing page <a href="#project-2-chipseq-analysis-of-the-human-transcription-factor-runx1">Project 2 - ChIPseq</a></p>
-<p>I have made a large structural change to how we will be utilizing conda
-environments with our workflows.</p>
 </div>
-<div id="an-alternative-to-defining-lists-of-samples-in-each-rule" class="section level2 unnumbered">
-<h2>An alternative to defining lists of samples in each rule<a class="anchor" aria-label="anchor" href="#an-alternative-to-defining-lists-of-samples-in-each-rule"><i class="fas fa-link"></i></a>
+<div id="running-multiqc-to-evaluate-sequencing-qc" class="section level2" number="0.9">
+<h2>
+<span class="header-section-number">0.9</span> Running multiqc to evaluate sequencing QC<a class="anchor" aria-label="anchor" href="#running-multiqc-to-evaluate-sequencing-qc"><i class="fas fa-link"></i></a>
 </h2>
-<p>For the first project, we manually created python lists containing the name
-patterns used to drive each snakemake workflow. For this project, we will be
-employing an alternative method that stores this information in a fixed location
-in a .CSV file. Since we are creating this workflow in different snakefiles, we
-will still need to read in this information each time, but later when we connect
-our separate workflows into one, we will only need to do this once.</p>
-<p>Removing the sample information from our snakefiles / workflows also helps to
-generalize our workflows and would theoretically enable us to run the same
-workflow on a different set of samples by simply swapping in a different CSV.</p>
+<p>Just like in project 1, we are going to use multiqc to collect the various
+quality control metrics from our pipeline so far.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li><p>Make a channel in your workflow <code>main.nf</code> that collects all of the relevant
+QC outputs needed for multiqc.</p></li>
+<li><p>Copy your previous multiqc module and incorporate it into your workflow</p></li>
+</ol>
 </div>
-<div id="downloading-the-data" class="section level2 unnumbered">
-<h2>Downloading the data<a class="anchor" aria-label="anchor" href="#downloading-the-data"><i class="fas fa-link"></i></a>
-</h2>
-<p>Last project, you gained some experience downloading files. For convenience, I
-have provided you in materials/project_2_chipseq/ the most up-to-date gencode
-human primary assembly reference genome and matching GTF. Please simply copy
-these files to your <code>results/</code> directory in your working directory.</p>
-<p>We will, however, be incorporating the downloading of the actual data files into
-our workflows. Take a look at the provided <code>sample_sheet.csv</code> in the repo
-template you cloned. This contains all of the information about our samples and
-the <code>condition</code> column indicates which samples represent our IP and which are
-the input control. You’ll also notice the column <code>ftp_link</code> and an associated
-address for where each file can be downloaded from. These are small subsampled
-files that I created and uploaded to Zenodo (an open source data sharing
-platform for science). You can use these small files to quickly test your code
-and they should run and finish quickly.</p>
-<p>You’ll notice that in the first week’s snakefile, I have provided you a rule that
-automatically downloads these files. At the same time, it also renames these
-files to make them more amenable to working in snakemake with wildcards. We will
-have discussed roughly what this <code>rule wget_files</code> is doing, and how it uses a
-<code>lambda</code> expression to define a function on the fly. Do not alter this rule as
-it will be responsible for setting up your files with consistent naming patterns.</p>
-<p><strong>N.B.</strong></p>
-<p>You’ll notice that the output of the rule that downloads your files sets up one
-way to work with wildcards for this project. You may use this pattern,
-<code>{condition}_{rep}</code> along with the values from the CSV loaded in at the top of
-the snakefile, the python variables CONDITIONS and REPS, to setup your wildcards
-for this snakefile.</p>
-<p>Listed below will be the tasks you are responsible for accomplishing this week:</p>
 </div>
-<div id="quality-control" class="section level2 unnumbered">
-<h2>Quality Control<a class="anchor" aria-label="anchor" href="#quality-control"><i class="fas fa-link"></i></a>
+<div id="sorting-and-indexing-the-alignments" class="section level2" number="0.10">
+<h2>
+<span class="header-section-number">0.10</span> Sorting and indexing the alignments<a class="anchor" aria-label="anchor" href="#sorting-and-indexing-the-alignments"><i class="fas fa-link"></i></a>
 </h2>
-<p>Similar to last project, we are going to check some of the main quality metrics
-for NGS data using fastQC.</p>
-<pre><code>1. Create a snakemake rule that runs fastqc on the 4 samples and outputs
-  its results to the results/ directory</code></pre>
+<p>Many subsequent analyses on our BAM files will require them to be both sorted
+and indexed. Just like for large sequences in FASTA files, sorting and indexing
+the alignments will allow us to perform much more efficient operations on them.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li>Create a module that will both sort and index your BAM files using Samtools.
+This will need to be a multi-line command as indexing can only occur on the fully
+sorted file.</li>
+</ol>
 </div>
-<div id="trimming" class="section level2 unnumbered">
-<h2>Trimming<a class="anchor" aria-label="anchor" href="#trimming"><i class="fas fa-link"></i></a>
-</h2>
-<p>As we discussed in lecture, there are occasions where our sequencing reads are
-“contaminated” with portions of the sequencing adapter or the quality of the
-base calls is poor. We did not perform adapter or quality trimming on our reads
-in the last project since STAR performs local alignment and will automatically
-“trim” adapters by soft clipping reads (aligning only the portions that align
-well without enforcing end-to-end alignment). For this dataset, we will perform
-adapter trimming with trimmomatic, which will also trim low quality bases.</p>
-<pre><code>1. Create a snakemake rule that runs trimmomatic on the FASTQ files
-    - Use the provided adapter file in materials/project_2_chipseq/
-    - Include the following command and parameters:
-        - ILLUMINACLIP:{adapters}:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15
-        </code></pre>
-<p>The official trimmomatic webpage will tell you to call the .jar file to run
-trimmomatic (i.e. java -jar trimmomatic.jar). Instead, you can also simply call
-it as such:</p>
-<pre><code>trimmomatic SE &lt;...your other flags and parameters...&gt;</code></pre>
-<p>It will also automatically detect the proper encoding and you do not need to
-specify -phred33.</p>
-<p>Otherwise as mentioned, you may use the set of arguments listed above and the
-syntax they provided in the official documentation to structure the correct
-command.</p>
 </div>
-<div id="building-a-genome-index" class="section level2 unnumbered">
-<h2>Building a genome index<a class="anchor" aria-label="anchor" href="#building-a-genome-index"><i class="fas fa-link"></i></a>
+<div id="generating-bigwig-representations-of-our-bam-files" class="section level2" number="0.11">
+<h2>
+<span class="header-section-number">0.11</span> Generating bigWig representations of our BAM files<a class="anchor" aria-label="anchor" href="#generating-bigwig-representations-of-our-bam-files"><i class="fas fa-link"></i></a>
 </h2>
-<p>So far, I have provided you with pre-built genome indexes. If you recall, these
-indexes are tool-specific and are file(s) that allow for more efficient searching
-of alignments in large reference sequences. For this week, I will ask you to
-build your own complete genome index in bowtie2 for the provided human reference
-genome. For convenience, I have provided you with a fasta containing just the
-sequence of chromosome 21, which happens to be the smallest human chromosome.
-You may use this to quickly confirm that your bowtie2-build command is working
-as expected. Keep in mind, although this is the <em>smallest</em> chromosome, it is
-still 45 million basepairs long. When you are building this smaller index, you
-should also run it on a compute node, and not locally on the head node. It
-should still finish quickly enough to be of use in troubleshooting.</p>
-<p>Keep the bowtie2-index generated from <em>just</em> chromosome 21 as you can use it
-next week when testing your alignment command.</p>
-<pre><code>1. Create a snakemake rule that runs bowtie2-build and generates an index
-  for the entire human reference genome
-    - Leave every parameter at default
-    </code></pre>
-<p>bowtie2-build will create a series of six output files. You may track these
-explicitly as your snakemake outputs or consider making use of <code>touch()</code>. Just
-remember the advantages and disadvantages of using <code>touch()</code>.</p>
-</div>
-<div id="swap-to-the-full-data" class="section level2 unnumbered">
-<h2>Swap to the full data<a class="anchor" aria-label="anchor" href="#swap-to-the-full-data"><i class="fas fa-link"></i></a>
-</h2>
-<p>We will talk more about the various bioinformatics databases that store sequencing
-data, but we will be using EMBL-ENA as they store ftp links to the full FASTA
-files for most data deposited into GEO.</p>
-<pre><code>1. Navigate to the EMBL-ENA website and search for the listed GEO accession
-  in the paper in the search bar.
-
-2. Go to the "Project" page for this accession and look under the "Read Files"
-  section.
-
-3. Match the SRR names found in the `sample_sheet.csv` with the files listed
-  here
-  
-4. Swap the ftp_links value in the CSV with the FTP links for the full files
-  from EMBL-ENA.
-  
-5. You will need to change some other columns in the `sample_sheet.csv` to
-  switch it from working on the subsampled files to full files. Full files
-  should not have the string "subsampled" in them.
-  
-6. Re-run your snakemake workflow</code></pre>
-</div>
-<div id="week-1-tasks" class="section level2 unnumbered">
-<h2>Week 1 Tasks<a class="anchor" aria-label="anchor" href="#week-1-tasks"><i class="fas fa-link"></i></a>
-</h2>
-<ul>
-<li><p>Read the paper and familiarize yourself with their main goals and the general
-results they published</p></li>
-<li><p>Understand the new strategy we will be employing to better integrate conda
-environments and have snakemake utilize specific environments for specific rules</p></li>
-<li><p>Write a snakemake rule that runs fastqc as specified</p></li>
-<li><p>Write a snakemake rule that runs trimmomatic as specified</p></li>
-<li><p>Write a snakemake rule that runs bowtie2-build and generates a full genome
-index for the human reference genome</p></li>
-<li><p>Swap your FTP links in the sample_sheet.csv with the links to the full data
-you find on the EMBl-ENA website. You will need to change some other columns in
-the <code>sample_sheet.csv</code> to switch it from working on the subsampled files to full
-files. Full files should not have the string “subsampled” in them.</p></li>
-</ul>
-<p>You should now have both the subsampled data as well as the full data processed
-by your week 1 snakemake file. Going forward, you can use the subsampled data
-to troubleshoot your code before swapping your snakefiles logic to run on the
-full data. <strong>In order to swap between your subsampled and full files, you will
-need to edit the columns in the provided <code>sample_sheet.csv</code> appropriately.</strong></p>
+<p>Now that we have sorted and indexed our alignments, we are going to generate
+bigWig files or coverage tracks containing the number of reads per genomic
+interval or bin. We will use these coverage tracks for calculating
+correlation between our samples and visualizing the read coverage in specific
+regions of interest.</p>
 
 </div>
 </div>
@@ -340,15 +180,10 @@ need to edit the columns in the provided <code>sample_sheet.csv</code> appropria
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#week-1-chipseq">Week 1: ChIPseq</a></li>
-<li><a class="nav-link" href="#repo-setup">Repo Setup</a></li>
-<li><a class="nav-link" href="#initial-setup">Initial Setup</a></li>
-<li><a class="nav-link" href="#an-alternative-to-defining-lists-of-samples-in-each-rule">An alternative to defining lists of samples in each rule</a></li>
-<li><a class="nav-link" href="#downloading-the-data">Downloading the data</a></li>
-<li><a class="nav-link" href="#quality-control">Quality Control</a></li>
-<li><a class="nav-link" href="#trimming">Trimming</a></li>
-<li><a class="nav-link" href="#building-a-genome-index">Building a genome index</a></li>
-<li><a class="nav-link" href="#swap-to-the-full-data">Swap to the full data</a></li>
-<li><a class="nav-link" href="#week-1-tasks">Week 1 Tasks</a></li>
+<li><a class="nav-link" href="#quality-control-genome-indexing-and-alignment"><span class="header-section-number">0.8</span> Quality Control, Genome indexing and alignment</a></li>
+<li><a class="nav-link" href="#running-multiqc-to-evaluate-sequencing-qc"><span class="header-section-number">0.9</span> Running multiqc to evaluate sequencing QC</a></li>
+<li><a class="nav-link" href="#sorting-and-indexing-the-alignments"><span class="header-section-number">0.10</span> Sorting and indexing the alignments</a></li>
+<li><a class="nav-link" href="#generating-bigwig-representations-of-our-bam-files"><span class="header-section-number">0.11</span> Generating bigWig representations of our BAM files</a></li>
 </ul>
 
       <div class="book-extra">

@@ -228,7 +228,15 @@ path("*.txt")</code></pre>
 <pre><code>tuple val(name), path("${name}/${name}.gff"), emit: gff</code></pre>
 <p><code>emit</code> is the nextflow way of emitting a specific output and allowing you to
 access this specific output by name. We will use this to join the output channels
-of two processes in order to have all of the files we need for a third process.</p>
+of two processes in order to have all of the files we need for a third process.
+You’ll notice that we specified a path within a directory. This is the directory
+that will be created when Prokka completes successfully and we are specifying
+that we want to output the GFF file contained within that directory. You can
+also see that we know what the name of this file will be because we use the same
+value from the input (<code>name</code>) in the prokka command to instruct it how to name the output
+directory and files contained within. This value in <code>name</code> is also in the output
+where we tell nextflow to expect these same files to be created when the process
+finishes.</p>
 </div>
 </div>
 <div id="creating-your-first-workflow" class="section level2 unnumbered">

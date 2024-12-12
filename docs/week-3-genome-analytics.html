@@ -18,9 +18,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="Section Links Week 3 Overview Objectives Understanding the staging directory Inspecting the Prokka Output Passing outputs of processes as inputs Basic Local Alignment Search Tool Developing...">
-<meta property="og:description" content="Section Links Week 3 Overview Objectives Understanding the staging directory Inspecting the Prokka Output Passing outputs of processes as inputs Basic Local Alignment Search Tool Developing...">
-<meta name="twitter:description" content="Section Links Week 3 Overview Objectives Understanding the staging directory Inspecting the Prokka Output Passing outputs of processes as inputs Basic Local Alignment Search Tool Developing...">
+<meta name="description" content="Section Links Week 3 Overview Objectives Understanding the staging directory Inspecting the Prokka Output Passing outputs of processes as inputs Basic Local Alignment Search Tool Genome kmer...">
+<meta property="og:description" content="Section Links Week 3 Overview Objectives Understanding the staging directory Inspecting the Prokka Output Passing outputs of processes as inputs Basic Local Alignment Search Tool Genome kmer...">
+<meta name="twitter:description" content="Section Links Week 3 Overview Objectives Understanding the staging directory Inspecting the Prokka Output Passing outputs of processes as inputs Basic Local Alignment Search Tool Genome kmer...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -112,6 +112,7 @@
 <p><a href="week-3-genome-analytics.html#inspecting-the-prokka-output">Inspecting the Prokka Output</a></p>
 <p><a href="week-3-genome-analytics.html#passing-outputs-of-processes-as-inputs">Passing outputs of processes as inputs</a></p>
 <p><a href="week-3-genome-analytics.html#basic-local-alignment-search-tool">Basic Local Alignment Search Tool</a></p>
+<p><a href="week-3-genome-analytics.html#genome-kmer-analysis">Genome kmer analysis</a></p>
 <p><a href="week-3-genome-analytics.html#developing-external-scripts-for-workflows">Developing external scripts for workflows</a></p>
 <p><a href="week-3-genome-analytics.html#a-fully-operational-nextflow-pipeline">A fully operational nextflow pipeline</a></p>
 <p><a href="week-3-genome-analytics.html#week-3-detailed-tasks-summary">Week 3 Detailed Tasks Summary</a></p>
@@ -263,6 +264,58 @@ to attempt to identify your genome.</p></li>
 </ol>
 </div>
 </div>
+<div id="genome-kmer-analysis" class="section level2" number="0.6">
+<h2>
+<span class="header-section-number">0.6</span> Genome kmer analysis<a class="anchor" aria-label="anchor" href="#genome-kmer-analysis"><i class="fas fa-link"></i></a>
+</h2>
+<p>As we talked about in lecture, kmers are a useful tool for various flavors of
+genome analysis. Kmers allow for fast and efficient analysis of genetic
+data due to their relative computational simplicity. The kmer content of a genome
+measures the complexity of the genome (amongst other things) and the distribution
+of kmers may serve as a unique signature of individual genomes.</p>
+<p>While counting kmers can be accomplished with just a few lines of python code,
+more advanced data structures and algorithms are necessary to make the analysis of
+larger genomes, and more deeply sequenced datasets more computationally tractable.</p>
+<p>We will be using <a href="https://github.com/gmarcais/Jellyfish">Jellyfish</a> to
+efficiently count the unique and distinct kmers over a range of different values
+of k for all our microbial genomes.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li><p>Create a YML file that specifies a conda environment with the latest version
+of jellyfish. <strong>N.B.</strong> Ensure that you specify the package <code>kmer-jellyfish</code> as
+there exists an entirely unrelated package named <code>jellyfish</code>.</p></li>
+<li><p>In your workflow <code>main.nf</code>, use the <a href="https://nextflow.io/docs/latest/reference/channel.html">channel factories</a>
+reference to create a channel that contains a range of numbers from 1 to 21.</p></li>
+<li><p>Also in the <code>main.nf</code>, find an appropriate <a href="https://www.nextflow.io/docs/latest/reference/operator.html">nextflow operator</a> and
+create a channel containing the pairwise combinations of your genome files and
+the numbered range above. See below for a <em>fake</em> example of what this channel
+would look like for one genome and a range of 1 to 3:</p></li>
+</ol>
+<pre><code>[genome1, /path/to/fa, 1]
+[genome1, /path/to/fa, 2]
+[genome1, /path/to/fa, 3]
+</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Create a module that will run jellyfish and perform two operations,
+<code>jellyfish count</code> and <code>jellyfish stats</code>. <code>jellyfish count</code> will count the total
+number of kmers for a given value of k for a specific file. <code>jellyfish stats</code>
+will access the file created from <code>jellyfish count</code> and neatly summarize the
+kmers for a given size k into total, distinct and unique counts. Output the
+summarized stats into a new text file named with the following pattern:</li>
+</ol>
+<p><code>&lt;name_of_genome&gt;_&lt;value-of-k&gt;mers.txt</code> or <code>genome1_6mers.txt</code></p>
+<p>Use publishDir to copy these output files to your <code>results/</code> directory.</p>
+<p>Hints:</p>
+<ol style="list-style-type: decimal">
+<li><p>Multi-line shell commands will execute one after another.</p></li>
+<li><p>We can take advantage of the staging directory by simply making a file with
+the first <code>jellyfish</code> command and then running the second command using that
+named file.</p></li>
+<li><p>Your <code>jellyfish count</code> command will need to include the following arguments
+and appopriate values: <code>-s 100M</code>, <code>-m</code>, <code>-o</code>, and the input fasta file.</p></li>
+</ol>
+</div>
+</div>
 <div id="developing-external-scripts-for-workflows" class="section level2 unnumbered">
 <h2>Developing external scripts for workflows<a class="anchor" aria-label="anchor" href="#developing-external-scripts-for-workflows"><i class="fas fa-link"></i></a>
 </h2>
@@ -292,10 +345,13 @@ nextflow module accompanying this script will simply be responsible for passing
 it the correct input (your FASTA file) and specifying the output file.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
+<li><p>Create an appropriate YML file to create a conda environment with the latest
+version of biopython installed.</p></li>
 <li>
-<p>Write valid python code below line 20 in the provided script. You may do this
-with basic python functionalities or attempt to use <a href="https://biopython.org/">Biopython</a>.
-Your code should do the following:</p>
+<p>Write valid python code below line 20 in the provided script. Use biopython
+to read in the FASTA file and return the GC content. You may refer to the biopython
+section on <a href="https://biopython.org/wiki/SeqIO">SeqIO</a> for how to accomplish this.
+Your script should use biopython to do the following:</p>
 <ol style="list-style-type: lower-alpha">
 <li>Read in the FASTA file</li>
 <li>Parse the sequence correctly and return the GC
@@ -305,9 +361,7 @@ some text explaining what each value represents (i.e. GC Content: 64%)</li>
 </ol>
 </li>
 <li><p>Make a new directory in <code>modules</code> entitled <code>genome_stats</code> and create a
-<code>main.nf</code> within that directory. If using biopython, make an appropriate YML
-environment specification for biopython. If only using basic python, make a YML
-environment specification with python installed. You can have the inputs be the
+<code>main.nf</code> within that directory. The inputs for this module will be the
 same shape and structure as the <code>fa_ch</code>.</p></li>
 </ol>
 <p>You will need to specify how you want the output file named. The shell/script
@@ -315,7 +369,7 @@ portion will be the command for executing the associated <code>.py</code> script
 providing it the appropriate inputs as specified by <code>argparse</code>. Please write the
 new file to the <code>results/</code> directory using <code>publishDir</code>. Name this output file
 using the name value passed in the channel (i.e. ${name}_genome_stats.txt)</p>
-<ol start="3" style="list-style-type: decimal">
+<ol start="4" style="list-style-type: decimal">
 <li>When your script is functional and your associated nextflow module complete,
 run Nextflow once more to generate the text file containing the two genome
 statistics requested.</li>
@@ -327,17 +381,20 @@ statistics requested.</li>
 </h2>
 <p>By this point, your nextflow pipeline should be working end-to-end. It should
 read from the samplesheet.csv you created to drive a workflow that will index
-the genome, extract a region, and calculate some basic statistics describing
-that genome. The reason we have stressed making your code generalizable, including
-avoiding using hardcoded paths or values, is so that your workflow can operate
-on new samples by simply adding them to the CSV and re-running nextflow. Nextflow’s
-caching strategy means that successfully run jobs will not be re-run and it will
-figure out what new jobs need to be run based on the changes.</p>
+the genome, extract a region, perform a simple kmer analysis, and calculate some
+basic statistics describing that genome. The reason we have stressed making your
+code generalizable, including avoiding using hardcoded paths or values, is so
+that your workflow can operate on new samples by simply adding them to the CSV
+and re-running nextflow. Nextflow’s caching strategy means that successfully run
+jobs will not be re-run and it will figure out what new jobs need to be run
+based on the changes.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
 <li><p>Copy the two remaining genomes from
 /projectnb/bf528/materials/project-0-genome-analytics into your <code>refs/</code>
-directory. Add their information to the samplesheet.csv as you did previously.</p></li>
+directory. Add their information to the samplesheet.csv as you did previously.
+Make sure to not include spaces in any values and instead use underscores to
+separate words.</p></li>
 <li><p>Re-run your nextflow workflow. It should perform the exact same tasks for
 these two new genomes simultaneously.</p></li>
 </ol>
@@ -357,11 +414,15 @@ file from the full genome file. Place this sequence in a new FASTA file called
 <li><p>Explore the use of <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> and utilize
 it to query the sequence you extracted. Take a screenshot of the results and make
 sure to answer the associated questions.</p></li>
-<li><p>Develop the included <code>genome_stats.py</code> script to successfully parse the genome
-FASTA file and calculate the GC content (as a percentage of total) and the length
-of the sequence. Simultaneously, develop a new nextflow module that will call
-the script and provide the appropriate inputs on the command line. This script
-should write the results to a new text file named as you choose.</p></li>
+<li><p>Create a module that runs <code>jellyfish count</code> and <code>jellyfish stats</code> for a range
+of k values (1 to 21). This output should create a single txt file containing
+the output from <code>jellyfish</code> stats and named descriptively as described above.</p></li>
+<li><p>Develop the included <code>genome_stats.py</code> script to successfully parse the
+genome FASTA file and calculate the GC content (as a percentage of total) and
+the length of the sequence using biopython. Simultaneously, develop a new
+nextflow module that will call the script and provide the appropriate inputs on
+the command line. This script should write the results to a new text file named
+as you choose.</p></li>
 <li><p>Copy the two genomes from our project directory you did not choose initially,
 and re-run your nextflow pipeline by first adding their information to the
 samplesheet.csv. Nextflow should automatically generate all of the same tasks
@@ -383,6 +444,7 @@ and outputs for these two new genomes.</p></li>
 <li><a class="nav-link" href="#inspecting-the-prokka-output">Inspecting the Prokka Output</a></li>
 <li><a class="nav-link" href="#passing-outputs-of-processes-as-inputs">Passing outputs of processes as inputs</a></li>
 <li><a class="nav-link" href="#basic-local-alignment-search-tool">Basic Local Alignment Search Tool</a></li>
+<li><a class="nav-link" href="#genome-kmer-analysis"><span class="header-section-number">0.6</span> Genome kmer analysis</a></li>
 <li><a class="nav-link" href="#developing-external-scripts-for-workflows">Developing external scripts for workflows</a></li>
 <li><a class="nav-link" href="#a-fully-operational-nextflow-pipeline">A fully operational nextflow pipeline</a></li>
 <li><a class="nav-link" href="#week-3-detailed-tasks-summary">Week 3 Detailed Tasks Summary</a></li>

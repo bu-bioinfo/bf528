@@ -18,9 +18,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="Aligning reads to the reference genome Now that we have performed basic quality control on our reads, we are going to align them to the human reference genome using bowtie2. Using the index you...">
-<meta property="og:description" content="Aligning reads to the reference genome Now that we have performed basic quality control on our reads, we are going to align them to the human reference genome using bowtie2. Using the index you...">
-<meta name="twitter:description" content="Aligning reads to the reference genome Now that we have performed basic quality control on our reads, we are going to align them to the human reference genome using bowtie2. Using the index you...">
+<meta name="description" content="0.12 PLotting correlation between Bigwigs   0.13 Calling peaks   0.14 Intersecting Peaks   0.15 Filtering peaks from blacklist">
+<meta property="og:description" content="0.12 PLotting correlation between Bigwigs   0.13 Calling peaks   0.14 Intersecting Peaks   0.15 Filtering peaks from blacklist">
+<meta name="twitter:description" content="0.12 PLotting correlation between Bigwigs   0.13 Calling peaks   0.14 Intersecting Peaks   0.15 Filtering peaks from blacklist">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -103,104 +103,26 @@
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-2-chipseq" class="section level1 unnumbered">
 <h1>Week 2: ChIPseq<a class="anchor" aria-label="anchor" href="#week-2-chipseq"><i class="fas fa-link"></i></a>
 </h1>
-<div id="aligning-reads-to-the-reference-genome" class="section level2 unnumbered">
-<h2>Aligning reads to the reference genome<a class="anchor" aria-label="anchor" href="#aligning-reads-to-the-reference-genome"><i class="fas fa-link"></i></a>
+<div id="plotting-correlation-between-bigwigs" class="section level2" number="0.12">
+<h2>
+<span class="header-section-number">0.12</span> PLotting correlation between Bigwigs<a class="anchor" aria-label="anchor" href="#plotting-correlation-between-bigwigs"><i class="fas fa-link"></i></a>
 </h2>
-<p>Now that we have performed basic quality control on our reads, we are going to
-align them to the human reference genome using bowtie2. Using the index you
-generated last week, align each of the FASTQ files to the human reference
-genome. By default, bowtie2 outputs in SAM format and typically, it is more
-convenient and friendly to your disk space to work with BAM files as they are
-compressed. Nearly all utilities that operate on SAM files can also
-interchangeably work with BAM files</p>
-<pre><code>1. Align your reads to the human reference genome using the index you
-  created last week 
-    - Leave all other bowtie2 parameters at default
-    - In the same command, automatically convert the bowtie2 output to a BAM
-      file using samtools</code></pre>
 </div>
-<div id="sorting-and-indexing-our-alignment-files" class="section level2 unnumbered">
-<h2>Sorting and indexing our alignment files<a class="anchor" aria-label="anchor" href="#sorting-and-indexing-our-alignment-files"><i class="fas fa-link"></i></a>
+<div id="calling-peaks" class="section level2" number="0.13">
+<h2>
+<span class="header-section-number">0.13</span> Calling peaks<a class="anchor" aria-label="anchor" href="#calling-peaks"><i class="fas fa-link"></i></a>
 </h2>
-<p>For many downstream applications, most notably visualization, the alignments in
-BAM files need to be sorted and indexed, in order to allow for fast and random
-access without searching the entire file. We will now sort, and index all of
-our generated BAM files using samtools. Read the manual pages for the samtools
-sort and samtools index commands for how to use them.</p>
-<pre><code>1. Generate a snakemake rule that sorts each of your BAM files 
-2. Generate another snakemake rule that creates a BAM index for your sorted 
-  files</code></pre>
 </div>
-<div id="quality-control-with-flagstats-and-multiqc" class="section level2 unnumbered">
-<h2>Quality control with flagstats and MultiQC<a class="anchor" aria-label="anchor" href="#quality-control-with-flagstats-and-multiqc"><i class="fas fa-link"></i></a>
+<div id="intersecting-peaks" class="section level2" number="0.14">
+<h2>
+<span class="header-section-number">0.14</span> Intersecting Peaks<a class="anchor" aria-label="anchor" href="#intersecting-peaks"><i class="fas fa-link"></i></a>
 </h2>
-<p>As before, we will perform a quick quality check on our alignment using samtools
-and then collect all of the QC information we have generated so far using
-MultiQC.</p>
-<pre><code>1. Create a snakemake rule that runs samtools flagstat on all of your
-  aligned files
-2. Create a snakemake rule that runs MultiQC on your project directory</code></pre>
 </div>
-<div id="generating-bigwig-files-and-comparing-similarity-between-samples" class="section level2 unnumbered">
-<h2>Generating bigwig files and comparing “similarity” between samples<a class="anchor" aria-label="anchor" href="#generating-bigwig-files-and-comparing-similarity-between-samples"><i class="fas fa-link"></i></a>
+<div id="filtering-peaks-from-blacklist" class="section level2" number="0.15">
+<h2>
+<span class="header-section-number">0.15</span> Filtering peaks from blacklist<a class="anchor" aria-label="anchor" href="#filtering-peaks-from-blacklist"><i class="fas fa-link"></i></a>
 </h2>
-<p>Now that we have performed basic quality control, we are going to convert our
-aligned BAM files to a more tractable format for analysis and visualization. We
-will be using the deeptools package to convert the information in our BAM files
-to a bigWig format, which is a compressed binary indexed file that is typically
-used to store quantitative data associated with genomic regions. In essence, we
-can divide every chromosome into bins of equal and known size and count the
-number of alignments falling into each region. This enables a simple but
-intuitive plot where we can visualize the entire length of any arbitrary region
-in the genome and the number of alignments found in each region. This enables
-us to look at the “signal” coming from various regions of the genome.</p>
-<p>This is often used in ChIPseq experiments to visualize where our factor of
-interest is binding. Regions with higher alignment counts, if the underlying
-molecular biology experiment worked, should represent regions where our factor
-is most likely binding. Understanding where in the genome a factor is binding is
-what enables the determination of what genes that factor is regulating, and the
-mechanisms by which it functions.</p>
-<p>We can also use this information to make some general quantitative comparisons
-between our samples since they are all unified in format (i.e. each bigWig
-representation of a sample consists of the entire genome split into the same
-sized bins and with an associated count).</p>
-<p>We will use this property to perform a Pearson correlation on
-the signal generated from each of the samples. In an ideal world, if the
-experiment worked exactly as intended, and both biological replicates were
-correctly capturing Runx1 binding sites, their signal represented in bigWig
-format should be exactly the same or at the very least, highly correlated. Given
-our knowledge of what the input control represents, we could also assume that
-our inputs should be substantially different than our IP samples.</p>
-<pre><code>1. Using the bamcoverage utility in deeptools, generate a bigWig file for
-  each sorted BAM
-    - Leave all parameters at default
-  
-2. Once you have produced all of the bigwig files, use the
-  multiBigWigSummary utility and the plotCorrelation utility to produce a
-  clustered heatmap of the Pearson correlation values between all the samples.
-  Refer to their respective manual pages here for help:
-  https://deeptools.readthedocs.io/en/develop/content/list_of_tools.html</code></pre>
-</div>
-<div id="week-2-tasks" class="section level2 unnumbered">
-<h2>Week 2 Tasks<a class="anchor" aria-label="anchor" href="#week-2-tasks"><i class="fas fa-link"></i></a>
-</h2>
-<ul>
-<li><p>Align your reads using bowtie2 to your previously created bowtie2 genome index
-for the full human reference genome. Make sure you are automatically converting
-the output of bowtie2 to a BAM file using <code>|</code> and samtools.</p></li>
-<li><p>Create a snakemake rule that sorts each of your BAM files</p></li>
-<li><p>Create a snakemake rule that generates a BAM index file for your sorted BAM
-files</p></li>
-<li><p>Create a snakemake rule that runs samtools flagstat on each of your samples</p></li>
-<li><p>Create a snakemake rule that runs MultiQC to aggregate all of the outputs from
-QC utilities</p></li>
-<li><p>Create a snakemake rule that generates a bigWig file from each of your sorted
-BAM files</p></li>
-<li><p>Create a snakemake rule that runs multiBigwig summary to generate a single
-matrix containing all of the information from your bigwigs</p></li>
-<li><p>Create a snakemake rule that runs plotCorrelation to generate a figure
-displaying the pearson correlation values between all of our samples</p></li>
-</ul>
+
 </div>
 </div>
   <div class="chapter-nav">
@@ -210,11 +132,10 @@ displaying the pearson correlation values between all of our samples</p></li>
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#week-2-chipseq">Week 2: ChIPseq</a></li>
-<li><a class="nav-link" href="#aligning-reads-to-the-reference-genome">Aligning reads to the reference genome</a></li>
-<li><a class="nav-link" href="#sorting-and-indexing-our-alignment-files">Sorting and indexing our alignment files</a></li>
-<li><a class="nav-link" href="#quality-control-with-flagstats-and-multiqc">Quality control with flagstats and MultiQC</a></li>
-<li><a class="nav-link" href="#generating-bigwig-files-and-comparing-similarity-between-samples">Generating bigwig files and comparing “similarity” between samples</a></li>
-<li><a class="nav-link" href="#week-2-tasks">Week 2 Tasks</a></li>
+<li><a class="nav-link" href="#plotting-correlation-between-bigwigs"><span class="header-section-number">0.12</span> PLotting correlation between Bigwigs</a></li>
+<li><a class="nav-link" href="#calling-peaks"><span class="header-section-number">0.13</span> Calling peaks</a></li>
+<li><a class="nav-link" href="#intersecting-peaks"><span class="header-section-number">0.14</span> Intersecting Peaks</a></li>
+<li><a class="nav-link" href="#filtering-peaks-from-blacklist"><span class="header-section-number">0.15</span> Filtering peaks from blacklist</a></li>
 </ul>
 
       <div class="book-extra">

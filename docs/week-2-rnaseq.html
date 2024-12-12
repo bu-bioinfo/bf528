@@ -151,9 +151,10 @@ contains the same information. Oftentimes, we will simply choose to generate BAM
 files in place of SAM files in order to preserve disk space.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
-<li>Look at the documentation for STAR and focus on section 3 (pg. 7) for how to
-use STAR to run a basic mapping job. Construct a working nextflow module that
-performs basic alignment using STAR.</li>
+<li>Look at the documentation for
+<a href="https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf">STAR</a> and
+focus on section 3 (pg. 7) for how to use STAR to run a basic mapping job.
+Construct a working nextflow module that performs basic alignment using STAR.</li>
 </ol>
 <p>Your STAR command should include only the following options and all others may be left
 at their default value:</p>
@@ -204,7 +205,8 @@ results will only be meaningful you’ve switched to running this pipeline on th
 full dataset.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
-<li>Make a new module that will run MultiQC. You can specify the label as
+<li>Make a new module that will run
+<a href="https://github.com/MultiQC/MultiQC">MultiQC</a>. You can specify the label as
 <code>process_low</code> and set <code>publishDir</code> to your <code>results/</code> directory. We will take
 advantage of the staging directory strategy that nextflow uses to run MultiQC.</li>
 </ol>

@@ -18,9 +18,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="Peak calling Now that we have our aligned reads and performed basic quality control, we are going to proceed to peak calling using HOMER. This utility requires us to first convert the BAM files to...">
-<meta property="og:description" content="Peak calling Now that we have our aligned reads and performed basic quality control, we are going to proceed to peak calling using HOMER. This utility requires us to first convert the BAM files to...">
-<meta name="twitter:description" content="Peak calling Now that we have our aligned reads and performed basic quality control, we are going to proceed to peak calling using HOMER. This utility requires us to first convert the BAM files to...">
+<meta name="description" content="0.16 Download HG38 gene BED from UCSC table browser   0.17 ComputeMatrix for IP samples   0.18 Plotprofile for IP samples   0.19 Annotate peaks   0.20 FindMotifs">
+<meta property="og:description" content="0.16 Download HG38 gene BED from UCSC table browser   0.17 ComputeMatrix for IP samples   0.18 Plotprofile for IP samples   0.19 Annotate peaks   0.20 FindMotifs">
+<meta name="twitter:description" content="0.16 Download HG38 gene BED from UCSC table browser   0.17 ComputeMatrix for IP samples   0.18 Plotprofile for IP samples   0.19 Annotate peaks   0.20 FindMotifs">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -103,135 +103,31 @@
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-3-chipseq" class="section level1 unnumbered">
 <h1>Week 3: ChIPseq<a class="anchor" aria-label="anchor" href="#week-3-chipseq"><i class="fas fa-link"></i></a>
 </h1>
-<div id="peak-calling" class="section level2 unnumbered">
-<h2>Peak calling<a class="anchor" aria-label="anchor" href="#peak-calling"><i class="fas fa-link"></i></a>
+<div id="download-hg38-gene-bed-from-ucsc-table-browser" class="section level2" number="0.16">
+<h2>
+<span class="header-section-number">0.16</span> Download HG38 gene BED from UCSC table browser<a class="anchor" aria-label="anchor" href="#download-hg38-gene-bed-from-ucsc-table-browser"><i class="fas fa-link"></i></a>
 </h2>
-<p>Now that we have our aligned reads and performed basic quality control, we are
-going to proceed to peak calling using HOMER. This utility requires us to first
-convert the BAM files to a HOMER specific format, which is required prior to
-using HOMER to run downstream utilities.</p>
-<pre><code>1. Generate a snakemake rule that runs the makeTagDir command in HOMER for 
-  each sample. You will have a separate tag directory for each. 
-    - Leave every option at default parameters.</code></pre>
-<p>As denoted by the name, this utility creates a directory containing a multitude
-of output files. Please refer to the snakemake documentation on how to properly
-handle using directories as expected outputs.</p>
-<p>We are now ready to perform peak calling, which will look for areas of
-significant enrichment in the localization of our alignments. We will be
-performing peak calling using the input as our background enrichment control.
-Please read the documentation for the findPeaks command
-(<a href="http://homer.ucsd.edu/homer/ngs/peaks.html" class="uri">http://homer.ucsd.edu/homer/ngs/peaks.html</a>) and perform peak calling on both of
-our replicate experiments.</p>
-<pre><code>1. Generate a snakemake rule that runs findPeaks on your samples
-    - You will need this rule to run twice on each set of paired replicates
-    - Remember that Runx1 is a transcription factor that binds in relatively
-    “narrow” patterns.</code></pre>
 </div>
-<div id="converting-homer-specific-output-to-bed-format" class="section level2 unnumbered">
-<h2>Converting homer-specific output to BED format<a class="anchor" aria-label="anchor" href="#converting-homer-specific-output-to-bed-format"><i class="fas fa-link"></i></a>
+<div id="computematrix-for-ip-samples" class="section level2" number="0.17">
+<h2>
+<span class="header-section-number">0.17</span> ComputeMatrix for IP samples<a class="anchor" aria-label="anchor" href="#computematrix-for-ip-samples"><i class="fas fa-link"></i></a>
 </h2>
-<p>The output of findPeaks is in a homer-specific format, and for ease of use, we
-will convert this .txt homer peak file to a standard BED formatted file.</p>
-<pre><code>1. Generate a snakemake rule that use the pos2bed utility to convert the
-  output to a BED format</code></pre>
 </div>
-<div id="determining-a-set-of-reproducible-peaks-using-bedtools" class="section level2 unnumbered">
-<h2>Determining a set of reproducible peaks using bedtools<a class="anchor" aria-label="anchor" href="#determining-a-set-of-reproducible-peaks-using-bedtools"><i class="fas fa-link"></i></a>
+<div id="plotprofile-for-ip-samples" class="section level2" number="0.18">
+<h2>
+<span class="header-section-number">0.18</span> Plotprofile for IP samples<a class="anchor" aria-label="anchor" href="#plotprofile-for-ip-samples"><i class="fas fa-link"></i></a>
 </h2>
-<p>Each paired experiment (IP and INP) from each replicate will have generated a
-set of peaks that represent Runx1 binding locations in the genome. In
-general, there are two main ways that “reproducible” peaks are chosen for
-ChIP-seq experiments: 1. Irreproducible Discovery Rate (IDR), and 2.
-Intersections / Unions of peaks. You will use the latter strategy and Bedtools
-to produce your own set of “reproducible peaks” from your two peak files.</p>
-<pre><code>1. Using only bedtools, generate a single list of “reproducible peaks”. You
-  may use whatever strategy you like and we will ask you to justify your
-  choice later.</code></pre>
 </div>
-<div id="removing-signal-artifact-regions-from-our-peak-lists" class="section level2 unnumbered">
-<h2>Removing signal-artifact regions from our peak lists<a class="anchor" aria-label="anchor" href="#removing-signal-artifact-regions-from-our-peak-lists"><i class="fas fa-link"></i></a>
+<div id="annotate-peaks" class="section level2" number="0.19">
+<h2>
+<span class="header-section-number">0.19</span> Annotate peaks<a class="anchor" aria-label="anchor" href="#annotate-peaks"><i class="fas fa-link"></i></a>
 </h2>
-<p>Experimentally, it has been shown that there are regions of the genome that are
-nearly always present in ChIPseq experiments at high levels. These regions are
-considered to be noise and signal-artifacts that are not representative of the
-target enrichment. It is generally advised to remove any peaks that are found in
-these regions as they likely represent erroneous signal.</p>
-<pre><code>1. Create a snakemake rule that uses bedtools to filter out any of your
-  reproducible peaks that fall into these blacklisted regions and output the
-  remaining peaks to a new BED file</code></pre>
 </div>
-<div id="annotating-our-peaks-to-their-nearest-genomic-feature" class="section level2 unnumbered">
-<h2>Annotating our peaks to their nearest genomic feature<a class="anchor" aria-label="anchor" href="#annotating-our-peaks-to-their-nearest-genomic-feature"><i class="fas fa-link"></i></a>
+<div id="findmotifs" class="section level2" number="0.20">
+<h2>
+<span class="header-section-number">0.20</span> FindMotifs<a class="anchor" aria-label="anchor" href="#findmotifs"><i class="fas fa-link"></i></a>
 </h2>
-<p>With our now filtered list of reproducible peaks, we are going to perform a
-simple annotation that assigns these peaks to their nearest genomic feature.
-This will allow us to glean some information of which genomic regions they fall
-into (promoters, introns, etc.) and what genes they are in close proximity to.</p>
-<p>Please note that you may need to specify an older version of the human reference
-in the options for this tool (hg18/hg19). If you want to use the latest version
-(hg38), you may need to have homer install it directly. There are some
-instructions here on how to install hg38.
-(<a href="http://homer.ucsd.edu/homer/introduction/configure.html" class="uri">http://homer.ucsd.edu/homer/introduction/configure.html</a>) or if you try to use
-this option, run annotatePeaks.pl, and it returns an error, it will include the
-command to install genomes in the error message.</p>
-<p>Because of our conda setup, the paths you need to install new genomes into HOMER
-is specific to each of your environments.</p>
-<pre><code>1. Use the annotatePeaks.pl utility in HOMER to annotate your list of
-  reproducible peaks. 
-    - Provide the decompressed GTF file. </code></pre>
-</div>
-<div id="performing-motif-finding-to-look-for-enrichment-of-known-binding-sequences" class="section level2 unnumbered">
-<h2>Performing motif finding to look for enrichment of known binding sequences<a class="anchor" aria-label="anchor" href="#performing-motif-finding-to-look-for-enrichment-of-known-binding-sequences"><i class="fas fa-link"></i></a>
-</h2>
-<p>Using this same set of reproducible peaks, we are going to perform motif finding
-to look for enriched motifs found in our peak locations. For simplicity, we will
-be performing this step using HOMER. As we are using the hg39 build of the human
-reference genome, you should supply the path to the FASTA as specified in the
-instructions for running findMotifsGenome.pl.</p>
-<pre><code>1. Run findMotifsGenome.pl on your list of reproducible peaks to generate a
-  motif enrichment analysis
-    - Do not use any of the provided HOMER options for the genome. You must
-      first decompress the reference genome fasta and provide this in the
-      HOMER command. 
-      </code></pre>
-</div>
-<div id="week-3-tasks" class="section level2 unnumbered">
-<h2>Week 3 Tasks<a class="anchor" aria-label="anchor" href="#week-3-tasks"><i class="fas fa-link"></i></a>
-</h2>
-<ul>
-<li><p>Generated a snakemake rule that runs the makeTagDir utility on each of your
-sorted BAM files</p></li>
-<li><p>Create a snakemake rule that runs HOMER findPeaks on your samples using the
-tag directories generated previously. This should run <em>twice</em>, once for each
-set of paired experiments (rep1 and rep2)</p></li>
-<li><p>Created a snakemake rule that converts both of your findPeaks output files to
-BED format</p></li>
-<li><p>Created a snakemake rule that uses only bedtools to generate a new BED file
-containing the “reproducible” peaks</p></li>
-<li><p>Create a snakemake rule that uses bedtools to filter out any “reproducible”
-peaks falling into blacklisted regions</p></li>
-<li><p>Create a snakemake rule that annotates the “reproducible” peaks to their
-nearest genomic feature</p></li>
-<li><p>Create a snakemake rule that performs motif finding on your list of filtered,
-reproducible peaks</p></li>
-</ul>
-<p><strong>CHALLENGE</strong></p>
-<p>The authors of the original paper use the MEME suite of tools to perform motif
-finding. However, they do not specify the parameters used in this analysis and
-the input to MEME is not a list of peaks (which is our current output). For this
-optional challenge, instead of performing motif finding in HOMER, use MEME-ChIP
-as they did in the paper to discover enriched motifs.</p>
-<p>In general, you will have to figure out how to do the following:</p>
-<ul>
-<li><p>Install the Meme suite into your conda environment</p></li>
-<li><p>Extract chromosome sizes from the human gencode reference</p></li>
-<li><p>Determine the average size of your peaks</p></li>
-<li><p>Use your chromosome sizes, the average size of your peaks, and BedTools to
-make a BED file containing all of your peaks expanded to around ~500bp in size.</p></li>
-<li><p>Extract the DNA sequences from the regions in your BED file from a bgzipped
-genomic FASTA file for the gencode reference.</p></li>
-<li><p>Run MEME-ChIP using your FASTA file of DNA sequences covered by your peaks</p></li>
-</ul>
+
 </div>
 </div>
   <div class="chapter-nav">
@@ -241,13 +137,11 @@ genomic FASTA file for the gencode reference.</p></li>
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#week-3-chipseq">Week 3: ChIPseq</a></li>
-<li><a class="nav-link" href="#peak-calling">Peak calling</a></li>
-<li><a class="nav-link" href="#converting-homer-specific-output-to-bed-format">Converting homer-specific output to BED format</a></li>
-<li><a class="nav-link" href="#determining-a-set-of-reproducible-peaks-using-bedtools">Determining a set of reproducible peaks using bedtools</a></li>
-<li><a class="nav-link" href="#removing-signal-artifact-regions-from-our-peak-lists">Removing signal-artifact regions from our peak lists</a></li>
-<li><a class="nav-link" href="#annotating-our-peaks-to-their-nearest-genomic-feature">Annotating our peaks to their nearest genomic feature</a></li>
-<li><a class="nav-link" href="#performing-motif-finding-to-look-for-enrichment-of-known-binding-sequences">Performing motif finding to look for enrichment of known binding sequences</a></li>
-<li><a class="nav-link" href="#week-3-tasks">Week 3 Tasks</a></li>
+<li><a class="nav-link" href="#download-hg38-gene-bed-from-ucsc-table-browser"><span class="header-section-number">0.16</span> Download HG38 gene BED from UCSC table browser</a></li>
+<li><a class="nav-link" href="#computematrix-for-ip-samples"><span class="header-section-number">0.17</span> ComputeMatrix for IP samples</a></li>
+<li><a class="nav-link" href="#plotprofile-for-ip-samples"><span class="header-section-number">0.18</span> Plotprofile for IP samples</a></li>
+<li><a class="nav-link" href="#annotate-peaks"><span class="header-section-number">0.19</span> Annotate peaks</a></li>
+<li><a class="nav-link" href="#findmotifs"><span class="header-section-number">0.20</span> FindMotifs</a></li>
 </ul>
 
       <div class="book-extra">
