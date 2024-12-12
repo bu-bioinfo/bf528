@@ -38,6 +38,20 @@ differential expression analysis.
 
 - Generate a sample-to-sample distance plot and PCA plot for your experiment
 
+
+## Docker images for your pipeline {-}
+
+FastQC: `ghcr.io/bf528/fastqc:latest`
+
+multiQC: `ghcr.io/bf528/multiqc:latest`
+
+VERSE: `ghcr.io/bf528/verse:latest`
+
+STAR: `ghcr.io/bf528/star:latest`
+
+Pandas: `ghcr.io/bf528/pandas:latest`
+
+
 ## Switching to the full data {-}
 
 Once you've confirmed that your pipeline works end-to-end on the subsampled files,

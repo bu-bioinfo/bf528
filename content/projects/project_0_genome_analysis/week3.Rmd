@@ -216,6 +216,7 @@ We will be using [Jellyfish](https://github.com/gmarcais/Jellyfish) to
 efficiently count the unique and distinct kmers over a range of different values
 of k for all our microbial genomes.
 
+
 :::{.box .task}
 
 1. Create a YML file that specifies a conda environment with the latest version
@@ -249,7 +250,24 @@ summarized stats into a new text file named with the following pattern:
 
 `<name_of_genome>_<value-of-k>mers.txt` or `genome1_6mers.txt`
 
-Use publishDir to copy these output files to your `results/` directory. 
+5.Use publishDir to copy these output files to your `results/` directory. 
+
+6. Incorporate this module into your workflow `main.nf`
+
+**IMPORTANT**
+As you can no doubt see from above, the channel we created will attempt to run
+as many jobs as the # of genomes by the number of elements in our range. For a 
+single genome and the range 1 to 21, this would represent 21 separate jobs. As we
+talked about in lab, we will want to now take advantage of the ability to run 
+jobs in parallel using the cluster. Your new command for running nextflow should 
+now be:
+
+```
+nextflow run main.nf -profile cluster,conda
+```
+
+This command will allow nextflow to request that a # of these jobs be submitted
+to separate compute nodes to execute. 
 
 Hints:
 

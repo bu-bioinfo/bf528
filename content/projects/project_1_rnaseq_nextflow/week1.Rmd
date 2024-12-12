@@ -78,7 +78,7 @@ directory. Encode their paths in separate params in your `nextflow.config`.
 :::
     
 
-## Using singularity containers with nextflow instead of conda environments {-}
+## Changes to our environment management strategy and workflow {-}
 
 As we've discussed, conda environments are one solution to ensuring that your
 analyses are run in a reproducible and portable manner. Containers are an
@@ -133,6 +133,19 @@ nextflow run main.nf -profile singularity,local
 
 As always, remember to activate your conda environment containing nextflow and
 nf-test before doing any work.
+
+## Docker images for your pipeline {-}
+
+FastQC: `ghcr.io/bf528/fastqc:latest`
+
+multiQC: `ghcr.io/bf528/multiqc:latest`
+
+VERSE: `ghcr.io/bf528/verse:latest`
+
+STAR: `ghcr.io/bf528/star:latest`
+
+Pandas: `ghcr.io/bf528/pandas:latest`
+
 
 ## Generating our input channels for nextflow {-}
 
@@ -302,6 +315,31 @@ contain a python installation.
 pass it the appropriate GTF input encoded as a param. 
 
 :::
+
+## Creating your own process labels
+
+As we discussed in class, you can request various ranges of computational resources
+for your jobs / processes to use through the `qsub` command and its accompanying
+options. 
+
+Please refer to the following page for [common combinations](https://www.bu.edu/tech/support/research/system-usage/running-jobs/batch-script-examples/#MEMORY)
+of options to request specific amounts of resources from nodes on the SCC. 
+
+:::{.box .task}
+
+1. By now you have noticed that some modules have a `label` and you can see in
+the `nextflow.config` in the profiles section the exact qsub command and options
+each label requests. 
+
+2. Create two new labels named `process_medium` and `process_high`. For `process_medium`,
+use the correct options to request 8 cores and <= 32GB ram For `process_high`,
+set the options to request 16 cores and <= 128GB ram.
+
+You will need to add a clusterOptions line to the `process_high` to specify the
+additional flags. 
+
+:::
+
 
 ## Generate a genome index {-}
 

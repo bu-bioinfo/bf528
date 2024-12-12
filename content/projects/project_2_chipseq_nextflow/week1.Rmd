@@ -13,10 +13,10 @@ experiments, our reads originated from DNA sequences and we can use a non-splice
 aware algorithm to map our reads to the reference genome. 
 
 Between project 1 and the early labs we did, you should have working modules
-that perform quality control using FASTQC, build a genome index using bowtie2,
-and align reads to a genome. We are going to take advantage of the modularity of
-nextflow by simply copying these previous modules and incorporating them into
-this workflow.
+that perform quality control using FASTQC and trimmomatic, build a genome index
+using bowtie2, and align reads to a genome. We are going to take advantage of
+the modularity of nextflow by simply copying these previous modules and
+incorporating them into this workflow.
 
 
 :::{.box .task}

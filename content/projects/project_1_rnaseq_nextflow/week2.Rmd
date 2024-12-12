@@ -37,6 +37,18 @@ the sequencing reads and alignments
 
 - Concatenate gene-level counts from each sample into a single counts matrix
 
+## Docker images for your pipeline {-}
+
+FastQC: `ghcr.io/bf528/fastqc:latest`
+
+multiQC: `ghcr.io/bf528/multiqc:latest`
+
+VERSE: `ghcr.io/bf528/verse:latest`
+
+STAR: `ghcr.io/bf528/star:latest`
+
+Pandas: `ghcr.io/bf528/pandas:latest`
+
 ## Aligning reads to the genome {-}
 
 Last week you generated a STAR index to enable alignment of reads to the human
@@ -106,10 +118,10 @@ of MultiQC, which is a tool that simply aggregates the relevant logs and outputs
 from various bioinformatics utilities into a nicely formatted HTML report.
 
 Since you are working with files that have been intentionally filtered to make
-them smaller, the actual outputs from fastQC and STAR will be misleading. Do *not*
-draw any conclusions from these reports generated on the subsetted data; the
-results will only be meaningful you've switched to running this pipeline on the
-full dataset.
+them smaller, the actual outputs from fastQC and STAR will be misleading. Do
+*not* draw any conclusions from these reports generated on the subsetted data;
+the results will only be meaningful when you've switched to running this
+pipeline on the full dataset.
 
 :::{.box .task}
 
