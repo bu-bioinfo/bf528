@@ -135,6 +135,15 @@ the sequencing reads and alignments</p></li>
 <li><p>Concatenate gene-level counts from each sample into a single counts matrix</p></li>
 </ul>
 </div>
+<div id="docker-images-for-your-pipeline-1" class="section level2 unnumbered">
+<h2>Docker images for your pipeline<a class="anchor" aria-label="anchor" href="#docker-images-for-your-pipeline-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>FastQC: <code>ghcr.io/bf528/fastqc:latest</code></p>
+<p>multiQC: <code>ghcr.io/bf528/multiqc:latest</code></p>
+<p>VERSE: <code>ghcr.io/bf528/verse:latest</code></p>
+<p>STAR: <code>ghcr.io/bf528/star:latest</code></p>
+<p>Pandas: <code>ghcr.io/bf528/pandas:latest</code></p>
+</div>
 <div id="aligning-reads-to-the-genome" class="section level2 unnumbered">
 <h2>Aligning reads to the genome<a class="anchor" aria-label="anchor" href="#aligning-reads-to-the-genome"><i class="fas fa-link"></i></a>
 </h2>
@@ -199,10 +208,10 @@ or biases across all of our samples. To solve this issue, we will be making use
 of MultiQC, which is a tool that simply aggregates the relevant logs and outputs
 from various bioinformatics utilities into a nicely formatted HTML report.</p>
 <p>Since you are working with files that have been intentionally filtered to make
-them smaller, the actual outputs from fastQC and STAR will be misleading. Do <em>not</em>
-draw any conclusions from these reports generated on the subsetted data; the
-results will only be meaningful you’ve switched to running this pipeline on the
-full dataset.</p>
+them smaller, the actual outputs from fastQC and STAR will be misleading. Do
+<em>not</em> draw any conclusions from these reports generated on the subsetted data;
+the results will only be meaningful when you’ve switched to running this
+pipeline on the full dataset.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
 <li>Make a new module that will run
@@ -322,6 +331,7 @@ that runs this python script</p></li>
 <li><a class="nav-link" href="#section-links-5">Section Links</a></li>
 <li><a class="nav-link" href="#week-2-overview-1">Week 2 Overview</a></li>
 <li><a class="nav-link" href="#objectives-5">Objectives</a></li>
+<li><a class="nav-link" href="#docker-images-for-your-pipeline-1">Docker images for your pipeline</a></li>
 <li><a class="nav-link" href="#aligning-reads-to-the-genome">Aligning reads to the genome</a></li>
 <li><a class="nav-link" href="#performing-post-alignment-qc">Performing post-alignment QC</a></li>
 <li><a class="nav-link" href="#quantifying-alignments-to-the-genome">Quantifying alignments to the genome</a></li>

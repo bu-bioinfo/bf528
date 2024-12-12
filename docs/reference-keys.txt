@@ -3,6 +3,7 @@ commonly-used-core-memory-options-on-the-scc
 how-to-determine-what-resources-to-request-per-job
 qstat
 nextflow-log
+creating-your-own-process-labels
 choosing-a-filtering-strategy-for-your-raw-counts
 quality-control-genome-indexing-and-alignment
 running-multiqc-to-evaluate-sequencing-qc

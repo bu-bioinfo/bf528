@@ -18,9 +18,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="Section Links Week 1 Overview Objectives Create a working directory for project 1 Locating the data [Changes to our environment management strategy and workflow] Generating our input channels for...">
-<meta property="og:description" content="Section Links Week 1 Overview Objectives Create a working directory for project 1 Locating the data [Changes to our environment management strategy and workflow] Generating our input channels for...">
-<meta name="twitter:description" content="Section Links Week 1 Overview Objectives Create a working directory for project 1 Locating the data [Changes to our environment management strategy and workflow] Generating our input channels for...">
+<meta name="description" content="Section Links Week 1 Overview Objectives Create a working directory for project 1 Locating the data Changes to our environment management strategy and workflow Generating our input channels for...">
+<meta property="og:description" content="Section Links Week 1 Overview Objectives Create a working directory for project 1 Locating the data Changes to our environment management strategy and workflow Generating our input channels for...">
+<meta name="twitter:description" content="Section Links Week 1 Overview Objectives Create a working directory for project 1 Locating the data Changes to our environment management strategy and workflow Generating our input channels for...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -110,7 +110,7 @@
 <p><a href="week-1-genome-analytics.html#objectives">Objectives</a></p>
 <p><a href="week-1-rnaseq.html#create-a-working-directory-for-project-1">Create a working directory for project 1</a></p>
 <p><a href="week-1-rnaseq.html#locating-the-data">Locating the data</a></p>
-<p>[Changes to our environment management strategy and workflow]</p>
+<p><a href="week-1-rnaseq.html#changes-to-our-environment-management-strategy-and-workflow">Changes to our environment management strategy and workflow</a></p>
 <p><a href="week-1-rnaseq.html#generating-our-input-channels-for-nextflow">Generating our input channels for nextflow</a></p>
 <p><a href="week-1-rnaseq.html#performing-quality-control">Performing quality control</a></p>
 <p><a href="week-1-rnaseq.html#generate-a-file-containing-the-gene-ids-and-their-corresponding-human-gene-symbols">Generate a file containing the gene IDs and their corresponding human gene symbols</a></p>
@@ -169,8 +169,8 @@ directory. Encode their paths in separate params in your <code>nextflow.config</
 </ol>
 </div>
 </div>
-<div id="using-singularity-containers-with-nextflow-instead-of-conda-environments" class="section level2 unnumbered">
-<h2>Using singularity containers with nextflow instead of conda environments<a class="anchor" aria-label="anchor" href="#using-singularity-containers-with-nextflow-instead-of-conda-environments"><i class="fas fa-link"></i></a>
+<div id="changes-to-our-environment-management-strategy-and-workflow" class="section level2 unnumbered">
+<h2>Changes to our environment management strategy and workflow<a class="anchor" aria-label="anchor" href="#changes-to-our-environment-management-strategy-and-workflow"><i class="fas fa-link"></i></a>
 </h2>
 <p>As we’ve discussed, conda environments are one solution to ensuring that your
 analyses are run in a reproducible and portable manner. Containers are an
@@ -210,6 +210,15 @@ automatically add to the singularity command when run with the specified profile
 <pre><code>nextflow run main.nf -profile singularity,local</code></pre>
 <p>As always, remember to activate your conda environment containing nextflow and
 nf-test before doing any work.</p>
+</div>
+<div id="docker-images-for-your-pipeline" class="section level2 unnumbered">
+<h2>Docker images for your pipeline<a class="anchor" aria-label="anchor" href="#docker-images-for-your-pipeline"><i class="fas fa-link"></i></a>
+</h2>
+<p>FastQC: <code>ghcr.io/bf528/fastqc:latest</code></p>
+<p>multiQC: <code>ghcr.io/bf528/multiqc:latest</code></p>
+<p>VERSE: <code>ghcr.io/bf528/verse:latest</code></p>
+<p>STAR: <code>ghcr.io/bf528/star:latest</code></p>
+<p>Pandas: <code>ghcr.io/bf528/pandas:latest</code></p>
 </div>
 <div id="generating-our-input-channels-for-nextflow" class="section level2 unnumbered">
 <h2>Generating our input channels for nextflow<a class="anchor" aria-label="anchor" href="#generating-our-input-channels-for-nextflow"><i class="fas fa-link"></i></a>
@@ -350,6 +359,28 @@ pass it the appropriate GTF input encoded as a param.</p></li>
 </ol>
 </div>
 </div>
+<div id="creating-your-own-process-labels" class="section level2" number="0.6">
+<h2>
+<span class="header-section-number">0.6</span> Creating your own process labels<a class="anchor" aria-label="anchor" href="#creating-your-own-process-labels"><i class="fas fa-link"></i></a>
+</h2>
+<p>As we discussed in class, you can request various ranges of computational resources
+for your jobs / processes to use through the <code>qsub</code> command and its accompanying
+options.</p>
+<p>Please refer to the following page for <a href="https://www.bu.edu/tech/support/research/system-usage/running-jobs/batch-script-examples/#MEMORY">common combinations</a>
+of options to request specific amounts of resources from nodes on the SCC.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li><p>By now you have noticed that some modules have a <code>label</code> and you can see in
+the <code>nextflow.config</code> in the profiles section the exact qsub command and options
+each label requests.</p></li>
+<li><p>Create two new labels named <code>process_medium</code> and <code>process_high</code>. For <code>process_medium</code>,
+use the correct options to request 8 cores and &lt;= 32GB ram For <code>process_high</code>,
+set the options to request 16 cores and &lt;= 128GB ram.</p></li>
+</ol>
+<p>You will need to add a clusterOptions line to the <code>process_high</code> to specify the
+additional flags.</p>
+</div>
+</div>
 <div id="generate-a-genome-index" class="section level2 unnumbered">
 <h2>Generate a genome index<a class="anchor" aria-label="anchor" href="#generate-a-genome-index"><i class="fas fa-link"></i></a>
 </h2>
@@ -423,10 +454,12 @@ containing the path to your reference genome assembly and GTF</p></li>
 <li><a class="nav-link" href="#objectives-4">Objectives</a></li>
 <li><a class="nav-link" href="#create-a-working-directory-for-project-1">Create a working directory for project 1</a></li>
 <li><a class="nav-link" href="#locating-the-data">Locating the data</a></li>
-<li><a class="nav-link" href="#using-singularity-containers-with-nextflow-instead-of-conda-environments">Using singularity containers with nextflow instead of conda environments</a></li>
+<li><a class="nav-link" href="#changes-to-our-environment-management-strategy-and-workflow">Changes to our environment management strategy and workflow</a></li>
+<li><a class="nav-link" href="#docker-images-for-your-pipeline">Docker images for your pipeline</a></li>
 <li><a class="nav-link" href="#generating-our-input-channels-for-nextflow">Generating our input channels for nextflow</a></li>
 <li><a class="nav-link" href="#performing-quality-control">Performing Quality Control</a></li>
 <li><a class="nav-link" href="#generate-a-file-containing-the-gene-ids-and-their-corresponding-human-gene-symbols">Generate a file containing the gene IDs and their corresponding human gene symbols</a></li>
+<li><a class="nav-link" href="#creating-your-own-process-labels"><span class="header-section-number">0.6</span> Creating your own process labels</a></li>
 <li><a class="nav-link" href="#generate-a-genome-index">Generate a genome index</a></li>
 <li><a class="nav-link" href="#week-1-tasks-summary">Week 1 Tasks Summary</a></li>
 </ul>

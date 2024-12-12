@@ -310,7 +310,21 @@ kmers for a given size k into total, distinct and unique counts. Output the
 summarized stats into a new text file named with the following pattern:</li>
 </ol>
 <p><code>&lt;name_of_genome&gt;_&lt;value-of-k&gt;mers.txt</code> or <code>genome1_6mers.txt</code></p>
-<p>Use publishDir to copy these output files to your <code>results/</code> directory.</p>
+<p>5.Use publishDir to copy these output files to your <code>results/</code> directory.</p>
+<ol start="6" style="list-style-type: decimal">
+<li>Incorporate this module into your workflow <code>main.nf</code>
+</li>
+</ol>
+<p><strong>IMPORTANT</strong>
+As you can no doubt see from above, the channel we created will attempt to run
+as many jobs as the # of genomes by the number of elements in our range. For a
+single genome and the range 1 to 21, this would represent 21 separate jobs. As we
+talked about in lab, we will want to now take advantage of the ability to run
+jobs in parallel using the cluster. Your new command for running nextflow should
+now be:</p>
+<pre><code>nextflow run main.nf -profile cluster,conda</code></pre>
+<p>This command will allow nextflow to request that a # of these jobs be submitted
+to separate compute nodes to execute.</p>
 <p>Hints:</p>
 <ol style="list-style-type: decimal">
 <li><p>Multi-line shell commands will execute one after another.</p></li>
