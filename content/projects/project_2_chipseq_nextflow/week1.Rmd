@@ -1,19 +1,63 @@
 # Week 1: ChIPseq {-}
 
-## Quality Control, Genome indexing and alignment
+## Section Links {-}
 
-From the first project, you have knowledge of the initial steps that are shared
-by a wide variety of NGS experiments. Quality control is performed on
-the sequencing reads, an index is built for the  species of interest and reads
-are aligned to the reference.
 
-For RNAseq, it is important to use a splice-aware aligner when aligning against
-a reference **genome** since our sequences originated from mRNA. For ChIPseq 
-experiments, our reads originated from DNA sequences and we can use a non-splice
-aware algorithm to map our reads to the reference genome. 
+## Project 2 Directions {-}
+
+Now that we have experience with Nextflow from two prior projects, the directions
+for this project will be much less detailed. I will describe what you should do 
+and you will be expected to implement it yourself. Please follow all the conventions
+we've established so far in the course. 
+
+These conventions include:
+
+1. 
+
+If you are asked to create modules to run a specific tool, assume that you should
+also run said tool on the data by adding it to your workflow declaration in your
+`main.nf`. 
+
+## Week 2 Overview {-}
+
+
+
+## Objectives {-}
+
+## Containers for Project 2 {-}
+
+FastQC: `ghcr.io/bf528/fastqc:latest`
+
+multiQC: `ghcr.io/bf528/multiqc:latest`
+
+bowtie2: `ghcr.io/bf528/bowtie2:latest`
+
+deeptools: `ghcr.io/bf528/deeptools:latest`
+
+trimmomatic: `ghcr.io/bf528/trimmomatic:latest`
+
+samtools: `ghcr.io/bf528/samtools:latest`
+
+macs3: `ghcr.io/bf528/macs3:latest`
+
+bedtools: `ghcr.io/bf528/bedtools:latest`
+
+homer: `ghcr.io/bf528/homer:latest`
+
+
+## Quality Control, Genome indexing and alignment {-}
+
+For many NGS experiments, the initial steps are largely universal. We perform
+quality control on the sequencing reads, build an index for the reference
+genome, and align the reads. However, the source of the data will inform what
+quality metrics are relevant and the particular choice of tools to accomplish
+these steps. For RNAseq, it is important to use a splice-aware aligner when
+aligning against a reference **genome** since our sequences originated from
+mRNA. For ChIPseq experiments, our reads originated from DNA sequences and we
+can use a non-splice aware algorithm to map our reads to the reference genome.
 
 Between project 1 and the early labs we did, you should have working modules
-that perform quality control using FASTQC and trimmomatic, build a genome index
+that perform quality control using FastQC and trimmomatic, build a genome index
 using bowtie2, and align reads to a genome. We are going to take advantage of
 the modularity of nextflow by simply copying these previous modules and
 incorporating them into this workflow.
@@ -21,11 +65,14 @@ incorporating them into this workflow.
 
 :::{.box .task}
 
-1. Copy the subsampled files from /projectnb/bf528/materials/project-2-chipseq/subsampled_files/
-to a new directory called `subsampled_files/` in your `samples/` directory
+1. Copy the subsampled files from
+/projectnb/bf528/materials/project-2-chipseq/subsampled_files/ to a new
+directory called `subsampled_files/` in your `samples/` directory. Encode the
+names of the file and the paths in a samplesheet at the top level of your
+directory
 
-2. Encode the names of the file and the paths in a samplesheet at the top level
-of your directory
+2. Copy the human reference genome and associated GTF to your `refs/` directory.
+Add these paths to your `nextflow.config` as params.
 
 3. Update your workflow `main.nf` to perform quality control using FastQC and 
 trimmomatic, build a bowtie2 index for the human reference genome and align the
@@ -33,41 +80,65 @@ reads to the reference genome.
 
 :::
 
-## Running multiqc to evaluate sequencing QC
 
-Just like in project 1, we are going to use multiqc to collect the various
-quality control metrics from our pipeline so far. 
-
-:::{.box .task}
-
-1. Make a channel in your workflow `main.nf` that collects all of the relevant
-QC outputs needed for multiqc. 
-
-2. Copy your previous multiqc module and incorporate it into your workflow
-
-:::
-
-## Sorting and indexing the alignments
+## Sorting and indexing the alignments {-}
 
 Many subsequent analyses on our BAM files will require them to be both sorted
 and indexed. Just like for large sequences in FASTA files, sorting and indexing
-the alignments will allow us to perform much more efficient operations on them. 
+the alignments will allow us to perform much more efficient computational
+operations on them.
 
 
 :::{.box .task}
 
 1. Create a module that will both sort and index your BAM files using Samtools. 
-This will need to be a multi-line command as indexing can only occur on the fully
-sorted file. 
+Do both steps in one single module. 
 
 :::
 
-## Generating bigWig representations of our BAM files
+## Calculate alignment statistics using samtools flagstat {-}
+
+The samtools flagstat utility will report various statistics regarding the
+alignment flags found in the BAM.
+
+:::{.box .task}
+
+1. Create a module that will run samtools flagstat on all of your BAM files
+
+:::
+
+## Running multiqc to evaluate sequencing QC {-}
+
+Just like in project 1, we are going to use multiqc to collect the various
+quality control metrics from our pipeline. Ensure that multiqc collects the
+outputs from FastQC, 
+
+:::{.box .task}
+
+1. Make a channel in your workflow `main.nf` that collects all of the relevant
+QC outputs needed for multiqc (fastqc zip files, trimmomatic log, and samtools
+flagstat output)
+
+2. Copy your previous multiqc module and incorporate it into your workflow to 
+generate a MultiQC report for the listed outputs
+
+:::
+
+## Generating bigWig representations of our BAM files {-}
 
 Now that we have sorted and indexed our alignments, we are going to generate
 bigWig files or coverage tracks containing the number of reads per genomic
-interval or bin. We will use these coverage tracks for calculating
+interval or bin for each sample. We will use these coverage tracks for calculating
 correlation between our samples and visualizing the read coverage in specific
 regions of interest. 
 
+:::{.box .task}
+
+1. Use the `bamCoverage` deeptools utility to generate a bigWig file for each
+of the sample BAM files. 
+
+2. You may use all default parameters. If you wish, you may change the `-bs` and
+`-p` flags as needed. 
+
+:::
 
