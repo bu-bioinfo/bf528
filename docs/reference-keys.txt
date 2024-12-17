@@ -5,10 +5,6 @@ qstat
 nextflow-log
 creating-your-own-process-labels
 choosing-a-filtering-strategy-for-your-raw-counts
-quality-control-genome-indexing-and-alignment
-running-multiqc-to-evaluate-sequencing-qc
-sorting-and-indexing-the-alignments
-generating-bigwig-representations-of-our-bam-files
 plotting-correlation-between-bigwigs
 calling-peaks
 intersecting-peaks
