@@ -2,27 +2,71 @@
 
 ## Section Links {-}
 
+[Project 2 Directions]
+
+[Week 1 Overview]
+
+[Objectives]
+
+[Containers for Project 2]
+
+[Quality Control, Genome indexing and alignment]
+
+[Sorting and indexing the alignments]
+
+[Calculate alignment statistics using samtools flagstat]
+
+[Aggregating QC results with MultiQC]
+
+[Generating bigWig files from our BAM files]
+
+[Week 1 Tasks Summary]
 
 ## Project 2 Directions {-}
 
-Now that we have experience with Nextflow from two prior projects, the directions
-for this project will be much less detailed. I will describe what you should do 
-and you will be expected to implement it yourself. Please follow all the conventions
-we've established so far in the course. 
+Now that we have experience with Nextflow from two prior projects, the
+directions for this project will be much less detailed. I will describe what you
+should do and you will be expected to implement it yourself. If you are asked to 
+perform a certain task, you should create working nextflow modules, construct
+the proper channels in your `main.nf`, and run your workflow. 
+
+
+Please follow all the conventions we've established so far in the course.
 
 These conventions include:
 
-1. 
+  1. Using isolated containers specific for each tool
+  2. Write extensible and generalizble nextflow modules for each task
+  3. Encoding reference file paths in the `nextflow.config`
+  4. Encoding sample info and sample file paths in a csv that drives your workflow
+  5. Requesting appropriate computational resources per job
 
-If you are asked to create modules to run a specific tool, assume that you should
-also run said tool on the data by adding it to your workflow declaration in your
-`main.nf`. 
 
-## Week 2 Overview {-}
+## Week 1 Overview {-}
 
+For many NGS experiments, the initial steps are largely universal. We perform
+quality control on the sequencing reads, build an index for the reference
+genome, and align the reads. However, the source of the data will inform what
+quality metrics are relevant and the particular choice of tools to accomplish
+these steps. For RNAseq, it is important to use a splice-aware aligner when
+aligning against a reference **genome** since our sequences originated from
+mRNA. For ChIPseq experiments, our reads originated from DNA sequences and we
+can use a non-splice aware algorithm to map our reads to the reference genome.
 
 
 ## Objectives {-}
+
+- Assess QC on sequencing reads using FastQC
+
+- Trim adapters and low-quality reads using Trimmomatic
+
+- Align trimmed reads to the human reference genome
+
+- Run samtools flagstat to assess alignment statistics
+
+- Use MultiQC to aggregate all of the QC metrics
+
+- Use samtools to sort and index your BAM (alignment) files
 
 ## Containers for Project 2 {-}
 
@@ -46,15 +90,6 @@ homer: `ghcr.io/bf528/homer:latest`
 
 
 ## Quality Control, Genome indexing and alignment {-}
-
-For many NGS experiments, the initial steps are largely universal. We perform
-quality control on the sequencing reads, build an index for the reference
-genome, and align the reads. However, the source of the data will inform what
-quality metrics are relevant and the particular choice of tools to accomplish
-these steps. For RNAseq, it is important to use a splice-aware aligner when
-aligning against a reference **genome** since our sequences originated from
-mRNA. For ChIPseq experiments, our reads originated from DNA sequences and we
-can use a non-splice aware algorithm to map our reads to the reference genome.
 
 Between project 1 and the early labs we did, you should have working modules
 that perform quality control using FastQC and trimmomatic, build a genome index
@@ -107,7 +142,7 @@ alignment flags found in the BAM.
 
 :::
 
-## Running multiqc to evaluate sequencing QC {-}
+## Aggregating QC results with MultiQC {-}
 
 Just like in project 1, we are going to use multiqc to collect the various
 quality control metrics from our pipeline. Ensure that multiqc collects the
@@ -124,7 +159,7 @@ generate a MultiQC report for the listed outputs
 
 :::
 
-## Generating bigWig representations of our BAM files {-}
+## Generating bigWig files from our BAM files {-}
 
 Now that we have sorted and indexed our alignments, we are going to generate
 bigWig files or coverage tracks containing the number of reads per genomic
@@ -141,4 +176,8 @@ of the sample BAM files.
 `-p` flags as needed. 
 
 :::
+
+## Week 1 Tasks Summary {-}
+
+
 
