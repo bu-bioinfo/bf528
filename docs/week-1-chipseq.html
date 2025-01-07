@@ -18,9 +18,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="Section Links  Project 2 Directions Now that we have experience with Nextflow from two prior projects, the directions for this project will be much less detailed. I will describe what you should...">
-<meta property="og:description" content="Section Links  Project 2 Directions Now that we have experience with Nextflow from two prior projects, the directions for this project will be much less detailed. I will describe what you should...">
-<meta name="twitter:description" content="Section Links  Project 2 Directions Now that we have experience with Nextflow from two prior projects, the directions for this project will be much less detailed. I will describe what you should...">
+<meta name="description" content="Section Links Project 2 Directions Week 1 Overview Objectives Containers for Project 2 Quality Control, Genome indexing and alignment Sorting and indexing the alignments Calculate alignment...">
+<meta property="og:description" content="Section Links Project 2 Directions Week 1 Overview Objectives Containers for Project 2 Quality Control, Genome indexing and alignment Sorting and indexing the alignments Calculate alignment...">
+<meta name="twitter:description" content="Section Links Project 2 Directions Week 1 Overview Objectives Containers for Project 2 Quality Control, Genome indexing and alignment Sorting and indexing the alignments Calculate alignment...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -106,29 +106,59 @@
 <div id="section-links-8" class="section level2 unnumbered">
 <h2>Section Links<a class="anchor" aria-label="anchor" href="#section-links-8"><i class="fas fa-link"></i></a>
 </h2>
+<p><a href="week-1-chipseq.html#project-2-directions">Project 2 Directions</a></p>
+<p><a href="week-1-rnaseq.html#week-1-overview">Week 1 Overview</a></p>
+<p><a href="week-1-genome-analytics.html#objectives">Objectives</a></p>
+<p><a href="week-1-chipseq.html#containers-for-project-2">Containers for Project 2</a></p>
+<p><a href="week-1-chipseq.html#quality-control-genome-indexing-and-alignment">Quality Control, Genome indexing and alignment</a></p>
+<p><a href="week-1-chipseq.html#sorting-and-indexing-the-alignments">Sorting and indexing the alignments</a></p>
+<p><a href="week-1-chipseq.html#calculate-alignment-statistics-using-samtools-flagstat">Calculate alignment statistics using samtools flagstat</a></p>
+<p><a href="week-1-chipseq.html#aggregating-qc-results-with-multiqc">Aggregating QC results with MultiQC</a></p>
+<p><a href="week-1-chipseq.html#generating-bigwig-files-from-our-bam-files">Generating bigWig files from our BAM files</a></p>
+<p><a href="week-1-rnaseq.html#week-1-tasks-summary">Week 1 Tasks Summary</a></p>
 </div>
 <div id="project-2-directions" class="section level2 unnumbered">
 <h2>Project 2 Directions<a class="anchor" aria-label="anchor" href="#project-2-directions"><i class="fas fa-link"></i></a>
 </h2>
-<p>Now that we have experience with Nextflow from two prior projects, the directions
-for this project will be much less detailed. I will describe what you should do
-and you will be expected to implement it yourself. Please follow all the conventions
-we’ve established so far in the course.</p>
+<p>Now that we have experience with Nextflow from two prior projects, the
+directions for this project will be much less detailed. I will describe what you
+should do and you will be expected to implement it yourself. If you are asked to
+perform a certain task, you should create working nextflow modules, construct
+the proper channels in your <code>main.nf</code>, and run your workflow.</p>
+<p>Please follow all the conventions we’ve established so far in the course.</p>
 <p>These conventions include:</p>
 <ol style="list-style-type: decimal">
-<li>
+<li>Using isolated containers specific for each tool</li>
+<li>Write extensible and generalizble nextflow modules for each task</li>
+<li>Encoding reference file paths in the <code>nextflow.config</code>
+</li>
+<li>Encoding sample info and sample file paths in a csv that drives your workflow</li>
+<li>Requesting appropriate computational resources per job</li>
 </ol>
-<p>If you are asked to create modules to run a specific tool, assume that you should
-also run said tool on the data by adding it to your workflow declaration in your
-<code>main.nf</code>.</p>
 </div>
-<div id="week-2-overview-2" class="section level2 unnumbered">
-<h2>Week 2 Overview<a class="anchor" aria-label="anchor" href="#week-2-overview-2"><i class="fas fa-link"></i></a>
+<div id="week-1-overview-1" class="section level2 unnumbered">
+<h2>Week 1 Overview<a class="anchor" aria-label="anchor" href="#week-1-overview-1"><i class="fas fa-link"></i></a>
 </h2>
+<p>For many NGS experiments, the initial steps are largely universal. We perform
+quality control on the sequencing reads, build an index for the reference
+genome, and align the reads. However, the source of the data will inform what
+quality metrics are relevant and the particular choice of tools to accomplish
+these steps. For RNAseq, it is important to use a splice-aware aligner when
+aligning against a reference <strong>genome</strong> since our sequences originated from
+mRNA. For ChIPseq experiments, our reads originated from DNA sequences and we
+can use a non-splice aware algorithm to map our reads to the reference genome.</p>
 </div>
 <div id="objectives-8" class="section level2 unnumbered">
 <h2>Objectives<a class="anchor" aria-label="anchor" href="#objectives-8"><i class="fas fa-link"></i></a>
 </h2>
+<ul>
+<li><p>Assess QC on sequencing reads using FastQC</p></li>
+<li><p>Trim adapters and low-quality reads using Trimmomatic</p></li>
+<li><p>Align trimmed reads to the human reference genome</p></li>
+<li><p>Run samtools flagstat to assess alignment statistics</p></li>
+<li><p>Use MultiQC to aggregate all of the QC metrics</p></li>
+<li><p>Use samtools to sort and index your BAM (alignment) files</p></li>
+</ul>
 </div>
 <div id="containers-for-project-2" class="section level2 unnumbered">
 <h2>Containers for Project 2<a class="anchor" aria-label="anchor" href="#containers-for-project-2"><i class="fas fa-link"></i></a>
@@ -146,14 +176,6 @@ also run said tool on the data by adding it to your workflow declaration in your
 <div id="quality-control-genome-indexing-and-alignment" class="section level2 unnumbered">
 <h2>Quality Control, Genome indexing and alignment<a class="anchor" aria-label="anchor" href="#quality-control-genome-indexing-and-alignment"><i class="fas fa-link"></i></a>
 </h2>
-<p>For many NGS experiments, the initial steps are largely universal. We perform
-quality control on the sequencing reads, build an index for the reference
-genome, and align the reads. However, the source of the data will inform what
-quality metrics are relevant and the particular choice of tools to accomplish
-these steps. For RNAseq, it is important to use a splice-aware aligner when
-aligning against a reference <strong>genome</strong> since our sequences originated from
-mRNA. For ChIPseq experiments, our reads originated from DNA sequences and we
-can use a non-splice aware algorithm to map our reads to the reference genome.</p>
 <p>Between project 1 and the early labs we did, you should have working modules
 that perform quality control using FastQC and trimmomatic, build a genome index
 using bowtie2, and align reads to a genome. We are going to take advantage of
@@ -199,8 +221,8 @@ alignment flags found in the BAM.</p>
 </ol>
 </div>
 </div>
-<div id="running-multiqc-to-evaluate-sequencing-qc" class="section level2 unnumbered">
-<h2>Running multiqc to evaluate sequencing QC<a class="anchor" aria-label="anchor" href="#running-multiqc-to-evaluate-sequencing-qc"><i class="fas fa-link"></i></a>
+<div id="aggregating-qc-results-with-multiqc" class="section level2 unnumbered">
+<h2>Aggregating QC results with MultiQC<a class="anchor" aria-label="anchor" href="#aggregating-qc-results-with-multiqc"><i class="fas fa-link"></i></a>
 </h2>
 <p>Just like in project 1, we are going to use multiqc to collect the various
 quality control metrics from our pipeline. Ensure that multiqc collects the
@@ -215,8 +237,8 @@ generate a MultiQC report for the listed outputs</p></li>
 </ol>
 </div>
 </div>
-<div id="generating-bigwig-representations-of-our-bam-files" class="section level2 unnumbered">
-<h2>Generating bigWig representations of our BAM files<a class="anchor" aria-label="anchor" href="#generating-bigwig-representations-of-our-bam-files"><i class="fas fa-link"></i></a>
+<div id="generating-bigwig-files-from-our-bam-files" class="section level2 unnumbered">
+<h2>Generating bigWig files from our BAM files<a class="anchor" aria-label="anchor" href="#generating-bigwig-files-from-our-bam-files"><i class="fas fa-link"></i></a>
 </h2>
 <p>Now that we have sorted and indexed our alignments, we are going to generate
 bigWig files or coverage tracks containing the number of reads per genomic
@@ -231,6 +253,10 @@ of the sample BAM files.</p></li>
 <code>-p</code> flags as needed.</p></li>
 </ol>
 </div>
+</div>
+<div id="week-1-tasks-summary-1" class="section level2 unnumbered">
+<h2>Week 1 Tasks Summary<a class="anchor" aria-label="anchor" href="#week-1-tasks-summary-1"><i class="fas fa-link"></i></a>
+</h2>
 
 </div>
 </div>
@@ -243,14 +269,15 @@ of the sample BAM files.</p></li>
 <li><a class="nav-link" href="#week-1-chipseq">Week 1: ChIPseq</a></li>
 <li><a class="nav-link" href="#section-links-8">Section Links</a></li>
 <li><a class="nav-link" href="#project-2-directions">Project 2 Directions</a></li>
-<li><a class="nav-link" href="#week-2-overview-2">Week 2 Overview</a></li>
+<li><a class="nav-link" href="#week-1-overview-1">Week 1 Overview</a></li>
 <li><a class="nav-link" href="#objectives-8">Objectives</a></li>
 <li><a class="nav-link" href="#containers-for-project-2">Containers for Project 2</a></li>
 <li><a class="nav-link" href="#quality-control-genome-indexing-and-alignment">Quality Control, Genome indexing and alignment</a></li>
 <li><a class="nav-link" href="#sorting-and-indexing-the-alignments">Sorting and indexing the alignments</a></li>
 <li><a class="nav-link" href="#calculate-alignment-statistics-using-samtools-flagstat">Calculate alignment statistics using samtools flagstat</a></li>
-<li><a class="nav-link" href="#running-multiqc-to-evaluate-sequencing-qc">Running multiqc to evaluate sequencing QC</a></li>
-<li><a class="nav-link" href="#generating-bigwig-representations-of-our-bam-files">Generating bigWig representations of our BAM files</a></li>
+<li><a class="nav-link" href="#aggregating-qc-results-with-multiqc">Aggregating QC results with MultiQC</a></li>
+<li><a class="nav-link" href="#generating-bigwig-files-from-our-bam-files">Generating bigWig files from our BAM files</a></li>
+<li><a class="nav-link" href="#week-1-tasks-summary-1">Week 1 Tasks Summary</a></li>
 </ul>
 
       <div class="book-extra">

@@ -18,9 +18,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="0.12 Download HG38 gene BED from UCSC table browser   0.13 ComputeMatrix for IP samples   0.14 Plotprofile for IP samples   0.15 Annotate peaks   0.16 FindMotifs">
-<meta property="og:description" content="0.12 Download HG38 gene BED from UCSC table browser   0.13 ComputeMatrix for IP samples   0.14 Plotprofile for IP samples   0.15 Annotate peaks   0.16 FindMotifs">
-<meta name="twitter:description" content="0.12 Download HG38 gene BED from UCSC table browser   0.13 ComputeMatrix for IP samples   0.14 Plotprofile for IP samples   0.15 Annotate peaks   0.16 FindMotifs">
+<meta name="description" content="Section Links  Week 3 Overview  Objectives  Containers for Project 2 FastQC: ghcr.io/bf528/fastqc:latest multiQC: ghcr.io/bf528/multiqc:latest bowtie2: ghcr.io/bf528/bowtie2:latest deeptools:...">
+<meta property="og:description" content="Section Links  Week 3 Overview  Objectives  Containers for Project 2 FastQC: ghcr.io/bf528/fastqc:latest multiQC: ghcr.io/bf528/multiqc:latest bowtie2: ghcr.io/bf528/bowtie2:latest deeptools:...">
+<meta name="twitter:description" content="Section Links  Week 3 Overview  Objectives  Containers for Project 2 FastQC: ghcr.io/bf528/fastqc:latest multiQC: ghcr.io/bf528/multiqc:latest bowtie2: ghcr.io/bf528/bowtie2:latest deeptools:...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -103,30 +103,91 @@
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-3-chipseq" class="section level1 unnumbered">
 <h1>Week 3: ChIPseq<a class="anchor" aria-label="anchor" href="#week-3-chipseq"><i class="fas fa-link"></i></a>
 </h1>
-<div id="download-hg38-gene-bed-from-ucsc-table-browser" class="section level2" number="0.12">
-<h2>
-<span class="header-section-number">0.12</span> Download HG38 gene BED from UCSC table browser<a class="anchor" aria-label="anchor" href="#download-hg38-gene-bed-from-ucsc-table-browser"><i class="fas fa-link"></i></a>
+<div id="section-links-10" class="section level2 unnumbered">
+<h2>Section Links<a class="anchor" aria-label="anchor" href="#section-links-10"><i class="fas fa-link"></i></a>
 </h2>
 </div>
-<div id="computematrix-for-ip-samples" class="section level2" number="0.13">
-<h2>
-<span class="header-section-number">0.13</span> ComputeMatrix for IP samples<a class="anchor" aria-label="anchor" href="#computematrix-for-ip-samples"><i class="fas fa-link"></i></a>
+<div id="week-3-overview-2" class="section level2 unnumbered">
+<h2>Week 3 Overview<a class="anchor" aria-label="anchor" href="#week-3-overview-2"><i class="fas fa-link"></i></a>
 </h2>
 </div>
-<div id="plotprofile-for-ip-samples" class="section level2" number="0.14">
-<h2>
-<span class="header-section-number">0.14</span> Plotprofile for IP samples<a class="anchor" aria-label="anchor" href="#plotprofile-for-ip-samples"><i class="fas fa-link"></i></a>
+<div id="objectives-10" class="section level2 unnumbered">
+<h2>Objectives<a class="anchor" aria-label="anchor" href="#objectives-10"><i class="fas fa-link"></i></a>
 </h2>
 </div>
-<div id="annotate-peaks" class="section level2" number="0.15">
-<h2>
-<span class="header-section-number">0.15</span> Annotate peaks<a class="anchor" aria-label="anchor" href="#annotate-peaks"><i class="fas fa-link"></i></a>
+<div id="containers-for-project-2-2" class="section level2 unnumbered">
+<h2>Containers for Project 2<a class="anchor" aria-label="anchor" href="#containers-for-project-2-2"><i class="fas fa-link"></i></a>
 </h2>
+<p>FastQC: <code>ghcr.io/bf528/fastqc:latest</code></p>
+<p>multiQC: <code>ghcr.io/bf528/multiqc:latest</code></p>
+<p>bowtie2: <code>ghcr.io/bf528/bowtie2:latest</code></p>
+<p>deeptools: <code>ghcr.io/bf528/deeptools:latest</code></p>
+<p>trimmomatic: <code>ghcr.io/bf528/trimmomatic:latest</code></p>
+<p>samtools: <code>ghcr.io/bf528/samtools:latest</code></p>
+<p>macs3: <code>ghcr.io/bf528/macs3:latest</code></p>
+<p>bedtools: <code>ghcr.io/bf528/bedtools:latest</code></p>
+<p>homer: <code>ghcr.io/bf528/homer:latest</code></p>
 </div>
-<div id="findmotifs" class="section level2" number="0.16">
-<h2>
-<span class="header-section-number">0.16</span> FindMotifs<a class="anchor" aria-label="anchor" href="#findmotifs"><i class="fas fa-link"></i></a>
+<div id="download-hg38-gene-bed-from-ucsc-table-browser" class="section level2 unnumbered">
+<h2>Download HG38 gene BED from UCSC table browser<a class="anchor" aria-label="anchor" href="#download-hg38-gene-bed-from-ucsc-table-browser"><i class="fas fa-link"></i></a>
 </h2>
+<p>We will be creating a similar plot which will provide a quick visualization of
+the average signal across the gene body of all genes. We will scale every gene
+to a uniform size and display the counts of alignments falling in the annotated
+regions of the gene. This will allow us to quickly visualize at a very
+high-level where we see the majority of binding for our factor of interest.</p>
+<p>To do this, we have already generated our bigWig files, but we will require the
+genomic coordinates of all of the genes in the reference genome. We will be
+using the UCSC table browser to extract out this information.</p>
+<p>Navigate to the <a href="https://genome.ucsc.edu/cgi-bin/hgTables">UCSC Table Browser</a>,
+use the following settings to extract a BED file listing the TSS/TTS locations
+for every gene in the reference genome:</p>
+<div class="inline-figure"><img src="projects/project_2_chipseq/ucsc_tablebrowser.png" width="783"></div>
+<p>On the following page, do not change any options and you will be prompted to
+download a BED file containing the requested information.</p>
+<pre><code>1. Put this BED file into your `refs/` working directory on SCC. </code></pre>
+<p>This is a simple use case, but the UCSC table browser and UCSC genome browser
+are incredibly powerful tools and repositories for genome-wide sequencing data.</p>
+</div>
+<div id="generating-a-signal-intensity-plot-for-all-human-genes-using-computematrix-and-plotprofile-for-ip-samples" class="section level2 unnumbered">
+<h2>Generating a signal intensity plot for all human genes using computeMatrix and plotProfile for IP samples<a class="anchor" aria-label="anchor" href="#generating-a-signal-intensity-plot-for-all-human-genes-using-computematrix-and-plotprofile-for-ip-samples"><i class="fas fa-link"></i></a>
+</h2>
+<p>Now that we have our bigWig files (count of reads falling into bins across the
+genome) and the BED file of the start and end position of all of the genes in
+the hg38 reference, we will calculate and visualize the signal falling into
+these annotated regions.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li><p>Use the <code>computeMatrix</code> utility in deeptools, your bigWig files, and the BED
+file you downloaded to generate a matrix file containing the counts of reads
+falling into the regions in the bed files.</p></li>
+<li><p>Ensure that you use the scale-regions mode, and you specify the options to add
+2000bp of padding to both the start and end site.</p></li>
+<li><p>We are not interested in visualizing the input samples (which should represent
+random background noise), use an appropriate nextflow operator to ensure this is
+only done for the IP samples.</p></li>
+<li><p>Use the outputs of <code>computeMatrix</code> for the <code>plotProfile</code> function and generate
+a simple visualization of the read counts from the IP samples across the body of
+genes from the hg38 reference.</p></li>
+</ol>
+</div>
+</div>
+<div id="finding-enriched-motifs-in-chip-seq-peaks" class="section level2 unnumbered">
+<h2>Finding enriched motifs in ChIP-seq peaks<a class="anchor" aria-label="anchor" href="#finding-enriched-motifs-in-chip-seq-peaks"><i class="fas fa-link"></i></a>
+</h2>
+<p>We will be using the single set of reproducible and filtered peaks from last week
+to search for enriched motifs in our peaks. Many DNA binding proteins have been
+found to have higher affinity for specific DNA binding sites with recurring sequence
+and pattern. These motifs may reveal key information about gene regulation by
+allowing for determination of what factors are binding in peaks. Remember that
+many DNA binding proteins bind as part of much larger multi-protein complexes that
+work in tandem to regulate gene expression.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li>Use the <code>findMotifsGenome.pl</code> utility in homer to perform motif enrichment
+analysis on your set of reproducible and filtered peaks.</li>
+</ol>
+</div>
 
 </div>
 </div>
@@ -137,11 +198,13 @@
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#week-3-chipseq">Week 3: ChIPseq</a></li>
-<li><a class="nav-link" href="#download-hg38-gene-bed-from-ucsc-table-browser"><span class="header-section-number">0.12</span> Download HG38 gene BED from UCSC table browser</a></li>
-<li><a class="nav-link" href="#computematrix-for-ip-samples"><span class="header-section-number">0.13</span> ComputeMatrix for IP samples</a></li>
-<li><a class="nav-link" href="#plotprofile-for-ip-samples"><span class="header-section-number">0.14</span> Plotprofile for IP samples</a></li>
-<li><a class="nav-link" href="#annotate-peaks"><span class="header-section-number">0.15</span> Annotate peaks</a></li>
-<li><a class="nav-link" href="#findmotifs"><span class="header-section-number">0.16</span> FindMotifs</a></li>
+<li><a class="nav-link" href="#section-links-10">Section Links</a></li>
+<li><a class="nav-link" href="#week-3-overview-2">Week 3 Overview</a></li>
+<li><a class="nav-link" href="#objectives-10">Objectives</a></li>
+<li><a class="nav-link" href="#containers-for-project-2-2">Containers for Project 2</a></li>
+<li><a class="nav-link" href="#download-hg38-gene-bed-from-ucsc-table-browser">Download HG38 gene BED from UCSC table browser</a></li>
+<li><a class="nav-link" href="#generating-a-signal-intensity-plot-for-all-human-genes-using-computematrix-and-plotprofile-for-ip-samples">Generating a signal intensity plot for all human genes using computeMatrix and plotProfile for IP samples</a></li>
+<li><a class="nav-link" href="#finding-enriched-motifs-in-chip-seq-peaks">Finding enriched motifs in ChIP-seq peaks</a></li>
 </ul>
 
       <div class="book-extra">

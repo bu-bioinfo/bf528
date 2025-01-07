@@ -18,9 +18,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="0.8 PLotting correlation between Bigwigs   0.9 Calling peaks   0.10 Intersecting Peaks   0.11 Filtering peaks from blacklist">
-<meta property="og:description" content="0.8 PLotting correlation between Bigwigs   0.9 Calling peaks   0.10 Intersecting Peaks   0.11 Filtering peaks from blacklist">
-<meta name="twitter:description" content="0.8 PLotting correlation between Bigwigs   0.9 Calling peaks   0.10 Intersecting Peaks   0.11 Filtering peaks from blacklist">
+<meta name="description" content="Section Links Week 2 Overview Objectives Containers for Project 2 Plotting correlation between bigWigs Peak calling using MACS3 Generating a set of reproducible peaks with bedtools intersect...">
+<meta property="og:description" content="Section Links Week 2 Overview Objectives Containers for Project 2 Plotting correlation between bigWigs Peak calling using MACS3 Generating a set of reproducible peaks with bedtools intersect...">
+<meta name="twitter:description" content="Section Links Week 2 Overview Objectives Containers for Project 2 Plotting correlation between bigWigs Peak calling using MACS3 Generating a set of reproducible peaks with bedtools intersect...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -103,24 +103,139 @@
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-2-chipseq" class="section level1 unnumbered">
 <h1>Week 2: ChIPseq<a class="anchor" aria-label="anchor" href="#week-2-chipseq"><i class="fas fa-link"></i></a>
 </h1>
-<div id="plotting-correlation-between-bigwigs" class="section level2" number="0.8">
-<h2>
-<span class="header-section-number">0.8</span> PLotting correlation between Bigwigs<a class="anchor" aria-label="anchor" href="#plotting-correlation-between-bigwigs"><i class="fas fa-link"></i></a>
+<div id="section-links-9" class="section level2 unnumbered">
+<h2>Section Links<a class="anchor" aria-label="anchor" href="#section-links-9"><i class="fas fa-link"></i></a>
+</h2>
+<p><a href="week-2-genome-analytics.html#week-2-overview">Week 2 Overview</a></p>
+<p><a href="week-1-genome-analytics.html#objectives">Objectives</a></p>
+<p><a href="week-1-chipseq.html#containers-for-project-2">Containers for Project 2</a></p>
+<p><a href="week-2-chipseq.html#plotting-correlation-between-bigwigs">Plotting correlation between bigWigs</a></p>
+<p><a href="week-2-chipseq.html#peak-calling-using-macs3">Peak calling using MACS3</a></p>
+<p><a href="week-2-chipseq.html#generating-a-set-of-reproducible-peaks-with-bedtools-intersect">Generating a set of reproducible peaks with bedtools intersect</a></p>
+<p><a href="week-2-chipseq.html#filtering-peaks-found-in-encode-blacklist-regions">Filtering peaks found in ENCODE blacklist regions</a></p>
+<p><a href="week-2-chipseq.html#annotating-peaks-to-their-nearest-genomic-feature-using-homer">Annotating peaks to their nearest genomic feature using HOMER</a></p>
+<p><a href="week-2-chipseq.html#week-2-tasks-summary">Week 2 Tasks Summary</a></p>
+</div>
+<div id="week-2-overview-2" class="section level2 unnumbered">
+<h2>Week 2 Overview<a class="anchor" aria-label="anchor" href="#week-2-overview-2"><i class="fas fa-link"></i></a>
 </h2>
 </div>
-<div id="calling-peaks" class="section level2" number="0.9">
-<h2>
-<span class="header-section-number">0.9</span> Calling peaks<a class="anchor" aria-label="anchor" href="#calling-peaks"><i class="fas fa-link"></i></a>
+<div id="objectives-9" class="section level2 unnumbered">
+<h2>Objectives<a class="anchor" aria-label="anchor" href="#objectives-9"><i class="fas fa-link"></i></a>
 </h2>
 </div>
-<div id="intersecting-peaks" class="section level2" number="0.10">
-<h2>
-<span class="header-section-number">0.10</span> Intersecting Peaks<a class="anchor" aria-label="anchor" href="#intersecting-peaks"><i class="fas fa-link"></i></a>
+<div id="containers-for-project-2-1" class="section level2 unnumbered">
+<h2>Containers for Project 2<a class="anchor" aria-label="anchor" href="#containers-for-project-2-1"><i class="fas fa-link"></i></a>
 </h2>
+<p>FastQC: <code>ghcr.io/bf528/fastqc:latest</code></p>
+<p>multiQC: <code>ghcr.io/bf528/multiqc:latest</code></p>
+<p>bowtie2: <code>ghcr.io/bf528/bowtie2:latest</code></p>
+<p>deeptools: <code>ghcr.io/bf528/deeptools:latest</code></p>
+<p>trimmomatic: <code>ghcr.io/bf528/trimmomatic:latest</code></p>
+<p>samtools: <code>ghcr.io/bf528/samtools:latest</code></p>
+<p>macs3: <code>ghcr.io/bf528/macs3:latest</code></p>
+<p>bedtools: <code>ghcr.io/bf528/bedtools:latest</code></p>
+<p>homer: <code>ghcr.io/bf528/homer:latest</code></p>
 </div>
-<div id="filtering-peaks-from-blacklist" class="section level2" number="0.11">
+<div id="plotting-correlation-between-bigwigs" class="section level2 unnumbered">
+<h2>Plotting correlation between bigWigs<a class="anchor" aria-label="anchor" href="#plotting-correlation-between-bigwigs"><i class="fas fa-link"></i></a>
+</h2>
+<p>Recall that the bigWigs we generate represent the count of reads falling into
+various genomic bins of a fixed size quantified from the alignments of each sample.
+Assuming the experiment was successful, we naively expect that the IP samples
+should be highly similar to each other as they should be capturing the same
+binding sites for the factor of interest. Following this logic, the input controls
+which represent a random background of DNA from the genome should be <em>different</em>
+from the IP samples and similar to each other.</p>
+<p>We are going to perform a quick correlation analysis between the distances in
+our bigWig representations of our BAM files to determine the similarity between
+our samples with the above assumptions in mind.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li><p>Create a module and use the multiBigwigsummary utility in deeptools to create a matrix containing
+the information from the bigWig files of all of your samples.</p></li>
+<li><p>Create a module and use the plotCorrelation utility in deeptools to generate
+a plot of the distances between correlation coefficients for all of your samples</p></li>
+</ol>
+</div>
+</div>
+<div id="peak-calling-using-macs3" class="section level2 unnumbered">
+<h2>Peak calling using MACS3<a class="anchor" aria-label="anchor" href="#peak-calling-using-macs3"><i class="fas fa-link"></i></a>
+</h2>
+<p>In plain terms, peak calling algorithms attempt to find areas of enriched reads
+in a genome relative to background noise. MACS3 (Model-Based Analysis of Chip-Seq)
+is a commonly used tool that incorporates a Poisson model and other innovations to
+make robust peak-finding predictions.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li><p>Use the <a href="https://macs3-project.github.io/MACS/docs/callpeak.html">MACS3 manual</a>
+for the callpeak utility and create module that successfully runs <code>callpeak</code></p></li>
+<li><p>Ensure that you specify the <code>-g</code> flag correctly for the human reference genome
+and the <code>-f</code> flag explicitly for paired-end BAM files.</p></li>
+<li><p><strong>You will need to figure out how to pass both the IP and the Control sample
+for each replicate to the same command</strong>. i.e. callpeak should run twice
+(IP_rep1 and control_rep1) and (IP_rep2 and control_rep2) as ChIP-seq
+experiments have paired IP and controls.</p></li>
+</ol>
+</div>
+</div>
+<div id="generating-a-set-of-reproducible-peaks-with-bedtools-intersect" class="section level2 unnumbered">
+<h2>Generating a set of reproducible peaks with bedtools intersect<a class="anchor" aria-label="anchor" href="#generating-a-set-of-reproducible-peaks-with-bedtools-intersect"><i class="fas fa-link"></i></a>
+</h2>
+<p>We discussed various strategies for determining a set of “reproducible” peaks.
+For the sake of expedience, we will be performing a simple intersection to come
+up with a single set of peaks from this experiment. <strong>Please come up with a valid
+intersection strategy for determine a reproducible peak. Remember that this choice
+is subjective, so make a choice and justify it</strong></p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li>Use the bedtools <code>intersect</code> tool to produce a single set of reproducible
+peaks from both of your replicate experiments</li>
+</ol>
+</div>
+</div>
+<div id="filtering-peaks-found-in-encode-blacklist-regions" class="section level2 unnumbered">
+<h2>Filtering peaks found in ENCODE blacklist regions<a class="anchor" aria-label="anchor" href="#filtering-peaks-found-in-encode-blacklist-regions"><i class="fas fa-link"></i></a>
+</h2>
+<p>In next generation sequencing experiments, there are certain regions of the
+genome that have been empirically determined to be present at a high level
+independent of cell line or experiment. These unstructured and anomalous regions
+are problematic for certain analyses (ChIPseq) and are considered to be
+signal-artifact regions and commonly stored in the form of a <a href="https://www.nature.com/articles/s41598-019-45839-z">blacklist</a></p>
+<p>The Boyle LAB as part of the ENCODE project have very kindly produced a list of
+these regions in some of the major model organisms using a standard methodology.
+This list is encoded as a BED file and is hosted by the <a href="https://github.com/Boyle-Lab/Blacklist">Boyle
+Lab</a>/ Please copy the provided file from
+<code>references/</code> to your repository.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li><p>Create a module that uses bedtools to remove any peaks that overlap with the
+blacklist BED for the most recent human reference genome.</p></li>
+<li><p>Typically, any peaks that overlap a blacklisted region by even 1bp will be
+removed. You may choose a different strategy if you prefer as long as you justify
+your choice in the write-up later.</p></li>
+</ol>
+</div>
+</div>
+<div id="annotating-peaks-to-their-nearest-genomic-feature-using-homer" class="section level2 unnumbered">
+<h2>Annotating peaks to their nearest genomic feature using HOMER<a class="anchor" aria-label="anchor" href="#annotating-peaks-to-their-nearest-genomic-feature-using-homer"><i class="fas fa-link"></i></a>
+</h2>
+<p>Now that we have a single set of reproducible peaks with signal-artifact blacklisted
+regions removed, we are going to annotate our peaks by assigning them an identity
+based on their closest genomic feature. While we have discussed many caveats to
+annotating peaks in this fashion, it is a quick and exploratory analysis that
+enables quick determination of the genomic structures your peaks are located in and
+their potential regulatory functions.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li>Create a module that uses <code>homer</code> and the <code>annotatePeaks.pl</code> script to annotate
+your BED file of reproducible peaks (filtered to remove blacklisted regions).</li>
+</ol>
+</div>
+</div>
+<div id="week-2-tasks-summary" class="section level2" number="0.8">
 <h2>
-<span class="header-section-number">0.11</span> Filtering peaks from blacklist<a class="anchor" aria-label="anchor" href="#filtering-peaks-from-blacklist"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.8</span> Week 2 Tasks Summary<a class="anchor" aria-label="anchor" href="#week-2-tasks-summary"><i class="fas fa-link"></i></a>
 </h2>
 
 </div>
@@ -132,10 +247,16 @@
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#week-2-chipseq">Week 2: ChIPseq</a></li>
-<li><a class="nav-link" href="#plotting-correlation-between-bigwigs"><span class="header-section-number">0.8</span> PLotting correlation between Bigwigs</a></li>
-<li><a class="nav-link" href="#calling-peaks"><span class="header-section-number">0.9</span> Calling peaks</a></li>
-<li><a class="nav-link" href="#intersecting-peaks"><span class="header-section-number">0.10</span> Intersecting Peaks</a></li>
-<li><a class="nav-link" href="#filtering-peaks-from-blacklist"><span class="header-section-number">0.11</span> Filtering peaks from blacklist</a></li>
+<li><a class="nav-link" href="#section-links-9">Section Links</a></li>
+<li><a class="nav-link" href="#week-2-overview-2">Week 2 Overview</a></li>
+<li><a class="nav-link" href="#objectives-9">Objectives</a></li>
+<li><a class="nav-link" href="#containers-for-project-2-1">Containers for Project 2</a></li>
+<li><a class="nav-link" href="#plotting-correlation-between-bigwigs">Plotting correlation between bigWigs</a></li>
+<li><a class="nav-link" href="#peak-calling-using-macs3">Peak calling using MACS3</a></li>
+<li><a class="nav-link" href="#generating-a-set-of-reproducible-peaks-with-bedtools-intersect">Generating a set of reproducible peaks with bedtools intersect</a></li>
+<li><a class="nav-link" href="#filtering-peaks-found-in-encode-blacklist-regions">Filtering peaks found in ENCODE blacklist regions</a></li>
+<li><a class="nav-link" href="#annotating-peaks-to-their-nearest-genomic-feature-using-homer">Annotating peaks to their nearest genomic feature using HOMER</a></li>
+<li><a class="nav-link" href="#week-2-tasks-summary"><span class="header-section-number">0.8</span> Week 2 Tasks Summary</a></li>
 </ul>
 
       <div class="book-extra">

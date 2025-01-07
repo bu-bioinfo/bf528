@@ -5,15 +5,7 @@ qstat
 nextflow-log
 creating-your-own-process-labels
 choosing-a-filtering-strategy-for-your-raw-counts
-plotting-correlation-between-bigwigs
-calling-peaks
-intersecting-peaks
-filtering-peaks-from-blacklist
-download-hg38-gene-bed-from-ucsc-table-browser
-computematrix-for-ip-samples
-plotprofile-for-ip-samples
-annotate-peaks
-findmotifs
+week-2-tasks-summary
 introductory-slides
 computational-primer
 assignment
