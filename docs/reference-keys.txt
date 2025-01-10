@@ -6,6 +6,10 @@ nextflow-log
 creating-your-own-process-labels
 choosing-a-filtering-strategy-for-your-raw-counts
 week-2-tasks-summary
+marker-gene-analysis
+automatic-annotation-of-cell-labels
+proportions-of-cell-populations
+analysis-of-your-choice
 introductory-slides
 computational-primer
 assignment
