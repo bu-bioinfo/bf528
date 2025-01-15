@@ -105,19 +105,20 @@
 </h1>
 <p>By now, we will have gone through the basic workflow for a single cell dataset
 in-class. For the final project, you will be processing single cell RNAseq data
-from a published experiment on your own and focusing on some of the biological
-analyses that are commonly used for scRNAseq.</p>
+from a published experiment on your own and focusing on some of the more common
+biological analyses performed on scRNAseq.</p>
 <p>Your workflow will need to align the reads to an appropriate reference genome.
 We have provided you with a docker image containing the latest version of
 cellranger, but you may also explore other valid alignment strategies (STARsolo,
-etc.).</p>
+etc.)</p>
 <p>Once you have a successfully working pipeline, you will need to perform a basic
 analysis of the data in either Seurat or Scanpy. These directions will only give
 you a basic scaffold of what you need to do and the rest you will need to
 implement on your own. You will be asked to produce certain figures / plots and
-write a short discussion on what is shown and how it affects your analysis. Please
-create a single jupyter notebook or Rmarkdown that contains both the required plots
-and answers to the discussion questions.</p>
+write a short discussion on what is shown, your interpretation of the findings
+and how it affects how you will proceed with your analysis. Please create a
+single jupyter notebook or Rmarkdown that contains both the required plots and
+answers to the discussion questions.</p>
 <div id="preprocessing" class="section level2 unnumbered">
 <h2>Preprocessing<a class="anchor" aria-label="anchor" href="#preprocessing"><i class="fas fa-link"></i></a>
 </h2>
@@ -137,10 +138,14 @@ before and after your filtering thresholds are implemented</p></li>
 <p>In your discussion, make sure to address the following points / questions:</p>
 <ul>
 <li>What filtering thresholds did you choose and how did you decide on them?</li>
+<li>How many cells / genes are present before and after implementing your filtering
+thresholds?</li>
+<li>What are some potential strategies to set thresholds that don’t rely on manual
+inspection and “eyeing” of plots?</li>
 </ul>
 </div>
-<div id="normalization" class="section level2 unnumbered">
-<h2>Normalization<a class="anchor" aria-label="anchor" href="#normalization"><i class="fas fa-link"></i></a>
+<div id="count-normalization" class="section level2 unnumbered">
+<h2>Count Normalization<a class="anchor" aria-label="anchor" href="#count-normalization"><i class="fas fa-link"></i></a>
 </h2>
 <p><em>Discussion</em></p>
 <p>Choose a method to normalize the scRNAseq data and ensure that you explain the
@@ -153,13 +158,14 @@ exact normalization procedure.</p>
 variable features you will use in downstream analyses.</p>
 <p><em>Figures</em></p>
 <ul>
-<li>Create a plot of the top ten most variable features by your chosen metric. Include
-in the figure or a table how many genes are considered highly variable and how many
-are not.</li>
+<li>Create a plot of the top ten most variable features by your chosen metric.</li>
 </ul>
 <p><em>Discussion</em></p>
 <ul>
-<li>Explain the method used to determine highly variable features.</li>
+<li><p>Explain the method used to determine highly variable features and report how
+many variable features you chose to use for downstream dimensional reduction.</p></li>
+<li><p>Include a brief statement on how many genes meet your chosen threshold to be
+considered highly variable and how many are not considered</p></li>
 </ul>
 </div>
 <div id="pca" class="section level2 unnumbered">
@@ -173,13 +179,14 @@ downstream analyses</li>
 </ul>
 <p><em>Discussion</em></p>
 <ul>
-<li>Justify your choice and briefly remark on your plot.</li>
+<li>Justify your choice in writing and briefly remark on your plot.</li>
 </ul>
 </div>
 <div id="clustering-and-visualization" class="section level2 unnumbered">
 <h2>Clustering and visualization<a class="anchor" aria-label="anchor" href="#clustering-and-visualization"><i class="fas fa-link"></i></a>
 </h2>
-<p>Decide on an appropriate method to cluster your cells and create a visualization</p>
+<p>Decide on an appropriate method to cluster your cells and create a visualization
+of the 2D embedding</p>
 <p><em>Figures</em></p>
 <ul>
 <li><p>Create a plot visualizing the clustering results of your cells. Ensure that
@@ -202,17 +209,18 @@ integration.</p></li>
 integration, please choose an appropriate method and apply it to your dataset.</p>
 <p><em>Figures</em></p>
 <ul>
-<li>Create a plot visualizing the clustering results of your cells after integration.
-Ensure that it has labels that identify which samples each cell originated from.</li>
+<li>Create a plot visualizing the clustering results of your cells before and
+after integration. Ensure that it has labels that identify which samples each
+cell originated from.</li>
 </ul>
 <p><em>Discussion</em></p>
 <ul>
-<li>Briefly remark on the plot and the effects you observed due to the integration</li>
+<li>Briefly remark on the plots and the effects you observe due to the integration</li>
 </ul>
 </div>
-<div id="marker-gene-analysis" class="section level2" number="0.9">
+<div id="marker-gene-analysis" class="section level2" number="0.8">
 <h2>
-<span class="header-section-number">0.9</span> Marker Gene Analysis<a class="anchor" aria-label="anchor" href="#marker-gene-analysis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.8</span> Marker Gene Analysis<a class="anchor" aria-label="anchor" href="#marker-gene-analysis"><i class="fas fa-link"></i></a>
 </h2>
 <p>Perform marker gene analysis using a method of your choice.</p>
 <p><em>Figures</em></p>
@@ -221,17 +229,17 @@ Ensure that it has labels that identify which samples each cell originated from.
 </ul>
 <p><em>Discussion</em></p>
 <ul>
-<li>Briefly describe the method performed to identify marker genes</li>
+<li>Briefly describe the method performed to identify marker genes. Discuss a few
+advantages and disadvantages of the method used to perform marker gene analysis.</li>
 </ul>
 </div>
-<div id="automatic-annotation-of-cell-labels" class="section level2" number="0.10">
+<div id="automatic-annotation-of-cell-labels" class="section level2" number="0.9">
 <h2>
-<span class="header-section-number">0.10</span> Automatic Annotation of Cell labels<a class="anchor" aria-label="anchor" href="#automatic-annotation-of-cell-labels"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.9</span> Automatic Annotation of Cell labels<a class="anchor" aria-label="anchor" href="#automatic-annotation-of-cell-labels"><i class="fas fa-link"></i></a>
 </h2>
 <p>Use an annotation algorithm to assign preliminary labels for the cell identities
-of your clusters. You may use your choice of tool as long as it has
-documentation and code stored in a git repository and has an associated
-publication describing its use.</p>
+of your clusters. You may use your choice of tool as long as it has a documented
+code base hosted publicly and has an associated publication describing its use.</p>
 <p><em>Figures</em></p>
 <ul>
 <li>Create a visualization of your cell clustering with the labels assigned by the
@@ -239,7 +247,8 @@ results of running the labeling tool of your choice.</li>
 </ul>
 <p><em>Discussion</em></p>
 <ul>
-<li><p>Briefly remark on how the algorithm works</p></li>
+<li><p>Briefly remark on how the algorithm works and ensure you cite the original
+publication</p></li>
 <li><p>Comment on the cell identities of your clusters and any speculation as to the
 original source tissue of the samples based on what you see</p></li>
 </ul>
@@ -255,7 +264,7 @@ final determination of the cell identities for each of your clusters.</p>
 <li><p>Create a single plot / figure that displays the top marker genes for every
 cluster in your dataset</p></li>
 <li><p>For the top three clusters with the most cells, create individual plots of at
-least two of the defining marker genes for that cluster and their expression
+least 5 of the defining marker genes for that cluster and their expression
 compared across all clusters</p></li>
 <li><p>Create a visualization / plot of your clusters with your manual annotations
 and labels of cell identities.</p></li>
@@ -271,13 +280,14 @@ cluster.</li>
 <div id="pseudobulk-analysis" class="section level2 unnumbered">
 <h2>Pseudobulk Analysis<a class="anchor" aria-label="anchor" href="#pseudobulk-analysis"><i class="fas fa-link"></i></a>
 </h2>
-<p>As we’ve discussed, cells from the same sample often have high levels of within-sample correlation.
-Commonly used statistical methodology from bulk RNAseq will often lead to inflated type
-I error rates when attempting to perform differential expression across populations
-of cells or samples without modifications.</p>
-<p>Perform a pseudobulk analysis and use it to perform a basic differential expression
-analysis between the WT and KO samples in the top three clusters with the most
-cells.</p>
+<p>As we’ve discussed, cells from the same sample are often more similar to each
+other than the same cell type from other samples. It has been empirically
+determined that commonly used statistical methodology from bulk RNAseq will
+often lead to inflated type I error rates when attempting to perform
+differential expression across populations of cells or samples without
+modification in scRNAseq.</p>
+<p>Perform a pseudobulk analysis differential expression analysis between the WT
+and KO samples in the top three clusters with the most cells.</p>
 <p><em>Figures</em></p>
 <ul>
 <li>Create a figure that displays the top results of your pseudobulk analysis
@@ -289,9 +299,9 @@ for each of the three clusters.</li>
 populations between the WT and KO samples</li>
 </ul>
 </div>
-<div id="proportions-of-cell-populations" class="section level2" number="0.11">
+<div id="proportions-of-cell-populations" class="section level2" number="0.10">
 <h2>
-<span class="header-section-number">0.11</span> Proportions of cell populations<a class="anchor" aria-label="anchor" href="#proportions-of-cell-populations"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.10</span> Proportions of cell populations<a class="anchor" aria-label="anchor" href="#proportions-of-cell-populations"><i class="fas fa-link"></i></a>
 </h2>
 <p>This dataset only has X samples, but we can visualize the proportions of each
 cell cluster in all of our samples and look for potential trends.</p>
@@ -304,12 +314,12 @@ across all of your samples</li>
 <ul>
 <li>Briefly discuss what your plot shows, and what you might do further in the
 future if you wanted to be more confident in drawing conclusions about potential
-changes incell proportions across your conditions.</li>
+changes in cell proportions across your conditions.</li>
 </ul>
 </div>
-<div id="analysis-of-your-choice" class="section level2" number="0.12">
+<div id="analysis-of-your-choice" class="section level2" number="0.11">
 <h2>
-<span class="header-section-number">0.12</span> Analysis of your choice<a class="anchor" aria-label="anchor" href="#analysis-of-your-choice"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.11</span> Analysis of your choice<a class="anchor" aria-label="anchor" href="#analysis-of-your-choice"><i class="fas fa-link"></i></a>
 </h2>
 <p>For the last part of the project, you may choose one additional analysis to
 perform on the data. You may choose one of the following analyses:</p>
@@ -323,14 +333,30 @@ perform on the data. You may choose one of the following analyses:</p>
 have a documented code base and an associated publication).</p>
 <p><em>Figures</em></p>
 <ul>
-<li>Create a single figure that displays the most interesting results from this
-analysis</li>
+<li>Create a figure or figure(s) that display the most pertinent results from
+the analysis</li>
 </ul>
 <p><em>Discussion</em></p>
 <ul>
-<li>Briefly remark on the results and remark on why they may be interesting for
+<li>Briefly remark on the results and why they may be interesting for
 this dataset.</li>
 </ul>
+</div>
+<div id="final-project-grading" class="section level2" number="0.12">
+<h2>
+<span class="header-section-number">0.12</span> Final Project Grading<a class="anchor" aria-label="anchor" href="#final-project-grading"><i class="fas fa-link"></i></a>
+</h2>
+<p>The requirements for the final project are:</p>
+<ol style="list-style-type: decimal">
+<li>A working nextflow pipeline that uses all of the principles and strategies
+discussed in class</li>
+<li>A single jupyter notebook or Rmarkdown that performs the above tasks, creates
+the required plots / visualizations and addresses the listed questions</li>
+</ol>
+<p>The responses to the questions should be written in the style of a scientific
+publication, but you will be graded on the content. Each question can be answered
+in as little as a paragraph so we encourage you to be brief.</p>
+
 </div>
 </div>
 
@@ -344,17 +370,18 @@ this dataset.</li>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#final-project---single-cell-rnaseq">Final Project - single cell RNAseq</a></li>
 <li><a class="nav-link" href="#preprocessing">Preprocessing</a></li>
-<li><a class="nav-link" href="#normalization">Normalization</a></li>
+<li><a class="nav-link" href="#count-normalization">Count Normalization</a></li>
 <li><a class="nav-link" href="#feature-selection">Feature Selection</a></li>
 <li><a class="nav-link" href="#pca">PCA</a></li>
 <li><a class="nav-link" href="#clustering-and-visualization">Clustering and visualization</a></li>
 <li><a class="nav-link" href="#integration-optional">Integration (optional)</a></li>
-<li><a class="nav-link" href="#marker-gene-analysis"><span class="header-section-number">0.9</span> Marker Gene Analysis</a></li>
-<li><a class="nav-link" href="#automatic-annotation-of-cell-labels"><span class="header-section-number">0.10</span> Automatic Annotation of Cell labels</a></li>
+<li><a class="nav-link" href="#marker-gene-analysis"><span class="header-section-number">0.8</span> Marker Gene Analysis</a></li>
+<li><a class="nav-link" href="#automatic-annotation-of-cell-labels"><span class="header-section-number">0.9</span> Automatic Annotation of Cell labels</a></li>
 <li><a class="nav-link" href="#manual-cluster-labeling">Manual Cluster Labeling</a></li>
 <li><a class="nav-link" href="#pseudobulk-analysis">Pseudobulk Analysis</a></li>
-<li><a class="nav-link" href="#proportions-of-cell-populations"><span class="header-section-number">0.11</span> Proportions of cell populations</a></li>
-<li><a class="nav-link" href="#analysis-of-your-choice"><span class="header-section-number">0.12</span> Analysis of your choice</a></li>
+<li><a class="nav-link" href="#proportions-of-cell-populations"><span class="header-section-number">0.10</span> Proportions of cell populations</a></li>
+<li><a class="nav-link" href="#analysis-of-your-choice"><span class="header-section-number">0.11</span> Analysis of your choice</a></li>
+<li><a class="nav-link" href="#final-project-grading"><span class="header-section-number">0.12</span> Final Project Grading</a></li>
 </ul>
 
       <div class="book-extra">

@@ -113,7 +113,7 @@
 <p><a href="week-3-rnaseq.html#filtering-the-counts-matrix">Filtering the counts matrix</a></p>
 <p><a href="week-3-rnaseq.html#performing-differential-expression-analysis-using-the-filtered-counts">Performing differential expression analysis using the filtered counts</a></p>
 <p><a href="week-3-rnaseq.html#rnaseq-quality-control-plots">RNAseq Quality Control Plots</a></p>
-<p>[Basic gene set enrichment analysis]</p>
+<p><a href="week-3-rnaseq.html#fgsea-analysis">FGSEA Analysis</a></p>
 </div>
 <div id="week-3-overview-1" class="section level2 unnumbered">
 <h2>Week 3 Overview<a class="anchor" aria-label="anchor" href="#week-3-overview-1"><i class="fas fa-link"></i></a>
@@ -159,16 +159,18 @@ to reflect the location of your full files.</p></li>
 </ol>
 </div>
 <p>Most of our bioinformatics experiments will involve relatively large files and
-expensive operations. Even relatively small RNAseq experiments will still involve
-aligning tens of millions of reads to genomes that are many megabases long. Now
-that we are working with these larger files, we should not and in some cases, will not, be
-able to run these tasks locally on the same node that our VSCode session is running.</p>
+expensive operations. Even relatively small RNAseq experiments will still
+involve aligning tens of millions of reads to genomes that are many megabases
+long. Now that we are working with these larger files, we should not and in some
+cases, will not, be able to run these tasks locally on the same node that our
+VSCode session is running.</p>
 <p>We will switch now to running our jobs on the cluster utilizing the <code>qsub</code> utility
-for queueing jobs to run on compute nodes. This will enable us to both request
+for queuing jobs to run on compute nodes. This will enable us to both request
 nodes that have faster processors / more RAM and to easily parallelize our tasks
 that can run simultaneously.</p>
-<p>To run your workflow on the cluster, switch to using the <code>cluster</code> profile option
-in place of the <code>local</code> flag. Your new nextflow command should now be:</p>
+<p>As a reminder, to run your workflow on the cluster, switch to using the
+<code>cluster</code> profile option in place of the <code>local</code> flag as in project 0. Your new
+nextflow command should now be:</p>
 <pre><code>nextflow run main.nf -profile singularity,cluster</code></pre>
 <p>You may examine the progress and status of your jobs by using the <code>qstat</code> utility
 as discussed in lecture and lab.</p>
@@ -181,15 +183,10 @@ the full samples.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
 <li>In your provided notebook, comment on the general quality of the sequencing
-reads. Write a paragraph in the style of a paper reporting what you find and
+reads. Write a paragraph in the style of a publication reporting what you find and
 any metrics that might be concerning.</li>
 </ol>
 </div>
-</div>
-<div id="choosing-a-filtering-strategy-for-your-raw-counts" class="section level2" number="0.7">
-<h2>
-<span class="header-section-number">0.7</span> Choosing a filtering strategy for your raw counts<a class="anchor" aria-label="anchor" href="#choosing-a-filtering-strategy-for-your-raw-counts"><i class="fas fa-link"></i></a>
-</h2>
 </div>
 <div id="filtering-the-counts-matrix" class="section level2 unnumbered">
 <h2>Filtering the counts matrix<a class="anchor" aria-label="anchor" href="#filtering-the-counts-matrix"><i class="fas fa-link"></i></a>
@@ -201,7 +198,8 @@ filtering is subjective and meant to reduce our statistical testing burden.</p>
 <ol style="list-style-type: decimal">
 <li>Choose a filtering strategy and apply it to your counts matrix. In the provided
 notebook, report the strategy you used and create a plot that demonstrates
-the effects of your filtering on the counts for all of your samples.</li>
+the effects of your filtering on the counts for all of your samples. Ensure you
+mention how many genes are present before and after your filtering threshold.</li>
 </ol>
 </div>
 </div>
@@ -218,7 +216,7 @@ from your analysis.</p>
 formatted figures:</p>
 <ol style="list-style-type: decimal">
 <li><p>A table containing the DESeq2 results for the top ten significant genes
-ranked by padj</p></li>
+ranked by padj.</p></li>
 <li><p>The results from a DAVID or ENRICHR analysis on the significant genes at
 your chosen padj threshold.</p></li>
 </ol>
@@ -228,9 +226,9 @@ your chosen padj threshold.</p></li>
 <h2>RNAseq Quality Control Plots<a class="anchor" aria-label="anchor" href="#rnaseq-quality-control-plots"><i class="fas fa-link"></i></a>
 </h2>
 <p>It is common to produce both a PCA plot as well as a sample-to-sample distance
-matrix from our counts to assist us in our confidence in whether the differences we
-see in the differential expression analysis can likely be contributed to our biological
-condition of interest.</p>
+matrix from our counts to assist us in our confidence in whether the differences
+we see in the differential expression analysis can likely be contributed to our
+biological condition of interest.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
 <li><p>Choose an appropriate normalization strategy (rlog or vst) and generate a
@@ -246,7 +244,19 @@ interpretations of these plots and if you believe the DE analysis was successful
 <div id="fgsea-analysis" class="section level2 unnumbered">
 <h2>FGSEA Analysis<a class="anchor" aria-label="anchor" href="#fgsea-analysis"><i class="fas fa-link"></i></a>
 </h2>
-<p>perform a basic FGSEA analysis and report the results</p>
+<p>Perform a GSEA analysis on your RNAseq results. You are free to use any method
+available though we recommend <a href="https://bioconductor.org/packages/release/bioc/html/fgsea.html">fgsea</a>.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li><p>Choose an appropriate ranking metric and use the <a href="https://www.gsea-msigdb.org/gsea/msigdb/human/collections.jsp#C2">C2 canonical
+pathways MSIGDB dataset</a>
+to perform a basic GSEA analysis.</p></li>
+<li><p>Using a statistical threshold of your choice, generate a figure or plot that
+displays the top most significant results from the FGSEA results.’</p></li>
+<li><p>In the provided notebook, briefly remark on your results and what seems
+interesting to you about the biology</p></li>
+</ol>
+</div>
 
 </div>
 </div>
@@ -263,7 +273,6 @@ interpretations of these plots and if you believe the DE analysis was successful
 <li><a class="nav-link" href="#docker-images-for-your-pipeline-2">Docker images for your pipeline</a></li>
 <li><a class="nav-link" href="#switching-to-the-full-data">Switching to the full data</a></li>
 <li><a class="nav-link" href="#evaluate-the-qc-metrics-for-the-full-data">Evaluate the QC metrics for the full data</a></li>
-<li><a class="nav-link" href="#choosing-a-filtering-strategy-for-your-raw-counts"><span class="header-section-number">0.7</span> Choosing a filtering strategy for your raw counts</a></li>
 <li><a class="nav-link" href="#filtering-the-counts-matrix">Filtering the counts matrix</a></li>
 <li><a class="nav-link" href="#performing-differential-expression-analysis-using-the-filtered-counts">Performing differential expression analysis using the filtered counts</a></li>
 <li><a class="nav-link" href="#rnaseq-quality-control-plots">RNAseq Quality Control Plots</a></li>

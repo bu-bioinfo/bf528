@@ -4,12 +4,12 @@ how-to-determine-what-resources-to-request-per-job
 qstat
 nextflow-log
 creating-your-own-process-labels
-choosing-a-filtering-strategy-for-your-raw-counts
 week-2-tasks-summary
 marker-gene-analysis
 automatic-annotation-of-cell-labels
 proportions-of-cell-populations
 analysis-of-your-choice
+final-project-grading
 introductory-slides
 computational-primer
 assignment

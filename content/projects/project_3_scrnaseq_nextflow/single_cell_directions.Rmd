@@ -2,21 +2,22 @@
 
 By now, we will have gone through the basic workflow for a single cell dataset
 in-class. For the final project, you will be processing single cell RNAseq data
-from a published experiment on your own and focusing on some of the biological
-analyses that are commonly used for scRNAseq.
+from a published experiment on your own and focusing on some of the more common
+biological analyses performed on scRNAseq. 
 
 Your workflow will need to align the reads to an appropriate reference genome.
 We have provided you with a docker image containing the latest version of
 cellranger, but you may also explore other valid alignment strategies (STARsolo,
-etc.).
+etc.)
 
 Once you have a successfully working pipeline, you will need to perform a basic
 analysis of the data in either Seurat or Scanpy. These directions will only give
 you a basic scaffold of what you need to do and the rest you will need to
-implement on your own. You will be asked to produce certain figures / plots and 
-write a short discussion on what is shown and how it affects your analysis. Please
-create a single jupyter notebook or Rmarkdown that contains both the required plots
-and answers to the discussion questions. 
+implement on your own. You will be asked to produce certain figures / plots and
+write a short discussion on what is shown, your interpretation of the findings
+and how it affects how you will proceed with your analysis. Please create a
+single jupyter notebook or Rmarkdown that contains both the required plots and
+answers to the discussion questions.
 
 
 ## Preprocessing {-}
@@ -27,7 +28,7 @@ each or create integrated plots with all of the samples.
 
 *Figures*
 
-1. A plot containing the number of unique genes detected per  barcode, the total
+1. A plot containing the number of unique genes detected per barcode, the total
 number of molecules per barcode, and the percentage of reads that map to the
 mitochondrial genome. 
 
@@ -41,10 +42,13 @@ before and after your filtering thresholds are implemented
 In your discussion, make sure to address the following points / questions:
 
   - What filtering thresholds did you choose and how did you decide on them?
+  - How many cells / genes are present before and after implementing your filtering
+    thresholds?
+  - What are some potential strategies to set thresholds that don't rely on manual
+    inspection and "eyeing" of plots?
 
 
-
-## Normalization {-}
+## Count Normalization {-}
 
 *Discussion*
 
@@ -58,13 +62,15 @@ variable features you will use in downstream analyses.
 
 *Figures*
 
-- Create a plot of the top ten most variable features by your chosen metric. Include
-in the figure or a table how many genes are considered highly variable and how many
-are not. 
+- Create a plot of the top ten most variable features by your chosen metric. 
 
 *Discussion*
 
-- Explain the method used to determine highly variable features.
+- Explain the method used to determine highly variable features and report how
+many variable features you chose to use for downstream dimensional reduction. 
+
+- Include a brief statement on how many genes meet your chosen threshold to be
+considered highly variable and how many are not considered
 
 ## PCA {-}
 
@@ -77,11 +83,12 @@ downstream analyses
 
 *Discussion*
 
-- Justify your choice and briefly remark on your plot.
+- Justify your choice in writing and briefly remark on your plot.
 
 ## Clustering and visualization {-}
 
 Decide on an appropriate method to cluster your cells and create a visualization
+of the 2D embedding
 
 *Figures*
 
@@ -107,12 +114,13 @@ integration, please choose an appropriate method and apply it to your dataset.
 
 *Figures*
 
-- Create a plot visualizing the clustering results of your cells after integration.
-Ensure that it has labels that identify which samples each cell originated from. 
+- Create a plot visualizing the clustering results of your cells before and
+after integration. Ensure that it has labels that identify which samples each
+cell originated from.
 
 *Discussion*
 
-- Briefly remark on the plot and the effects you observed due to the integration
+- Briefly remark on the plots and the effects you observe due to the integration
 
 ## Marker Gene Analysis
 
@@ -124,14 +132,14 @@ Perform marker gene analysis using a method of your choice.
 
 *Discussion*
 
-- Briefly describe the method performed to identify marker genes
+- Briefly describe the method performed to identify marker genes. Discuss a few
+advantages and disadvantages of the method used to perform marker gene analysis. 
 
 ## Automatic Annotation of Cell labels
 
 Use an annotation algorithm to assign preliminary labels for the cell identities
-of your clusters. You may use your choice of tool as long as it has
-documentation and code stored in a git repository and has an associated
-publication describing its use.
+of your clusters. You may use your choice of tool as long as it has a documented
+code base hosted publicly and has an associated publication describing its use.
 
 *Figures*
 
@@ -140,7 +148,8 @@ results of running the labeling tool of your choice.
 
 *Discussion*
 
-- Briefly remark on how the algorithm works
+- Briefly remark on how the algorithm works and ensure you cite the original
+publication
 
 - Comment on the cell identities of your clusters and any speculation as to the
 original source tissue of the samples based on what you see
@@ -158,7 +167,7 @@ final determination of the cell identities for each of your clusters.
 cluster in your dataset
 
 - For the top three clusters with the most cells, create individual plots of at
-least two of the defining marker genes for that cluster and their expression
+least 5 of the defining marker genes for that cluster and their expression
 compared across all clusters
 
 - Create a visualization / plot of your clusters with your manual annotations
@@ -173,14 +182,15 @@ cluster.
 
 ## Pseudobulk Analysis {-}
 
-As we've discussed, cells from the same sample often have high levels of within-sample correlation.
-Commonly used statistical methodology from bulk RNAseq will often lead to inflated type
-I error rates when attempting to perform differential expression across populations
-of cells or samples without modifications.
+As we've discussed, cells from the same sample are often more similar to each
+other than the same cell type from other samples. It has been empirically
+determined that commonly used statistical methodology from bulk RNAseq will
+often lead to inflated type I error rates when attempting to perform
+differential expression across populations of cells or samples without
+modification in scRNAseq. 
 
-Perform a pseudobulk analysis and use it to perform a basic differential expression
-analysis between the WT and KO samples in the top three clusters with the most 
-cells. 
+Perform a pseudobulk analysis differential expression analysis between the WT
+and KO samples in the top three clusters with the most cells.
 
 *Figures*
 
@@ -191,7 +201,6 @@ for each of the three clusters.
 
 - Briefly remark on the changes in gene expression you observe in these cell 
 populations between the WT and KO samples
-
 
 ## Proportions of cell populations
 
@@ -207,7 +216,7 @@ across all of your samples
 
 - Briefly discuss what your plot shows, and what you might do further in the
 future if you wanted to be more confident in drawing conclusions about potential
-changes incell proportions across your conditions. 
+changes in cell proportions across your conditions. 
 
 ## Analysis of your choice
 
@@ -224,10 +233,25 @@ have a documented code base and an associated publication).
 
 *Figures*
 
-- Create a single figure that displays the most interesting results from this
-analysis
+- Create a figure or figure(s) that display the most pertinent results from 
+the analysis
 
 *Discussion*
 
-- Briefly remark on the results and remark on why they may be interesting for
+- Briefly remark on the results and why they may be interesting for
 this dataset. 
+
+
+## Final Project Grading
+
+The requirements for the final project are:
+
+  1. A working nextflow pipeline that uses all of the principles and strategies
+    discussed in class
+  2. A single jupyter notebook or Rmarkdown that performs the above tasks, creates
+    the required plots / visualizations and addresses the listed questions
+    
+The responses to the questions should be written in the style of a scientific
+publication, but you will be graded on the content. Each question can be answered
+in as little as a paragraph so we encourage you to be brief. 
+

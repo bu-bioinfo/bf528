@@ -119,10 +119,22 @@
 <div id="week-2-overview-2" class="section level2 unnumbered">
 <h2>Week 2 Overview<a class="anchor" aria-label="anchor" href="#week-2-overview-2"><i class="fas fa-link"></i></a>
 </h2>
+<p>For week 2, you will be performing a quick quality control check by plotting
+the correlation between the bigWigs you generated last week. Then, you will be
+performing standard peak calling analysis using MACS3, generating a single set
+of reproducible and filtered peaks, and annotating those peaks to their nearest
+genomic feature.</p>
 </div>
 <div id="objectives-9" class="section level2 unnumbered">
 <h2>Objectives<a class="anchor" aria-label="anchor" href="#objectives-9"><i class="fas fa-link"></i></a>
 </h2>
+<ul>
+<li><p>Plot the correlation between the bigWig representations of your samples</p></li>
+<li><p>Perform peak calling using MACS3 on each of the two replicate experiments</p></li>
+<li><p>Use bedtools to generate a single set of reproducible peaks with ENCODE
+blacklist regions filtered out</p></li>
+<li><p>Annotate your filtered, reproducible peaks using HOMER</p></li>
+</ul>
 </div>
 <div id="containers-for-project-2-1" class="section level2 unnumbered">
 <h2>Containers for Project 2<a class="anchor" aria-label="anchor" href="#containers-for-project-2-1"><i class="fas fa-link"></i></a>
@@ -233,11 +245,23 @@ your BED file of reproducible peaks (filtered to remove blacklisted regions).</l
 </ol>
 </div>
 </div>
-<div id="week-2-tasks-summary" class="section level2" number="0.8">
+<div id="week-2-tasks-summary" class="section level2" number="0.7">
 <h2>
-<span class="header-section-number">0.8</span> Week 2 Tasks Summary<a class="anchor" aria-label="anchor" href="#week-2-tasks-summary"><i class="fas fa-link"></i></a>
+<span class="header-section-number">0.7</span> Week 2 Tasks Summary<a class="anchor" aria-label="anchor" href="#week-2-tasks-summary"><i class="fas fa-link"></i></a>
 </h2>
-
+<ul>
+<li>
+<p>Create nextflow modules and a script that performs the following tasks:</p>
+<ol style="list-style-type: decimal">
+<li>Create a correlation plot between the sample bigWigs using deeptools
+multiBigWigSummary and plotCorrelation</li>
+<li>Use MACS3 callpeak to perform peak calling on both replicate experiments</li>
+<li>Generate a single set of reproducible peaks using bedtools</li>
+<li>Filter peaks contained within the ENCODE blacklist using bedtools</li>
+<li>Annotate peaks to their nearest genomic feature using HOMER</li>
+</ol>
+</li>
+</ul>
 </div>
 </div>
   <div class="chapter-nav">
@@ -256,7 +280,7 @@ your BED file of reproducible peaks (filtered to remove blacklisted regions).</l
 <li><a class="nav-link" href="#generating-a-set-of-reproducible-peaks-with-bedtools-intersect">Generating a set of reproducible peaks with bedtools intersect</a></li>
 <li><a class="nav-link" href="#filtering-peaks-found-in-encode-blacklist-regions">Filtering peaks found in ENCODE blacklist regions</a></li>
 <li><a class="nav-link" href="#annotating-peaks-to-their-nearest-genomic-feature-using-homer">Annotating peaks to their nearest genomic feature using HOMER</a></li>
-<li><a class="nav-link" href="#week-2-tasks-summary"><span class="header-section-number">0.8</span> Week 2 Tasks Summary</a></li>
+<li><a class="nav-link" href="#week-2-tasks-summary"><span class="header-section-number">0.7</span> Week 2 Tasks Summary</a></li>
 </ul>
 
       <div class="book-extra">
