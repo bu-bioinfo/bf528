@@ -22,7 +22,22 @@
 
 ## Week 2 Overview {-}
 
+For week 2, you will be performing a quick quality control check by plotting
+the correlation between the bigWigs you generated last week. Then, you will be
+performing standard peak calling analysis using MACS3, generating a single set
+of reproducible and filtered peaks, and annotating those peaks to their nearest
+genomic feature. 
+
 ## Objectives {-}
+
+- Plot the correlation between the bigWig representations of your samples
+
+- Perform peak calling using MACS3 on each of the two replicate experiments
+
+- Use bedtools to generate a single set of reproducible peaks with ENCODE
+blacklist regions filtered out
+
+- Annotate your filtered, reproducible peaks using HOMER
 
 ## Containers for Project 2 {-}
 
@@ -149,4 +164,13 @@ your BED file of reproducible peaks (filtered to remove blacklisted regions).
 :::
 
 ## Week 2 Tasks Summary
+
+- Create nextflow modules and a script that performs the following tasks:
+  
+  1. Create a correlation plot between the sample bigWigs using deeptools 
+  multiBigWigSummary and plotCorrelation
+  2. Use MACS3 callpeak to perform peak calling on both replicate experiments
+  3. Generate a single set of reproducible peaks using bedtools
+  4. Filter peaks contained within the ENCODE blacklist using bedtools
+  5. Annotate peaks to their nearest genomic feature using HOMER
 

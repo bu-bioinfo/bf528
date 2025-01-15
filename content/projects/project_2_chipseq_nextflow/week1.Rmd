@@ -146,7 +146,7 @@ alignment flags found in the BAM.
 
 Just like in project 1, we are going to use multiqc to collect the various
 quality control metrics from our pipeline. Ensure that multiqc collects the
-outputs from FastQC, 
+outputs from FastQC, Trimmomatic and flagstat. 
 
 :::{.box .task}
 
@@ -178,6 +178,21 @@ of the sample BAM files.
 :::
 
 ## Week 1 Tasks Summary {-}
+
+- Create nextflow modules that run the following tools:
+  
+  1. FastQC
+  2. Trimmomatic
+  3. Bowtie2-index
+
+- Sort and index your bams using a single nextflow module and samtools
+
+- Calculate alignment statistics using samtools flagstat
+
+- Aggregate all of the QC output results from the previous tools using MultiQC
+
+- Generate a nextflow module that uses deeptools to create bigWig representations
+of your BAM files
 
 
 

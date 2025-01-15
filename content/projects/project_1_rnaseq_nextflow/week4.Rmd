@@ -2,16 +2,88 @@
 
 ## Section Links {-}
 
+[Week 4 Overview]
 
+[Objectives]
+
+[Read the original paper]
+
+[Replicate figure 3C and 3F]
+
+[Write a methods section for your pipeline]
+
+[Week 4 Detailed Tasks Summary]
 
 ## Week 4 Overview {-}
 
-
+For the final week, use this time to finish up any tasks you weren't able to 
+complete. There are no nextflow tasks this week, but you will be asked to create
+some figures from the original paper using your own findings. 
 
 ## Objectives {-}
+
+- Read the original publication with a specific focus on their RNAseq experiment
+
+- Reproduce figures 3C and 3F with your own findings and compare them in your
+discussion
+
+- Write a short methods section for your pipeline and compare with the methods
+published in the original paper
 
 
 ## Read the original paper {-}
 
-The original publication and reporting of the results came from the paper
-posted on blackboard. 
+The original publication was given to you in a post on blackboard. Please read
+the paper and focus specifically on their analysis and discussion of their RNAseq
+experiment. 
+
+## Replicate figure 3C and 3F {-}
+
+Focus on figure 3C and specifically their discussion of their RNAseq results. 
+
+:::{.box .task}
+
+1. Create a volcano plot similar to the one seen in figure 3c. Use your DAVID
+or GSEA results and create a plot with the same information as 3F using your
+findings.     
+
+2. Read their discussion of their results and specifically address the following
+in your provided notebook:
+
+  - Compare how many significant genes are up- and down-regulated in their
+  findings and yours (using their significance threshold). Ensure you list how 
+  many you find vs. how many they report. 
+
+  - Compare their enrichment results with your DAVID and GSEA analysis. Comment
+  on any differences you observe and why there are discrepancies.
+
+:::
+
+
+## Write a methods section for your pipeline {-}
+
+We will have briefly discussed how to write a methods section. Please write a 
+methods section for the workflow you've implemented with your pipeline in the 
+style we've discussed. 
+
+:::{.box .task}
+
+1. In your provided notebook, write a brief methods section for your workflow
+
+
+2. Read the methods for the paper and in your provided notebook, please ensure
+you briefly discuss any differences in the methods you used and how that may
+change what results you find. 
+
+:::
+
+## Week 4 Detailed Tasks Summary {-}
+
+1. Read the original publication and focus specifically on the RNAseq experiment
+
+2. Recreate figures 3C and 3F with your own results and ensure you address the
+listed questions in your notebook
+
+3. Write a methods section in the style we've discussed for your workflow
+
+

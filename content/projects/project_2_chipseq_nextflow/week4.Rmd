@@ -1,37 +1,17 @@
 # Week 4: ChIPseq {-}
 
-## Integration with RNAseq results {-}
+## Section Links {-}
 
 
 
-## Visualizing peaks using a genome browser {-}
+## Week 4 Overview {-}
 
-Next, we will be generating visualizations of the peaks found in the promoter
-regions of two key genes reported by the paper. Download IGV
-(https://software.broadinstitute.org/software/igv/) locally on your computer or
-use the newly added web-only interface (https://igv.org/app/). You will need
-to provide the following files:
 
-    1. bigWig files for the runx1_rep1, runx1_rep2, inp_rep1, inp_rep2 samples
-    
-    2. Your BED file of reproducible peaks
-    
-    3. The primary assembly GTF file containing the annotations for our 
-      reference genome.
-    
-You will have to download these files locally, but all of them are small enough
-that this should cause no issues. 
 
-    1. Navigate to the two genes mentioned specifically in the paper, 
-      MALAT1 and NEAT1. 
-        - Do you see the same general results as in figures 2d and 2e?
-        - Do you agree with the conclusions made by the authors in these figures?
+## Objectives {-}
 
-Although we have discouraged you from generating figures using screenshots, we
-are going to produce the same figure as found in 2d and 2e.
 
-    1. Please take screenshots of the MALAT1 and NEAT1 promoter regions
-      displaying the signal coverage found in your bigWig files and the peak
-      locations from your BED file of reproducible peaks.
+## Read the original paper {-}
 
-=
+The original publication and reporting of the results came from the paper
+posted on blackboard. 
