@@ -136,9 +136,8 @@ make best use of available resources on the SCC, the optimal choices are N=1, 4,
 8, 16, 28, or 36.</p>
 <p><a href="https://www.bu.edu/tech/support/research/system-usage/running-jobs/parallel-batch/#pe" class="uri">https://www.bu.edu/tech/support/research/system-usage/running-jobs/parallel-batch/#pe</a></p>
 </div>
-<div id="handling-memory-requests-on-the-scc" class="section level2" number="0.1">
-<h2>
-<span class="header-section-number">0.1</span> Handling memory requests on the SCC<a class="anchor" aria-label="anchor" href="#handling-memory-requests-on-the-scc"><i class="fas fa-link"></i></a>
+<div id="handling-memory-requests-on-the-scc" class="section level2 unnumbered">
+<h2>Handling memory requests on the SCC<a class="anchor" aria-label="anchor" href="#handling-memory-requests-on-the-scc"><i class="fas fa-link"></i></a>
 </h2>
 <p>As well as cores, certain jobs may require a specific amount of memory. As you
 know, storing information in RAM (random access memory) allows for much faster
@@ -165,9 +164,8 @@ them.
 
 https://www.bu.edu/tech/support/research/system-usage/running-jobs/resources-jobs/#memory</code></pre>
 </div>
-<div id="commonly-used-core-memory-options-on-the-scc" class="section level2" number="0.2">
-<h2>
-<span class="header-section-number">0.2</span> Commonly used core / memory options on the SCC<a class="anchor" aria-label="anchor" href="#commonly-used-core-memory-options-on-the-scc"><i class="fas fa-link"></i></a>
+<div id="commonly-used-core-memory-options-on-the-scc" class="section level2 unnumbered">
+<h2>Commonly used core / memory options on the SCC<a class="anchor" aria-label="anchor" href="#commonly-used-core-memory-options-on-the-scc"><i class="fas fa-link"></i></a>
 </h2>
 <p>In general, requesting more cores (or more memory), will increase your queue
 time as these more powerful nodes are usually in high demand by other users of
@@ -190,20 +188,62 @@ provide. The queue for these nodes can be very long and depending on the complex
 of the request task, may be longer than the actual runtime of what you are doing.</p></li>
 </ol>
 </div>
-<div id="how-to-determine-what-resources-to-request-per-job" class="section level2" number="0.3">
-<h2>
-<span class="header-section-number">0.3</span> How to determine what resources to request per job<a class="anchor" aria-label="anchor" href="#how-to-determine-what-resources-to-request-per-job"><i class="fas fa-link"></i></a>
+<div id="how-to-determine-what-resources-to-request-per-job" class="section level2 unnumbered">
+<h2>How to determine what resources to request per job<a class="anchor" aria-label="anchor" href="#how-to-determine-what-resources-to-request-per-job"><i class="fas fa-link"></i></a>
 </h2>
+<p>Determining how many threads / how much RAM your specific analysis will require
+will largely come with experience. Before you develop this sense, you will need
+to manually inspect your analyses as they run to determine how many resources
+they are utilizing. While this is not as critical when working in this class (the
+scc is free), requesting the appropriate number of resources will be far more
+important when working in other settings where compute time and resources will
+be charged per usage.</p>
 </div>
-<div id="qstat" class="section level2" number="0.4">
-<h2>
-<span class="header-section-number">0.4</span> qstat<a class="anchor" aria-label="anchor" href="#qstat"><i class="fas fa-link"></i></a>
+<div id="managing-your-batch-jobs-on-the-scc" class="section level2 unnumbered">
+<h2>Managing your batch jobs on the SCC<a class="anchor" aria-label="anchor" href="#managing-your-batch-jobs-on-the-scc"><i class="fas fa-link"></i></a>
 </h2>
+<div id="qstat" class="section level3 unnumbered">
+<h3>qstat<a class="anchor" aria-label="anchor" href="#qstat"><i class="fas fa-link"></i></a>
+</h3>
+<p>Please see this <a href="https://www.bu.edu/tech/support/research/system-usage/running-jobs/tracking-jobs/">resource</a> from BU SCC IT for detailed information on tracking
+your batch jobs using <code>qstat</code></p>
+<p>After you’ve submitted a batch job, you will be able to check the status of any
+job by using the following command:</p>
+<pre><code>qstat -u &lt;your-BU-userid&gt;</code></pre>
+<p>To get detailed information about the resources a job is utilizing, you may use
+the following command:</p>
+<pre><code>qstat -j &lt;job ID&gt;</code></pre>
+<p>This <a href="https://www.bu.edu/tech/support/research/system-usage/running-jobs/allocating-memory-for-your-job/">resource</a>
+from the BU SCC IT group describes briefly the output of the above command. One
+of the important metrics to note is the <code>maxvmem</code> output, which displays the
+maximum amount of virtual memory used during the CPU runtime of the job. This
+value should enable you to determine how much memory to request for similar
+operations on similarly sized data.</p>
 </div>
-<div id="nextflow-log" class="section level2" number="0.5">
-<h2>
-<span class="header-section-number">0.5</span> nextflow log<a class="anchor" aria-label="anchor" href="#nextflow-log"><i class="fas fa-link"></i></a>
+<div id="qdel" class="section level3 unnumbered">
+<h3>qdel<a class="anchor" aria-label="anchor" href="#qdel"><i class="fas fa-link"></i></a>
+</h3>
+<p>If you wish to delete a job from the queue, you may use the following command:</p>
+<pre><code>qdel &lt;job-id&gt;</code></pre>
+<p>The job ID for a specific job may be found by using the above <code>qstat</code> command</p>
+<p>If you wish to delete all of the jobs associated with your username, you may
+use the following command:</p>
+<pre><code>qdel -u &lt;your-BU-userid&gt;</code></pre>
+</div>
+</div>
+<div id="nextflow-log" class="section level2 unnumbered">
+<h2>nextflow log<a class="anchor" aria-label="anchor" href="#nextflow-log"><i class="fas fa-link"></i></a>
 </h2>
+<p>While you can use <code>qstat</code> to track your job’s progress, nextflow also has built-in
+functionality that records various statistics about the processes executed by
+workflow runs. When you have a working nextflow pipeline, you may run the workflow
+using the following command to produce a single HTML report containing various
+metrics regarding the execution:</p>
+<pre><code>nextflow run &lt;pipeline.nf&gt; -with-report &lt;file-report-name&gt;</code></pre>
+<p>For each process in the workflow, nextflow will report various metrics including
+CPU and memory usage, job duration and I/O. Please see the nextflow documentation
+<a href="https://www.nextflow.io/docs/latest/reports.html">here</a> for more information
+on this report.</p>
 
 </div>
 </div>
@@ -216,11 +256,16 @@ of the request task, may be longer than the actual runtime of what you are doing
 <li><a class="nav-link" href="#guide-for-requesting-appropriate-computational-resources-on-the-scc">Guide for requesting appropriate computational resources on the SCC</a></li>
 <li><a class="nav-link" href="#the-qsub-command">The qsub command</a></li>
 <li><a class="nav-link" href="#pe-omp">pe omp</a></li>
-<li><a class="nav-link" href="#handling-memory-requests-on-the-scc"><span class="header-section-number">0.1</span> Handling memory requests on the SCC</a></li>
-<li><a class="nav-link" href="#commonly-used-core-memory-options-on-the-scc"><span class="header-section-number">0.2</span> Commonly used core / memory options on the SCC</a></li>
-<li><a class="nav-link" href="#how-to-determine-what-resources-to-request-per-job"><span class="header-section-number">0.3</span> How to determine what resources to request per job</a></li>
-<li><a class="nav-link" href="#qstat"><span class="header-section-number">0.4</span> qstat</a></li>
-<li><a class="nav-link" href="#nextflow-log"><span class="header-section-number">0.5</span> nextflow log</a></li>
+<li><a class="nav-link" href="#handling-memory-requests-on-the-scc">Handling memory requests on the SCC</a></li>
+<li><a class="nav-link" href="#commonly-used-core-memory-options-on-the-scc">Commonly used core / memory options on the SCC</a></li>
+<li><a class="nav-link" href="#how-to-determine-what-resources-to-request-per-job">How to determine what resources to request per job</a></li>
+<li>
+<a class="nav-link" href="#managing-your-batch-jobs-on-the-scc">Managing your batch jobs on the SCC</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#qstat">qstat</a></li>
+<li><a class="nav-link" href="#qdel">qdel</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#nextflow-log">nextflow log</a></li>
 </ul>
 
       <div class="book-extra">
