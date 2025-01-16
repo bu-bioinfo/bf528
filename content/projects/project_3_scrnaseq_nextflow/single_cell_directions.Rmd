@@ -122,7 +122,7 @@ cell originated from.
 
 - Briefly remark on the plots and the effects you observe due to the integration
 
-## Marker Gene Analysis
+## Marker Gene Analysis {-}
 
 Perform marker gene analysis using a method of your choice. 
 
@@ -135,7 +135,7 @@ Perform marker gene analysis using a method of your choice.
 - Briefly describe the method performed to identify marker genes. Discuss a few
 advantages and disadvantages of the method used to perform marker gene analysis. 
 
-## Automatic Annotation of Cell labels
+## Automatic Annotation of Cell labels {-}
 
 Use an annotation algorithm to assign preliminary labels for the cell identities
 of your clusters. You may use your choice of tool as long as it has a documented
@@ -202,7 +202,7 @@ for each of the three clusters.
 - Briefly remark on the changes in gene expression you observe in these cell 
 populations between the WT and KO samples
 
-## Proportions of cell populations
+## Proportions of cell populations {-}
 
 This dataset only has X samples, but we can visualize the proportions of each
 cell cluster in all of our samples and look for potential trends. 
@@ -218,7 +218,7 @@ across all of your samples
 future if you wanted to be more confident in drawing conclusions about potential
 changes in cell proportions across your conditions. 
 
-## Analysis of your choice
+## Analysis of your choice {-}
 
 For the last part of the project, you may choose one additional analysis to 
 perform on the data. You may choose one of the following analyses:
@@ -242,7 +242,7 @@ the analysis
 this dataset. 
 
 
-## Final Project Grading
+## Final Project Grading {-}
 
 The requirements for the final project are:
 
