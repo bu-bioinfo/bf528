@@ -27,10 +27,15 @@ By appointment and weekly TBD
 
 ## Contents {-}
 
-- [Course Schedule]
-- [Instructor]
-- [Office Hours]
+- [Course Objectives]
+- [Course Description]
 - [Course Values and Policies]
+- [Course Schedule]
+- [Prerequisites]
+- [Instructor and TAs]
+- [Projects Overview]
+- [Project Grading]
+- [Course Schedule]
 
 ## Course Objectives {-}
 
@@ -112,11 +117,9 @@ experience programming in a modern programming language (R, python, C, Java, etc
 Working familiarity with Git and command line interfaces is also heavily
 recommended. 
 
-## Instructor {-}
+## Instructor and TAs {-}
 
 Joey Orofino
-
-## TAs {-}
 
 Eric Palanques Tost
 Xudong Han
@@ -140,8 +143,6 @@ As instructor, I pledge to
 - Project 1: RNAseq
 - Project 2: ChIPseq
 - Project 3: scRNAseq
-
-## Project Structure {-}
 
 Each project has been split into 4 weekly parts and by the end of each, you will
 have developed a complete pipeline that will process the data from end-to-end
