@@ -3,6 +3,7 @@ rmd_files:
     - "guide_part.Rmd"
     - "computational_env.Rmd"
     - "scc_guide.Rmd"
+    - "guides.Rmd"
     - "project_0_part.Rmd"
     - "projects/project_0_genome_analysis/week1.Rmd"
     - "projects/project_0_genome_analysis/week2.Rmd"

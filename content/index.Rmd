@@ -197,7 +197,7 @@ Lab Participation: 10%
 | Fri  | 2/7      | 3    | Lecture       | [Genomic Variation and SNP Analysis]                                       | P0 - W3                |
 | Mon  | 2/10     | 4    | Lecture       | [Genome Editing - CRISPR Cas9]                                             |                        |
 | Wed  | 2/12     | 4    | Lab           | CRISPR Guide Selection                                                     |                        |
-| Fri  | 2/14     | 4    | Lecture       | [Sequencing Analysis Fundamentals]                                         | PO - W4                |
+| Fri  | 2/14     | 4    | Lecture       | [Sequence Analysis Fundamentals]                                           | PO - W4                |
 | Mon  | 2/17     |      | NO CLASS      |                                                                            |                        |
 | Tues | 2/18     | 5    | Lecture       | [Biological Databases]                                                     |                        |
 | Wed  | 2/19     | 5    | Lab           | Project 0 Discussion<br>[Writing a methods section]                        |                        |
@@ -212,16 +212,16 @@ Lab Participation: 10%
 | Mon  | 3/17<br> | 8    | Lecture       | [Proteomics]                                                               |                        |
 | Wed  | 3/18     | 8    | Lab           | Splice-aware vs non-splice aware                                           |                        |
 | Fri  | 3/21     | 8    | Lecture       | [Metabolomics]                                                             | P1 - W4                |
-| Mon  | 3/24     | 9    | Lecture       | [ChIPSeq]                                                                  |                        |
+| Mon  | 3/24     | 9    | Lecture       | [Sequence Analysis - ChIP-Seq]                                             |                        |
 | Wed  | 3/26     | 9    | Lab           | Project 1 Discussion                                                       |                        |
-| Fri  | 3/28     | 9    | Lecture       | [ATACseq]                                                                  | P2 - W1                |
-| Mon  | 3/31     | 10   | Lecture       | [Single Cell, Pt. 1]                                                       |                        |
-| Wed  | 4/2      | 10   | Lab           | Single Cell In-Class                                                       |                        |
-| Fri  | 4/4      | 10   | Lecture       | [Single Cell, Pt. 2]                                                       | P2 - W2                |
-| Mon  | 4/7      | 11   | Lecture       | [Single Cell, Pt. 3]                                                       |                        |
-| Wed  | 4/9      | 11   | Lab           | Single Cell In-class                                                       |                        |
-| Fri  | 4/11     | 11   | Lecture       | Single Cell In-class                                                       | P2 - W3                |
-| Mon  | 4/14     | 12   | Lecture       | Single Cell In-class                                                       |                        |
+| Fri  | 3/28     | 9    | Lecture       | [Sequence analysis - ATAC-Seq]                                             | P2 - W1                |
+| Mon  | 3/31     | 10   | Lecture       | [Single Cell Analysis Part 1]                                              |                        |
+| Wed  | 4/2      | 10   | Lab           | [Genome Browsers]                                                          |                        |
+| Fri  | 4/4      | 10   | Lecture       | [Single Cell Analysis Part 2]                                              | P2 - W2                |
+| Mon  | 4/7      | 11   | Lecture       | [Single Cell Analysis Part 3]                                              |                        |
+| Wed  | 4/9      | 11   | Lab           | Single Cell In-Class                                                       |                        |
+| Fri  | 4/11     | 11   | Lecture       | Single Cell In-Class                                                       | P2 - W3                |
+| Mon  | 4/14     | 12   | Lecture       | Single Cell In-Class                                                       |                        |
 | Wed  | 4/16     | 12   | Lab           | Single Cell In-Class                                                       |                        |
 | Fri  | 4/18     | 12   | Lecture       | [Spatial Transcriptomics]                                                  | P2 - W4                |
 | Mon  | 4/21     |      | NO CLASS      |                                                                            |                        |
