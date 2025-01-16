@@ -2,16 +2,136 @@
 
 ## Section Links {-}
 
+[Week 4 Overview]
 
+[Objectives]
+
+[Write a methods section]
+
+[Read the original paper]
+
+[Overlap your ChIPseq results with the original RNAseq data]
+
+[Reproduce findings from original figures 2D, 2E, 2F]
+
+[Comparing key findings to the original paper]
+
+[Week 4 Detailed Tasks Summary]
 
 ## Week 4 Overview {-}
 
+For the final week, you will be reading the original paper and interpreting
+your results in the context of the publication's results. Specifically, you will
+be focusing on reproducing the results shown in figure 2 with your own findings. 
+This exercise is not meant to make any assertions as to the ground "truth" but
+to encourage you think about reproducibility in science. 
 
+**Reminder**
+
+The tasks for this week will largely ask you to re-create the same figures found
+in the original publication with your own results. Remember that this is not
+meant to assert that one approach or one set of results are the "ground truth".
+In science, we are constantly making assumptions and subjective choices, ideally
+based on sound logic and past knowledge, that will greatly impact the
+interpretation of the results we obtain. The purpose of this exercise is to
+explore the factors that contribute to reproducibility in bioinformatics and
+develop an understanding of what it means for an experiment or publication to be
+"reproducible".
 
 ## Objectives {-}
+
+- Read the original publication and focus specifically on the results and
+discussion for figure 2
+
+- Reproduce figures 2D, 2E and 2F from the paper
+
+- Compare other key findings to the original publication
 
 
 ## Read the original paper {-}
 
-The original publication and reporting of the results came from the paper
-posted on blackboard. 
+The original publication has been posted on blackboard. Please read through the
+paper with a particular focus on the ChIP-Seq experiment presented in figure 2.
+
+## Write a methods section {-}
+
+Using the style and guidelines discussed in class, write a methods section that
+describes the analysis your nextflow pipeline performs. 
+
+## Overlap your ChIPseq results with the original RNAseq data {-}
+
+In their publication find the link to their GEO submission. Read the methods
+section of the paper and integrate **your** called ChIPSeq peaks with the results
+from **their** differential expression RNAseq experiment. Use your set of
+reproducible and filtered peaks, and use the publication's listed significance
+thresholds for the RNAseq results.
+
+:::{.box .task}
+
+1. Create a figure that displays the same information of figure 2F from the
+original publication using your annotated peaks and the RNAseq results. The 
+figure does not have to be the same style but must convey the same information
+using your results.
+
+2. In figures 2D and 2E, the authors identify and highlight two specific genes
+that were identified in both experiments. Using your list of filtered and
+reproducible peaks, a genome browser of your choice, and your bigWig files, please
+re-create these figures with your own results (You do not need to include the
+RNAseq data, but you should re-create the genomic tracks from your ChIPseq results)
+
+3. In your provided notebook, please ensure you address the following questions:
+
+  1. Focusing on your results for figure 2F:
+    - Do you observe any differences in the number of overlapping genes from both
+    analyses?
+    - If you do observe a difference, explain at least two factors that
+    may have contributed to these differences. 
+    - What is the rationale behind combining these two analyses in this way? What
+    additional conclusions is it supposed to enable you to draw?
+    
+  2. Focusing on your results for figures 2D and 2E:
+    - From your annotated peaks, do you observe statistically significant peaks
+    in these same two genes?
+    - How similar do your genomic tracks appear to those in the paper? If you 
+    observe any differences, comment briefly on why there may be discrepancies. 
+
+:::
+
+## Comparing key findings to the original paper {-}
+
+Find the supplementary information for the publication and focus on supplementary
+figure S2A, S2B, and S2C. 
+
+:::{.box .task}
+
+1. Re-create the table found in supplementary figure S2A. Compare the results 
+with your own findings. Address the following questions:
+  - Do you observe differences in the reported number of raw and mapped reads?
+  - If so, provide at least two explanations for the discrepancies. 
+  
+2. Compare your correlation plot with the one found in supplementary figure S2B. 
+  - Do you observe any differences in your calculated metrics?
+  - What was the author's takeaway from this figure? What is your conclusion
+  from this figure regarding the success of the experiment?
+  
+3.  Create a venn diagram with the same information as found in figure S2C. 
+  - Do you observe any differences in your results compared to what you see?
+  - If so, provide at least two explanations for the discrepancies in the number
+  of called peaks. 
+
+:::
+
+## Week 4 Detailed Tasks Summary {-}
+
+- Read the original publication with a particular focus on figure 2
+
+- Write a methods section for the complete analysis workflow implemented by your
+pipeline while adhering to the guidelines and style discussed in class
+
+- Download the original publication's RNAseq results and apply their listed
+significance threshold. Use this information to re-create figure 2F. 
+
+- Re-create figures 2D and 2E and ensure you address the listed questions
+
+- Find supplementary figure S2 and re-create or compare your findings to
+supplementary figures 2A, 2B and 2C. Ensure you address any listed questions. 

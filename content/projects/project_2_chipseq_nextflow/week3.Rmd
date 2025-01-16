@@ -14,10 +14,6 @@
 
 [Finding enriched motifs in ChIP-seq peaks]
 
-[Overlap ChIPseq peaks with RNAseq data]
-
-[Replicate findings from original figures 2D and 2E]
-
 [Week 3 Tasks Summary]
 
 ## Week 3 Overview {-}
@@ -28,8 +24,6 @@ genome. This will enable you to plot the signal coverage from your samples in
 relation to genic structure (Transcription Start Site and Transcription
 Termination Site). You will also be performing motif enrichment to determine
 what motifs appear to be enriched in the binding sites detected in your peaks.
-Finally, with knowledge of the original publication, you will reproduce some of
-the published figures and compare them to your own findings. 
 
 ## Objectives {-}
 
@@ -41,7 +35,6 @@ your IP sample bigwigs to create a signal intensity plot
 
 - Perform motif enrichment on your reproducible and filtered peaks using HOMER
 
-- Recreate the figures from the original publication using your findings
 
 ## Containers for Project 2 {-}
 
@@ -138,37 +131,6 @@ ten enriched motifs that are found from the motif analysis.
 
 :::
 
-
-## Overlap ChIPseq peaks with RNAseq data {-}
-
-Navigate to the associated publication for the dataset and find the link to
-their GEO submission. Read the methods section of the paper and integrate your
-called ChIPSeq peaks with the results from their differential expression RNAseq
-experiment. Use your set of reproducible and filtered peaks, and use the
-publication's listed significance thresholds for the RNAseq results.
-
-:::{.box .task}
-
-1. Create a figure that displays the same information of figure 2F from the
-original publication using your annotated peaks and the RNAseq results. The 
-figure does not have to be the same style but must convey the same information
-using your results.
-
-:::
-
-## Replicate findings from original figures 2D and 2E {-}
-
-In the original publication, the authors utilize the ChIPseq peaks and RNAseq
-results and identified two prominent genes that appear in the results from both
-analyses. 
-
-:::{.box .task}
-
-1. Use your set of reproducible peaks and a genome browser of your choice to 
-recreate the visualizations seen in figures 2D and 2E. 
-
-:::
-
 ## Week 3 Tasks Summary {-}
 
 - Use the UCSC table browser to generate a BED file containing the TSS and TTS
@@ -185,8 +147,3 @@ positions of every gene in the HG38 reference
   3. Utilizes HOMER to perform basic motif finding on your reproducible and 
   filtered peaks
   
-- Navigate to the publication's GEO accession and download their RNAseq differential
-expression results
-
-- Using your ChIPseq results and their RNAseq results, attempt to reproduce the
-figures / results found in the publication (2D, 2E, 2F) using your findings
