@@ -17,7 +17,7 @@ output: html_document
 
 [downloadable slides](https://docs.google.com/presentation/d/1maCjOOKx1lDkDjYZVwP09ZOs8VFROM7FpzubACl1IgU/export/pptx)
 
-## Tutorials
+## Tutorials {-}
 
 Familiarize yourself with the material on bash scripting and cluster computing here:
 

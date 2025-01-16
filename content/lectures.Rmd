@@ -45,7 +45,7 @@ Familiarize yourself with the material on basic command line usage found here:
 
 [downloadable slides](https://docs.google.com/presentation/d/1gWBIVMdS3ZejjzvoCd9WAdYkrvFs_lqZzxTeYR1LyVU/export/pptx)
 
-# Genome Editing - CRISPR Cas9
+# Genome Editing - CRISPR Cas9 {-}
 
 [online slides](https://docs.google.com/presentation/d/1xMyk55-SOpEpTQtbAyhgfg0tqB0sAKuY4tJQId98mXg/edit?usp=sharing)
 
