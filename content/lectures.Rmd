@@ -25,8 +25,8 @@ Familiarize yourself with the material on basic command line usage found here:
 
 [downloadable slides](https://docs.google.com/presentation/d/1ibyJSkFIzO08XsZaa7VQr6FfYwapnwS3tPWvxNIlx7k/export/pptx)
 
-# 2nd Gen Sequencing {-}
-[online slides](https://docs.google.com/presentation/d/1mT2c6EOB3WcyfJzXCQLukU4JZIqM8qWpfc6tde5CeAc/present?usp=sharing)
+# Next Generation Sequencing {-}
+[online slides](https://docs.google.com/presentation/d/1mT2c6EOB3WcyfJzXCQLukU4JZIqM8qWpfc6tde5CeAc/edit?usp=sharing)
 
 [downloadable slides](https://docs.google.com/presentation/d/1mT2c6EOB3WcyfJzXCQLukU4JZIqM8qWpfc6tde5CeAc/export/pptx)
 
