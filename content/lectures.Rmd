@@ -21,9 +21,9 @@ Familiarize yourself with the material on basic command line usage found here:
 [Workshop 0. Basic Linux and Command Line Usage](http://foundations-in-computational-skills.readthedocs.io/en/latest/content/workshops/00_cli_basics/00_cli_basics.html)
 
 # Computational Pipeline Strategies {-}
-[online slides](https://docs.google.com/presentation/d/1vQ13kTBCnXRKkn-iiDueMG3xsj3YHVza-bZJxrj47hU/present?usp=sharing)
+[online slides](https://docs.google.com/presentation/d/1ibyJSkFIzO08XsZaa7VQr6FfYwapnwS3tPWvxNIlx7k/edit?usp=sharing)
 
-[downloadable slides](https://docs.google.com/presentation/d/1vQ13kTBCnXRKkn-iiDueMG3xsj3YHVza-bZJxrj47hU/export/pptx)
+[downloadable slides](https://docs.google.com/presentation/d/1ibyJSkFIzO08XsZaa7VQr6FfYwapnwS3tPWvxNIlx7k/export/pptx)
 
 # 2nd Gen Sequencing {-}
 [online slides](https://docs.google.com/presentation/d/1mT2c6EOB3WcyfJzXCQLukU4JZIqM8qWpfc6tde5CeAc/present?usp=sharing)
