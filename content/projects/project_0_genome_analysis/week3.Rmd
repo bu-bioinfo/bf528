@@ -89,9 +89,8 @@ and other features of DNA, RNA or protein sequences.
 :::{.box .task}
     
 1. Look in the `bin/` directory at the python code in the `extract_region.py`
-script that will parse through the GFF, pick a single entry where the 6th field
-is '+' (a sequence from the plus strand) and print out that entries accession,
-start and stop coordinates to a text file in the format: genome:start-stop.
+script. This rough code will extract a region from the GFF you produced and
+output the coordinates in the format below. 
 
     ```
     <name_of_genome>:<value from column 4>-<value from column 5>

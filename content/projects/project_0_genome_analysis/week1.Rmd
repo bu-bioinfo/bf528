@@ -14,6 +14,8 @@ All other text will be directions or other explanatory text that you should read
 
 [Objectives]
 
+[Nextflow Resources]
+
 [Getting Started]
 
 [Setting up our environment]
@@ -44,6 +46,13 @@ repository and nextflow pipeline will be utilized for all other projects.
 
 - Acclimate to the structure and style of projects as workflows
 
+## Nextflow Resources {-}
+
+If you need additional information about nextflow, please refer to the lecture
+slides, the [official documentation](https://www.nextflow.io/docs/latest/index.html)
+and some basic [tutorials](https://training.nextflow.io/). 
+
+We will also be using some lab / class time to go through nextflow together. 
 
 ## Getting Started {-}
 
