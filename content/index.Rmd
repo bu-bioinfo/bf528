@@ -220,7 +220,7 @@ Lab Participation: 10%
 | Wed  | 3/26     | 9    | Lab           | Project 1 Discussion                                                       |                        |
 | Fri  | 3/28     | 9    | Lecture       | [Sequence analysis - ATAC-Seq]                                             | P2 - W1                |
 | Mon  | 3/31     | 10   | Lecture       | [Single Cell Analysis Part 1]                                              |                        |
-| Wed  | 4/2      | 10   | Lab           | [Genome Browsers]                                                          |                        |
+| Wed  | 4/2      | 10   | Lab           | Using public databases                                                     |                        |
 | Fri  | 4/4      | 10   | Lecture       | [Single Cell Analysis Part 2]                                              | P2 - W2                |
 | Mon  | 4/7      | 11   | Lecture       | [Single Cell Analysis Part 3]                                              |                        |
 | Wed  | 4/9      | 11   | Lab           | Single Cell In-Class                                                       |                        |
