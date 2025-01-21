@@ -177,9 +177,8 @@ and other features of DNA, RNA or protein sequences.</p>
 <ol style="list-style-type: decimal">
 <li>
 <p>Look in the <code>bin/</code> directory at the python code in the <code>extract_region.py</code>
-script that will parse through the GFF, pick a single entry where the 6th field
-is ‘+’ (a sequence from the plus strand) and print out that entries accession,
-start and stop coordinates to a text file in the format: genome:start-stop.</p>
+script. This rough code will extract a region from the GFF you produced and
+output the coordinates in the format below.</p>
 <pre><code>&lt;name_of_genome&gt;:&lt;value from column 4&gt;-&lt;value from column 5&gt;</code></pre>
 <p>Or for a specific example:
 <code>genomeA:100-200</code></p>
