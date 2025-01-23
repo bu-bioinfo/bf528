@@ -136,7 +136,8 @@ A few things to remember:
 that you wish to install `nextflow` version **24.04.2** and `nf-test` version
 **0.8.4**. Remember that the value after name in the file will be the name of
 the conda environment created, you may name this whatever is easiest for you to
-remember. We will be using this single environment all semester.
+remember. We will be using this single environment all semester. You may also
+copy the YML file we generated together in class to this new project directory.
 
 2. Open a terminal in the top-level of your directory, use the `conda env create
 -f envs/base_env.yml` command to create the environment described in your YML

@@ -21,12 +21,12 @@ Familiarize yourself with the material on basic command line usage found here:
 [Workshop 0. Basic Linux and Command Line Usage](http://foundations-in-computational-skills.readthedocs.io/en/latest/content/workshops/00_cli_basics/00_cli_basics.html)
 
 # Computational Pipeline Strategies {-}
-[online slides](https://docs.google.com/presentation/d/1ibyJSkFIzO08XsZaa7VQr6FfYwapnwS3tPWvxNIlx7k/edit?usp=sharing)
+[online slides](https://docs.google.com/presentation/d/1ibyJSkFIzO08XsZaa7VQr6FfYwapnwS3tPWvxNIlx7k/present?usp=sharing)
 
 [downloadable slides](https://docs.google.com/presentation/d/1ibyJSkFIzO08XsZaa7VQr6FfYwapnwS3tPWvxNIlx7k/export/pptx)
 
 # Next Generation Sequencing {-}
-[online slides](https://docs.google.com/presentation/d/1mT2c6EOB3WcyfJzXCQLukU4JZIqM8qWpfc6tde5CeAc/edit?usp=sharing)
+[online slides](https://docs.google.com/presentation/d/1mT2c6EOB3WcyfJzXCQLukU4JZIqM8qWpfc6tde5CeAc/present?usp=sharing)
 
 [downloadable slides](https://docs.google.com/presentation/d/1mT2c6EOB3WcyfJzXCQLukU4JZIqM8qWpfc6tde5CeAc/export/pptx)
 
@@ -47,7 +47,7 @@ Familiarize yourself with the material on basic command line usage found here:
 
 # Genome Editing - CRISPR Cas9 {-}
 
-[online slides](https://docs.google.com/presentation/d/1xMyk55-SOpEpTQtbAyhgfg0tqB0sAKuY4tJQId98mXg/edit?usp=sharing)
+[online slides](https://docs.google.com/presentation/d/1xMyk55-SOpEpTQtbAyhgfg0tqB0sAKuY4tJQId98mXg/present?usp=sharing)
 
 [downloadable slides](https://docs.google.com/presentation/d/1xMyk55-SOpEpTQtbAyhgfg0tqB0sAKuY4tJQId98mXg/export/pptx)
 
@@ -62,7 +62,7 @@ Familiarize yourself with the material on basic command line usage found here:
 [downloadable slides](https://docs.google.com/presentation/d/1WebY_mwEaR4BdHULyz2hRhqxTASX4o0yx2CJM6yKyhI/export/pptx)
 
 # Writing a methods section {-}
-[online slides](https://docs.google.com/presentation/d/1hISPEffc051osU0H6i8O0b1b2V6wC8tpoBQODOnSF3g/edit?usp=sharing)
+[online slides](https://docs.google.com/presentation/d/1hISPEffc051osU0H6i8O0b1b2V6wC8tpoBQODOnSF3g/present?usp=sharing)
 
 [downloadable slides](https://docs.google.com/presentation/d/1hISPEffc051osU0H6i8O0b1b2V6wC8tpoBQODOnSF3g/export/pptx)
 
