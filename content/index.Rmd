@@ -200,8 +200,8 @@ Lab Participation: 10%
 | Day  | Date     | Week | Class         | Topic                                                                      | Project                |
 | ---- | -------- | ---- | ------------- | -------------------------------------------------------------------------- | ---------------------- |
 | Wed  | 1/22     | 1    | Lecture       | [Introduction]                                                             |                        |
-| Fri  | 1/24     | 1    | Lecture + Lab | [Computational Pipeline Strategies]<br>Lab - Setup VSCode + Git + Nextflow | P0 - W1                |
-| Mon  | 1/27     | 2    | Lecture       | [Genomics, Genes, and Genomes]<br>[SCC cluster usage]                      |                        |
+| Fri  | 1/24     | 1    | Lecture + Lab | [Genomics, Genes, and Genomes]<br>Lab - Setup                              | P0 - W1                |
+| Mon  | 1/27     | 2    | Lecture       | [Computational Pipeline Strategies]<br>[SCC cluster usage]                 |                        |
 | Wed  | 1/29     | 2    | Lab           | Writing your own NF modules                                                |                        |
 | Fri  | 1/31     | 2    | Lecture       | [Biological Data Formats]<br>Week 1 Review                                 | P0 - W2                |
 | Mon  | 2/3      | 3    | Lecture       | [Next Generation Sequencing]                                               |                        |
