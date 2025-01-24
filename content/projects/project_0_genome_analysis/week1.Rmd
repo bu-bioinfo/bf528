@@ -291,5 +291,3 @@ single genome file.
 
 7. Generate your first nextflow channel, `fa_ch`, containing a tuple with the
 name and path values from your `samplesheet.csv` 
-
-8. Answer all of the questions in the provided jupyter notebook
