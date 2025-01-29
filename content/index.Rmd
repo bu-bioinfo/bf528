@@ -203,13 +203,13 @@ Lab Participation: 10%
 | Fri  | 1/24     | 1    | Lecture + Lab | [Genomics, Genes, and Genomes]<br>Lab - Setup                              | P0 - W1                |
 | Mon  | 1/27     | 2    | Lecture       | [Computational Pipeline Strategies]<br>[SCC cluster usage]                 |                        |
 | Wed  | 1/29     | 2    | Lab           | Writing your own NF modules                                                |                        |
-| Fri  | 1/31     | 2    | Lecture       | [Biological Data Formats]<br>Week 1 Review                                 | P0 - W2                |
-| Mon  | 2/3      | 3    | Lecture       | [Next Generation Sequencing]                                               |                        |
+| Fri  | 1/31     | 2    | Lecture       | [Next Generation Sequencing]<br>Week 1 Review                              | P0 - W2                |
+| Mon  | 2/3      | 3    | Lecture       | [Sequence Analysis Fundamentals]                                           |                        |
 | Wed  | 2/5      | 3    | Lab           | HPC Cluster Usage                                                          |                        |
 | Fri  | 2/7      | 3    | Lecture       | [Genomic Variation and SNP Analysis]<br>Week 2 Review                      | P0 - W3                |
 | Mon  | 2/10     | 4    | Lecture       | [Genome Editing - CRISPR Cas9]                                             |                        |
 | Wed  | 2/12     | 4    | Lab           | CRISPR Guide Selection                                                     |                        |
-| Fri  | 2/14     | 4    | Lecture       | [Sequence Analysis Fundamentals]<br>Week3 Review                           | PO - W4                |
+| Fri  | 2/14     | 4    | Lecture       | Week3 Review                                                               | PO - W4                |
 | Mon  | 2/17     |      | NO CLASS      |                                                                            |                        |
 | Tues | 2/18     | 5    | Lecture       | [Biological Databases]                                                     |                        |
 | Wed  | 2/19     | 5    | Lab           | Project 0 Discussion<br>[Writing a methods section]                        |                        |
