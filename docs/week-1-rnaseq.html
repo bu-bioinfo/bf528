@@ -427,16 +427,16 @@ the following:</p></li>
 <li>The subsampled FASTQ files</li>
 </ul>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Generate a nextflow channel called <code>align_ch</code> that has 8 total elements where
+<li><p>Generate a nextflow channel called <code>align_ch</code> that has 6 total elements where
 each element is a tuple containing two elements: the name of the sample, and a
 list of both of the associated paired end files.</p></li>
-<li><p>Generate a nextflow channel called <code>fastqc_channel</code> that has 16 total
+<li><p>Generate a nextflow channel called <code>fastqc_channel</code> that has 12 total
 elements where each element is a tuple containing two elements: the name of the
 sample, and one of the FASTQ files.</p></li>
 <li><p>Generate a module that successfully runs FASTQC using the <code>fastqc_channel</code></p></li>
 <li><p>Develop an external script that parses the GTF and writes a delimited file
-where one column represents the ensembl mouse IDs and the value in the other
-column is the associated MGI symbol.</p></li>
+where one column represents the ensembl human IDs and the value in the other
+column is the associated human gene symbol.</p></li>
 <li><p>Generate a module that successfully creates a STAR index using the params
 containing the path to your reference genome assembly and GTF</p></li>
 </ol>
