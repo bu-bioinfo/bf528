@@ -389,19 +389,19 @@ the following:
   - Gencode GTF for the primary assembly
   - The subsampled FASTQ files
   
-3. Generate a nextflow channel called `align_ch` that has 8 total elements where
+3. Generate a nextflow channel called `align_ch` that has 6 total elements where
 each element is a tuple containing two elements: the name of the sample, and a
 list of both of the associated paired end files.
 
-4. Generate a nextflow channel called `fastqc_channel` that has 16 total
+4. Generate a nextflow channel called `fastqc_channel` that has 12 total
 elements where each element is a tuple containing two elements: the name of the
 sample, and one of the FASTQ files. 
 
 5. Generate a module that successfully runs FASTQC using the `fastqc_channel`
 
 6. Develop an external script that parses the GTF and writes a delimited file
-where one column represents the ensembl mouse IDs and the value in the other 
-column is the associated MGI symbol. 
+where one column represents the ensembl human IDs and the value in the other 
+column is the associated human gene symbol. 
 
 7. Generate a module that successfully creates a STAR index using the params
 containing the path to your reference genome assembly and GTF
