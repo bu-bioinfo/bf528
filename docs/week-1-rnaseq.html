@@ -407,10 +407,13 @@ in your STAR command:</li>
 </ol>
 <pre><code>--runThreadN $task.cpus</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>Incorporate this process into your workflow and pass it the appropriate
+<li><p>Incorporate this process into your workflow and pass it the appropriate
 inputs from your params encoding the path to the reference genome fasta and GTF
-file.</li>
+file.</p></li>
+<li><p><strong>Make sure you submit this particular job to the cluster with the following
+command</strong>:</p></li>
 </ol>
+<pre><code>nextflow run main.nf -profile singularity,cluster</code></pre>
 </div>
 </div>
 <div id="week-1-tasks-summary" class="section level2 unnumbered">

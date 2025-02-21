@@ -234,6 +234,9 @@ STAR logs for every sample and call it <code>multiqc_ch</code>. Remember that yo
 the outputs of a previous process by using the <code>.out()</code> notation (i.e. ALIGN.out
 or FASTQC.out.zip).</p>
 <p>See below for an example of what the channel should look like:</p>
+<p>**In class, we may have used the <code>.html</code> file as the output for FastQC, multiQC
+will need the <code>.zip</code> file. You can either change the output or add another specifically
+for the <code>.zip</code> file created by FastQC.</p>
 <pre><code>multiqc_channel
 
 [sample1_R1_fastqc.zip, sample1_R2_fastqc.zip, sample1.Log.final.out,

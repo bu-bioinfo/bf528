@@ -376,6 +376,13 @@ in your STAR command:
 inputs from your params encoding the path to the reference genome fasta and GTF
 file.
 
+5. **Make sure you submit this particular job to the cluster with the following
+command**: 
+
+```
+nextflow run main.nf -profile singularity,cluster
+```
+
 :::
 
 ## Week 1 Tasks Summary {-}

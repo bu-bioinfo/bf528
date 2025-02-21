@@ -147,6 +147,10 @@ or FASTQC.out.zip).
 
 See below for an example of what the channel should look like:
 
+**In class, we may have used the `.html` file as the output for FastQC, multiQC
+will need the `.zip` file. You can either change the output or add another specifically
+for the `.zip` file created by FastQC.
+
 ```
 multiqc_channel
 
