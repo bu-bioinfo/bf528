@@ -93,6 +93,7 @@ nextflow run main.nf -profile singularity,cluster
 You may examine the progress and status of your jobs by using the `qstat` utility
 as discussed in lecture and lab. 
 
+
 ## Evaluate the QC metrics for the full data {-}
 
 After your pipeline has finished, inspect the MultiQC report generated from 
@@ -107,16 +108,28 @@ any metrics that might be concerning.
 :::
 
 
+## Analysis Tasks
+
+You will typically be performing analyses in either a jupyter notebook or Rmarkdown.
+With the SCC, we will not be able to easily encapsulate R in an isolated environment.
+
+Instead, simply load the R module (on the launch page for VSCode in on-demand) 
+as you boot your VSCode extension and work in aRmarkdown. You may install packages
+as needed and ensure that you record the versions used with the `sessionInfo()` 
+function.
+
+
 ## Filtering the counts matrix {-}
 
 We will typically filter our counts matrices to remove genes that we believe
 will be uninformative for the DE analysis. It is important to remember that
-filtering is subjective and meant to reduce our statistical testing burden.
+filtering is subjective and meant to reduce computational time, or remove 
+uninformative rows. 
 
 :::{.box .task}
 
 1. Choose a filtering strategy and apply it to your counts matrix. In the provided
-notebook, report the strategy you used and create a plot that demonstrates
+notebook, report the strategy you used and create a plot or a table that demonstrates
 the effects of your filtering on the counts for all of your samples. Ensure you
 mention how many genes are present before and after your filtering threshold. 
 
@@ -130,6 +143,9 @@ the condition (control vs. experimental). Choose an appropriate padj threshold
 to generate a list of statistically significant differentially expressed genes
 from your analysis. 
 
+You may refer to the official [DESeq2](https://bioconductor.org/packages/3.21/bioc/vignettes/DESeq2/inst/doc/DESeq2.html)
+vignette or the [BF591](https://bu-bioinfo.github.io/r-for-biological-sciences/biology-bioinformatics.html#differential-expression-rnaseq) instructions for how to run a basic differential expression analysis.  
+
 :::{.box .task}
 
 Perform a basic differential expression analysis and produce the following as well
@@ -138,7 +154,10 @@ formatted figures:
   1. A table containing the DESeq2 results for the top ten significant genes 
   ranked by padj.
   
-  2. The results from a DAVID or ENRICHR analysis on the significant genes at
+  2. Choose an appropriate padj threshold and report the number of significant
+  genes at this threshold. 
+  
+  3. The results from a DAVID or ENRICHR analysis on the significant genes at
   your chosen padj threshold.
 
 :::
@@ -148,12 +167,14 @@ formatted figures:
 It is common to produce both a PCA plot as well as a sample-to-sample distance
 matrix from our counts to assist us in our confidence in whether the differences
 we see in the differential expression analysis can likely be contributed to our
-biological condition of interest.
+biological condition of interest. All of these plots have convenient wrapper
+functions already implemented in DESeq2 (see the vignette).
 
 :::{.box .task}
 
 1. Choose an appropriate normalization strategy (rlog or vst) and generate a
-normalized counts matrix for the experiment
+normalized counts matrix for the experiment. Refer to the DESeq2 vignette [here](https://bioconductor.org/packages/3.21/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#count-data-transformations)
+for specific directions on how to do this, 
 
 2. Perform PCA on this normalized counts matrix and overlay the sample
 information in a biplot of PC1 vs. PC2
@@ -161,7 +182,8 @@ information in a biplot of PC1 vs. PC2
 3. Create a heatmap or graphic of the sample-to-sample distances for the experiment
 
 4. In the provided notebook, comment in no less than two paragraphs about your
-interpretations of these plots and if you believe the DE analysis was successful.
+interpretations of these plots and what they indicate about the samples, and the 
+experiment.
 
 :::
 
