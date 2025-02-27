@@ -90,6 +90,9 @@ nextflow command should now be:
 nextflow run main.nf -profile singularity,cluster
 ```
 
+You may also need to unset the `resume = true` option in your config, or manually
+set `resume = false` when you attempt to rerun your workflow on the full data. 
+
 You may examine the progress and status of your jobs by using the `qstat` utility
 as discussed in lecture and lab. 
 

@@ -18,7 +18,8 @@
 
 For the final week, use this time to finish up any tasks you weren't able to 
 complete. There are no nextflow tasks this week, but you will be asked to create
-some figures from the original paper using your own findings. 
+some figures from the original paper using your own findings. Do all of these
+tasks in the notebook you created from week 3. 
 
 ## Objectives {-}
 
@@ -68,7 +69,7 @@ style we've discussed.
 
 :::{.box .task}
 
-1. In your provided notebook, write a brief methods section for your workflow
+1. In your notebook, write a brief methods section for your workflow
 
 
 2. Read the methods for the paper and in your provided notebook, please ensure
