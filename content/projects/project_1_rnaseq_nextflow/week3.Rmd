@@ -155,7 +155,8 @@ Perform a basic differential expression analysis and produce the following as we
 formatted figures:
 
   1. A table containing the DESeq2 results for the top ten significant genes 
-  ranked by padj.
+  ranked by padj. Your results should have the corresponding gene names for
+  each gene symbol. (You extracted these earlier...)
   
   2. Choose an appropriate padj threshold and report the number of significant
   genes at this threshold. 
