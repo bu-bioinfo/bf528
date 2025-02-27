@@ -172,6 +172,8 @@ that can run simultaneously.</p>
 <code>cluster</code> profile option in place of the <code>local</code> flag as in project 0. Your new
 nextflow command should now be:</p>
 <pre><code>nextflow run main.nf -profile singularity,cluster</code></pre>
+<p>You may also need to unset the <code>resume = true</code> option in your config, or manually
+set <code>resume = false</code> when you attempt to rerun your workflow on the full data.</p>
 <p>You may examine the progress and status of your jobs by using the <code>qstat</code> utility
 as discussed in lecture and lab.</p>
 </div>
