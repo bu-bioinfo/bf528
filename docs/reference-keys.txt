@@ -1,4 +1,5 @@
 creating-your-own-process-labels
+analysis-tasks
 week-2-tasks-summary
 introductory-slides
 computational-primer

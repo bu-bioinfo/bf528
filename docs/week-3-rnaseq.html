@@ -188,16 +188,28 @@ any metrics that might be concerning.</li>
 </ol>
 </div>
 </div>
+<div id="analysis-tasks" class="section level2" number="0.2">
+<h2>
+<span class="header-section-number">0.2</span> Analysis Tasks<a class="anchor" aria-label="anchor" href="#analysis-tasks"><i class="fas fa-link"></i></a>
+</h2>
+<p>You will typically be performing analyses in either a jupyter notebook or Rmarkdown.
+With the SCC, we will not be able to easily encapsulate R in an isolated environment.</p>
+<p>Instead, simply load the R module (on the launch page for VSCode in on-demand)
+as you boot your VSCode extension and work in aRmarkdown. You may install packages
+as needed and ensure that you record the versions used with the <code><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo()</a></code>
+function.</p>
+</div>
 <div id="filtering-the-counts-matrix" class="section level2 unnumbered">
 <h2>Filtering the counts matrix<a class="anchor" aria-label="anchor" href="#filtering-the-counts-matrix"><i class="fas fa-link"></i></a>
 </h2>
 <p>We will typically filter our counts matrices to remove genes that we believe
 will be uninformative for the DE analysis. It is important to remember that
-filtering is subjective and meant to reduce our statistical testing burden.</p>
+filtering is subjective and meant to reduce computational time, or remove
+uninformative rows.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
 <li>Choose a filtering strategy and apply it to your counts matrix. In the provided
-notebook, report the strategy you used and create a plot that demonstrates
+notebook, report the strategy you used and create a plot or a table that demonstrates
 the effects of your filtering on the counts for all of your samples. Ensure you
 mention how many genes are present before and after your filtering threshold.</li>
 </ol>
@@ -211,12 +223,16 @@ analysis. For this dataset, you will simply be testing for differences between
 the condition (control vs. experimental). Choose an appropriate padj threshold
 to generate a list of statistically significant differentially expressed genes
 from your analysis.</p>
+<p>You may refer to the official <a href="https://bioconductor.org/packages/3.21/bioc/vignettes/DESeq2/inst/doc/DESeq2.html">DESeq2</a>
+vignette or the <a href="https://bu-bioinfo.github.io/r-for-biological-sciences/biology-bioinformatics.html#differential-expression-rnaseq">BF591</a> instructions for how to run a basic differential expression analysis.</p>
 <div class="box task">
 <p>Perform a basic differential expression analysis and produce the following as well
 formatted figures:</p>
 <ol style="list-style-type: decimal">
 <li><p>A table containing the DESeq2 results for the top ten significant genes
 ranked by padj.</p></li>
+<li><p>Choose an appropriate padj threshold and report the number of significant
+genes at this threshold.</p></li>
 <li><p>The results from a DAVID or ENRICHR analysis on the significant genes at
 your chosen padj threshold.</p></li>
 </ol>
@@ -228,16 +244,19 @@ your chosen padj threshold.</p></li>
 <p>It is common to produce both a PCA plot as well as a sample-to-sample distance
 matrix from our counts to assist us in our confidence in whether the differences
 we see in the differential expression analysis can likely be contributed to our
-biological condition of interest.</p>
+biological condition of interest. All of these plots have convenient wrapper
+functions already implemented in DESeq2 (see the vignette).</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
 <li><p>Choose an appropriate normalization strategy (rlog or vst) and generate a
-normalized counts matrix for the experiment</p></li>
+normalized counts matrix for the experiment. Refer to the DESeq2 vignette <a href="https://bioconductor.org/packages/3.21/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#count-data-transformations">here</a>
+for specific directions on how to do this,</p></li>
 <li><p>Perform PCA on this normalized counts matrix and overlay the sample
 information in a biplot of PC1 vs. PC2</p></li>
 <li><p>Create a heatmap or graphic of the sample-to-sample distances for the experiment</p></li>
 <li><p>In the provided notebook, comment in no less than two paragraphs about your
-interpretations of these plots and if you believe the DE analysis was successful.</p></li>
+interpretations of these plots and what they indicate about the samples, and the
+experiment.</p></li>
 </ol>
 </div>
 </div>
@@ -273,6 +292,7 @@ interesting to you about the biology</p></li>
 <li><a class="nav-link" href="#docker-images-for-your-pipeline-2">Docker images for your pipeline</a></li>
 <li><a class="nav-link" href="#switching-to-the-full-data">Switching to the full data</a></li>
 <li><a class="nav-link" href="#evaluate-the-qc-metrics-for-the-full-data">Evaluate the QC metrics for the full data</a></li>
+<li><a class="nav-link" href="#analysis-tasks"><span class="header-section-number">0.2</span> Analysis Tasks</a></li>
 <li><a class="nav-link" href="#filtering-the-counts-matrix">Filtering the counts matrix</a></li>
 <li><a class="nav-link" href="#performing-differential-expression-analysis-using-the-filtered-counts">Performing differential expression analysis using the filtered counts</a></li>
 <li><a class="nav-link" href="#rnaseq-quality-control-plots">RNAseq Quality Control Plots</a></li>
