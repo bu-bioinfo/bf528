@@ -162,7 +162,8 @@ formatted figures:
   genes at this threshold. 
   
   3. The results from a DAVID or ENRICHR analysis on the significant genes at
-  your chosen padj threshold.
+  your chosen padj threshold. Comment in a notebook what results you find most
+  interesting from this analysis. 
 
 :::
 
@@ -185,7 +186,7 @@ information in a biplot of PC1 vs. PC2
 
 3. Create a heatmap or graphic of the sample-to-sample distances for the experiment
 
-4. In the provided notebook, comment in no less than two paragraphs about your
+4. In a notebook, comment in no less than two paragraphs about your
 interpretations of these plots and what they indicate about the samples, and the 
 experiment.
 
@@ -205,8 +206,8 @@ to perform a basic GSEA analysis.
 2. Using a statistical threshold of your choice, generate a figure or plot that
 displays the top most significant results from the FGSEA results.'
 
-3. In the provided notebook, briefly remark on your results and what seems
-interesting to you about the biology
+3. In a notebook, briefly remark on your results and what seems interesting to
+you about the biology
 
 :::
 
