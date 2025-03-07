@@ -78,6 +78,15 @@ change what results you find.
 
 :::
 
+## Copy the provided discussion questions into your notebook and answer them
+
+I have made a separate repo with a Rmd containing a few conceptual questions
+related to the project. Please copy these questions into your notebook (the one
+where you've been doing your analysis) and do your best to answer them. 
+A few of the questions have a "correct" answer, but several of them are more
+conceptual in nature and I am looking mostly at your thought process. 
+
+
 ## Week 4 Detailed Tasks Summary {-}
 
 1. Read the original publication and focus specifically on the RNAseq experiment
@@ -87,4 +96,4 @@ listed questions in your notebook
 
 3. Write a methods section in the style we've discussed for your workflow
 
-
+4. Address the additional questions provided to you in your notebook
