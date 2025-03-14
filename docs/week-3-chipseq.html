@@ -151,7 +151,7 @@ your IP sample bigwigs to create a signal intensity plot</p></li>
 <div id="download-a-hg38-gene-bed-from-ucsc-table-browser" class="section level2 unnumbered">
 <h2>Download a HG38 gene BED from UCSC table browser<a class="anchor" aria-label="anchor" href="#download-a-hg38-gene-bed-from-ucsc-table-browser"><i class="fas fa-link"></i></a>
 </h2>
-<p>We will be creating a similar plot which will provide a quick visualization of
+<p>We will be creating a plot which will provide a quick visualization of
 the average signal across the gene body of all genes. We will scale every gene
 to a uniform size and display the counts of alignments falling in the annotated
 regions of the gene. This will allow us to quickly visualize at a very
@@ -166,6 +166,7 @@ for every gene in the reference genome:</p>
 <p>On the following page, do not change any options and you will be prompted to
 download a BED file containing the requested information.</p>
 <pre><code>1. Put this BED file into your `refs/` working directory on SCC. </code></pre>
+<p>I have also provided this bed file in the materials/ directory for project 2.</p>
 <p>This is a simple use case, but the UCSC table browser and UCSC genome browser
 are incredibly powerful tools and repositories for genome-wide sequencing data.</p>
 </div>
@@ -201,12 +202,13 @@ found to have higher affinity for specific DNA binding sites with recurring sequ
 and pattern. These motifs may reveal key information about gene regulation by
 allowing for determination of what factors are binding in peaks. Remember that
 many DNA binding proteins bind as part of much larger multi-protein complexes that
-work in tandem to regulate gene expression.</p>
+work in tandem to regulate gene expression. We will be using the HOMER tool
+to perform motif enrichment, you may find the manual <a href="http://homer.ucsd.edu/homer/ngs/peakMotifs.html">here</a></p>
 <div class="box task">
 <ol style="list-style-type: decimal">
 <li><p>Use the <code>findMotifsGenome.pl</code> utility in homer to perform motif enrichment
 analysis on your set of reproducible and filtered peaks.</p></li>
-<li><p>In the provided notebook, please make a table or take a screenshot of the top
+<li><p>In the notebook you create, please make a table or take a screenshot of the top
 ten enriched motifs that are found from the motif analysis.</p></li>
 </ol>
 </div>

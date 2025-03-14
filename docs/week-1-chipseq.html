@@ -183,16 +183,26 @@ the modularity of nextflow by simply copying these previous modules and
 incorporating them into this workflow.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
-<li><p>Copy the subsampled files from
-/projectnb/bf528/materials/project-2-chipseq/subsampled_files/ to a new
-directory called <code>subsampled_files/</code> in your <code>samples/</code> directory. Encode the
-names of the file and the paths in a samplesheet at the top level of your
-directory</p></li>
-<li><p>Copy the human reference genome and associated GTF to your <code>refs/</code> directory.
-Add these paths to your <code>nextflow.config</code> as params.</p></li>
-<li><p>Update your workflow <code>main.nf</code> to perform quality control using FastQC and
+<li>Note the full paths of the files located in:
+/projectnb/bf528/materials/project-2-chipseq/subsampled_files/. Make a CSV
+samplesheet that encodes the name of the sample, and the path to the actual
+file:</li>
+</ol>
+<pre><code>name,path
+IP_rep1,/projectnb/bf528/materials/project-2-chipseq/subsampled_files/IP_rep1.subset.fastq.gz
+...</code></pre>
+<p><strong>Please note that the subsample_files are named differently than the full files!</strong></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Encode the path to the human reference genome,associated GTF and the TruSeq3
+adapters fasta and add these paths to your <code>nextflow.config</code> as params. An
+example you can see below:</li>
+</ol>
+<pre><code>genome = "/projectnb/bf528/materials/project-2-chipseq/refs/GRCh38.primary_assembly.genome.fa.gz"</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Update your workflow <code>main.nf</code> to perform quality control using FastQC and
 trimmomatic, build a bowtie2 index for the human reference genome and align the
-reads to the reference genome.</p></li>
+reads to the reference genome. Remember that we have worked on code for
+trimmomatic and bowtie2 in the labs.</li>
 </ol>
 </div>
 </div>

@@ -158,16 +158,19 @@ Assuming the experiment was successful, we naively expect that the IP samples
 should be highly similar to each other as they should be capturing the same
 binding sites for the factor of interest. Following this logic, the input controls
 which represent a random background of DNA from the genome should be <em>different</em>
-from the IP samples and similar to each other.</p>
+from the IP samples and somewhat more similar to each other.</p>
 <p>We are going to perform a quick correlation analysis between the distances in
 our bigWig representations of our BAM files to determine the similarity between
 our samples with the above assumptions in mind.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
-<li><p>Create a module and use the multiBigwigsummary utility in deeptools to create a matrix containing
-the information from the bigWig files of all of your samples.</p></li>
+<li><p>Create a module and use the multiBigwigsummary utility in deeptools to create
+a matrix containing the information from the bigWig files of all of your
+samples.</p></li>
 <li><p>Create a module and use the plotCorrelation utility in deeptools to generate
-a plot of the distances between correlation coefficients for all of your samples</p></li>
+a plot of the distances between correlation coefficients for all of your samples.
+You will need to choose whether to use a pearson or spearman correlation. In
+a notebook you create, provide a short justification for what you chose.</p></li>
 </ol>
 </div>
 </div>
@@ -176,7 +179,7 @@ a plot of the distances between correlation coefficients for all of your samples
 </h2>
 <p>In plain terms, peak calling algorithms attempt to find areas of enriched reads
 in a genome relative to background noise. MACS3 (Model-Based Analysis of Chip-Seq)
-is a commonly used tool that incorporates a Poisson model and other innovations to
+is a commonly used tool that incorporates a Poisson model and other methodologies to
 make robust peak-finding predictions.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
@@ -187,7 +190,9 @@ and the <code>-f</code> flag explicitly for paired-end BAM files.</p></li>
 <li><p><strong>You will need to figure out how to pass both the IP and the Control sample
 for each replicate to the same command</strong>. i.e. callpeak should run twice
 (IP_rep1 and control_rep1) and (IP_rep2 and control_rep2) as ChIP-seq
-experiments have paired IP and controls.</p></li>
+experiments have paired IP and controls. The rep1 samples were derived from the
+same biological material and is a biological replicate for the rep 2 samples.
+You will end up with two sets of peak calls, one for each replicate pair.</p></li>
 </ol>
 </div>
 </div>
@@ -201,8 +206,10 @@ intersection strategy for determine a reproducible peak. Remember that this choi
 is subjective, so make a choice and justify it</strong></p>
 <div class="box task">
 <ol style="list-style-type: decimal">
-<li>Use the bedtools <code>intersect</code> tool to produce a single set of reproducible
-peaks from both of your replicate experiments</li>
+<li><p>Use the bedtools <code>intersect</code> tool to produce a single set of reproducible
+peaks from both of your replicate experiments.</p></li>
+<li><p>In your created notebook, please provide a quick statement on how you chose
+to come up with a consensus set of peaks.</p></li>
 </ol>
 </div>
 </div>
@@ -217,15 +224,18 @@ signal-artifact regions and commonly stored in the form of a <a href="https://ww
 <p>The Boyle LAB as part of the ENCODE project have very kindly produced a list of
 these regions in some of the major model organisms using a standard methodology.
 This list is encoded as a BED file and is hosted by the <a href="https://github.com/Boyle-Lab/Blacklist">Boyle
-Lab</a>/ Please copy the provided file from
-<code>references/</code> to your repository.</p>
+Lab</a>/ Please encode the path to the
+blacklist in your params, you may find the file in the refs/ directory under
+materials/ for project 2.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
 <li><p>Create a module that uses bedtools to remove any peaks that overlap with the
 blacklist BED for the most recent human reference genome.</p></li>
-<li><p>Typically, any peaks that overlap a blacklisted region by even 1bp will be
-removed. You may choose a different strategy if you prefer as long as you justify
-your choice in the write-up later.</p></li>
+<li><p>In your provided notebook, please write a short section on the strategy you
+employed to remove blacklisted regions. Typically, any peaks that overlap a
+blacklisted region by even 1bp will be removed. You may choose a different
+strategy if you prefer as long as you justify your choice in the notebook you
+create.</p></li>
 </ol>
 </div>
 </div>
@@ -237,7 +247,8 @@ regions removed, we are going to annotate our peaks by assigning them an identit
 based on their closest genomic feature. While we have discussed many caveats to
 annotating peaks in this fashion, it is a quick and exploratory analysis that
 enables quick determination of the genomic structures your peaks are located in and
-their potential regulatory functions.</p>
+their potential regulatory functions. You may find the manual page for HOMER and
+this utility <a href="http://homer.ucsd.edu/homer/ngs/annotation.html">here</a></p>
 <div class="box task">
 <ol style="list-style-type: decimal">
 <li>Create a module that uses <code>homer</code> and the <code>annotatePeaks.pl</code> script to annotate
