@@ -100,18 +100,31 @@ incorporating them into this workflow.
 
 :::{.box .task}
 
-1. Copy the subsampled files from
-/projectnb/bf528/materials/project-2-chipseq/subsampled_files/ to a new
-directory called `subsampled_files/` in your `samples/` directory. Encode the
-names of the file and the paths in a samplesheet at the top level of your
-directory
+1. Note the full paths of the files located in:
+/projectnb/bf528/materials/project-2-chipseq/subsampled_files/. Make a CSV
+samplesheet that encodes the name of the sample, and the path to the actual
+file:
 
-2. Copy the human reference genome and associated GTF to your `refs/` directory.
-Add these paths to your `nextflow.config` as params.
+```
+name,path
+IP_rep1,/projectnb/bf528/materials/project-2-chipseq/subsampled_files/IP_rep1.subset.fastq.gz
+...
+```
 
-3. Update your workflow `main.nf` to perform quality control using FastQC and 
+**Please note that the subsample_files are named differently than the full files!**
+
+2. Encode the path to the human reference genome,associated GTF and the TruSeq3
+adapters fasta and add these paths to your `nextflow.config` as params. An
+example you can see below:
+
+```
+genome = "/projectnb/bf528/materials/project-2-chipseq/refs/GRCh38.primary_assembly.genome.fa.gz"
+```
+
+3. Update your workflow `main.nf` to perform quality control using FastQC and
 trimmomatic, build a bowtie2 index for the human reference genome and align the
-reads to the reference genome.
+reads to the reference genome. Remember that we have worked on code for
+trimmomatic and bowtie2 in the labs.
 
 :::
 
