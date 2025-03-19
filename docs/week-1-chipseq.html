@@ -85,11 +85,12 @@
 <li><a class="" href="microbiome-metagenomics.html">Microbiome: Metagenomics</a></li>
 <li><a class="" href="microbiome-16s.html">Microbiome: 16S</a></li>
 <li><a class="" href="proteomics.html">Proteomics</a></li>
+<li><a class="" href="genome-browsers.html">Genome Browsers</a></li>
 <li><a class="" href="metabolomics.html">Metabolomics</a></li>
 <li><a class="" href="sequence-analysis---chip-seq.html">Sequence Analysis - ChIP-Seq</a></li>
 <li><a class="" href="sequence-analysis---atac-seq.html">Sequence Analysis - ATAC-Seq</a></li>
 <li><a class="" href="single-cell-analysis-part-1.html">Single Cell Analysis Part 1</a></li>
-<li><a class="" href="genome-browsers.html">Genome Browsers</a></li>
+<li><a class="" href="genome-browsers-1.html">Genome Browsers</a></li>
 <li><a class="" href="single-cell-analysis-part-2.html">Single Cell Analysis Part 2</a></li>
 <li><a class="" href="single-cell-analysis-part-3.html">Single Cell Analysis Part 3</a></li>
 <li><a class="" href="spatial-transcriptomics.html">Spatial Transcriptomics</a></li>
@@ -191,9 +192,9 @@ file:</li>
 <pre><code>name,path
 IP_rep1,/projectnb/bf528/materials/project-2-chipseq/subsampled_files/IP_rep1.subset.fastq.gz
 ...</code></pre>
-<p><strong>Please note that the subsample_files are named differently than the full files!</strong></p>
+<p><strong>Please note that the subsampled_files are named differently than the full files!</strong></p>
 <ol start="2" style="list-style-type: decimal">
-<li>Encode the path to the human reference genome,associated GTF and the TruSeq3
+<li>Encode the path to the human reference genome, associated GTF and the TruSeq3
 adapters fasta and add these paths to your <code>nextflow.config</code> as params. An
 example you can see below:</li>
 </ol>
@@ -215,8 +216,7 @@ the alignments will allow us to perform much more efficient computational
 operations on them.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
-<li>Create a module that will both sort and index your BAM files using Samtools.
-Do both steps in one single module.</li>
+<li>Create a module that will both sort and index your BAM files using Samtools.</li>
 </ol>
 </div>
 </div>
