@@ -96,6 +96,11 @@ Familiarize yourself with the material on basic command line usage found here:
 
 [downloadable slides](https://docs.google.com/presentation/d/1d1Ho_YMxqxrzsrIBp2N50R5IstCQfmiwMJul6lHRFec/export/pptx)
 
+# Genome Browsers {-}
+[online slides](https://docs.google.com/presentation/d/1fXvA2nrCqWl-SCbM_BkAoLhRq8VMShWFAqYZISk1TCA/present?usp=sharing)
+
+[downloadable slides](https://docs.google.com/presentation/d/1fXvA2nrCqWl-SCbM_BkAoLhRq8VMShWFAqYZISk1TCA/export/pptx)
+
 # Metabolomics {-}
 [online slides](https://docs.google.com/presentation/d/1Pey4YDKdz5i0Q3t5CuvwzHPtwo55RvUaO1TWvZAD2As/present?usp=sharing)
 

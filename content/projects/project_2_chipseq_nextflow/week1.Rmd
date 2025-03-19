@@ -111,9 +111,9 @@ IP_rep1,/projectnb/bf528/materials/project-2-chipseq/subsampled_files/IP_rep1.su
 ...
 ```
 
-**Please note that the subsample_files are named differently than the full files!**
+**Please note that the subsampled_files are named differently than the full files!**
 
-2. Encode the path to the human reference genome,associated GTF and the TruSeq3
+2. Encode the path to the human reference genome, associated GTF and the TruSeq3
 adapters fasta and add these paths to your `nextflow.config` as params. An
 example you can see below:
 
@@ -140,7 +140,6 @@ operations on them.
 :::{.box .task}
 
 1. Create a module that will both sort and index your BAM files using Samtools. 
-Do both steps in one single module. 
 
 :::
 
