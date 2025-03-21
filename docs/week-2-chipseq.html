@@ -181,7 +181,8 @@ a notebook you create, provide a short justification for what you chose.</p></li
 <p>In plain terms, peak calling algorithms attempt to find areas of enriched reads
 in a genome relative to background noise. MACS3 (Model-Based Analysis of Chip-Seq)
 is a commonly used tool that incorporates a Poisson model and other methodologies to
-make robust peak-finding predictions.</p>
+make robust peak-finding predictions. Generate a nextflow module and workflow
+that runs MACS3.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
 <li><p>Use the <a href="https://macs3-project.github.io/MACS/docs/callpeak.html">MACS3 manual</a>
@@ -205,6 +206,8 @@ For the sake of expedience, we will be performing a simple intersection to come
 up with a single set of peaks from this experiment. <strong>Please come up with a valid
 intersection strategy for determine a reproducible peak. Remember that this choice
 is subjective, so make a choice and justify it</strong></p>
+<p>Generate a nextflow module and workflow that runs bedtools intersect to generate
+a set of reproducible peaks.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
 <li><p>Use the bedtools <code>intersect</code> tool to produce a single set of reproducible

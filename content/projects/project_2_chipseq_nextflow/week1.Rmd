@@ -101,14 +101,13 @@ incorporating them into this workflow.
 :::{.box .task}
 
 1. Use the provided CSV files that point to both the subsampled and full files.
-When you are developing your workflow, use the subsampled files (they will not
-work once you get to the peak calling step). 
+When you are developing the beginning of your workflow, use the subsampled files
+(they will not work once you get to the peak calling step). 
 
 **Please note that the subsampled_files are named differently than the full files!**
 
 2. The paths to the human reference genome, GTF and a few other critical files
 are already encoded in your `nextflow.config`. 
-
 
 3. Update your workflow `main.nf` to perform quality control using FastQC and
 trimmomatic, build a bowtie2 index for the human reference genome and align the

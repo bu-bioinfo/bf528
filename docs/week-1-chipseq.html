@@ -184,27 +184,20 @@ the modularity of nextflow by simply copying these previous modules and
 incorporating them into this workflow.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
-<li>Note the full paths of the files located in:
-/projectnb/bf528/materials/project-2-chipseq/subsampled_files/. Make a CSV
-samplesheet that encodes the name of the sample, and the path to the actual
-file:</li>
+<li>Use the provided CSV files that point to both the subsampled and full files.
+When you are developing the beginning of your workflow, use the subsampled files
+(they will not work once you get to the peak calling step).</li>
 </ol>
-<pre><code>name,path
-IP_rep1,/projectnb/bf528/materials/project-2-chipseq/subsampled_files/IP_rep1.subset.fastq.gz
-...</code></pre>
 <p><strong>Please note that the subsampled_files are named differently than the full files!</strong></p>
 <ol start="2" style="list-style-type: decimal">
-<li>Encode the path to the human reference genome, associated GTF and the TruSeq3
-adapters fasta and add these paths to your <code>nextflow.config</code> as params. An
-example you can see below:</li>
-</ol>
-<pre><code>genome = "/projectnb/bf528/materials/project-2-chipseq/refs/GRCh38.primary_assembly.genome.fa.gz"</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>Update your workflow <code>main.nf</code> to perform quality control using FastQC and
+<li><p>The paths to the human reference genome, GTF and a few other critical files
+are already encoded in your <code>nextflow.config</code>.</p></li>
+<li><p>Update your workflow <code>main.nf</code> to perform quality control using FastQC and
 trimmomatic, build a bowtie2 index for the human reference genome and align the
 reads to the reference genome. Remember that we have worked on code for
-trimmomatic and bowtie2 in the labs.</li>
+trimmomatic and bowtie2 in the labs.</p></li>
 </ol>
+<p><strong>N.B. Some of the code from the labs will need to be modified to work for this specific experiment (paired end vs. single end, etc.)</strong></p>
 </div>
 </div>
 <div id="sorting-and-indexing-the-alignments" class="section level2 unnumbered">
@@ -216,7 +209,7 @@ the alignments will allow us to perform much more efficient computational
 operations on them.</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
-<li>Create a module that will both sort and index your BAM files using Samtools.</li>
+<li>Create a module(s) that will both sort and index your BAM files using Samtools.</li>
 </ol>
 </div>
 </div>
