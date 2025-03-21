@@ -100,31 +100,22 @@ incorporating them into this workflow.
 
 :::{.box .task}
 
-1. Note the full paths of the files located in:
-/projectnb/bf528/materials/project-2-chipseq/subsampled_files/. Make a CSV
-samplesheet that encodes the name of the sample, and the path to the actual
-file:
-
-```
-name,path
-IP_rep1,/projectnb/bf528/materials/project-2-chipseq/subsampled_files/IP_rep1.subset.fastq.gz
-...
-```
+1. Use the provided CSV files that point to both the subsampled and full files.
+When you are developing your workflow, use the subsampled files (they will not
+work once you get to the peak calling step). 
 
 **Please note that the subsampled_files are named differently than the full files!**
 
-2. Encode the path to the human reference genome, associated GTF and the TruSeq3
-adapters fasta and add these paths to your `nextflow.config` as params. An
-example you can see below:
+2. The paths to the human reference genome, GTF and a few other critical files
+are already encoded in your `nextflow.config`. 
 
-```
-genome = "/projectnb/bf528/materials/project-2-chipseq/refs/GRCh38.primary_assembly.genome.fa.gz"
-```
 
 3. Update your workflow `main.nf` to perform quality control using FastQC and
 trimmomatic, build a bowtie2 index for the human reference genome and align the
 reads to the reference genome. Remember that we have worked on code for
 trimmomatic and bowtie2 in the labs.
+
+**N.B. Some of the code from the labs will need to be modified to work for this specific experiment (paired end vs. single end, etc.)**
 
 :::
 
@@ -139,7 +130,7 @@ operations on them.
 
 :::{.box .task}
 
-1. Create a module that will both sort and index your BAM files using Samtools. 
+1. Create a module(s) that will both sort and index your BAM files using Samtools. 
 
 :::
 
