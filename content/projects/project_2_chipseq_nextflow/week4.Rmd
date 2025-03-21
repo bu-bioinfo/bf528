@@ -125,6 +125,12 @@ with your own findings. Address the following questions:
 
 :::
 
+## Address the provided discussion questions {-}
+
+Answer any of the provided discussion questions in the notebook you created.
+Please copy the questions and provide your answers in the same notebook you've
+been performing your analyses. 
+
 ## Week 4 Detailed Tasks Summary {-}
 
 - Read the original publication with a particular focus on figure 2
@@ -139,3 +145,5 @@ significance threshold. Use this information to re-create figure 2F.
 
 - Find supplementary figure S2 and re-create or compare your findings to
 supplementary figures 2A, 2B and 2C. Ensure you address any listed questions. 
+
+- Answer any provided discussion questions in your notebook
