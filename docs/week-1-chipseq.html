@@ -182,6 +182,9 @@ that perform quality control using FastQC and trimmomatic, build a genome index
 using bowtie2, and align reads to a genome. We are going to take advantage of
 the modularity of nextflow by simply copying these previous modules and
 incorporating them into this workflow.</p>
+<p>The samples termed IP are the samples of interest (IP for a factor of interest)
+and the samples labeled INPUT are the control samples. Remember ChIP-seq experiments
+are paired (e.g. INPUT_rep1 is the control for IP_rep1)</p>
 <div class="box task">
 <ol style="list-style-type: decimal">
 <li>Use the provided CSV files that point to both the subsampled and full files.
