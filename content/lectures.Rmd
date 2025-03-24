@@ -107,9 +107,9 @@ Familiarize yourself with the material on basic command line usage found here:
 [downloadable slides](https://docs.google.com/presentation/d/1Pey4YDKdz5i0Q3t5CuvwzHPtwo55RvUaO1TWvZAD2As/export/pptx)
 
 # Sequence Analysis - ChIP-Seq {-}
-[online slides](https://docs.google.com/presentation/d/1JarJGLbgTdSzUW6U1TmyNAUReNVUxfvUTBJ8hLhCAWg/present?usp=sharing)
+[online slides](https://docs.google.com/presentation/d/1J3ya4eEYj6Y4ZiS67vNox1dpaPUujbvDhnqWmLTAC40/edit?usp=sharing)
 
-[downloadable slides](https://docs.google.com/presentation/d/1JarJGLbgTdSzUW6U1TmyNAUReNVUxfvUTBJ8hLhCAWg/export/pptx)
+[downloadable slides](https://docs.google.com/presentation/d/1J3ya4eEYj6Y4ZiS67vNox1dpaPUujbvDhnqWmLTAC40/export/pptx)
 
 # Sequence Analysis - ATAC-Seq {-}
 [online slides](https://docs.google.com/presentation/d/14FxXgKuC7Ul0G6tCN8gjjGKc89vAujQiQCcDnwuzdJA/present?usp=sharing)
