@@ -18,9 +18,9 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="Section Links Week 4 Overview Objectives Write a methods section Read the original paper Overlap your ChIPseq results with the original RNAseq data [Reproduce findings from original figures 2D,...">
-<meta property="og:description" content="Section Links Week 4 Overview Objectives Write a methods section Read the original paper Overlap your ChIPseq results with the original RNAseq data [Reproduce findings from original figures 2D,...">
-<meta name="twitter:description" content="Section Links Week 4 Overview Objectives Write a methods section Read the original paper Overlap your ChIPseq results with the original RNAseq data [Reproduce findings from original figures 2D,...">
+<meta name="description" content="Section Links Week 4 Overview Objectives Write a methods section Comment on the sequence QC Read the original paper Overlap your ChIPseq results with the original RNAseq data [Reproduce findings...">
+<meta property="og:description" content="Section Links Week 4 Overview Objectives Write a methods section Comment on the sequence QC Read the original paper Overlap your ChIPseq results with the original RNAseq data [Reproduce findings...">
+<meta name="twitter:description" content="Section Links Week 4 Overview Objectives Write a methods section Comment on the sequence QC Read the original paper Overlap your ChIPseq results with the original RNAseq data [Reproduce findings...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -110,6 +110,7 @@
 <p><a href="week-4-genome-analytics.html#week-4-overview">Week 4 Overview</a></p>
 <p><a href="week-1-genome-analytics.html#objectives">Objectives</a></p>
 <p><a href="week-4-chipseq.html#write-a-methods-section">Write a methods section</a></p>
+<p><a href="week-4-chipseq.html#comment-on-the-sequence-qc">Comment on the sequence QC</a></p>
 <p><a href="week-4-rnaseq.html#read-the-original-paper">Read the original paper</a></p>
 <p><a href="week-4-chipseq.html#overlap-your-chipseq-results-with-the-original-rnaseq-data">Overlap your ChIPseq results with the original RNAseq data</a></p>
 <p>[Reproduce findings from original figures 2D, 2E, 2F]</p>
@@ -156,6 +157,13 @@ paper with a particular focus on the ChIP-Seq experiment presented in figure 2.<
 </h2>
 <p>Using the style and guidelines discussed in class, write a methods section that
 describes the analysis your nextflow pipeline performs.</p>
+</div>
+<div id="comment-on-the-sequence-qc" class="section level2 unnumbered">
+<h2>Comment on the sequence QC<a class="anchor" aria-label="anchor" href="#comment-on-the-sequence-qc"><i class="fas fa-link"></i></a>
+</h2>
+<p>Use the multiqc report you generated (after you’ve rerun your workflow on the
+full data) and write a brief paragraph commenting on the general quality of your
+data and its suitability for analysis based on these metrics.</p>
 </div>
 <div id="overlap-your-chipseq-results-with-the-original-rnaseq-data" class="section level2 unnumbered">
 <h2>Overlap your ChIPseq results with the original RNAseq data<a class="anchor" aria-label="anchor" href="#overlap-your-chipseq-results-with-the-original-rnaseq-data"><i class="fas fa-link"></i></a>
@@ -227,6 +235,24 @@ of called peaks.</li>
 </ul>
 </div>
 </div>
+<div id="analyze-the-annotated-peaks" class="section level2 unnumbered">
+<h2>Analyze the annotated peaks<a class="anchor" aria-label="anchor" href="#analyze-the-annotated-peaks"><i class="fas fa-link"></i></a>
+</h2>
+<p>Use your annotated peaks list and perform an enrichment method of your choice.
+This is purposefully open-ended so you may consider filtering your peaks by
+different categories before performing some kind of enrichment analysis. There are
+a few peak / region based enrichment methods (GREAT) in addition to standard
+methods used such as DAVID / Enrichr.</p>
+<div class="box task">
+<ol style="list-style-type: decimal">
+<li><p>In your created notebook, detail the methodology used to perform the enrichment.</p></li>
+<li><p>Create a single figure / plot / table that displays some of the top results
+from the analysis.</p></li>
+<li><p>Comment briefly in a paragraph about the results you observe and why they
+may be interesting.</p></li>
+</ol>
+</div>
+</div>
 <div id="address-the-provided-discussion-questions" class="section level2 unnumbered">
 <h2>Address the provided discussion questions<a class="anchor" aria-label="anchor" href="#address-the-provided-discussion-questions"><i class="fas fa-link"></i></a>
 </h2>
@@ -246,6 +272,8 @@ significance threshold. Use this information to re-create figure 2F.</p></li>
 <li><p>Re-create figures 2D and 2E and ensure you address the listed questions</p></li>
 <li><p>Find supplementary figure S2 and re-create or compare your findings to
 supplementary figures 2A, 2B and 2C. Ensure you address any listed questions.</p></li>
+<li><p>Perform an enrichment method using your annotated peaks and highlight the top
+results</p></li>
 <li><p>Answer any provided discussion questions in your notebook</p></li>
 </ul>
 </div>
@@ -265,8 +293,10 @@ supplementary figures 2A, 2B and 2C. Ensure you address any listed questions.</p
 <li><a class="nav-link" href="#objectives-11">Objectives</a></li>
 <li><a class="nav-link" href="#read-the-original-paper-1">Read the original paper</a></li>
 <li><a class="nav-link" href="#write-a-methods-section">Write a methods section</a></li>
+<li><a class="nav-link" href="#comment-on-the-sequence-qc">Comment on the sequence QC</a></li>
 <li><a class="nav-link" href="#overlap-your-chipseq-results-with-the-original-rnaseq-data">Overlap your ChIPseq results with the original RNAseq data</a></li>
 <li><a class="nav-link" href="#comparing-key-findings-to-the-original-paper">Comparing key findings to the original paper</a></li>
+<li><a class="nav-link" href="#analyze-the-annotated-peaks">Analyze the annotated peaks</a></li>
 <li><a class="nav-link" href="#address-the-provided-discussion-questions">Address the provided discussion questions</a></li>
 <li><a class="nav-link" href="#week-4-detailed-tasks-summary-2">Week 4 Detailed Tasks Summary</a></li>
 </ul>
