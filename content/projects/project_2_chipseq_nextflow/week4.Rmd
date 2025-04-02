@@ -8,6 +8,8 @@
 
 [Write a methods section]
 
+[Comment on the sequence QC]
+
 [Read the original paper]
 
 [Overlap your ChIPseq results with the original RNAseq data]
@@ -57,6 +59,12 @@ paper with a particular focus on the ChIP-Seq experiment presented in figure 2.
 
 Using the style and guidelines discussed in class, write a methods section that
 describes the analysis your nextflow pipeline performs. 
+
+## Comment on the sequence QC {-}
+
+Use the multiqc report you generated (after you've rerun your workflow on the
+full data) and write a brief paragraph commenting on the general quality of your
+data and its suitability for analysis based on these metrics.
 
 ## Overlap your ChIPseq results with the original RNAseq data {-}
 
@@ -125,6 +133,26 @@ with your own findings. Address the following questions:
 
 :::
 
+## Analyze the annotated peaks {-}
+
+Use your annotated peaks list and perform an enrichment method of your choice. 
+This is purposefully open-ended so you may consider filtering your peaks by
+different categories before performing some kind of enrichment analysis. There are
+a few peak / region based enrichment methods (GREAT) in addition to standard
+methods used such as DAVID / Enrichr. 
+
+:::{.box .task}
+
+1. In your created notebook, detail the methodology used to perform the enrichment.
+
+2. Create a single figure / plot / table that displays some of the top results
+from the analysis.
+
+3. Comment briefly in a paragraph about the results you observe and why they 
+may be interesting.
+
+:::
+
 ## Address the provided discussion questions {-}
 
 Answer any of the provided discussion questions in the notebook you created.
@@ -145,5 +173,8 @@ significance threshold. Use this information to re-create figure 2F.
 
 - Find supplementary figure S2 and re-create or compare your findings to
 supplementary figures 2A, 2B and 2C. Ensure you address any listed questions. 
+
+- Perform an enrichment method using your annotated peaks and highlight the top
+results
 
 - Answer any provided discussion questions in your notebook

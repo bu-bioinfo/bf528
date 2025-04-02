@@ -110,6 +110,11 @@ only done for the IP samples.
 a simple visualization of the read counts from the IP samples across the body of
 genes from the hg38 reference. 
 
+
+5. In your created notebook, please write a short paragraph describing the figure
+including details regarding how it was generated and what it appears to indicate
+about your data. 
+
 :::
 
 
@@ -131,6 +136,9 @@ analysis on your set of reproducible and filtered peaks.
 
 2. In the notebook you create, please make a table or take a screenshot of the top
 ten enriched motifs that are found from the motif analysis.
+
+3. Write a short paragraph discussing the top results you found and what you
+believe the results indicate. 
 
 :::
 

@@ -101,7 +101,7 @@ that runs MACS3.
 for the callpeak utility and create module that successfully runs `callpeak`
 
 2. Ensure that you specify the `-g` flag correctly for the human reference genome
-and the `-f` flag explicitly for paired-end BAM files. 
+
 
 3. **You will need to figure out how to pass both the IP and the Control sample
 for each replicate to the same command**. i.e. callpeak should run twice
