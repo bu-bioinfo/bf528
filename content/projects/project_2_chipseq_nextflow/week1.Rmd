@@ -88,6 +88,7 @@ bedtools: `ghcr.io/bf528/bedtools:latest`
 
 homer: `ghcr.io/bf528/homer:latest`
 
+homer/samtools: `ghcr.io/bf528/homer_samtools:latest`
 
 ## Quality Control, Genome indexing and alignment {-}
 

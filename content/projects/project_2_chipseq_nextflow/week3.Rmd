@@ -58,6 +58,8 @@ bedtools: `ghcr.io/bf528/bedtools:latest`
 
 homer: `ghcr.io/bf528/homer:latest`
 
+homer/samtools: `ghcr.io/bf528/homer_samtools:latest`
+
 ## Create and use a single Jupyter notebook for any images, reports or written discussion {-}
 
 Please create a single jupyter notebook (.ipynb) that contains all of the 
