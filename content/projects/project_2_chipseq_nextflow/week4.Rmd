@@ -6,6 +6,8 @@
 
 [Objectives]
 
+[Use your already created jupyter notebook for the following analyses]
+
 [Write a methods section]
 
 [Comment on the sequence QC]
@@ -50,6 +52,12 @@ discussion for figure 2
 - Reproduce figures 2D, 2E and 2F from the paper
 
 - Compare other key findings to the original publication
+
+## Use your already created jupyter notebook for the following analyses {-}
+
+Use the jupyter notebook created last week for all of this week's analyses. 
+Remember to choose the specified conda environment you created last week as the 
+kernel for the notebook whenever you are working in it.
 
 ## Write a methods section {-}
 
