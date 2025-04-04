@@ -180,6 +180,10 @@ this utility [here](http://homer.ucsd.edu/homer/ngs/annotation.html)
 1. Create a module that uses `homer` and the `annotatePeaks.pl` script to annotate
 your BED file of reproducible peaks (filtered to remove blacklisted regions).
 
+2. You can and should directly provide both a reference genome FASTA and the
+matching GTF to use custom annotations. Look further down the directions page
+for the argument order.
+
 :::
 
 ## Week 2 Tasks Summary
