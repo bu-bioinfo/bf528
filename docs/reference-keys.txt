@@ -2,6 +2,7 @@ creating-your-own-process-labels
 analysis-tasks
 copy-the-provided-discussion-questions-into-your-notebook-and-answer-them
 week-2-tasks-summary
+replicate-two-of-the-major-findings-analyses-from-the-publication
 introductory-slides
 computational-primer
 assignment
