@@ -1,40 +1,62 @@
 # Final Project - single cell RNAseq {-}
 
+For the final project, you may use either of the two provided datasets or choose
+one of your own interest provided you get approval.
+
+Paper 1: https://www.nature.com/articles/s42003-021-02562-8
+
+Paper 2: https://www.nature.com/articles/s41467-023-40727-7
+
+Generally speaking, the minimum requirements for the datasets are the following:
+
+  1. The dataset must consist of single cell or single nucleus sequencing data
+  2. It must consist of at least 4 replicates / samples
+  
+You are responsible for obtaining the data in a usable format for either of the
+provided papers or your own. Remember that the format of the submitted data may
+vary depending on the lab itself, the journal it was published in, or even the 
+requirements of the grant mechanism that funded the study. For some datasets,
+it may be as simple as finding the GEO accession and downloading the alignment
+results directly or you may need to download the BAM / FASTQ files are process
+them.
+
 By now, we will have gone through the basic workflow for a single cell dataset
 in-class. For the final project, you will be processing single cell RNAseq data
 from a published experiment on your own and focusing on some of the more common
 biological analyses performed on scRNAseq. 
 
-Your workflow will need to align the reads to an appropriate reference genome.
-We have provided you with a docker image containing the latest version of
-cellranger, but you may also explore other valid alignment strategies (STARsolo,
-etc.)
+These directions will give you a basic scaffold of what you need to do and
+the rest you will need to implement on your own. You will be asked to produce
+certain figures / plots and write a short discussion on what is shown, your
+interpretation of the findings and how it affects how you will proceed with your
+analysis. Please create a single jupyter notebook or Rmarkdown that contains
+both the required plots and answers to the discussion questions.
 
-Once you have a successfully working pipeline, you will need to perform a basic
-analysis of the data in either Seurat or Scanpy. These directions will only give
-you a basic scaffold of what you need to do and the rest you will need to
-implement on your own. You will be asked to produce certain figures / plots and
-write a short discussion on what is shown, your interpretation of the findings
-and how it affects how you will proceed with your analysis. Please create a
-single jupyter notebook or Rmarkdown that contains both the required plots and
-answers to the discussion questions.
+If you use a jupyter notebook (scanpy), please also include a .YML file with the
+list of packages and versions you used. If you use a Rmarkdown (seurat), please
+include a printout from the `sessionInfo()` function in R with all of your utilized
+packages. 
 
+*Please either `knit` your Rmarkdown to a HTML or render your jupyter notebook 
+to a HTML report*
 
 ## Preprocessing {-}
 
-The dataset consists of multiple samples from the same experiment, ensure that 
-you perform these QC metrics for each sample. You may create separate plots for
-each or create integrated plots with all of the samples. 
+Perform appropriate QC for each of the samples in your dataset separately. In 
+addition to the basic QC metrics, you should utilize a doublet detection tool
+of your choice.
 
 *Figures*
 
-1. A plot containing the number of unique genes detected per barcode, the total
-number of molecules per barcode, and the percentage of reads that map to the
-mitochondrial genome. 
+1. Create a plot or plots that contain at minimum information on the number of
+unique genes detected per barcode, the total number of molecules per barcode,
+and the percentage of reads that map to the mitochondrial genome.
 
-2. An integrated plot that visualizes the above metrics jointly. 
+2. An integrated plot that visualizes the above metrics jointly for each sample.
 
-3. A table that displays how many cells / genes are present in your dataset 
+3. Results from the doublet detection algorithm you employed
+
+4. Create a table that displays how many cells / genes are present in your dataset 
 before and after your filtering thresholds are implemented
 
 *Discussion*
@@ -44,8 +66,8 @@ In your discussion, make sure to address the following points / questions:
   - What filtering thresholds did you choose and how did you decide on them?
   - How many cells / genes are present before and after implementing your filtering
     thresholds?
-  - What are some potential strategies to set thresholds that don't rely on manual
-    inspection and "eyeing" of plots?
+  - Look in the literature, what are some potential strategies to set thresholds
+    that don't rely on visual inspection of plots?
 
 
 ## Count Normalization {-}
@@ -62,7 +84,7 @@ variable features you will use in downstream analyses.
 
 *Figures*
 
-- Create a plot of the top ten most variable features by your chosen metric. 
+- Create a plot of the highly variable features by your chosen metric. 
 
 *Discussion*
 
@@ -88,23 +110,30 @@ downstream analyses
 ## Clustering and visualization {-}
 
 Decide on an appropriate method to cluster your cells and create a visualization
-of the 2D embedding
+of the 2D embedding (UMAP / T-SNE). Choose an appropriate resolution for the 
+clustering algorithm. 
 
 *Figures*
 
 - Create a plot visualizing the clustering results of your cells. Ensure that
-it has labels that identify the different clusters. 
+it has labels that identify the different clusters as determined by the unsupervised
+clustering method you employed
 
 - Create a plot visualizing the clustering results of your cells. Ensure that
 it has labels that identify which samples each cell originated from. 
 
 *Discussion*
 
-- Write a brief caption describing the plot visualizing the clustering of your
-cells
+- Write a brief paragraph describing the results up to this point. In it, ensure
+that you include the following information:
+
+  1. How many cells come from each sample individually? How many total cells present
+  in the entire dataset?
+  2. How many clusters are present?
+  3. What clustering resolution did you use?
 
 - Use the second plot you created and briefly remark on whether you will perform
-integration. 
+integration.
 
 
 ## Integration (optional) {-}
@@ -128,7 +157,7 @@ Perform marker gene analysis using a method of your choice.
 
 *Figures*
 
-- Create a table listing the top ten marker genes for each of your clusters
+- Create a table listing the top five marker genes for each of your clusters
 
 *Discussion*
 
@@ -149,7 +178,7 @@ results of running the labeling tool of your choice.
 *Discussion*
 
 - Briefly remark on how the algorithm works and ensure you cite the original
-publication
+publication. You may paraphrase information from the publication. 
 
 - Comment on the cell identities of your clusters and any speculation as to the
 original source tissue of the samples based on what you see
@@ -164,7 +193,8 @@ final determination of the cell identities for each of your clusters.
 *Figures*
 
 - Create a single plot / figure that displays the top marker genes for every
-cluster in your dataset
+cluster in your dataset. This plot may be in any style (a heatmap, a tracksplot,
+violin plot, etc.)
 
 - For the top three clusters with the most cells, create individual plots of at
 least 5 of the defining marker genes for that cluster and their expression
@@ -180,56 +210,42 @@ label you have assigned to each cluster. Ensure that you have at least one
 citation that supports your labeling and choice of marker genes for each
 cluster.
 
-## Pseudobulk Analysis {-}
+## Replicate two of the major findings / analyses from the publication
 
-As we've discussed, cells from the same sample are often more similar to each
-other than the same cell type from other samples. It has been empirically
-determined that commonly used statistical methodology from bulk RNAseq will
-often lead to inflated type I error rates when attempting to perform
-differential expression across populations of cells or samples without
-modification in scRNAseq. 
+Please look in the publication for the dataset and choose two of their major
+findings / experiments and attempt to replicate them with your own workflow.
 
-Perform a pseudobulk analysis differential expression analysis between the WT
-and KO samples in the top three clusters with the most cells.
+These must be different and can involve any of the following types of analyses:
 
-*Figures*
-
-- Create a figure that displays the top results of your pseudobulk analysis
-for each of the three clusters. 
-
-*Discussion*
-
-- Briefly remark on the changes in gene expression you observe in these cell 
-populations between the WT and KO samples
-
-## Proportions of cell populations {-}
-
-This dataset only has X samples, but we can visualize the proportions of each
-cell cluster in all of our samples and look for potential trends. 
+  1. Pseudotime analysis (Monocle, Slingshot, CellRank, etc.)
+  2. RNA velocity analysis (scVelo, velocyto, etc.)
+  3. Cell Proportion analysis (scCODA, etc.)
+  4. Cell signaling analysis (CellChat, CellPhoneDB, etc.)
+  
+You do not need to reproduce entire panels of figures: it is enough to reproduce
+a single plot / figure that represents one of the major analyses above. 
 
 *Figures*
 
-- Create a plot that displays the proportion of each of your cell clusters 
-across all of your samples
+- Produce one figure per analysis that represents the most interesting results
 
 *Discussion*
 
-- Briefly discuss what your plot shows, and what you might do further in the
-future if you wanted to be more confident in drawing conclusions about potential
-changes in cell proportions across your conditions. 
+- Write a paragraph per analysis that highlights the top results discovered and
+includes at least one citation per analysis that represents a potential
+interpretation or hypothesis from the results.
+  
+## Analysis of your choice that was not performed in the publication {-}
 
-## Analysis of your choice {-}
-
-For the last part of the project, you may choose one additional analysis to 
-perform on the data. You may choose one of the following analyses:
-
-1. Pseudotime
-2. RNA velocity
-3. Cell signaling
-4. Cell composition
+For the last part of the project, you will choose one additional analysis to 
+perform on the data. Whatever analysis you choose *must not* have been already
+performed by the publication and must be one of the main analyses listed above
+or substantial enough as determined by me (i.e. a simple plot is not enough)
 
 You may choose a tool or algorithm with the same constraints as before (it must
-have a documented code base and an associated publication).
+have a documented code base and an associated publication). You may choose any
+of the analyses listed above. Please contact me if you are not sure if an
+analysis is substantial enough.
 
 *Figures*
 
@@ -238,20 +254,19 @@ the analysis
 
 *Discussion*
 
-- Briefly remark on the results and why they may be interesting for
-this dataset. 
+- Briefly remark on the results and why they may be interesting. Provide at
+least one citation from the literature that represents a potential hypothesis or
+point of interest from the results you show.
 
 
 ## Final Project Grading {-}
 
 The requirements for the final project are:
 
-  1. A working nextflow pipeline that uses all of the principles and strategies
-    discussed in class
-  2. A single jupyter notebook or Rmarkdown that performs the above tasks, creates
+  1. A single jupyter notebook or Rmarkdown that performs the above tasks, creates
     the required plots / visualizations and addresses the listed questions
     
 The responses to the questions should be written in the style of a scientific
 publication, but you will be graded on the content. Each question can be answered
-in as little as a paragraph so we encourage you to be brief. 
+in a short paragraph so we encourage you to be brief. 
 
