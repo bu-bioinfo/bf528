@@ -1,5 +1,7 @@
 rmd_files:
     - "index.Rmd"
+    - "labs_part.Rmd"
+    - "labs/labs1/lab1.Rmd"
     - "guide_part.Rmd"
     - "computational_env.Rmd"
     - "scc_guide.Rmd"

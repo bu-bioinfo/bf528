@@ -1,5 +1,5 @@
 ---
-title: "BF528 - Applications in Translational Bioinformatics"
+title: "BF528 - Genomic Data Analysis"
 link-citations: true
 ---
 
@@ -12,7 +12,7 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 knitr::opts_chunk$set(cache = TRUE)
 ```
 
-# BF528 - Applications in Translational Bioinformatics {-}
+# BF528 - Genomic Data Analysis {-}
 
 Welcome to the homepage of BF528.
 
@@ -105,16 +105,17 @@ found on the internet. Any and all available resources may be brought to bear.
 However, consistent with BU policy, your reports should be written in your own
 words and represent your own work and understanding of the material. 
 
-**Life happens.** Your mental, physical and emotional health isfar more
+**Life happens.** Your mental, physical and emotional health is far more
 important than any class. Make sure to take care of yourself and reach out to
 someone you trust (mentor, family member, or friend) if you ever feel you need
 to talk to someone. BU offers a number of resources through Student Health
 Services for managing situations involving grief, anxiety and depression,
 stress, homesickness and other common issues. I am also always here to listen
-without judgment. On a related note, if you need to miss class because of
-private matters, you do not need to disclose anything you aren’t comfortable
-sharing, please just let me know and I will work with you to help you catch up
-when you return. Your family, friends, and health should always come first.
+without judgment and help you find any other resources. On a related note, if 
+you need to miss class because of private matters, you do not need to disclose 
+anything you aren’t comfortable sharing, please just let me know and I will work
+with you to help you catch up when you return. Your family, friends, and health 
+should always come first.
 
 ## Prerequisites {-}
 
@@ -129,9 +130,6 @@ recommended.
 
 Joey Orofino
 
-Eric Palanques Tost
-
-Xudong Han
 
 Contact information available on Blackboard
 
@@ -150,14 +148,12 @@ As instructor, I pledge to:
 
 ## Projects Overview {-}
 
-- Project 0: Genome Analytics
-- Project 1: RNAseq
-- Project 2: ChIPseq
-- Project 3: scRNAseq
+- Project 1: Genome Assembly
+- Project 2: RNAseq
+- Project 3: ChIPseq
+- Project 4: Alternative Splicing Analysis
 
-Each project has been split into 4 weekly parts and by the end of each, you will
-have developed a complete pipeline that will process the data from end-to-end
-using state-of-the-art tools. In order to generate reproducible, and portable
+ In order to generate reproducible, and portable
 NGS analysis workflows, we will be employing a combination of technologies
 including Nextflow, git, Conda, Docker, and HPC.
 
@@ -177,8 +173,6 @@ ensure our own work is reproducible.
 
 ## Project Grading {-}
 
-Project 0 will *not* be graded and is meant to serve as a gentle introduction to
-Nextflow, and the other technologies we will be utilizing throughout the semester.
 
 Projects 1 and 2 will be graded based on your answers to weekly discussion
 questions as well as credit for completing the specified tasks on-time.

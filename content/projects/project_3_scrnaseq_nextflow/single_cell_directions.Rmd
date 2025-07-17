@@ -87,7 +87,7 @@ variable features you will use in downstream analyses.
 - Create a plot of the highly variable features by your chosen metric. 
 
 *Discussion*
-
+  
 - Explain the method used to determine highly variable features and report how
 many variable features you chose to use for downstream dimensional reduction. 
 
