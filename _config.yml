@@ -1,9 +1,10 @@
 # Site settings
 title: BF528 - Genomic Data Analysis
 description: Course materials for BF528 - Genomic Data Analysis at Boston University
-baseurl: "/bf528test" # the subpath of your site
-url: "https://joeyorofino.github.io" # the base hostname & protocol for your site
+baseurl: "/bf528" # the subpath of your site
+url: "https://bu-bioinfo.github.io" # the base hostname & protocol for your site
 email: ""
+teaser: "/assets/images/ancient_dna.png"
 
 theme: minimal-mistakes-jekyll
 
@@ -101,3 +102,5 @@ exclude:
   - build_bookdown.R
   - Dockerfile
   - Makefile
+
+
