@@ -1,0 +1,57 @@
+{% for item in include.nav %}
+  {% if item.children %}
+    <nav class="nav__items">
+      <h3 class="nav__title">{{ item.title }}</h3>
+      <ul class="nav__items">
+        {% for child in item.children %}
+          <li class="nav__item">
+            <a href="{{ child.url | relative_url }}" class="{% if child.url == page.url %}active{% endif %}">
+              {{ child.title }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  {% else %}
+    <a href="{{ item.url | relative_url }}" class="{% if item.url == page.url %}active{% endif %}">
+      {{ item.title }}
+    </a>
+  {% endif %}
+{% endfor %}
+
+<style>
+.nav__items {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5em;
+}
+
+.nav__title {
+  margin: 0 0 0.5em;
+  padding: 0 0 0.25em;
+  font-size: 1.125em;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.nav__item {
+  margin: 0;
+  padding: 0;
+}
+
+.nav__item a {
+  display: block;
+  padding: 0.5em 0;
+  color: #333;
+  text-decoration: none;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.nav__item a:hover {
+  color: #0066cc;
+}
+
+.nav__item a.active {
+  font-weight: bold;
+  color: #0066cc;
+}
+</style>

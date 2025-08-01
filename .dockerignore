@@ -1,0 +1,59 @@
+w# Ignore everything by default
+* 
+
+# Allow files and directories
+!.gitignore
+!.github/
+!.git/
+
+# Jekyll specific
+!/_config.yml
+!/_config.dev.yml
+!/_data/
+!/_includes/
+!/_layouts/
+!/_labs/
+!/_projects/
+!/_guides/
+!/_lectures/
+!/assets/
+!/index.md
+
+# Docker specific
+!Dockerfile.jekyll
+!docker-compose.yml
+
+# Ruby specific
+!Gemfile
+!Gemfile.lock
+
+# Allow all markdown files
+!**/*.md
+
+# Allow all image files
+!**/*.png
+!**/*.jpg
+!**/*.jpeg
+!**/*.gif
+!**/*.svg
+!**/*.ico
+
+# Allow all CSS/JS files
+!**/*.css
+!**/*.scss
+!**/*.js
+
+# Exclude build directories and other unnecessary files
+.git/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+vendor/
+node_modules/
+.env
+.env.local
+*.log

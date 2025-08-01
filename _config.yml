@@ -1,0 +1,103 @@
+# Site settings
+title: BF528 - Genomic Data Analysis
+description: Course materials for BF528 - Genomic Data Analysis at Boston University
+baseurl: "/bf528test" # the subpath of your site
+url: "https://joeyorofino.github.io" # the base hostname & protocol for your site
+email: ""
+
+theme: minimal-mistakes-jekyll
+
+# Build settings
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Collections
+collections:
+  labs:
+    output: true
+    permalink: /labs/:path/
+  projects:
+    output: true
+    permalink: /projects/:path/
+  guides:
+    output: true
+    permalink: /guides/:path/
+  lectures:
+    output: true
+    permalink: /lectures/:path/
+
+# Defaults
+defaults:
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      sidebar:
+        nav: "sidebar"
+      classes: wide
+
+  # _labs
+  - scope:
+      path: ""
+      type: labs
+    values:
+      layout: single
+      sidebar:
+        nav: "sidebar"
+      toc: true
+      toc_sticky: true
+  
+  # _guides
+  - scope:
+      path: ""
+      type: guides
+    values:
+      layout: single
+      sidebar:
+        nav: "sidebar"
+      classes: wide
+      toc: true
+      toc_sticky: true  
+
+    # _projects
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: single
+      sidebar:
+        nav: "sidebar"
+      classes: wide
+      toc: true
+      toc_sticky: true  
+  # _lectures
+  - scope:
+      path: ""
+      type: lectures
+    values:
+      layout: single
+      sidebar:
+        nav: "sidebar"
+      classes: wide
+
+# Site timezone
+timezone: America/New_York
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - README.md
+  - .gitignore
+  - convert_to_jekyll.py
+  - content/
+  - build_bookdown.R
+  - Dockerfile
+  - Makefile
