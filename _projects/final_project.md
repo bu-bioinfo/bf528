@@ -64,11 +64,55 @@ Your repo must contain a README.md file with the following information:
 The publication for this project is here:
 
 
-Your workflow should do the following:
+Your workflow at a high-level should do the following:
 
+1. Download the data from the publication
+2. Sequence quality control on the raw reads
+3. Adapter trimming (if necessary) and quality filtering
+4. Alignment to the reference genome using ATACseq specific parameters
+5. Remove any alignments aligning to mitochondrial DNA
+6. Correct the alignemnts by shifting +4/-5 for the positive and negative strand
+respectively 
+7.*OPTIONAL* Split your dataset into the nucleosome-free (NFR) and nucleosome-bound
+(NBR) fractions. If you choose to do this, please justify why and make it clear 
+which fraction you are working with for each subsequent analysis. 
+8. Peak calling
+9. Differential chromatin accessibility analysis
+10. Annotation of called peaks
+11. Motif finding of differential peaks
 
 
 ## Deliverables
+
+Your project should consist of:
+
+1. A Nextflow workflow that implements the above steps in your github classroom repository
+2. A README.md file in your github classroom repository that describes how to run your pipeline
+3. A Jupyter notebook or Rmarkdown file that contains the analysis code
+4. A report that addresses the deliverables outlined in the [Project Report Guidelines]({{ site.baseurl }}/project_report_guidelines/)
+
+
+The specific deliverables pertaining to the results for this project that should
+be included in your report are:
+
+1. A brief discussion (1 paragraph) of the sequencing quality control results and
+any steps taken to address any identified issues
+2. A brief discussion (1 paragraph) of the alignment statistics, and what they
+mean for your analysis
+3. You must produce *two* ATAC-seq specific QC metrics from the following list:
+
+- TSS enrichment score
+- Fragment Size Distribution
+- Heatmap of signal across TSS split between NFR and NBR
+- Fraction of Reads in Peak (FRiP)
+
+Comment, in no less than a paragraph, on each of your chosen two ATAC-seq QC 
+metrics and what they mean about the success of the experiment. 
+
+
+
+
+
 
 
 # Project 2: Long-read sequencing and alternative splicing analysis

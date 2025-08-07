@@ -87,6 +87,8 @@ sidebar:
 
   - title: "Labs"
     children:
+      - title: "Overview"
+        url: "/labs/lab-overview/"
       - title: "Lab 1"
         url: "/labs/lab-01/"
       - title: "Lab 2"

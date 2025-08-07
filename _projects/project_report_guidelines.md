@@ -95,7 +95,10 @@ analysis of the data.
 
 ### Deliverables
 
-
+The deliverables section will vary based on the project. In general, you will
+be tasked with reproducing some of the key results and figures from the original
+publication. Please ensure you read the project description carefully to determine
+what deliverables are required for each. 
   
 ### Future Directions
 

@@ -22,3 +22,9 @@ layout: single
 [online slides](https://docs.google.com/presentation/d/1ibyJSkFIzO08XsZaa7VQr6FfYwapnwS3tPWvxNIlx7k/present?usp=sharing)
 
 [downloadable slides](https://docs.google.com/presentation/d/1ibyJSkFIzO08XsZaa7VQr6FfYwapnwS3tPWvxNIlx7k/export/pptx)
+
+## SCC Cluster Usage
+
+[online slides](https://docs.google.com/presentation/d/1maCjOOKx1lDkDjYZVwP09ZOs8VFROM7FpzubACl1IgU/present?usp=sharing)
+
+[downloadable slides](https://docs.google.com/presentation/d/1maCjOOKx1lDkDjYZVwP09ZOs8VFROM7FpzubACl1IgU/export/pptx)

@@ -30,6 +30,9 @@ the use of argument parsing libraries provides a more robust way to handle this 
 ## Using argparse
 
 The `argparse` module is a built-in python module that provides a way to parse command line arguments. 
+There are argparse libraries available in most other languages as well. Though
+they differ in syntax, they all mean to provide the same core functionality of
+easily handling command line arguments.
 
 The basic structure of an argparse script is as follows:
 
@@ -45,6 +48,15 @@ args = parser.parse_args()
 print(args.input)
 print(args.output)
 ```
+
+In each add_argument call, we are providing a flag for the argument, a destination for the argument, a help message, and 
+an indication of whether the argument is required or not. 
+
+1. The flag is the name of the argument used on the command line
+2. The destination is the name of the variable that will hold the value of the argument in python
+3. The help message is a description of the argument
+4. The required flag is self-explanatory. If you attempt to call a script with
+an argument that is required but not provided, it will throw an error. 
 
 If this code was encapsulated in a script, you could run it using the following command:
 
@@ -63,6 +75,10 @@ input.txt
 output.txt
 ```
 
+These are the basic functionalities of argparse, but there are additional options
+that allow for specifying argument types, setting default values, accepting lists
+of values, and more. You may find more information on these advanced settings
+on the documentation page for the appropriate argparse library. 
 
 ## Using argparse with Nextflow
 
