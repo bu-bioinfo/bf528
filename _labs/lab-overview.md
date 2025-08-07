@@ -30,3 +30,9 @@ your participation for the labs.
 The directions for each lab typically outline what we will cover together, and 
 then individual tasks that you will need to complete. Myself and the TAs will
 roam the room to help you with any issues you may have. 
+
+You are encouraged to make use of any resources available to you, including 
+the internet, LLMs, and your classmates. All of the code in the labs is simply
+a vehicle for imparting good practices and skills. We are not grading the labs,
+and all of the code we ask you to write has likely already been implemented by
+others.

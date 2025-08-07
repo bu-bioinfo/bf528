@@ -30,8 +30,10 @@ layout: single
 
 [downloadable slides](https://docs.google.com/presentation/d/1gWBIVMdS3ZejjzvoCd9WAdYkrvFs_lqZzxTeYR1LyVU/export/pptx)
 
-## Computational Environments
+---
 
-[online slides](https://docs.google.com/presentation/d/1VohllvTaP7Ok77ttB2HStDJPtC3LSu-x3Y652AqBfLo/edit?usp=sharing)
+## Basic SCC Usage
 
-[downloadable slides](https://docs.google.com/presentation/d/1VohllvTaP7Ok77ttB2HStDJPtC3LSu-x3Y652AqBfLo/export/pptx)
+[online slides](https://docs.google.com/presentation/d/1maCjOOKx1lDkDjYZVwP09ZOs8VFROM7FpzubACl1IgU/present?usp=sharing)
+
+[downloadable slides](https://docs.google.com/presentation/d/1maCjOOKx1lDkDjYZVwP09ZOs8VFROM7FpzubACl1IgU/export/pptx)

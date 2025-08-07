@@ -115,11 +115,11 @@ Joey Orofino
 
 Contact information available on Blackboard
 
-### My pledge to foster Diversity, Inclusion, Anti-racismThis course is a judgement free and anti-racist learning environment. 
-Our cohort consists of students from a wide variety of social identities and life circumstances. Everyone will treat
-one another with respect and consideration at all times or be asked to leave the classroom.
+It should go without saying that our class is composed of people from a diverse
+set of backgrounds. Everyone will treat one another with respect and consideration
+at all times or be asked to leave the classroom. 
 
-As instructor, I pledge to:
+As instructor, I will:
 
 1. Learn and correctly pronounce everyone’s preferred name/nickname
 2. Use preferred pronouns for those who wish to indicate this to me/the class

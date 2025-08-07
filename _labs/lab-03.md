@@ -3,8 +3,8 @@ title: "Lab 3"
 layout: single
 ---
 
-# Lab 3 - Scaling up and using the SCC
+# Lab 3 - Using the SCC and basic nextflow
 
 # Lecture (15 minutes)
 
-[SCC Usage]({site.baseurl}/lectures/week-03/)
+[Advanced SCC Usage]({{ site.baseurl }}/lectures/week-03/)
