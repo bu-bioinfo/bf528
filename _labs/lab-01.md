@@ -9,13 +9,19 @@ we'll be using throughout the semester. While we're going through these various
 activities, please check off the different tasks after you've completed them 
 and at the end, you'll push your changes to your github repo. 
 
+# Objectives
+- Get familiar with the SCC OnDemand and VSCode interfaces
+- Setup your SSH key on the SCC with GitHub
+- Edit your ~/.condarc file to change where your conda packages are stored
+- Install the required VSCode plugins  
+- Confirm your email and Github ID in the provided form
 
 ## SCC and SCC OnDemand
 
-Lecture (15 minutes)
+**Lecture (10 minutes)**
 [Computational Skills Primer](https://docs.google.com/presentation/d/1FbAWxSftB0tWXEKVv17yU6luyYoJ4PlQsx8qsz6kDHE/present?usp=sharing)
 
-Activity (5 minutes)
+**Activity (5 minutes)**
 
 Ensure you can do the following in VSCode:
 
@@ -26,9 +32,10 @@ Ensure you can do the following in VSCode:
 
 ## git / github
 
-Lecture (15 minutes)
+**Lecture (10 minutes)**
 [git / GitHub](https://docs.google.com/presentation/d/17a8OwDCTyIhzgNgsJkEBWzEu2CPm9x3QKy9ZHR5tyxA/present?usp=sharing)
-Activity (25 minutes)
+
+**Activity (10 minutes)**
 
 We will walk through it together live but if you're more comfortable following
 written instructions, please setup a SSH key by following the directions [here](https://www.bu.edu/tech/support/research/system-usage/connect-scc/access-and-security/using-scc-with-github-2fa/#AUTH)
@@ -43,9 +50,10 @@ enter a password every time.
 
 ## Conda
 
-Lecture (15 minutes)
+**Lecture (10 minutes)**
 [Computational environments and conda](https://docs.google.com/presentation/d/1VohllvTaP7Ok77ttB2HStDJPtC3LSu-x3Y652AqBfLo/present?usp=sharing)
-Activity (Remaining time)
+
+**Activity (10 minutes)**
 
 We will walk through this together live but if you more comfortable following
 written instructions, please edit your .condarc according to the directions 
@@ -54,6 +62,19 @@ written instructions, please edit your .condarc according to the directions
 - [ ] Changed where conda stores packages from your home directory to your
 space on /projectnb/bf528/
 
+
+After you have completed the above tasks, please run the following command
+to create your first conda environment:
+
+```bash
+conda env create -f envs/nextflow_env.yml
+```
+
+As you can see, you must run this command from the root directory of your repo
+and it will build a conda environment from the provided to you. 
+
+This will make a conda environment named "nextflow_env" which you will be using
+throughout the semester. 
 
 ## Objectives for today
 

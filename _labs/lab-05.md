@@ -1,11 +1,9 @@
 ---
-title: "Lab 5"
+title: "Lab 5 - CRISPR-Cas9 Guide Selection"
 layout: single
 ---
 
-# Lab 5 - CRISPR-Cas9 Guide Selection
-
-## Objectives
+# Objectives
 
 - Understand the order of processes necessary to extract a genomic region by its
 coordinates from an indexed reference
@@ -42,7 +40,7 @@ already familiar with.
 The following is the output from one such tool, ChopChop, and lists all potential
 guide RNAs to target the PKP1 gene in the human genome. 
 
-![chopchop](docs/chopchopoutput.png)
+![chopchop]({{ site.baseurl }}/assets/images/chopchopoutput.png)
 
 ## Provided Files
 - GRCh38 Gencode Human Reference Genome

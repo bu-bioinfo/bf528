@@ -18,9 +18,8 @@ up a proper reproducible and robust workflow.
 # Objectives
 
 - Understand FTP links and `wget`
-- Recognize the advantages and disadvantages of the various iterations of our
-workflow
 - Gain experience with argument parsing using `argparse`
+- Understand nextflow basics
 
 # Setup (5 minutes)
 
@@ -46,27 +45,12 @@ a small python script to calculate the length of the sequence.
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/845/GCF_000005845.2_ASM584v2/GCF_000005845.2_ASM584v2_genomic.fna.gz
 ```
 
-2. In VSCode, create a new file called `calculate_length.py` and add the following code:
-
-```python
-#!/usr/bin/env python3
-
-import gzip
-
-with gzip.open("GCF_000005845.2_ASM584v2_genomic.fna.gz", "rt") as f:
-    for line in f:
-        if line.startswith(">"):
-            continue
-        print(len(line.strip()))
-
-```
-
-3. Run the script:
+2. Run the script:
 
 In your terminal, run the following command:
 
 ```bash
-python calculate_length.py
+python calc_length.py
 ```
 
 ## Discussion of this approach
@@ -81,51 +65,184 @@ Advantages:
 
 Disadvantages:
 - Not reproducible
-- No record of what was run (your terminal history will be lost once you close it)
+- No record of what was run your terminal history will be lost once you close it)
 - Working locally on a single machine
 - Script is hardcoded to work on a specific file
 
-# Second Iteration (10 minutes)
 
-1. Delete the downloaded file using a quick `rm` command
+# Second Iteration - Qsub script
 
-2. Copy the download command above into a new text file called `download.sh`
+**Lecture (10 minutes)**
+
+[Basic SCC Usage]({{ site.baseurl }}/lectures/week-02/)
+
+**Your Turn (5 minutes)**
+
+1. Make a new text file called `download_script.sh` that has the following lines:
 
 ```bash
+#!/bin/bash -l
+
+#$ -P bf528
+
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/845/GCF_000005845.2_ASM584v2/GCF_000005845.2_ASM584v2_genomic.fna.gz
 ```
 
-3. Call the script using `bash download.sh`
+2. Run the script using `qsub download_script.sh`
 
+3. Check the status of the job using `qstat -u <your-bu-username>`
+
+4. Do the same for your python script by making a new script called `calc_length_script.sh`
+
+5. You may also submit this via `qsub calc_length_script.sh`
+
+## Discussion of this approach
+
+Advantages:
+- Record of what was run
+- Submits a job to the cluster
+
+Disadvantages:
+- Has to be run manually
+- No easy way to determine if it worked
+- Not very reproducible
+
+# Third Iteration - Nextflow (5 minutes)
+
+Above would be the simplest example of a bioinformatics pipeline. Nextflow is a
+workflow management tool that will help us connect and automate the above 
+components into a single pipeline. 
+
+Navigate to the iteration_3/ directory and take a look at the main.nf file. Inside,
+you will see some of the same commands but wrapped in a nextflow script. For now,
+the important thing to take note of are:
+
+Within the `process` block 
+1. The `output` block - this specifies the file that will be created or exist
+at the end of the process
+
+2. The `script` block - this is where the commands are executed
+
+Within the `workflow` block
+1. The `DOWNLOAD()` function calls the DOWNLOAD process
+
+## Activate the nextflow environment we made in the first lab
+
+1. Load the miniconda module using `module load miniconda`
+
+2. Activate the nextflow environment using `conda activate nextflow_env`
+
+3. Run the nextflow script using `nextflow run main.nf`
+
+Notice that nextflow created a `work` directory and stored the output there. 
+During your run, you will see the name of the process and a series of letters or
+numbers indicating the hash of the process. 
+
+![nextflow run information]({{ site.baseurl }}/assets/images/nextflow_run.png)
+
+If you now navigate into your `work/` directory, you will see a directory with
+the first two characters of the hash and a subdirectory with the remaining characters of the hash. 
+
+From our above example, the directory would be `work/ab/2496183aa8f126aac4b6a083de6ade/`.
+That is where the outputs of the DOWNLOAD process were stored. 
+
+# Fourth Iteration - Nextflow with multiple processes (20 minutes)
+
+You'll notice that the workflow only downloads the file, but doesn't do anything
+with it. We are going to run a python script to calculate the length of the 
+genome. First, we will need to update our script to use argparse to accept
+input and output file names on the command line. Navigate to the bin/ directory
+and modify the calc_length.py script.
+
+## Argparse Resources
+
+[Argparse Guide]({{ site.baseurl }}/guides/argparse_guide/)
+
+[Argparse Documentation](https://docs.python.org/3/library/argparse.html)
+
+## Use argparse to accept input and output file names on the command line (15 minutes)
 **Your Turn:**
 
-1. Adjust your script to also write out the results to a txt file.
+1. Adjust the python script to use argparse to accept input and output file names on the command line.
+- You should have two arguments: one for the input file and one for the output file.
 
-2. Use the textbook guide on [argparse]({site.baseurl}/guides/argument_parsing/) 
-or the [argparse](https://docs.python.org/3/library/argparse.html) documentation or LLMs
-to add arguments to your python script to make it more flexible. 
+Once finished, the script should be runnable via the following command:
 
-- Add an argument for the input file name
-- Add an argument for the output file name
+```bash
+python calc_length.py -i <fasta_file> -o <length_file>
+```
 
-## Discussion of this second iteration
+2. Make the script executable using `chmod +x bin/calc_length.py` (assuming you
+are in the root directory of your repo)
 
-We have made some progress, all of the code we ran is now documented in external
-files and we can run them from the command line. However, there are still a few
-disadvantages to this approach. 
+## Update your nextflow script (10 minutes)
 
-An old adage in software development is "Don't Repeat Yourself" or DRY. This means
-that we should avoid writing the same code multiple times and make use of the
-many tools and resources available to us. There are many different libraries
-that already exist that will parse a genome file and calculate various statistics
-for us. The most prominent in python being the `BioPython` library, which has an
-enormous amount of pre-built functions for common bioinformatics operations.
+Go into your main.nf and add the following underneath the download process and above the workflow block:
 
-We are also currently relying on the native python interpreter to run our script. 
-We are lucky that the we have a python interpreter installed on the SCC, but we
-cannot always make that assumption. In the future, we would like to control exactly
-what packages are installed and used. This will allow us to ensure that our scripts
-run the same way on any machine.
+```bash
+process CALCULATE_LENGTH {
+
+    input:
+    path(fasta)
+
+    output:
+    path("length.txt")
+
+    script:
+    """
+    calc_length.py -i $fasta -o length.txt
+    """
+}
+```
+
+Now in your workflow block, add the following line so that it resembles below:
+
+```bash
+workflow {
+    DOWNLOAD()
+    CALCULATE_LENGTH(DOWNLOAD().out)
+}
+```
+
+## Run your nextflow script (5 minutes)
+
+1. Run the nextflow script using `nextflow run main.nf`
+2. Check the output in the `work/` directory for the CALCULATE_LENGTH process
+
+Take note of a few things about this basic workflow:
+
+1. The DOWNLOAD process downloads the file specified and we can pass it to the
+next process using the `DOWNLOAD().out` syntax. This is a channel that contains
+the output of the DOWNLOAD process.
+
+2. The CALCULATE_LENGTH process takes the output of the DOWNLOAD process as its
+input `path(fasta)` and calls the calc_length.py script on it.
+
+3. Our calc_length.py script parses this input and writes the output to the file
+length.txt
+
+4. You can see that in the input of CALCULATE_LENGTH, we refer to the value
+passed in with a variable name fasta. This allows us to generalize and avoid
+hardcoding the file name in the script. $fasta is a placeholder for the value
+passed in with the variable name fasta, in this case, the output of the DOWNLOAD
+process - GC_000005845.2_ASM584v2_genomic.fna.gz. When the process is run, the
+fasta variable is replaced with this value. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Resources for Computational Environments 
 
@@ -138,82 +255,3 @@ run the same way on any machine.
 
 ## Textbook Guide
 [Conda Guide]({{ site.baseurl }}/guides/conda_guide/)
-
-# Third Iteration (20 minutes)
-
-For the final iteration, we will create a conda environment containing the
-biopython package and use the built-in function to parse the file and return
-the length. 
-
-**Your Turn:**
-
-1. Load the miniconda module using `module load miniconda`
-2. In VSCode, make a new text file called `biopython_env.yml` and add the following content:
-
-```yml
-name: biopython_env
-channels:
-  - conda-forge
-  - bioconda
-packages:
-  - biopython=1.79
-```
-
-3. Create the environment using the following command:
-
-```bash
-conda env create -f biopython_env.yml
-```
-
-4. Activate the environment using `conda activate biopython_env`
-
-5. Revise your script to utilize the Biopython library to parse the file
-and calculate the length.
-
-- Your script should still utilize argparse to take in the input and output file names
-
-
-# Final Iteration (remaining time)
-
-For the final step, we will now wrap your python script in a qsub script that
-would allow it to be submitted to the SCC cluster. Currently, your script is
-running locally on the same machine where your VSCode instance is running. We can
-take advantage of the SCC to run this script on a remote machine. The strengths
-of this approach will become apparent once we start working with larger datasets.
-
-**Your Turn:**
-
-1. Make a new txt file called `qsub_script.sh` and add the following content:
-
-```bash
-#!/bin/bash -l
-
-#$ -P bf528
-
-module load miniconda
-conda activate biopython_env
-python calculate_length.py <input_file> <output_file>
-```
-
-2. Submit the job using `qsub qsub_script.sh` in a terminal
-
-3. Check the status of your job using `qstat -u <your_bu_username>`
-
-4. Inspect the output file to ensure it finished correctly
-
-5. Take note of the qsub_script.sh.e and qsub_script.sh.o files. These are the 
-standard error and output files that are generated by your script. In all likelihood,
-these files will be blank, but they will often contain useful information about
-the status of your job if it fails or when running other tools. 
-
-## Wrap-up
-
-Today, you have constructed a small workflow that downloads a microbial genome
-from the NCBI FTP server, and write a script that calculates the length of the
-sequence. The numerous iterations we went through allowed us to make the workflow
-more robust, reproducible, and easy to use. 
-
-Next week, we will make one final modification to this workflow before moving
-on to using Nextflow to generate a bioinformatics pipeline that replicates this
-one. You will see how Nextflow integrates all of these different features we've
-learned into a single, easy-to-use pipeline management sytem. 
