@@ -35,8 +35,8 @@ sidebar:
         url: "/guides/nextflow_features/"
       - title: "Connecting Inputs and Outputs"
         url: "/guides/connecting_inputs_and_outputs/"
-      - title: "VSCode Jupyter Conda"
-        url: "/guides/vscode_jupyter_conda/"
+      - title: "Notebooks and Computational Environments"
+        url: "/guides/notebooks_computational_envs/"
       - title: "Troubleshooting Issues"
         url: "/guides/troubleshooting_issues/"
 

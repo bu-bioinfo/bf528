@@ -12,13 +12,6 @@ outlined in the pipeline. You will not have to complete the entire pipeline, but
 will instead be asked to focus on various aspects of the workflow as we progress
 and get more comfortable with the tools and concepts.
 
-# Section Links
-
-[Week 1 Overview](#week-1-overview)
-
-[Objectives](#objectives)
-
-
 # Week 1 Overview
 
 For this project, you will be assembling a bacterial genome from both nanopore 

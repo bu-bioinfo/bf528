@@ -3,33 +3,6 @@ title: "Project 3: ChIPseq"
 layout: single
 ---
 
-
-# Week 1: ChIPseq
-
-## Section Links
-
-[Project 2 Directions](#project-2-directions)
-
-[Week 1 Overview](#week-1-overview)
-
-[Objectives](#objectives)
-
-[Containers for Project 2](#containers-for-project-2)
-
-[Quality Control, Genome indexing and alignment](#quality-control-genome-indexing-and-alignment)
-
-[Sorting and indexing the alignments](#sorting-and-indexing-the-alignments)
-
-[Calculate alignment statistics using samtools flagstat](#calculate-alignment-statistics-using-samtools-flagstat)
-
-[Aggregating QC results with MultiQC](#aggregating-qc-results-with-multiqc)
-
-[Generating bigWig files from our BAM files](#generating-bigwig-files-from-our-bam-files)
-
-[Week 1 Tasks Summary](#week-1-tasks-summary)
-
-## Project 2 Directions
-
 Now that we have experience with Nextflow from two prior projects, the
 directions for this project will be much less detailed. I will describe what you
 should do and you will be expected to implement it yourself. If you are asked to 
@@ -46,7 +19,31 @@ These conventions include:
   4. Encoding sample info and sample file paths in a csv that drives your workflow
   5. Requesting appropriate computational resources per job
 
-## Week 1 Overview
+# Containers for Project 2
+
+FastQC: `ghcr.io/bf528/fastqc:latest`
+
+multiQC: `ghcr.io/bf528/multiqc:latest`
+
+bowtie2: `ghcr.io/bf528/bowtie2:latest`
+
+deeptools: `ghcr.io/bf528/deeptools:latest`
+
+trimmomatic: `ghcr.io/bf528/trimmomatic:latest`
+
+samtools: `ghcr.io/bf528/samtools:latest`
+
+macs3: `ghcr.io/bf528/macs3:latest`
+
+bedtools: `ghcr.io/bf528/bedtools:latest`
+
+homer: `ghcr.io/bf528/homer:latest`
+
+homer/samtools: `ghcr.io/bf528/homer_samtools:latest`
+
+# Week 1: ChIPseq
+
+## Overview
 
 For many NGS experiments, the initial steps are largely universal. We perform
 quality control on the sequencing reads, build an index for the reference
@@ -70,28 +67,6 @@ can use a non-splice aware algorithm to map our reads to the reference genome.
 - Use MultiQC to aggregate all of the QC metrics
 
 - Use samtools to sort and index your BAM (alignment) files
-
-## Containers for Project 2
-
-FastQC: `ghcr.io/bf528/fastqc:latest`
-
-multiQC: `ghcr.io/bf528/multiqc:latest`
-
-bowtie2: `ghcr.io/bf528/bowtie2:latest`
-
-deeptools: `ghcr.io/bf528/deeptools:latest`
-
-trimmomatic: `ghcr.io/bf528/trimmomatic:latest`
-
-samtools: `ghcr.io/bf528/samtools:latest`
-
-macs3: `ghcr.io/bf528/macs3:latest`
-
-bedtools: `ghcr.io/bf528/bedtools:latest`
-
-homer: `ghcr.io/bf528/homer:latest`
-
-homer/samtools: `ghcr.io/bf528/homer_samtools:latest`
 
 ## Quality Control, Genome indexing and alignment
 
@@ -183,27 +158,7 @@ of your BAM files
 
 ## Week 2: ChIPseq
 
-## Section Links
-
-[Week 2 Overview](#week-2-overview)
-
-[Objectives](#objectives)
-
-[Containers for Project 2](#containers-for-project-2)
-
-[Plotting correlation between bigWigs](#plotting-correlation-between-bigwigs)
-
-[Peak calling using MACS3](#peak-calling-using-macs3)
-
-[Generating a set of reproducible peaks with bedtools intersect](#generating-a-set-of-reproducible-peaks-with-bedtools-intersect)
-
-[Filtering peaks found in ENCODE blacklist regions](#filtering-peaks-found-in-encode-blacklist-regions)
-
-[Annotating peaks to their nearest genomic feature using HOMER](#annotating-peaks-to-their-nearest-genomic-feature-using-homer)
-
-[Week 2 Tasks Summary](#week-2-tasks-summary)
-
-## Week 2 Overview
+## Overview
 
 For week 2, you will be performing a quick quality control check by plotting
 the correlation between the bigWigs you generated last week. Then, you will be
@@ -221,28 +176,6 @@ genomic feature.
 blacklist regions filtered out
 
 - Annotate your filtered, reproducible peaks using HOMER
-
-## Containers for Project 2
-
-FastQC: `ghcr.io/bf528/fastqc:latest`
-
-multiQC: `ghcr.io/bf528/multiqc:latest`
-
-bowtie2: `ghcr.io/bf528/bowtie2:latest`
-
-deeptools: `ghcr.io/bf528/deeptools:latest`
-
-trimmomatic: `ghcr.io/bf528/trimmomatic:latest`
-
-samtools: `ghcr.io/bf528/samtools:latest`
-
-macs3: `ghcr.io/bf528/macs3:latest`
-
-bedtools: `ghcr.io/bf528/bedtools:latest`
-
-homer: `ghcr.io/bf528/homer:latest`
-
-homer/samtools: `ghcr.io/bf528/homer_samtools:latest`
 
 ## Plotting correlation between bigWigs
 
@@ -358,25 +291,7 @@ for the argument order.
 
 ## Week 3: ChIPseq
 
-## Section Links
-
-[Week 3 Overview](#week-3-overview)
-
-[Objectives](#objectives)
-
-[Containers for Project 2](#containers-for-project-2)
-
-[Create and use a single Jupyter notebook for any images, reports or written discussion](#create-and-use-a-single-jupyter-notebook-for-any-images-reports-or-written-discussion)
-
-[Download a HG38 gene BED from UCSC table browser](#download-a-hg38-gene-bed-from-ucsc-table-browser)
-
-[Generating a signal intensity plot for all human genes using computeMatrix and plotProfile for IP samples](#generating-a-signal-intensity-plot-for-all-human-genes-using-computematrix-and-plotprofile-for-ip-samples)
-
-[Finding enriched motifs in ChIP-seq peaks](#finding-enriched-motifs-in-chip-seq-peaks)
-
-[Week 3 Tasks Summary](#week-3-tasks-summary)
-
-## Week 3 Overview
+## Overview
 
 In week 3, you will be using the UCSC table browser to obtain a BED file
 containing the start and end positions of every gene in the HG38 human reference
@@ -394,28 +309,6 @@ using the UCSC table browser
 your IP sample bigwigs to create a signal intensity plot
 
 - Perform motif enrichment on your reproducible and filtered peaks using HOMER
-
-## Containers for Project 2
-
-FastQC: `ghcr.io/bf528/fastqc:latest`
-
-multiQC: `ghcr.io/bf528/multiqc:latest`
-
-bowtie2: `ghcr.io/bf528/bowtie2:latest`
-
-deeptools: `ghcr.io/bf528/deeptools:latest`
-
-trimmomatic: `ghcr.io/bf528/trimmomatic:latest`
-
-samtools: `ghcr.io/bf528/samtools:latest`
-
-macs3: `ghcr.io/bf528/macs3:latest`
-
-bedtools: `ghcr.io/bf528/bedtools:latest`
-
-homer: `ghcr.io/bf528/homer:latest`
-
-homer/samtools: `ghcr.io/bf528/homer_samtools:latest`
 
 ## Create and use a single Jupyter notebook for any images, reports or written discussion
 
@@ -521,33 +414,9 @@ positions of every gene in the HG38 reference
   3. Utilizes HOMER to perform basic motif finding on your reproducible and 
   filtered peaks
   
-## Week 4: ChIPseq
+# Week 4: ChIPseq
 
-## Section Links
-
-[Week 4 Overview](#week-4-overview)
-
-[Objectives](#objectives)
-
-[Use your already created jupyter notebook for the following analyses](#use-your-already-created-jupyter-notebook-for-the-following-analyses)
-
-[Write a methods section](#write-a-methods-section)
-
-[Comment on the sequence QC](#comment-on-the-sequence-qc)
-
-[Read the original paper](#read-the-original-paper)
-
-[Overlap your ChIPseq results with the original RNAseq data](#overlap-your-chipseq-results-with-the-original-rnaseq-data)
-
-[Comparing key findings to the original paper](#comparing-key-findings-to-the-original-paper)
-
-[Analyze the annotated peaks](#analyze-the-annotated-peaks)
-
-[Address the provided discussion questions](#address-the-provided-discussion-questions)
-
-[Week 4 Detailed Tasks Summary](#week-4-detailed-tasks-summary)
-
-## Week 4 Overview
+## Overview
 
 For the final week, you will be reading the original paper and interpreting
 your results in the context of the publication's results. Specifically, you will
@@ -705,27 +574,6 @@ results
 
 - Answer any provided discussion questions in your notebook
 
-## Week 5: ChIPseq
+# Week 5: ChIPseq
 
-## Discussion Questions
-
-Please accept the github classroom link and do your best to answer the discussion
-questions for project 2.
-
-                https://classroom.github.com/a/5U-kGyNX
-
-Please answer these questions to the best of your abilities. Most of these
-questions are conceptual thought questions where we ask you to explain your
-reasoning. Be brief! 
-
-At the end, I've also asked you to display some of the key results / figures
-generated from the workflow. This is more for me to assay how many of you were
-able to successfully produce these results. You can compare on your own how well
-you were able to reproduce the main biological findings from the original.
-
-I will ask you to submit your answers by next week, after which, we will provide
-you with feedback and comments in a timely manner. We will return this document
-to you with this feedback, and ask you to resubmit your answers after another
-week. If you address all of the comments and feedback in your resubmission, you
-will receive full credit for this second project.
-
+## Report
