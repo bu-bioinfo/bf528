@@ -100,6 +100,8 @@ conda activate notebook_env
 
 3. Select the `lab` interface under `Interface`
 
+![OnDemand Jupyter]({{ site.baseurl }}/assets/images/ondemand_jupyter.png)
+
 This will create a JupyterLab session with your conda environment activated. 
 You can then use the built-in jupyter notebook interface to create and run your
 notebooks and access and use the packages installed in your conda environment.
