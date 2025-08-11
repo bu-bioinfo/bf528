@@ -144,7 +144,9 @@ If you now navigate into your `work/` directory, you will see a directory with
 the first two characters of the hash and a subdirectory with the remaining characters of the hash. 
 
 From our above example, the directory would be `work/ab/2496183aa8f126aac4b6a083de6ade/`.
-That is where the outputs of the DOWNLOAD process were stored. 
+That is where the outputs of the DOWNLOAD process were stored. The terminal 
+output only shows the first six unique characters of the hash, but the full hash
+is used to identify the process. 
 
 # Fourth Iteration - Nextflow with multiple processes (20 minutes)
 
@@ -156,7 +158,7 @@ and modify the calc_length.py script.
 
 ## Argparse Resources
 
-[Argparse Guide]({{ site.baseurl }}/guides/argparse_guide/)
+[Argparse Guide]({{ site.baseurl }}/guides/argument_parsing/)
 
 [Argparse Documentation](https://docs.python.org/3/library/argparse.html)
 

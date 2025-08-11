@@ -8,9 +8,21 @@ are guidelines and not a strict timeline. Your report and project will be due
 only at the day specified on the schedule. These sections are designed to 
 fit a manageable number of tasks into each week and give you a rough timeline. 
 
+# Docker images for your pipeline
+
+FastQC: `ghcr.io/bf528/fastqc:latest`
+
+multiQC: `ghcr.io/bf528/multiqc:latest`
+
+VERSE: `ghcr.io/bf528/verse:latest`
+
+STAR: `ghcr.io/bf528/star:latest`
+
+Pandas: `ghcr.io/bf528/pandas:latest`
+
 # Week 1: RNAseq
 
-## Week 1 Overview
+## Overview
 
 A basic RNAseq analysis consists of sample quality control, alignment,
 quantification and differential expression analysis. This week, we will be
@@ -69,7 +81,7 @@ own containers from scratch.
 In general, the containers will be named following the same pattern:
 `ghcr.io/bf528/<name-of-tool>:latest` or `ghcr.io/bf528/fastqc:latest`.
 
-**New command for running your workflow**
+## New command for running your workflow
 
 You will need to incorporate one more change to make your pipeline use these
 containers. If you look in the `nextflow.config`, you'll see a profile labeled
@@ -86,18 +98,6 @@ nextflow run main.nf -profile singularity,local
 
 As always, remember to activate your conda environment containing nextflow before
 running your pipeline.
-
-## Docker images for your pipeline
-
-FastQC: `ghcr.io/bf528/fastqc:latest`
-
-multiQC: `ghcr.io/bf528/multiqc:latest`
-
-VERSE: `ghcr.io/bf528/verse:latest`
-
-STAR: `ghcr.io/bf528/star:latest`
-
-Pandas: `ghcr.io/bf528/pandas:latest`
 
 ## Generating our input channels for nextflow
 
@@ -314,25 +314,9 @@ column is the associated human gene symbol.
 7. Generate a module that successfully creates a STAR index using the params
 containing the path to your reference genome assembly and GTF
 
-## Week 2: RNAseq
+# Week 2: RNAseq
 
-## Section Links
-
-[Week 2 Overview](#week-2-overview)
-
-[Objectives](#objectives)
-
-[Aligning reads to the genome](#aligning-reads-to-the-genome)
-
-[Performing post-alignment QC](#performing-post-alignment-qc)
-
-[Quantifying alignments to the genome](#quantifying-alignments-to-the-genome)
-
-[Concatenating count outputs into a single matrix](#concatenating-count-outputs-into-a-single-matrix)
-
-[Week 2 Detailed Task Summary](#week-2-detailed-task-summary)
-
-## Week 2 Overview
+## Overview
 
 Now that we have performed basic quality control on the FASTQ files, we are
 going to map them to the human reference genome to generate alignments for
@@ -351,18 +335,6 @@ the sequencing reads and alignments
 - Generate gene-level counts using VERSE for each of the samples
 
 - Concatenate gene-level counts from each sample into a single counts matrix
-
-## Docker images for your pipeline
-
-FastQC: `ghcr.io/bf528/fastqc:latest`
-
-multiQC: `ghcr.io/bf528/multiqc:latest`
-
-VERSE: `ghcr.io/bf528/verse:latest`
-
-STAR: `ghcr.io/bf528/star:latest`
-
-Pandas: `ghcr.io/bf528/pandas:latest`
 
 ## Aligning reads to the genome
 
@@ -540,27 +512,9 @@ gene-level counts for all of your samples
 outputs into a single counts matrix. Generate an accompanying nextflow module
 that runs this python script
 
-## Week 3: RNAseq
+# Week 3: RNAseq
 
-## Section Links
-
-[Week 3 Overview](#week-3-overview)
-
-[Objectives](#objectives)
-
-[Switching to the full data](#switching-to-the-full-data)
-
-[Evaluate the QC metrics for the full data](#evaluate-the-qc-metrics-for-the-full-data)
-
-[Filtering the counts matrix](#filtering-the-counts-matrix)
-
-[Performing differential expression analysis using the filtered counts](#performing-differential-expression-analysis-using-the-filtered-counts)
-
-[RNAseq Quality Control Plots](#rnaseq-quality-control-plots)
-
-[FGSEA Analysis](#fgsea-analysis)
-
-## Week 3 Overview
+## Overview
 
 By now, your pipeline should execute all of the necessary steps to perform
 sample quality control, alignment, and quantification. This week, we will focus
@@ -578,18 +532,6 @@ differential expression analysis.
 - Perform basic differential expression on your data using DESeq2 
 
 - Generate a sample-to-sample distance plot and PCA plot for your experiment
-
-## Docker images for your pipeline
-
-FastQC: `ghcr.io/bf528/fastqc:latest`
-
-multiQC: `ghcr.io/bf528/multiqc:latest`
-
-VERSE: `ghcr.io/bf528/verse:latest`
-
-STAR: `ghcr.io/bf528/star:latest`
-
-Pandas: `ghcr.io/bf528/pandas:latest`
 
 ## Switching to the full data
 
@@ -722,23 +664,9 @@ displays the top most significant results from the FGSEA results.
 3. In a notebook, briefly remark on your results and what seems interesting to
 you about the biology.
 
-## Week 4: RNAseq
+# Week 4: RNAseq
 
-## Section Links
-
-[Week 4 Overview](#week-4-overview)
-
-[Objectives](#objectives)
-
-[Read the original paper](#read-the-original-paper)
-
-[Replicate figure 3C and 3F](#replicate-figure-3c-and-3f)
-
-[Write a methods section for your pipeline](#write-a-methods-section-for-your-pipeline)
-
-[Week 4 Detailed Tasks Summary](#week-4-detailed-tasks-summary)
-
-## Week 4 Overview
+## Overview
 
 For the final week, use this time to finish up any tasks you weren't able to 
 complete. There are no nextflow tasks this week, but you will be asked to create
@@ -778,26 +706,6 @@ in your provided notebook:
 
   - Compare their enrichment results with your DAVID and GSEA analysis. Comment
   on any differences you observe and why there are discrepancies.
-
-## Write a methods section for your pipeline
-
-We will have briefly discussed how to write a methods section. Please write a 
-methods section for the workflow you've implemented with your pipeline in the 
-style we've discussed. 
-
-1. In your notebook, write a brief methods section for your workflow
-
-2. Read the methods for the paper and in your provided notebook, please ensure
-you briefly discuss any differences in the methods you used and how that may
-change what results you find. 
-
-## Copy the provided discussion questions into your notebook and answer them
-
-I have made a separate repo with a Rmd containing a few conceptual questions
-related to the project. Please copy these questions into your notebook (the one
-where you've been doing your analysis) and do your best to answer them. 
-A few of the questions have a "correct" answer, but several of them are more
-conceptual in nature and I am looking mostly at your thought process. 
 
 ## Week 4 Detailed Tasks Summary
 
