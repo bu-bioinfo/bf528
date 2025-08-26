@@ -162,8 +162,8 @@ If you want to think about it in terms of percentage, projects will account for
 | Day | Date  | Week | Class    | Topic                                                                | Project                         |
 | --- | ----- | ---- | -------- | -------------------------------------------------------------------- | ------------------------------- |
 | Wed | 9/3   | [1]({{ site.baseurl }}/lectures/week-01/)    | Lecture  | Introduction                                                       |                                 |
-| Fri | 9/5   | [1]({{ site.baseurl }}/lectures/week-01/)    | Lab      | <br>Lab - Setup                                                      | P1 assigned                     |
-| Mon | 9/8   | [2]({{ site.baseurl }}/lectures/week-02/)    | Lecture  | Genomics, Genes, and Genomes                                       |                                 |
+| Fri | 9/5   | [1]({{ site.baseurl }}/lectures/week-01/)    | Lab      | <br>Lab - Setup                                                      |                                 |
+| Mon | 9/8   | [2]({{ site.baseurl }}/lectures/week-02/)    | Lecture  | Genomics, Genes, and Genomes                                       | P1 Assigned                     |
 | Wed | 9/10  | [2]({{ site.baseurl }}/lectures/week-02/)    | Lecture  | Genomic Variation and SNP Analysis                                 |                                 |
 | Fri | 9/12  | [2]({{ site.baseurl }}/lectures/week-02/)    | Lab      | Lab - Workflow Basics                                                |                                 |
 | Mon | 9/15  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lecture  | Computational Pipeline Strategies<br>SCC cluster usage           |                                 |

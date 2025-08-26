@@ -8,17 +8,45 @@ our qsub script to request a certain amount of cores and memory to use. We will
 then begin converting our basic workflow into a proper nextflow pipeline. I have
 provided you with the scripts we used last time in the bin/ directory. 
 
-# Objectives
-
 # Lecture on SCC Resources (15 minutes) 
 
 [Advanced SCC Usage]({{ site.baseurl }}/lectures/week-03/)
 
-# Don't repeat yourself - using third party tools (15 minutes)
+# Iteration 1 (15 minutes)
 
-Oftentimes, basic tasks that we want to accomplish in a workflow have already
-been implemented by someone else. Additionally, some of these tools may implement
-additional features and functionality over more basic scripts. 
+## Don't repeat yourself (DRY) - using third party tools (15 minutes)
+
+Oftentimes, we will want to perform basic tasks in a workflow that have already
+been implemented by someone else. DRY is a principle in software development that 
+stands for "Don't Repeat Yourself" and is meant to reduce the repetition of code
+and make it easier to maintain. We can apply this same idea to basic tasks in
+bioinformatics. 
+
+As it happens, Biopython is a well supported and maintained package that makes
+a large number of tools for computational molecular biology available to us. In
+particular, it has a number of functions for parsing bioinformatics data files, 
+and performing common operations on them, such as calculating the length of a
+sequence. 
+
+**Your turn**
+
+1. Adjust the calc_length.py script to use biopython to calculate the length of
+the sequence in the fasta file.
+
+## Resources for Computational Environments 
+
+[Relevant XKCD](https://xkcd.com/2347/):
+
+![xkcd]({{ site.baseurl }}/assets/images/dependency.png)
+
+## Class Lecture
+[Computational Environments]({{ site.baseurl }}/lectures/week-02/)
+
+## Textbook Guide
+[Conda Guide]({{ site.baseurl }}/guides/conda_guide/)
+
+2. Create a conda environment in the envs/ directory called biopython_env.yml
+
 
 
 

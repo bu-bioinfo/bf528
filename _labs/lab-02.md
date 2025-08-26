@@ -229,31 +229,3 @@ hardcoding the file name in the script. $fasta is a placeholder for the value
 passed in with the variable name fasta, in this case, the output of the DOWNLOAD
 process - GC_000005845.2_ASM584v2_genomic.fna.gz. When the process is run, the
 fasta variable is replaced with this value. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Resources for Computational Environments 
-
-[Relevant XKCD](https://xkcd.com/2347/):
-
-![xkcd]({{ site.baseurl }}/assets/images/dependency.png)
-
-## Class Lecture
-[Computational Environments]({{ site.baseurl }}/lectures/week-02/)
-
-## Textbook Guide
-[Conda Guide]({{ site.baseurl }}/guides/conda_guide/)
