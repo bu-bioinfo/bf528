@@ -10,12 +10,15 @@ a bacterial genome from long and short read sequencing data. You will be provide
 a scaffold of the nextflow pipeline and asked to implement the various steps
 outlined in the pipeline. You will not have to complete the entire pipeline, but
 will instead be asked to focus on various aspects of the workflow as we progress
-and get more comfortable with the tools and concepts.
+and get more comfortable with the tools and concepts. This project is broken up
+into weeks and each week will focus on different tasks. Future projects you will
+be working in a more open-ended manner and will be asked to implement the entire
+pipeline on your own. 
 
 # Week 1 Overview
 
 For this project, you will be assembling a bacterial genome from both nanopore 
-and Illumina sequencing data. As we discussed in class, the long read sequencing
+and Illumina sequencing data. As we will discuss in class, the long read sequencing
 provides improved contiguity and longer reads, which can better capture regions
 of the genome previously difficult to sequence using short reads. This is especially
 useful during genome assembly, where the longer reads are more likely to span

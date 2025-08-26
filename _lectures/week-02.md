@@ -23,7 +23,13 @@ layout: single
 [downloadable slides](https://docs.google.com/presentation/d/1cCvxsV_aUhZs1dxR-JdZKV8JyTFscdT8FuuVYZarGvQ/export/pptx)
 
 ---
+## Next Generation Sequencing
 
+[online slides](https://docs.google.com/presentation/d/1mT2c6EOB3WcyfJzXCQLukU4JZIqM8qWpfc6tde5CeAc/present?usp=sharing)
+
+[downloadable slides](https://docs.google.com/presentation/d/1mT2c6EOB3WcyfJzXCQLukU4JZIqM8qWpfc6tde5CeAc/export/pptx)
+
+---
 ## Genomic Variation and SNP Analysis
 
 [online slides](https://docs.google.com/presentation/d/1gWBIVMdS3ZejjzvoCd9WAdYkrvFs_lqZzxTeYR1LyVU/present?usp=sharing)

@@ -163,13 +163,13 @@ If you want to think about it in terms of percentage, projects will account for
 | --- | ----- | ---- | -------- | -------------------------------------------------------------------- | ------------------------------- |
 | Wed | 9/3   | [1]({{ site.baseurl }}/lectures/week-01/)    | Lecture  | Introduction                                                       |                                 |
 | Fri | 9/5   | [1]({{ site.baseurl }}/lectures/week-01/)    | Lab      | <br>Lab - Setup                                                      |                                 |
-| Mon | 9/8   | [2]({{ site.baseurl }}/lectures/week-02/)    | Lecture  | Genomics, Genes, and Genomes                                       | P1 Assigned                     |
+| Mon | 9/8   | [2]({{ site.baseurl }}/lectures/week-02/)    | Lecture  | Genomics, Genes, and Genomes<br>Next Generation Sequencing           | P1 Assigned                     |
 | Wed | 9/10  | [2]({{ site.baseurl }}/lectures/week-02/)    | Lecture  | Genomic Variation and SNP Analysis                                 |                                 |
 | Fri | 9/12  | [2]({{ site.baseurl }}/lectures/week-02/)    | Lab      | Lab - Workflow Basics                                                |                                 |
 | Mon | 9/15  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lecture  | Computational Pipeline Strategies<br>SCC cluster usage           |                                 |
 | Wed | 9/17  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lab      | Project 1 Check-In                                                   |                                 |
 | Fri | 9/19  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lab      | Lab - Scaling Up and using the SCC                                   |                                 |
-| Mon | 9/22  | [4]({{ site.baseurl }}/lectures/week-04/)    | Lecture  | Next Generation Sequencing<br><br>Sequence Analysis Fundamentals |                                 |
+| Mon | 9/22  | [4]({{ site.baseurl }}/lectures/week-04/)    | Lecture  | Sequence Analysis Fundamentals                                     |                                 |
 | Wed | 9/24  | [4]({{ site.baseurl }}/lectures/week-04/)    | Lecture  | Long Read Sequencing                                               |                                 |
 | Fri | 9/26  | [4]({{ site.baseurl }}/lectures/week-04/)    | Lab      | Lab - Nextflow Practice                                              | P1 Due - P2 Assigned            |
 | Mon | 9/29  | [5]({{ site.baseurl }}/lectures/week-05/)    | Lecture  | Genome Editing - CRISPR Cas9                                       |                                 |
