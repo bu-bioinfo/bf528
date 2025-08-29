@@ -2,6 +2,8 @@
 main:
   - title: "Home"
     url: "/"
+  - title: "SCC OnDemand"
+    url: "scc-ondemand.bu.edu"
   - title: "Github"
     url: "https://github.com/bu-bioinfo/bf528"
   - title: "Blackboard"
