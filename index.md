@@ -12,10 +12,10 @@ Mon/Fri: CDS B62
 
 Wed: SAR103
 
-Zoom: By request only
+Zoom: Posted on blackboard
 
 **Office hours:**
-By appointment
+By appointment - contact information on blackboard
 
 Wednesdays, 10-12pm LSEB 101
 
@@ -165,9 +165,9 @@ If you want to think about it in terms of percentage, projects will account for
 | Fri | 9/5   | [1]({{ site.baseurl }}/lectures/week-01/)    | Lab      | <br>Lab - Setup                                                      |                                 |
 | Mon | 9/8   | [2]({{ site.baseurl }}/lectures/week-02/)    | Lecture  | Genomics, Genes, and Genomes<br>Next Generation Sequencing           | P1 Assigned                     |
 | Wed | 9/10  | [2]({{ site.baseurl }}/lectures/week-02/)    | Lecture  | Genomic Variation and SNP Analysis                                 |                                 |
-| Fri | 9/12  | [2]({{ site.baseurl }}/lectures/week-02/)    | Lab      | Lab - Workflow Basics                                                |                                 |
-| Mon | 9/15  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lecture  | Computational Pipeline Strategies<br>SCC cluster usage           |                                 |
-| Wed | 9/17  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lab      | Sequence Analysis Fundamentals                                                   |                                 |
+| Fri | 9/12  | [2]({{ site.baseurl }}/lectures/week-02/)    | Lab      | Lab - Workflow Basics<br>Computational Pipeline Strategies                                             |                                 |
+| Mon | 9/15  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lecture  | Sequence Analysis Fundamentals           |                                 |
+| Wed | 9/17  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lab      | SCC Cluster Usage                                                   |                                 |
 | Fri | 9/19  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lab      | Lab - Scaling Up and using the SCC                                   |                                 |
 | Mon | 9/22  | [4]({{ site.baseurl }}/lectures/week-04/)    | Lecture  | Project 1 Check-in and Review                                     |                                 |
 | Wed | 9/24  | [4]({{ site.baseurl }}/lectures/week-04/)    | Lecture  | Long Read Sequencing                                               |                                 |

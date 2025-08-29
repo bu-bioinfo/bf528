@@ -15,10 +15,15 @@ into weeks and each week will focus on different tasks. Future projects you will
 be working in a more open-ended manner and will be asked to implement the entire
 pipeline on your own. 
 
+For this week, you will be given a scaffolded nextflow pipeline and every week,
+we will continue to update and refine it until it resembles a final pipeline. 
+The weeks after the first will include the previous week's pipeline as well as
+additional improvements. 
+
 # Week 1 Overview
 
-For this project, you will be assembling a bacterial genome from both nanopore 
-and Illumina sequencing data. As we will discuss in class, the long read sequencing
+As we will discuss in class, hybrid assembly approaches combine the benefits of
+both long and short read sequencing technologies. The long read sequencing
 provides improved contiguity and longer reads, which can better capture regions
 of the genome previously difficult to sequence using short reads. This is especially
 useful during genome assembly, where the longer reads are more likely to span
@@ -57,3 +62,16 @@ we will be using the same structure and organization in all of the projects.
 
 
 
+# Week 2 - Modularizing our pipeline
+
+You may have noticed from the first week that our pipeline is becoming 
+increasingly complex and slightly onerous to read in a single file. In this week,
+we are going to refactor our workflow to make it more modular and easier to read.
+This modularity will have the secondary benefit of making it easier to reuse
+components of the pipeline in future projects or even share it with others. 
+
+## Week 2 Objectives
+
+For this week, you will again be given a working pipeline but this time, I will
+ask you to focus on connecting the processes by filling out the nextflow workflow.
+You will need to 
