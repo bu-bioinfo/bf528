@@ -13,6 +13,8 @@ main:
 sidebar:
   - title: "Guides"
     children:
+      - title: "CLI Resources"
+        url: "/guides/cli_resources/"
       - title: "Basic qsub scripts"
         url: "/guides/basic_qsub_scripts/"
       - title: "Argument Parsing"

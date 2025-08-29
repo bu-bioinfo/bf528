@@ -38,7 +38,22 @@ We will be generating a nextflow pipeline that will perform the following steps:
 
 For the first week, we will be performing QC on the all of the sequencing reads
 and you will be asked to focus on understanding how to read data from a CSV file
-into a nextflow channel and pass it to a process. You will also be asked to 
+into a nextflow channel and pass it to a process. You will also be asked to
+generate appropriate computational environments and look into the commands
+required to perform QC on the sequencing data. YOu will then finish by running 
+an assembly algorithm to assemble the reads into a consensus sequence. 
+
+## Week 1 - Setting up
+
+For this week, I have provided you a fully working nextflow pipeline that will
+let you see how it works while focusing just on learning a few key concepts
+we will be using throughout the semester. 
+
+1. Please clone the github repo for this project - you may find the link on blackboard
+
+2. Familiarize yourself with the directory you are working in. Throughout the semester,
+we will be using the same structure and organization in all of the projects. 
+
 
 
 

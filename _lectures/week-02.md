@@ -7,6 +7,7 @@ layout: single
 
 ### Monday - September 8
 **Genomics, Genes, and Genomes**
+**Next Generation Sequencing**
 
 ### Wednesday - September 10
 **Genomic Variation and SNP Analysis**

@@ -167,9 +167,9 @@ If you want to think about it in terms of percentage, projects will account for
 | Wed | 9/10  | [2]({{ site.baseurl }}/lectures/week-02/)    | Lecture  | Genomic Variation and SNP Analysis                                 |                                 |
 | Fri | 9/12  | [2]({{ site.baseurl }}/lectures/week-02/)    | Lab      | Lab - Workflow Basics                                                |                                 |
 | Mon | 9/15  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lecture  | Computational Pipeline Strategies<br>SCC cluster usage           |                                 |
-| Wed | 9/17  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lab      | Project 1 Check-In                                                   |                                 |
+| Wed | 9/17  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lab      | Sequence Analysis Fundamentals                                                   |                                 |
 | Fri | 9/19  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lab      | Lab - Scaling Up and using the SCC                                   |                                 |
-| Mon | 9/22  | [4]({{ site.baseurl }}/lectures/week-04/)    | Lecture  | Sequence Analysis Fundamentals                                     |                                 |
+| Mon | 9/22  | [4]({{ site.baseurl }}/lectures/week-04/)    | Lecture  | Project 1 Check-in and Review                                     |                                 |
 | Wed | 9/24  | [4]({{ site.baseurl }}/lectures/week-04/)    | Lecture  | Long Read Sequencing                                               |                                 |
 | Fri | 9/26  | [4]({{ site.baseurl }}/lectures/week-04/)    | Lab      | Lab - Nextflow Practice                                              | P1 Due - P2 Assigned            |
 | Mon | 9/29  | [5]({{ site.baseurl }}/lectures/week-05/)    | Lecture  | Genome Editing - CRISPR Cas9                                       |                                 |
