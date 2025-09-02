@@ -20,7 +20,7 @@ we will continue to update and refine it until it resembles a final pipeline.
 The weeks after the first will include the previous week's pipeline as well as
 additional improvements. 
 
-# Week 1 - Quality Control and Assembly
+# Week 1 - Quality Control
 
 As we will discuss in class, hybrid assembly approaches combine the benefits of
 both long and short read sequencing technologies. The long read sequencing
@@ -55,8 +55,7 @@ For the first week, we will be performing QC on the all of the sequencing reads
 and you will be asked to focus on understanding how to read data from a CSV file
 into a nextflow channel and pass it to a process. You will also be asked to
 generate appropriate computational environments and look into the commands
-required to perform QC on the sequencing data. YOu will then finish by running 
-an assembly algorithm to assemble the reads into a consensus sequence. 
+required to perform QC on the sequencing data. 
 
 ## Setting up
 
@@ -99,7 +98,7 @@ we will be using the same structure and organization in all of the projects.
 1. Take a look at the channel_test.nf and run the following command:
 
 ```bash
-nextflow run channel_test.nf -profile local
+nextflow run channel_test.nf -profile local,conda
 ```
 
 2. Note what the output of the command is in your terminal window. 
@@ -215,6 +214,29 @@ them appropriately.
 
 ## Tasks
 
+### Changing the way we run our processes
+
+Last week you were asked to run the pipeline with the `conda` and `local` profiles. 
+If you look in the `nextflow.config` file, you'll notice that we have profiles
+corresponding to these labels and a set of options specified. These options will
+be automatically applied when you run the pipeline with the specified profile.
+
+This week, we will be running significantly more resource intensive processes and
+we will need to now make use of the resource available to us on the SCC. We will
+use the `cluster` profile to run our processes on the SCC.
+
+Your new nextflow running command should now look like below:
+
+```bash
+nextflow run main.nf -profile cluster,conda
+```
+
+Keep in mind that this will submit each of your processes as separate jobs to
+different compute nodes on the cluster. This may take significantly longer to run
+as your job will potentially need to wait in the queue for resources to become
+available, processes may also take longer as they are more complex and certain
+processes may need to wait until others finish. 
+
 ### Modularize the remaining processes in the week2.nf
 
 Before you begin, take a note of the new main.nf you've been provided and the
@@ -238,16 +260,11 @@ the DAG for the workflow in these directions and in your repository.
 2. Run the pipeline and observe if it runs successfully. If it doesn't, you will
 need to go back and fix the workflow. 
 
-You should use the following command:
-
-```bash
-nextflow run main.nf -profile cluster,conda
-```
-
 If you complete this successfully, you should have a working pipeline that should
-run last week's tasks as well as the steps from this week that will polish the
-assembly with the long reads, align the short reads to the long read polished 
-assembly, and use the short reads to further polish the assembly. 
+run last week's tasks as well as the steps from this week that will assemble
+the reads, polish the assembly with the long reads, align the short reads to the
+long read polished assembly, and use the short reads to further polish the
+assembly. 
 
 ## Week 2 Recap
 
