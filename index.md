@@ -17,7 +17,9 @@ Zoom: Posted on blackboard
 **Office hours:**
 By appointment - contact information on blackboard
 
-Wednesdays, 10-12pm LSEB 101
+Joey
+Wednesdays, 10-11am LSEB 101
+Monday, 10-11am LSEB 101
 
 ## Contents
 

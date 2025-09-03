@@ -16,6 +16,10 @@ and at the end, you'll push your changes to your github repo.
 - Install the required VSCode plugins  
 - Confirm your email and Github ID in the provided form
 
+## Computational Pipeline Strategies
+
+**Lecture (30 mins)**
+
 ## SCC and SCC OnDemand
 
 **Lecture (10 minutes)**
@@ -46,6 +50,7 @@ enter a password every time.
 
 - [ ] Successfully setup a SSH key
 - [ ] Accept and clone the github classroom link
+- [ ] Follow along and make a change to your github repo
 
 
 ## Conda
@@ -73,7 +78,7 @@ conda env create -f envs/nextflow_env.yml
 As you can see, you must run this command from the root directory of your repo
 and it will build a conda environment from the provided to you. 
 
-This will make a conda environment named "nextflow_env" which you will be using
+This will make a conda environment named "nextflow_latest" which you will be using
 throughout the semester. 
 
 ## Objectives for today
@@ -82,6 +87,7 @@ throughout the semester.
 - [ ] Familiarize yourself with SCC OnDemand and VSCode
 - [ ] Setup your SSH key on the SCC with GitHub
 - [ ] Edit your ~/.condarc file to change where your conda packages are stored
+- [ ] Make a change to your repo and push it to GitHub
 
 Install the following VsCode plugins:
 - [ ] R extension for Visual Studio Code (REditorSupport)
