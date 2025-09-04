@@ -1,0 +1,43 @@
+# Development-specific configuration
+# This file overrides settings in _config.yml for local development
+
+# Disable GitHub Pages plugins in development
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  # jekyll-sitemap is disabled in development for faster builds
+
+# Enable incremental regeneration for faster development
+incremental: true
+
+# Show drafts
+drafts: true
+
+# Disable analytics in development
+algolia: # Keep this to avoid errors if using Algolia search
+  application_id: ""
+  index_name: ""
+  search_only_api_key: ""
+
+google_analytics: "" # Disable GA in development
+
+# Local development URL
+url: "http://localhost:4000"
+baseurl: "/bf528" # Match your repository name
+
+# Exclude development files from the built site
+exclude:
+  - .gitignore
+  - .github/
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - convert_to_jekyll.py
+  - content/
+  - build_bookdown.R
+  - Dockerfile
+  - Makefile
+  - _config.dev.yml
+
+# Development-specific settings
+development: true
