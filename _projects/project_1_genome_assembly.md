@@ -20,7 +20,7 @@ we will continue to update and refine it until it resembles a final pipeline.
 The weeks after the first will include the previous week's pipeline as well as
 additional improvements. 
 
-# Week 1 - Quality Control
+# Week 1 - Understanding channels
 
 As we will discuss in class, hybrid assembly approaches combine the benefits of
 both long and short read sequencing technologies. The long read sequencing
@@ -33,11 +33,10 @@ and remove systematic errors from the assembly of the long reads.
 
 We will be generating a nextflow pipeline that will perform the following steps:
 
-1. Quality Control of the sequencing data
-2. Assembly of the nanopore reads
-3. Polishing of the nanopore assembly with the Illumina reads
-4. Quality Control of the polished assembly and comparison the reference genome
-5. Annotation of the genome and visualization of genomic features
+1. Assembly of the nanopore reads
+2. Polishing of the nanopore assembly with the Illumina reads
+3. Quality Control of the polished assembly and comparison the reference genome
+4. Annotation of the genome and visualization of genomic features
 
 ## Relevant Resources
 
@@ -51,11 +50,9 @@ We will be generating a nextflow pipeline that will perform the following steps:
 
 ## Objectives 
 
-For the first week, we will be performing QC on the all of the sequencing reads
-and you will be asked to focus on understanding how to read data from a CSV file
-into a nextflow channel and pass it to a process. You will also be asked to
-generate appropriate computational environments and look into the commands
-required to perform QC on the sequencing data. 
+For the first week, we will focus on creating channels with the files we are
+going to process. You will also be asked to generate appropriate computational
+environments and look into the commands required to run certain tools. 
 
 ## Setting up
 
@@ -103,10 +100,10 @@ nextflow run channel_test.nf -profile local,conda
 
 2. Note what the output of the command is in your terminal window. 
 
-3. Use the code in the channel_test.nf and move it to the specified location in
-the main.nf file. Look at the nextflow documentation for an operator that will 
-assign the values from the CSV to a channel and name this channel `bac_ch`. This 
-operator should replace the view() operator. 
+3. Use the code in the channel_test.nf as an example and in the week1.nf, make
+two channels that contain the paths to the nanopore reads and the short reads
+and name the channels `nanopore_ch` and `shortread_ch`, respectively.
+
 
 ### Specifying appropriate computational environments
 
@@ -148,12 +145,19 @@ page where you can find the appropriate commands for running the tool as well as
 examples of how to use the tool. They will often have a `Usage` section that 
 contains a quick basic example of how to use the tool. 
 
+3. For FastQC and filtlonger, you may use the quick start command provided in
+the documentation.
+
+4. For Flye, you can use all default options and include this flag `--nano-corr`. 
+
 A few hints:
 
 - You will need to specify FASTQC to run on both the short read files (R1 and R2)
-- Nanoplot, Filtlonger, and Flye should only run on the nanopore reads
 - You can refer to files or variables passed in inputs using the `$` symbol. i.e.
 `$fasta`
+- You can make strings by using string interpolation "${variable_name}.txt" will
+create a string using the value of the variable_name variable - i.e. if 
+variable_name is "test", then "${variable_name}.txt" will create the string "test.txt". 
 
 Once you have found the appropriate commands for running each tool, you will need
 to fill in the `script` block in each of the processes in the main.nf file. 
@@ -165,7 +169,7 @@ for running each tool.
 You may use the following command to run the pipeline:
 
 ```bash
-nextflow run main.nf -profile local,conda
+nextflow run main.nf -profile cluster,conda
 ```
 
 ## Week 1 Recap
@@ -265,6 +269,29 @@ run last week's tasks as well as the steps from this week that will assemble
 the reads, polish the assembly with the long reads, align the short reads to the
 long read polished assembly, and use the short reads to further polish the
 assembly. 
+
+### Use the report and the list of SCC resources to give each process an appropriate label
+
+In the repo, I have provided you a HTML report that can be obtained from running
+nextflow with the `-with-report` flag. This report shows you the amount of 
+resources used per process. Use this information and the guide for [requesting
+resources]({{site.baseurl}}/guides/requesting_scc_resources/) on the SCC to give
+each process an appropriate label. 
+
+1. Look at the report and try to give each process an appropriate label. 
+
+2. Edit your `nextflow.config` to add the appropriate label specifications. I
+have provided you a sample label in the config file that you can use as a model
+for the ones you create. Please create labels called `process_medium` and `process_high`.
+
+You can see an example of where I've added a label to a process in the FLYE
+process. You'll also notice that in the command, I have to specify the option
+specific to FLYE for using multiple threads, `--threads` and I use the `$task.cpus`
+variable in nextflow to automatically fill in the number of cpus requested for
+the selected label. 
+
+3. For the other processes, please specify an appropriate label and ensure you
+add the right flag to each command to make use of the resources requested. 
 
 ## Week 2 Recap
 
