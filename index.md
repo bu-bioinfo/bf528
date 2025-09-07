@@ -165,8 +165,8 @@ If you want to think about it in terms of percentage, projects will account for
 | --- | ----- | ---- | -------- | -------------------------------------------------------------------- | ------------------------------- |
 | Wed | 9/3   | [1]({{ site.baseurl }}/lectures/week-01/)    | Lecture  | Introduction                                                       |                                 |
 | Fri | 9/5   | [1]({{ site.baseurl }}/lectures/week-01/)    | Lab      | Computational Pipeline Strategies<br>Lab - Setup                                                      |                                 |
-| Mon | 9/8   | [2]({{ site.baseurl }}/lectures/week-02/)    | Lecture  | Genomics, Genes, and Genomes<br>Next Generation Sequencing           | P1 Assigned                     |
-| Wed | 9/10  | [2]({{ site.baseurl }}/lectures/week-02/)    | Lecture  | Genomic Variation and SNP Analysis                                 |                                 |
+| Mon | 9/8   | [2]({{ site.baseurl }}/lectures/week-02/)    | Lecture  | Genomics, Genes, and Genomes<br>Next Generation Sequencing           |                                 |
+| Wed | 9/10  | [2]({{ site.baseurl }}/lectures/week-02/)    | Lecture  | Genomic Variation and SNP Analysis                                 | P1 assigned                                |
 | Fri | 9/12  | [2]({{ site.baseurl }}/lectures/week-02/)    | Lab      | Lab - Workflow Basics                                             |                                 |
 | Mon | 9/15  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lecture  | Sequence Analysis Fundamentals           |                                 |
 | Wed | 9/17  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lab      | SCC Cluster Usage                                                   |                                 |
