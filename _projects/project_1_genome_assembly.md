@@ -152,7 +152,8 @@ the documentation.
 
 A few hints:
 
-- You will need to specify FASTQC to run on both the short read files (R1 and R2)
+- You will need to specify FASTQC to run on both the short read files (R1 and R2) 
+by listing them one after another
 - You can refer to files or variables passed in inputs using the `$` symbol. i.e.
 `$fasta`
 - You can make strings by using string interpolation "${variable_name}.txt" will
@@ -220,16 +221,17 @@ them appropriately.
 
 ### Changing the way we run our processes
 
-Last week you were asked to run the pipeline with the `conda` and `local` profiles. 
+Last week you were asked to run the pipeline with the `conda` and `cluster` profiles. 
 If you look in the `nextflow.config` file, you'll notice that we have profiles
 corresponding to these labels and a set of options specified. These options will
 be automatically applied when you run the pipeline with the specified profile.
 
 This week, we will be running significantly more resource intensive processes and
-we will need to now make use of the resource available to us on the SCC. We will
-use the `cluster` profile to run our processes on the SCC.
+we will need to now make use of the resource available to us on the SCC. You will
+be asked to determine the most appropriate set of resources for each of your
+processes. 
 
-Your new nextflow running command should now look like below:
+As a reminder, you should run your pipelines with the following command:
 
 ```bash
 nextflow run main.nf -profile cluster,conda
@@ -250,7 +252,7 @@ is there, but we have now separated each process into different modules. We also
 now import our processes into the main.nf script to make them available. You can
 think of this as akin to when you import a library in python. 
 
-1. Take the new code found in the main.nf and split them out into modules the 
+1. Take the new code found in the week2.nf and split them out into modules the 
 way I have already done for you with last week's code. 
 
 ### Connect the processes in the week2.nf
