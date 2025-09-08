@@ -19,7 +19,8 @@ By appointment - contact information on blackboard
 
 Joey
 Wednesdays, 10-11am LSEB 101
-Monday, 10-11am LSEB 101
+
+Monday, 3-4pm LSEB 101
 
 ## Contents
 
