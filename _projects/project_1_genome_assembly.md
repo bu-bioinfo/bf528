@@ -245,15 +245,20 @@ processes may need to wait until others finish.
 
 ### Modularize the remaining processes in the week2.nf
 
-Before you begin, take a note of the new main.nf you've been provided and the
+Before you begin, take a note of the week2.nf file you've been provided and the
 modules/ directory. If you've been following along, you'll notice that we've
 changed how we have organized our pipeline. The same code from our week 1 pipeline
-is there, but we have now separated each process into different modules. We also
-now import our processes into the main.nf script to make them available. You can
+is there, but we have now separated each process into different modules You can see
+that code largely in the modules/ directory. We now import our processes into
+the week2.nf script to make them available using the `include` keyword. You can 
 think of this as akin to when you import a library in python. 
 
-1. Take the new code found in the week2.nf and split them out into modules the 
+1. Take the code for the processes MEDAKA, BOWTIE2_INDEX, BOWTIE2_ALIGN, SAMTOOLS_SORT,
+and PILON found in the week2.nf and split them out into modules the 
 way I have already done for you with last week's code. 
+
+2. Follow the same pattern where you make a new directory in modules/ with the
+name of the process and the file itself called main.nf.
 
 ### Connect the processes in the week2.nf
 
@@ -299,6 +304,7 @@ add the right flag to each command to make use of the resources requested.
 
 - Modularize the remaining processes in the week2.nf
 - Connect the processes in the week2.nf
+- Use the report and the list of SCC resources to give each process an appropriate label
 
 # Week 3 - Wrapping up and evaluating our assembly
 
@@ -318,9 +324,11 @@ of our genome.
 As with last week, I will provide you working modules and task you with 
 connecting them to form a working pipeline. Please focus on understanding how
 inputs and output channels are passed between processes and how to connect them
-appropriately. I will once again provide you a visual diagram of the workflow
-and you will need to figure out the order of operations and dependencies between
-the processes to construct the workflow. 
+appropriately. I will ask you to put together a single nextflow process to run 
+prokka. You will have to determine the right inputs and outputs as well as the
+appropriate running command. You will once again be provided a visual diagram of
+the workflow and you will need to figure out the order of operations and dependencies
+between the processes to construct the workflow. 
 
 You should also use the remaining time to put together your
 writeup for project 1 if you haven't already.

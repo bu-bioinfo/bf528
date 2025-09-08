@@ -170,7 +170,7 @@ If you want to think about it in terms of percentage, projects will account for
 | Wed | 9/10  | [2]({{ site.baseurl }}/lectures/week-02/)    | Lecture  | Genomic Variation and SNP Analysis                                 | P1 assigned                                |
 | Fri | 9/12  | [2]({{ site.baseurl }}/lectures/week-02/)    | Lab      | Lab - Workflow Basics                                             |                                 |
 | Mon | 9/15  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lecture  | Sequence Analysis Fundamentals           |                                 |
-| Wed | 9/17  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lab      | SCC Cluster Usage                                                   |                                 |
+| Wed | 9/17  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lab      | SCC Cluster<br>Writing a Methods Section Usage                                                   |                                 |
 | Fri | 9/19  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lab      | Lab - Scaling Up and using the SCC                                   |                                 |
 | Mon | 9/22  | [4]({{ site.baseurl }}/lectures/week-04/)    | Lecture  | Project 1 Check-in and Review                                     |                                 |
 | Wed | 9/24  | [4]({{ site.baseurl }}/lectures/week-04/)    | Lecture  | Long Read Sequencing                                               |                                 |
@@ -178,7 +178,7 @@ If you want to think about it in terms of percentage, projects will account for
 | Mon | 9/29  | [5]({{ site.baseurl }}/lectures/week-05/)    | Lecture  | Genome Editing - CRISPR Cas9                                       |                                 |
 | Wed | 10/1  | [5]({{ site.baseurl }}/lectures/week-05/)    | Lab      | Project 1 Review                                                     |                                 |
 | Fri | 10/3  | [5]({{ site.baseurl }}/lectures/week-05/)    | Lab      | Lab - CRISPR Guides                                                |                                 |
-| Mon | 10/6  | [6]({{ site.baseurl }}/lectures/week-06/)    | Lecture  | Sequence Analysis - RNA-Seq 1<br><br>Writing a methods section   |                                 |
+| Mon | 10/6  | [6]({{ site.baseurl }}/lectures/week-06/)    | Lecture  | Sequence Analysis - RNA-Seq 1                                      |                                 |
 | Wed | 10/8  | [6]({{ site.baseurl }}/lectures/week-06/)    | Lecture  | Sequence Analysis - RNA-Seq 2                                      |                                 |
 | Fri | 10/10 | [6]({{ site.baseurl }}/lectures/week-06/)    | Lab      | Lab - Containers (Docker)                                          |                                 |
 | Tue | 10/14 | [7]({{ site.baseurl }}/lectures/week-07/)    | Lecture  | Biological Databases<br><br>Gene Sets and Enrichment<br>         |                                 |
