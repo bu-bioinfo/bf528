@@ -170,7 +170,7 @@ If you want to think about it in terms of percentage, projects will account for
 | Wed | 9/10  | [2]({{ site.baseurl }}/lectures/week-02/)    | Lecture  | Genomic Variation and SNP Analysis                                 | P1 assigned                                |
 | Fri | 9/12  | [2]({{ site.baseurl }}/lectures/week-02/)    | Lab      | Lab - Workflow Basics                                             |                                 |
 | Mon | 9/15  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lecture  | Sequence Analysis Fundamentals           |                                 |
-| Wed | 9/17  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lab      | SCC Cluster<br>Writing a Methods Section Usage                                                   |                                 |
+| Wed | 9/17  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lab      | SCC Cluster Usage<br>Writing a Methods Section                                                   |                                 |
 | Fri | 9/19  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lab      | Lab - Scaling Up and using the SCC                                   |                                 |
 | Mon | 9/22  | [4]({{ site.baseurl }}/lectures/week-04/)    | Lecture  | Project 1 Check-in and Review                                     |                                 |
 | Wed | 9/24  | [4]({{ site.baseurl }}/lectures/week-04/)    | Lecture  | Long Read Sequencing                                               |                                 |
