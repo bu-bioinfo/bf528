@@ -59,6 +59,9 @@ You can install these extensions by opening the extensions view in VSCode
 
 ## VSCode
 
+**Before you open VSCode, make sure that you load the `miniconda` module under
+the "Additional moduels to load" tab in the SCC OnDemand interface.**
+
 If you open up VSCode, you can make a jupyter notebook. All this entails is
 making a new file and saving it with a `.ipynb` extension. The jupyter extension
 will automatically recognize this as a jupyter notebook and enable all of the
