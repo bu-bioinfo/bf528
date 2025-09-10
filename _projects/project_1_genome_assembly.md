@@ -159,9 +159,8 @@ specify multiple versions of a tool in a single YML file, we will try to
 minimize this as much as possible to avoid running into issues with conda being
 unable to resolve the dependencies. 
 
-3. Once you've filled in the YML files, add a directive underneath the `label`
-of each process in the week1.nf file to specify the appropriate conda environment
-for each process. 
+3. Once you've filled in the YML files, add the relative path to the YML file
+for each process after the line that begins with `conda` in the process. 
 
 This will look something like below:
 
@@ -175,6 +174,8 @@ process EXAMPLE {
 Make sure to replace <name_of_yml_file> with the name of the YML file you created
 and with no <> characters in the final replacement. Now when you run nextflow, it 
 will build and load the appropriate conda environment for each process. 
+
+Please note how the path is relative to where the week1.nf file is located. 
 
 ### Finding the appropriate commands for running each tool
 
