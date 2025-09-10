@@ -198,7 +198,7 @@ contains a quick basic example of how to use the tool.
 the documentation. For filtlonger, choose the command for running **without an
 external reference**.
 
-4. For Flye, the only arguments you should include in the command are `--nano-corr`
+4. For Flye, the only arguments you should include in the command are `--nano-hq`
 and the '-o .' to specify the output directory. 
 
 A few hints:
