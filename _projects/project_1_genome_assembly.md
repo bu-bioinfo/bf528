@@ -285,11 +285,14 @@ resources used per process. Use this information and the guide for [requesting
 resources]({{site.baseurl}}/guides/requesting_scc_resources/) on the SCC to give
 each process an appropriate label. 
 
-1. Look at the report and try to give each process an appropriate label. 
+1. Look at the report and try to give each process an appropriate label. Focus
+on the amount of VMEM (virtual memory) required for each task and ensure that
+your label requests the appropriate amount of RAM. You want to look at the 
+virtual memory usage tab of the memory section in the report. See [here](https://nextflow.io/docs/latest/tutorials/metrics.html#metrics-page) for more details. 
 
 2. Edit your `nextflow.config` to add the appropriate label specifications. I
 have provided you a sample label in the config file that you can use as a model
-for the ones you create. Please create labels called `process_medium` and `process_high`.
+for the ones you create. Please create labels called `process_low`, and `process_medium`.
 
 You can see an example of where I've added a label to a process in the FLYE
 process. You'll also notice that in the command, I have to specify the option

@@ -130,7 +130,7 @@ Within the `workflow` block
 
 1. Load the miniconda module using `module load miniconda`
 
-2. Activate the nextflow environment using `conda activate nextflow_env`
+2. Activate the nextflow environment using `conda activate nextflow_latest`
 
 3. Run the nextflow script using `nextflow run main.nf`
 
@@ -146,7 +146,8 @@ the first two characters of the hash and a subdirectory with the remaining chara
 From our above example, the directory would be `work/ab/2496183aa8f126aac4b6a083de6ade/`.
 That is where the outputs of the DOWNLOAD process were stored. The terminal 
 output only shows the first six unique characters of the hash, but the full hash
-is used to identify the process. 
+is used to identify the process. Your directory location will be different than the one
+shown above. 
 
 # Fourth Iteration - Nextflow with multiple processes (20 minutes)
 
