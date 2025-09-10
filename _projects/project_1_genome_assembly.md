@@ -52,7 +52,9 @@ We will be generating a nextflow pipeline that will perform the following steps:
 
 For the first week, we will focus on creating channels with the files we are
 going to process. You will also be asked to generate appropriate computational
-environments and look into the commands required to run certain tools. 
+environments and look into the commands required to run certain tools. From a 
+pipeline standpoint, we will be performing quality control on the short reads,
+quality control of the long reads, and then assembly of the long reads. 
 
 ## Setting up
 
@@ -60,7 +62,9 @@ For this week, I have provided you a fully working nextflow pipeline that will
 let you see how it works while focusing just on learning a few key concepts
 we will be using throughout the semester. 
 
-To start, open a VSCode session in your project directory (/projectnb/bf528/students/<your_username>/)
+To start, open a VSCode session in your project directory (/projectnb/bf528/students/<your_username>/).
+Please replace the <your_username> with your BU ID and no @bu.edu. So if your
+BU ID was `jstudent` then your directory would be `/projectnb/bf528/students/jstudent/`
 
 Remember to activate the conda environment you created for nextflow using the
 following commands:
@@ -74,14 +78,16 @@ conda activate nextflow_latest
 find the link on blackboard.
 
 2. In your student directory, you may use the following command to clone your
-repo:
+repo after copying the **SSH** link from your repo on GitHub:
 
 ```bash
 git clone <repo_url>
 ```
 
-You should now have a directory called `project-1-genome-assembly-<your_username>`
-in your student directory. 
+This will make clone the repo to your student directory and all of your work
+for this week should be done in this directory. You will push your changes to
+GitHub as you go, which will also enable us to evaluate your work and help
+troubleshoot. 
 
 3. Open this directory in your VSCode session. 
 
@@ -95,42 +101,82 @@ we will be using the same structure and organization in all of the projects.
 1. Take a look at the channel_test.nf and run the following command:
 
 ```bash
-nextflow run channel_test.nf -profile local,conda
+nextflow run channel_test.nf
 ```
 
-2. Note what the output of the command is in your terminal window. 
+2. Note what the output of the command is in your terminal window and remember
+what we talked about in class about channels and tuples. 
 
 3. Use the code in the channel_test.nf as an example and in the week1.nf, make
-two channels that contain the paths to the nanopore reads and the short reads
-and name the channels `nanopore_ch` and `shortread_ch`, respectively.
+two channels that are a tuple containing the name of the sample and the path to
+the long reads and short reads, respectively. Name the channels `longread_ch`
+and `shortread_ch`, respectively. Since we have paired-end sequencing for the
+short reads, the shortread_ch will be a tuple consisting of three elements while
+the longread_ch will be a tuple with only two elements. 
 
+If you view() the contents of these channels, they should look something like
+below:
+
+```bash
+longread_ch
+[Alteromonas_macleodii, /path/to/long_reads]
+```
+
+```bash
+shortread_ch
+[Alteromonas_macleodii, /path/to/short_reads1, /path/to/short_reads2]
+```
+
+These are both tuples where the first element is our sample identifier, and the
+remaining elements are the paths to the files we want to process. 
+
+Feel free to modify the code in the `channel_test.nf` and run it to view the 
+contents of the channels as you're troubleshooting the logic to generate the
+shortread_ch and longread_ch correctly.
 
 ### Specifying appropriate computational environments
 
-This pipeline is fully specified in the main.nf file, but you will need to 
+This pipeline is fully specified in the week1.nf file, but you will need to 
 specify the appropriate computational environments for each process. In general,
 we will endeavor to always use the most up-to-date version of a tool. In the 
-envs/ directory, please find the appropriate conda environment files for each
-process. 
+envs/ directory, you will find empty conda environment files for each
+process already created for you that you will need to complete.
 
 1. Use the appropriate conda command to find the most recent version of each tool
 available on bioconda and update the YML files accordingly. Keep in mind the 
 following:
 
+- The command is `conda search -c conda-forge -c bioconda <tool_name>`
 - Use the most up-to-date version and specify it as so: `tool_name=<version>`, 
-which will normally look like `samtools=1.17`. 
+which will normally look like `samtools=1.17`. Conda will list all available
+versions and the most-up-to-date version will be the last one in the list and
+should be the numerically highest version. 
 
 2. Only specify a single version of a tool in each YML file. While you can
 specify multiple versions of a tool in a single YML file, we will try to 
 minimize this as much as possible to avoid running into issues with conda being
 unable to resolve the dependencies. 
 
-3. Once you've filled in the YML files, add the appropriate path to each YML
-file in the appropriate process (envs/<process_name>.yml)
+3. Once you've filled in the YML files, add a directive underneath the `label`
+of each process in the week1.nf file to specify the appropriate conda environment
+for each process. 
+
+This will look something like below:
+
+```
+process EXAMPLE {
+    label 'process_single'
+    conda 'envs/<name_of_yml_file>.yml
+    ...
+}
+```
+Make sure to replace <name_of_yml_file> with the name of the YML file you created
+and with no <> characters in the final replacement. Now when you run nextflow, it 
+will build and load the appropriate conda environment for each process. 
 
 ### Finding the appropriate commands for running each tool
 
-You'll notice that the `script` block in each of the processes in the main.nf
+You'll notice that the `script` block in each of the processes in the week1.nf
 are blank. You will need to find the appropriate commands for running each tool
 and fill them in. 
 
@@ -146,22 +192,25 @@ examples of how to use the tool. They will often have a `Usage` section that
 contains a quick basic example of how to use the tool. 
 
 3. For FastQC and filtlonger, you may use the quick start command provided in
-the documentation.
+the documentation. For filtlonger, choose the command for running **without an
+external reference**.
 
-4. For Flye, you can use all default options and include this flag `--nano-corr`. 
+4. For Flye, the only arguments you should include in the command are `--nano-corr`
+and the '-o .' to specify the output directory. 
 
 A few hints:
 
 - You will need to specify FASTQC to run on both the short read files (R1 and R2) 
 by listing them one after another
 - You can refer to files or variables passed in inputs using the `$` symbol. i.e.
-`$fasta`
+`$read1` or `$read2`
 - You can make strings by using string interpolation "${variable_name}.txt" will
 create a string using the value of the variable_name variable - i.e. if 
 variable_name is "test", then "${variable_name}.txt" will create the string "test.txt". 
+- The file created by the tool should be specified in the `output` block of the process.
 
 Once you have found the appropriate commands for running each tool, you will need
-to fill in the `script` block in each of the processes in the main.nf file. 
+to fill in the `script` block in each process in the week1.nf file. 
 
 When you believe you've finished this step, run the pipeline and observe if it
 runs successfully. If it doesn't, you will need to go back and fix the commands
@@ -170,19 +219,25 @@ for running each tool.
 You may use the following command to run the pipeline:
 
 ```bash
-nextflow run main.nf -profile cluster,conda
+nextflow run week1.nf -profile cluster,conda
 ```
+
+Please note that if successful, this command may take around ~1 hour to run as
+Flye is performing assembly using the long reads, which as we discussed, is a
+computationally intensive process. Make sure not to end your VSCode interactive
+session while the pipeline is running. You can however close your browser
+window and your session will continue to run. 
 
 ## Week 1 Recap
 
-- Clone the github repo for this project
-- Familiarize yourself with the directory you are working in
-- Use the code in the channel_test.nf to create a channel from a CSV file in 
-your main.nf
-- Specify the appropriate computational environments for each process in the YML
+- [ ] Clone the github repo for this project
+- [ ] Familiarize yourself with the directory you are working in
+- [ ] Use the code in the channel_test.nf to create two channels from a CSV file in 
+your week1.nf
+- [ ] Specify the appropriate computational environments for each process in the YML
 file and add the path to each YML file in the appropriate process
-- Find the appropriate commands for running each tool and fill them in
-- Run the pipeline and observe if it runs successfully
+- [ ] Find the appropriate commands for running each tool and fill them in
+- [ ] Run the pipeline and observe if it runs successfully
 
 # Week 2 - Modularizing our pipeline and polishing our assembly
 
@@ -225,6 +280,9 @@ Last week you were asked to run the pipeline with the `conda` and `cluster` prof
 If you look in the `nextflow.config` file, you'll notice that we have profiles
 corresponding to these labels and a set of options specified. These options will
 be automatically applied when you run the pipeline with the specified profile.
+As we talked about in the lab, we will be using the SCC to run our pipelines and
+nextflow will automatically submit each process as a separate job to the SCC using
+the appropriate qsub commands if specified. 
 
 This week, we will be running significantly more resource intensive processes and
 we will need to now make use of the resource available to us on the SCC. You will
@@ -268,8 +326,13 @@ the order of operations and the dependencies between the processes to construct
 the workflow. If you find it useful, I have included a visual representation of
 the DAG for the workflow in these directions and in your repository. 
 
-2. Run the pipeline and observe if it runs successfully. If it doesn't, you will
-need to go back and fix the workflow. 
+- Remember that you may access the outputs of a process using the <PROCESS>.out()
+notation. For example, if you have a process called `FASTQC`, you can access
+the output of the process using `FASTQC.out()`. If you have named different
+outputs, you refer to them by the named defined in the `emit` block of the process.
+For example, if you have a process called `FASTQC` that emits two different output
+channels called `html` and `zip`, you can access them using
+`FASTQC.out.html` and `FASTQC.out.zip`.
 
 If you complete this successfully, you should have a working pipeline that should
 run last week's tasks as well as the steps from this week that will assemble
@@ -277,13 +340,15 @@ the reads, polish the assembly with the long reads, align the short reads to the
 long read polished assembly, and use the short reads to further polish the
 assembly. 
 
+Before you run the pipeline, please complete the next section.
+
 ### Use the report and the list of SCC resources to give each process an appropriate label
 
 In the repo, I have provided you a HTML report that can be obtained from running
-nextflow with the `-with-report` flag. This report shows you the amount of 
-resources used per process. Use this information and the guide for [requesting
-resources]({{site.baseurl}}/guides/requesting_scc_resources/) on the SCC to give
-each process an appropriate label. 
+nextflow with the `-with-report` flag (i.e. `nextflow run week2.nf -profile cluster,conda -with-report`). 
+This report shows you the amount of resources used per process. Use this information
+and the guide for [requesting SCC resources]({{site.baseurl}}/guides/requesting_scc_resources/)
+to give each process an appropriate label. 
 
 1. Look at the report and try to give each process an appropriate label. Focus
 on the amount of VMEM (virtual memory) required for each task and ensure that
@@ -298,16 +363,19 @@ You can see an example of where I've added a label to a process in the FLYE
 process. You'll also notice that in the command, I have to specify the option
 specific to FLYE for using multiple threads, `--threads` and I use the `$task.cpus`
 variable in nextflow to automatically fill in the number of cpus requested for
-the selected label. 
+the selected label. If you look in the nextflow.config, you can see that the
+label 'process_high' requests 16 cpus, which also reserves 128GB of memory. 
 
 3. For the other processes, please specify an appropriate label and ensure you
 add the right flag to each command to make use of the resources requested. 
 
 ## Week 2 Recap
 
-- Modularize the remaining processes in the week2.nf
-- Connect the processes in the week2.nf
-- Use the report and the list of SCC resources to give each process an appropriate label
+- [ ] Modularize the remaining processes in the week2.nf
+- [ ] Connect the processes in the week2.nf
+- [ ] Create labels in your nextflow.config for `process_low` and `process_medium`
+- [ ] Use the report and the list of SCC resources to give each process an appropriate label -
+ensuring that each process has requested a node with enough memory.
 
 # Week 3 - Wrapping up and evaluating our assembly
 
@@ -375,10 +443,10 @@ to create a circos plot from the GFF file
 
 ### Finalize the project report for project 1
 
-Follow the instructions found in the Report Guidelines to create a report for this project.
+Follow the instructions found below to make a final report for this project.
 
 ## Week 3 Recap
 
-- Connect the processes
-- Use the output from Prokka and create a circos plot from the GFF file
-- Finalize the project report for project 1
+- [ ] Connect the processes
+- [ ] Use the output from Prokka and create a circos plot from the GFF file
+- [ ] Finalize the project report for project 1
