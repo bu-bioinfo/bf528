@@ -62,9 +62,10 @@ For this week, I have provided you a fully working nextflow pipeline that will
 let you see how it works while focusing just on learning a few key concepts
 we will be using throughout the semester. 
 
-To start, open a VSCode session in your project directory (/projectnb/bf528/students/<your_username>/).
-Please replace the <your_username> with your BU ID and no @bu.edu. So if your
-BU ID was `jstudent` then your directory would be `/projectnb/bf528/students/jstudent/`
+To start, open a VSCode session in **your** directory under the BF528 project
+(i.e. `/projectnb/bf528/students/<your_username>/`). Please replace the
+<your_username> with your BU ID and no @bu.edu. So if your BU ID was `jstudent`
+then your directory would be `/projectnb/bf528/students/jstudent/`
 
 Remember to activate the conda environment you created for nextflow using the
 following commands:
@@ -75,10 +76,9 @@ conda activate nextflow_latest
 ```
 
 1. Please clone the github repo for this project in your student folder - you may
-find the link on blackboard.
-
-2. In your student directory, you may use the following command to clone your
-repo after copying the **SSH** link from your repo on GitHub:
+find the link on blackboard. In your student directory, you may use the following
+command to clone your repo after copying the **SSH** link from your repo made for
+you on GitHub Classroom:
 
 ```bash
 git clone <repo_url>
@@ -89,16 +89,16 @@ for this week should be done in this directory. You will push your changes to
 GitHub as you go, which will also enable us to evaluate your work and help
 troubleshoot. 
 
-3. Open this directory in your VSCode session. 
+2. Open this directory in your VSCode session. 
 
-4. Familiarize yourself with the directory you are working in. Throughout the semester,
+3. Familiarize yourself with the directory you are working in. Throughout the semester,
 we will be using the same structure and organization in all of the projects.
 
 ## Tasks
 
 ### Creating a channel from a CSV file
 
-1. Take a look at the channel_test.nf and run the following command:
+1. Take a look at the channel_test.nf and run the following command in a terminal:
 
 ```bash
 nextflow run channel_test.nf
@@ -115,7 +115,8 @@ short reads, the shortread_ch will be a tuple consisting of three elements while
 the longread_ch will be a tuple with only two elements. 
 
 If you view() the contents of these channels, they should look something like
-below:
+below (the paths will be different from what you see below and the actual paths
+will be their location on the SCC):
 
 ```bash
 longread_ch
@@ -139,8 +140,8 @@ shortread_ch and longread_ch correctly.
 This pipeline is fully specified in the week1.nf file, but you will need to 
 specify the appropriate computational environments for each process. In general,
 we will endeavor to always use the most up-to-date version of a tool. In the 
-envs/ directory, you will find empty conda environment files for each
-process already created for you that you will need to complete.
+envs/ directory, you will find empty conda environment files for each tool already
+created for you that you will need to complete.
 
 1. Use the appropriate conda command to find the most recent version of each tool
 available on bioconda and update the YML files accordingly. Keep in mind the 
