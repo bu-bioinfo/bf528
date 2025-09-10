@@ -64,7 +64,7 @@ we will be using throughout the semester.
 
 To start, open a VSCode session in **your** directory under the BF528 project
 (i.e. `/projectnb/bf528/students/<your_username>/`). Please replace the
-<your_username> with your BU ID and no @bu.edu. So if your BU ID was `jstudent`
+`<your_username>` with your BU ID and no @bu.edu. So if your BU ID was `jstudent`
 then your directory would be `/projectnb/bf528/students/jstudent/`
 
 Remember to activate the conda environment you created for nextflow using the
