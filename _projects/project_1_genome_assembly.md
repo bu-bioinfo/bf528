@@ -98,7 +98,8 @@ we will be using the same structure and organization in all of the projects.
 
 ### Creating a channel from a CSV file
 
-1. Take a look at the channel_test.nf and run the following command in a terminal:
+1. Take a look at the channel_test.nf and run the following command in a terminal
+with your nextflow environment active:
 
 ```bash
 nextflow run channel_test.nf
