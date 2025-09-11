@@ -51,7 +51,7 @@ hosts a number of resources that we can download and analyze. For example,
 today we will be downloading the genomic sequence of Escherichia coli and running
 a small python script to calculate the length of the sequence. 
 
-# First Iteration
+# First Iteration - Simplest workflow
 
 Navigate to the iteration_1/ directory in a terminal and perform the following:
 
@@ -70,7 +70,7 @@ python calc_length.py
 - [ ] Download the E. Coli genome 
 - [ ] Run the script to print out the length of the genome
 
-# Second Iteration - Qsub script
+# Second Iteration - Submitting jobs to the cluster
 
 **Lecture (10 minutes)**
 
@@ -107,7 +107,7 @@ using `qsub calc_length_script.sh`
 - [ ] Make a qsub script that runs the python script
 - [ ] Check the status of your submitted jobs using `qstat`
 
-# Third Iteration - Nextflow
+# Third Iteration - Basic Nextflow workflow
 
 Above would be the simplest example of a bioinformatics pipeline. Nextflow is a
 workflow management tool that will help us connect and automate the above 
@@ -239,8 +239,6 @@ each process executed in.
 - [ ] Learn how to use profiles to specify options at runtime
 
 # Fourth Iteration - Updating our script to use argparse
-
-## Use argparse to accept input and output file names on the command line
 
 Navigate to the iteration_4/ directory.
 
