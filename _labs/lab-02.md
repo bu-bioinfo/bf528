@@ -165,6 +165,14 @@ Making a script executable allows it to be run as a command in the terminal. It
 also allows us to avoid having to specify which interpreter to use to run the
 script (as long as it's specified in the script). 
 
+It will also let us call it from a terminal with the following command:
+
+```bash
+gc_content.py
+```
+
+Notice how we are not required to specify `python` to run the script. 
+
 2. Make a new process called GC_CONTENT that takes the output of the DOWNLOAD 
 process as input and runs the gc_content.py script on it. Structure it with similar
 syntax as the DOWNLOAD process.
@@ -184,7 +192,7 @@ GC_CONTENT process.
 
 - Call the GC_CONTENT process the same way the DOWNLOAD process was called
 
-4. Run the nextflow script using `nextflow run main.nf -profile conda`
+4. Run the nextflow script using `nextflow run main.nf -profile conda,local`
 
 - Note this may take several minutes as Nextflow is creating the conda environment
 
@@ -293,8 +301,15 @@ to the gc_content.py script
 that you may access values in the input and output of a nextflow process. Values
 in the input may be accessed using the $ symbol. 
 
-2. Update the workflow block to call the new process like in the last exercise
+4. Update the workflow block to call the new process like in the last exercise
 
+5. Run the nextflow script using `nextflow run main.nf -profile conda,cluster`
+
+- [ ] Adjust the python script to use argparse
+- [ ] Make the script executable
+- [ ] Create a new process that calls the gc_content.py script
+- [ ] Update the workflow block to call the new process
+- [ ] Run the nextflow script  
 
 # Fifth Iteration - Specifying multiple outputs in a process
 
@@ -317,24 +332,34 @@ output:
     path("length.txt"), emit: length
 ```
 
-Also take note of the publishDir block. This is a way for us to specify a directory
-where we want to publish the outputs of our workflow. This can avoid us having
-to navigate through the work/ directory to find our outputs. Typically, you want
-to avoid using this for every process if you don't expect that you'll need to 
-manually access the outputs of certain processes. 
-
 By using `emit`, we can pass different outputs to different processes by calling
-the separate outputs by the name we give them in `emit`. 
+the separate outputs by the name we give them in `emit`. We can individually 
+access different outputs using the <PROCESS NAME>.out.<EMIT NAME> notation. For
+our example, we can access the gc_content.txt file using `GENOME_STATS.out.gc_content`
+and the length.txt file using `GENOME_STATS.out.length`.
 
+4. Add a line underneath the `conda` line in this process:
 
-Now look back at the main.nf file and run it using the following command:
+```bash
+publishDir params.outdir
+```
+
+5. Look at the contents of the genome_stats.py script and properly fill out the
+`script` block with the appropriate commands to run the script.
+
+6. Send the appropriate outputs of the GENOME_STATS process to the PRINT_GC and PRINT_LENGTH
+processes in the workflow.
+
+7. Once finished, run the nextflow script using the following command:
 
 ```bash
 nextflow run main.nf -profile conda,cluster
 ```
 
-- [ ] Run the nextflow script
 - [ ] Learn how emit lets us name outputs and pass them to other processes
 - [ ] Use publishDir to publish outputs to a directory outside of work/
 - [ ] Inspect the work/ directory to see where the outputs are stored and the
 various log files that are created
+- [ ] Send the appropriate outputs of the GENOME_STATS process to the PRINT_GC and PRINT_LENGTH
+processes in the workflow
+- [ ] Run the nextflow script   
