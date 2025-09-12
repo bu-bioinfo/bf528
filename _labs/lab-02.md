@@ -363,3 +363,17 @@ various log files that are created
 - [ ] Send the appropriate outputs of the GENOME_STATS process to the PRINT_GC and PRINT_LENGTH
 processes in the workflow
 - [ ] Run the nextflow script   
+
+# Optional
+
+If you have been able to do all of the above, you can try to do the following:
+
+1. Instead of using `wget`, develop a nextflow workflow that instead utilizes
+the `ncbi-datasets-cli` tool to download the E. coli genome.
+
+2. Keep the rest of the workflow the same as iteration_5 and run the `genome_stats.py`
+script on the downloaded E. Coli genome.
+
+*Hint*
+You may want to try running the ncbi datasets command on the terminal to see what
+options are available and what file is downloaded. 
