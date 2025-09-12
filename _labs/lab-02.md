@@ -173,9 +173,9 @@ gc_content.py
 
 Notice how we are not required to specify `python` to run the script. 
 
-2. Make a new process called GC_CONTENT that takes the output of the DOWNLOAD 
-process as input and runs the gc_content.py script on it. Structure it with similar
-syntax as the DOWNLOAD process.
+2. In the `main.nf`, make a new process called GC_CONTENT that takes the 
+output of the DOWNLOAD process as input and runs the gc_content.py script on it. 
+Structure it with similar syntax as the DOWNLOAD process.
 
 - Make sure to check the script to see what file it creates and set that as the
 output
@@ -187,8 +187,8 @@ line that looks like:
 conda 'envs/biopython_env.yml'
 ```
 
-3. Use `DOWNLOAD.out` to pass the output of the DOWNLOAD process to the 
-GC_CONTENT process.
+3. In the workflow block of the `main.nf`,Use `DOWNLOAD.out` to pass the output
+of the DOWNLOAD process to the GC_CONTENT process.
 
 - Call the GC_CONTENT process the same way the DOWNLOAD process was called
 
