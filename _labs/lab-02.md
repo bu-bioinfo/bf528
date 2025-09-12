@@ -362,7 +362,8 @@ nextflow run main.nf -profile conda,cluster
 various log files that are created
 - [ ] Send the appropriate outputs of the GENOME_STATS process to the PRINT_GC and PRINT_LENGTH
 processes in the workflow
-- [ ] Run the nextflow script   
+- [ ] Run the nextflow script
+- [ ] Take a look at the nextflow.config file and understand what we store there
 
 # Optional
 
