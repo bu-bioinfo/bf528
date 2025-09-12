@@ -367,7 +367,8 @@ processes in the workflow
 
 # Optional
 
-If you have been able to do all of the above, you can try to do the following:
+If you have been able to do all of the above, you can try to do the following
+in a new directory called iteration_6:
 
 1. Instead of using `wget`, develop a nextflow workflow that instead utilizes
 the `ncbi-datasets-cli` tool to download the E. coli genome.
