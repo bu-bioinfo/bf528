@@ -321,6 +321,10 @@ way I have already done for you with last week's code.
 2. Follow the same pattern where you make a new directory in modules/ with the
 name of the process and the file itself called main.nf.
 
+### Workflow directed acyclic graph (DAG)
+
+![DAG]({{site.baseurl}}/assets/images/pipeline.png)
+
 ### Connect the processes in the week2.nf
 
 1. Look at the inputs and outputs of each module and try to construct the
