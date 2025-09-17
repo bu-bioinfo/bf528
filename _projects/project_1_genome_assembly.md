@@ -251,11 +251,10 @@ This modularity will have the secondary benefit of making it easier to reuse
 components of the pipeline in future projects or even share it with others. 
 
 From a bioinformatics standpoint, this week we will add several steps to our
-pipeline. We will polish the assembly we created last week with our long reads and
-our short Illumina reads. Long read polishing will require the assembly as well
-as the long reads. In order to polish with the Illumina reads, we will first 
-need to align the illumina reads to the draft assembly using bowtie2. We can then
-provide the aligned reads to Pilon to polish the assembly. 
+pipeline. We will polish the assembly we created last week with our Illumina reads.
+In order to do this, we will first need to align the illumina reads to the draft
+assembly using bowtie2. We can then provide the aligned reads to Pilon to polish
+the assembly. 
 
 ## Relevant Resources
 
@@ -314,7 +313,7 @@ that code largely in the modules/ directory. We now import our processes into
 the week2.nf script to make them available using the `include` keyword. You can 
 think of this as akin to when you import a library in python. 
 
-1. Take the code for the processes MEDAKA, BOWTIE2_INDEX, BOWTIE2_ALIGN, SAMTOOLS_SORT,
+1. Take the code for the processes BOWTIE2_INDEX, BOWTIE2_ALIGN, SAMTOOLS_SORT,
 and PILON found in the week2.nf and split them out into modules the 
 way I have already done for you with last week's code. You should remove this
 code from the `week2.nf` file and place it in the appropriate module. When finished,
@@ -396,6 +395,12 @@ add the right flag to each command to make use of the resources requested. You
 will need to use the `$task.cpus` variable in nextflow to automatically fill in
 the number of cpus requested for the selected label in the command as well as find
 the right flag to use for each tool. 
+
+- Certain processes like building an index or aligning reads to the reference benefit
+greatly from using multiple threads / cores. You can choose to use a higher number
+of threads / cores for these processes if you have the resources available and it
+will greatly speed up the process. You may choose to use a greater number of threads
+for these processes even if you don't technically need more memory reserved.  
 
 - Some tools may not be able to use multiple threads / cores, but you should still
 use the provided report to specify an appropriate label so that your job properly
