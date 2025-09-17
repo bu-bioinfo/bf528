@@ -316,10 +316,18 @@ think of this as akin to when you import a library in python.
 
 1. Take the code for the processes MEDAKA, BOWTIE2_INDEX, BOWTIE2_ALIGN, SAMTOOLS_SORT,
 and PILON found in the week2.nf and split them out into modules the 
-way I have already done for you with last week's code. 
+way I have already done for you with last week's code. You should remove this
+code from the `week2.nf` file and place it in the appropriate module. When finished,
+your week2.nf should begin with the INCLUDE statements and end with the workflow
+block. 
 
-2. Follow the same pattern where you make a new directory in modules/ with the
+- Follow the same pattern where you make a new directory in modules/ with the
 name of the process and the file itself called main.nf.
+
+2. Just as I've done for you with last week's processes, at the top of your
+week2.nf file, you should use the `include` keyword to import the processes you
+have created. Follow the same syntax and style that is already there. 
+
 
 ### Workflow directed acyclic graph (DAG)
 
@@ -346,6 +354,16 @@ run last week's tasks as well as the steps from this week that will assemble
 the reads, polish the assembly with the long reads, align the short reads to the
 long read polished assembly, and use the short reads to further polish the
 assembly. 
+
+You'll notice that when we go to align reads to the reference sequence, we first
+have to build an index. We will discuss more in-class about this step, but essentially,
+most aligners need to build a data structure that allows them to quickly and 
+efficiently align reads to the reference sequence and locate where they align.
+You can think of a genome index as akin to a table of contents, which allows you
+to determine what page a chapter is located on, without having to read through
+the entire book. Most traditional aligners will need to build an index for the
+reference sequence before they can align reads to it, and most indexes need to 
+be built with the same tool as the aligner. 
 
 Before you run the pipeline, please complete the next section.
 
@@ -374,7 +392,14 @@ the selected label. If you look in the nextflow.config, you can see that the
 label 'process_high' requests 16 cpus, which also reserves 128GB of memory. 
 
 3. For the other processes, please specify an appropriate label and ensure you
-add the right flag to each command to make use of the resources requested. 
+add the right flag to each command to make use of the resources requested. You
+will need to use the `$task.cpus` variable in nextflow to automatically fill in
+the number of cpus requested for the selected label in the command as well as find
+the right flag to use for each tool. 
+
+- Some tools may not be able to use multiple threads / cores, but you should still
+use the provided report to specify an appropriate label so that your job properly
+reserves the right amount of memory.
 
 ## Week 2 Recap
 
