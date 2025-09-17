@@ -308,7 +308,7 @@ processes may need to wait until others finish.
 Before you begin, take a note of the week2.nf file you've been provided and the
 modules/ directory. If you've been following along, you'll notice that we've
 changed how we have organized our pipeline. The same code from our week 1 pipeline
-is there, but we have now separated each process into different modules You can see
+is there, but we have now separated each process into different module. You can see
 that code largely in the modules/ directory. We now import our processes into
 the week2.nf script to make them available using the `include` keyword. You can 
 think of this as akin to when you import a library in python. 
