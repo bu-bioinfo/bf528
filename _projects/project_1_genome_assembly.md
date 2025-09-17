@@ -276,7 +276,7 @@ them appropriately.
 
 ## Tasks
 
-### Changing the way we run our processes
+### Ensure you are always running nextflow with -profile conda,cluster
 
 Last week you were asked to run the pipeline with the `conda` and `cluster` profiles. 
 If you look in the `nextflow.config` file, you'll notice that we have profiles
@@ -284,7 +284,7 @@ corresponding to these labels and a set of options specified. These options will
 be automatically applied when you run the pipeline with the specified profile.
 As we talked about in the lab, we will be using the SCC to run our pipelines and
 nextflow will automatically submit each process as a separate job to the SCC using
-the appropriate qsub commands if specified. 
+the appropriate qsub commands when specified. 
 
 This week, we will be running significantly more resource intensive processes and
 we will need to now make use of the resource available to us on the SCC. You will
