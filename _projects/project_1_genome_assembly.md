@@ -247,14 +247,14 @@ file and add the path to each YML file in the appropriate process
 You may have noticed from the first week that our pipeline is becoming 
 increasingly complex and slightly onerous to read in a single file. In this week,
 we are going to refactor our workflow to make it more modular and easier to read.
-This modularity will have the secondary benefit of making it easier to reuse
-components of the pipeline in future projects or even share it with others. 
+This modularity will have the secondary benefit of enabling us to reuse
+components of the pipeline in future projects or even share them with others. 
 
 From a bioinformatics standpoint, this week we will add several steps to our
-pipeline. We will polish the assembly we created last week with our Illumina reads.
-In order to do this, we will first need to align the illumina reads to the draft
-assembly using bowtie2. We can then provide the aligned reads to Pilon to polish
-the assembly. 
+pipeline. We will first generate a genome index from the assembly and align the 
+illumina reads to the draft assembly using bowtie2. We can then sort the aligned
+reads and provide them to Pilon to polish the assembly and fix any potential 
+errors. 
 
 ## Relevant Resources
 
@@ -305,12 +305,14 @@ processes may need to wait until others finish.
 
 ### Modularize the remaining processes in the week2.nf
 
-Before you begin, take a note of the week2.nf file you've been provided and the
+Before you begin, take note of the week2.nf file you've been provided and the
 modules/ directory. If you've been following along, you'll notice that we've
 changed how we have organized our pipeline. The same code from our week 1 pipeline
-is there, but we have now separated each process into different module. We now 
-import our processes into the week2.nf script to make them available using the 
-`include` keyword. You can think of this as akin to when you import a library in python. 
+is there, but we have now separated each process into a different module located
+in a named directory in modules/. This allows us to remove the processes from the
+week2.nf file and import them into the week2.nf file using the `include` keyword.
+You can think of this as akin to when you import a library in python to make
+certain functions available for use. 
 
 1. Take the code for the processes BOWTIE2_INDEX, BOWTIE2_ALIGN, SAMTOOLS_SORT,
 and PILON found in the week2.nf and separate them out into modules the 
@@ -324,8 +326,8 @@ name of the process and the file itself called main.nf.
 
 2. Just as I've done for you with last week's processes, at the top of your
 week2.nf file before the `workflow` block, you should use the `include` keyword
-to import the processes you have created. Follow the same syntax and style that
-is already there. 
+to import the processes you have created new modules for. Follow the same syntax
+and style that is already there. 
 
 
 ### Workflow directed acyclic graph (DAG)
@@ -340,7 +342,8 @@ the order of operations and the dependencies between the processes to construct
 the workflow. If you find it useful, I have included a visual representation of
 the DAG for the workflow in these directions and in your repository. You should 
 add the processes to the workflow in the order they should be run and with the
-right dependencies. You should use all of this week's new processes.
+right dependencies. A dependency in this context is simply a process that
+must be run and finish before the next process can begin. 
 
 - Remember that you may access the outputs of a process using the <PROCESS>.out()
 notation. For example, if you have a process called `FASTQC`, you can access
@@ -352,8 +355,8 @@ channels called `html` and `zip`, you can access them using
 
 If you complete this successfully, you should have a working pipeline that should
 run last week's tasks as well as the steps from this week that will assemble
-the reads, align the short reads to the assembly, and use the short reads to polish
-the assembly. 
+the reads, align the short reads to the assembly, sort the alignments, and use the
+short reads to polish the assembly. 
 
 You'll notice that when we go to align reads to the reference sequence, we first
 have to build an index. We will discuss more in-class about this step, but essentially,
@@ -365,7 +368,7 @@ the entire book. Most traditional aligners will need to build an index for the
 reference sequence before they can align reads to it, and most indexes need to 
 be built with the same tool as the aligner. 
 
-Before you run the pipeline, please complete the following section.
+**Before you run the pipeline, please complete the following section.**
 
 ### Use the report and the list of SCC resources to give each process an appropriate label
 
@@ -387,7 +390,7 @@ that specify a different number of CPUs to request.
 
 You can see an example of where I've added a label to a process in the FLYE
 process. You'll also notice that in the command, I have to specify the option
-specific to FLYE for using multiple threads, `--threads` and I use the `$task.cpus`
+specific to FLYE for using multiple threads, `-t` and I use the `$task.cpus`
 variable in nextflow to automatically fill in the number of cpus requested for
 the selected label. If you look in the nextflow.config, you can see that the
 label 'process_high' requests 16 cpus, which also reserves 128GB of memory. 
