@@ -323,7 +323,7 @@ name of the process and the file itself called main.nf.
 
 ### Workflow directed acyclic graph (DAG)
 
-![DAG]({{site.baseurl}}/assets/images/pipeline.png)
+![DAG]({{site.baseurl}}/assets/images/week2_pipeline.png)
 
 ### Connect the processes in the week2.nf
 
