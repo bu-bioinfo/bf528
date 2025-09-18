@@ -177,10 +177,10 @@ If you want to think about it in terms of percentage, projects will account for
 | Fri | 9/26  | [4]({{ site.baseurl }}/lectures/week-04/)    | Lab      | Lab - Nextflow Practice                                              | P1 Due - P2 Assigned            |
 | Mon | 9/29  | [5]({{ site.baseurl }}/lectures/week-05/)    | Lecture  | Sequence Analysis - RNA-Seq 1                                       |                                 |
 | Wed | 10/1  | [5]({{ site.baseurl }}/lectures/week-05/)    | Lab      | Sequence Analysis - RNA-Seq 2                                                     |                                 |
-| Fri | 10/3  | [5]({{ site.baseurl }}/lectures/week-05/)    | Lab      | Lab - CRISPR Guides                                                |                                 |
+| Fri | 10/3  | [5]({{ site.baseurl }}/lectures/week-05/)    | Lab      | Lab - Containers (Docker)                                                |                                 |
 | Mon | 10/6  | [6]({{ site.baseurl }}/lectures/week-06/)    | Lecture  | Genome Editing - CRISPR Cas9                                      |                                 |
 | Wed | 10/8  | [6]({{ site.baseurl }}/lectures/week-06/)    | Lecture  | Project 2 Check-In                                      |                                 |
-| Fri | 10/10 | [6]({{ site.baseurl }}/lectures/week-06/)    | Lab      | Lab - Containers (Docker)                                          |                                 |
+| Fri | 10/10 | [6]({{ site.baseurl }}/lectures/week-06/)    | Lab      | Lab - CRISPR Guide Design                                          |                                 |
 | Tue | 10/14 | [7]({{ site.baseurl }}/lectures/week-07/)    | Lecture  | Biological Databases<br><br>Gene Sets and Enrichment<br>         |                                 |
 | Wed | 10/15 | [7]({{ site.baseurl }}/lectures/week-07/)    | Lab      | Project 2 Check-In<br>                                               |                                 |
 | Fri | 10/17 | [7]({{ site.baseurl }}/lectures/week-07/)    | Lab      | LAB - RNAseq Time Series and interaction analyses                  | P2 Due - P3 assigned            |
