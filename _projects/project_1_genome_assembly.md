@@ -247,15 +247,14 @@ file and add the path to each YML file in the appropriate process
 You may have noticed from the first week that our pipeline is becoming 
 increasingly complex and slightly onerous to read in a single file. In this week,
 we are going to refactor our workflow to make it more modular and easier to read.
-This modularity will have the secondary benefit of making it easier to reuse
-components of the pipeline in future projects or even share it with others. 
+This modularity will have the secondary benefit of enabling us to reuse
+components of the pipeline in future projects or even share them with others. 
 
 From a bioinformatics standpoint, this week we will add several steps to our
-pipeline. We will polish the assembly we created last week with our long reads and
-our short Illumina reads. Long read polishing will require the assembly as well
-as the long reads. In order to polish with the Illumina reads, we will first 
-need to align the illumina reads to the draft assembly using bowtie2. We can then
-provide the aligned reads to Pilon to polish the assembly. 
+pipeline. We will first generate a genome index from the assembly and align the 
+illumina reads to the draft assembly using bowtie2. We can then sort the aligned
+reads and provide them to Pilon to polish the assembly and fix any potential 
+errors. 
 
 ## Relevant Resources
 
@@ -277,7 +276,7 @@ them appropriately.
 
 ## Tasks
 
-### Changing the way we run our processes
+### Ensure you are always running nextflow with -profile conda,cluster
 
 Last week you were asked to run the pipeline with the `conda` and `cluster` profiles. 
 If you look in the `nextflow.config` file, you'll notice that we have profiles
@@ -285,7 +284,7 @@ corresponding to these labels and a set of options specified. These options will
 be automatically applied when you run the pipeline with the specified profile.
 As we talked about in the lab, we will be using the SCC to run our pipelines and
 nextflow will automatically submit each process as a separate job to the SCC using
-the appropriate qsub commands if specified. 
+the appropriate qsub commands when specified. 
 
 This week, we will be running significantly more resource intensive processes and
 we will need to now make use of the resource available to us on the SCC. You will
@@ -306,20 +305,30 @@ processes may need to wait until others finish.
 
 ### Modularize the remaining processes in the week2.nf
 
-Before you begin, take a note of the week2.nf file you've been provided and the
+Before you begin, take note of the week2.nf file you've been provided and the
 modules/ directory. If you've been following along, you'll notice that we've
 changed how we have organized our pipeline. The same code from our week 1 pipeline
-is there, but we have now separated each process into different modules You can see
-that code largely in the modules/ directory. We now import our processes into
-the week2.nf script to make them available using the `include` keyword. You can 
-think of this as akin to when you import a library in python. 
+is there, but we have now separated each process into a different module located
+in a named directory in modules/. This allows us to remove the processes from the
+week2.nf file and import them into the week2.nf file using the `include` keyword.
+You can think of this as akin to when you import a library in python to make
+certain functions available for use. 
 
-1. Take the code for the processes MEDAKA, BOWTIE2_INDEX, BOWTIE2_ALIGN, SAMTOOLS_SORT,
-and PILON found in the week2.nf and split them out into modules the 
-way I have already done for you with last week's code. 
+1. Take the code for the processes BOWTIE2_INDEX, BOWTIE2_ALIGN, SAMTOOLS_SORT,
+and PILON found in the week2.nf and separate them out into modules the 
+way I have already done for you with last week's code. You should remove this
+code from the `week2.nf` file and place them in new text files following the
+same format as last week's modules. When finished, your week2.nf should begin
+with the INCLUDE statements and end with the workflow block. 
 
-2. Follow the same pattern where you make a new directory in modules/ with the
+- Follow the same pattern where you make a new directory in modules/ with the
 name of the process and the file itself called main.nf.
+
+2. Just as I've done for you with last week's processes, at the top of your
+week2.nf file before the `workflow` block, you should use the `include` keyword
+to import the processes you have created new modules for. Follow the same syntax
+and style that is already there. 
+
 
 ### Workflow directed acyclic graph (DAG)
 
@@ -331,7 +340,10 @@ name of the process and the file itself called main.nf.
 workflow by passing the correct channels to each process. You will need to understand
 the order of operations and the dependencies between the processes to construct
 the workflow. If you find it useful, I have included a visual representation of
-the DAG for the workflow in these directions and in your repository. 
+the DAG for the workflow in these directions and in your repository. You should 
+add the processes to the workflow in the order they should be run and with the
+right dependencies. A dependency in this context is simply a process that
+must be run and finish before the next process can begin. 
 
 - Remember that you may access the outputs of a process using the <PROCESS>.out()
 notation. For example, if you have a process called `FASTQC`, you can access
@@ -343,11 +355,20 @@ channels called `html` and `zip`, you can access them using
 
 If you complete this successfully, you should have a working pipeline that should
 run last week's tasks as well as the steps from this week that will assemble
-the reads, polish the assembly with the long reads, align the short reads to the
-long read polished assembly, and use the short reads to further polish the
-assembly. 
+the reads, align the short reads to the assembly, sort the alignments, and use the
+short reads to polish the assembly. 
 
-Before you run the pipeline, please complete the next section.
+You'll notice that when we go to align reads to the reference sequence, we first
+have to build an index. We will discuss more in-class about this step, but essentially,
+most aligners need to build a data structure that allows them to quickly and 
+efficiently align reads to the reference sequence and locate where they align.
+You can think of a genome index as akin to a table of contents, which allows you
+to determine what page a chapter is located on, without having to read through
+the entire book. Most traditional aligners will need to build an index for the
+reference sequence before they can align reads to it, and most indexes need to 
+be built with the same tool as the aligner. 
+
+**Before you run the pipeline, please complete the following section.**
 
 ### Use the report and the list of SCC resources to give each process an appropriate label
 
@@ -364,17 +385,31 @@ virtual memory usage tab of the memory section in the report. See [here](https:/
 
 2. Edit your `nextflow.config` to add the appropriate label specifications. I
 have provided you a sample label in the config file that you can use as a model
-for the ones you create. Please create labels called `process_low`, and `process_medium`.
+for the ones you create. Please create labels called `process_low`, and `process_medium`
+that specify a different number of CPUs to request.
 
 You can see an example of where I've added a label to a process in the FLYE
 process. You'll also notice that in the command, I have to specify the option
-specific to FLYE for using multiple threads, `--threads` and I use the `$task.cpus`
+specific to FLYE for using multiple threads, `-t` and I use the `$task.cpus`
 variable in nextflow to automatically fill in the number of cpus requested for
 the selected label. If you look in the nextflow.config, you can see that the
 label 'process_high' requests 16 cpus, which also reserves 128GB of memory. 
 
-3. For the other processes, please specify an appropriate label and ensure you
-add the right flag to each command to make use of the resources requested. 
+3. For the other processes, please specify an appropriate label like in the FLYE
+process and ensure you add the right flag to each command to make use of the resources
+requested. You will need to use the `$task.cpus` variable in nextflow to automatically
+fill in the number of cpus requested for the selected label in the command as well as find
+the right flag to use for each tool by looking at their documentation. 
+
+- Certain processes like building an index or aligning reads to the reference benefit
+greatly from using multiple threads / cores. You can use a higher number of threads / cores
+for these processes if you have the resources available and it will greatly speed
+up the process. You may choose to use a greater number of threads for these processes
+even if you don't technically need more memory reserved.  
+
+- Some tools may not be able to use multiple threads / cores, but you should still
+use the provided report to specify an appropriate label so that your job properly
+reserves the right amount of memory.
 
 ## Week 2 Recap
 
@@ -383,6 +418,7 @@ add the right flag to each command to make use of the resources requested.
 - [ ] Create labels in your nextflow.config for `process_low` and `process_medium`
 - [ ] Use the report and the list of SCC resources to give each process an appropriate label -
 ensuring that each process has requested a node with enough memory.
+- [ ] Run the pipeline and observe if it runs successfully
 
 # Week 3 - Wrapping up and evaluating our assembly
 
