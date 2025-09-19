@@ -65,6 +65,10 @@ for our processes in the modules/ directory and now will have to use
 `include` to import those processes into our `main.nf` and use them
 in our workflow. 
 
+## Timeline View of the Workflow
+
+![timeline]({{ site.baseurl }}/assets/images/lab03_timeline.png)
+
 ## Lab 03 Tasks - Nextflow
 
 Given the description of our workflow and the timeline.html provided in the repo,
