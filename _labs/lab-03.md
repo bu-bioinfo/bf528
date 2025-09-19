@@ -84,6 +84,20 @@ the processes as well as figure out the appropriate commands.
 Remember that we can use `val` in inputs and outputs to specify a value. 
 We use `path` to specify files.  
 
+Until you are sure your pipeline works end to end, please run it with
+the following command:
+
+```bash
+nextflow run main.nf -profile local,conda
+```
+
+Once you are sure it works, you can re-run it by submitting it to the
+cluster with this command:
+
+```bash
+nextflow run main.nf -profile cluster,conda -with-report
+```
+
 ### ncbi_datasets_cli
 
 **Input**
