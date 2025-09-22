@@ -41,3 +41,9 @@ above string indicate about your assembly. We will discuss in class more about
 what exactly it's doing. 
 - Include the plot created by the BUSCO_PLOT process
 
+5. Write a short paragraph comparing how successful you believe the experiment
+was in generating a high quality assembly. Point to specific metrics in the
+reports and findings above that support your conclusions. You may also compare
+these findings to the reference assembly found [here](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_000172635.2/)
+
+Keep this brief and concise. This section should be no more than 500 words. 
