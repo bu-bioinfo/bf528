@@ -37,5 +37,7 @@ Write a short results section that includes the following findings and visualiza
 - The string indicating the BUSCO results (e.g. C:89.0%[S:85.8%,D:3.2%],F:6.9%,M:4.1%,n:3023)
 - Please read the documentation on BUSCO or the source publication and provide a
 short 1 paragraph explanation of what BUSCO is doing and what the values in the
-above string indicate about your assembly. 
+above string indicate about your assembly. We will discuss in class more about
+what exactly it's doing. 
 - Include the plot created by the BUSCO_PLOT process
+
