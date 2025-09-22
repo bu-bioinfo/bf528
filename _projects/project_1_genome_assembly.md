@@ -453,13 +453,17 @@ writeup for project 1 if you haven't already.
 
 ## Tasks
 
+### Workflow Visualization - DAG
+
+![Week 3 DAG]({{site.baseurl}}/images/project-1-pipeline.png)
+
 ### Connect the processes
 
 1. Look at the inputs and outputs of each module and try to construct the
-workflow by passing the correct channels to each process. You will need to understand
-the order of operations and the dependencies between the processes to construct
-the workflow. If you find it useful, I have included a visual representation of
-the DAG for the workflow in these directions and in your repository. 
+workflow by passing the correct channels to each process. You will need to understand the order of operations and the dependencies between the processes to construct the workflow. If you find it useful, I have included a visual representation of the DAG for the workflow in these directions and in your repository. *Please note that while you can alter the inputs / outputs, you should
+be able to run the pipeline successfully by simply passing the correct outputs
+to the correct processes. If you do change the inputs / outputs, you will need
+to ensure that the pipeline still runs successfully.* 
 
 2. Run the pipeline and observe if it runs successfully. If it doesn't, you will
 need to go back and fix the workflow. 
@@ -478,15 +482,13 @@ Use the instructions found in the guide for [Using Conda with VSCode and Jupyter
 
 2. Make a jupyter notebook by opening a new text file and naming it with the .ipynb extension
 
-3. Open your notebook and select the conda environment you created in the previous step
-to use as the kernel for your notebook
+3. Open your notebook and select the conda environment you created in the previous step to use as the kernel for your notebook
 
-4. Use the sample code found [here](https://moshi4.github.io/pyCirclize/circos_plot/)
-to create a circos plot from the GFF file
+4. Use the sample code found [here](https://moshi4.github.io/pyCirclize/circos_plot/) to create a circos plot from the GFF file
 
 ### Finalize the project report for project 1
 
-Follow the instructions found below to make a final report for this project.
+Follow the [Project 1 Report Guidelines]({{site.baseurl}}/guides/project_report/) to make a final report for this project.
 
 ## Week 3 Recap
 
