@@ -54,12 +54,19 @@ To do so, you will need to remember three things:
 
 - FASTQC:  ghcr.io/bf528/fastqc:latest
 - MultiQC: ghcr.io/bf528/multiqc:latest
+- Trimmomatic: ghcr.io/bf528/trimmomatic:latest
 
 # How to work on these exercises
 
-New command to run nextflow:
+New command to run nextflow locally with singularity:
 ```bash
 nextflow run <nf_file>.nf -profile singularity,local
+```
+
+or to submit the jobs to the cluster with singularity:
+
+```bash
+nextflow run <nf_file>.nf -profile singularity,cluster
 ```
 
 In each directory, I have given you both a `test.nf` and a `main.nf` file. The
@@ -76,7 +83,7 @@ the `view` operator. Test out the different operators in the `test.nf` file.
 Remember that PROCESS outputs are also channels and you can manipulate them using
 operators and save the new outputs to a new channel. 
 
-# Creating a channel from a CSV file in two ways - Exercise 1
+# Creating a channel with files in two ways - Exercise 1
 
 To create a channel from a CSV, we can use a combination of nextflow operators
 and channel functions.
@@ -101,12 +108,11 @@ This will look something like:
 
 `test.nf`
 - [ ] Make a channel that contains a tuple of the sample name, and a tuple of
-the paths to the R1 and R2 files
+the paths to the R1 and R2 files using `Channel.fromPath`, `splitCsv`, `map`, and `tuple`
 
 `main.nf`
-- [ ] Use the `Channel.fromFilePairs` function to create a channel from the
-CSV file provided to you in the nextflow.config. The CSV file contains the path
-to where the files are located. 
+- [ ] Use the `Channel.fromFilePairs` function to create the same channel as above
+from the path provided to you in the nextflow.config. Refer to the documentation [here](https://nextflow.io/docs/latest/reference/channel.html#fromfilepairs) for more information.
 - [ ] Use the FASTQC module and run it on the channel created in the previous step.
 
 # Manipulating channels - Exercise 2
@@ -125,7 +131,7 @@ files. You can individually access the elements of the tuple by their position
 similar to how you would access elements of a list in python. 
 
 While this would work, it will also have the effect of running FASTQC twice in 
-the same process which is not the most efficient way to do this. Instead, we want
+the same process, which is not the most efficient way to do this. Instead, we want
 to transform the channel created via `Channel.fromFilePairs` into a channel that
 emits each read file separately. We also want to adjust our FASTQC module to only
 process a single file. 
@@ -147,14 +153,19 @@ This operator should flatten any nested tuples and emit each nested item separat
 ...
 ```
 
-`modules`
-- [ ] Edit the FASTQC process to accept only a single file and that will
-work with the channel created in the previous step. 
+`test.nf`
+- [ ] Find an appropriate operator to transform the channel created via 
+`Channel.fromFilePairs` into a channel that emits each read file separately.
 
 `main.nf`
 - [ ] Use the code from the `test.nf` once successfully finished and run it on
 the channel containing the R1 and R2 files. Use your new module to run FASTQC on
 each read file separately.
+
+`nextflow.config`
+- [ ] Edit the `nextflow.config` and adjust how many jobs are submitted simultaneously.
+- [ ] Run the `main.nf` file with the `-profile singularity,cluster` option and 
+watch the output. 
 
 # Using nextflow operators to group together the outputs of a channel - Exercise 3
 
@@ -193,6 +204,9 @@ from a channel into a single element
 - [ ] Use the code from the `test.nf` once successfully finished and run your
 module for MULTIQC. If successful, MULTIQC should run only once and generate a
 single output file for all of the FASTQC files.
+- [ ] When you've confirmed that it works successfully, switch the input to the
+`Channel.fromFilePairs` function and run it on the full samples. You may find the
+path to the full files in the nextflow.config.
 
 **Hints**
 
@@ -202,6 +216,16 @@ The documentation will be helpful in understanding how to run the module.
 
 - The input to your module can be: `path("*")`. What is this input indicating?
 
+---
+# Discussion of sequencing read QC using reports from a real dataset
+
+Please look in the provided_results/ directory of exercise_3 and find the MultiQC
+report called 'full_report.html'. We'll open it together and discuss what we see,
+how we determine if something is concerning and how we might address any issues we
+find. You can also look at the report you generated in exercise_3.
+
+We will also work on a hypothetical question I will pose to you in class. 
+---
 
 # Make a channel that is the cross product of two other channels - Exercise 4
 
@@ -219,15 +243,101 @@ Given the channels created for you in the exercise_4.nf, use various nextflow
 operators to create a new channel that contains all possible combinations of
 the values in the two channels. 
 
+`test.nf`
+- [ ] Use an appropriate operator to create a new channel that contains all possible
+combinations of the values in the two channels.
 
-# Joining channels based on the sample name - Exercise 6
+`nextflow.config`
+- [ ] Edit the `nextflow.config` and adjust how many jobs are submitted simultaneously
+to an appropriate amount.
+
+`main.nf`
+- [ ] Use the code from the `test.nf` once successfully finished and use the 
+provided JELLYFISH module to run JELLYFISH on the channel you created. Make sure
+you run this using the `-profile singularity,cluster` option.
+
+# Combining multiple operators to create a channel - Exercise 5
+
+*Background*: We will talk more in-detail about this when we get to RNAseq
+analysis but the general output is typically a counts matrix representing the
+number of reads that mapped to each gene or transcript in a sample. These counts
+are then used to perform downstream analysis such as differential expression
+analysis. These counts are generated by using the alignments, which encode the
+position of where the reads map to the reference genome, and a GTF file
+which stores the position of where the genes or transcripts are located in that
+same reference. We can then "count" the number of reads that map to each gene or
+transcript.
+
+For this exercise, you will be using BAM files and a GTF file to generate a count
+for every gene in that sample. We will be using VERSE to perform this task. Once
+we count per sample, we will group all of the counts together so that we can run
+a separate script that will combine them into a single file.
+
+*Hypothetical Situation*: We are trying to group all of the output files from
+a particular process whose output consists of a tuple and a file. We want to
+only group the files and not the tuple.
+
+*Specific Situation*: We have generated counts from BAM files for a number of 
+samples and want to group them all together so that we can run a separate script
+that will combine them into a single file.
+
+`test.nf`
+- [ ] Use a combination of operators to access the value of the tuple containing
+the file, and group the files into a single channel
+
+`bin/`
+- [ ] Make the script executable using `chmod +x bin/concat_df.py`
+
+`main.nf`
+- [ ] Use the code from the `test.nf` once successfully finished and run the 
+provided process, VERSE, on each of the BAM files and then run the 
+provided script, CONCAT, to combine the counts into a single file.
+
+# Extra 1 - Group two lists of files into a single channel
+
+*Hypothetical Situation*: We want to aggregate all of the outputs from two 
+separate processes into a single list of files.
+
+*Specific Situation*: We want to collect the logs from both FASTQC and Trimmomatic
+into one list so that we can run MultiQC on them.
+
+`test.nf`
+- [ ] Use an appropriate operator to aggregate the logs from both FASTQC and Trimmomatic
+into one list.
+
+`main.nf`
+- [ ] Use the code from the `test.nf` once successfully finished and run the 
+provided process, MULTIQC, on the list of logs.
+
+# Extra 2 - Grouping channels based on the sample name
 
 *Hypothetical Situation*: We have run two separate processes on each of our samples.
 We need to join their output channels so that each sample has both of the output
 files generated by the two processes. 
 
-*Specific Situation*: We have run STAR and HISAT2 on each of our RNAseq samples and
+*Specific Situation*: We have created a FASTA index of a particular genome and
+we wish to provide a region of interest to extract from the sequence. We will
+need to group the channels based on the sample name so that we can extract the
+region of interest from the sequence.
 
+`test.nf`
+- [ ] Use an appropriate operator to group the channels based on the sample name.
+The resulting tuple should be a tuple with the sample name, .fa file, .fa.fai file,
+and the region of interest file.
 
+# Extra 3 - Filtering channels based on a value
 
-# Extracting a single element from tuples - Exercise 7
+*Hypothetical Situation*: We have run a process and wish to send the outputs
+of the process to different processes based on the value of a tuple.
+
+*Specific Situation*: We are analyzing an experiment with two conditions, WT and
+KO. We want to send the outputs of the process to different processes based
+on the condition.
+
+This extra example will only have the test.nf. I have made a channel for you
+that consists of 4 elements; each a tuple of a condition name and a file. 
+
+`test.nf`
+- [ ] Use an appropriate operator to make a new channel with just the files from 
+the condition `WT`. The resulting channel should emit only the elements with `WT`
+as their condition.

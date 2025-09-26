@@ -474,18 +474,6 @@ You should use the following command:
 nextflow run main.nf -profile cluster,conda
 ```
 
-### Use the output from Prokka and create a circos plot from the GFF file
-
-Use the instructions found in the guide for [Using Conda with VSCode and Jupyter Notebooks]({{site.baseurl}}/guides/notebooks_computational_envs/) for the following tasks.
-
-1. Create a conda environment with the PyCirclize and ipykernel packages installed
-
-2. Make a jupyter notebook by opening a new text file and naming it with the .ipynb extension
-
-3. Open your notebook and select the conda environment you created in the previous step to use as the kernel for your notebook
-
-4. Use the sample code found [here](https://moshi4.github.io/pyCirclize/circos_plot/) to create a circos plot from the GFF file
-
 ### Finalize the project report for project 1
 
 Follow the [Project 1 Report Guidelines]({{site.baseurl}}/guides/project_report/) to make a final report for this project.
@@ -493,5 +481,4 @@ Follow the [Project 1 Report Guidelines]({{site.baseurl}}/guides/project_report/
 ## Week 3 Recap
 
 - [ ] Connect the processes
-- [ ] Use the output from Prokka and create a circos plot from the GFF file
 - [ ] Finalize the project report for project 1
