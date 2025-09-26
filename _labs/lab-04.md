@@ -219,12 +219,16 @@ The documentation will be helpful in understanding how to run the module.
 ---
 # Discussion of sequencing read QC using reports from a real dataset
 
+We will discuss a hypothetical question about the severity of different 
+"issues" in a sequencing dataset. After, we will move on to evaluating a real
+QC report for a mRNAseq experiment.
+
 Please look in the provided_results/ directory of exercise_3 and find the MultiQC
 report called 'full_report.html'. We'll open it together and discuss what we see,
 how we determine if something is concerning and how we might address any issues we
 find. You can also look at the report you generated in exercise_3.
 
-We will also work on a hypothetical question I will pose to you in class. 
+
 ---
 
 # Make a channel that is the cross product of two other channels - Exercise 4
