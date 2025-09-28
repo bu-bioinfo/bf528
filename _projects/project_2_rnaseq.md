@@ -44,6 +44,12 @@ Accept the github classroom link and clone the assignment to your student
 directory in /projectnb/bf528/students/*your_username*/. This link will be
 posted on the blackboard site for our class.
 
+## Necessary paths and files are in your nextflow.config
+
+Please look in your nextflow.config for various variables that I have given you
+that you will need to use in your pipeline. I have provided you the path to the
+files as well as the reference genome and matching GTF. 
+
 ## Changes to our environment management strategy and workflow
 
 As we've discussed, conda environments are one solution to ensuring that your
@@ -111,7 +117,7 @@ in bash through the use of wildcard expansion (*).
 1. In the `nextflow.config`, specify a parameter called `reads` that encodes the
 path to your fastq files and uses * to flexibly detect the sample name associated
 with both paired files. Refer to the nextflow documentation [here](https://www.nextflow.io/docs/latest/reference/channel.html#fromfilepairs)
-Our files are located at /projectnb/bf528/materials/project_2_rnaseq/subsampled_files/ for the subsampled files and /projectnb/bf528/materials/project_2_rnaseq/full_files/ for the full files.
+Our files are located at /projectnb/bf528/materials/project_2_rnaseq/subsampled_files/ for the subsampled files.
 
 2. In your workflow `main.nf`, use the `Channel.fromFilePairs` function and the
 param you created in step 1 to create a channel called `align_ch`. You'll notice
@@ -200,19 +206,26 @@ proper channel.
 ## Generate a file containing the gene IDs and their corresponding human gene symbols
 
 As we've discussed, it's often more intuitive for us to use gene names rather than
-their IDs. While there are external services that can perform this for us (biomaRt), 
-it is often better to extract this information from the GTF file associated
+their IDs. You are likely familiar with seeing genes referenced by their names
+in the literature, such as BRCA1 or TP53. However, there are many different identifier
+systems used to label genes, including ensembl gene ids, which are a common and
+principled way of labeling and identifying genes. These gene IDS tend to be more
+stable and consistent across references to the organism and are more standardized. 
+Our genes will originally be in the ensembl gene id format, and we will need to 
+convert them to gene names for downstream analysis. 
+
+It is often better to extract this information from the GTF file associated
 with the exact version of the reference genome we are using. This will ensure
-that we are as consistent as possible with our labeling. 
+that our labels are as internally consistent as possible. 
 
 Whenever we need to perform operations using custom code, we are going to use
-the conventions established in project 0. We will place this script in the `bin/`
+the conventions established in project 1. We will place this script in the `bin/`
 directory and make it executable. We will then create a nextflow module that will
 provide the appropriate command line arguments to the script.
 
 1. Generate a python script that parses the GTF file you were provided and creates
 a delimited file containing the ensembl human ID and its corresponding gene name. 
-Please copy and modify the `argparse` code used in the project 0 script to allow
+Please copy and modify the `argparse` code used in the project 1 script to allow
 the specification of command line arguments. The script should take the GTF as
 input and output a single text file containing the requested information. 
 
@@ -255,6 +268,11 @@ aligner, one of the most commonly used alignment tools for RNAseq.
 
 1. Read the beginning of the [documentation](https://github.com/alexdobin/STAR)
 for how to generate a STAR index.
+- Section 2 describe show to create a genome index and you may use the default
+commands without changing any options
+- Remember that you can run multiple commands in the script block of nextflow by
+writing them on new lines. You can use the `mkdir` command to create the output
+directory for the index files and then reference that same directory in the command.
 
 2. Generate a module and process that creates a STAR index for our reference
 genome. This process will require two inputs, the reference genome and the
@@ -344,8 +362,8 @@ reads to the genome.
 
 Remember that paired end reads are almost always used in conjunction with each
 other (R1 and R2) and that they collectively represent the reads from a single
-sample. When we align both of these paired end reads to the genome, we will
-generate a single set of all valid alignments for the sample.
+fragment and sample. When we align both of these paired end reads to the genome,
+we will generate a single set of all valid alignments for the sample.
 
 By default, many alignment programs will output these alignments in SAM format.
 As discussed in lecture, the BAM format is a compressed version of SAM files that
@@ -362,6 +380,23 @@ at their default value:
 
 `--runThreadN`, `--genomeDir`, `--readFilesIn`, `--readFilesCommand`, 
 `--outFileNamePrefix`, `--outSAMtype`
+
+- At the end of your STAR command, please add the following code:
+
+```bash
+2> ${name}.Log.final.out
+``` 
+
+or 
+
+```bash
+STAR --runThreadN <options> --genomeDir <directory> --readFilesIn <reads> --readFilesCommand zcat --outFileNamePrefix <name>. --outSAMtype <option> 2> ${name}.Log.final.out
+``` 
+
+The `2>` redirects the standard error to the log file and this is what will enable
+us to collect the alignment statistics from the log file. The ${name} may differ
+based on how you have named your input tuples, but you should name the log file
+with the same name as the sample identifier. 
 
 2. Remember that by default, nextflow stores all of the outputs for a specific
 task in the staged directory in which it ran. Often, we will want to inspect
@@ -474,7 +509,12 @@ strategies for assigning counts hierarchically in the case of overlapping featur
 BAM files. You may leave all options at their default parameters. Be sure to
 include the `-S` flag in your final command.
 
-2. Run the VERSE module in your workflow `main.nf` and quantify the alignments
+2. The main output of VERSE is the "*.exon.txt" file. Make sure you name
+each of the VERSE files with the same name as the sample identifier. This file
+contains two columns, one for the gene name and one for the count. This represents
+the counts for every gene in the reference genome for this particular sample.
+
+3. Run the VERSE module in your workflow `main.nf` and quantify the alignments
 in each of the BAM files
 
 ## Concatenating count outputs into a single matrix
@@ -489,6 +529,9 @@ write a single counts matrix containing all of your samples. As with any
 external script, make it executable with a proper shebang line and use argparse
 to allow the incorporation of command line arguments. I suggest you use `pandas`
 for this task and you can use the pandas container `ghcr.io/bf528/pandas:latest`.
+- Look at the structure of the .exon.txt files, and the final counts matrix / CSV
+should have the same number of rows as the number of genes in the reference
+ genome and the same number of columns as the number of samples.
 
 2. Generate a module that runs this script and create a channel in your workflow
 `main.nf` that consists of all of the VERSE outputs. Incorporate this script
