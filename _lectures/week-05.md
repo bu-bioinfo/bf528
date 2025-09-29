@@ -6,18 +6,27 @@ layout: single
 ## Week 5 Schedule
 
 ### Monday - September 29
-**Genome Editing - CRISPR Cas9**
+**Sequence Analysis - RNA-Seq 1**
 
 ### Wednesday - October 1
-**Project 1 Review**
+**Sequence Analysis - RNA-Seq 2**
 
 ### Friday - October 3
-**Lab - CRISPR Guides**
+**Lab - Containers**
+
+---
+## Sequence Analysis - RNA-Seq 1
+
+[online slides](https://docs.google.com/presentation/d/1JG4fQtjfRvM8JJ71rmpw4JoxxB11zexUaRNcnB7N5ZQ/present?usp=sharing)
+
+[downloadable slides](https://docs.google.com/presentation/d/1JG4fQtjfRvM8JJ71rmpw4JoxxB11zexUaRNcnB7N5ZQ/export/pptx)
 
 ---
 
-## Genome Editing - CRISPR Cas9
+## Sequence Analysis - RNA-Seq 2
 
-[online slides](https://docs.google.com/presentation/d/1xMyk55-SOpEpTQtbAyhgfg0tqB0sAKuY4tJQId98mXg/present?usp=sharing)
+[online slides](https://docs.google.com/presentation/d/1VRS2bGS3Gq4sMXWwJGvvCaPDGk1FoSjo6jRANzHOeNg/present?usp=sharing)
 
-[downloadable slides](https://docs.google.com/presentation/d/1xMyk55-SOpEpTQtbAyhgfg0tqB0sAKuY4tJQId98mXg/export/pptx)
+[downloadable slides](https://docs.google.com/presentation/d/1VRS2bGS3Gq4sMXWwJGvvCaPDGk1FoSjo6jRANzHOeNg/export/pptx)
+
+---
