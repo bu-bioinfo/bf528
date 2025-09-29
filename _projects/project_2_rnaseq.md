@@ -585,25 +585,14 @@ require only a few alterations in order to do.
 1. Create a new directory in `samples/` called `full_files/`. Copy the original
 files from `/projectnb/bf528/materials/project_1_rnaseq/full_files/` to your 
 newly created directory. 
+- **It is very important you ensure your pipeline runs to completion before
+running it on the full data. When you do run it on the full data, please only
+run it once!**
 
 2. Edit your `nextflow.config` and change the path found in your `params.reads`
 to reflect the location of your full files.
 
-Most of our bioinformatics experiments will involve relatively large files and
-expensive operations. Even relatively small RNAseq experiments will still
-involve aligning tens of millions of reads to genomes that are many megabases
-long. Now that we are working with these larger files, we should not and in some
-cases, will not, be able to run these tasks locally on the same node that our
-VSCode session is running.
-
-We will switch now to running our jobs on the cluster utilizing the `qsub` utility
-for queuing jobs to run on compute nodes. This will enable us to both request
-nodes that have faster processors / more RAM and to easily parallelize our tasks
-that can run simultaneously. 
-
-As a reminder, to run your workflow on the cluster, switch to using the
-`cluster` profile option in place of the `local` flag as in project 0. Your new
-nextflow command should now be:
+Make sure to now always submit jobs to the cluster:
 
 ```
 nextflow run main.nf -profile singularity,cluster
@@ -662,7 +651,9 @@ formatted figures:
 
   1. A table containing the DESeq2 results for the top ten significant genes 
   ranked by padj. Your results should have the corresponding gene names for
-  each gene symbol. (You extracted these earlier...)
+  each gene symbol. You should not need to use bioMart or any other utility,
+  you have already created a file from when you parsed the GTF that contains
+  the gene names for each gene symbol. 
   
   2. Choose an appropriate padj threshold and report the number of significant
   genes at this threshold. 
@@ -759,4 +750,5 @@ listed questions in your notebook
 
 3. Write a methods section in the style we've discussed for your workflow
 
-4. Address the additional questions provided to you in your notebook
+4. Ensure you read the Project 2 Report Guidelines for a full description of
+what is expected of you. 
