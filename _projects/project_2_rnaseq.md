@@ -22,6 +22,10 @@ Pandas: `ghcr.io/bf528/pandas:latest`
 
 # Week 1: RNAseq
 
+## Workflow Visualization
+
+![workflow]({{ site.baseurl }}/assets/images/project-2-mmd-pipeline.png)
+
 ## Overview
 
 A basic RNAseq analysis consists of sample quality control, alignment,
