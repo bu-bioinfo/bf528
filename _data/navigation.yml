@@ -53,6 +53,8 @@ sidebar:
         url: "/projects/project_1_report/"
       - title: "Project 2"
         url: "/projects/project_2_rnaseq/"
+      - title: "Project 2 Report"
+        url: "/projects/project_2_report/"
       - title: "Project 3"
         url: "/projects/project_3_chipseq/"
       - title: "Final Project"

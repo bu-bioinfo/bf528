@@ -174,8 +174,8 @@ If you want to think about it in terms of percentage, projects will account for
 | Fri | 9/19  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lab      | Lab - Scaling Up and using the SCC                                   |                                 |
 | Mon | 9/22  | [4]({{ site.baseurl }}/lectures/week-04/)    | Lecture  | Project 1 Check-in and Review                                     |                                 |
 | Wed | 9/24  | [4]({{ site.baseurl }}/lectures/week-04/)    | Lecture  | Long Read Sequencing                                               |                                 |
-| Fri | 9/26  | [4]({{ site.baseurl }}/lectures/week-04/)    | Lab      | Lab - Nextflow Practice                                              | P1 Due - P2 Assigned            |
-| Mon | 9/29  | [5]({{ site.baseurl }}/lectures/week-05/)    | Lecture  | Sequence Analysis - RNA-Seq 1                                       |                                 |
+| Fri | 9/26  | [4]({{ site.baseurl }}/lectures/week-04/)    | Lab      | Lab - Nextflow Practice                                              |                                 |
+| Mon | 9/29  | [5]({{ site.baseurl }}/lectures/week-05/)    | Lecture  | Sequence Analysis - RNA-Seq 1                                       | Project 1 Due - P2 Assigned                               |
 | Wed | 10/1  | [5]({{ site.baseurl }}/lectures/week-05/)    | Lab      | Sequence Analysis - RNA-Seq 2                                                     |                                 |
 | Fri | 10/3  | [5]({{ site.baseurl }}/lectures/week-05/)    | Lab      | Lab - Containers (Docker)                                                |                                 |
 | Mon | 10/6  | [6]({{ site.baseurl }}/lectures/week-06/)    | Lecture  | Genome Editing - CRISPR Cas9                                      |                                 |
