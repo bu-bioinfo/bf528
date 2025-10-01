@@ -183,8 +183,8 @@ If you want to think about it in terms of percentage, projects will account for
 | Fri | 10/10 | [6]({{ site.baseurl }}/lectures/week-06/)    | Lab      | Lab - CRISPR Guide Design                                          |                                 |
 | Tue | 10/14 | [7]({{ site.baseurl }}/lectures/week-07/)    | Lecture  | Biological Databases<br><br>Gene Sets and Enrichment<br>         |                                 |
 | Wed | 10/15 | [7]({{ site.baseurl }}/lectures/week-07/)    | Lab      | Project 2 Check-In<br>                                               |                                 |
-| Fri | 10/17 | [7]({{ site.baseurl }}/lectures/week-07/)    | Lab      | LAB - RNAseq Time Series and interaction analyses                  | P2 Due - P3 assigned            |
-| Mon | 10/20 | [8]({{ site.baseurl }}/lectures/week-08/)    | Lecture  | Sequence Analysis - ChIP-Seq                                       |                                 |
+| Fri | 10/17 | [7]({{ site.baseurl }}/lectures/week-07/)    | Lab      | LAB - RNAseq Time Series and interaction analyses                  |                                 |
+| Mon | 10/20 | [8]({{ site.baseurl }}/lectures/week-08/)    | Lecture  | Sequence Analysis - ChIP-Seq                                       | P2 Due - P3 Assigned                                |
 | Wed | 10/22 | [8]({{ site.baseurl }}/lectures/week-08/)    | Lecture  | Microbiome: 16s                                                    |                                 |
 | Fri | 10/24 | [8]({{ site.baseurl }}/lectures/week-08/)    | Lab      | LAB - Genome Browsers                                              |                                 |
 | Mon | 10/27 | [9]({{ site.baseurl }}/lectures/week-09/)    | Lecture  | Sequence analysis - ATAC-Seq                                       |                                 |
