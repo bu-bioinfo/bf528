@@ -756,3 +756,18 @@ listed questions in your notebook
 
 4. Ensure you read the Project 2 Report Guidelines for a full description of
 what is expected of you. 
+
+# REMINDER TO CLEAN UP YOUR WORKING DIRECTORY
+
+When you have successfully run your project 2 pipeline, please ensure that you 
+fully delete your work/ directory and any large files that you may have published
+to your results/ directory. 
+
+You may use the following command:
+
+```bash
+rm -rf work/
+```
+
+These samples are very large and we have limited disk space. I will be checking
+your working directories to ensure you do this. 

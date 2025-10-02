@@ -3,6 +3,23 @@ title: "Project 2: RNAseq"
 layout: single
 ---
 
+# REMINDER TO CLEAN UP YOUR WORKING DIRECTORY
+
+When you have successfully run your project 2 pipeline, please ensure that you 
+fully delete your work/ directory and any large files that you may have published
+to your results/ directory. 
+
+You may use the following command:
+
+```bash
+rm -rf work/
+```
+
+These samples are very large and we have limited disk space. I will be checking
+your working directories to ensure you do this. 
+
+# Working in a Rmarkdown notebook
+
 For this project, since we are working with DESeq2, it will be easier to work
 in a Rmarkdown notebook. Rmarkdown notebooks are highly similar to Jupyter
 Notebooks and allow you to write R code and markdown in the same file.
