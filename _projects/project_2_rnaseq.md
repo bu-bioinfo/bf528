@@ -229,7 +229,7 @@ provide the appropriate command line arguments to the script.
 
 1. Generate a python script that parses the GTF file you were provided and creates
 a delimited file containing the ensembl human ID and its corresponding gene name. 
-Please copy and modify the `argparse` code used in the project 1 script to allow
+Please copy and modify the `argparse` code used in previous scripts to allow
 the specification of command line arguments. The script should take the GTF as
 input and output a single text file containing the requested information. 
 
