@@ -30,3 +30,9 @@ layout: single
 [downloadable slides](https://docs.google.com/presentation/d/1VRS2bGS3Gq4sMXWwJGvvCaPDGk1FoSjo6jRANzHOeNg/export/pptx)
 
 ---
+
+## Lab - Containers
+
+[online slides](https://docs.google.com/presentation/d/1zEVd93m51Ukp5a1N3dd0D5HayHgPfdZrKlY3tgrH64o/edit?usp=sharing)
+
+[downloadable slides](https://docs.google.com/presentation/d/1zEVd93m51Ukp5a1N3dd0D5HayHgPfdZrKlY3tgrH64o/export/pptx)
