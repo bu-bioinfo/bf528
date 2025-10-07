@@ -18,9 +18,6 @@ layout: single
 
 ## Genome Editing - CRISPR Cas9
 
-[online slides](https://docs.google.com/presentation/d/1xMyk55-SOpEpTQtbAyhgfg0tqB0sAKuY4tJQId98mXg/present?usp=sharing)
+[online slides](https://docs.google.com/presentation/d/17kJwJrr8EivJ5wwpPyL_dv8JdSVx1k6ARRUJnitNt4k/present?usp=sharing)
 
-[downloadable slides](https://docs.google.com/presentation/d/1xMyk55-SOpEpTQtbAyhgfg0tqB0sAKuY4tJQId98mXg/export/pptx)
-
-
-
+[downloadable slides](https://docs.google.com/presentation/d/17kJwJrr8EivJ5wwpPyL_dv8JdSVx1k6ARRUJnitNt4k/export/pptx)
