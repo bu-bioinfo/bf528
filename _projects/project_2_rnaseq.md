@@ -690,16 +690,30 @@ experiment.
 ## FGSEA Analysis
 
 Perform a GSEA analysis on your RNAseq results. You are free to use any method
-available though we recommend [fgsea](https://bioconductor.org/packages/release/bioc/html/fgsea.html).
+available though we recommend [fgsea](https://bioconductor.org/packages/release/bioc/html/fgsea.html). Please refer to the following resources:
 
-1. Choose an appropriate ranking metric and use the [C2 canonical
-pathways MSIGDB dataset](https://www.gsea-msigdb.org/gsea/msigdb/human/collections.jsp#C2)
-to perform a basic GSEA analysis.
+(Gene Set Enrichment Analysis)[https://bu-bioinfo.github.io/biological-data-science-in-r/biology-bioinformatics.html#gene-set-enrichment-analysis]
 
-2. Using a statistical threshold of your choice, generate a figure or plot that
+(fgsea)[https://bu-bioinfo.github.io/biological-data-science-in-r/biology-bioinformatics.html#fgsea]
+
+To do this, you will need to do a few steps:
+
+1. Choose an appropriate ranking metric (I suggest log2FoldChange) and create a
+ranked list of your genes and log2FoldChange in descending order. **N.B.** For
+GSEA specifically, you should **not** filter by significance and your list should
+be every gene discovered in the experiment.
+
+2. Go to the the [C2 canonical pathways MSIGDB dataset](https://www.gsea-msigdb.org/gsea/msigdb/human/collections.jsp#C2) and download it to your local computer and upload it to
+your working directory on the cluster
+
+3. Use either GSEABase or the fgsea function to read in the gene set file (.gmt)
+
+4. Run fgsea using default parameters
+
+5. Using a statistical threshold of your choice, generate a figure or plot that
 displays the top most significant results from the FGSEA results.
 
-3. In a notebook, briefly remark on your results and what seems interesting to
+6. In your notebook, briefly remark on your results and what seems interesting to
 you about the biology.
 
 # Week 4: RNAseq
