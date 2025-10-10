@@ -616,15 +616,20 @@ the full samples.
 reads. Write a paragraph in the style of a publication reporting what you find and
 any metrics that might be concerning. 
 
-## Analysis Tasks
+## Analysis Tasks - Rmarkdown Notebook
 
 You will typically be performing analyses in either a jupyter notebook or Rmarkdown.
 With the SCC, we will not be able to easily encapsulate R in an isolated environment.
 
 Instead, simply load the R module (on the launch page for VSCode in on-demand) 
-as you boot your VSCode extension and work in aRmarkdown. You may install packages
+as you boot your VSCode extension and work in a Rmarkdown notebook. You may install packages
 as needed and ensure that you record the versions used with the `sessionInfo()` 
 function.
+
+I highly recommend you use Rmarkdown for this project. It will make it much easier
+for you to generate your report as nearly all of the analysis tasks will be done
+in R. 
+
 
 ## Filtering the counts matrix
 
