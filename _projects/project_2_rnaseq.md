@@ -586,15 +586,14 @@ Once you've confirmed that your pipeline works end-to-end on the subsampled file
 we are going to properly apply our workflow to the original samples. This will
 require only a few alterations in order to do. 
 
-1. Create a new directory in `samples/` called `full_files/`. Copy the original
-files from `/projectnb/bf528/materials/project_1_rnaseq/full_files/` to your 
-newly created directory. 
+
+1. Edit your `nextflow.config` and change the path found in your `params.reads`
+to reflect the location of your full files (/projectnb/bf528/materials/project-2-rnaseq/full_files/)
+
 - **It is very important you ensure your pipeline runs to completion before
 running it on the full data. When you do run it on the full data, please only
 run it once!**
 
-2. Edit your `nextflow.config` and change the path found in your `params.reads`
-to reflect the location of your full files.
 
 Make sure to now always submit jobs to the cluster:
 
