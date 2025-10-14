@@ -696,9 +696,9 @@ experiment.
 Perform a GSEA analysis on your RNAseq results. You are free to use any method
 available though we recommend [fgsea](https://bioconductor.org/packages/release/bioc/html/fgsea.html). Please refer to the following resources:
 
-(Gene Set Enrichment Analysis)[https://bu-bioinfo.github.io/biological-data-science-in-r/biology-bioinformatics.html#gene-set-enrichment-analysis]
+[Gene Set Enrichment Analysis](https://bu-bioinfo.github.io/biological-data-science-in-r/biology-bioinformatics.html#gene-set-enrichment-analysis)
 
-(fgsea)[https://bu-bioinfo.github.io/biological-data-science-in-r/biology-bioinformatics.html#fgsea]
+[fgsea](https://bu-bioinfo.github.io/biological-data-science-in-r/biology-bioinformatics.html#fgsea)
 
 To do this, you will need to do a few steps:
 
