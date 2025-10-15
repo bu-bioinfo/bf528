@@ -312,12 +312,7 @@ nextflow run main.nf -profile singularity,cluster
 
 1. Clone the github classroom link for this project
 
-2. Copy the necessary files to your working directory. These files will include
-the following:
-
-  - Gencode hg38 reference genome for the primary assembly
-  - Gencode GTF for the primary assembly
-  - The subsampled FASTQ files
+2. Use the files contained within your `nextflow.config`
   
 3. Generate a nextflow channel called `align_ch` that has 6 total elements where
 each element is a tuple containing two elements: the name of the sample, and a
@@ -662,9 +657,14 @@ formatted figures:
   each gene symbol. You should not need to use bioMart or any other utility,
   you have already created a file from when you parsed the GTF that contains
   the gene names for each gene symbol. 
+  - Note that this is not your list of differentially expressed genes. This is just
+  a quick figure that displays some of the most differentially expressed genes
+  
   
   2. Choose an appropriate padj threshold and report the number of significant
-  genes at this threshold. 
+  genes remaining that satisfy this threshold. Make sure you filter your list to 
+  only contain these genes. **This will be the list of genes you should use as 
+  input for the DAVID or ENRICHR analysis**
   
   3. The results from a DAVID or ENRICHR analysis on the significant genes at
   your chosen padj threshold. Comment in a notebook what results you find most
