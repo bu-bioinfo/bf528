@@ -13,7 +13,7 @@ layout: single
 **Project 2 Check-In**
 
 ### Friday - October 17
-**LAB - RNAseq Time Series and interaction analyses**
+**LAB - Genome Browsers**
 
 ---
 
@@ -30,3 +30,9 @@ layout: single
 [online slides](https://docs.google.com/presentation/d/1h13WgR2NabDO8vqjTzygmvgy4PCKhCzwof_qsH1_od4/present?usp=sharing)
 
 [downloadable slides](https://docs.google.com/presentation/d/1h13WgR2NabDO8vqjTzygmvgy4PCKhCzwof_qsH1_od4/export/pptx)
+
+# Lab - Genome Browsers
+
+[online slides](https://docs.google.com/presentation/d/1fXvA2nrCqWl-SCbM_BkAoLhRq8VMShWFAqYZISk1TCA/present?usp=sharing)
+
+[downloadable slides](https://docs.google.com/presentation/d/1fXvA2nrCqWl-SCbM_BkAoLhRq8VMShWFAqYZISk1TCA/export/pptx)
