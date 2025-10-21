@@ -70,7 +70,7 @@ can use a non-splice aware algorithm to map our reads to the reference genome.
 
 ## Quality Control, Genome indexing and alignment
 
-Between project 1 and the early labs we did, you should have working modules
+Between the past projects and the early labs we did, you should have working modules
 that perform quality control using FastQC and trimmomatic, build a genome index
 using bowtie2, and align reads to a genome. We are going to take advantage of
 the modularity of nextflow by simply copying these previous modules and
@@ -114,7 +114,7 @@ alignment flags found in the BAM.
 
 ## Aggregating QC results with MultiQC
 
-Just like in project 1, we are going to use multiqc to collect the various
+Just like in project 2, we are going to use multiqc to collect the various
 quality control metrics from our pipeline. Ensure that multiqc collects the
 outputs from FastQC, Trimmomatic and flagstat. 
 

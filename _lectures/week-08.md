@@ -9,7 +9,7 @@ layout: single
 **Sequence Analysis - ChIP-Seq**
 
 ### Wednesday - October 22
-**Microbiome: 16s**
+**Sequence Analysis - ATAC-Seq**
 
 ### Friday - October 24
 **LAB - Time Series and Interaction Analyses**
@@ -24,8 +24,8 @@ layout: single
 
 ---
 
-## Microbiome: 16S
+## Sequence Analysis - ATAC-Seq
 
-[online slides](https://docs.google.com/presentation/d/1iir7MCFph7vvHLsjts0HI_zel98nrttNWCigku-VzF8/present?usp=sharing)
+[online slides](https://docs.google.com/presentation/d/14FxXgKuC7Ul0G6tCN8gjjGKc89vAujQiQCcDnwuzdJA/present?usp=sharing)
 
-[downloadable slides](https://docs.google.com/presentation/d/1iir7MCFph7vvHLsjts0HI_zel98nrttNWCigku-VzF8/export/pptx)
+[downloadable slides](https://docs.google.com/presentation/d/14FxXgKuC7Ul0G6tCN8gjjGKc89vAujQiQCcDnwuzdJA/export/pptx)
