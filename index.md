@@ -185,9 +185,9 @@ If you want to think about it in terms of percentage, projects will account for
 | Wed | 10/15 | [7]({{ site.baseurl }}/lectures/week-07/)    | Lab      | Project 2 Check-In<br>                                               |                                 |
 | Fri | 10/17 | [7]({{ site.baseurl }}/lectures/week-07/)    | Lab      | LAB - Genome Browsers                  |                                 |
 | Mon | 10/20 | [8]({{ site.baseurl }}/lectures/week-08/)    | Lecture  | Sequence Analysis - ChIP-Seq                                       |                                 |
-| Wed | 10/22 | [8]({{ site.baseurl }}/lectures/week-08/)    | Lecture  | Microbiome: 16s                                                    |                                 |
+| Wed | 10/22 | [8]({{ site.baseurl }}/lectures/week-08/)    | Lecture  | Sequence Analysis - ATAC-Seq                                                    |                                 |
 | Fri | 10/24 | [8]({{ site.baseurl }}/lectures/week-08/)    | Lab      | LAB - RNAseq Time Series and interaction                                              | P2 due - P3 assigned                            |
-| Mon | 10/27 | [9]({{ site.baseurl }}/lectures/week-09/)    | Lecture  | Sequence analysis - ATAC-Seq                                       |                                |
+| Mon | 10/27 | [9]({{ site.baseurl }}/lectures/week-09/)    | Lecture  | Microbiome: 16S                                                    |                                |
 | Wed | 10/29 | [9]({{ site.baseurl }}/lectures/week-09/)    | Lab      | Project 3 Check-In                                                   |                                 |
 | Fri | 10/31 | [9]({{ site.baseurl }}/lectures/week-09/)    | Lab      | Lab - Using NF-Core Pipelines                                      |                         |
 | Mon | 11/3  | [10]({{ site.baseurl }}/lectures/week-10/)   | Lecture  | Microbiome: Metagenomics                                           |                                 |

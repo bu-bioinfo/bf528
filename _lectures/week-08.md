@@ -12,7 +12,7 @@ layout: single
 **Microbiome: 16s**
 
 ### Friday - October 24
-**LAB - Genome Browsers**
+**LAB - Time Series and Interaction Analyses**
 
 ---
 
