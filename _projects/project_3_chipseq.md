@@ -158,7 +158,7 @@ of the sample BAM files.
 - Use the initial provided channel and params in the `nextflow.config` and 
 create a workflow that runs all of the modules in the correct order
 
-## Week 2: ChIPseq
+# Week 2: ChIPseq
 
 ## Overview
 
@@ -293,7 +293,7 @@ fasta and the GTF.
   5. Filter peaks contained within the ENCODE blacklist using bedtools
   6. Annotate peaks to their nearest genomic feature using HOMER
 
-## Week 3: ChIPseq
+# Week 3: ChIPseq
 
 ## Overview
 
