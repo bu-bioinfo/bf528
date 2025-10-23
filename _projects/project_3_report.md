@@ -41,8 +41,23 @@ the quality of the reads. Please make sure that at minimum you specifically ment
 was of high quality and was suitable for downstream analysis. If not, please
 state what you would do to improve the quality of the reads.
 
+# Signal Coverage Plot (1-2 paragraphs)
 
-## Overlap your ChIPseq results with the original RNAseq data
+Display your signal coverage plot and please address the following questions:
+
+1. Explain briefly what the plot represents
+2. Provide a brief biological interpretation or hypothesis that the plot may support
+about the binding of the factor in question
+
+# Motif Finding (1-2 paragraphs)
+
+Use the results from HOMER findMotifsGenome and address the following:
+
+1. Create a single figure or plot (you may take a screenshot) of the top results
+from the knownResults output from HOMER
+2. Comment briefly on the results you observe and why they may be interesting
+
+# Overlap your ChIPseq results with the original RNAseq data (3-4 paragraphs)
 
 In their publication find the link to their GEO submission. Read the methods
 section of the paper and integrate **your** called ChIPSeq peaks with the results
@@ -77,7 +92,7 @@ RNAseq data, but you should re-create the genomic tracks from your ChIPseq resul
     - How similar do your genomic tracks appear to those in the paper? If you 
     observe any differences, comment briefly on why there may be discrepancies. 
 
-## Comparing key findings to the original paper
+# Comparing key findings to the original paper (3-4 paragraphs)
 
 Find the supplementary information for the publication and focus on supplementary
 figure S2A, S2B, and S2C. 
@@ -103,7 +118,7 @@ with your own findings. Address the following questions:
   - If so, provide at least two explanations for the discrepancies in the number
   of called peaks. 
 
-## Analyze the annotated peaks
+# Analyze the annotated peaks (1 paragraph)
 
 Use your annotated peaks list and perform an enrichment method of your choice. 
 This is purposefully open-ended so you may consider filtering your peaks by
