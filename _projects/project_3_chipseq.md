@@ -45,6 +45,12 @@ homer/samtools: `ghcr.io/bf528/homer_samtools:latest`
 
 ## Overview
 
+This was a ChIPseq experiment from human cell lines that generated two replicates.
+This works out to four files per sample (two for IP and two for INPUT). The replicates
+are paired and denoted by the suffix _rep1 and _rep2. The IP and INPUT for each
+replicate originated from the same sample and should be used together when 
+performing peak calling. 
+
 For many NGS experiments, the initial steps are largely universal. We perform
 quality control on the sequencing reads, build an index for the reference
 genome, and align the reads. However, the source of the data will inform what
