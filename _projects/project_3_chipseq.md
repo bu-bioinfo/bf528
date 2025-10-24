@@ -51,6 +51,12 @@ are paired and denoted by the suffix _rep1 and _rep2. The IP and INPUT for each
 replicate originated from the same sample and should be used together when 
 performing peak calling. 
 
+IP (Immunoprecipitate) refers to the reads for the factor of interest and INPUT refers to the reads
+for the control. The IP samples were the sequences enriched for binding for our
+factor of interest. INPUT is used to normalize the IP reads and allow us to make
+more robust inferences about enrichment of binding in the IP relative to what 
+we expected in the background or INPUT. 
+
 For many NGS experiments, the initial steps are largely universal. We perform
 quality control on the sequencing reads, build an index for the reference
 genome, and align the reads. However, the source of the data will inform what
