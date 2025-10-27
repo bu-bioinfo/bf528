@@ -187,10 +187,10 @@ If you want to think about it in terms of percentage, projects will account for
 | Mon | 10/20 | [8]({{ site.baseurl }}/lectures/week-08/)    | Lecture  | Sequence Analysis - ChIP-Seq                                       |                                 |
 | Wed | 10/22 | [8]({{ site.baseurl }}/lectures/week-08/)    | Lecture  | Sequence Analysis - ATAC-Seq                                                    |                                 |
 | Fri | 10/24 | [8]({{ site.baseurl }}/lectures/week-08/)    | Lab      | LAB - RNAseq Time Series and interaction                                              | P2 due - P3 assigned                            |
-| Mon | 10/27 | [9]({{ site.baseurl }}/lectures/week-09/)    | Lecture  | Microbiome: 16S                                                    |                                |
+| Mon | 10/27 | [9]({{ site.baseurl }}/lectures/week-09/)    | Lecture  | Microbiome: 16S / Microbiome: Metagenomics                                                  |                                |
 | Wed | 10/29 | [9]({{ site.baseurl }}/lectures/week-09/)    | Lab      | Project 3 Check-In                                                   |                                 |
 | Fri | 10/31 | [9]({{ site.baseurl }}/lectures/week-09/)    | Lab      | Lab - Using NF-Core Pipelines                                      |                         |
-| Mon | 11/3  | [10]({{ site.baseurl }}/lectures/week-10/)   | Lecture  | Microbiome: Metagenomics                                           |                                 |
+| Mon | 11/3  | [10]({{ site.baseurl }}/lectures/week-10/)   | Lecture  | Project 3 Check-in                                           |                                 |
 | Wed | 11/5  | [10]({{ site.baseurl }}/lectures/week-10/)   | Lecture  | Proteomics                                                         |                                 |
 | Fri | 11/7  | [10]({{ site.baseurl }}/lectures/week-10/)   | Lab      | Lab - Differential Peak Analysis                                   |                                 |
 | Mon | 11/10 | [11]({{ site.baseurl }}/lectures/week-11/)   | Lab      | Project 3 Final Check-In                                             |                                 |
