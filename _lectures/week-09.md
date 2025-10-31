@@ -29,3 +29,11 @@ layout: single
 [online slides](https://docs.google.com/presentation/d/1zAmAVoMzwG6M5MSLo_qdN6kuWMSp7aXzrPF01c8zGQY/present?usp=sharing)
 
 [downloadable slides](https://docs.google.com/presentation/d/1zAmAVoMzwG6M5MSLo_qdN6kuWMSp7aXzrPF01c8zGQY/export/pptx)
+
+---
+
+## Snakemake
+
+[online slides](https://docs.google.com/presentation/d/1h3id0IIHR4krC7LdVzOtTyt7MtmLymnTWiW6vVBfmF8/present?usp=sharing)
+
+[downloadable slides](https://docs.google.com/presentation/d/1h3id0IIHR4krC7LdVzOtTyt7MtmLymnTWiW6vVBfmF8/export/pptx)
