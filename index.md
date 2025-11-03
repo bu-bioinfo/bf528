@@ -190,21 +190,21 @@ If you want to think about it in terms of percentage, projects will account for
 | Mon | 10/27 | [9]({{ site.baseurl }}/lectures/week-09/)    | Lecture  | Microbiome: 16S / Microbiome: Metagenomics                                                  |                                |
 | Wed | 10/29 | [9]({{ site.baseurl }}/lectures/week-09/)    | Lab      | Project 3 Check-In                                                   |                                 |
 | Fri | 10/31 | [9]({{ site.baseurl }}/lectures/week-09/)    | Lab      | Lab - Snakemake                                      |                         |
-| Mon | 11/3  | [10]({{ site.baseurl }}/lectures/week-10/)   | Lecture  | Project 3 Check-in                                           |                                 |
-| Wed | 11/5  | [10]({{ site.baseurl }}/lectures/week-10/)   | Lecture  | Proteomics                                                         |                                 |
+| Mon | 11/3  | [10]({{ site.baseurl }}/lectures/week-10/)   | Lecture  | Single Cell Analysis Part 1<br>Single Cell Analysis Part 2                                        |                                 |
+| Wed | 11/5  | [10]({{ site.baseurl }}/lectures/week-10/)   | Lecture  | Metabolomics                                                         |                                 |
 | Fri | 11/7  | [10]({{ site.baseurl }}/lectures/week-10/)   | Lab      | Lab - Differential Peak Analysis                                   |                                 |
-| Mon | 11/10 | [11]({{ site.baseurl }}/lectures/week-11/)   | Lab      | Project 3 Final Check-In                                             |                                 |
-| Wed | 11/12 | [11]({{ site.baseurl }}/lectures/week-11/)   | Lecture  | Metabolomics                                                       |                                 |
+| Mon | 11/10 | [11]({{ site.baseurl }}/lectures/week-11/)   | Lab      | Single Cell Analysis Part 3                                       |                                 |
+| Wed | 11/12 | [11]({{ site.baseurl }}/lectures/week-11/)   | Lecture  | LAB - Single Cell QC                                                       |                                 |
 | Fri | 11/14 | [11]({{ site.baseurl }}/lectures/week-11/)   | Lab      | Lab - Using NF Core Pipelines                                                    | |
-| Mon | 11/17 | [12]({{ site.baseurl }}/lectures/week-12/)   | Lab      | Project 3 Discussion                                                 |                                 |
-| Wed | 11/19 | [12]({{ site.baseurl }}/lectures/week-12/)   | Lecture  | Single Cell Analysis Part 1                                        |                                 |
-| Fri | 11/21 | [12]({{ site.baseurl }}/lectures/week-12/)   | Lecture  | Single Cell Analysis Part 2<br><br>LAB - Single Cell QC<br>      |                            |
-| Mon | 11/24 | [13]({{ site.baseurl }}/lectures/week-13/)   | Lecture  | Single Cell Analysis Part 3                                        | P3 due - Final Project Assigned                                 |
+| Mon | 11/17 | [12]({{ site.baseurl }}/lectures/week-12/)   | Lab      | Project 3 Check-In                                                 |                                 |
+| Wed | 11/19 | [12]({{ site.baseurl }}/lectures/week-12/)   | Lecture  | Spatial Transcriptomics                                      |                                 |
+| Fri | 11/21 | [12]({{ site.baseurl }}/lectures/week-12/)   | Lecture  | LAB - Single Cell Workflow      |                            |
+| Mon | 11/24 | [13]({{ site.baseurl }}/lectures/week-13/)   | Lecture  | LAB - Single Cell Pre-Processing                                        | P3 due - Final Project Assigned                                 |
 |     | 11/26 |      | NO CLASS |                                                                      |                                 |
 |     | 11/28 |      | NO CLASS |                                                                      |                                 |
-| Mon | 12/1  | [14]({{ site.baseurl }}/lectures/week-14/)   | Lab      | LAB - Single Cell Workflow                                         |                                |
-| Wed | 12/3  | [14]({{ site.baseurl }}/lectures/week-14/)   | Lecture  | Spatial Transcriptomics                                            |                                 |
-| Fri | 12/5  | [14]({{ site.baseurl }}/lectures/week-14/)   | Lab      | LAB - Single Cell Pre-Processing                                    |                                 |
+| Mon | 12/1  | [14]({{ site.baseurl }}/lectures/week-14/)   | Lab      | LAB - Single Cell                                          |                                |
+| Wed | 12/3  | [14]({{ site.baseurl }}/lectures/week-14/)   | Lecture  | LAB - Single Cell                                            |                                 |
+| Fri | 12/5  | [14]({{ site.baseurl }}/lectures/week-14/)   | Lab      | LAB - Single Cell                                            |                                 |
 | Mon | 12/8  | 15   | Lab      | LAB - Single Cell Integration                                      |                                 |
 | Wed | 12/10 | 15   | Lab      | Feedback                                                             |                                 |
 | Mon | 12/15 |      |          | Final Project due                                                    |                                 | 
