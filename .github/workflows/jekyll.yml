@@ -43,6 +43,7 @@ jobs:
       - name: Fix platform compatibility
         run: |
           bundle lock --add-platform x86_64-linux
+          bundle lock --add-platform arm64-linux
           bundle install
       - name: Setup Pages
         id: pages
