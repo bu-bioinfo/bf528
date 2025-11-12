@@ -482,7 +482,9 @@ RNAseq data, but you should re-create the genomic tracks from your ChIPseq resul
 
 4. In the notebook you created, please ensure you address the following questions:
 
-  1. Focusing on your results for figure 2F:
+  1. Focusing on your results for figure 2f (You will likely not be able to exactly
+  reproduce what they did - use the promoter-TSS start site in place of the gene
+  body from your own results):
     - Do you observe any differences in the number of overlapping genes from both
     analyses?
     - If you do observe a difference, explain at least two factors that
