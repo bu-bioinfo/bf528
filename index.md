@@ -195,7 +195,7 @@ If you want to think about it in terms of percentage, projects will account for
 | Fri | 11/7  | [10]({{ site.baseurl }}/lectures/week-10/)   | Lab      | Lab - Differential Peak Analysis                                   |                                 |
 | Mon | 11/10 | [11]({{ site.baseurl }}/lectures/week-11/)   | Lecture      | Single Cell Analysis Part 3                                       |                                 |
 | Wed | 11/12 | [11]({{ site.baseurl }}/lectures/week-11/)   | Lecture  | Spatial Transcriptomics                                                       |                                 |
-| Fri | 11/14 | [11]({{ site.baseurl }}/lectures/week-11/)   | Lab      | Lab - Using NF Core Pipelines                                                    | |
+| Fri | 11/14 | [11]({{ site.baseurl }}/lectures/week-11/)   | Lab      | Lab - Single Cell Prep                                                    | |
 | Mon | 11/17 | [12]({{ site.baseurl }}/lectures/week-12/)   | Lab      | Project 3 Check-In                                                 |                                 |
 | Wed | 11/19 | [12]({{ site.baseurl }}/lectures/week-12/)   | Lab  | Single Cell QC                                      |                                 |
 | Fri | 11/21 | [12]({{ site.baseurl }}/lectures/week-12/)   | Lab  | LAB - Single Cell Workflow      |                            |
