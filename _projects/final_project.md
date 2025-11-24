@@ -100,7 +100,7 @@ Your project should consist of:
 1. A Nextflow workflow that implements the above steps in your github classroom repository
 2. A README.md file in your github classroom repository that describes how to run your pipeline
 3. A Jupyter notebook or Rmarkdown file that contains the analysis code
-4. A report that addresses the deliverables outlined in the [Project Report Guidelines]({{ site.baseurl }}/project_report_guidelines/)
+4. A report that addresses the deliverables outlined below.
 
 
 The specific deliverables pertaining to the results for this project that should
@@ -120,10 +120,18 @@ mean for your analysis
 Comment, in no less than a paragraph, on each of your chosen two ATAC-seq QC 
 metrics and what they mean about the success of the experiment. 
 
-4. Comment on the success of the reproductions of the panels from the original
+4. Report how many differentially accessible regions your pipeline discovered
+in each of the two conditions.
+
+5. A figure showing the enrichment results of the differentially accessible
+regions and a few sentences describing what the enrichment reveals.
+
+6. A figure showing the motif enrichment results from the differential peaks and 
+a few sentences describing the key motifs found.
+
+7. Comment on the success of the reproductions of the panels from the original
 publication. Do you think the results are consistent with the original publication?
 What do your results show that is different from the original publication?
-
 
 
 # Project 2: Your Choice
