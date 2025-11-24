@@ -7,10 +7,19 @@ The final project will ask you to develop and implement a full bioinformatics
 pipeline for a real-world dataset, focusing on the prinicples of reproducibility
 and portability we've discussed throughout the semester. 
 
-You will have your choice of two datasets stemming from published work that
-focused on chromatin accessiblity and alternative splicing, respectively. You 
-will be asked to generate an end-to-end pipeline for each dataset, including
-reproducing several of their key results and figures. 
+You will have your choice of two options, the first being a publication
+focused on chromatin accessiblity as assayed by ATACseq. You will be asked to 
+generate an end-to-end pipeline for experiment and replicate some of their key
+figures.
+
+You may also choose to analyze a dataset of your own choosing, provided it meets
+a few basic requirements:
+
+1. It must be a dataset that has been published in a peer-reviewed journal
+2. You must have access to the raw data
+3. You must meet with me to discuss your project and get approval before proceeding
+- This is largely to ensure that the work will be feasible and that you will be
+doing roughly the same amount of work as the ATACseq project.
 
 You will be given a rough outline of the steps your workflow should perform as
 well as a list of deliverables to generate. When in doubt, you may refer back
@@ -18,7 +27,7 @@ to the original publication for additional details or guidance on specific steps
 
 # Universal Guidelines
 
-No matter which dataset you choose, you will be asked to adhere to several 
+No matter which project you choose, you will be asked to adhere to several 
 guidelines following practices we've developed over the semester.
 
 ## Workflow Manager
@@ -31,7 +40,8 @@ You may see a template repo here: https://github.com/bf528/final_project_templat
 2. Each of your processes must be split into separate modules
 
 3. Your workflow should be driven by either a samplesheet.csv or a directory of files
-   using the `Channel.fromFilePairs` function
+   using the `Channel.fromFilePairs` function. It should download the files as
+   necessary.
 
 ## Environment Management
 
@@ -80,6 +90,7 @@ which fraction you are working with for each subsequent analysis.
 9. Differential chromatin accessibility analysis
 10. Annotation of called peaks
 11. Motif finding of differential peaks
+12. Reproduce at least two panels of a figure from the original publication
 
 
 ## Deliverables
@@ -109,18 +120,44 @@ mean for your analysis
 Comment, in no less than a paragraph, on each of your chosen two ATAC-seq QC 
 metrics and what they mean about the success of the experiment. 
 
+4. Comment on the success of the reproductions of the panels from the original
+publication. Do you think the results are consistent with the original publication?
+What do your results show that is different from the original publication?
 
 
 
+# Project 2: Your Choice
 
-
-
-# Project 2: Long-read sequencing and alternative splicing analysis
-
-The publication for this project is here:
-
-Your workflow should do the following:
-
+If choosing your own project, your workflow steps will look different and you should
+determine the steps necessary to generate the results you want. You can of course
+refer to the methods found in the original publication for guidance. 
 
 ## Deliverables
+
+Your project should consist of:
+
+1. A Nextflow workflow that implements the above steps in your github classroom repository
+2. A README.md file in your github classroom repository that describes how to run your pipeline
+3. A Jupyter notebook or Rmarkdown file that contains the analysis code
+4. A report that addresses the deliverables outlined in the [Project Report Guidelines]({{ site.baseurl }}/project_report_guidelines/)
+
+
+The specific deliverables pertaining to the results for this project that should
+be included in your report are:
+
+1. A brief discussion (1 paragraph) of the sequencing quality control results and
+any steps taken to address any identified issues
+2. A brief discussion (1 paragraph) of the alignment statistics, and what they
+mean for your analysis
+3. You must produce *two* experiment specific QC metrics
+- Alignment Statistics
+- Sequence Quality Control
+- Experiment-specific metrics (fingerprint plot, sample-sample distance matrix, etc.)
+
+Comment, in no less than a paragraph, on each of your chosen two QC 
+metrics and what they mean about the success of the experiment. 
+
+4. Comment on the success of the reproductions of the panels from the original
+publication. Do you think the results are consistent with the original publication?
+What do your results show that is different from the original publication?
 
