@@ -88,8 +88,8 @@ respectively
 which fraction you are working with for each subsequent analysis. 
 8. Peak calling
 9. Differential chromatin accessibility analysis
-10. Annotation of called peaks
-11. Motif finding of differential peaks
+10. Annotation of differentially accessible peaks
+11. Motif finding of differentially accessible peaks
 12. Reproduce figures 6a-6f (it's only three distinct figures from two conditions)
 
 
