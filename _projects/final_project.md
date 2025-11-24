@@ -71,7 +71,7 @@ Your repo must contain a README.md file with the following information:
 
 # Project 1: ATAC-seq and Differential Chromatin Accessibility
 
-The publication for this project is here:
+The publication for this project is here: https://pubmed.ncbi.nlm.nih.gov/38829740/
 
 
 Your workflow at a high-level should do the following:
@@ -90,7 +90,7 @@ which fraction you are working with for each subsequent analysis.
 9. Differential chromatin accessibility analysis
 10. Annotation of called peaks
 11. Motif finding of differential peaks
-12. Reproduce at least two panels of a figure from the original publication
+12. Reproduce figures 6a-6f (it's only three distinct figures from two conditions)
 
 
 ## Deliverables
