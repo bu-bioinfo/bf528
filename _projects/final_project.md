@@ -35,8 +35,6 @@ guidelines following practices we've developed over the semester.
 1. You must use Nextflow to generate a working pipeline for your project. You
 should use the same structure as each of the previous projects.
 
-You may see a template repo here: https://github.com/bf528/final_project_template
-
 2. Each of your processes must be split into separate modules
 
 3. Your workflow should be driven by either a samplesheet.csv or a directory of files
