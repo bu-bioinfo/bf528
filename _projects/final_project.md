@@ -73,6 +73,8 @@ Your repo must contain a README.md file with the following information:
 
 The publication for this project is here: https://pubmed.ncbi.nlm.nih.gov/38829740/
 
+**You only need to process the ATACseq data**
+
 
 Your workflow at a high-level should do the following:
 
