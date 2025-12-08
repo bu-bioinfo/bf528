@@ -81,7 +81,7 @@ Your workflow at a high-level should do the following:
 3. Adapter trimming (if necessary) and quality filtering
 4. Alignment to the reference genome using ATACseq specific parameters
 5. Remove any alignments aligning to mitochondrial DNA
-6. Correct the alignemnts by shifting +4/-5 for the positive and negative strand
+6.*OPTIONAL* Correct the alignemnts by shifting +4/-5 for the positive and negative strand
 respectively 
 7.*OPTIONAL* Split your dataset into the nucleosome-free (NFR) and nucleosome-bound
 (NBR) fractions. If you choose to do this, please justify why and make it clear 
