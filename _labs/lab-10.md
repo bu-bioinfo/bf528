@@ -1,85 +1,38 @@
 ---
-title: "Lab 10 — Snakemake"
+title: "Lab 10 — Genome Browsers and Alignment"
 layout: single
 ---
 
 **Key concepts and tools**
-- `Snakefile`, `rule`, `input`, `output`, `shell`
-- `rule all` — declaring target outputs
-- Wildcards (`{sample}`) — generalization across samples
-- `expand()` — generating lists of expected outputs
-- `snakemake --workflow-profile` — cluster submission
-- `conda:` directive per rule
-- DAG: directed acyclic graph of rules
+- Bowtie2 — splice-unaware short-read aligner, index building
+- STAR — splice-aware RNA-seq aligner, index building
 - `samtools sort`, `samtools index`
+- BAM and BAI file format
+- `bamCoverage` (deepTools) — BAM to bigWig conversion
+- bigWig format, coverage tracks
+- IGV — loading BAMs, bigWigs; paired-end read visualization
+- Splice-aware vs. splice-unaware alignment: visual differences at exon junctions
+- `branch` operator — routing samples to different processes
 
 ---
 
-Snakemake is an alternative workflow manager that reasons backward from desired output files rather than forward from inputs. This lab starts with a single-rule example to establish the syntax, then moves to a multi-sample pipeline that uses wildcards to generalize across samples without repeating code. You will fill in `samtools sort` and `samtools index` rules and specify their file dependencies, observe how Snakemake constructs the execution DAG, and run the pipeline on the cluster using a profile. The goal is not to replace Nextflow but to understand how a file-centric workflow manager thinks differently about the same problem.
+You will build a Nextflow pipeline that aligns RNA-seq reads with two different aligners — Bowtie2 (splice-unaware) and STAR (splice-aware) — then sorts and indexes both BAM files and converts them to bigWig coverage tracks. Several modules are provided; you complete the `samtools sort`, `samtools index`, and `bamCoverage` modules and write the workflow that connects them.
 
----
+## Workflow tasks
 
-## Setup
+1. Build a Bowtie2 index and a STAR index for human chr16 (hg38)
+2. Align the `bowtie2` sample with Bowtie2 and the `star` sample with STAR — use a channel operator to route each sample to the correct aligner
+3. Sort and index both resulting BAM files with samtools
+4. Generate a bigWig coverage track from each BAM with `bamCoverage`
 
-Create the Snakemake conda environment from the provided YAML:
-
-```bash
-conda env create -f envs/snakemake_env.yml
-conda activate snakemake_env
-```
-
-## Part 1 — single/
-
-Look at the `Snakefile`. It closely resembles the example from lecture: a `rule all` that declares the final target, and individual rules that specify how to produce each file.
+Samples are subsetted for speed — run locally:
 
 ```bash
-snakemake -s Snakefile
+nextflow run main.nf -profile singularity,local
 ```
 
-Observe what is created and where. Snakemake checks for the existence of declared output files after each rule executes.
+## IGV
 
-## Part 2 — multi/
+Open an SCC Desktop interactive session (OnDemand) to run the IGV desktop app. Load both BAM files and both bigWig tracks. Navigate to a gene with multiple exons and observe how reads from the STAR-aligned BAM span splice junctions while reads from the Bowtie2 BAM do not.
 
-Look at the files in `samples/`. Note what portion of each filename is shared and what portion is unique.
-
-Snakemake generalizes across samples using **wildcards** — any string in curly braces `{sample}` that it infers from the filesystem:
-
-```python
-rule samtools_sort:
-    input:
-        bam = 'samples/{sample}.bam'
-    output:
-        sorted_bam = 'results/{sample}.sorted.bam'
-    shell:
-        'samtools sort {input.bam} > {output.sorted_bam}'
-```
-
-**Tasks:**
-
-1. Declare the two final target files in `rule all`:
-   - `results/sampleA.sorted.bam.bai`
-   - `results/sampleB.sorted.bam.bai`
-
-2. Fill in the rules for `samtools_sort` and `samtools_index`:
-   - `samtools_sort` input: the starting BAM files; output: redirect sorted output to a new file
-   - `samtools_index` input: the output of `samtools_sort`; output: the `.bai` index (same name + `.bai`)
-
-3. Run with the cluster profile:
-
-```bash
-snakemake -s Snakefile --workflow-profile profile/
-```
-
-## Part 3 — advanced/
-
-Extends the multi-sample pipeline to handle paired-end reads. Explore how `expand()` generates lists of expected outputs and how the profile specifies cluster resource requests per rule.
-
-## Key differences from Nextflow
-
-| | Snakemake | Nextflow |
-|---|---|---|
-| Reasoning direction | Backward from outputs | Forward from inputs |
-| Parallelism unit | Rule × wildcard combination | Process × channel element |
-| Data representation | File paths | Channels |
-| Language | Python | Groovy / DSL2 |
-| Config | `config.yaml` | `nextflow.config` |
+Pre-generated results are available at `/projectnb/bf528/materials/lab07_template/visualization/` if your pipeline is still running.
