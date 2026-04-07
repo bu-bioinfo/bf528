@@ -125,7 +125,14 @@ sidebar:
         url: "/labs/lab-11/"
       - title: "Lab 12"
         url: "/labs/lab-12/"
-
+      - title: "Lab 13"
+        url: "/labs/lab-13/"
+      - title: "Lab 14"
+        url: "/labs/lab-14/"
+      - title: "Lab 15"
+        url: "/labs/lab-15/"
+      - title: "Lab 16"
+        url: "/labs/lab-16/"
 
 # Footer links
 footer:
