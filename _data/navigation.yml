@@ -39,6 +39,8 @@ sidebar:
         url: "/guides/nextflow_features/"
       - title: "Connecting Inputs and Outputs"
         url: "/guides/connecting_inputs_and_outputs/"
+      - title: "Nextflow Development Workflow"
+        url: "/guides/nextflow_development_workflow/"
       - title: "Notebooks and Computational Environments"
         url: "/guides/notebooks_computational_envs/"
       - title: "Troubleshooting Issues"
