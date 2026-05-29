@@ -210,7 +210,7 @@ tracked.
 **Projects 1 & 2 — Level 2 (AI Planning)**
 These early projects ask you to build foundational skills by working
 through pipelines largely by hand. You may use AI for brainstorming,
-planning, and debugging small well-defined subtasks — but the pipeline
+planning, and debugging small well-defined subtasks but the pipeline
 logic, parameter choices, and written analysis should be yours. The
 idea is to develop confidence and the ability to evaluate an analysis
 before leaning on tools that can do it for you. Developing and running
@@ -218,8 +218,8 @@ a pipeline you've built yourself, whose parameters you have chosen and
 whose outputs you have questioned, will give you the intuition to
 recognize when an LLM-generated version is subtly wrong. Importantly,
 it also builds the vocabulary to ask for the right thing in the first
-place — precise, well-grounded prompts come from people who already
-understand the problem.
+place by generating precise, well-grounded prompts stemming from an understanding
+of the problem to be solved. 
 
 Each submission includes a trust map: a table of every pipeline step
 annotated with a trust level (high / medium / low) and a rationale.
@@ -229,8 +229,8 @@ correct. "It ran without errors" is not a rationale.
 
 **Projects 3 & 4 — Level 3 (AI Collaboration)**
 By this point you have enough hands-on experience to use AI as a
-genuine collaborator. You may use AI tools more broadly — for drafting
-code, exploring methods, and structuring your write-up — but your
+genuine collaborator. You may use AI tools more broadly for drafting
+code, exploring methods, and structuring your write-up but your
 critical evaluation of the output is the work. Each submission
 includes a trust map and verification evidence: for every step you
 flag as medium or low trust, a specific verification method carried
@@ -240,11 +240,11 @@ experimental design, and I verified the fold change direction for
 three known marker genes against a primary database."
 
 **Final Project — Level 4 (Full AI)**
-AI use is not just permitted here — it is expected. The trust map
+AI use is not just permitted here; it is expected. The trust map
 and verification practice from earlier projects now governs the full
 AI-assisted workflow. Note that Level 4 applies to the project as a
 whole; individual components carry their own levels. The specification
-document and trust map are Level 1 — they must be completed without
+document and trust map are Level 1. They must be completed without
 AI assistance. Their value depends entirely on representing your own
 thinking before any AI interaction occurs.
 
@@ -262,7 +262,7 @@ standard against which to evaluate what comes back.
 A table of every pipeline step annotated with a trust level
 (high / medium / low) and a rationale. The trust level reflects how
 likely AI-generated output is to be subtly wrong at that step, and
-why. A step with a high trust level still needs a rationale —
+why. A step with a high trust level still needs a rationale and
 "it looked right" is not one. Steps involving experimental design
 choices, biological interpretation, or tool flags that depend on your
 specific data are almost always low trust.
@@ -276,13 +276,11 @@ count.
 **4. Scientific writeup — Level 3 (AI Collaboration)**
 Your interpretation of the results. Where your verification evidence
 changed a conclusion or caught an error, that must be reflected here.
-The argument — what your results mean, why they are or are not what
-you expected, what caveats apply — is yours. AI may have helped build
-the pipeline; the science is not delegable.
+The argument, what your results mean, why they are or are not what
+you expected, what caveats apply must remain yours. 
 
 All AI-generated content must be cited. Your self-assessment for this
-project should address where your trust map turned out to be wrong —
-a step you trusted that failed, or one you flagged that was fine —
+project should address where your trust map turned out to be wrong
 and what that tells you about calibrating this kind of judgment in
 future work.
 
@@ -317,10 +315,9 @@ above). This is not graded on content. It is graded on depth and
 honesty. The questions are simple: where did you meet the learning
 objectives? Where do you still have gaps? What would you do
 differently? These reflections are the primary record of your
-learning across the semester — take them seriously. My hope is that
-this structure frees you to engage with AI tools transparently, focus
-on the material, and reflect honestly on your own growth without the
-grade getting in the way.
+learning across the semester. My hope is that this structure frees you to engage
+with AI tools transparently, focus on the material, and reflect honestly on your
+own growth without the grade getting in the way.
 
 **Final weights.**
 Projects account for 80% of your final grade; lab participation
@@ -375,3 +372,33 @@ accounts for 20%.
 | Mon | 12/7  | [15]({{ site.baseurl }}/lectures/week-15/)   | Lab      | Single Cell Integration                                              |                                 |
 | Wed | 12/9  | [15]({{ site.baseurl }}/lectures/week-15/)   | Lab      | Feedback                                                             |                                 |
 |     | 12/14 |      |          | Final Exams Begin                                                    | Final Project Due               |
+
+
+## A note on AI use in this syllabus
+
+This syllabus was developed in keeping with the same principles
+outlined above. All content was initially drafted by me; Claude
+(Anthropic) was subsequently used to refine language, improve
+clarity, and suggest structural edits. Every element was reviewed,
+revised, and approved by me before inclusion.
+
+The AI Assessment Scale sections were drafted with AI assistance
+and reviewed against the primary literature. Citations and framework
+descriptions reflect my own reading of that literature and should
+be verified against the original sources.
+
+This syllabus was produced at approximately **Level 3 (AI
+Collaboration)**: AI assisted in developing and refining the
+content while my judgment directed and evaluated the output
+throughout. Nearly all of the content was manually drafted first before
+integrating suggestions and edits from a LLM. 
+
+Unless otherwise specified, all other course materials including labs,
+projects, and supporting documents were produced at approximately
+**Level 2–3 (AI Planning to AI Collaboration)**. I initially generated all drafts
+by myself without the use of AI and AI was used only for structure, organization,
+formatting, and further brainstorming. All of the technical content, biological
+framing, and pedagogical decisions remain my own.
+
+In short, this document is my own work, produced with AI as a collaborator and
+not as a substitute for my judgment.
