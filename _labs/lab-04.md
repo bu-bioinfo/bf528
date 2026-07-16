@@ -1,61 +1,104 @@
 ---
-title: "Lab 04 — Modules and Multi-Sample Pipelines"
+title: "Lab 04 — Multi-Sample Pipelines and Modules"
 layout: single
 ---
 
 **Key concepts and tools**
-- `include { PROCESS } from './modules/...'`
-- `modules/` directory structure, one process per module file
-- `tuple val(meta), path(file)` input/output pattern
-- `samplesheet.csv`, `splitCsv(header: true)`, `map`
-- `ncbi-datasets-cli` genome download
-- Prokka genome annotation, GFF output format
-- `samtools faidx` — FASTA indexing and coordinate extraction
-- `join` channel operator — merging channels by key
-- `-stub-run` — testing workflow logic without running real tools
-- `-with-report` — HTML execution report
-- `resume = true` in `nextflow.config`
-- Process `label` directives and resource allocation
-- Jupyter notebooks, conda environments as kernels, circos plots
+- Samplesheets — CSV files as structured pipeline input
+- `List<RecordType>` params and automatic CSV parsing
+- `channel.fromList(params.samplesheet)` — channel from a typed list
+- Named record types: `record Sample { name: String; url: String }`
+- Record field propagation — carrying `name` through every process
+- `include { PROCESS } from './modules/...'` — the modules system
+- `stub:` block and `-stub-run` — testing pipeline logic without real tools
+- `.map {}`, `.collect()` — channel operators for multi-sample aggregation
+- `publishDir` on a collection process
 
 ---
 
-This lab introduces the module system and multi-sample patterns that will be standard for the rest of the course. The pipeline downloads several bacterial genomes from NCBI, annotates them with Prokka, indexes each genome with `samtools faidx`, and extracts a specific gene's sequence by its GFF coordinates. The pipeline is scaffolded but incomplete — you fill in the inputs, outputs, and commands for each process, then connect them in `main.nf`.
+This lab extends the single-genome pipeline from lab 2 to process multiple bacterial genomes in parallel. The bioinformatics tools are unchanged — `wget` and `genome_stats.py` — so the focus is entirely on Nextflow patterns: samplesheets, typed records, modules, and aggregating per-sample results into a single summary.
 
-## Process specifications
-
-Each module is outlined below. Use `-stub-run` to confirm the workflow logic before running real tools.
-
-**`ncbi_datasets_cli`** — Input: `tuple val(name), val(GCF)`. Output: `tuple val(name), path("*.fna")`.
-
-**`prokka`** — Input: `tuple val(name), path(fna)`. Output: `tuple val(name), path("*.gff"), emit: gff`. Use `--outdir` and `--prefix` flags set to the sample name.
-
-**`extract_region`** — Input: `tuple val(name), path(gff)`. Output: `tuple val(name), path("region_of_interest.txt")`. Uses the provided script in `bin/`.
-
-**`samtools_faidx`** — Input: `tuple val(name), path(fna)`. Output: `tuple val(name), path(fna), path("*.fai")`.
-
-**`samtools_faidx_subset`** — Input: `tuple val(name), path(fna), path(fai), path(region)`. Output: `tuple val(name), path("*_region.subset.fna")`. You will need a channel operator to merge the `samtools_faidx` and `extract_region` outputs by sample name before passing them here.
-
-## Running
+## Setup
 
 ```bash
-# Test workflow logic (no real tools run)
-nextflow run main.nf -profile local,conda -stub-run
-
-# Run locally once logic is confirmed
-nextflow run main.nf -profile local,conda
-
-# Submit to cluster with report
-nextflow run main.nf -profile cluster,conda -with-report
+module load miniconda
+conda activate nextflow_latest
+export NXF_SYNTAX_PARSER=v2
 ```
 
-## New features introduced
+```bash
+nextflow run main.nf -profile conda,local    # local test
+nextflow run main.nf -profile conda,cluster  # submit to SCC
+```
 
-- **`-stub-run`** — executes the `stub` block of each process instead of `script`, creating empty placeholder files instantly. Use this to validate channel wiring before committing to a full run.
-- **`-with-report`** — generates an HTML summary of resource usage per task after the run.
-- **`resume = true`** — caches completed tasks so a failed run can restart from where it stopped.
-- **Labels** — each process has a `label` that maps to CPU/memory settings in `nextflow.config`, replacing per-process `qsub` flags.
+## Structure
 
-## Jupyter notebook
+```
+main.nf               # complete — defines record types, includes, workflow
+samplesheet.csv       # three bacterial genomes
+modules/
+  download/main.nf    # typed I/O provided — fill in script block
+  genome_stats/main.nf
+  summarize/main.nf   # fully complete — see how List<Path> input works
+bin/
+  genome_stats.py
+envs/
+  biopython_env.yml
+```
 
-Create a conda environment from the provided `notebook_env.yml`, select it as the notebook kernel, and use BioPython to visualize the gene annotations for all downloaded genomes as a circos plot.
+## Task 1 — Read `main.nf` and `samplesheet.csv`
+
+`main.nf` is fully complete. Read it before writing any code. Notice:
+
+- Three named record types at the top: `Sample`, `GenomeFile`, `StatsFile`. The `Sample` fields `name` and `url` match the CSV column names — Nextflow parses the CSV automatically.
+- `channel.fromList(params.samplesheet)` emits one record per row.
+- Three `include` statements import processes from `modules/`.
+- The workflow uses `.map` and `.collect()` to gather all per-sample stats files before passing them to `SUMMARIZE`.
+
+## Task 2 — Write the DOWNLOAD module
+
+`modules/download/main.nf` has the typed I/O already filled in. Fill in the `script` block:
+
+```bash
+wget ${url} -O ${name}.fna.gz
+```
+
+Input record fields (`name`, `url`) are available as variables in the `script` block directly. Test wiring before downloading anything:
+
+```bash
+nextflow run main.nf -profile conda,local -stub-run
+```
+
+The `stub:` block runs instead of `script:`, creating empty placeholder files instantly. A clean stub run confirms that all includes resolve and channels wire correctly.
+
+## Task 3 — Write the GENOME_STATS module
+
+`modules/genome_stats/main.nf` has the typed I/O already filled in. Fill in the `script` block:
+
+```bash
+genome_stats.py -i ${fa} -n ${name} -o ${name}_stats.tsv
+```
+
+Make the script executable first:
+
+```bash
+chmod +x bin/genome_stats.py
+```
+
+## Task 4 — Run and inspect
+
+```bash
+nextflow run main.nf -profile conda,cluster
+```
+
+After the run, check `results/summary.tsv` — it should have a header row and one data line per genome. Then inspect the execution log:
+
+```bash
+nextflow log <run-name> -f hash,name,exit,status
+```
+
+Navigate into a `work/` subdirectory and open `.command.sh` to see exactly what command ran for that task.
+
+## Optional
+
+Add a fourth genome to `samplesheet.csv` and re-run. Only the new genome's processes execute — the other three are served from cache.
