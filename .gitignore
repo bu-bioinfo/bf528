@@ -78,3 +78,6 @@ ENV/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Internal Files
+rfcs/
