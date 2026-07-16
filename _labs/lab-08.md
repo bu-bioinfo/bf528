@@ -1,85 +1,61 @@
 ---
-title: "Lab 08 — Snakemake"
-layout: single
+title: "Lab 08 — QC Pipeline with Singularity"
 ---
 
 **Key concepts and tools**
-- `Snakefile`, `rule`, `input`, `output`, `shell`
-- `rule all` — declaring target outputs
-- Wildcards (`{sample}`) — generalization across samples
-- `expand()` — generating lists of expected outputs
-- `snakemake --workflow-profile` — cluster submission
-- `conda:` directive per rule
-- DAG: directed acyclic graph of rules
-- `samtools sort`, `samtools index`
+- `mix` — interleaving two channels of the same type into one
+- `container` directive, `-profile singularity` — Singularity on the SCC
+- `withLabel` resource labels in `nextflow.config` — `process_single`, `process_low`, `process_medium`
+- `withName` per-process `publishDir` and `ext.args` in config
+- FastQC, Trimmomatic, MultiQC — standard short-read QC workflow
+- QC report interpretation: per-base quality, GC content, adapter content, read length distribution, duplication
 
 ---
 
-Snakemake is an alternative workflow manager that reasons backward from desired output files rather than forward from inputs. This lab starts with a single-rule example to establish the syntax, then moves to a multi-sample pipeline that uses wildcards to generalize across samples without repeating code. You will fill in `samtools sort` and `samtools index` rules and specify their file dependencies, observe how Snakemake constructs the execution DAG, and run the pipeline on the cluster using a profile. The goal is not to replace Nextflow but to understand how a file-centric workflow manager thinks differently about the same problem.
-
----
+This lab assembles a complete short-read QC pipeline — FastQC on raw reads, adapter trimming with Trimmomatic, FastQC on trimmed reads, and MultiQC to summarise everything in a single HTML report. All processes run in Singularity containers, which is how all subsequent projects are run on the SCC. The one new Nextflow concept is `mix`, used to merge the pre-trim and post-trim FastQC channels so MultiQC sees both sets of reports and can produce a before/after comparison.
 
 ## Setup
 
-Create the Snakemake conda environment from the provided YAML:
+```bash
+module load miniconda
+conda activate nextflow_latest
+export NXF_SYNTAX_PARSER=v2
+```
 
 ```bash
-conda env create -f envs/snakemake_env.yml
-conda activate snakemake_env
+nextflow run main.nf -profile singularity,local    # local test
+nextflow run main.nf -profile singularity,cluster  # submit to SCC
 ```
 
-## Part 1 — single/
+## Pipeline
 
-Look at the `Snakefile`. It closely resembles the example from lecture: a `rule all` that declares the final target, and individual rules that specify how to produce each file.
-
-```bash
-snakemake -s Snakefile
+```
+samplesheet.csv
+    ↓ channel.fromList
+samples_ch ──┬──→ FASTQC ──────────────────────────→ pre_qc_ch ──┐
+             │                                                      ├─ mix → combined_qc → flatMap → collect → MULTIQC
+             └──→ TRIMMOMATIC → trim_ch → FASTQC → post_qc_ch ───┘
 ```
 
-Observe what is created and where. Snakemake checks for the existence of declared output files after each rule executes.
+`mix` is the join point: it interleaves `pre_qc_ch` and `post_qc_ch` into a single channel so all six FastQC zip files (3 samples × pre + post) reach MultiQC together.
 
-## Part 2 — multi/
+## Tasks
 
-Look at the files in `samples/`. Note what portion of each filename is shared and what portion is unique.
+**Task 1 — Read `main.nf` and the modules**  
+Before writing anything, answer: what field does TRIMMOMATIC add that FASTQC doesn't need? How many FASTQC tasks run for 3 samples? How does duck-typing allow `FASTQC(trim_ch)` to work when `trim_ch` carries a `log` field?
 
-Snakemake generalizes across samples using **wildcards** — any string in curly braces `{sample}` that it infers from the filesystem:
-
-```python
-rule samtools_sort:
-    input:
-        bam = 'samples/{sample}.bam'
-    output:
-        sorted_bam = 'results/{sample}.sorted.bam'
-    shell:
-        'samtools sort {input.bam} > {output.sorted_bam}'
+**Task 2 — Fill in the `mix` call**  
+`main.nf` has one `???` placeholder. Replace it with:
+```nextflow
+combined_qc = pre_qc_ch.mix(post_qc_ch)
 ```
+Verify with `-stub-run` (expect 10 tasks: 6 FASTQC + 3 TRIMMOMATIC + 1 MULTIQC).
 
-**Tasks:**
+**Task 3 — Run on the cluster**  
+`nextflow run main.nf -profile singularity,cluster`. Open `results/multiqc/multiqc_report.html` and confirm both pre-trim and post-trim sections are present.
 
-1. Declare the two final target files in `rule all`:
-   - `results/sampleA.sorted.bam.bai`
-   - `results/sampleB.sorted.bam.bai`
+**Task 4 — Resource labels**  
+Trace how `withLabel: process_low { cpus = 4 }` in `nextflow.config` becomes `-threads 4` in TRIMMOMATIC's `.command.sh`. Change the value and re-run with `-stub-run` to confirm it propagates.
 
-2. Fill in the rules for `samtools_sort` and `samtools_index`:
-   - `samtools_sort` input: the starting BAM files; output: redirect sorted output to a new file
-   - `samtools_index` input: the output of `samtools_sort`; output: the `.bai` index (same name + `.bai`)
-
-3. Run with the cluster profile:
-
-```bash
-snakemake -s Snakefile --workflow-profile profile/
-```
-
-## Part 3 — advanced/
-
-Extends the multi-sample pipeline to handle paired-end reads. Explore how `expand()` generates lists of expected outputs and how the profile specifies cluster resource requests per rule.
-
-## Key differences from Nextflow
-
-| | Snakemake | Nextflow |
-|---|---|---|
-| Reasoning direction | Backward from outputs | Forward from inputs |
-| Parallelism unit | Rule × wildcard combination | Process × channel element |
-| Data representation | File paths | Channels |
-| Language | Python | Groovy / DSL2 |
-| Config | `config.yaml` | `nextflow.config` |
+**Task 5 — Interpreting the QC report**  
+Working through five metrics: per-base quality, GC distribution, adapter content, read length distribution after trimming, duplication levels. Reference report: `exercise_3/provided_results/full_report.html`.

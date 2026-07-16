@@ -1,101 +1,85 @@
 ---
-title: "Lab 09 — CRISPR Guide Design"
+title: "Lab 09 — Snakemake"
 layout: single
 ---
 
 **Key concepts and tools**
-- `bgzip`, block-compressed FASTA
-- `samtools faidx` — FASTA indexing and coordinate extraction
-- GFF file format, extracting gene coordinates
-- UCSC Table Browser — downloading genomic coordinate annotations
-- BioPython: `SeqIO`, sequence scanning, string search
-- CRISPR-Cas9 mechanism: 20 nt spacer + NGG PAM
-- GC content calculation per guide
-- `-stub-run` / `-stub` for workflow development
-- `-with-report`
-- DESeq2 LRT, interaction terms, time series (extended topics)
+- `Snakefile`, `rule`, `input`, `output`, `shell`
+- `rule all` — declaring target outputs
+- Wildcards (`{sample}`) — generalization across samples
+- `expand()` — generating lists of expected outputs
+- `snakemake --workflow-profile` — cluster submission
+- `conda:` directive per rule
+- DAG: directed acyclic graph of rules
+- `samtools sort`, `samtools index`
 
 ---
 
-This lab bridges Nextflow pipeline development and biological reasoning. All modules are fully implemented — your task is to wire them together in `main.nf` and then implement the guide-finding logic in a Jupyter notebook.
+Snakemake is an alternative workflow manager that reasons backward from desired output files rather than forward from inputs. This lab starts with a single-rule example to establish the syntax, then moves to a multi-sample pipeline that uses wildcards to generalize across samples without repeating code. You will fill in `samtools sort` and `samtools index` rules and specify their file dependencies, observe how Snakemake constructs the execution DAG, and run the pipeline on the cluster using a profile. The goal is not to replace Nextflow but to understand how a file-centric workflow manager thinks differently about the same problem.
 
-## Nextflow activity
+---
 
-The workflow must:
-1. `bgzip` the reference FASTA (required for indexed access)
-2. Use the provided script to extract the start/stop coordinates of NM_000299 (PKP1) from the BED file into a `region_of_interest.txt`
-3. Index the bgzipped genome with `samtools faidx`
-4. Extract the PKP1 sequence using the FASTA, `.fai` index, and region file
+## Setup
 
-Reference files are in `refs/` (or copy from `/projectnb/bf528/materials/lab04_template/`). All paths are configured in `nextflow.config`.
+Create the Snakemake conda environment from the provided YAML:
 
 ```bash
-# Test workflow logic first
-nextflow run main.nf -profile cluster,conda -stub-run
-
-# Full run with report
-nextflow run main.nf -profile cluster,conda -with-report
+conda env create -f envs/snakemake_env.yml
+conda activate snakemake_env
 ```
 
-## BioPython activity
+## Part 1 — single/
 
-Create the conda environment from `envs/notebook_env.yml` and open the provided notebook.
+Look at the `Snakefile`. It closely resembles the example from lecture: a `rule all` that declares the final target, and individual rules that specify how to produce each file.
 
-1. Load the extracted PKP1 sequence with `SeqIO`
-2. Scan every position on both strands for a 20 nt sequence followed by NGG
-3. For each guide, report: sequence, genomic start coordinate, GC content (%)
-4. Compare your results against `results/results.tsv` and the ChopChop screenshot in the repo
-
-*Extra*: find guides on the minus strand as well.
-
----
-
-# Extended topic — Time Series and Interaction Analyses in DESeq2
-
-Most differential expression analyses compare two conditions. Real experiments are often more complex: multiple time points, factorial designs, or experiments where the effect of one variable depends on another. This section extends the standard DESeq2 workflow to handle those cases.
-
-## LRT vs. Wald test
-
-The standard Wald test compares two groups using a pre-specified contrast. The **likelihood ratio test** asks whether including time in the model explains significantly more variance than a reduced model without it — identifying any gene that changes across a time course regardless of the pattern.
-
-```r
-# Full model
-dds <- DESeqDataSetFromMatrix(counts, coldata,
-                              design = ~ genotype + time + genotype:time)
-dds <- DESeq(dds, test = "LRT", reduced = ~ genotype)
-res <- results(dds)
+```bash
+snakemake -s Snakefile
 ```
 
-## Interaction terms
+Observe what is created and where. Snakemake checks for the existence of declared output files after each rule executes.
 
-An interaction term (`genotype:time`) tests whether the trajectory of expression over time differs between genotypes.
+## Part 2 — multi/
 
-```r
-resultsNames(dds)                              # see all available coefficients
-results(dds, name = "genotypeKO.timep4")       # interaction at a specific time
+Look at the files in `samples/`. Note what portion of each filename is shared and what portion is unique.
+
+Snakemake generalizes across samples using **wildcards** — any string in curly braces `{sample}` that it infers from the filesystem:
+
+```python
+rule samtools_sort:
+    input:
+        bam = 'samples/{sample}.bam'
+    output:
+        sorted_bam = 'results/{sample}.sorted.bam'
+    shell:
+        'samtools sort {input.bam} > {output.sorted_bam}'
 ```
 
-## Clustering temporal patterns
+**Tasks:**
 
-```r
-vsd      <- vst(dds)
-sig      <- rownames(res)[which(res$padj < 0.05)]
-mat      <- assay(vsd)[sig, ]
-mat_sc   <- t(scale(t(mat)))
-pheatmap(mat_sc, cluster_cols = FALSE)
+1. Declare the two final target files in `rule all`:
+   - `results/sampleA.sorted.bam.bai`
+   - `results/sampleB.sorted.bam.bai`
+
+2. Fill in the rules for `samtools_sort` and `samtools_index`:
+   - `samtools_sort` input: the starting BAM files; output: redirect sorted output to a new file
+   - `samtools_index` input: the output of `samtools_sort`; output: the `.bai` index (same name + `.bai`)
+
+3. Run with the cluster profile:
+
+```bash
+snakemake -s Snakefile --workflow-profile profile/
 ```
 
-## Pairwise contrasts from a multi-level factor
+## Part 3 — advanced/
 
-```r
-results(dds, contrast = c("time", "p7", "p0"))
-```
+Extends the multi-sample pipeline to handle paired-end reads. Explore how `expand()` generates lists of expected outputs and how the profile specifies cluster resource requests per rule.
 
-## Tasks
+## Key differences from Nextflow
 
-1. Load the provided count matrix and sample metadata
-2. Fit a model with `genotype`, `time`, and their interaction using the LRT
-3. Identify genes significant at FDR < 0.05
-4. Plot a heatmap of scaled expression ordered by time point
-5. Extract pairwise contrasts between adjacent time points within each genotype
-6. Interpret: which genes show a genotype-specific temporal response?
+| | Snakemake | Nextflow |
+|---|---|---|
+| Reasoning direction | Backward from outputs | Forward from inputs |
+| Parallelism unit | Rule × wildcard combination | Process × channel element |
+| Data representation | File paths | Channels |
+| Language | Python | Groovy / DSL2 |
+| Config | `config.yaml` | `nextflow.config` |
