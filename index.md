@@ -38,13 +38,35 @@ Monday, 3-4pm LSEB 101
 - [Course Schedule](#course-schedule)
 
 ## Course Objectives
+By the end of this course, you will be able to:
 
-- Learn the molecular mechanisms and basic data analysis steps that
-  underlie common next-generation sequencing experiments
-- Develop proficiency in creating bioinformatics workflows with an
-  emphasis on reproducibility and portability
-- Gain experience generating and interpreting bioinformatics analyses
-  in a biological context
+Skills
+
+- Design and build computational workflows that process raw sequencing data 
+  end-to-end with a focus on best practices in reproducibility and portability
+- Evaluate the quality and appropriateness of bioinformatics analyses at each
+  stage
+- Use AI tools deliberately and responsibly by generating precise prompts, 
+  critically evaluating the output, and documenting its use in a methodical fashion
+
+Knowledge
+
+- Explain how RNAseq, ChIPseq, ATACseq, and single cell RNAseq work at the molecular
+  level and how various aspects of the method shape the interpretation of the analysis
+- Identify the major steps in each analysis step and recognize common failures in
+  genomic data analysis including violated assumptions, or misused tools
+
+Why it matters
+
+These are skills that are used by practicing computational biologists regularly.
+The goal is not just to be able to build a pipeline, but also to share your work
+in a way that enables others to be able to verify and reproduce your results. The 
+ability to critically evaluate and interpret computational results in a biological
+context, whether developed manually or by AI, is what enables you to trust your own
+work or for others to trust yours. Developing responsible and principled
+habits around validation, testing, and agentic coding will be transferrable to 
+any domain. 
+
 
 Topics covered include:
 
