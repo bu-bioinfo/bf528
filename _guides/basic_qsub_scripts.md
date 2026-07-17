@@ -21,12 +21,12 @@ will be `bf528` for our class.
 ```bash
 #!/bin/bash
 
-# -P bf528
+#$ -P bf528
 
 python myscript.py
 ```
 
-To submit this script, you would run the following:
+To submit this script, you would run the following from a terminal in the same directory as the script:
 
 ```bash
 qsub myscript.sh
@@ -34,7 +34,7 @@ qsub myscript.sh
 
 ## Using Modules
 
-If you check the computational environments guide [here](/guides/computational_environments/), you will see that we 
+If you check the computational environments guide [here]({{ site.baseurl }}/guides/computational_environments/), you will see that we 
 can make use of pre-installed software packages on the SCC using modules. Although we discourage you from using
 modules in your own scripts, it is important to be aware of this functionality as it may be useful in certain   
 situations. 
@@ -42,13 +42,16 @@ situations.
 ```bash
 #!/bin/bash -l
 
-# -P bf528
+#$ -P bf528
 module load python/3.12
 
 python myscript.py
 ```
 
-The `-l` flag is important for using modules in qsub scripts.
+The `-l` flag on the shebang line (`#!/bin/bash -l`) is important for using modules in qsub
+scripts. This is a bash login-shell flag, distinct from the qsub `-l` resource-request
+directive (e.g. `-l h_rt`, `-l mem_per_core`) covered below — the two share a letter but
+apply to different commands.
 
 ## Common Directives
 
@@ -63,8 +66,8 @@ The most commonly used directives are:
 
 `-pe omp N`: Request multiple slots for Shared Memory applications
 
-It is important to note that you cannot change the time limit of a job once it has
-been submitted. 
+**It is important to note that you cannot change the time limit of a job once it has
+been submitted.**
 
 # Managing your batch jobs on the SCC
  
@@ -117,7 +120,7 @@ For the most part, you will not need to manually use qsub scripts in your own Ne
 The profiles we will be using in this class will handle this for you. On the backend, nextflow
 is submitting qsub scripts for you, and you can see some of the directives used in the qsub
 command in the `nextflow.config` file and the actual qsub script in the work/ directory the process
-executes in. See nextflow features [here](/guides/nextflow_features/#nextflow-work-directory) for 
+executes in. See nextflow features [here]({{ site.baseurl }}/guides/nextflow_features/#nextflow-work-directory) for 
 more information.
 
 You may use the same commands to manage and track your jobs as above as all
