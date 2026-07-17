@@ -153,7 +153,12 @@ for ensuring standardization of packages and dependencies
 **Disadvantages**
 
 - Docker, a common containerization solution, requires root permissions, which
-are unavailable to users on the SCC and most shared clusters. 
+are unavailable to users on the SCC and most shared clusters. This is why we use
+Singularity to *run* containers on the SCC — Singularity does not require root and
+can run images built with Docker directly. You will still use Docker later in the
+course to *build* container images (on your own machine or via CI, not on the SCC
+itself); Docker and Singularity fill different roles rather than competing
+solutions.
 
 ## Using Conda on the SCC
 
@@ -181,10 +186,10 @@ file (~/.condarc) with `cat` or a text editor, it should look like below:
 
 ```bash
 envs_dirs:
-    - /projectnb/bf528/students/your_bu_username/.conda/envs
+    - /projectnb/bf528/students/<your_username>/.conda/envs
     - ~/.conda/envs
 pkgs_dirs:
-    - /projectnb/bf528/students/your_bu_username/.conda/pkgs
+    - /projectnb/bf528/students/<your_username>/.conda/pkgs
     - ~/.conda/pkgs
 env_prompt: ({name})
 ```
@@ -241,7 +246,7 @@ of the tool.
 You may find which tools and versions are available on conda by using the command:
 
 ```bash
-`conda search -c conda-forge -c bioconda <tool_name>`.
+conda search -c conda-forge -c bioconda <tool_name>
 ```
 
 ## How we are going to use conda environments / containers
