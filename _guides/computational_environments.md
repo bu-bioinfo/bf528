@@ -246,7 +246,7 @@ of the tool.
 You may find which tools and versions are available on conda by using the command:
 
 ```bash
-`conda search -c conda-forge -c bioconda <tool_name>`.
+conda search -c conda-forge -c bioconda <tool_name>
 ```
 
 ## How we are going to use conda environments / containers
