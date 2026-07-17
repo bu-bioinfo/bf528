@@ -86,25 +86,42 @@ When we develop scripts for our workflow, we will be using argparse to parse arg
 and provide the values to our scripts in nextflow. This will enable us to easily re-use our script
 for different datasets.
 
-Let's pretend we have a simple python script that calculates the GC content of a FASTA file. This script
-might look something like below (code not guaranteed to work):
+Let's pretend we have a simple python script that calculates the length of sequences in a FASTA file. This script
+might look something like below (code is representative):
 
 ```python
 #!/usr/bin/env python
 import argparse
 
-parser = argparse.ArgumentParser(description='Calculate length of a sequences in a FASTA file')
-parser.add_argument('-i', dest='input', help='FASTA File as input', required=True)
+parser = argparse.ArgumentParser(description='Calculate length of sequences in a FASTA file')
+parser.add_argument('-i', dest='input', help='FASTA file as input', required=True)
 parser.add_argument('-o', dest='output', help='Name of output txt file containing sequence lengths', required=True)
 args = parser.parse_args()
 
-with open(args.input, 'r') as f, open(args.output, 'w') as o:
-    for line in f:
-        if line.startswith('>'):
-            continue
-        else:
-            sequence_length = len(line)
-            o.write(f'{sequence_length}\n')
+
+def fasta_lengths(path):
+    name = None
+    length = 0
+    with open(path, 'r') as f:
+        for line in f:
+            line = line.rstrip('\n')
+            if not line:
+                continue
+            if line.startswith('>'):
+                if name is not None:
+                    yield name, length
+                name = line[1:].split()[0]
+                length = 0
+            else:
+                length += len(line)
+    if name is not None:
+        yield name, length
+
+
+with open(args.output, 'w') as o:
+    for name, length in fasta_lengths(args.input):
+        o.write(f'{name}\t{length}\n')
+
 
 ```
 
@@ -119,16 +136,21 @@ process SEQUENCE_LENGTH {
     label 'process_low'
     conda 'envs/python_env.yml'
 
-
     input:
-    tuple val(meta), path(fasta)
+    record(
+        id: String,
+        fasta: Path
+    )
 
     output:
-    tuple val(meta), path("${meta}.length.txt")
+    record(
+        id: id,
+        length: file("${id}.length.txt")
+    )
 
     script:
     """
-    calculate_sequence_length.py -i $fasta -o $meta.length.txt
+    calculate_sequence_length.py -i $fasta -o ${id}.length.txt
     """
 }
 ```
