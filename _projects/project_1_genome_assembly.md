@@ -260,7 +260,6 @@ errors.
 
 - [Requesting SCC Resources]({{site.baseurl}}/guides/requesting_scc_resources/)
 - [Nextflow Modules]({{site.baseurl}}/guides/nextflow_modules/)
-- [Connecting Inputs and Outputs]({{site.baseurl}}/guides/connecting_inputs_and_outputs/)
 - [Nextflow Features]({{site.baseurl}}/guides/nextflow_features/)
 
 ## Objectives
