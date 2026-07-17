@@ -134,6 +134,27 @@ git commit -m 'added conda and basic git guide, edited troubleshooting'
 
 ![git_commit]({{ site.baseurl }}/assets/images/git_commit.png)
 
+### git log
+
+`git log` will show you the history of commits in the repository. Each entry
+includes the commit hash, the author, the date, and the commit message, so
+you can see what changed over time and why.
+
+```bash
+git log
+```
+
+For a more compact view, you can condense the output to one line per commit:
+
+```bash
+git log --oneline
+```
+
+This is especially useful when working across multiple machines. For example,
+if you push a commit from the SCC and then pull on your laptop, `git log` (or
+`git log --oneline`) lets you confirm that the commit actually arrived before
+you keep working.
+
 ### git push
 
 `git push` will push your changes or commits to the remote repository. This will 
@@ -174,6 +195,12 @@ project.
 You can then make changes from any number of locations and push them to your single
 remote repository. Using `git push` and `git pull`, you can ensure that all locations
 are always in sync with the remote repository. 
+
+In this course, `git clone` is usually where you'll start rather than `git init` —
+for example, accepting an assignment gives you a remote repository
+URL that you clone directly, already connected to the correct remote. From there,
+the same `add` / `commit` / `push` / `pull` cycle applies regardless of whether the
+repository was created with `init` or `clone`.
 
 ## Git and Bioinformatics
 
