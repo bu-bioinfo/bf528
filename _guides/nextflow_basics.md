@@ -33,7 +33,7 @@ channels:
 - bioconda
 
 dependencies:
-- nextflow=25.04.6
+- nextflow=26.04.6
 ```
 
 Then you will need to create the environment using the following command:
@@ -85,8 +85,8 @@ instruct Nextflow to build or activate any conda environments specified in the
 pipeline modules per task. Importantly, this will allow the pipeline to submit
 multiple tasks to the SCC compute nodes and run them in parallel. The number of
 jobs dispatched is controlled by the executor settings in the Nextflow config
-file. You can see the $sge directive and the `queueSize` flag is by default
-set to 8. This means that by default, Nextflow will submit up to 8 jobs to the SCC
+file. You can see the `executor = 'sge'` directive and the `queueSize` flag, which is
+set to 8 by default. This means that by default, Nextflow will submit up to 8 jobs to the SCC
 compute nodes at the same time. You can adjust this number as needed but remember
 that the SCC is a shared resource and that depending on your pipeline, there's only
 so many jobs that can run in parallel.
