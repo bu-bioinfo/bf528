@@ -39,7 +39,12 @@ features and commands for conda.
 You will always be using a single conda environment that has Nextflow installed
 whenever you are working on the SCC. 
 
-# Basic Conda Workflow on the SCC (we will not often use this)
+# Manual Conda Workflow (Reference Only)
+
+This section walks through creating and activating a conda environment manually.
+You will rarely need to do this yourself in this course — see the next section
+for the workflow you'll actually use day-to-day — but it's useful to understand
+what's happening under the hood.
 
 Although I have used the term conda, we will actually be using *miniconda* on the SCC.
 Miniconda is a stripped-down version of anaconda/conda that only includes the basic functionality
@@ -78,7 +83,10 @@ This will activate the environment and make the environment with Nextflow instal
 available to you. To the left of your terminal prompt, you should see the name of the
 environment you are using (e.g. `nextflow_env`).
 
-# Basic Conda Workflow on the SCC (use this one)
+# Conda Workflow for This Course
+
+This is the workflow you'll actually use throughout the course: load the module,
+activate the single Nextflow environment, and let Nextflow handle the rest.
 
 1. Load the miniconda module
 2. Activate your environment with Nextflow installed
@@ -105,8 +113,8 @@ name: nextflow_env
 channels:
   - conda-forge
   - bioconda
-packages:
-  - nextflow=24.04.6
+dependencies:
+  - nextflow=26.04.6
 ```
 
 You can then create the environment using the following command:
