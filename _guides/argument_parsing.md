@@ -86,8 +86,8 @@ When we develop scripts for our workflow, we will be using argparse to parse arg
 and provide the values to our scripts in nextflow. This will enable us to easily re-use our script
 for different datasets.
 
-Let's pretend we have a simple python script that calculates the length of a sequence in a FASTA file. This script
-might look something like below (code not guaranteed to work):
+Let's pretend we have a simple python script that calculates the length of sequences in a FASTA file. This script
+might look something like below (code is representative):
 
 ```python
 #!/usr/bin/env python
@@ -138,19 +138,19 @@ process SEQUENCE_LENGTH {
 
     input:
     record(
-        meta: String,
+        id: String,
         fasta: Path
     )
 
     output:
     record(
-        meta: meta,
-        length: file("${meta}.length.txt")
+        id: id,
+        length: file("${id}.length.txt")
     )
 
     script:
     """
-    calculate_sequence_length.py -i $fasta -o $meta.length.txt
+    calculate_sequence_length.py -i $fasta -o ${id}.length.txt
     """
 }
 ```
