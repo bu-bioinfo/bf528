@@ -15,12 +15,13 @@ exact technical breakdown [here](https://www.bu.edu/tech/support/research/comput
 often make use of multiple cores of a processor to speed up the computation.
 
 
-## pe omp
+## `-pe omp N`
 
-The value of N can be set to any number between 1 and 28 and can
-also be set to 36. Use N=36 is to request a very large-memory (1024 GB) node. To
-make best use of available resources on the SCC, the optimal choices are N=1, 4,
-8, 16, 28, or 36.
+The `-pe omp N` option requests N cores on a single node for shared-memory
+(OpenMP-style) parallelism. The value of N can be set to any number between 1
+and 28 and can also be set to 36. N=36 is used to request a very large-memory
+(1024 GB) node. To make best use of available resources on the SCC, the
+optimal choices are N=1, 4, 8, 16, 28, or 36.
 
 Some more guidance can be found [here](https://www.bu.edu/tech/support/research/system-usage/running-jobs/parallel-batch/#pe)
 
@@ -74,7 +75,7 @@ A few important notes on the table seen above:
   2. The more powerful nodes (larger # of cores and RAM) are in high-demand. You
   want to only request these nodes if you are sure you need the resources these
   provide. The queue for these nodes can be very long and depending on the complexity
-  of the request task, may be longer than the actual runtime of what you are doing. 
+  of the requested task, may be longer than the actual runtime of what you are doing. 
 
 ## How to determine what resources to request per job
 
@@ -89,9 +90,9 @@ be charged per usage.
 ## Requesting resources with Nextflow
 
 We will be using the labels and profiles defined in the `nextflow.config` file to 
-specigy the resources we want to request for each process. You have been provided
+specify the resources we want to request for each process. You have been provided
 a few default process labels (process_low, process_medium, process_high) that will 
-request increasing amounts of resouces. You can view the exact specifications for 
+request increasing amounts of resources. You can view the exact specifications for 
 these labels in the `nextflow.config` file. 
 
 For all of your nextflow processes, apply an appropriate label based on the amount
@@ -106,11 +107,11 @@ documentation for available hardware options [above](#commonly-used-core-memory-
 For example, if you wanted to make a new label that requested 16 cores and at least 256GB
 of memory, you could add the following to the nextflow config file:
 
-```yml
-withLabel: process_high {
-                    cpus = 16
-                    clusterOptions = "-P bf528 -l mem_per_core=16G"
-                    memory = "256G"
+```groovy
+withLabel: process_huge {
+    cpus = 16
+    clusterOptions = "-P bf528 -l mem_per_core=16G"
+    memory = "256G"
 }
 ``` 
 
@@ -118,7 +119,7 @@ Remember to also make sure you instruct the utility or tool to make use of the
 resources you have requested. Most utilities will have flags that allow you to 
 specify the number of cores to use or the amount of memory to use.
 
-You can use the $task.cpus and $task.memory variables to specify the number of cores and 
+You can use the `$task.cpus` and `$task.memory` variables to specify the number of cores and 
 memory to use inside the actual nextflow process. For example, if you take the following
 process:
 
@@ -143,7 +144,7 @@ process INDEX {
 ```
 
 This would instruct the STAR alignment tool to use the number of cores requested by the process. It
-finds the value of $task.cpus from the label and the values defined in the nextflow config file.
+finds the value of `$task.cpus` from the label and the values defined in the nextflow config file.
 
 ## Managing your batch jobs on the SCC
  
