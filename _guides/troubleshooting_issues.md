@@ -91,10 +91,10 @@ it using the following command:
 nextflow lint your_script.nf
 ``` 
 
-This command will lint nextflow scripts and config files, formats them if possible,
+This command will lint nextflow scripts and config files, format them if possible,
 and provide you with a list of syntax errors and warnings. 
 
-## Command not found
+## Command not found (Nextflow)
 
 If you encounter a "command not found" error while running your pipeline with nextflow,
 it is again likely that it is trying to execute the task in an environment that
@@ -130,24 +130,22 @@ a short identifier for the run.
 You may see the runs by invoking the `nextflow log` command. The output of which
 may look something like:
 
-```bash
-TIMESTAMP           DURATION        RUN NAME        STATUS  REVISION ID     SESSION ID                              COMMAND
-2024-07-29 07:22:00 2.1s            amazing_ampere   ERROR   96eb04d6a4      af6adaaa-ad4f-48a2-9f6a-b121e789adf5    nextflow run main.nf -profile conda,cluster
-```
+| TIMESTAMP           | DURATION | RUN NAME       | STATUS | REVISION ID | SESSION ID                           | COMMAND                                      |
+|---------------------|----------|----------------|--------|-------------|--------------------------------------|-----------------------------------------------|
+| 2024-07-29 07:22:00 | 2.1s     | amazing_ampere | ERROR  | 96eb04d6a4  | af6adaaa-ad4f-48a2-9f6a-b121e789adf5 | nextflow run main.nf -profile conda,cluster |
 
 We can see more details by using the `-f` flag to pull back specific fields from
 the execution log:
 
 ```bash
-nextflow log -f 'process,exit, hash, duration'
+nextflow log -f 'process,exit,hash,duration'
 ```
 
 This will look something like this:
 
-```bash
-process exit hash duration
-SORT 1 f2/96eb04d6   2.1s
-```
+| process | exit | hash      | duration |
+|---------|------|-----------|----------|
+| SORT    | 1    | f2/96eb04d6 | 2.1s   |
 
 The value in `hash` is the directory in work/ where that specific process
 was executed. If you navigate to that directory, you can inspect some of the
