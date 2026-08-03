@@ -165,15 +165,18 @@ If we were to look at the workflow main.nf, we would see something like this:
 
 ```bash
 workflow {
-    align_out = ALIGN(sample_ch, index)
-    POST_ALIGN(align_out.bam)
-    PARSE_LOG(align_out.log)
+    align_out      = ALIGN(sample_ch, index)
+    post_align_out = POST_ALIGN(align_out.bam)
+    parse_log_out  = PARSE_LOG(align_out.log)
 }
 ```
 
-Each output is accessed as a named field on the value returned by the process
-call — there is no `.out` property or `emit:` needed at the process level.
-This also creates an implicit dependency between the processes: Nextflow will
+Every process call's return value is assigned to a variable with `=` — there
+are no implicit or unassigned calls. Each output is then accessed as a named
+field on that variable (e.g. `align_out.bam`), rather than through a `.out`
+property or `emit:` at the process level.
+
+Assigning every call also makes the dependency graph explicit: Nextflow will
 wait for the ALIGN process to complete before running POST_ALIGN or PARSE_LOG,
 since both depend on values produced by ALIGN.
 
