@@ -15,19 +15,26 @@ encompass a single analysis or processing step.
 ```bash
 #!/usr/bin/env nextflow
 
+nextflow.preview.types = true
+
 process ALIGN {
     label 'process_high'
     conda 'envs/star_env.yml'
     singularity 'ghcr.io/bf528/star:latest'
-    publishDir params.outdir, pattern: "*.Log.final.out"
 
     input:
-    tuple val(meta), path(reads)
-    path(index)
+    record(
+        id: String,
+        reads: Path
+    )
+    index: Path
 
     output:
-    tuple val(meta), path("${meta}.Aligned.out.bam"), emit: bam
-    tuple val(meta), path("${meta}.Log.final.out"), emit: log
+    record(
+        id: id,
+        bam: file("${id}.Aligned.out.bam"),
+        log: file("${id}.Log.final.out")
+    )
 
     script:
     """
@@ -35,18 +42,26 @@ process ALIGN {
     --genomeDir $index \
     --readFilesIn $reads \
     --readFilesCommand zcat \
-    --outFileNamePrefix $meta. \
+    --outFileNamePrefix ${id}. \
     --outSAMtype BAM Unsorted
     """
 }
 ```
 
 For the moment, ignore what the actual commands are doing and simply focus on
-the different sections of the module. 
+the different sections of the module.
 
 ## Shebang Line
 At the top, we have a shebang line that tells the system to use the nextflow
-interpreter to run the script. 
+interpreter to run the script.
+
+## Static Typing
+
+The `nextflow.preview.types = true` line enables static typing for this file.
+It must be present in every module that declares typed process inputs or
+outputs, as we do here with `record()`. See
+[Nextflow Static Typing]({{ site.baseurl }}{% link _guides/nextflow_static_typing.md %})
+for the full explanation of what this flag turns on and why it exists.
 
 ## Process Name
 
@@ -70,22 +85,14 @@ for the process. We will be creating our own conda YML files for each tool we us
 and storing them in the envs directory. In future projects, you will use pre-built
 containers made for this class.
 
-## publishDir
-
-This line specifies a directory where the output of the process will be published.
-We will discuss more of how Nextflow creates and manages output files. This line
-will be used when we want to publish output files from various tasks. We will 
-only use this when we need to easily view or gather important output files. Any
-intermediate files that are not strictly necessary to view or gather will remain
-in their work/ directory location.
-
 ## input
 
 The input block specifies the inputs to the process. Usually for our workflows,
 this will be a file corresponding to a sample that we are processing through a
-series of steps. We will also typically include the name of the sample or status
-of the sample as metadata along with the actual file. See the discussion on tuples
-below for more information.
+series of steps, along with metadata such as the sample identifier. With static
+typing, related values like these are grouped into a `record()`, and any
+additional standalone inputs are declared below it with a `name: Type`
+annotation. See the discussion of records below for more detail.
 
 ## output
 
@@ -96,93 +103,82 @@ must exist after the process successfully completes or nextflow will throw an er
 ensure that the commands in the script are producing the file named exactly as you
 instruct nextflow to expect it in the output block.**
 
-### val, tuple, path
+### record
 
-These are qualifiers that specify different data types. Simply, `val` is a simple
-value, `tuple` is a tuple of values, and `path` is a file path.
+A `record` groups related values together under named fields. It replaces the
+older `tuple val(meta), path(reads)` pattern you may see in legacy pipelines.
+Fields are matched by name rather than by position, so there is no risk of
+values being assigned to the wrong variable if a channel's element order ever
+changes.
 
-`val` can refer to a value of any data type. 
-
-`path` will properly stage the file in the work directory and make it available
-for use in the process. 
-
-`tuple` is a tuple or list of values. Importantly, this is an ordered list of
-values. This will allow you to group multiple values into a single definition.
-
-For example, if we have the following process:
-
-```bash
-process ALIGN {
-    input:
-    tuple val(meta), path(reads)
-    ...
-}
-```
-You can see that the input is a tuple or list of two values. The first value
-is a string corresponding to the metadata or sample identifier. The second value
-is a path to the actual file itself. This is a common pattern we will use in 
-bioinformatics workflows where we need to pass metadata that will be used to name
-output files. 
-
-On the backend, these tuples look like a list of values. For example, above, the
-tuple may look something like:
+In the process above, the input is a `record` with two fields: `id`, a
+`String` identifying the sample, and `reads`, a `Path` to the FASTQ file. A
+third input, `index`, is declared separately since it isn't part of that
+per-sample record — it's a single path shared across every invocation of the
+process.
 
 ```bash
-["sample1", "/path/to/reads1.fastq"]
+input:
+record(
+    id: String,
+    reads: Path
+)
+index: Path
 ```
 
-You may refer to individual elements in nextflow using the `$` symbol. For example:
+Inside the process, you refer to a record's fields directly by name — there is
+no positional indexing:
 
 ```bash
-$meta - "sample1"
-$reads - "/path/to/reads1.fastq"
-``` 
+$id    // the sample identifier
+$reads // the path to the FASTQ file
+```
 
-Keep in mind that the order matters when referring to the elements of the tuple.
-Nexflow will substitute in the values passed in the input to the command upon 
-execution.
-
-So the above command at runtime would be:
+So the STAR command at runtime for a sample named `sample1` would look like:
 
 ```bash
 STAR <other options> --readFilesIn /path/to/reads1.fastq --outFileNamePrefix sample1.
-``` 
+```
 
-### emit
+For the full discussion of defining named record types, duck-typing, and
+merging records, see
+[Nextflow Records]({{ site.baseurl }}{% link _guides/nextflow_records.md %}).
 
-`emit` is used to name the particular outputs of a process. THis is useful for
-when you need to pass the outputs of one process to different processes in the
-workflow. 
+### Named Outputs
 
-For example, in the above example, we have two outputs:
+Outputs are also constructed as a `record`, with each field given a name and a
+value:
 
 ```bash
 output:
-    tuple val(meta), path("${meta}.Aligned.out.bam"), emit: bam
-    tuple val(meta), path("${meta}.Log.final.out"), emit: log
+record(
+    id: id,
+    bam: file("${id}.Aligned.out.bam"),
+    log: file("${id}.Log.final.out")
+)
 ```
 
-This means that we have two outputs, one for the BAM file and one for the log file.
-We can refer to these outputs in the workflow using the `bam` and `log` names. 
+Here `id: id` carries the sample identifier forward from the input into the
+output record, and `bam` and `log` are the two files this process produces.
 
 If we were to look at the workflow main.nf, we would see something like this:
 
 ```bash
 workflow {
-    ALIGN()
-    POST_ALIGN(ALIGN.out.bam)
-    PARSE_LOG(ALIGN.out.log)
+    align_out      = ALIGN(sample_ch, index)
+    post_align_out = POST_ALIGN(align_out.bam)
+    parse_log_out  = PARSE_LOG(align_out.log)
 }
 ```
 
-The `.out` is a Nextflow convention that is used to refer to the output channel
-of a process. By using `emit`, we are able to pass the different outputs of the ALIGN
-process to different downstream processes in the workflow. 
+Every process call's return value is assigned to a variable with `=` — there
+are no implicit or unassigned calls. Each output is then accessed as a named
+field on that variable (e.g. `align_out.bam`), rather than through a `.out`
+property or `emit:` at the process level.
 
-This also creates an implicit dependency between the processes. Nextflow will wait
-for the ALIGN process to complete before running the POST_ALIGN process or the PARSE_LOG
-process. 
-
+Assigning every call also makes the dependency graph explicit: Nextflow will
+wait for the ALIGN process to complete before running POST_ALIGN or PARSE_LOG,
+since both depend on values produced by ALIGN.
 
 ## script
 
