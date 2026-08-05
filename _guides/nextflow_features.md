@@ -316,44 +316,53 @@ label in the nextflow.config file.
 Nextflow allows for string interpolation using the `${}` syntax. This allows us to 
 include variables in strings dynamically. For example:
 
-```bash
+```groovy
 #!/usr/bin/env nextflow
+
+nextflow.preview.types = true
 
 process ALIGN {
     label 'process_high'
     conda 'envs/star_env.yml'
 
     input:
-    tuple val(meta), path(reads)
-    path(index)
+    record(
+        id: String,
+        reads: Path
+    )
+    index: Path
 
     output:
-    tuple val(meta), path("${meta}.Aligned.out.bam"), emit: bam
-    tuple val(meta), path("${meta}.Log.final.out"), emit: log
+    record(
+        id: id,
+        bam: file("${id}.Aligned.out.bam"),
+        log: file("${id}.Log.final.out")
+    )
 
     script:
     """
-    STAR --runThreadN $task.cpus --genomeDir $index --readFilesIn $reads --readFilesCommand zcat --outFileNamePrefix $meta. --outSAMtype BAM Unsorted
+    STAR --runThreadN $task.cpus --genomeDir $index --readFilesIn $reads --readFilesCommand zcat --outFileNamePrefix ${id}. --outSAMtype BAM Unsorted
     """
 }
 ```
 
-You can see that we are using the `${meta}` variable to specify the sample name in the output 
-file name. The file generated will have the value of meta substituted in the file name
-and end with `.Aligned.out.bam`. This value is the first element of the tuple passed 
-in the input channel and is typically the name or identifier of the sample. This
+You can see that we are using the `${id}` field to specify the sample name in the output 
+file name. The file generated will have the value of `id` substituted in the file name
+and end with `.Aligned.out.bam`. This value is a field of the `record` passed in
+the input channel and is typically the name or identifier of the sample. This
 is a common pattern in nextflow and allows us to dynamically generate file names based
-on the name passed in the input channel tuple.
+on a field from the input record. See [Nextflow Records]({{ site.baseurl }}{% link _guides/nextflow_records.md %})
+for the full discussion of records.
 
-Note that `$meta` and `${meta}` are both valid ways to reference a variable, but this is a
+Note that `$id` and `${id}` are both valid ways to reference a variable, but this is a
 string interpolation, not a plain variable reference. Nextflow (via Groovy) interpolates `$var`
 by greedily consuming everything after it that could be part of the same expression, including
 `.property` and `[index]` accesses. Wrapping the variable in curly braces explicitly closes the
 interpolated expression, so anything after it is treated as literal text instead of being
-folded into the expression. This is why the example above uses `${meta}.Aligned.out.bam`
-rather than `$meta.Aligned.out.bam` — without the braces, Nextflow would try to interpolate
-`meta.Aligned.out.bam` as a single expression (accessing an `Aligned.out.bam` property on
-`meta`) instead of appending the literal text `.Aligned.out.bam` after the value of `meta`.
+folded into the expression. This is why the example above uses `${id}.Aligned.out.bam`
+rather than `$id.Aligned.out.bam` — without the braces, Nextflow would try to interpolate
+`id.Aligned.out.bam` as a single expression (accessing an `Aligned.out.bam` property on
+`id`) instead of appending the literal text `.Aligned.out.bam` after the value of `id`.
 
 ### String functions (.baseName)
 
@@ -398,17 +407,26 @@ output channel.
 
 You can also use the `**` to recurse through directories. For example, we could use the following:
 
-```bash
+```groovy
 #!/usr/bin/env nextflow
+
+nextflow.preview.types = true
+
 process NCBI_DATASETS_CLI {
     label 'process_single'
     conda "envs/ncbidatasets_env.yml"
 
     input:
-    tuple val(name), val(GCF)
+    record(
+        name: String,
+        GCF: String
+    )
 
     output:
-    tuple val(name), path('dataset/**/*.fna')
+    record(
+        name: name,
+        fasta: file('dataset/**/*.fna')
+    )
 
     shell:
     """
