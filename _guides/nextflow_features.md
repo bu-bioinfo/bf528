@@ -345,12 +345,15 @@ in the input channel and is typically the name or identifier of the sample. This
 is a common pattern in nextflow and allows us to dynamically generate file names based
 on the name passed in the input channel tuple.
 
-Note that `$meta` and `${meta}` are both valid ways to reference a variable, but the
-curly braces are required whenever the variable is immediately followed by other text
-that could be mistaken for part of its name or a property access. For example,
-`${meta}.Aligned.out.bam` uses braces to make clear that `.Aligned.out.bam` is literal
-text appended to the value of `meta`, whereas `$meta.Aligned.out.bam` would be
-interpreted as accessing an `Aligned.out.bam` property on `meta`.
+Note that `$meta` and `${meta}` are both valid ways to reference a variable, but this is a
+string interpolation, not a plain variable reference. Nextflow (via Groovy) interpolates `$var`
+by greedily consuming everything after it that could be part of the same expression, including
+`.property` and `[index]` accesses. Wrapping the variable in curly braces explicitly closes the
+interpolated expression, so anything after it is treated as literal text instead of being
+folded into the expression. This is why the example above uses `${meta}.Aligned.out.bam`
+rather than `$meta.Aligned.out.bam` — without the braces, Nextflow would try to interpolate
+`meta.Aligned.out.bam` as a single expression (accessing an `Aligned.out.bam` property on
+`meta`) instead of appending the literal text `.Aligned.out.bam` after the value of `meta`.
 
 ### String functions (.baseName)
 
@@ -529,58 +532,6 @@ Although the work/ directory strategy has a number of advantages, it can be a bi
 nextflow log command is an easy way to see where each process is located and what its exit status was. If you need to
 manually inspect the output of a process, you can use the hash value to navigate to the directory where you can view all
 of the running information for that process, input files, and output files. 
-
-## Nextflow Output Definition
-
-Older Nextflow pipelines used a `publishDir` directive inside each process to copy its output
-files into a results directory. Nextflow has moved away from this approach in favor of workflow
-output definitions, which move all publishing logic out of individual processes and into the
-workflow itself. `publishDir` still works but is deprecated, so new pipelines should use this
-approach instead.
-
-A workflow output definition has two parts: a `publish:` section in the workflow, which assigns
-channels to named outputs, and a top-level `output {}` block, which specifies where each named
-output should be published.
-
-```groovy
-process INDEX {
-    label 'process_high'
-    conda 'envs/star_env.yml'
-
-    input:
-    path genome
-    path gtf
-
-    output:
-    path "star", emit: index
-
-    script:
-    """
-    mkdir star
-    STAR --runThreadN $task.cpus --runMode genomeGenerate --genomeDir star --genomeFastaFiles $genome --sjdbGTFfile $gtf --genomeSAindexNbases 11
-    """
-}
-
-workflow {
-    main:
-    index_out = INDEX(genome, gtf)
-
-    publish:
-    index = index_out.index
-}
-
-output {
-    index {
-        path 'results'
-    }
-}
-```
-
-In this example, the `publish:` section assigns the `index` output of the `INDEX` process to a
-named output, also called `index`. The `output {}` block then specifies that this named output
-should be published to the `results` directory. This is functionally similar to the old
-`publishDir params.outdir` directive, but keeps all of the publishing logic in one place in
-`main.nf` rather than scattered across every process definition.
 
 ## Nextflow report  
 
