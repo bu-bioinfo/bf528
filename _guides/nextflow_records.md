@@ -74,7 +74,10 @@ record Sample {
 ```
 
 This definition goes at the top of your script, outside any `workflow` or
-`process` block.
+`process` block. This applies equally to `main.nf`, a subworkflow file, or a module file
+that defines a single process — a record type can be declared wherever it's most convenient,
+then shared across files with `include` (see [Record Types Across Files]({{ site.baseurl }}{% link _guides/nextflow_subworkflows.md %}#record-types-across-files)
+in Nextflow Subworkflows).
 
 Once defined, you can reference the type by name anywhere a type annotation
 is expected:
@@ -87,10 +90,18 @@ params {
 
 ## Records in Process Inputs
 
+**N.B.** Using `record()` inside a process's `input:` or `output:` block, or in a typed
+workflow `take:`/`emit:` section, requires the `nextflow.enable.types = true` feature flag at
+the top of the file. See [Nextflow Static Typing]({{ site.baseurl }}{% link _guides/nextflow_static_typing.md %})
+for the full explanation. Defining a record *type* with `record TypeName { ... }`, or using
+`record()` to construct a value, does not require this flag.
+
 When you define a typed process, you declare the input as a `record()` 
 destructor. The destructor names each field and specifies its type:
 
-```bash
+```groovy
+nextflow.enable.types = true
+
 process FASTQC {
     input:
     record(
@@ -119,7 +130,9 @@ behavior is called duck-typing and is covered in more detail below.
 Process outputs are defined using the `record()` constructor. Each field is
 given a name and assigned a value:
 
-```bash
+```groovy
+nextflow.enable.types = true
+
 process FASTQC {
     input:
     record(
@@ -193,22 +206,46 @@ takes precedence.
 ## Records in Workflows
 
 Typed workflows use records in their channel annotations, which makes the
-contract between a subworkflow and its caller explicit:
+contract between a subworkflow and its caller explicit. This example mirrors the shared
+`READS_QC` subworkflow used elsewhere in this course (see
+[Nextflow Subworkflows]({{ site.baseurl }}{% link _guides/nextflow_subworkflows.md %})), whose
+`Sample` and `TrimmedSample` records group each sample's reads into a single
+`reads: List<Path>` field rather than the separate `fastq_1`/`fastq_2` fields used in the
+examples above:
 
-```bash
+```groovy
+nextflow.enable.types = true
+
+record Sample {
+    id: String
+    reads: List<Path>
+}
+
+record TrimmedSample {
+    id: String
+    reads: List<Path>
+    trim_log: Path
+}
+
 workflow READS_QC {
     take:
     samples_ch: Channel<Sample>
+    adapters: Path
 
     main:
     pre_trim  = FASTQC(samples_ch)
-    trimmed   = TRIM(samples_ch, params.adapters)
-    post_trim = FASTQC(trimmed.map { s -> record(id: s.id, fastq_1: s.fastq_1, fastq_2: s.fastq_2) })
+    trimmed   = TRIM(samples_ch, adapters)
+    post_trim = FASTQC(trimmed.map { s -> record(id: s.id, reads: s.reads) })
 
     emit:
     trimmed: Channel<TrimmedSample> = trimmed
 }
 ```
+
+Notice that `adapters` is declared under `take:` and passed in by the caller, rather than
+read directly from `params.adapters` inside the workflow body. Reaching into `params` from
+inside a subworkflow makes it harder to reuse outside this pipeline — passing it in explicitly
+keeps the subworkflow self-contained.
 
 The type annotation `Channel<Sample>` documents that this workflow expects a
 channel of `Sample` records. If you pass in a channel of a different type, the
@@ -219,21 +256,18 @@ language server will report an error before you ever run the pipeline.
 When using records in operators like `map` or `flatMap`, you can access fields
 by name in the closure:
 
-```bash
+```groovy
 samples_ch
-    .map { s -> record(id: s.id, reads: [s.fastq_1, s.fastq_2]) }
+    .map { s -> record(id: s.id, fastq_1: s.fastq_1, fastq_2: s.fastq_2) }
     .view { s -> "Processing sample: ${s.id}" }
 ```
 
-You can also destructure record fields directly in the closure parameter list:
+You can also access multiple fields to flatten a record into a plain list of values:
 
-```bash
-samples_ch
-    .flatMap { id, fastqc, quant -> [fastqc, quant] }
+```groovy
+results_ch
+    .flatMap { r -> [r.fastqc, r.quant] }
 ```
-
-In this form the field names in the closure parameter list must match the field
-names in the record.
 
 ## Summary
 
@@ -244,3 +278,10 @@ names in the record.
 | Must match tuple order exactly | Fields matched by name, order irrelevant |
 | `emit: bam` + `.out.bam` | Output record field + standard assignment |
 | Adding fields means a new tuple position | `record_a + record_b` merges fields |
+
+## See Also
+
+- [Nextflow Static Typing]({{ site.baseurl }}{% link _guides/nextflow_static_typing.md %}) — the `nextflow.enable.types` flag and what it turns on
+- [Nextflow Modules]({{ site.baseurl }}{% link _guides/nextflow_modules.md %}) — records in a full process definition
+- [Nextflow Subworkflows]({{ site.baseurl }}{% link _guides/nextflow_subworkflows.md %}) — typed `take:`/`emit:` and sharing record types across files
+- [Nextflow Typed Parameters]({{ site.baseurl }}{% link _guides/nextflow_typed_params.md %}) — using a record type to load a samplesheet
