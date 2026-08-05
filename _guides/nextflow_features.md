@@ -82,19 +82,26 @@ allow us to keep our modules separate and reuse them across different worfklows 
 copying them into a new project directory. 
 
 When using modules this way, in your nextflow workflow `main.nf` you will need to include
-the following line:
+the module using the following syntax:
 
-```bash
-include "./modules/<module_name>/main.nf"
+```groovy
+include { MODULE_NAME } from './modules/module_name/main.nf'
 
 workflow {
-    <module_name>()
-}   
-
+    result = MODULE_NAME(input_channel)
+}
 ```
 
 As you can see, this is conceptually similar to the way we call a function or import a module
-in python. 
+in python. Note that the name inside the curly braces must match the process name defined in
+the module's `main.nf` file, and this is the same name you use to call the process in the
+workflow block.
+
+Under Nextflow's strict syntax (see the [static typing guide]({{ baseSite }}/guides/nextflow_static_typing/)),
+process and workflow invocations should always be saved to a variable with `=` rather than
+called as a bare statement, since accessing outputs via `.out` (e.g. `MODULE_NAME.out`) is no
+longer supported. Saving the result to a variable, as shown above, lets you reference its
+outputs directly instead (e.g. `result.bam`).
 
 
 ## Nextflow Working Directory
@@ -103,11 +110,11 @@ By default, nextflow assumes the working directory is the directory where the
 main.nf file is located. This means that you can refer to files in the working
 directory using relative paths. 
 
-For example, in our main.nf, when we are using `INCLUDE` to import a module,
+For example, in our main.nf, when we are using `include` to import a module,
 we can refer to files in the working directory using relative paths. 
 
-```bash
-include "./modules/<module_name>/main.nf"
+```groovy
+include { MODULE_NAME } from './modules/module_name/main.nf'
 ```
 
 This assumes the working directory structure we set up above. 
@@ -171,7 +178,7 @@ to change each instance if we update one.
 
 For example, you can see a sample config file below:
 
-```yml
+```groovy
 params {
 
     test_data = "$projectDir/data/test_data.csv"
@@ -232,7 +239,7 @@ This requires the label to be defined in two places:
 
 In the nextflow.config, these labels will look like below:
 
-```yml
+```groovy
 withLabel: process_high {
     cpus = 16
 }
@@ -339,6 +346,13 @@ in the input channel and is typically the name or identifier of the sample. This
 is a common pattern in nextflow and allows us to dynamically generate file names based
 on the name passed in the input channel tuple.
 
+Note that `$meta` and `${meta}` are both valid ways to reference a variable, but the
+curly braces are required whenever the variable is immediately followed by other text
+that could be mistaken for part of its name or a property access. For example,
+`${meta}.Aligned.out.bam` uses braces to make clear that `.Aligned.out.bam` is literal
+text appended to the value of `meta`, whereas `$meta.Aligned.out.bam` would be
+interpreted as accessing an `Aligned.out.bam` property on `meta`.
+
 ### String functions (.baseName)
 
 Groovy also has a few built-in functions that we can use to generate file names. For example, we can use the `basename` 
@@ -399,6 +413,7 @@ process NCBI_DATASETS_CLI {
     datasets download genome accession $GCF --include genome
     unzip ncbi_dataset.zip -d dataset/
     """
+}
 ```
 
 The above line would instruct nextflow to match any file ending in `.fna` in the `dataset`   directory and any subdirectories
@@ -477,8 +492,23 @@ process INDEX {
 In this example, we create a directory called `star` and then run a command that generates a file in that directory. Specifically,
 we create the `star` directory and then the `--genomeDir` option points to that directory. We can then refer to the file with a relative path.
 
+### Resuming a Pipeline
 
-### Nextflow Log
+Because nextflow hashes each process's inputs to determine its work directory, it can detect
+when a process has already been run with the same inputs and skip re-running it. You can take
+advantage of this by adding the `-resume` flag to your nextflow command:
+
+```bash
+nextflow run main.nf -profile conda,cluster -resume
+```
+
+When `-resume` is used, nextflow will reuse the cached results of any process whose inputs
+have not changed since the last run, and only execute the processes that are new or have
+changed inputs. This is especially useful when you are developing a pipeline and only need to
+re-run the process you are actively editing, or when a run fails partway through and you want
+to pick up where it left off rather than starting over.
+
+## Nextflow Log
 
 The nextflow log command shows information about executed pipelines. This is helpful
 for showing you the various exit statuses of the processes in your pipeline. A sample command
@@ -501,7 +531,7 @@ nextflow log command is an easy way to see where each process is located and wha
 manually inspect the output of a process, you can use the hash value to navigate to the directory where you can view all
 of the running information for that process, input files, and output files. 
 
-### Nextflow PublishDir 
+## Nextflow PublishDir 
 
 Nextflow also has a publishDir option that allows you to specify a directory where you want to publish the output of a process.
 This is helpful for gathering final output files from a process and storing them in a single location. You may also wish to
