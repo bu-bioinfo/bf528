@@ -322,7 +322,6 @@ include variables in strings dynamically. For example:
 process ALIGN {
     label 'process_high'
     conda 'envs/star_env.yml'
-    publishDir params.outdir, pattern: "*.Log.final.out"
 
     input:
     tuple val(meta), path(reads)
@@ -531,27 +530,57 @@ nextflow log command is an easy way to see where each process is located and wha
 manually inspect the output of a process, you can use the hash value to navigate to the directory where you can view all
 of the running information for that process, input files, and output files. 
 
-## Nextflow PublishDir 
+## Nextflow Output Definition
 
-Nextflow also has a publishDir option that allows you to specify a directory where you want to publish the output of a process.
-This is helpful for gathering final output files from a process and storing them in a single location. You may also wish to
-use publishDir to share any QC or log output files from each process. 
+Older Nextflow pipelines used a `publishDir` directive inside each process to copy its output
+files into a results directory. Nextflow has moved away from this approach in favor of workflow
+output definitions, which move all publishing logic out of individual processes and into the
+workflow itself. `publishDir` still works but is deprecated, so new pipelines should use this
+approach instead.
 
-```bash
+A workflow output definition has two parts: a `publish:` section in the workflow, which assigns
+channels to named outputs, and a top-level `output {}` block, which specifies where each named
+output should be published.
+
+```groovy
 process INDEX {
     label 'process_high'
     conda 'envs/star_env.yml'
-    publishDir params.outdir, pattern: "*.Log.final.out"
-    ...
-    
+
+    input:
+    path genome
+    path gtf
+
+    output:
+    path "star", emit: index
+
+    script:
+    """
+    mkdir star
+    STAR --runThreadN $task.cpus --runMode genomeGenerate --genomeDir star --genomeFastaFiles $genome --sjdbGTFfile $gtf --genomeSAindexNbases 11
+    """
 }
-``` 
 
-This will publish the output of the align process to the directory specified in the `params.outdir` parameter. The `pattern` 
-option allows you to specify a pattern to match the output files that you want to publish. In this case, we are only
-publishing a file that matches the pattern and ends with `.Log.final.out`.
+workflow {
+    main:
+    index_out = INDEX(genome, gtf)
 
-Typically, we will make the publishDir location, here params.outdir, a directory in this same repository called results/.
+    publish:
+    index = index_out.index
+}
+
+output {
+    index {
+        path 'results'
+    }
+}
+```
+
+In this example, the `publish:` section assigns the `index` output of the `INDEX` process to a
+named output, also called `index`. The `output {}` block then specifies that this named output
+should be published to the `results` directory. This is functionally similar to the old
+`publishDir params.outdir` directive, but keeps all of the publishing logic in one place in
+`main.nf` rather than scattered across every process definition.
 
 ## Nextflow report  
 
