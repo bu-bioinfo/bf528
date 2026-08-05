@@ -226,6 +226,67 @@ conda and submit jobs appropriately to the SCC.
 You can see the options defined in each profile by looking at the `nextflow.config` 
 file.
 
+#### Combining Profiles to Run Specific Processes Locally
+
+Profiles are additive, so you are not limited to combining just two at a time. You will
+often see a command like the following:
+
+```bash
+nextflow run main.nf -profile singularity,local,cluster
+```
+
+Here, `singularity` tells nextflow to use singularity containers, and `cluster` sets the
+default executor so that processes are submitted as jobs to the SCC. The `local` profile does
+not override that default for every process — instead, it defines a `withLabel` selector that
+forces any process labeled `process_local` to run on the executor's local machine instead of
+being submitted to the queue:
+
+```groovy
+profiles {
+    cluster {
+        process.executor = 'sge'
+    }
+
+    local {
+        withLabel: process_local {
+            executor = 'local'
+        }
+    }
+
+    singularity {
+        singularity.enabled = true
+    }
+}
+```
+
+Because process selectors like `withLabel` always take precedence over the general
+`process.executor` setting, this works correctly no matter which order the profiles are listed
+in on the command line. Any process labeled `process_local` will run locally, while every other
+process in the pipeline is still submitted to the SCC through the `cluster` profile.
+
+A common use case for this is downloading files. Fetching a file over the network requires
+minimal CPU and memory, so submitting it as its own SCC job wastes a compute node's worth of
+resources and adds unnecessary queue wait time. Labeling this kind of process as `process_local`
+lets it run immediately on the login/interactive node while the rest of your pipeline's
+processes are still dispatched to the cluster as usual:
+
+```groovy
+process DOWNLOAD_GENOME {
+    label 'process_local'
+    conda 'envs/ncbidatasets_env.yml'
+
+    output:
+    path 'genome.fa'
+
+    script:
+    """
+    datasets download genome accession $params.accession --include genome
+    unzip ncbi_dataset.zip -d dataset/
+    mv dataset/**/*.fna genome.fa
+    """
+}
+```
+
 ### Nextflow Labels
 
 Nextflow labels are a way to assign labels to processes in the workflow. These labels can be used to 
