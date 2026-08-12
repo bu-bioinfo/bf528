@@ -82,19 +82,26 @@ allow us to keep our modules separate and reuse them across different worfklows 
 copying them into a new project directory. 
 
 When using modules this way, in your nextflow workflow `main.nf` you will need to include
-the following line:
+the module using the following syntax:
 
-```bash
-include "./modules/<module_name>/main.nf"
+```groovy
+include { MODULE_NAME } from './modules/module_name/main.nf'
 
 workflow {
-    <module_name>()
-}   
-
+    result = MODULE_NAME(input_channel)
+}
 ```
 
 As you can see, this is conceptually similar to the way we call a function or import a module
-in python. 
+in python. Note that the name inside the curly braces must match the process name defined in
+the module's `main.nf` file, and this is the same name you use to call the process in the
+workflow block.
+
+Under Nextflow's strict syntax (see the [static typing guide]({{ baseSite }}/guides/nextflow_static_typing/)),
+process and workflow invocations should always be saved to a variable with `=` rather than
+called as a bare statement, since accessing outputs via `.out` (e.g. `MODULE_NAME.out`) is no
+longer supported. Saving the result to a variable, as shown above, lets you reference its
+outputs directly instead (e.g. `result.bam`).
 
 
 ## Nextflow Working Directory
@@ -103,11 +110,11 @@ By default, nextflow assumes the working directory is the directory where the
 main.nf file is located. This means that you can refer to files in the working
 directory using relative paths. 
 
-For example, in our main.nf, when we are using `INCLUDE` to import a module,
+For example, in our main.nf, when we are using `include` to import a module,
 we can refer to files in the working directory using relative paths. 
 
-```bash
-include "./modules/<module_name>/main.nf"
+```groovy
+include { MODULE_NAME } from './modules/module_name/main.nf'
 ```
 
 This assumes the working directory structure we set up above. 
@@ -171,7 +178,7 @@ to change each instance if we update one.
 
 For example, you can see a sample config file below:
 
-```yml
+```groovy
 params {
 
     test_data = "$projectDir/data/test_data.csv"
@@ -219,6 +226,67 @@ conda and submit jobs appropriately to the SCC.
 You can see the options defined in each profile by looking at the `nextflow.config` 
 file.
 
+#### Combining Profiles to Run Specific Processes Locally
+
+Profiles are additive, so you are not limited to combining just two at a time. You will
+often see a command like the following:
+
+```bash
+nextflow run main.nf -profile singularity,local,cluster
+```
+
+Here, `singularity` tells nextflow to use singularity containers, and `cluster` sets the
+default executor so that processes are submitted as jobs to the SCC. The `local` profile does
+not override that default for every process — instead, it defines a `withLabel` selector that
+forces any process labeled `process_local` to run on the executor's local machine instead of
+being submitted to the queue:
+
+```groovy
+profiles {
+    cluster {
+        process.executor = 'sge'
+    }
+
+    local {
+        withLabel: process_local {
+            executor = 'local'
+        }
+    }
+
+    singularity {
+        singularity.enabled = true
+    }
+}
+```
+
+Because process selectors like `withLabel` always take precedence over the general
+`process.executor` setting, this works correctly no matter which order the profiles are listed
+in on the command line. Any process labeled `process_local` will run locally, while every other
+process in the pipeline is still submitted to the SCC through the `cluster` profile.
+
+A common use case for this is downloading files. Fetching a file over the network requires
+minimal CPU and memory, so submitting it as its own SCC job wastes a compute node's worth of
+resources and adds unnecessary queue wait time. Labeling this kind of process as `process_local`
+lets it run immediately on the login/interactive node while the rest of your pipeline's
+processes are still dispatched to the cluster as usual:
+
+```groovy
+process DOWNLOAD_GENOME {
+    label 'process_local'
+    conda 'envs/ncbidatasets_env.yml'
+
+    output:
+    path 'genome.fa'
+
+    script:
+    """
+    datasets download genome accession $params.accession --include genome
+    unzip ncbi_dataset.zip -d dataset/
+    mv dataset/**/*.fna genome.fa
+    """
+}
+```
+
 ### Nextflow Labels
 
 Nextflow labels are a way to assign labels to processes in the workflow. These labels can be used to 
@@ -232,7 +300,7 @@ This requires the label to be defined in two places:
 
 In the nextflow.config, these labels will look like below:
 
-```yml
+```groovy
 withLabel: process_high {
     cpus = 16
 }
@@ -309,35 +377,53 @@ label in the nextflow.config file.
 Nextflow allows for string interpolation using the `${}` syntax. This allows us to 
 include variables in strings dynamically. For example:
 
-```bash
+```groovy
 #!/usr/bin/env nextflow
+
+nextflow.preview.types = true
 
 process ALIGN {
     label 'process_high'
     conda 'envs/star_env.yml'
-    publishDir params.outdir, pattern: "*.Log.final.out"
 
     input:
-    tuple val(meta), path(reads)
-    path(index)
+    record(
+        id: String,
+        reads: Path
+    )
+    index: Path
 
     output:
-    tuple val(meta), path("${meta}.Aligned.out.bam"), emit: bam
-    tuple val(meta), path("${meta}.Log.final.out"), emit: log
+    record(
+        id: id,
+        bam: file("${id}.Aligned.out.bam"),
+        log: file("${id}.Log.final.out")
+    )
 
     script:
     """
-    STAR --runThreadN $task.cpus --genomeDir $index --readFilesIn $reads --readFilesCommand zcat --outFileNamePrefix $meta. --outSAMtype BAM Unsorted
+    STAR --runThreadN $task.cpus --genomeDir $index --readFilesIn $reads --readFilesCommand zcat --outFileNamePrefix ${id}. --outSAMtype BAM Unsorted
     """
 }
 ```
 
-You can see that we are using the `${meta}` variable to specify the sample name in the output 
-file name. The file generated will have the value of meta substituted in the file name
-and end with `.Aligned.out.bam`. This value is the first element of the tuple passed 
-in the input channel and is typically the name or identifier of the sample. This
+You can see that we are using the `${id}` field to specify the sample name in the output 
+file name. The file generated will have the value of `id` substituted in the file name
+and end with `.Aligned.out.bam`. This value is a field of the `record` passed in
+the input channel and is typically the name or identifier of the sample. This
 is a common pattern in nextflow and allows us to dynamically generate file names based
-on the name passed in the input channel tuple.
+on a field from the input record. See [Nextflow Records]({{ site.baseurl }}{% link _guides/nextflow_records.md %})
+for the full discussion of records.
+
+Note that `$id` and `${id}` are both valid ways to reference a variable, but this is a
+string interpolation, not a plain variable reference. Nextflow (via Groovy) interpolates `$var`
+by greedily consuming everything after it that could be part of the same expression, including
+`.property` and `[index]` accesses. Wrapping the variable in curly braces explicitly closes the
+interpolated expression, so anything after it is treated as literal text instead of being
+folded into the expression. This is why the example above uses `${id}.Aligned.out.bam`
+rather than `$id.Aligned.out.bam` — without the braces, Nextflow would try to interpolate
+`id.Aligned.out.bam` as a single expression (accessing an `Aligned.out.bam` property on
+`id`) instead of appending the literal text `.Aligned.out.bam` after the value of `id`.
 
 ### String functions (.baseName)
 
@@ -382,23 +468,33 @@ output channel.
 
 You can also use the `**` to recurse through directories. For example, we could use the following:
 
-```bash
+```groovy
 #!/usr/bin/env nextflow
+
+nextflow.preview.types = true
+
 process NCBI_DATASETS_CLI {
     label 'process_single'
     conda "envs/ncbidatasets_env.yml"
 
     input:
-    tuple val(name), val(GCF)
+    record(
+        name: String,
+        GCF: String
+    )
 
     output:
-    tuple val(name), path('dataset/**/*.fna')
+    record(
+        name: name,
+        fasta: file('dataset/**/*.fna')
+    )
 
     shell:
     """
     datasets download genome accession $GCF --include genome
     unzip ncbi_dataset.zip -d dataset/
     """
+}
 ```
 
 The above line would instruct nextflow to match any file ending in `.fna` in the `dataset`   directory and any subdirectories
@@ -477,8 +573,23 @@ process INDEX {
 In this example, we create a directory called `star` and then run a command that generates a file in that directory. Specifically,
 we create the `star` directory and then the `--genomeDir` option points to that directory. We can then refer to the file with a relative path.
 
+### Resuming a Pipeline
 
-### Nextflow Log
+Because nextflow hashes each process's inputs to determine its work directory, it can detect
+when a process has already been run with the same inputs and skip re-running it. You can take
+advantage of this by adding the `-resume` flag to your nextflow command:
+
+```bash
+nextflow run main.nf -profile conda,cluster -resume
+```
+
+When `-resume` is used, nextflow will reuse the cached results of any process whose inputs
+have not changed since the last run, and only execute the processes that are new or have
+changed inputs. This is especially useful when you are developing a pipeline and only need to
+re-run the process you are actively editing, or when a run fails partway through and you want
+to pick up where it left off rather than starting over.
+
+## Nextflow Log
 
 The nextflow log command shows information about executed pipelines. This is helpful
 for showing you the various exit statuses of the processes in your pipeline. A sample command
@@ -500,28 +611,6 @@ Although the work/ directory strategy has a number of advantages, it can be a bi
 nextflow log command is an easy way to see where each process is located and what its exit status was. If you need to
 manually inspect the output of a process, you can use the hash value to navigate to the directory where you can view all
 of the running information for that process, input files, and output files. 
-
-### Nextflow PublishDir 
-
-Nextflow also has a publishDir option that allows you to specify a directory where you want to publish the output of a process.
-This is helpful for gathering final output files from a process and storing them in a single location. You may also wish to
-use publishDir to share any QC or log output files from each process. 
-
-```bash
-process INDEX {
-    label 'process_high'
-    conda 'envs/star_env.yml'
-    publishDir params.outdir, pattern: "*.Log.final.out"
-    ...
-    
-}
-``` 
-
-This will publish the output of the align process to the directory specified in the `params.outdir` parameter. The `pattern` 
-option allows you to specify a pattern to match the output files that you want to publish. In this case, we are only
-publishing a file that matches the pattern and ends with `.Log.final.out`.
-
-Typically, we will make the publishDir location, here params.outdir, a directory in this same repository called results/.
 
 ## Nextflow report  
 
