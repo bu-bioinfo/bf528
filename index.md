@@ -12,7 +12,7 @@ CURRENTLY UNDER CONSTRUCTION
 
 Mon/Fri: CDS B62
 
-Wed: SAR103
+Wed: CDS B20
 
 Zoom: Posted on Blackboard
 
@@ -20,9 +20,9 @@ Zoom: Posted on Blackboard
 By appointment — contact information on Blackboard
 
 Joey
-Wednesdays, 10-11am LSEB 101
 
-Monday, 3-4pm LSEB 101
+TAs
+
 
 ## Contents
 
