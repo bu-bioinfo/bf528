@@ -19,10 +19,6 @@ Zoom: Posted on Blackboard
 **Office hours:**
 By appointment — contact information on Blackboard
 
-Joey
-
-TAs
-
 
 ## Contents
 
@@ -222,7 +218,7 @@ Details are in the Final Project section below.
 
 ### Assignments and Their Levels
 
-**Labs — Level 1–3**
+**Labs — Level 2–4**
 Labs are participation exercises, not graded assignments. Each lab
 has an assigned AI level that reflects its goals. When appropriate,
 you are encouraged to use AI tools freely to work through the
@@ -295,16 +291,17 @@ verification method carried out and documented. Unit tests, manual
 spot checks, and cross-references against published results all
 count.
 
-**4. Scientific writeup — Level 3 (AI Collaboration)**
+**4. Scientific writeup — Level 2 (AI Brainstorming)**
 Your interpretation of the results. Where your verification evidence
 changed a conclusion or caught an error, that must be reflected here.
 The argument, what your results mean, why they are or are not what
 you expected, what caveats apply must remain yours. 
 
-All AI-generated content must be cited. Your self-assessment for this
-project should address where your trust map turned out to be wrong
-and what that tells you about calibrating this kind of judgment in
-future work.
+All AI-generated content must be cited. While you may use AI to 
+brainstorm, use this opportunity to get used to scientific writing.
+Your self-assessment for this project should address where your 
+trust map turned out to be wrong and what that tells you about calibrating
+this kind of judgment in future work.
 
 **Self-assessments — Level 1 (No AI)**
 Self-assessments are the one place where AI use is not permitted.
