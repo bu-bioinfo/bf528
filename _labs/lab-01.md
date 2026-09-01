@@ -3,6 +3,9 @@ title: "Lab 01 — Environment Setup"
 layout: single
 ---
 
+This lab and all labs will provided via a link in an announcement on the
+Blackboard page. 
+
 **Key concepts and tools**
 - `git`, `git clone`, `git add`, `git commit`, `git push`, `git pull`, `git log`
 - SSH key authentication (SCC and laptop)
