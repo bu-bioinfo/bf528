@@ -36,7 +36,7 @@ merge conflict and learning how to resolve it using the merge editor.
 
 # Learning Objectives
 
-## Perform a complete edit–commit–push–pull cycle across two machines using git
+## Perform a complete edit–commit–push–pull cycle and resolve a merge conflict
 
 > **Purpose - Why This Matters:** Every subsequent lab and project assumes you
 > can move code between instances without losing work or overwriting changes
@@ -93,17 +93,16 @@ repository GitHub Classroom just created for you and read through the
 ## Clone the Repo onto the SCC and Work on the Git Exercise
 
 Once you have generated an SSH key on the SCC and added it to your GitHub
-account (see the SCC SSH + GitHub 2FA guide under Additional Resources
-below), start a VSCode session on the SCC and open it to your student
-directory: `/projectnb/bf528/students/<your-username>/` (replace
-`<your-username>` with your BU login, without the `@bu.edu`).
+account as part of the steps in the repo, start a VSCode session on the SCC and 
+open it to your student directory: `/projectnb/bf528/students/<your-username>/` 
+(replace `<your-username>` with your BU login, without the `@bu.edu`).
 
 Go to your repository's page on GitHub and click the green `<> Code` button
 to copy its SSH clone URL, then run the following command to clone it into
 your student directory:
 
 ```
-git clone git@github.com:.../your-repo.git
+git clone git@github.com:.../your-repo.git      # the link will look slightly different
 ```
 
 Complete the rest of the exercise in your cloned repository, following the
