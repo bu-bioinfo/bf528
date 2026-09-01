@@ -9,75 +9,77 @@ layout: single
 - GitHub as a shared remote — push from one machine, pull on another
 - `conda`, `conda env create -f`, `.condarc`
 - `module load miniconda`, `conda activate`
-- `NXF_SYNTAX_PARSER=v2` — strict Nextflow syntax parser required for static typing
+- `NXF_SYNTAX_PARSER=v2` — strict Nextflow syntax parser required for
+  static typing
 - SCC OnDemand, VSCode on a compute node
 - HPC concepts: head node vs. compute node, home directory vs. project directory
 
 ---
 
-This lab covers the foundational tooling used throughout the semester. You will configure your SCC account, set up GitHub SSH keys on both the SCC and your laptop, and redirect your conda package storage to `/projectnb/bf528/students/<username>` to avoid filling up your home directory quota. You will install the required VSCode extensions and create the `nextflow_latest` conda environment (Nextflow 26.04) — this environment will be activated at the start of every subsequent lab.
+This lab covers the foundational tooling used throughout the semester. You
+will configure your SCC account, set up GitHub SSH keys on both
+the SCC and your laptop, and redirect your conda package storage to
+`/projectnb/bf528/students/<username>` to avoid filling up your home
+directory quota. You will install the required VSCode extensions and create
+the `nextflow_latest` conda environment (Nextflow) — this environment will
+be activated at the start of every subsequent lab.
 
-The git activity demonstrates the core mental model: GitHub is a shared remote, not a copy of your code. You push commits from one machine so another machine can pull them. You will make a change on the SCC, push it to GitHub, clone the repo on your laptop, then push a second change from the laptop and pull it back on the SCC.
+The git activity demonstrates the core model: GitHub is a shared remote, not
+a copy of your code. You push commits from one machine so another machine
+can pull them. You will make a change on the SCC, push it to GitHub, clone
+the repo on your laptop, then push a second change from the laptop and pull
+it back on the SCC. You will follow-up by intentionally introducing a small
+merge conflict and learning how to resolve it using the merge editor.
 
-## Setup checklist
+# Learning Objectives
 
-- [ ] Familiarize yourself with SCC OnDemand and VSCode
-- [ ] Set up an SSH key on the SCC and link it to GitHub
-- [ ] Edit `~/.condarc` to redirect conda package storage:
+## Perform a complete edit–commit–push–pull cycle across two machines using git
 
-```bash
-envs_dirs:
-    - /projectnb/bf528/students/<your_loginname>/.conda/envs
-pkgs_dirs:
-    - /projectnb/bf528/students/<your_loginname>/.conda/pkgs
-```
+> **Purpose - Why This Matters:** Every subsequent lab and project assumes you
+> can move code between instances without losing work or overwriting changes
+> unnecessarily
+>
+> **Task - What you will do:** Set up an SSH key on the SCC and link it to
+> GitHub for easy authentication. Practice editing and committing changes in
+> a GitHub repository across multiple instances.
+>
+> **Criteria - How you'll know you're succeeding:** You can explain the
+> purpose of each of the commonly used git commands. You understand the
+> basics of pushing, and pulling by resolving a simple merge conflict.
 
-- [ ] Create the course Nextflow environment and persist the syntax parser flag:
+## Set up a portable, reproducible conda environment on the SCC
 
-```bash
-module load miniconda
-conda env create -f envs/base_env.yml
-conda activate nextflow_latest
-echo 'export NXF_SYNTAX_PARSER=v2' >> ~/.bashrc
-source ~/.bashrc
-nextflow -h   # confirm it installed correctly
-```
+> **Purpose - Why This Matters:** While many of these steps are specific to
+> our SCC architecture, their underlying concepts are agnostic and
+> universally important. Understanding how to set up a basic conda
+> environment to provide an isolated instance of a software package and all
+> of the associated setup will be translatable to other HPC and development
+> environments.
+>
+> **Task - What you will do:** Direct conda to store downloaded packages and
+> files to dedicated project disk space outside of your home directory.
+> Create a basic conda environment containing the latest version of Nextflow
+> for use throughout the semester.
+>
+> **Criteria - How you'll know you're succeeding:** When the conda
+> environment is activated, you can run a basic nextflow command
+> (nextflow -h) to demonstrate its proper installation. All conda related
+> packages are stored in a directory you create in the project disk space,
+> not your home directory (you can manually check your ~/.condarc file).
 
-- [ ] Accept the GitHub Classroom link and clone the repo onto the SCC
-- [ ] Complete the two-machine git activity:
-  - Edit `notes.md` on the SCC, commit, and push
-  - Clone the repo on your laptop and confirm the commit arrived
-  - Make a second change on the laptop, commit, and push
-  - Pull on the SCC and confirm both changes are present
-- [ ] Submit your BU email and GitHub username via the course form
+# AIAS Level Expectations
 
-## Git — GitHub as a shared remote
+You may use AI freely for this lab at anywhere from levels AIAS 1-5 depending
+on your background. The specifics of this lab are not important as every
+environment setup will be slightly different: the important takeaways are
+the high-level concepts of how these tools allow for reproducibility and
+portability and why we care to use them. 
 
-```
-  SCC ──push──▶ GitHub ◀──pull── Laptop
-  SCC ◀──pull── GitHub ◀──push── Laptop
-```
 
-Neither your SCC copy nor your laptop copy is the authoritative one — GitHub is
-the common origin that keeps both in sync. The everyday rule: **pull before you
-start working, push when you are done**.
+# Additional Resources
 
-The basic local cycle is **edit → stage → commit**, then push to share:
-
-```bash
-git add notes.md          # stage specific files, not git add .
-git commit -m "message"   # permanent snapshot with a label
-git push                  # send commits to GitHub
-git pull                  # receive commits from GitHub
-git log --oneline         # view commit history
-```
-
-Staging individual files (`git add <filename>`) rather than `git add .` keeps
-you in control of what goes into each commit.
-
-## Resources
-
-- [Nextflow Hello World training](https://training.nextflow.io/latest/hello_nextflow/) — complete on your own time
+- [Nextflow Hello World training](https://training.nextflow.io/latest/hello_nextflow/)
+  — complete on your own time
 - [SCC SSH + GitHub 2FA guide](https://www.bu.edu/tech/support/research/system-usage/connect-scc/access-and-security/using-scc-with-github-2fa/#AUTH)
 - [SCC conda setup](https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/python-software/miniconda-modules/#Conda%20Modules)
 - [GitHub SSH key setup (local machine)](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
