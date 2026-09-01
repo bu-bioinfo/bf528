@@ -109,7 +109,7 @@ Complete the rest of the exercise in your cloned repository, following the
 instructions in its `README.md`.
 
 
-# AIAS Level Expectations
+# AIAS Level Expectations (AIAS Levels 1-5)
 
 You may use AI freely for this lab at anywhere from levels AIAS 1-5 depending
 on your background. The specifics of this lab are not important as every
