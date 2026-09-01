@@ -197,6 +197,5 @@ The checklist above covers the pipeline as an engineering artifact — it
 does not by itself constitute the project. Each project will separately
 specify the scientific/biological deliverables expected of it (e.g.,
 specific figures, tables, or biological interpretation produced from the
-pipeline's output); these belong in the project report. Consult the
-individual project description for what's required there, in addition to
-the engineering deliverables above.
+pipeline's output). Consult the individual project description for what's
+required there, in addition to the engineering deliverables above.
