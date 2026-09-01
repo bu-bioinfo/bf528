@@ -70,6 +70,46 @@ merge conflict and learning how to resolve it using the merge editor.
 > packages are stored in a directory you create in the project disk space,
 > not your home directory (you can manually check your ~/.condarc file).
 
+
+# First Lab Instructions
+
+Since you have not setup the first lab, you will be given instructions here
+on how to get started. In future labs, you will simply accept the classroom
+link and then clone the repo and work from there. 
+
+## Accept the Classroom Link
+
+On Blackboard, please click on the link provided that will give you access to
+a repository containing all of the lab01 materials, and follow the on-screen
+GitHub Classroom prompts to accept the assignment.
+
+## Explore the Repo in Your Browser
+
+You have not set up an SSH key yet, so do not try to clone the repository
+onto the SCC just yet — it will fail. Instead, stay in your browser: open the
+repository GitHub Classroom just created for you and read through the
+`lab-01` materials directly on GitHub.com.
+
+## Clone the Repo onto the SCC and Work on the Git Exercise
+
+Once you have generated an SSH key on the SCC and added it to your GitHub
+account (see the SCC SSH + GitHub 2FA guide under Additional Resources
+below), start a VSCode session on the SCC and open it to your student
+directory: `/projectnb/bf528/students/<your-username>/` (replace
+`<your-username>` with your BU login, without the `@bu.edu`).
+
+Go to your repository's page on GitHub and click the green `<> Code` button
+to copy its SSH clone URL, then run the following command to clone it into
+your student directory:
+
+```
+git clone git@github.com:.../your-repo.git
+```
+
+Complete the rest of the exercise in your cloned repository, following the
+instructions in its `README.md`.
+
+
 # AIAS Level Expectations
 
 You may use AI freely for this lab at anywhere from levels AIAS 1-5 depending
