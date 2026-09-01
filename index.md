@@ -274,7 +274,7 @@ your test suite. Writing it first forces you to understand the
 analysis before you ask AI to help build it, and gives you a concrete
 standard against which to evaluate what comes back.
 
-**2. Trust map — Level 1 (No AI)**
+**2. Validation Table — Level 1 (No AI)**
 A table of every pipeline step annotated with a trust level
 (high / medium / low) and a rationale. The trust level reflects how
 likely AI-generated output is to be subtly wrong at that step, and
@@ -283,26 +283,20 @@ why. A step with a high trust level still needs a rationale and
 choices, biological interpretation, or tool flags that depend on your
 specific data are almost always low trust.
 
-**3. Verification evidence — Level 3 (AI Collaboration)**
-For every step flagged as medium or low trust, a specific
-verification method carried out and documented. Unit tests, manual
-spot checks, and cross-references against published results all
-count.
-
-**4. Scientific writeup — Level 2 (AI Brainstorming)**
+**3. Scientific writeup — Level 2 (AI Brainstorming)**
 Your interpretation of the results. Where your verification evidence
 changed a conclusion or caught an error, that must be reflected here.
 The argument, what your results mean, why they are or are not what
 you expected, what caveats apply must remain yours. 
 
 All AI-generated content must be cited. While you may use AI to 
-brainstorm, use this opportunity to get used to scientific writing.
-Your self-assessment for this project should address where your 
-trust map turned out to be wrong and what that tells you about calibrating
-this kind of judgment in future work.
+brainstorm, use this as an opportunity to gain practice with scientific writing.
+This writeup should be entirely your own words. Your self-assessment for each 
+project should address where your validation table turned out to be wrong and 
+what that tells you about calibrating this kind of judgment in future work.
 
 **Self-assessments — Level 1 (No AI)**
-Self-assessments are the one place where AI use is not permitted.
+Self-assessments are one of the few places where AI use is not permitted.
 The honest reflection *is* the work. Using AI to write or refine your
 self-assessment defeats its entire purpose.
 
