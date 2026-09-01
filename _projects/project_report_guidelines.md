@@ -25,7 +25,7 @@ project should be able to read this and know what it's for. Try to be as
 specific as possible in terms of the experiment. As you can see below,
 the sample specifically mentions paired-end data as the default input. 
 
-**Example — Project 2:** A Nextflow pipeline that takes paired-end FASTQ
+**Example — Project:** A Nextflow pipeline that takes paired-end FASTQ
 files and a reference genome, and produces per-sample alignment statistics
 and a combined MultiQC report, flagging any sample that fails QC thresholds.
 
@@ -38,7 +38,7 @@ possible while thinking about best practices in making pipelines portable
 and reproducible. For example, avoiding hardcoded paths or having a single
 source of truth that drives the workflow (i.e. the CSV samplesheet).
 
-**Example — Project 2:** Samplesheet (CSV: `sample_id`, `fastq_1`,
+**Example — Project:** Samplesheet (CSV: `sample_id`, `fastq_1`,
 `fastq_2`), reference FASTA + GTF.
 
 ### Outputs
@@ -46,7 +46,7 @@ source of truth that drives the workflow (i.e. the CSV samplesheet).
 **What to include:** What the pipeline produces, split by whether it's
 generated per-sample or combined across all samples.
 
-**Example — Project 2:**
+**Example — Project:**
 - Per-sample: FastQC reports, STAR alignment BAM + log, RSeQC read distribution
 - Combined: one MultiQC HTML report across all samples
 
@@ -82,7 +82,7 @@ meaningless output rather than validating anything. Only after the
 stub-run completes cleanly end-to-end should the pipeline be run without
 `-stub-run` against real data.
 
-**Example — Project 2:** A touch'd BAM for `STAR_ALIGN`, a placeholder text
+**Example — Project:** A touch'd BAM for `STAR_ALIGN`, a placeholder text
 file for `RSEQC`. `MULTIQC` must also have a stub — without one, `-stub-run`
 would invoke real MultiQC against the upstream placeholder files instead of
 validating the DAG. The stub-run must complete cleanly for all 3 samples
@@ -104,11 +104,11 @@ pipeline code, not as a separate undocumented setup step.
 In this course, this is achieved either through conda environments or
 pre-built Singularity containers, depending on the project — see below.
 
-**Example — Project 1 (conda):** Conda environments defined per-tool in
+**Example — Project (conda):** Conda environments defined per-tool in
 `envs/*.yml` (e.g. `envs/flye.yml`), referenced via each process's `conda`
 directive and invoked with `-profile cluster,conda`.
 
-**Example — Project 2 (Singularity):** Pre-built containers at
+**Example — Project (Singularity):** Pre-built containers at
 `ghcr.io/bf528/<tool>:latest` (e.g. `ghcr.io/bf528/star:latest`),
 referenced via each process's `container` directive and invoked with
 `-profile singularity,local`. Tool versions: Nextflow 24.x, STAR 2.7.x,
@@ -121,7 +121,7 @@ directives sized appropriately for its workload. Declaring resource
 limits — even generous ones — is part of the assignment, not just making
 the pipeline run.
 
-**Example — Project 2:** `STAR_ALIGN` is memory-intensive when loading a
+**Example — Project:** `STAR_ALIGN` is memory-intensive when loading a
 genome index.
 
 
@@ -131,7 +131,7 @@ genome index.
 only) and a full-run milestone (validates actual results), so students have
 a concrete, checkable definition of "done" at each stage.
 
-**Example — Project 2:**
+**Example — Project:**
 - **Stub-run milestone:** `nextflow run main.nf -stub-run -profile local`
   completes end-to-end for all 3 samples without errors, producing
   correctly-named placeholder outputs at every step (including `MULTIQC`).
@@ -146,7 +146,7 @@ do, so students don't over-build or assume missing steps are an oversight.
 For each item, include a short justification for why it's excluded. Out of
 scope means for the pipeline work only, not the overall project.
 
-**Example — Project 2:** Differential expression (performed manually in a
+**Example — Project:** Differential expression (performed manually in a
 Jupyter notebook), adapter trimming (STAR soft-clips adapter contamination
 from reads).
 
@@ -179,7 +179,7 @@ repository. At minimum, this repo should contain:
 - [ ] The project report, usually a `.ipynb` or `.Rmd`
 - [ ] `README.md` with a short description of the repo
 
-**Example — Project 2 `specifications.md` table:** the entries below are
+**Example — Project `specifications.md` table:** the entries below are
 illustrative sample values only, meant to show the level of specificity
 expected — your own pipeline's justifications, confidence, and validation
 checks will be different.
