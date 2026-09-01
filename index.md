@@ -2,17 +2,15 @@
 link-citations: true
 ---
 
-CURRENTLY UNDER CONSTRUCTION
-
 **Semester**: Fall 2026
 
 **Meeting time:** Mon/Fri - 10:10-11:55am, Wed - 9:05-9:55am
 
 **Location:**
 
-Mon/Fri: CDS B62
+Mon / Fri Room: Posted on Blackboard
 
-Wed: CDS B20
+Wed Room: Posted on Blackboard
 
 Zoom: Posted on Blackboard
 
