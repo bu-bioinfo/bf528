@@ -3,6 +3,8 @@ title: "Project 1: Genome Assembly"
 layout: single
 ---
 
+THIS IS SET TO BE ARCHIVED AND WILL BE UPDATED SHORTLY
+
 # Project Overview
 
 For this first project, you will be developing a nextflow pipeline to assemble
