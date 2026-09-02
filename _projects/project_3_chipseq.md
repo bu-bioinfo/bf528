@@ -3,6 +3,8 @@ title: "Project 3: ChIPseq"
 layout: single
 ---
 
+THIS IS SET TO BE ARCHIVED AND WILL BE UPDATED SHORTLY
+
 Now that we have experience with Nextflow from two prior projects, the
 directions for this project will be much less detailed. I will describe what you
 should do and you will be expected to implement it yourself. If you are asked to 
