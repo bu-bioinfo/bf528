@@ -1,18 +1,9 @@
 ---
-title: "Week 11 - Metabolomics"
+title: "Week 11"
 layout: single
 ---
 
-## Week 11 Schedule
-
-### Monday - November 10
-**Single Cell Analysis Part 3**
-
-### Wednesday - November 12
-**Spatial Transcriptomics**
-
-
-### Friday - November 14
+## Week 11 
 
 
 ---

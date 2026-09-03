@@ -1,35 +1,27 @@
 ---
-title: "Week 7 - Databases and Enrichment"
+title: "Week 7"
 layout: single
 ---
 
-## Week 7 Schedule
-
-### Tuesday - October 14
-**Biological Databases**
-**Gene Sets and Enrichment**
-
-### Wednesday - October 15
-**Project 2 Check-In**
-
-### Friday - October 17
-**LAB - Genome Browsers**
+## Week 7 
 
 ---
 
-## Biological Databases
+## Genome Editing - CRISPR Cas9
 
-[online slides](https://docs.google.com/presentation/d/1WebY_mwEaR4BdHULyz2hRhqxTASX4o0yx2CJM6yKyhI/present?usp=sharing)
+[online slides](https://docs.google.com/presentation/d/17kJwJrr8EivJ5wwpPyL_dv8JdSVx1k6ARRUJnitNt4k/present?usp=sharing)
 
-[downloadable slides](https://docs.google.com/presentation/d/1WebY_mwEaR4BdHULyz2hRhqxTASX4o0yx2CJM6yKyhI/export/pptx)
+[downloadable slides](https://docs.google.com/presentation/d/17kJwJrr8EivJ5wwpPyL_dv8JdSVx1k6ARRUJnitNt4k/export/pptx)
 
 ---
 
-## Gene sets and enrichment
+## Sequence Analysis - ChIP-Seq
 
-[online slides](https://docs.google.com/presentation/d/1h13WgR2NabDO8vqjTzygmvgy4PCKhCzwof_qsH1_od4/present?usp=sharing)
+[online slides](https://docs.google.com/presentation/d/1J3ya4eEYj6Y4ZiS67vNox1dpaPUujbvDhnqWmLTAC40/present?usp=sharing)
 
-[downloadable slides](https://docs.google.com/presentation/d/1h13WgR2NabDO8vqjTzygmvgy4PCKhCzwof_qsH1_od4/export/pptx)
+[downloadable slides](https://docs.google.com/presentation/d/1J3ya4eEYj6Y4ZiS67vNox1dpaPUujbvDhnqWmLTAC40/export/pptx)
+
+---
 
 # Lab - Genome Browsers
 

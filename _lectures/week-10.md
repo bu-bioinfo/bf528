@@ -1,19 +1,9 @@
 ---
-title: "Week 10 - Metagenomics and Proteomics"
+title: "Week 10"
 layout: single
 ---
 
-## Week 10 Schedule
-
-### Monday - November 3
-**Single Cell Analysis Part 1 & 2**
-
-### Wednesday - November 5
-**Metabolomics**
-
-### Friday - November 7
-**Lab - Differential Peak Analysis**
-
+## Week 10
 ---
 
 ## Single Cell Analysis Part 1
@@ -32,8 +22,10 @@ layout: single
 
 ---
 
-## Metabolomics
+## Snakemake
 
-[online slides](https://docs.google.com/presentation/d/1Pey4YDKdz5i0Q3t5CuvwzHPtwo55RvUaO1TWvZAD2As/present?usp=sharing)
+[online slides](https://docs.google.com/presentation/d/1h3id0IIHR4krC7LdVzOtTyt7MtmLymnTWiW6vVBfmF8/present?usp=sharing)
 
-[downloadable slides](https://docs.google.com/presentation/d/1Pey4YDKdz5i0Q3t5CuvwzHPtwo55RvUaO1TWvZAD2As/export/pptx)
+[downloadable slides](https://docs.google.com/presentation/d/1h3id0IIHR4krC7LdVzOtTyt7MtmLymnTWiW6vVBfmF8/export/pptx)
+
+---
