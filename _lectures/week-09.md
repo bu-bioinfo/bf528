@@ -1,19 +1,9 @@
 ---
-title: "Week 9 - ATAC-Seq Analysis"
+title: "Week 9"
 layout: single
 ---
 
-## Week 9 Schedule
-
-### Monday - October 27
-**Microbiome: 16S**
-
-### Wednesday - October 29
-**Project 3 Check-In**
-
-### Friday - October 31
-**Lab - Using NF-Core Pipelines**
-
+## Week 9
 ---
 
 ## Microbiome: 16S
@@ -32,8 +22,10 @@ layout: single
 
 ---
 
-## Snakemake
+## Metabolomics
 
-[online slides](https://docs.google.com/presentation/d/1h3id0IIHR4krC7LdVzOtTyt7MtmLymnTWiW6vVBfmF8/present?usp=sharing)
+[online slides](https://docs.google.com/presentation/d/1Pey4YDKdz5i0Q3t5CuvwzHPtwo55RvUaO1TWvZAD2As/present?usp=sharing)
 
-[downloadable slides](https://docs.google.com/presentation/d/1h3id0IIHR4krC7LdVzOtTyt7MtmLymnTWiW6vVBfmF8/export/pptx)
+[downloadable slides](https://docs.google.com/presentation/d/1Pey4YDKdz5i0Q3t5CuvwzHPtwo55RvUaO1TWvZAD2As/export/pptx)
+
+---

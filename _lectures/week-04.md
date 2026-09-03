@@ -1,18 +1,17 @@
 ---
-title: "Week 4 - Sequencing Technologies"
+title: "Week 4"
 layout: single
 ---
 
-## Week 4 Schedule
+## Week 4
 
-### Monday - September 22
-**Project 1 Check-in and Review**
+---
 
-### Wednesday - September 24
-**Long Read Sequencing**
+## Genomic Variation and SNP Analysis
 
-### Friday - September 26
-**Lab - Nextflow Practice**
+[online slides](https://docs.google.com/presentation/d/1gWBIVMdS3ZejjzvoCd9WAdYkrvFs_lqZzxTeYR1LyVU/present?usp=sharing)
+
+[downloadable slides](https://docs.google.com/presentation/d/1gWBIVMdS3ZejjzvoCd9WAdYkrvFs_lqZzxTeYR1LyVU/export/pptx)
 
 ---
 
@@ -21,3 +20,4 @@ layout: single
 [online slides](https://docs.google.com/presentation/d/1pb2QSkGDHdFRwkuhKVr9JNn1_xWWcwyR_JPUW3wVqe0/present?usp=sharing)
 
 [downloadable slides](https://docs.google.com/presentation/d/1pb2QSkGDHdFRwkuhKVr9JNn1_xWWcwyR_JPUW3wVqe0/export/pptx)
+---

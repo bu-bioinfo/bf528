@@ -1,23 +1,29 @@
 ---
-title: "Week 6 - RNA-Seq Analysis"
+title: "Week 6"
 layout: single
 ---
 
-## Week 6 Schedule
+## Week 6
 
-### Monday - October 6
-**Genome Editing - CRISPR Cas9**
+---
+## Biological Databases
 
-### Wednesday - October 8
-**Project 2 Check-In**
+[online slides](https://docs.google.com/presentation/d/1WebY_mwEaR4BdHULyz2hRhqxTASX4o0yx2CJM6yKyhI/present?usp=sharing)
 
-### Friday - October 10
-**Lab - Containers (Docker)**
+[downloadable slides](https://docs.google.com/presentation/d/1WebY_mwEaR4BdHULyz2hRhqxTASX4o0yx2CJM6yKyhI/export/pptx)
 
 ---
 
-## Genome Editing - CRISPR Cas9
+## Gene sets and enrichment
 
-[online slides](https://docs.google.com/presentation/d/17kJwJrr8EivJ5wwpPyL_dv8JdSVx1k6ARRUJnitNt4k/present?usp=sharing)
+[online slides](https://docs.google.com/presentation/d/1h13WgR2NabDO8vqjTzygmvgy4PCKhCzwof_qsH1_od4/present?usp=sharing)
 
-[downloadable slides](https://docs.google.com/presentation/d/17kJwJrr8EivJ5wwpPyL_dv8JdSVx1k6ARRUJnitNt4k/export/pptx)
+[downloadable slides](https://docs.google.com/presentation/d/1h13WgR2NabDO8vqjTzygmvgy4PCKhCzwof_qsH1_od4/export/pptx)
+
+---
+
+## Lab - Containers
+
+[online slides](https://docs.google.com/presentation/d/1zEVd93m51Ukp5a1N3dd0D5HayHgPfdZrKlY3tgrH64o/edit?usp=sharing)
+
+[downloadable slides](https://docs.google.com/presentation/d/1zEVd93m51Ukp5a1N3dd0D5HayHgPfdZrKlY3tgrH64o/export/pptx)

@@ -61,3 +61,9 @@ to illustrate the different pain points that workflow managers solve.
 > end-to-end with the download and stats steps as separate processes linked
 > by a typed record. Final output files appear in your specified `outdir`
 > without needing to search through `work/`.
+
+# AIAS Level Expectations (AIAS Levels 2)
+
+As this is a foundational lab, try to complete most of the tasks on your own.
+You may consult LLMs and have them explain concepts but please gain experience
+actually performing the tasks manually for this lab. 

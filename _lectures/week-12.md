@@ -1,18 +1,15 @@
 ---
-title: "Week 12 - Single Cell Analysis"
+title: "Week 12"
 layout: single
 ---
 
-## Week 12 Schedule
+## Week 12 
 
-### Monday - November 17
-**Project 3 Discussion**
+Project Check-In
 
-### Wednesday - November 19
-**Single Cell Lab**
+Single Cell Analysis
 
-### Friday - November 21
-**Lab - Single Cell Analysis**
+Single Cell Setup Lab
 
 ---
 

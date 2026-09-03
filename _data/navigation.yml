@@ -92,6 +92,8 @@ sidebar:
         url: "/lectures/week-13/"
       - title: "Week 14"
         url: "/lectures/week-14/"
+      - title: "Accessory Slides"
+        url: "/lectures/accessory-slides/"
 
   - title: "Labs"
     children:

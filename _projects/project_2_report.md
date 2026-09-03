@@ -3,6 +3,8 @@ title: "Project 2: RNAseq"
 layout: single
 ---
 
+THIS IS SET TO BE ARCHIVED AND WILL BE UPDATED SHORTLY
+
 # REMINDER TO CLEAN UP YOUR WORKING DIRECTORY
 
 When you have successfully run your project 2 pipeline, please ensure that you 

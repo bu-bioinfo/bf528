@@ -1,16 +1,9 @@
 ---
-title: "Week 1 - Introduction"
+title: "Week 1"
 layout: single
 ---
 
-## Week 1 Schedule
-
-### Wednesday - September 3
-**Introduction**
-
-### Friday - September 5
-**Computational Pipeline Strategies**
-**Lab - Setup**
+## Week 1
 
 ---
 
