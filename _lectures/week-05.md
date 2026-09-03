@@ -1,18 +1,9 @@
 ---
-title: "Week 5 - Genome Editing"
+title: "Week 5"
 layout: single
 ---
 
-## Week 5 Schedule
-
-### Monday - September 29
-**Sequence Analysis - RNA-Seq 1**
-
-### Wednesday - October 1
-**Sequence Analysis - RNA-Seq 2**
-
-### Friday - October 3
-**Lab - Containers**
+## Week 5
 
 ---
 ## Sequence Analysis - RNA-Seq 1
@@ -31,8 +22,3 @@ layout: single
 
 ---
 
-## Lab - Containers
-
-[online slides](https://docs.google.com/presentation/d/1zEVd93m51Ukp5a1N3dd0D5HayHgPfdZrKlY3tgrH64o/edit?usp=sharing)
-
-[downloadable slides](https://docs.google.com/presentation/d/1zEVd93m51Ukp5a1N3dd0D5HayHgPfdZrKlY3tgrH64o/export/pptx)

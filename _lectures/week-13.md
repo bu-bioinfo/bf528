@@ -1,10 +1,10 @@
 ---
-title: "Week 13 - Advanced Single Cell and Spatial"
+title: "Week 13"
 layout: single
 ---
 
-## Week 13 Schedule
+## Week 13 
 
-### Monday - November 24
+Single Cell QC Lab
 
-
+Thanksgiving Recess
