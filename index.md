@@ -265,11 +265,11 @@ experimental design, and I verified the fold change direction for
 three known marker genes against a primary database."
 
 **Final Project — Level 4 (Full AI)**
-AI use is not just permitted here; it is expected. The trust map
+AI use is not just permitted here; it is encouraged. The validation table
 and verification practice from earlier projects now governs the full
 AI-assisted workflow. Note that Level 4 applies to the project as a
 whole; individual components carry their own levels. The specification
-document and trust map are Level 1. They must be completed without
+document and validation table are Level 1. They must be completed without
 AI assistance. Their value depends entirely on representing your own
 thinking before any AI interaction occurs.
 
@@ -290,7 +290,10 @@ likely AI-generated output is to be subtly wrong at that step, and
 why. A step with a high trust level still needs a rationale and
 "it looked right" is not one. Steps involving experimental design
 choices, biological interpretation, or tool flags that depend on your
-specific data are almost always low trust.
+specific data are almost always low trust. These trust levels are
+broadly applicable even outside the context of LLMs. You should start
+to identify which steps require more critical evaluation and which have
+been well-validated by the field as whole already. 
 
 **3. Scientific writeup — Level 2 (AI Brainstorming)**
 Your interpretation of the results. Where your verification evidence
