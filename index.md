@@ -216,6 +216,15 @@ Details are in the Final Project section below.
 
 ### Assignments and Their Levels
 
+>A note on AI Usage. When specified, you may use AI **up** to that level.
+>The course was not designed to require the use of LLMs or agentic coding,
+>and can be completed without if you so prefer. The use of AI is opt-in
+>and I will provide you all with strategies and frameworks for using
+>them responsibly. You may of course choose not to use them and there is
+>no disadvantage as all of the work was originaly designed to be completed
+>manually. There are a few labs where I will ask you to directly utilize
+>an agentic coding harness but it is meant as training in how to use them.
+
 **Labs — Level 2–4**
 Labs are participation exercises, not graded assignments. Each lab
 has an assigned AI level that reflects its goals. When appropriate,
@@ -341,7 +350,7 @@ accounts for 20%.
 | Wed | 9/2   | [1]({{ site.baseurl }}/lectures/week-01/)    | Lecture  | Introduction                                                         |                                 |
 | Fri | 9/4   | [1]({{ site.baseurl }}/lectures/week-01/)    | Lab      | Lab 01 — Setup                                                       |                                 |
 | Mon | 9/7   |      | NO CLASS | Labor Day                                                            |                                 |
-| Wed | 9/9   | [2]({{ site.baseurl }}/lectures/week-02/)    | Lecture  | Genomics, Genes, and Genomes<br>Next Generation Sequencing           | P1 assigned                     |
+| Wed | 9/9   | [2]({{ site.baseurl }}/lectures/week-02/)    | Lecture  | Genomics, Genes, and Genomes<br>Computational Pipelines           | P1 assigned                     |
 | Fri | 9/11  | [2]({{ site.baseurl }}/lectures/week-02/)    | Lab      | Lab 02 — Workflow Basics                                             |                                 |
 | Mon | 9/14  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lab      | Lab 03 — Nextflow Tooling                                            |                                 |
 | Wed | 9/16  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lecture  | Sequence Analysis Fundamentals                                       |                                 |
@@ -351,7 +360,7 @@ accounts for 20%.
 | Fri | 9/25  | [4]({{ site.baseurl }}/lectures/week-04/)    | Lab      | Lab 05 — Typed Channel Operators                                     |                                 |
 | Mon | 9/28  | [5]({{ site.baseurl }}/lectures/week-05/)    | Lecture  | Sequence Analysis — RNA-Seq 1                                        |                                 |
 | Wed | 9/30  | [5]({{ site.baseurl }}/lectures/week-05/)    | Lecture  | Sequence Analysis — RNA-Seq 2                                        |                                 |
-| Fri | 10/2  | [5]({{ site.baseurl }}/lectures/week-05/)    | Lab      | Lab 06 — Containers (Docker)                                         |                                 |
+| Fri | 10/2  | [5]({{ site.baseurl }}/lectures/week-05/)    | Lab      | Lab 06 — Genome Browsers (Docker)                                         |                                 |
 | Mon | 10/5  | [6]({{ site.baseurl }}/lectures/week-06/)    | Lab      | Lab 07 — QC Pipeline with Singularity                                |                                 |
 | Wed | 10/7  | [6]({{ site.baseurl }}/lectures/week-06/)    | Lecture  | Biological Databases<br>Gene Sets and Enrichment                     |                                 |
 | Fri | 10/9  | [6]({{ site.baseurl }}/lectures/week-06/)    | Lecture  | P1 Check-In and Review                                               | P1 due — P2 assigned            |
@@ -370,7 +379,7 @@ accounts for 20%.
 | Fri | 11/6  | [10]({{ site.baseurl }}/lectures/week-10/)   | Lab      | Lab 08 — Snakemake                                                   |                                 |
 | Mon | 11/9  | [11]({{ site.baseurl }}/lectures/week-11/)   | Lecture  | Single Cell Analysis Part 3                                          |                                 |
 | Wed | 11/11 | [11]({{ site.baseurl }}/lectures/week-11/)   | Lecture  | Spatial Transcriptomics                                              |                                 |
-| Fri | 11/13 | [11]({{ site.baseurl }}/lectures/week-11/)   | Lab      | Lab 10 — Genome Browsers                                             |                                 |
+| Fri | 11/13 | [11]({{ site.baseurl }}/lectures/week-11/)   | Lab      | Lab 10 — Containers                                             |                                 |
 | Mon | 11/16 | [12]({{ site.baseurl }}/lectures/week-12/)   | Lecture  | P3 Check-In                                                          |                                 |
 | Wed | 11/18 | [12]({{ site.baseurl }}/lectures/week-12/)   | Lecture  | Single Cell Analysis Part 4 / Extended Topics                        |                                 |
 | Fri | 11/20 | [12]({{ site.baseurl }}/lectures/week-12/)   | Lab      | Lab 13 — Single Cell Setup                                           | P3 due — Final assigned         |
