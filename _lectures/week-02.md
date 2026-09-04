@@ -3,8 +3,6 @@ title: "Week 2"
 layout: single
 ---
 
-## Week 2
-
 ---
 
 ## Genomics, Genes, and Genomes

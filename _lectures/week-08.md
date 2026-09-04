@@ -3,9 +3,6 @@ title: "Week 8"
 layout: single
 ---
 
-## Week 8
-
-
 ---
 
 ## Sequence Analysis - ATAC-Seq

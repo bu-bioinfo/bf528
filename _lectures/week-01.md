@@ -3,10 +3,7 @@ title: "Week 1"
 layout: single
 ---
 
-## Week 1
-
 ---
-
 ## Introduction
 
 [online slides](https://docs.google.com/presentation/d/1C-KKnTbZCekB1kEKz5EWEA_EPp8pXTFZVOubXz90ZQY/present?usp=sharing)

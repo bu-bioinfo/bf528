@@ -3,8 +3,6 @@ title: "Week 4"
 layout: single
 ---
 
-## Week 4
-
 ---
 
 ## Genomic Variation and SNP Analysis

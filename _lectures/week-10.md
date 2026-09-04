@@ -3,7 +3,6 @@ title: "Week 10"
 layout: single
 ---
 
-## Week 10
 ---
 
 ## Single Cell Analysis Part 1

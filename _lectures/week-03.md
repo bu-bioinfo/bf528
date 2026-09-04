@@ -3,8 +3,6 @@ title: "Week 3"
 layout: single
 ---
 
-## Week 3
-
 ---
 
 ## Sequence Analysis Fundamentals

@@ -3,8 +3,6 @@ title: "Week 6"
 layout: single
 ---
 
-## Week 6
-
 ---
 ## Biological Databases
 

@@ -3,8 +3,6 @@ title: "Week 5"
 layout: single
 ---
 
-## Week 5
-
 ---
 ## Sequence Analysis - RNA-Seq 1
 

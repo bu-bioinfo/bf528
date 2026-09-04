@@ -3,7 +3,6 @@ title: "Week 9"
 layout: single
 ---
 
-## Week 9
 ---
 
 ## Microbiome: 16S

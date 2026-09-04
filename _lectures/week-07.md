@@ -3,8 +3,6 @@ title: "Week 7"
 layout: single
 ---
 
-## Week 7 
-
 ---
 
 ## Genome Editing - CRISPR Cas9

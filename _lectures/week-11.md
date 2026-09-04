@@ -3,9 +3,6 @@ title: "Week 11"
 layout: single
 ---
 
-## Week 11 
-
-
 ---
 
 ## Single Cell Analysis Part 3
