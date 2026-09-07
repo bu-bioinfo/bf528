@@ -61,6 +61,8 @@ sidebar:
         url: "/projects/project_3_report/"
       - title: "Final Project"
         url: "/projects/final_project/"
+      - title: "Project Report Guidelines"
+        url: "/projects/project_report_guidelines/"
 
   - title: "Course Lectures"
     children:

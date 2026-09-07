@@ -78,7 +78,7 @@ Second, each script that uses typed processes or typed workflows must declare
 the preview feature flag at the top of the file:
 
 ```bash
-nextflow.preview.types = true
+nextflow.enable.types = true
 ```
 
 This flag goes in the script itself, not in the config file, and it must be
@@ -86,7 +86,7 @@ present in every `.nf` file that uses typed syntax — including module files,
 not just `main.nf`.
 
 **N.B.** The `params {}` block and the `output {}` block work without this flag.
-You only need `nextflow.preview.types = true` in files that contain typed
+You only need `nextflow.enable.types = true` in files that contain typed
 process inputs, typed process outputs, or typed workflow `take:`/`emit:`
 declarations.
 
