@@ -42,7 +42,7 @@ We will be generating a nextflow pipeline that will perform the following steps:
 
 ## Relevant Resources
 
-- [Nextflow Operators](https://www.nextflow.io/docs/latest/reference/operator.html)
+- [Nextflow Operators](https://docs.seqera.io/nextflow/tutorials/static-types-operators)
 - [Nextflow Tutorial](https://training.nextflow.io/latest/hello_nextflow/)
 - [CLI Resources]({{site.baseurl}}/guides/cli_resources/)
 - [Computational Environments]({{site.baseurl}}/guides/computational_environments/)
