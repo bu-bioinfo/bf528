@@ -1,5 +1,5 @@
 ---
-title: "Lab 03 — Creating a Nextflow Workflow for Multiple Samples"
+title: "Lab 03 — Nextflow Basics"
 layout: single
 ---
 
