@@ -229,7 +229,7 @@ You'll notice that the `script` block for the `FASTQC` and `FILTLONGER`
 processes in week1.nf are blank. Flye's command is already provided for you,
 since it's a more complex, computationally expensive step to iterate on — but
 you will need to find the appropriate commands for FastQC and filtlong and
-fill them in yourself.
+fill them in yourself. You should look for their official documentation pages.
 
 1. For FastQC, you may use the quick start command provided in the
 documentation.
