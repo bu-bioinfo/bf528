@@ -13,12 +13,16 @@ will instead be asked to focus on various aspects of the workflow as we progress
 and get more comfortable with the tools and concepts. This project is broken up
 into weeks and each week will focus on different tasks. Future projects you will
 be working in a more open-ended manner and will be asked to implement the entire
-pipeline on your own. 
+pipeline on your own.
 
 For this week, you will be given a scaffolded nextflow pipeline and every week,
-we will continue to update and refine it until it resembles a final pipeline. 
+we will continue to update and refine it until it resembles a final pipeline.
 The weeks after the first will include the previous week's pipeline as well as
-additional improvements. 
+additional improvements.
+
+We will talk in much greater detail about the concepts behind this project in
+class. For now, please focus on understanding what the pipeline is doing at
+a high-level and the nextflow concepts being introduced. 
 
 # Week 1 - Understanding channels
 
@@ -29,10 +33,10 @@ of the genome previously difficult to sequence using short reads. This is especi
 useful during genome assembly, where the longer reads are more likely to span
 all regions of the genome, greatly aiding in the assembly process. However,
 short reads are still useful and are commonly utilized to "polish" the assembly
-and remove systematic errors from the assembly of the long reads. 
+and remove systematic errors from the assembly of the long reads.
 
 We will talk in more detail about short and long reads as well as genome assembly.
-Focus for now on the specific concepts and tools in nextflow. 
+Focus for now on the specific concepts and tools in nextflow.
 
 We will be generating a nextflow pipeline that will perform the following steps:
 
@@ -51,7 +55,7 @@ We will be generating a nextflow pipeline that will perform the following steps:
 - [Nextflow Basics]({{site.baseurl}}/guides/nextflow_basics/)
 - [Nextflow Channels]({{site.baseurl}}/guides/nextflow_channels/)
 
-## Objectives 
+## Objectives
 
 For the first week, we will focus on understanding how channels work in
 Nextflow and how they connect the processes in a pipeline together. You will
@@ -61,13 +65,13 @@ pipeline at a higher level, generate the appropriate computational
 environments for each tool, and fill in the commands for the two simpler
 tools in the pipeline, FastQC and filtlong. From a pipeline standpoint, we
 will be performing quality control on the short reads, quality control of the
-long reads, and then assembly of the long reads. 
+long reads, and then assembly of the long reads.
 
 ## Setting up
 
 For this week, I have provided you with a mostly complete nextflow pipeline
 that will let you see how it works while focusing just on learning a few key
-concepts we will be using throughout the semester. 
+concepts we will be using throughout the semester.
 
 To start, open a VSCode session in **your** directory under the BF528 project
 (i.e. `/projectnb/bf528/students/<your_username>/`). Please replace the
@@ -75,7 +79,7 @@ To start, open a VSCode session in **your** directory under the BF528 project
 then your directory would be `/projectnb/bf528/students/jstudent/`
 
 Ensure that you have selected `miniconda` in the Additional Modules to load
-section of the VSCode OnDemand interface. 
+section of the VSCode OnDemand interface.
 
 When your session has launched, remember to activate the conda environment
 you created for nextflow using the following command:
@@ -96,9 +100,9 @@ git clone <repo_url>
 This will make a clone of the repo to your student directory and all of your work
 for this week should be done in this directory. You will push your changes to
 GitHub as you go, which will also enable us to evaluate your work and help
-troubleshoot. 
+troubleshoot.
 
-2. Open this directory in your VSCode session. 
+2. Open this directory in your VSCode session.
 
 3. Familiarize yourself with the directory you are working in. Throughout the semester,
 we will be using the same structure and organization in all of the projects.
@@ -141,18 +145,18 @@ and what is being produced out?)
   - Does the output type of `FILTLONGER` match the input type expected by
   `FLYE`? How do you know they can be connected directly?
 
-- The use of `$reads.read` (in `FASTQC`'s script block) and `${reads.name}`                                                                                                                                                                                            
-(in `FILTLONGER`'s and `FLYE`'s output/script blocks)                                                                                                                                                                                                                
-  - What field of the record is being accessed in each case, and why does                                                                                                                                                                                              
-  that field need to exist on the record type declared in that process's                                                                                                                                                                                               
-  `input:` block?                                                                                                                                                                                                                                                      
-  - Why does `${reads.name}` need curly braces while `$reads.read` doesn't —                                                                                                                                                                                           
-  what would `$reads.name.filtered.fastq.gz` (no braces) be interpreted as                                                                                                                                                                                             
-    instead?      
+- The use of `$reads.read` (in `FASTQC`'s script block) and `${reads.name}`
+(in `FILTLONGER`'s and `FLYE`'s output/script blocks)
+  - What field of the record is being accessed in each case, and why does
+  that field need to exist on the record type declared in that process's
+  `input:` block?
+  - Why does `${reads.name}` need curly braces while `$reads.read` doesn't —
+  what would `$reads.name.filtered.fastq.gz` (no braces) be interpreted as
+  instead?
 
 You don't need to modify any of the logic here as your goal is to demonstrate
 that you can read Nextflow code and explain what each channel operation is doing.
-You'll be writing this kind of logic yourself later in the class. 
+You'll be writing this kind of logic yourself later in the class.
 
 ### Completing specifications.md
 
@@ -169,57 +173,54 @@ outputs of other steps.
 2. Fill in the **Environment and Reproducibility** table, noting whether each
 tool's conda environment pins an exact version.
 
-3. Fill in the **Validation Table** with rows specific to this pipeline
-(delete the RNA-seq example rows once you've replaced them) describing how
-you would justify and validate each step's parameters.
-
 This document should give someone unfamiliar with the code a clear sense of
 what the pipeline does and how you'd know it worked correctly, even without
 reading `week1.nf` itself. Eventually, this will serve as scaffolding for
 you and potentially agentic coding harnesses to understand and implement
-the project at a high level. 
+the project at a high level.
 
 ### Specifying appropriate computational environments
 
 The channel and process logic for this pipeline is already written in the
 week1.nf file, but you will need to specify the appropriate computational
-environments for each process. In general, we will endeavor to always use 
-the most up-to-date version of a tool. In the  envs/ directory, you will find
+environments for each process. In general, we will endeavor to always use
+the most up-to-date version of a tool. In the envs/ directory, you will find
 empty conda environment files for each tool already created for you that you
-will need to complete. 
+will need to complete.
 
 1. Use the appropriate conda command to find the most recent version of each tool
-available on bioconda and update the YML files accordingly. Keep in mind the 
+available on bioconda and update the YML files accordingly. Keep in mind the
 following:
 
 - The command is `conda search -c conda-forge -c bioconda <tool_name>`
-- Use the most up-to-date version and specify it as so: `tool_name=<version>`, 
+- Use the most up-to-date version and specify it as so: `tool_name=<version>`,
 which will normally look like `samtools=1.17`. Conda will list all available
 versions and the most-up-to-date version will be the last one in the list and
-should be the numerically highest version. 
+should be the numerically highest version.
 
 2. Only specify a single version of a tool in each YML file. While you can
-specify multiple versions of a tool in a single YML file, we will try to 
+specify multiple versions of a tool in a single YML file, we will try to
 minimize this as much as possible to avoid running into issues with conda being
-unable to resolve the dependencies. 
+unable to resolve the dependencies.
 
 3. Once you've filled in the YML files, add the relative path to the YML file
-for each process after the line that begins with `conda` in the process. 
+for each process after the line that begins with `conda` in the process.
 
 This will look something like below:
 
-```
+```groovy
 process EXAMPLE {
     label 'process_single'
-    conda 'envs/<name_of_yml_file>.yml
+    conda 'envs/<name_of_yml_file>.yml'
     ...
 }
 ```
-Make sure to replace <name_of_yml_file> with the name of the YML file you created
-and with no <> characters in the final replacement. Now when you run nextflow, it 
-will build and load the appropriate conda environment for each process. 
 
-Please note how the path is relative to where the week1.nf file is located. 
+Make sure to replace <name_of_yml_file> with the name of the YML file you created
+and with no <> characters in the final replacement. Now when you run nextflow, it
+will build and load the appropriate conda environment for each process.
+
+Please note how the path is relative to where the week1.nf file is located.
 
 ### Finding the appropriate commands for FastQC and filtlong
 
@@ -271,15 +272,14 @@ conda environments resolve or that the FastQC/filtlong commands you wrote are
 actually correct. If you want to sanity check those separately, you can test
 a command directly in a terminal with the appropriate environment activated.
 Later in the semester, once we're confident in the full pipeline, we'll
-switch to running it for real. 
+switch to running it for real.
 
 ## Week 1 Recap
 
 - [ ] Clone the github repo for this project
 - [ ] Familiarize yourself with the directory you are working in
 - [ ] Annotate the channel logic in week1.nf
-- [ ] Complete the Pipeline Steps, Environment and Reproducibility, and
-Validation Table sections of specifications.md
+- [ ] Complete the Pipeline Steps, Environment and Reproducibility in specifications.md
 - [ ] Specify the appropriate computational environments for each process in the YML
 file and add the path to each YML file in the appropriate process
 - [ ] Find the appropriate commands for FastQC and filtlong and fill them in
