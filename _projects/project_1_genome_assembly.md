@@ -178,10 +178,10 @@ which will normally look like `samtools=1.17`. Conda will list all available
 versions and the most-up-to-date version will be the last one in the list and
 should be the numerically highest version.
 
-2. Only specify a single version of a tool in each YML file. While you can
-specify multiple versions of a tool in a single YML file, we will try to
-minimize this as much as possible to avoid running into issues with conda being
-unable to resolve the dependencies.
+2. Fill in the YML files in envs/ that are empty. You can use the same pattern
+as the `envs/nextflow_env.yml` - a file that you should already be familiar with.
+You do not need to do anything with it as you've already made the environment
+for nextflow. Just use it to structure your other YMLs with the correct elements.
 
 3. Once you've filled in the YML files, add the relative path to the YML file
 for each process after the line that begins with `conda` in the process.
