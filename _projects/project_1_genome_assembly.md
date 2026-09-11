@@ -159,27 +159,6 @@ You don't need to modify any of the logic here as your goal is to demonstrate
 that you can read Nextflow code and explain what each channel operation is doing.
 You'll be writing this kind of logic yourself later in the class.
 
-### Completing specifications.md
-
-Open `specifications.md` in the root of the repo. This document describes the
-full pipeline we'll be building over the course of the semester, independent
-of any particular week's code.
-
-1. Fill in the **Pipeline Steps** table with one row per process in the final
-pipeline (not just what's implemented in `week1.nf` so far), using the
-Objective and Outputs sections above it as a guide. This will help you understand
-dependencies and what processes can happen in parallel and which must wait for the
-outputs of other steps.
-
-2. Fill in the **Environment and Reproducibility** table, noting whether each
-tool's conda environment pins an exact version.
-
-This document should give someone unfamiliar with the code a clear sense of
-what the pipeline does and how you'd know it worked correctly, even without
-reading `week1.nf` itself. Eventually, this will serve as scaffolding for
-you and potentially agentic coding harnesses to understand and implement
-the project at a high level.
-
 ### Specifying appropriate computational environments
 
 The channel and process logic for this pipeline is already written in the
@@ -222,6 +201,27 @@ and with no <> characters in the final replacement. Now when you run nextflow, i
 will build and load the appropriate conda environment for each process.
 
 Please note how the path is relative to where the week1.nf file is located.
+
+### Completing specifications.md
+
+Open `specifications.md` in the root of the repo. This document describes the
+full pipeline we'll be building over the course of the semester, independent
+of any particular week's code.
+
+1. Fill in the **Pipeline Steps** table with one row per process in the final
+pipeline (not just what's implemented in `week1.nf` so far), using the
+Objective and Outputs sections above it as a guide. This will help you understand
+dependencies and what processes can happen in parallel and which must wait for the
+outputs of other steps.
+
+2. Fill in the **Environment and Reproducibility** table, noting whether each
+tool's conda environment pins an exact version.
+
+This document should give someone unfamiliar with the code a clear sense of
+what the pipeline does and how you'd know it worked correctly, even without
+reading `week1.nf` itself. Eventually, this will serve as scaffolding for
+you and potentially agentic coding harnesses to understand and implement
+the project at a high level.
 
 ### Finding the appropriate commands for FastQC and filtlong
 
