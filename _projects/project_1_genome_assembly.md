@@ -112,8 +112,9 @@ we will be using the same structure and organization in all of the projects.
 ### Understanding the channels
 
 1. Open `week1.nf`. This is a fully working pipeline, already wired up
-to run end to end. Add a comment above each of the following explaining, in
-plain English, what it is doing:
+to run end to end. Feel free to look up these terms in the nextflow documentation,
+the internet, the website, or any other resources. Add a comment above each of 
+the following explaining, in plain English, what it is doing:
 
 Single line comments in Groovy / Nextflow start with `//` and multi line begin with
 `/*` and end with `*/`
