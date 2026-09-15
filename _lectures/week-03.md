@@ -7,9 +7,9 @@ layout: single
 
 ## Sequence Analysis Fundamentals
 
-[online slides](https://docs.google.com/presentation/d/1KGyfv4jAFoGD-NmN7mNbiKepA-njI3DK5paEwrQqkxk/present?usp=sharing)
+[online slides](https://docs.google.com/presentation/d/18MoRQYe35Y5DT2zMXrr68PT6xyIloxEOgv_CVv9IsbI/present?usp=sharing)
 
-[downloadable slides](https://docs.google.com/presentation/d/1KGyfv4jAFoGD-NmN7mNbiKepA-njI3DK5paEwrQqkxk/export/pptx)
+[downloadable slides](https://docs.google.com/presentation/d/18MoRQYe35Y5DT2zMXrr68PT6xyIloxEOgv_CVv9IsbI/export/pptx)
 
 ---
 
