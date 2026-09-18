@@ -301,6 +301,10 @@ the illumina reads to the draft assembly using bowtie2. We can then sort the
 aligned reads and provide them to Pilon to polish the assembly and fix any
 potential errors.
 
+## Diagram of our pipeline
+
+![mermaid_week2]({{ site.baseurl }}/assets/images/project1-week2-diagram.svg)
+
 ## Relevant Resources
 
 - Requesting SCC Resources
