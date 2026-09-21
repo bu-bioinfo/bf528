@@ -358,13 +358,13 @@ accounts for 20%.
 | Mon | 9/14  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lab      | Lab 03 — Nextflow Tooling                                            |                                 |
 | Wed | 9/16  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lecture  | Sequence Analysis Fundamentals                                       |                                 |
 | Fri | 9/18  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lab      | Lab 04 — Multi-Sample Pipelines                                      |                                 |
-| Mon | 9/21  | [4]({{ site.baseurl }}/lectures/week-04/)    | Lecture  | Genomic Variation and SNP Analysis                                   |                                 |
+| Mon | 9/21  | [4]({{ site.baseurl }}/lectures/week-04/)    | Lecture  | Sequence Visualization / Genomic Variation and SNP Analysis                                   |                                 |
 | Wed | 9/23  | [4]({{ site.baseurl }}/lectures/week-04/)    | Lecture  | Long Read Sequencing                                                 |                                 |
 | Fri | 9/25  | [4]({{ site.baseurl }}/lectures/week-04/)    | Lab      | Lab 05 — Typed Channel Operators                                     |                                 |
 | Mon | 9/28  | [5]({{ site.baseurl }}/lectures/week-05/)    | Lecture  | Sequence Analysis — RNA-Seq 1                                        |                                 |
 | Wed | 9/30  | [5]({{ site.baseurl }}/lectures/week-05/)    | Lecture  | Sequence Analysis — RNA-Seq 2                                        |                                 |
-| Fri | 10/2  | [5]({{ site.baseurl }}/lectures/week-05/)    | Lab      | Lab 06 — Genome Browsers (Docker)                                         |                                 |
-| Mon | 10/5  | [6]({{ site.baseurl }}/lectures/week-06/)    | Lab      | Lab 07 — QC Pipeline with Singularity                                |                                 |
+| Fri | 10/2  | [5]({{ site.baseurl }}/lectures/week-05/)    | Lab      | Lab 06 — Genome Browsers                                          |                                 |
+| Mon | 10/5  | [6]({{ site.baseurl }}/lectures/week-06/)    | Lab      | Lab 07 — Containers                                |                                 |
 | Wed | 10/7  | [6]({{ site.baseurl }}/lectures/week-06/)    | Lecture  | Biological Databases<br>Gene Sets and Enrichment                     |                                 |
 | Fri | 10/9  | [6]({{ site.baseurl }}/lectures/week-06/)    | Lecture  | P1 Check-In and Review                                               | P1 due — P2 assigned            |
 | Mon | 10/12 |      | NO CLASS | Indigenous People's Day                                              |                                 |
