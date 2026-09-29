@@ -1,117 +1,99 @@
 ---
-title: "Lab 05 — Sequencing Quality Control"
+title: "Lab 05 — Nextflow Cardinality"
 layout: single
 ---
 
 **Key concepts and tools**
-- FastQC: per-base quality (PHRED score), per-base sequence content, duplication
-  levels, overrepresented sequences
-- STAR alignment statistics: uniquely mapped, multi-mapped, and unmapped
-  percentages
-- RSeQC read distribution: CDS exons, UTRs, introns, intergenic regions
-- MultiQC as a combined report across tools and across samples
-- Poly-A selected mRNA-seq library prep and its expected biases
-- Known contamination signatures: adapter, incomplete gDNA, rRNA,
-  cross-species (bacterial, wrong-genome alignment)
-- Distinguishing an expected library-prep artifact from a genuine
-  experimental failure
+- Channel cardinality: how many separate emissions a channel produces
+- Implicit parallelization: one process task per channel emission
+- `channel.of(...)` with separate arguments vs. a single list argument
+- `record(...)` and dot notation for named fields
+- `.view()` and `.count().view()` for inspecting channel contents
+- `channel.fromPath(...).splitCsv(header: true)` and `LinkedHashMap` rows
+- `.map {}` — 1:1 transformation, cardinality unchanged
+- `.flatMap {}` — unpack lists into separate emissions, cardinality grows (or shrinks on empty lists)
+- `.combine()` — cross product, N x M emissions
+- `.collect()` — gather N emissions into a single list emission
+- `.join()` — key-based pairing across two channels, order-independent
+- `List<Path>` typed process inputs, `${files.join(' ')}` interpolation in `script:`
+- `nextflow run`, `-profile local,conda`
 
 ---
 
-This lab has two parts and no coding. In Part 1, in small groups, you will
-rank a list of common sequencing artifacts and alignment statistics from most
-to least concerning for a 2x100nt paired-end mRNA-seq experiment, reasoning
-about which issues may be corrected downstream and which represent real problems
-with the underlying data.
+This lab focuses on one of the most important, concepts in Nextflow:
+**cardinality**, or how many separate values a channel emits. You write a 
+pipeline as if it handles a single sample, and Nextflow decides how many tasks
+to launch from the number of emissions in the input channel. Getting a channel's 
+shape wrong rarely causes an error. 
 
-In Part 2, you will apply that same reasoning to six real QC reports (Case A
-through Case F), each bundling FastQC, STAR, and RSeQC output plus a combined
-MultiQC report. For each case you will cite specific statistics from all three
-tools, match the case to one of six likely lab or alignment situations
-(adapter contamination, gDNA contamination, bacterial contamination, rRNA
-contamination, wrong-genome alignment, or a clean validated run), propose a
-follow-up analysis to confirm the match, and make an explicit recommendation to
-proceed or not proceed with the analysis.
-
-Record both parts' answers in `worksheet_template.md`.
+In Part 1 you will read eight small scripts in `view_cases/`, predict how
+each operator changes a channel, and check your predictions with `.view()`
+and `.count()`. Record your predictions and results in `ANSWERS.md`. In
+Part 2 you will apply `map`, `flatMap`, `combine`, `collect`, and `join`
+to finish small pipelines modeled on common bioinformatics tasks: running
+FastQC per file, sweeping k-mer sizes across assemblies, merging per-sample
+count files into one matrix, and pairing reads with their matching
+reference genome.
 
 # Learning Objectives
 
-## Interpret sequencing QC metrics by their impact on downstream analysis
+## Determine the cardinality of a channel and predict how operators change it
 
-> **Purpose - Why This Matters:** Understanding what per-base quality scores,
-> duplication levels, per-base sequence content, and alignment statistics
-> actually measure is foundational to reading any FastQC/STAR/RSeQC report
-> correctly. Knowing which metrics can be mitigated, which represent known
-> artifacts, and which represent experimental issues is critical for judging
-> whether to proceed with an analysis or not.
+> **Purpose - Why This Matters:** Every process in a Nextflow pipeline runs
+> once per emission of its input channel. If you can't tell how many
+> emissions a channel holds, you can't predict how many tasks your pipeline
+> will launch, or whether a process will see one file or all of them.
 >
-> **Task - What you will do:** Rank a list of common sequencing artifacts and
-> metrics from most to least concerning. Reason about the severity of each
-> artifact and whether any downstream steps correct or mitigate for it.
+> **Task - What you will do:** For each script in `view_cases/`, read the
+> code *before* running it and predict how many lines `.view()` will print
+> and whether a single emission is a bare value, a list, or a record. Then
+> run the script, add a `.count().view()` call on the same channel, and
+> compare the result to your prediction and to the provided diagrams.
 >
-> **Criteria - How you'll know you're succeeding:** You can place each metric
-> into the context of the protocol that generated it. You can distinguish
-> fundamental errors in data generation from artifacts that are inherent to
-> the methodology.
+> **Criteria - How you'll know you're succeeding:** Your predictions in
+> `ANSWERS.md` match the observed counts, and when a prediction is wrong you
+> can explain why. You can explain why `channel.of('a', 'b')` and
+> `channel.of(['a', 'b'])` behave differently, and why brackets in `.view()`
+> output are not a reliable way to count emissions.
 
-## Apply knowledge of expected technical artifacts
+## Apply channel operators to reshape data for real bioinformatics workflows
 
-> **Purpose - Why This Matters:** Many "abnormal-looking" QC signals are
-> well-documented, expected artifacts of standard mRNA-seq library prep
-> rather than genuine problems — a FastQC module can fail on a perfectly
-> successful experiment. Common sequencing issues also have distinct
-> signatures in these statistics. Telling the two apart avoids wasting effort
-> re-sequencing data that's actually fine, or analyzing data that cannot be
-> rescued.
+> **Purpose - Why This Matters:** Real pipelines constantly change the shape
+> of their data. Per-sample steps run in parallel, paired-end files are split
+> for independent QC, parameter sweeps multiply work, and results are merged
+> for a final summary. Choosing the right operator decides whether a process
+> runs with the correct inputs the correct number of times.
 >
-> **Task - What you will do:** For each of the six cases, decide which
-> flagged metrics are expected artifacts and which are genuine causes for
-> concern.
+> **Task - What you will do:** Complete the `main.nf` in each of the `map/`,
+> `flatMap/`, `collect/`, and `join/` directories, and verify the already
+> wired-up `combine/` example, so that each workflow runs successfully with
+> the intended number of tasks.
 >
-> **Criteria - How you'll know you're succeeding:** Your Part 1 ranking and
-> Part 2 case write-ups justify each artifact-vs-concern classification with
-> a specific technical reason, such as library-prep chemistry or an aspect of
-> the underlying biology.
+> **Criteria - How you'll know you're succeeding:** Each pipeline runs to
+> completion, and the number of tasks for each process matches what you
+> expect: one per file for FastQC, N x M for `KMER_COUNT`, exactly one for
+> `CONCAT`, and one per sample (not N x M) for `ALIGN`.
 
-## Analyze and evaluate a full QC report
+## Distinguish between operators that preserve, expand, multiply, collapse, or pair emissions
 
-> **Purpose - Why This Matters:** Real sequencing QC reports rarely have one
-> metric that tells the whole story, and there are expected biases baked into
-> the sequencing methodology itself. Drawing a sound conclusion requires
-> weighing several statistics together across every step of the workflow —
-> sequencing QC, alignment, and read distribution.
+> **Purpose - Why This Matters:** Several operators look alike but have very
+> different effects on cardinality. Mixing up `combine` and `join`, or `map`
+> and `flatMap`, is a common silent bug that can produce wrong results
+> without any error message.
 >
-> **Task - What you will do:** For each case, synthesize at least 2-3 cited
-> statistics per tool (FastQC, STAR, RSeQC) into a short paragraph judging the
-> experiment's success.
+> **Task - What you will do:** Compare how each operator transformed the
+> channels in Parts 1 and 2, including edge cases such as `flatMap` over an
+> empty list and chaining `flatMap` with `map`.
 >
-> **Criteria - How you'll know you're succeeding:** Each case's paragraph
-> draws a conclusion that follows from the *combination* of cited statistics,
-> not from any single metric in isolation.
+> **Criteria - How you'll know you're succeeding:** Given an input channel
+> and an operator, you can state the output cardinality (1:1, 1:many, N x M,
+> N to 1, or matched by key) and choose the right operator for a described
+> pipeline step.
 
-## Justify a decision to proceed or not proceed with the analysis
+# AIAS Level Expectations (AIAS Level 2)
 
-> **Purpose - Why This Matters:** Deciding whether to trust a dataset enough
-> to commit further analysis time to it is a routine judgment call for any
-> bioinformatics analyst, and one that must be defensible and remains the
-> responsibility of the individual scientist.
->
-> **Task - What you will do:** For each case, state whether you would proceed
-> with further analysis and why. Match each case to its likely situation from
-> the six given, and identify which case is the fully validated, high-quality
-> experiment.
->
-> **Criteria - How you'll know you're succeeding:** Each recommendation is
-> unambiguous (proceed / do not proceed) and traceable to the statistics you
-> cited for that case. For every case, you can suggest at least one follow-up
-> analysis that would confirm your matched situation.
-
-# AIAS Level Expectations
-
-This entire lab is AIAS Level 1 (No AI). Judging whether sequencing data is
-trustworthy enough to build an analysis on is a core scientific
-responsibility that cannot be delegated to an LLM — if you publish
-conclusions based on data an AI wrongly judged sound, that responsibility is
-still yours. Work through both parts with your group using your own reasoning
-about the statistics in front of you.
+As this is a foundational lab, try to complete most of the tasks on your own.
+In particular, make your Part 1 predictions yourself *before* running any
+code or asking an LLM. The point of the exercise is to build your own
+intuition for channel shapes. You may consult LLMs to explain operators or
+concepts, but write and debug the Part 2 channel logic yourself.
