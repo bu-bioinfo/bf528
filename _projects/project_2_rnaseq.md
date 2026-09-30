@@ -229,26 +229,50 @@ the conventions established in project 1. We will place this script in the `bin/
 directory and make it executable. We will then create a nextflow module that will
 provide the appropriate command line arguments to the script.
 
-1. Generate a python script `bin/parse_gtf.py` that parses the GTF file you were
+### Python script
+
+Generate a python script `bin/parse_gtf.py` that parses the GTF file you were
 provided and creates a delimited file containing the ensembl human ID and its 
 corresponding gene name. Please copy and modify the `argparse` code used in 
-previous scripts to allow the specification of command line arguments. 
+previous scripts to allow the specification of command line arguments. The
+script should take a single file input (GTF) and output a single text file.
 
-2. The script should take a single file input (GTF) and output a single text
-file.
+### Construct the input and output records
 
-3. Create a nextflow module, `modules/parse_gtf/main.nf` that calls this script
-and provides the appropriate command line arguments necessary to run it.
+The input will be a single path to the GTF file.
 
-4. You may use the biopython (`ghcr.io/bf528/biopython:latest`) or the pandas
-(`ghcr.io/bf528/pandas:latest`) container to run this task as both of these
-contain a python installation.
+The output will be a single path to the delimited text file your script creates.
 
-5. Incorporate this module to parse the GTF into your workflow `main.nf` and
-pass it the appropriate GTF input encoded as a param. 
+### Additional labels and directives
 
-6. Include a `stub` block that uses `touch` to create an empty file with the
-same name your output block expects.
+Ensure it will run in an appropriate environment and specify what label to use
+for computational resources. You may use the biopython
+(`ghcr.io/bf528/biopython:latest`) or the pandas (`ghcr.io/bf528/pandas:latest`)
+container to run this task as both of these contain a python installation.
+
+### Input Block
+
+Specify the GTF as a single path input.
+
+### Output Block
+
+Specify the delimited file your script writes. Make sure the filename matches
+the name you pass to your script's output argument.
+
+### Script Block
+
+Call `parse_gtf.py` and provide the appropriate command line arguments necessary
+to run it.
+
+### Stub Block
+
+Remember to include a `stub` block that uses `touch` to create an empty file
+with the same name your output block expects.
+
+### In your main.nf
+
+1. Call this module in your workflow and pass it the appropriate GTF input
+encoded as a param. 
 
 ## Generate a genome index using STAR
 
@@ -311,6 +335,10 @@ are appropriate for each task based on their complexity. Make this a habit for
 every process even though I explicitly instructed you for just these two. 
 
 ## Week 1 Tasks Summary
+
+In general, remember that once you have fully developed a module to `include`
+it in your top-level `main.nf` and start to call it on the appropriate channels
+and outputs to link together your workflow in the appropriate order. 
 
 1. Clone the github classroom link for this project
 
@@ -568,23 +596,55 @@ for each of your samples. To perform differential expression analysis, we will
 need to combine count outputs from each sample into a single file where the rows
 are the genes and the columns are the sample counts.
 
-1. Write a python script, `bin/concat_cts.py`, that will concatenate all of the 
+### Python script
+
+Write a python script, `bin/concat_cts.py`, that will concatenate all of the 
 VERSE output files and write a single counts matrix containing all of your samples.
 As with any external script, make it executable with a proper shebang line and 
 use argparse to allow the incorporation of command line arguments. I suggest you
-use `pandas` for this task and you can use the pandas container 
+use `pandas` for this task.
+
+Look at the structure of the .exon.txt files. The final counts matrix / CSV
+should have the same number of rows as the number of genes in the reference
+genome and the same number of columns as the number of samples.
+
+### Construct the input and output records
+
+The input will be a list of Paths (List<path>) to all of the VERSE output files.
+
+The output will be a single path to the counts matrix your script creates.
+
+### Additional labels and directives
+
+Ensure it will run in an appropriate environment and specify what label to use
+for computational resources. You can use the pandas container
 `ghcr.io/bf528/pandas:latest`.
-  - Look at the structure of the .exon.txt files. The final counts matrix / CSV
-  should have the same number of rows as the number of genes in the reference
-  genome and the same number of columns as the number of samples.
 
-2. Generate a module, `modules/concat_cts/main.nf`,  that runs this script
-according to all of the conventions for modules. Don't forget to include a `stub`
-block that uses `touch` to create an empty counts matrix with the same name your
-output block expects.
+### Input Block
 
-3. In your top-level `main.nf` workflow script, use appropriate nextflow operators
-to gather all of the VERSE outputs together. 
+Specify the list of VERSE output files as your input. Nextflow will stage all of
+them into the same working directory.
+
+### Output Block
+
+Specify the counts matrix your script writes. Make sure the filename matches the
+name you pass to your script's output argument.
+
+### Script Block
+
+Call `concat_cts.py` and provide the appropriate command line arguments necessary
+to run it, including all of the VERSE output files.
+
+### Stub Block
+
+Remember to include a `stub` block that uses `touch` to create an empty counts
+matrix with the same name your output block expects.
+
+### In your main.nf
+
+1. Use appropriate nextflow operators to gather all of the VERSE outputs together
+into a single channel and pass it to this module. Since your VERSE process outputs
+records, you will need to extract the `.exon.txt` file from each record first.
 
 ## Week 2 Tasks Summary
 
