@@ -116,24 +116,6 @@ This is really important for this project since the real data is quite large
 and you will only run it with the real data once you are sure that your pipeline
 has the desired behavior. 
 
-## Running your workflow with containers
-
-Your `nextflow.config` contains profiles that tell Nextflow how to run each task.
-The `singularity` profile has Nextflow execute each task inside the container
-listed in the module's `container` directive. The `local` profile runs tasks on
-your current VSCode session and the `cluster` profile submits each task as a job
-to the SCC.
-
-Stub runs only create fake files and don't need a container. Once your stub runs
-behave as expected, run your pipeline on the subsampled data with:
-
-```bash
-nextflow run main.nf -profile singularity,local
-```
-
-You will only use the `cluster` profile when you switch to the full data in
-week 3.
-
 ## Generating our input channels for nextflow
 
 In your `main.nf` at the top-level of the directory, make two initial channels
