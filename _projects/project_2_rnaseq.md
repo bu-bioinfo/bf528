@@ -171,7 +171,7 @@ patterns: "<fastq_filename_without_file_extension>_fastqc.html" and
 1. Specify the output using the record you declared at the top holding two files,
 the .zip and the .html. Remember that you need to declare in the output the
 exact files Nextflow should expect. You can make use of the "`*`" to capture any
-files ending in the patterns you want (e.g. "*.zip" or "*.html")
+files ending in the patterns you want (e.g. "`*.zip`" or "`*.html`")
 
 ### Script Block
 
