@@ -188,6 +188,14 @@ For every process, you will fill out a stub block that uses the `name` in the
 record field and the command `touch` to generate fake files that you can use
 to troubleshoot your workflow as you develop it. 
 
+Use the `name` value from your input record to name the fake files so they
+match the filenames your output block expects. For example, if your output
+expects `${name}.txt`, your stub block would be:
+
+```bash
+touch ${name}.txt
+```
+
 
 ## Generate a file containing the gene IDs and their corresponding human gene symbols
 
@@ -226,6 +234,9 @@ contain a python installation.
 
 5. Incorporate this module to parse the GTF into your workflow `main.nf` and
 pass it the appropriate GTF input encoded as a param. 
+
+6. Include a `stub` block that uses `touch` to create an empty file with the
+same name your output block expects.
 
 ## Generate a genome index using STAR
 
@@ -273,6 +284,11 @@ your `label`.
 ```bash
 --runThreadN $task.cpus
 ```
+
+### Stub Block
+
+Remember to include a `stub` block. Since the output is a directory, use `mkdir`
+to create an empty directory with the same name your output block expects.
 
 ## Assigning process labels to your modules
 
@@ -409,6 +425,12 @@ process actually uses the cores you request from the label. Alignment is a
 highly parallelizable process that will be greatly sped up by using multiple
 cores.
 
+### Stub Block
+
+Remember to include a `stub` block. Use the `name` value from your input record
+to `touch` a fake BAM file and log file with the same names your output
+block expects (e.g. `${name}.Log.final.out`).
+
 ## Performing post-alignment QC and aggregating all QC results together
 
 Typically after performing alignment, it is good to obtain a few post-alignment
@@ -457,6 +479,11 @@ MultiQC creates a single file output called "multiqc_report.html" by default.
 ### Script block
 
 Look at the documentation for the appropriate command
+
+### Stub Block
+
+Remember to include a `stub` block that uses `touch` to create an empty
+`multiqc_report.html`.
 
 ### In your main.nf
 
@@ -513,6 +540,11 @@ VERSE creates a single file of interest with a known pattern
 
 Read the documentation and fill out the script block appropriately. 
 
+### Stub Block
+
+Remember to include a `stub` block. Use the `name` value from your input record
+to `touch` a fake `${name}.exon.txt` file so it matches the output pattern.
+
 ## Concatenating count outputs into a single matrix
 
 After VERSE has run successfully, you will have generated a single set of counts
@@ -531,7 +563,9 @@ should have the same number of rows as the number of genes in the reference
  genome and the same number of columns as the number of samples.
 
 2. Generate a module, `modules/concat_cts/main.nf`,  that runs this script and
-according to all of the conventions for modules.
+according to all of the conventions for modules. Don't forget to include a `stub`
+block that uses `touch` to create an empty counts matrix with the same name your
+output block expects.
 
 3. In your top-level `main.nf` workflow script, use appropriate nextflow operators
 to gather all of the verse outputs together. 
