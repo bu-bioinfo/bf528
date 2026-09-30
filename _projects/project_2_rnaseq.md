@@ -116,6 +116,24 @@ This is really important for this project since the real data is quite large
 and you will only run it with the real data once you are sure that your pipeline
 has the desired behavior. 
 
+## Running your workflow with containers
+
+Your `nextflow.config` contains profiles that tell Nextflow how to run each task.
+The `singularity` profile has Nextflow execute each task inside the container
+listed in the module's `container` directive. The `local` profile runs tasks on
+your current VSCode session and the `cluster` profile submits each task as a job
+to the SCC.
+
+Stub runs only create fake files and don't need a container. Once your stub runs
+behave as expected, run your pipeline on the subsampled data with:
+
+```bash
+nextflow run main.nf -profile singularity,local
+```
+
+You will only use the `cluster` profile when you switch to the full data in
+week 3.
+
 ## Generating our input channels for nextflow
 
 In your `main.nf` at the top-level of the directory, make two initial channels
@@ -409,19 +427,19 @@ at their default value:
 - At the end of your STAR command, please add the following code:
 
 ```bash
-2> ${<name_from_your_record>}.Log.final.out
-``` 
+2> ${sample.name}.Log.final.out
+```
 
-or 
+For example, if you named your input record `sample`:
 
 ```bash
-STAR --runThreadN $task.cpus --genomeDir <directory> --readFilesIn <reads> --readFilesCommand zcat --outFileNamePrefix <name>. --outSAMtype <option> 2> ${name}.Log.final.out
-``` 
+STAR --runThreadN $task.cpus --genomeDir <directory> --readFilesIn <reads> --readFilesCommand zcat --outFileNamePrefix ${sample.name}. --outSAMtype <option> 2> ${sample.name}.Log.final.out
+```
 
 The `2>` redirects the standard error to the log file and this is what will enable
-us to collect the alignment statistics from the log file. The ${name} may differ
-based on how you have named your input record, but you should name the log file
-with the same name as the sample identifier. 
+us to collect the alignment statistics from the log file. Replace `sample` with
+whatever local variable name you gave your input record, but you should name the
+log file with the same name as the sample identifier. 
 
 The log file from STAR will allow us to collect certain statistics about the
 alignment rates that are useful for quality control purposes. As a general rule
@@ -530,10 +548,13 @@ strategies for assigning counts hierarchically in the case of overlapping featur
 
 ### Construct the input and output records
 
-VERSE requires the BAM file and the GTF file. You can provide these separately
-to the process by listing them on new lines. 
+VERSE requires the BAM file and the GTF file. The input record should contain
+the sample `name` and the BAM file; you can get these from the record your STAR
+process outputs. The GTF is shared by every sample, so provide it separately on
+its own line.
 
-The file of interest created by verse is named with the pattern "*.exon.txt".
+The output record should contain the sample `name` and the file of interest
+created by VERSE, which is named with the pattern "*.exon.txt".
 
 ### Additional labels and directives
 
@@ -542,8 +563,8 @@ for computational resources.
 
 ### Input Block
 
-List the BAM files and the GTF on new lines in the input and then pass them
-left-to-right in the process call in your `main.nf`.
+List the record containing the `name` and BAM and the GTF on new lines in the
+input and then pass them left-to-right in the process call in your `main.nf`.
 
 ### Output Block
 
@@ -555,8 +576,8 @@ Read the documentation and fill out the script block appropriately.
 
 ### Stub Block
 
-Remember to include a `stub` block. Use the sample `name` to `touch` a fake
-`${name}.exon.txt` file so it matches the output pattern.
+Remember to include a `stub` block. Use the `name` value from your input record
+to `touch` a fake `${name}.exon.txt` file so it matches the output pattern.
 
 ## Concatenating count outputs into a single matrix
 
@@ -629,15 +650,16 @@ require only a few alterations in order to do. Ensure that you requested a VScod
 session that lasts for at least 12 hours.
 
 
-1. Look in your nextflow config for the `full_reads` param. 
+1. Look in your nextflow config for the param pointing to the samplesheet for
+the full data. 
 
 - **It is very important you ensure your pipeline runs to completion before
 running it on the full data. When you do run it on the full data, please only
 run it once!**
 
 
-2. In your initial channels in your `main.nf`, change the `params.subset_reads`
-to `params.full_reads`. 
+2. In your initial channels in your `main.nf`, change the samplesheet you read
+from the subsampled samplesheet to the full data samplesheet. 
 
 3. Now run your pipeline for real using the following command:
 
