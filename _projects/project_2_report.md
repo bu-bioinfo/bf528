@@ -18,6 +18,8 @@ Notebooks and allow you to write R code and markdown in the same file.
 
 # Methods (as long as needed)
 
+Please view the presentation here for guidelines: ![methods]({{ site.baseurl }}/_lectures/accessory-slides.md)
+
 The methods section should concisely describe which steps were taken in the
 analysis of the data. Remember to adhere to our conventions for writing a
 methods section, including specifying the software versions used and the
