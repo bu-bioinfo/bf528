@@ -170,7 +170,7 @@ patterns: "<fastq_filename_without_file_extension>_fastqc.html" and
 
 1. Specify the output using the record you declared at the top holding two files,
 the .zip and the .html. Remember that you need to declare in the output the
-exact files Nextflow should expect. You can make use of the "*" to capture any
+exact files Nextflow should expect. You can make use of the "`*`" to capture any
 files ending in the patterns you want (e.g. "*.zip" or "*.html")
 
 ### Script Block
@@ -564,7 +564,7 @@ process outputs. The GTF is shared by every sample, so provide it separately on
 its own line.
 
 The output record should contain the sample `name` and the file of interest
-created by VERSE, which is named with the pattern "*.exon.txt".
+created by VERSE, which is named with the pattern "`*.exon.txt`".
 
 ### Additional labels and directives
 
@@ -683,6 +683,16 @@ differential expression analysis.
 - Perform basic differential expression on your data using DESeq2 
 
 - Generate a sample-to-sample distance plot and PCA plot for your experiment
+
+## Setting up the publish and output blocks
+
+In the top-level `main.nf` you were provided, you were given the `publish:` block
+inside of the `workflow` block and the `output` block below the `workflow` block.
+
+Use the past examples in labs or the nextflow documentation and ensure that you
+send the results of `multiqc`, `parse_gtf` and `concat_cts` at minimum to the
+`results/` directory for easy access.
+
 
 ## Switching to the full data
 
