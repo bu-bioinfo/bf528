@@ -12,13 +12,15 @@ fit a manageable number of tasks into each week and give you a rough timeline.
 
 FastQC: `ghcr.io/bf528/fastqc:latest`
 
-multiQC: `ghcr.io/bf528/multiqc:latest`
+MultiQC: `ghcr.io/bf528/multiqc:latest`
 
 VERSE: `ghcr.io/bf528/verse:latest`
 
 STAR: `ghcr.io/bf528/star:latest`
 
 Pandas: `ghcr.io/bf528/pandas:latest`
+
+Biopython: `ghcr.io/bf528/biopython:latest`
 
 # Week 1: RNAseq
 
@@ -42,7 +44,7 @@ index for alignment, and making a mapping of human ensembl IDs to gene names.
 
 - Use STAR to create a genome index for the human reference genome
 
-## Create a working directory for project 1
+## Create a working directory for project 2
 
 Accept the github classroom link and clone the assignment to your student
 directory in /projectnb/bf528/students/*your_username*/. This link will be
@@ -98,7 +100,7 @@ container. We will get some experience later in the semester with building your
 own containers from scratch.
 
 In general, the containers will be named following the same pattern:
-`ghcr.io/bf528/<name-of-tool>:latest` or `ghcr.io/bf528/fastqc:latest`.
+`ghcr.io/bf528/<name-of-tool>:latest` (e.g. `ghcr.io/bf528/fastqc:latest`).
 
 ## Important Note for developing your workflow
 
@@ -114,7 +116,6 @@ This is really important for this project since the real data is quite large
 and you will only run it with the real data once you are sure that your pipeline
 has the desired behavior. 
 
-
 ## Generating our input channels for nextflow
 
 In your `main.nf` at the top-level of the directory, make two initial channels
@@ -123,19 +124,18 @@ appropriately named variables in the `workflow` block.
 
 1. A channel of records that reads each element from the `samplesheet.csv`
 and maintains the `name`, `R1`, and `R2` fields. The number of elements should
-match the number of samples
+match the number of samples.
 
 2. A channel of records that has "exploded" out the `R1` and `R2` fields. This
 channel of records should contain N * 2 records, one per each fastq and sample.
 This record should have fields `name` and `fastq`.
-
 
 ## Performing Quality Control
 
 Look for the partially filled in module, `modules/fastqc/main.nf`. This is the
 only one I will provide. 
 
-### Make the records for the inputs and outputs
+### Construct the input and output records
 
 1. Declare a record at the top that matches the channel you constructed previously
 containing fields `name` and `fastq`.
@@ -151,12 +151,12 @@ process.
 2. Add a `container` directive that specifies to nextflow what environment to run
 this process in.
 
-### Input block
+### Input Block
 
 1. Specify the record you declared at the top as your `input` and provide it a
 local variable name.
 
-### Output block
+### Output Block
 
 In general, you will always have to know what files are created by the tool you
 are using. Some tools automatically create files with certain pre-set naming 
@@ -165,8 +165,8 @@ a file.
 
 For FastQC, it is not well-documented what is produced so I will tell you upfront.
 FastQC creates two output files based on a FASTQ passed to it with the following
-patterns: "<original_sample_name_without_file_extension>_fastqc.html" and 
-"<original_sample_name_without_file_extension>_fastqc.zip". 
+patterns: "<fastq_filename_without_file_extension>_fastqc.html" and 
+"<fastq_filename_without_file_extension>_fastqc.zip". 
 
 1. Specify the output using the record you declared at the top holding two files,
 the .zip and the .html. Remember that you need to declare in the output the
@@ -182,6 +182,7 @@ for FastQC is well-hidden, I will give you the general shape of the command belo
 ```bash
 fastqc <fastq-file>
 ```
+
 ### Stub Block
 
 For every process, you will fill out a stub block that uses the `name` in the 
@@ -196,6 +197,17 @@ expects `${name}.txt`, your stub block would be:
 touch ${name}.txt
 ```
 
+**N.B.** For FastQC specifically, the R1 and R2 records for a sample share the
+same `name`. If you name your fake files using only `name`, the R1 and R2 outputs
+will have identical filenames and one will overwrite the other when they are
+published to the same directory. Instead, name the fake files after the FASTQ
+file itself, just like FastQC does. `simpleName` strips everything after the
+first `.` in a filename (e.g. `sample1_R1.fastq.gz` becomes `sample1_R1`):
+
+```bash
+touch ${<your_record>.fastq.simpleName}_fastqc.html
+touch ${<your_record>.fastq.simpleName}_fastqc.zip
+```
 
 ## Generate a file containing the gene IDs and their corresponding human gene symbols
 
@@ -223,13 +235,13 @@ corresponding gene name. Please copy and modify the `argparse` code used in
 previous scripts to allow the specification of command line arguments. 
 
 2. The script should take a single file input (GTF) and output a single text
-file
+file.
 
 3. Create a nextflow module, `modules/parse_gtf/main.nf` that calls this script
 and provides the appropriate command line arguments necessary to run it.
 
-4. You may use the biopython (ghcr.io/bf528/biopython:latest) or the pandas
-(ghcr.io/bf528/pandas:latest) container to run this task as both of these
+4. You may use the biopython (`ghcr.io/bf528/biopython:latest`) or the pandas
+(`ghcr.io/bf528/pandas:latest`) container to run this task as both of these
 contain a python installation.
 
 5. Incorporate this module to parse the GTF into your workflow `main.nf` and
@@ -242,13 +254,13 @@ same name your output block expects.
 
 [STAR Documentation](https://github.com/alexdobin/STAR)
 
-- Section 2 describe show to create a genome index and you may use the default
+- Section 2 describes how to create a genome index and you may use the default
 commands without changing any options
 - Remember that you can run multiple commands in the script block of nextflow by
 writing them on new lines. You can use the `mkdir` command to create the output
 directory for the index files and then reference that same directory in the command.
 
-### Make the records for the input and output
+### Construct the input and output records
 
 1. The input record should contain two files, the genome FASTA file and the 
 associated GTF
@@ -256,7 +268,7 @@ associated GTF
 2. The output will be a single path to the directory that STAR creates. The STAR
 index is composed of a set of files contained within the same directory. 
 
-### Additional Labels and directives
+### Additional labels and directives
 
 Ensure that it has an appropriate `label` and `container` specification.
 
@@ -273,8 +285,7 @@ below, create a directory and have STAR output its index into that directory.
 The output of this process will be a single directory path containing all of the
 files comprising the index. 
 
-
-### Script
+### Script Block
 
 Check the documentation for the appropriate command and flags. You may use default
 settings for the STAR index command. Ensure that you include the following flag
@@ -306,7 +317,7 @@ every process even though I explicitly instructed you for just these two.
 2. Use the files contained within your `nextflow.config`
   
 3. Generate a nextflow channel that has 6 total elements where
-each element is a record containing three fields, `name`, `r1` and `r2`
+each element is a record containing three fields, `name`, `R1` and `R2`
 
 4. Generate a nextflow channel that has 12 total
 elements where each element is a record containing two fields, `name` and `fastq`
@@ -368,7 +379,10 @@ and construct a working nextflow module that performs basic alignment using STAR
 
 ### Additional labels and directives
 
-### Construct records for the input and output
+Ensure it will run in an appropriate environment and specify what label to use
+for computational resources. 
+
+### Construct the input and output records
 
 Your input should be a record that has the sample name, and the two associated R1
 and R2 files (you've already constructed a channel holding this information)
@@ -377,7 +391,7 @@ The output for this process should be the BAM file created and the log file.
 
 ### Input Block
 
-Assign the record to a local variable so you can access variable fields in you
+Assign the record to a local variable so you can access its fields in your
 command.
 
 ### Output Block
@@ -406,7 +420,7 @@ STAR --runThreadN $task.cpus --genomeDir <directory> --readFilesIn <reads> --rea
 
 The `2>` redirects the standard error to the log file and this is what will enable
 us to collect the alignment statistics from the log file. The ${name} may differ
-based on how you have named your input tuples, but you should name the log file
+based on how you have named your input record, but you should name the log file
 with the same name as the sample identifier. 
 
 The log file from STAR will allow us to collect certain statistics about the
@@ -469,16 +483,16 @@ for computational resources.
 ### Input Block
 
 MultiQC will scan the current directory and automatically detect known output files.
-The input will simply take adavantage of Nextflow staging to gather together all
+The input will simply take advantage of Nextflow staging to gather together all
 of the files into the same location.
 
 ### Output Block
 
 MultiQC creates a single file output called "multiqc_report.html" by default.
 
-### Script block
+### Script Block
 
-Look at the documentation for the appropriate command
+Look at the documentation for the appropriate command.
 
 ### Stub Block
 
@@ -489,7 +503,6 @@ Remember to include a `stub` block that uses `touch` to create an empty
 
 1. Use appropriate operators to gather together all of the STAR output logs, and
 the FastQC results into a single channel. 
-
 
 ## Quantifying alignments to the genome
 
@@ -527,23 +540,23 @@ The file of interest created by verse is named with the pattern "*.exon.txt".
 Ensure it will run in an appropriate environment and specify what label to use
 for computational resources. 
 
-### Input block
+### Input Block
 
 List the BAM files and the GTF on new lines in the input and then pass them
-left-to-right in the process call in your `main.nf`/
+left-to-right in the process call in your `main.nf`.
 
-### Output block
+### Output Block
 
-VERSE creates a single file of interest with a known pattern
+VERSE creates a single file of interest with a known pattern.
 
-### Script block
+### Script Block
 
 Read the documentation and fill out the script block appropriately. 
 
 ### Stub Block
 
-Remember to include a `stub` block. Use the `name` value from your input record
-to `touch` a fake `${name}.exon.txt` file so it matches the output pattern.
+Remember to include a `stub` block. Use the sample `name` to `touch` a fake
+`${name}.exon.txt` file so it matches the output pattern.
 
 ## Concatenating count outputs into a single matrix
 
@@ -553,24 +566,24 @@ need to combine count outputs from each sample into a single file where the rows
 are the genes and the columns are the sample counts.
 
 1. Write a python script, `bin/concat_cts.py`, that will concatenate all of the 
-verse output files andwrite a single counts matrix containing all of your samples.
+VERSE output files and write a single counts matrix containing all of your samples.
 As with any external script, make it executable with a proper shebang line and 
 use argparse to allow the incorporation of command line arguments. I suggest you
- use `pandas`for this task and you can use the pandas container 
- `ghcr.io/bf528/pandas:latest`.
-- Look at the structure of the .exon.txt files, and the final counts matrix / CSV
-should have the same number of rows as the number of genes in the reference
- genome and the same number of columns as the number of samples.
+use `pandas` for this task and you can use the pandas container 
+`ghcr.io/bf528/pandas:latest`.
+  - Look at the structure of the .exon.txt files. The final counts matrix / CSV
+  should have the same number of rows as the number of genes in the reference
+  genome and the same number of columns as the number of samples.
 
-2. Generate a module, `modules/concat_cts/main.nf`,  that runs this script and
+2. Generate a module, `modules/concat_cts/main.nf`,  that runs this script
 according to all of the conventions for modules. Don't forget to include a `stub`
 block that uses `touch` to create an empty counts matrix with the same name your
 output block expects.
 
 3. In your top-level `main.nf` workflow script, use appropriate nextflow operators
-to gather all of the verse outputs together. 
+to gather all of the VERSE outputs together. 
 
-## Week 2 Detailed Task Summary
+## Week 2 Tasks Summary
 
 1. Generate a module that runs STAR to align reads to a reference genome
   - Ensure that you output the alignments in BAM format
@@ -686,10 +699,10 @@ Perform a basic differential expression analysis and produce the following as we
 formatted figures:
 
   1. A table containing the DESeq2 results for the top ten significant genes 
-  ranked by padj. Your results should have the corresponding gene names for
-  each gene symbol. You should not need to use bioMart or any other utility,
+  ranked by padj. Your results should have the corresponding gene name for
+  each ensembl gene ID. You should not need to use bioMart or any other utility,
   you have already created a file from when you parsed the GTF that contains
-  the gene names for each gene symbol. 
+  the gene names for each ensembl gene ID. 
   - Note that this is not your list of differentially expressed genes. This is just
   a quick figure that displays some of the most differentially expressed genes
   
@@ -713,7 +726,7 @@ functions already implemented in DESeq2 (see the vignette).
 
 1. Choose an appropriate normalization strategy (rlog or vst) and generate a
 normalized counts matrix for the experiment. Refer to the DESeq2 vignette [here](https://bioconductor.org/packages/3.21/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#count-data-transformations)
-for specific directions on how to do this, 
+for specific directions on how to do this.
 
 2. Perform PCA on this normalized counts matrix and overlay the sample
 information in a biplot of PC1 vs. PC2
@@ -740,7 +753,7 @@ ranked list of your genes and log2FoldChange in descending order. **N.B.** For
 GSEA specifically, you should **not** filter by significance and your list should
 be every gene discovered in the experiment.
 
-2. Go to the the [C2 canonical pathways MSIGDB dataset](https://www.gsea-msigdb.org/gsea/msigdb/human/collections.jsp#C2) and download it to your local computer and upload it to
+2. Go to the [C2 canonical pathways MSIGDB dataset](https://www.gsea-msigdb.org/gsea/msigdb/human/collections.jsp#C2) and download it to your local computer and upload it to
 your working directory on the cluster
 
 3. Use either GSEABase or the fgsea function to read in the gene set file (.gmt)
@@ -780,11 +793,11 @@ experiment.
 
 ## Replicate figure 3C and 3F
 
-Focus on figure 3C and specifically their discussion of their RNAseq results. 
+Focus on figures 3C and 3F and specifically their discussion of their RNAseq results. 
 
-1. Create a volcano plot similar to the one seen in figure 3c. Use your DAVID
+1. Create a volcano plot similar to the one seen in figure 3C. Use your DAVID
 or GSEA results and create a plot with the same information as 3F using your
-findings.     
+findings.
 
 2. Read their discussion of their results and specifically address the following
 in your provided notebook:
@@ -796,7 +809,7 @@ in your provided notebook:
   - Compare their enrichment results with your DAVID and GSEA analysis. Comment
   on any differences you observe and why there are discrepancies.
 
-## Week 4 Detailed Tasks Summary
+## Week 4 Tasks Summary
 
 1. Read the original publication and focus specifically on the RNAseq experiment
 
