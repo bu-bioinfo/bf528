@@ -3,7 +3,9 @@ title: "Project 3: ChIPseq"
 layout: single
 ---
 
-THIS IS SET TO BE ARCHIVED AND WILL BE UPDATED SHORTLY
+# Workflow Visualization
+
+![workflow]({{ site.baseurl }}/assets/images/project-3-workflow-diagram.svg)
 
 # REMINDER TO CLEAN UP YOUR WORKING DIRECTORY FROM PROJECT 2
 
@@ -20,6 +22,8 @@ rm -rf work/
 These samples are very large and we have limited disk space. I will be checking
 your working directories to ensure you do this. 
 
+# Project 3 Instructions
+
 Now that we have experience with Nextflow from two prior projects, the
 directions for this project will be much less detailed. I will describe what you
 should do and you will be expected to implement it yourself. If you are asked to 
@@ -31,40 +35,63 @@ Please follow all the conventions we've established so far in the course.
 These conventions include:
 
   1. Using isolated containers specific for each tool 
-  2. Write extensible and generalizble nextflow modules for each task
-  3. Encoding reference file paths in the `nextflow.config`
-  4. Encoding sample info and sample file paths in a csv that drives your workflow
-  5. Requesting appropriate computational resources per job
+  2. Writing extensible and generalizable nextflow modules for each task
+  3. Declaring records for the inputs and outputs of each process and using
+  static typing for your params, process inputs and outputs
+  4. Encoding reference file paths in the `nextflow.config`
+  5. Encoding sample info and sample file paths in a csv that drives your workflow
+  6. Requesting appropriate computational resources per job
+  7. Including a `stub` block in every process
 
-# Project 3 Workflow Diagram
+## Fill out the specifications.md provided
 
-![project-3-mmd-pipeline]( {{site.baseurl}}/assets/images/project-3-mmd-pipeline.png)
+Before you start any work on the pipeline, fill out the sections in the provided
+`specifications.md`. This is meant to give you practice thinking at a high-level
+about what your pipeline is doing, how it is behaving, and which points are critical
+for you to review or validate. This will become especially important to keep in
+mind once you start using agentic coding harnesses to develop workflows. 
+
+## Important Note for developing your workflow
+
+As in project 2, you should always include a `stub` block in every process that
+uses `touch` to generate fake versions of the outputs your process expects. Until
+you are 100% confident your workflow performs as expected, you should always run
+it with:
+
+```bash
+nextflow run main.nf -stub
+```
+
+This is really important for this project since the real data is quite large
+and you will only run it with the full data once you are sure that your pipeline
+has the desired behavior. 
 
 # Containers for Project 3
 
 FastQC: `ghcr.io/bf528/fastqc:latest`
 
-multiQC: `ghcr.io/bf528/multiqc:latest`
+MultiQC: `ghcr.io/bf528/multiqc:latest`
 
-bowtie2: `ghcr.io/bf528/bowtie2:latest`
+Bowtie2: `ghcr.io/bf528/bowtie2:latest`
 
-deeptools: `ghcr.io/bf528/deeptools:latest`
+deepTools: `ghcr.io/bf528/deeptools:latest`
 
-trimmomatic: `ghcr.io/bf528/trimmomatic:latest`
+Trimmomatic: `ghcr.io/bf528/trimmomatic:latest`
 
-samtools: `ghcr.io/bf528/samtools:latest`
+Samtools: `ghcr.io/bf528/samtools:latest`
 
-bedtools: `ghcr.io/bf528/bedtools:latest`
+Bedtools: `ghcr.io/bf528/bedtools:latest`
 
-homer/samtools: `ghcr.io/bf528/homer_samtools:latest`
+HOMER/Samtools: `ghcr.io/bf528/homer_samtools:latest`
 
 # Week 1: ChIPseq
 
 ## Overview
 
-This was a ChIPseq experiment from human cell lines that generated two replicates.
-This works out to four files per sample (two for IP and two for INPUT). The replicates
-are paired and denoted by the suffix _rep1 and _rep2. The IP and INPUT for each
+This was a ChIPseq experiment from human cell lines that generated two replicates,
+each with an IP and an INPUT sample. This works out to four samples in total
+(IP_rep1, IP_rep2, INPUT_rep1 and INPUT_rep2). The replicates are paired and
+denoted by the suffix _rep1 and _rep2. The IP and INPUT for each
 replicate originated from the same sample and should be used together when 
 performing peak calling. 
 
@@ -89,6 +116,8 @@ can use a non-splice aware algorithm to map our reads to the reference genome.
 
 - Trim adapters and low-quality reads using Trimmomatic
 
+- Build a bowtie2 index for the human reference genome
+
 - Align trimmed reads to the human reference genome
 
 - Run samtools flagstat to assess alignment statistics
@@ -96,6 +125,8 @@ can use a non-splice aware algorithm to map our reads to the reference genome.
 - Use MultiQC to aggregate all of the QC metrics
 
 - Use samtools to sort and index your BAM (alignment) files
+
+- Generate bigWig files from your BAM files using deepTools bamCoverage
 
 ## Quality Control, Genome indexing and alignment
 
@@ -112,7 +143,8 @@ are paired (e.g. INPUT_rep1 is the control for IP_rep1)
 1. Use the provided CSV files that point to both the subsampled and full files.
 When you are developing the beginning of your workflow, use the subsampled files
 (they will not work once you get to the peak calling step). I have made the initial
-channel for you.
+channel for you. You will switch to the full data before peak calling, as
+described in week 2.
 
 **Please note that the subsampled_files are named differently than the full files!**
 
@@ -127,6 +159,9 @@ bamCoverage in labs.
 
 **N.B. Some of the code from the labs will need to be modified to work for this specific experiment (paired end vs. single end, etc.)**
 
+Remember to construct input and output records based on what you expect each
+process to need and produce. 
+
 ## Sorting and indexing the alignments
 
 Many subsequent analyses on our BAM files will require them to be both sorted
@@ -134,7 +169,7 @@ and indexed. Just like for large sequences in FASTA files, sorting and indexing
 the alignments will allow us to perform much more efficient computational
 operations on them.
 
-1. Create a module(s) that will both sort and index your BAM files using Samtools. 
+1. Create modules that will sort and index your BAM files using Samtools. 
 
 ## Calculate alignment statistics using samtools flagstat
 
@@ -201,12 +236,26 @@ genomic feature.
 
 - Plot the correlation between the bigWig representations of your samples
 
+- Switch your workflow to the full data
+
 - Perform peak calling using HOMER on each of the two replicate experiments
 
 - Use bedtools to generate a single set of reproducible peaks with ENCODE
 blacklist regions filtered out
 
 - Annotate your filtered, reproducible peaks using HOMER
+
+## Create and use a single Jupyter notebook for any images, reports or written discussion
+
+Please create a single jupyter notebook (.ipynb) that contains all of the 
+requested figures, images or discussion requested. Please
+create a dedicated .yml file that specifies any needed packages (including
+an up-to-date installation of `ipykernel`). You may refer to the website for
+instructions on how to do this.
+
+This will enable your notebook to utilize the conda environment described in that
+yml file and ensure that your analysis is done in a reproducible and potentially
+portable manner.
 
 ## Plotting correlation between bigWigs
 
@@ -222,14 +271,42 @@ We are going to perform a quick correlation analysis between the distances in
 our bigWig representations of our BAM files to determine the similarity between
 our samples with the above assumptions in mind.
 
-1. Create a module and use the multiBigwigsummary utility in deeptools to create
+1. Create a module and use the `multiBigwigSummary` utility in deeptools to create
 a matrix containing the information from the bigWig files of all of your
 samples.
 
-2. Create a module and use the plotCorrelation utility in deeptools to generate
+2. Create a module and use the `plotCorrelation` utility in deeptools to generate
 a plot of the distances between correlation coefficients for all of your samples.
 You will need to choose whether to use a pearson or spearman correlation. In
 a notebook you create, provide a short justification for what you chose. 
+
+## Switching to the full data
+
+The subsampled files will not produce meaningful results for peak calling, so
+you will need to switch to the full data before moving on. Once your stub runs
+confirm that your workflow behaves as expected end-to-end, and your pipeline
+runs successfully on the subsampled files up to this point, we are going to
+apply our workflow to the original samples. Ensure that you requested a VSCode
+session that lasts for at least 12 hours.
+
+1. Look in your nextflow config for the param pointing to the samplesheet for
+the full data. 
+
+- **It is very important you ensure your pipeline runs to completion before
+running it on the full data. When you do run it on the full data, please only
+run it once!**
+
+2. In your initial channels in your `main.nf`, change the samplesheet you read
+from the subsampled samplesheet to the full data samplesheet. 
+
+3. Now run your pipeline for real using the following command:
+
+```bash
+nextflow run main.nf -profile singularity,cluster
+```
+
+You may examine the progress and status of your jobs by using the `qstat` utility
+as discussed in lecture and lab. 
 
 ## Peak calling using HOMER
 
@@ -238,29 +315,28 @@ in a genome relative to background noise. HOMER is a commonly used tool that
 incorporates a Poisson model and other methodologies to make robust peak-finding
 predictions. Generate a nextflow module and workflow that runs [HOMER](http://homer.ucsd.edu/homer/ngs/peaks.html)
 
-1. Generate a module that runs makeTagDirectory on each of your BAM files
+1. Generate a module that runs `makeTagDirectory` on each of your BAM files
 
-2. Generate a module that runs findPeaks on each of your tag directories
+2. Generate a module that runs `findPeaks` on each of your tag directories
 - Ensure that you specify the `-style factor` flag correctly for the samples
 
-3. **You will need to figure out how to pass both the IP and the Control sample
-for each replicate to the same command**. i.e. callpeak should run twice
-(IP_rep1 and control_rep1) and (IP_rep2 and control_rep2) as ChIP-seq
-experiments have paired IP and controls. The rep1 samples were derived from the
-same biological material and is a biological replicate for the rep 2 samples. 
+3. **You will need to figure out how to pass both the IP and the INPUT sample
+for each replicate to the same command**. i.e. `findPeaks` should run twice
+(IP_rep1 and INPUT_rep1) and (IP_rep2 and INPUT_rep2) as ChIP-seq
+experiments have paired IP and INPUT samples. The rep1 samples were derived from the
+same biological material and are a biological replicate for the rep2 samples. 
 You will end up with two sets of peak calls, one for each replicate pair. 
 
 4. HOMER generates a TXT file containing the peak outputs. Typically, we want
 to work with peaks in the BED format. Generate a nextflow module that uses the
-homer pos2bed.pl utility to convert the peak outputs to BED format.
-
+HOMER `pos2bed.pl` utility to convert the peak outputs to BED format.
 
 ## Generating a set of reproducible peaks with bedtools intersect
 
 We discussed various strategies for determining a set of "reproducible" peaks. 
 For the sake of expedience, we will be performing a simple intersection to come 
 up with a single set of peaks from this experiment. **Please come up with a valid
-intersection strategy for determine a reproducible peak. Remember that this choice
+intersection strategy for determining a reproducible peak. Remember that this choice
 is subjective, so make a choice and justify it**
 
 Generate a nextflow module and workflow that runs bedtools intersect to generate
@@ -280,12 +356,12 @@ independent of cell line or experiment. These unstructured and anomalous regions
 are problematic for certain analyses (ChIPseq) and are considered to be
 signal-artifact regions and commonly stored in the form of a [blacklist](https://www.nature.com/articles/s41598-019-45839-z)
 
-The Boyle LAB as part of the ENCODE project have very kindly produced a list of
+The Boyle Lab as part of the ENCODE project have very kindly produced a list of
 these regions in some of the major model organisms using a standard methodology.
 This list is encoded as a BED file and is hosted by the [Boyle
-Lab](https://github.com/Boyle-Lab/Blacklist)/ Please encode the path to the
+Lab](https://github.com/Boyle-Lab/Blacklist). Please encode the path to the
 blacklist in your params, you may find the file in the refs/ directory under
-materials/ for project 2. 
+materials/ for project 3. 
 
 1. Create a module that uses bedtools to remove any peaks that overlap with the
 blacklist BED for the most recent human reference genome. Generally speaking,
@@ -302,7 +378,7 @@ enables quick determination of the genomic structures your peaks are located in 
 their potential regulatory functions. You may find the manual page for HOMER and
 this utility [here](http://homer.ucsd.edu/homer/ngs/annotation.html)
 
-1. Create a module that uses `homer` and the `annotatePeaks.pl` script to annotate
+1. Create a module that uses HOMER and the `annotatePeaks.pl` script to annotate
 your BED file of reproducible peaks (filtered to remove blacklisted regions).
 
 2. **You should directly provide both a reference genome FASTA and the
@@ -312,22 +388,24 @@ fasta and the GTF.
 
 ## Week 2 Tasks Summary
 
-- Create nextflow modules and a script that performs the following tasks:
+- Create nextflow modules that perform the following tasks:
   
   1. Create a correlation plot between the sample bigWigs using deeptools 
-  multiBigWigSummary and plotCorrelation
-  2. Create a module that uses HOMER makeTagDirectory on each of your BAM files
-  3. Use HOMER findPeaks to perform peak calling on both replicate experiments
-  4. Generate a single set of reproducible peaks using bedtools
-  5. Filter peaks contained within the ENCODE blacklist using bedtools
-  6. Annotate peaks to their nearest genomic feature using HOMER
+  `multiBigwigSummary` and `plotCorrelation`
+  2. Create a module that uses HOMER `makeTagDirectory` on each of your BAM files
+  3. Switch your workflow to the full data samplesheet and run it on the cluster
+  4. Use HOMER `findPeaks` to perform peak calling on both replicate experiments
+  5. Convert the HOMER peak outputs to BED format using `pos2bed.pl`
+  6. Generate a single set of reproducible peaks using bedtools
+  7. Filter peaks contained within the ENCODE blacklist using bedtools
+  8. Annotate peaks to their nearest genomic feature using HOMER
 
 # Week 3: ChIPseq
 
 ## Overview
 
 In week 3, you will be using the UCSC table browser to obtain a BED file
-containing the start and end positions of every gene in the HG38 human reference
+containing the start and end positions of every gene in the hg38 human reference
 genome. This will enable you to plot the signal coverage from your samples in
 relation to genic structure (Transcription Start Site and Transcription
 Termination Site). You will also be performing motif enrichment to determine
@@ -343,19 +421,7 @@ your IP sample bigwigs to create a signal intensity plot
 
 - Perform motif enrichment on your reproducible and filtered peaks using HOMER
 
-## Create and use a single Jupyter notebook for any images, reports or written discussion
-
-Please create a single jupyter notebook (.ipynb) that contains all of the 
-requested figures, images or discussion requested. As in the previous projects, please
-create a dedicated .yml file that specifies any needed packages (including
-an up-to-date installation of `ipykernel`). You may refer to the website for
-instructions on how to do this.
-
-This will enable your notebook to utilize the conda environment described in that
-yml file and ensure that your analysis is done in a reproducible and potentially
-portable manner.
-
-## Download a HG38 gene BED from UCSC table browser
+## Download an hg38 gene BED from UCSC table browser
 
 We will be creating a plot which will provide a quick visualization of
 the average signal across the gene body of all genes. We will scale every gene
@@ -379,8 +445,8 @@ the radio button for "Genome" and not "Position" so that your BED files has the
 chromosome, start, and end positions of every gene in the reference genome and
 not a selected region. 
 
-    1. Put this BED file into your `refs/` working directory on SCC. 
-    
+1. Put this BED file into your `refs/` working directory on SCC. 
+
 I have also provided this bed file in the materials/ directory for project 3.
 
 This is a simple use case, but the UCSC table browser and UCSC genome browser
@@ -419,13 +485,28 @@ many DNA binding proteins bind as part of much larger multi-protein complexes th
 work in tandem to regulate gene expression. We will be using the HOMER tool
 to perform motif enrichment, you may find the manual [here](http://homer.ucsd.edu/homer/ngs/peakMotifs.html)
 
-1. Use the `findMotifsGenome.pl` utility in homer to perform motif enrichment
+1. Use the `findMotifsGenome.pl` utility in HOMER to perform motif enrichment
 analysis on your set of reproducible and filtered peaks. 
+
+## Setting up the publish and output blocks
+
+Use a `publish:` section inside of your `workflow` block and an `output` block
+below it to send your key results to the `results/` directory for easy access.
+Refer to the past examples in labs, project 2 or the nextflow documentation.
+At minimum, publish the following:
+
+- The MultiQC report
+- The correlation plot from `plotCorrelation`
+- The bigWig files for each sample (you will need these in week 4)
+- The reproducible and filtered peaks BED file
+- The annotated peaks from `annotatePeaks.pl`
+- The signal intensity plot from `plotProfile`
+- The motif enrichment results from `findMotifsGenome.pl`
 
 ## Week 3 Tasks Summary
 
 - Use the UCSC table browser to generate a BED file containing the TSS and TTS
-positions of every gene in the HG38 reference
+positions of every gene in the hg38 reference
 
 - Create nextflow modules and update your script to perform the following tasks:
 
@@ -437,6 +518,9 @@ positions of every gene in the HG38 reference
   
   3. Utilizes HOMER to perform basic motif finding on your reproducible and 
   filtered peaks
+
+- Publish your key results to the `results/` directory using the `publish:` and
+`output` blocks
   
 # Week 4: ChIPseq
 
@@ -446,7 +530,7 @@ For the final week, you will be reading the original paper and interpreting
 your results in the context of the publication's results. Specifically, you will
 be focusing on reproducing the results shown in figure 2 with your own findings. 
 This exercise is not meant to make any assertions as to the ground "truth" but
-to encourage you think about reproducibility in science. 
+to encourage you to think about reproducibility in science. 
 
 **Reminder**
 
@@ -499,7 +583,7 @@ RNAseq data, but you should re-create the genomic tracks from your ChIPseq resul
 
 4. In the notebook you created, please ensure you address the following questions:
 
-  1. Focusing on your results for figure 2f (You will likely not be able to exactly
+  1. Focusing on your results for figure 2F (You will likely not be able to exactly
   reproduce what they did - use the promoter-TSS start site in place of the gene
   body from your own results):
     - Do you observe any differences in the number of overlapping genes from both
@@ -534,7 +618,7 @@ with your own findings. Address the following questions:
   - What was the author's takeaway from this figure? What is your conclusion
   from this figure regarding the success of the experiment?
   
-3.  Create a venn diagram with the same information as found in figure S2C. 
+3. Create a venn diagram with the same information as found in figure S2C. 
 
   - Do you observe any differences in your results compared to what you see?
   
@@ -557,7 +641,13 @@ from the analysis.
 3. Comment briefly in a paragraph about the results you observe and why they 
 may be interesting.
 
-## Week 4 Detailed Tasks Summary
+## Write a methods section
+
+In your notebook, write a methods section for the complete analysis workflow
+implemented by your pipeline. Adhere to the guidelines and style discussed in
+class and include the tools, versions and any non-default parameters you used.
+
+## Week 4 Tasks Summary
 
 - Read the original publication with a particular focus on figure 2
 
@@ -570,7 +660,7 @@ significance threshold. Use this information to re-create figure 2F.
 - Re-create figures 2D and 2E and ensure you address the listed questions
 
 - Find supplementary figure S2 and re-create or compare your findings to
-supplementary figures 2A, 2B and 2C. Ensure you address any listed questions. 
+supplementary figures S2A, S2B and S2C. Ensure you address any listed questions. 
 
 - Perform an enrichment method using your annotated peaks and highlight the top
 results
