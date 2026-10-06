@@ -6,9 +6,9 @@ layout: single
 ---
 ## Biological Databases
 
-[online slides](https://docs.google.com/presentation/d/1WebY_mwEaR4BdHULyz2hRhqxTASX4o0yx2CJM6yKyhI/present?usp=sharing)
+[online slides](https://docs.google.com/presentation/d/19d2jCB3vGFVXBsDrJ90-0WwCk0yWQCIWt_7SvRDwtsE/present?usp=sharing)
 
-[downloadable slides](https://docs.google.com/presentation/d/1WebY_mwEaR4BdHULyz2hRhqxTASX4o0yx2CJM6yKyhI/export/pptx)
+[downloadable slides](https://docs.google.com/presentation/d/19d2jCB3vGFVXBsDrJ90-0WwCk0yWQCIWt_7SvRDwtsE/export/pptx)
 
 ---
 
