@@ -6,7 +6,62 @@ layout: single
 I have broken up the project into week-by-week sections. However, these sections
 are guidelines and not a strict timeline. Your report and project will be due
 only at the day specified on the schedule. These sections are designed to 
-fit a manageable number of tasks into each week and give you a rough timeline. 
+fit a manageable number of tasks into each week and give you a rough timeline.
+I have given you a .RMD file that you will periodically write sections of text in
+as well as the place where you will perform the later steps of differential expression
+and analysis.
+
+**Important note about the structure of this project**
+
+I have given you real data from a published paper but only limited information
+about the experiment: the sample metadata and the comparison being tested
+(control vs. experimental). For the first part of this project, you will build
+your pipeline and analyze the data without knowing which study it comes from.
+At the end of Week 2, I will post the original publication on Blackboard, and 
+you will compare your results and interpretations with the authors'.
+
+This is meant to let you explore the data and form your own conclusions before
+seeing what the authors chose to highlight. Please read the Project 2 Report
+Guidelines for a full description of what is expected in each phase.
+
+
+# Changes to our environment management strategy and workflow
+
+As we've discussed, conda environments are one solution to ensuring that your
+analyses are run in a reproducible and portable manner. Containers are an
+alternative technology that have a number of advantages over conda environments.
+Going forward, we will be incorporating containers specifying our computational
+environments into our pipeline.
+
+One of the advantages of container technologies is that they usually offer a
+robust ecosystem of shared containers (images) that are available in public
+repositories for anyone to reuse. We have developed a set of containers for each
+piece of software that we will be using in this course.
+
+For all future process scripts that you develop in nextflow, instead of 
+specifying the `conda` environment to execute the task with, you will instead
+specify `container` and the image (a container built with a certain specification)
+location. For example:
+
+```
+process FASTQC {
+  container 'ghcr.io/bf528/fastqc:latest'
+  ...
+
+}
+```
+
+For this course, these containers were all pre-built and their specifications kept
+in this public github repository: https://github.com/BF528/pipeline_containers.
+Feel free to look into the repo for how the containers were built. We follow a
+similar pattern where we specify the exact environment we would like created in
+a YAML file and then generate the environment using micromamba installed in a
+container. We will get some experience later in the semester with building your
+own containers from scratch.
+
+In general, the containers will be named following the same pattern:
+`ghcr.io/bf528/<name-of-tool>:latest` (e.g. `ghcr.io/bf528/fastqc:latest`).
+
 
 # Docker images for your pipeline
 
@@ -44,6 +99,15 @@ index for alignment, and making a mapping of human ensembl IDs to gene names.
 
 - Use STAR to create a genome index for the human reference genome
 
+- Align your sequencing reads to the human reference genome using STAR
+
+- Use MultiQC to generate a single report containing the quality metrics for
+the sequencing reads and alignments
+
+- Generate gene-level counts using VERSE for each of the samples
+
+- Concatenate gene-level counts from each sample into a single counts matrix
+
 ## Create a working directory for project 2
 
 Accept the github classroom link and clone the assignment to your student
@@ -65,42 +129,19 @@ about what your pipeline is doing, how it is behaving, and which points are crit
 for you to review or validate. This will become especially important to keep in
 mind once you start using agentic coding harnesses to develop workflows. 
 
-## Changes to our environment management strategy and workflow
+I have filled out the validation table partially with the steps and I ask that you
+simply provide how you will validate each step and be confident in what was produced.
+It is fine to go back and edit this if anything changes as you develop your workflow. 
 
-As we've discussed, conda environments are one solution to ensuring that your
-analyses are run in a reproducible and portable manner. Containers are an
-alternative technology that have a number of advantages over conda environments.
-Going forward, we will be incorporating containers specifying our computational
-environments into our pipeline.
+## rnaseq-report.Rmd - Experimental Design and Methods
 
-One of the advantages of container technologies is that they usually offer a
-robust ecosystem of shared containers (images) that are available in public
-repositories for anyone to reuse. We have developed a set of containers for each
-piece of software that we will be using in this course.
+1. Fill in the section for Experimental Design in the provided .Rmd. You may find
+the guidelines for doing so here: [Experimental Design]({{ baseSite }}/_projects/project_2_report#experimental-design-1-paragraph)
 
-For all future process scripts that you develop in nextflow, instead of 
-specifying the `conda` environment to execute the task with, you will instead
-specify `container` and the image (a container built with a certain specification)
-location. For example:
-
-```
-process FASTQC {
-  container 'ghcr.io/bf528/fastqc:latest'
-  ...
-
-}
-```
-
-For this course, these containers were all pre-built and their specifications kept
-in this public github repository: https://github.com/BF528/pipeline_containers.
-Feel free to look into the repo for how the containers were built. We follow a
-similar pattern where we specify the exact environment we would like created in
-a YAML file and then generate the environment using micromamba installed in a
-container. We will get some experience later in the semester with building your
-own containers from scratch.
-
-In general, the containers will be named following the same pattern:
-`ghcr.io/bf528/<name-of-tool>:latest` (e.g. `ghcr.io/bf528/fastqc:latest`).
+2. Please write a methods section for your workflow in this same .Rmd. You will
+need to come back to this section after you make certain choices in your method
+of filtering your counts and differential expression analysis, but write the methods
+now for just the pipeline. 
 
 ## Important Note for developing your workflow
 
@@ -334,58 +375,8 @@ I have provided you with a variety of pre-set labels, choose the ones you think
 are appropriate for each task based on their complexity. Make this a habit for
 every process even though I explicitly instructed you for just these two. 
 
-## Week 1 Tasks Summary
-
-In general, remember that once you have fully developed a module to `include`
-it in your top-level `main.nf` and start to call it on the appropriate channels
-and outputs to link together your workflow in the appropriate order. 
-
-1. Clone the github classroom link for this project
-
-2. Use the files contained within your `nextflow.config`
-  
-3. Generate a nextflow channel that has 6 total elements where
-each element is a record containing three fields, `name`, `R1` and `R2`
-
-4. Generate a nextflow channel that has 12 total
-elements where each element is a record containing two fields, `name` and `fastq`
-
-5. Generate a module that successfully runs FASTQC
-
-6. Develop an external script that parses the GTF and writes a delimited file
-where one column represents the ensembl human IDs and the value in the other 
-column is the associated human gene symbol. Develop the accompanying nextflow
-module, `modules/parse_gtf/main.nf` that runs this script. 
-
-7. Generate a module that successfully creates a STAR index using FASTA and GTF.
-
-# Week 2: RNAseq
-
-## Overview
-
-Now that we have performed basic quality control on the FASTQ files, we are
-going to map them to the human reference genome to generate alignments for
-each of our sequencing reads. After alignment, we will aggregate the outputs from
-FASTQC and STAR into a single report summarizing some of the important quality
-control metrics describing our sequencing reads and the alignments. We will then
-quantify the alignments in our BAM file to the gene-level using VERSE. 
-
-## Objectives
-
-- Align your sequencing reads to the human reference genome using STAR
-
-- Use MultiQC to generate a single report containing the quality metrics for
-the sequencing reads and alignments
-
-- Generate gene-level counts using VERSE for each of the samples
-
-- Concatenate gene-level counts from each sample into a single counts matrix
 
 ## Aligning reads to the genome
-
-Last week you generated a STAR index to enable alignment of reads to the human
-reference genome. This week, you will use this index to align the sequencing
-reads to the genome. 
 
 Remember that paired end reads are almost always used in conjunction with each
 other (R1 and R2) and that they collectively represent the reads from a single
@@ -646,24 +637,47 @@ matrix with the same name your output block expects.
 into a single channel and pass it to this module. Since your VERSE process outputs
 records, you will need to extract the `.exon.txt` file from each record first.
 
-## Week 2 Tasks Summary
+## Week 1 Tasks Summary
 
-1. Generate a module that runs STAR to align reads to a reference genome
+In general, remember that once you have fully developed a module to `include`
+it in your top-level `main.nf` and start to call it on the appropriate channels
+and outputs to link together your workflow in the appropriate order. 
+
+1. Clone the github classroom link for this project
+
+2. Use the files contained within your `nextflow.config`
+  
+3. Generate a nextflow channel that has 6 total elements where
+each element is a record containing three fields, `name`, `R1` and `R2`
+
+4. Generate a nextflow channel that has 12 total
+elements where each element is a record containing two fields, `name` and `fastq`
+
+5. Generate a module that successfully runs FASTQC
+
+6. Develop an external script that parses the GTF and writes a delimited file
+where one column represents the ensembl human IDs and the value in the other 
+column is the associated human gene symbol. Develop the accompanying nextflow
+module, `modules/parse_gtf/main.nf` that runs this script. 
+
+7. Generate a module that successfully creates a STAR index using FASTA and GTF.
+
+8. Generate a module that runs STAR to align reads to a reference genome
   - Ensure that you output the alignments in BAM format
   - Use all default parameters
   - Specify the log file with extension (.Log.final.out) as a nextflow output
   
-2. Make a module that runs MultiQC using a channel that contains all of the FASTQC
+9. Make a module that runs MultiQC using a channel that contains all of the FASTQC
 outputs and all of the STAR output log files
 
-3. Create a module that runs VERSE on all of your output BAM files to generate
+10 Create a module that runs VERSE on all of your output BAM files to generate
 gene-level counts for all of your samples
  
-4. Write a python script that uses `pandas` to concatenate all of the VERSE
+11. Write a python script that uses `pandas` to concatenate all of the VERSE
 outputs into a single counts matrix. Generate an accompanying nextflow module
 that runs this python script
 
-# Week 3: RNAseq
+# Week 2: RNAseq
 
 ## Overview
 
@@ -693,14 +707,12 @@ Use the past examples in labs or the nextflow documentation and ensure that you
 send the results of `multiqc`, `parse_gtf` and `concat_cts` at minimum to the
 `results/` directory for easy access.
 
-
 ## Switching to the full data
 
 Once you've confirmed that your pipeline works end-to-end on the subsampled files,
 we are going to properly apply our workflow to the original samples. This will
 require only a few alterations in order to do. Ensure that you requested a VScode
 session that lasts for at least 12 hours.
-
 
 1. Look in your nextflow config for the param pointing to the samplesheet for
 the full data. 
@@ -722,41 +734,28 @@ nextflow run main.nf -profile singularity,cluster
 You may examine the progress and status of your jobs by using the `qstat` utility
 as discussed in lecture and lab. 
 
-## Evaluate the QC metrics for the full data
+## rnaseq-report.Rmd - Evaluate the QC metrics for the full data
 
 After your pipeline has finished, inspect the MultiQC report generated from 
 the full samples.
 
 1. In your provided notebook, comment on the general quality of the sequencing
-reads. Write a paragraph in the style of a publication reporting what you find and
-any metrics that might be concerning. 
+reads. Use the guidelines here: [sequencing quality control]({{ baseSite }}/_projects/project_2_report/#read-quality-control-1-2-paragraphs)
 
-## Analysis Tasks - Rmarkdown Notebook
-
-You will typically be performing analyses in either a jupyter notebook or Rmarkdown.
-With the SCC, we will not be able to easily encapsulate R in an isolated environment.
-
-Instead, simply load the R module (on the launch page for VSCode in on-demand) 
-as you boot your VSCode extension and work in a Rmarkdown notebook. You may install packages
-as needed and ensure that you record the versions used with the `sessionInfo()` 
-function.
-
-I highly recommend you use Rmarkdown for this project. It will make it much easier
-for you to generate your report as nearly all of the analysis tasks will be done
-in R. 
-
-
-## Filtering the counts matrix
+## rnaseq-report.Rmd - Filtering the counts matrix
 
 We will typically filter our counts matrices to remove genes that we believe
 will be uninformative for the DE analysis. It is important to remember that
 filtering is subjective and meant to reduce computational time, or remove 
 uninformative rows. 
 
-1. Choose a filtering strategy and apply it to your counts matrix. In the provided
-notebook, report the strategy you used and create a plot or a table that demonstrates
-the effects of your filtering on the counts for all of your samples. Ensure you
-mention how many genes are present before and after your filtering threshold. 
+In your provided `rnaseq-report.Rmd`, load in the matrix of counts and generate
+a new matrix of filtered counts according to your choice of strategy.
+
+1. Choose a filtering strategy and apply it to your counts matrix. 
+
+2. In the same .Rmd, record the following in text about your choice of filtering
+strategy and other details: [Filtering Counts]({{ baseSite }}/_projects/project_2_report/#filtering-the-counts-matrix-1-2-paragraphs)
 
 ## Performing differential expression analysis using the filtered counts
 
@@ -779,7 +778,6 @@ formatted figures:
   the gene names for each ensembl gene ID. 
   - Note that this is not your list of differentially expressed genes. This is just
   a quick figure that displays some of the most differentially expressed genes
-  
   
   2. Choose an appropriate padj threshold and report the number of significant
   genes remaining that satisfy this threshold. Make sure you filter your list to 
@@ -840,24 +838,14 @@ displays the top most significant results from the FGSEA results.
 6. In your notebook, briefly remark on your results and what seems interesting to
 you about the biology.
 
-# Week 4: RNAseq
+# Weeks 3 and 4: RNAseq
 
 ## Overview
 
-For the final week, use this time to finish up any tasks you weren't able to 
+For these final weeks, use this time to finish up any tasks you weren't able to 
 complete. There are no nextflow tasks this week, but you will be asked to create
 some figures from the original paper using your own findings. Do all of these
-tasks in the notebook you created from week 3. 
-
-## Objectives
-
-- Read the original publication with a specific focus on their RNAseq experiment
-
-- Reproduce figures 3C and 3F with your own findings and compare them in your
-discussion
-
-- Write a short methods section for your pipeline and compare with the methods
-published in the original paper
+tasks in one notebook.
 
 ## Read the original paper
 
@@ -865,32 +853,55 @@ The original publication was given to you in a post on blackboard. Please read
 the paper and focus specifically on their analysis and discussion of their RNAseq
 experiment. 
 
-## Replicate figure 3C and 3F
+## Complete the Phase 2 portion of the report
 
-Focus on figures 3C and 3F and specifically their discussion of their RNAseq results. 
+## Phase 2: Informed analysis
 
-1. Create a volcano plot similar to the one seen in figure 3C. Use your DAVID
-or GSEA results and create a plot with the same information as 3F using your
-findings.
+### Introduction (1 paragraph)
 
-2. Read their discussion of their results and specifically address the following
-in your provided notebook:
+- What is the biological background of the study?
+- Why was the study performed?
+- Why did the authors use the bioinformatic techniques they did?
 
-  - Compare how many significant genes are up- and down-regulated in their
-  findings and yours (using their significance threshold). Ensure you list how 
-  many you find vs. how many they report. 
+### Replicate Figures 3C and 3F (3-4 paragraphs)
 
-  - Compare their enrichment results with your DAVID and GSEA analysis. Comment
-  on any differences you observe and why there are discrepancies.
+- Create a volcano plot similar to the one seen in figure 3C
+- Use your DAVID/Enrichr or fgsea results and create a plot resembling figure
+3F but with your findings. You do not need to use the same pathways as they did.
+- Read their discussion of their results and specifically address the
+following in your provided notebook:
 
-## Week 4 Tasks Summary
+1. Compare how many significant genes are up- and downregulated in their
+findings and yours (using their significance threshold). Ensure you list how
+many you find vs. how many they report.
 
-1. Read the original publication and focus specifically on the RNAseq experiment
+2. Compare their enrichment results with your DAVID/Enrichr and fgsea
+analyses. Comment on any differences you observe.
 
-2. Recreate figures 3C and 3F with your own results and ensure you address the
-listed questions in your notebook
+3. List the candidate sources of discrepancy between your results and theirs
+(e.g. genome and annotation versions, aligner, filtering, normalization,
+thresholds, multiple testing correction). Using the paper's methods as
+evidence, comment on at least two candidate sources you believe contribute the most
+to the differences you observe.
+   - For each candidate source, please provide a follow-up analysis or experiment
+   that would reveal whether it was the likely source of the differences. **You
+   do not need to actually do this analysis, just propose how.**    
 
-3. Write a methods section in the style we've discussed for your workflow
+### Comparing Interpretations (2-3 paragraphs)
 
-4. Ensure you read the Project 2 Report Guidelines for a full description of
-what is expected of you. 
+Return to your first interpretations about the major biological pathways implicated
+in the results:
+
+- Did the authors emphasize any genes or pathways that were weak or absent in
+your results? How strongly do you think their data support those claims?
+
+- Which of your findings agree with the authors'? Does reaching the same result
+through a different pipeline make you more or less confident in it, and why?
+
+### Conclusions (1-2 paragraphs)
+
+Please address the following:
+
+- Compare your first conclusions with those made by the paper. Did they propose
+any follow-up experiments or perform any validation? What was different between
+what you proposed and what they did or proposed in the text?
