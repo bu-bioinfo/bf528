@@ -119,10 +119,6 @@ all samples as they are? If not, what would you change, and why?
 statistics provided by DESeq2 as ranked by adjusted p-value
 - Choose a padj threshold and report the number of significant genes at this
 threshold, separated into up- and downregulated
-- Rerun your analysis with one alternative choice: either a different padj
-threshold or a different filtering strategy. Report how the number of
-significant genes and your top enrichment results change in a short table.
-Comment on whether your conclusions are robust to this choice.
 - Use the thresholded results to perform a DAVID or Enrichr analysis on the
 significant genes at your chosen padj threshold
     - State the background gene set you used and justify it
@@ -131,15 +127,13 @@ significant genes at your chosen padj threshold
 - Perform a GSEA analysis using [fgsea](https://bioconductor.org/packages/release/bioc/html/fgsea.html)
 on your RNAseq results using the C2 canonical pathways MSigDB dataset and log2
 fold change as the ranking metric
-    - State whether you used shrunken log2 fold changes, and why
-    - Briefly comment on what might change if you had ranked genes by the
-    DESeq2 test statistic instead
 - Choose a padj threshold for the fgsea analysis and create a plot of your
 choice that displays the top most significantly enriched pathways
 - Comment briefly on the results of the DAVID or Enrichr analysis and the
 table you created and what it indicates about the biological processes that
 might differ between groups
-- Comment briefly on the results of the fgsea analysis
+- Comment briefly on the results of the fgsea analysis by stating what you believe
+are the main significant pathways of interest and why?
 - Compare the results from your DAVID/Enrichr analysis and your fgsea analysis
 and comment on any similarities or differences you observe
 

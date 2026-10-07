@@ -114,14 +114,14 @@ Accept the github classroom link and clone the assignment to your student
 directory in /projectnb/bf528/students/*your_username*/. This link will be
 posted on the blackboard site for our class.
 
-## Necessary paths and files are in your nextflow.config
+## nextflow.config - Necessary paths and files are in your nextflow.config
 
 Please look in your nextflow.config for various variables that I have given you
 that you will need to use in your pipeline. I have provided you the path to the
 files as well as the reference genome and matching GTF. You can access these
 values by `params.variable_name_in_config`.
 
-## Fill out the specifications.md provided
+## specifications.md - Fill out the rest of the specifications document
 
 Before you start working on the pipeline, fill out the sections in the provided
 `specifications.md`. This is meant to give you practice thinking at a high-level
@@ -133,7 +133,7 @@ I have filled out the validation table partially with the steps and I ask that y
 simply provide how you will validate each step and be confident in what was produced.
 It is fine to go back and edit this if anything changes as you develop your workflow. 
 
-## rnaseq-report.Rmd - Experimental Design and Methods
+## rnaseq-report.Rmd - Write the initial Experimental Design and Methods
 
 1. Fill in the section for Experimental Design in the provided .Rmd. You may find
 the guidelines for doing so here: [Experimental Design]({{ baseSite }}/_projects/project_2_report#experimental-design-1-paragraph)
@@ -157,7 +157,7 @@ This is really important for this project since the real data is quite large
 and you will only run it with the real data once you are sure that your pipeline
 has the desired behavior. 
 
-## Generating our input channels for nextflow
+## main.nf (top-level) - Generating our input channels for nextflow
 
 In your `main.nf` at the top-level of the directory, make two initial channels
 that will serve as the starting point for your workflow and save them to 
@@ -171,7 +171,7 @@ match the number of samples.
 channel of records should contain N * 2 records, one per each fastq and sample.
 This record should have fields `name` and `fastq`.
 
-## Performing Quality Control
+## modules/fastqc/main.nf - Performing Quality Control
 
 Look for the partially filled in module, `modules/fastqc/main.nf`. This is the
 only one I will provide. 
@@ -250,7 +250,7 @@ touch ${<your_record>.fastq.simpleName}_fastqc.html
 touch ${<your_record>.fastq.simpleName}_fastqc.zip
 ```
 
-## Generate a file containing the gene IDs and their corresponding human gene symbols
+## bin/parse_gtf.py - Creating a map between gene identifiers and gene symbols
 
 As we've discussed, it's often more intuitive for us to use gene names rather than
 their IDs. You are likely familiar with seeing genes referenced by their names
@@ -270,13 +270,13 @@ the conventions established in project 1. We will place this script in the `bin/
 directory and make it executable. We will then create a nextflow module that will
 provide the appropriate command line arguments to the script.
 
-### Python script
-
-Generate a python script `bin/parse_gtf.py` that parses the GTF file you were
+1. Generate a python script `bin/parse_gtf.py` that parses the GTF file you were
 provided and creates a delimited file containing the ensembl human ID and its 
 corresponding gene name. Please copy and modify the `argparse` code used in 
 previous scripts to allow the specification of command line arguments. The
 script should take a single file input (GTF) and output a single text file.
+
+## modules/parse_gtf/main.nf - a nextflow module that runs the parse_gtf script
 
 ### Construct the input and output records
 
@@ -315,7 +315,7 @@ with the same name your output block expects.
 1. Call this module in your workflow and pass it the appropriate GTF input
 encoded as a param. 
 
-## Generate a genome index using STAR
+## modules/star_index/main.nf - Generate a genome index using STAR
 
 [STAR Documentation](https://github.com/alexdobin/STAR)
 
@@ -376,7 +376,7 @@ are appropriate for each task based on their complexity. Make this a habit for
 every process even though I explicitly instructed you for just these two. 
 
 
-## Aligning reads to the genome
+## modules/star_align/main.nf - Aligning reads to the genome
 
 Remember that paired end reads are almost always used in conjunction with each
 other (R1 and R2) and that they collectively represent the reads from a single
@@ -464,7 +464,7 @@ Remember to include a `stub` block. Use the `name` value from your input record
 to `touch` a fake BAM file and log file with the same names your output
 block expects (e.g. `${name}.Log.final.out`).
 
-## Performing post-alignment QC and aggregating all QC results together
+## modules/multiqc/main.nf - Performing post-alignment QC and aggregating all QC results together
 
 Typically after performing alignment, it is good to obtain a few post-alignment
 quality control metrics to quickly check if there appear to be any major
@@ -518,12 +518,12 @@ Look at the documentation for the appropriate command.
 Remember to include a `stub` block that uses `touch` to create an empty
 `multiqc_report.html`.
 
-### In your main.nf
+### main.nf (top-level)
 
 1. Use appropriate operators to gather together all of the STAR output logs, and
 the FastQC results into a single channel. 
 
-## Quantifying alignments to the genome
+## modules/verse/main.nf - Quantifying alignments to the genome
 
 In RNAseq, we are interested in quantifying gene expression and comparing that
 expression across conditions. We have so far generated alignments from the reads
@@ -580,16 +580,14 @@ Read the documentation and fill out the script block appropriately.
 Remember to include a `stub` block. Use the `name` value from your input record
 to `touch` a fake `${name}.exon.txt` file so it matches the output pattern.
 
-## Concatenating count outputs into a single matrix
+## bin/concat_cts.py - Concatenating count outputs into a single matrix
 
 After VERSE has run successfully, you will have generated a single set of counts
 for each of your samples. To perform differential expression analysis, we will
 need to combine count outputs from each sample into a single file where the rows
 are the genes and the columns are the sample counts.
 
-### Python script
-
-Write a python script, `bin/concat_cts.py`, that will concatenate all of the 
+1. Write a python script, `bin/concat_cts.py`, that will concatenate all of the 
 VERSE output files and write a single counts matrix containing all of your samples.
 As with any external script, make it executable with a proper shebang line and 
 use argparse to allow the incorporation of command line arguments. I suggest you
@@ -598,6 +596,8 @@ use `pandas` for this task.
 Look at the structure of the .exon.txt files. The final counts matrix / CSV
 should have the same number of rows as the number of genes in the reference
 genome and the same number of columns as the number of samples.
+
+## modules/concat_cts/main.nf - Construct a nextflow module that calls concat_cts.py
 
 ### Construct the input and output records
 
@@ -740,7 +740,7 @@ After your pipeline has finished, inspect the MultiQC report generated from
 the full samples.
 
 1. In your provided notebook, comment on the general quality of the sequencing
-reads. Use the guidelines here: [sequencing quality control]({{ baseSite }}/_projects/project_2_report/#read-quality-control-1-2-paragraphs)
+reads. Use the guidelines here: [sequencing quality control]({{ baseSite }}/projects/project_2_report/#read-quality-control-1-2-paragraphs)
 
 ## rnaseq-report.Rmd - Filtering the counts matrix
 
@@ -755,9 +755,9 @@ a new matrix of filtered counts according to your choice of strategy.
 1. Choose a filtering strategy and apply it to your counts matrix. 
 
 2. In the same .Rmd, record the following in text about your choice of filtering
-strategy and other details: [Filtering Counts]({{ baseSite }}/_projects/project_2_report/#filtering-the-counts-matrix-1-2-paragraphs)
+strategy and other details: [Filtering Counts]({{ baseSite }}/projects/project_2_report/#filtering-the-counts-matrix-1-2-paragraphs)
 
-## Performing differential expression analysis using the filtered counts
+## rnaseq-report.Rmd - Performing differential expression analysis using the filtered counts
 
 Refer to the DESeq2 vignette on how to perform a basic differential expression
 analysis. For this dataset, you will simply be testing for differences between
@@ -766,29 +766,13 @@ to generate a list of statistically significant differentially expressed genes
 from your analysis. 
 
 You may refer to the official [DESeq2](https://bioconductor.org/packages/3.21/bioc/vignettes/DESeq2/inst/doc/DESeq2.html)
-vignette or the [BF591](https://bu-bioinfo.github.io/r-for-biological-sciences/biology-bioinformatics.html#differential-expression-rnaseq) instructions for how to run a basic differential expression analysis.  
+vignette or the [BF530](https://bu-bioinfo.github.io/biological-data-science-in-r/biology-bioinformatics.html#differential-expression-rnaseq) instructions for how to run a basic differential expression analysis.  
 
-Perform a basic differential expression analysis and produce the following as well
-formatted figures:
+Perform a basic differential expression analysis and ensure you do the following
+based on the guidelines here: [Differential Expression Analysis]({{ baseSite}}/projects/project_2_report/#differential-expression-analysis-3-4-paragraphs)
 
-  1. A table containing the DESeq2 results for the top ten significant genes 
-  ranked by padj. Your results should have the corresponding gene name for
-  each ensembl gene ID. You should not need to use bioMart or any other utility,
-  you have already created a file from when you parsed the GTF that contains
-  the gene names for each ensembl gene ID. 
-  - Note that this is not your list of differentially expressed genes. This is just
-  a quick figure that displays some of the most differentially expressed genes
-  
-  2. Choose an appropriate padj threshold and report the number of significant
-  genes remaining that satisfy this threshold. Make sure you filter your list to 
-  only contain these genes. **This will be the list of genes you should use as 
-  input for the DAVID or ENRICHR analysis**
-  
-  3. The results from a DAVID or ENRICHR analysis on the significant genes at
-  your chosen padj threshold. Comment in a notebook what results you find most
-  interesting from this analysis. 
 
-## RNAseq Quality Control Plots
+## rnaseq-report.Rmd - RNAseq Quality Control Plots
 
 It is common to produce both a PCA plot as well as a sample-to-sample distance
 matrix from our counts to assist us in our confidence in whether the differences
@@ -800,16 +784,10 @@ functions already implemented in DESeq2 (see the vignette).
 normalized counts matrix for the experiment. Refer to the DESeq2 vignette [here](https://bioconductor.org/packages/3.21/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#count-data-transformations)
 for specific directions on how to do this.
 
-2. Perform PCA on this normalized counts matrix and overlay the sample
-information in a biplot of PC1 vs. PC2
+2. Please follow the guidelines here for how to report these findings: [RNAseq Quality
+Control Plots]({{ baseSite}}/projects/project_2_report/#differential-expression-analysis-3-4-paragraphs)
 
-3. Create a heatmap or graphic of the sample-to-sample distances for the experiment
-
-4. In a notebook, comment in no less than two paragraphs about your
-interpretations of these plots and what they indicate about the samples, and the 
-experiment.
-
-## FGSEA Analysis
+## rnaseq-report.Rmd - FGSEA Analysis
 
 Perform a GSEA analysis on your RNAseq results. You are free to use any method
 available though we recommend [fgsea](https://bioconductor.org/packages/release/bioc/html/fgsea.html). Please refer to the following resources:
@@ -835,8 +813,6 @@ your working directory on the cluster
 5. Using a statistical threshold of your choice, generate a figure or plot that
 displays the top most significant results from the FGSEA results.
 
-6. In your notebook, briefly remark on your results and what seems interesting to
-you about the biology.
 
 # Weeks 3 and 4: RNAseq
 
@@ -855,7 +831,7 @@ experiment.
 
 ## Complete the Phase 2 portion of the report
 
-## Phase 2: Informed analysis
+## rnaseq-report.Rmd - Phase 2
 
 ### Introduction (1 paragraph)
 
@@ -898,7 +874,7 @@ your results? How strongly do you think their data support those claims?
 - Which of your findings agree with the authors'? Does reaching the same result
 through a different pipeline make you more or less confident in it, and why?
 
-### Conclusions (1-2 paragraphs)
+### Conclusions (1-2 paragraphs) Informed analysis
 
 Please address the following:
 
