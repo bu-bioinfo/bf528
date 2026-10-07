@@ -7,11 +7,13 @@ I have broken up the project into week-by-week sections. However, these sections
 are guidelines and not a strict timeline. Your report and project will be due
 only at the day specified on the schedule. These sections are designed to 
 fit a manageable number of tasks into each week and give you a rough timeline.
-I have given you a .RMD file that you will periodically write sections of text in
+I have given you a .Rmd file that you will periodically write sections of text in
 as well as the place where you will perform the later steps of differential expression
 and analysis.
 
-**Important note about the structure of this project**
+# Before you begin
+
+## Important note about the structure of this project
 
 I have given you real data from a published paper but only limited information
 about the experiment: the sample metadata and the comparison being tested
@@ -24,8 +26,7 @@ This is meant to let you explore the data and form your own conclusions before
 seeing what the authors chose to highlight. Please read the Project 2 Report
 Guidelines for a full description of what is expected in each phase.
 
-
-# Changes to our environment management strategy and workflow
+## Changes to our environment management strategy and workflow
 
 As we've discussed, conda environments are one solution to ensuring that your
 analyses are run in a reproducible and portable manner. Containers are an
@@ -45,14 +46,14 @@ location. For example:
 
 ```
 process FASTQC {
-  container 'ghcr.io/bf528/fastqc:latest'
+  container 'ghcr.io/bu-cds-bf528/fastqc:latest'
   ...
 
 }
 ```
 
 For this course, these containers were all pre-built and their specifications kept
-in this public github repository: https://github.com/BF528/pipeline_containers.
+in this public github repository: https://github.com/bu-cds-bf528/pipeline_containers.
 Feel free to look into the repo for how the containers were built. We follow a
 similar pattern where we specify the exact environment we would like created in
 a YAML file and then generate the environment using micromamba installed in a
@@ -60,26 +61,25 @@ container. We will get some experience later in the semester with building your
 own containers from scratch.
 
 In general, the containers will be named following the same pattern:
-`ghcr.io/bf528/<name-of-tool>:latest` (e.g. `ghcr.io/bf528/fastqc:latest`).
+`ghcr.io/bu-cds-bf528/<name-of-tool>:latest` (e.g. `ghcr.io/bu-cds-bf528/fastqc:latest`).
 
+## Docker images for your pipeline
 
-# Docker images for your pipeline
+FastQC: `ghcr.io/bu-cds-bf528/fastqc:latest`
 
-FastQC: `ghcr.io/bf528/fastqc:latest`
+MultiQC: `ghcr.io/bu-cds-bf528/multiqc:latest`
 
-MultiQC: `ghcr.io/bf528/multiqc:latest`
+VERSE: `ghcr.io/bu-cds-bf528/verse:latest`
 
-VERSE: `ghcr.io/bf528/verse:latest`
+STAR: `ghcr.io/bu-cds-bf528/star:latest`
 
-STAR: `ghcr.io/bf528/star:latest`
+Pandas: `ghcr.io/bu-cds-bf528/pandas:latest`
 
-Pandas: `ghcr.io/bf528/pandas:latest`
-
-Biopython: `ghcr.io/bf528/biopython:latest`
+Biopython: `ghcr.io/bu-cds-bf528/biopython:latest`
 
 # Week 1: RNAseq
 
-## Workflow Visualization
+## Workflow visualization
 
 ![workflow]({{ site.baseurl }}/assets/images/project-2-workflow-diagram.svg)
 
@@ -108,20 +108,20 @@ the sequencing reads and alignments
 
 - Concatenate gene-level counts from each sample into a single counts matrix
 
-## Create a working directory for project 2
+## Creating a working directory for Project 2
 
 Accept the github classroom link and clone the assignment to your student
 directory in /projectnb/bf528/students/*your_username*/. This link will be
 posted on the blackboard site for our class.
 
-## nextflow.config - Necessary paths and files are in your nextflow.config
+## nextflow.config - Locating the necessary paths and files
 
 Please look in your nextflow.config for various variables that I have given you
 that you will need to use in your pipeline. I have provided you the path to the
 files as well as the reference genome and matching GTF. You can access these
 values by `params.variable_name_in_config`.
 
-## specifications.md - Fill out the rest of the specifications document
+## specifications.md - Filling out the specifications document
 
 Before you start working on the pipeline, fill out the sections in the provided
 `specifications.md`. This is meant to give you practice thinking at a high-level
@@ -133,17 +133,20 @@ I have filled out the validation table partially with the steps and I ask that y
 simply provide how you will validate each step and be confident in what was produced.
 It is fine to go back and edit this if anything changes as you develop your workflow. 
 
-## rnaseq-report.Rmd - Write the initial Experimental Design and Methods
+## rnaseq-report.Rmd - Writing the initial experimental design and methods
 
 1. Fill in the section for Experimental Design in the provided .Rmd. You may find
-the guidelines for doing so here: [Experimental Design]({{ baseSite }}/_projects/project_2_report#experimental-design-1-paragraph)
+the guidelines for doing so here: [Experimental Design]({{ baseSite }}/projects/project_2_report#experimental-design-1-paragraph)
 
 2. Please write a methods section for your workflow in this same .Rmd. You will
 need to come back to this section after you make certain choices in your method
 of filtering your counts and differential expression analysis, but write the methods
-now for just the pipeline. 
+now for just the pipeline. You may find the guidelines for the methods section here:
+[Methods Section]({{ baseSite }}/projects/project_2_report/#methods-as-long-as-needed)
 
-## Important Note for developing your workflow
+## General guidance for developing your workflow
+
+### Running with `-stub` during development
 
 As you develop your workflow, you should always include a `stub` block, described
 more below. This also means that until you are 100% confident your workflow
@@ -157,7 +160,16 @@ This is really important for this project since the real data is quite large
 and you will only run it with the real data once you are sure that your pipeline
 has the desired behavior. 
 
-## main.nf (top-level) - Generating our input channels for nextflow
+### Assigning process labels to your modules
+
+Please refer to the following page for [common combinations](https://www.bu.edu/tech/support/research/system-usage/running-jobs/batch-script-examples/#MEMORY)
+of options to request specific amounts of resources from nodes on the SCC. 
+
+I have provided you with a variety of pre-set labels, choose the ones you think
+are appropriate for each task based on their complexity. You can use the provided
+nextflow report as a baseline for what might be appropriate. 
+
+## main.nf (top-level) - Generating our input channels
 
 In your `main.nf` at the top-level of the directory, make two initial channels
 that will serve as the starting point for your workflow and save them to 
@@ -171,7 +183,7 @@ match the number of samples.
 channel of records should contain N * 2 records, one per each fastq and sample.
 This record should have fields `name` and `fastq`.
 
-## modules/fastqc/main.nf - Performing Quality Control
+## modules/fastqc/main.nf - Performing quality control
 
 Look for the partially filled in module, `modules/fastqc/main.nf`. This is the
 only one I will provide. 
@@ -192,12 +204,12 @@ process.
 2. Add a `container` directive that specifies to nextflow what environment to run
 this process in.
 
-### Input Block
+### Input block
 
 1. Specify the record you declared at the top as your `input` and provide it a
 local variable name.
 
-### Output Block
+### Output block
 
 In general, you will always have to know what files are created by the tool you
 are using. Some tools automatically create files with certain pre-set naming 
@@ -214,7 +226,7 @@ the .zip and the .html. Remember that you need to declare in the output the
 exact files Nextflow should expect. You can make use of the "`*`" to capture any
 files ending in the patterns you want (e.g. "`*.zip`" or "`*.html`")
 
-### Script Block
+### Script block
 
 For all processes, you will need to look at the tools original documentation or
 help information in order to figure out the command to run it. Since the documentation
@@ -224,7 +236,7 @@ for FastQC is well-hidden, I will give you the general shape of the command belo
 fastqc <fastq-file>
 ```
 
-### Stub Block
+### Stub block
 
 For every process, you will fill out a stub block that uses the `name` in the 
 record field and the command `touch` to generate fake files that you can use
@@ -238,6 +250,50 @@ expects `${name}.txt`, your stub block would be:
 touch ${name}.txt
 ```
 
+For our records if you had a process that looked like this:
+
+```bash
+record FastqRec {
+    name: String
+    fastq: Path
+
+}
+
+process FASTQC {
+    label 'process_low'
+    container 'ghcr.io/bf528/fastqc:latest'
+
+    input:
+    reads: FastqRec
+
+    output:
+    record(zip: file("*.zip"), html: file("*.html"))
+
+    script:
+    """
+    fastqc -t $task.cpus $reads.fastq
+    """
+
+    stub:
+    """
+    touch ${reads.fastq.simpleName}.html
+    touch ${reads.fastq.simpleName}.zip
+    """
+}
+
+# You can see that we have referred to a local variable, `reads`, in the input which
+# holds the FastqRec record. From that, ${reads.fastq} will print out the string 
+# corresponding to the filename.
+
+# .simpleName is a function that returns the filename without the extension so
+# ${reads.fastq.simpleName} will take the string `control_rep1_R1.fastq.gz`
+# and produce the string `control_rep1_R1`
+
+# You will need to use this in other stub runs to use the actual name in the fake file
+# created by the stub block. 
+
+```
+
 **N.B.** For FastQC specifically, the R1 and R2 records for a sample share the
 same `name`. If you name your fake files using only `name`, the R1 and R2 outputs
 will have identical filenames and one will overwrite the other when they are
@@ -249,6 +305,11 @@ first `.` in a filename (e.g. `sample1_R1.fastq.gz` becomes `sample1_R1`):
 touch ${<your_record>.fastq.simpleName}_fastqc.html
 touch ${<your_record>.fastq.simpleName}_fastqc.zip
 ```
+
+### In your main.nf
+
+1. Call this module in your workflow on the channel of `name` and `fastq` records
+you constructed previously.
 
 ## bin/parse_gtf.py - Creating a map between gene identifiers and gene symbols
 
@@ -276,7 +337,7 @@ corresponding gene name. Please copy and modify the `argparse` code used in
 previous scripts to allow the specification of command line arguments. The
 script should take a single file input (GTF) and output a single text file.
 
-## modules/parse_gtf/main.nf - a nextflow module that runs the parse_gtf script
+## modules/parse_gtf/main.nf - Running the parse_gtf script
 
 ### Construct the input and output records
 
@@ -288,24 +349,24 @@ The output will be a single path to the delimited text file your script creates.
 
 Ensure it will run in an appropriate environment and specify what label to use
 for computational resources. You may use the biopython
-(`ghcr.io/bf528/biopython:latest`) or the pandas (`ghcr.io/bf528/pandas:latest`)
+(`ghcr.io/bu-cds-bf528/biopython:latest`) or the pandas (`ghcr.io/bu-cds-bf528/pandas:latest`)
 container to run this task as both of these contain a python installation.
 
-### Input Block
+### Input block
 
 Specify the GTF as a single path input.
 
-### Output Block
+### Output block
 
 Specify the delimited file your script writes. Make sure the filename matches
 the name you pass to your script's output argument.
 
-### Script Block
+### Script block
 
 Call `parse_gtf.py` and provide the appropriate command line arguments necessary
 to run it.
 
-### Stub Block
+### Stub block
 
 Remember to include a `stub` block that uses `touch` to create an empty file
 with the same name your output block expects.
@@ -315,7 +376,9 @@ with the same name your output block expects.
 1. Call this module in your workflow and pass it the appropriate GTF input
 encoded as a param. 
 
-## modules/star_index/main.nf - Generate a genome index using STAR
+## modules/star_index/main.nf - Generating a genome index using STAR
+
+### Tool documentation
 
 [STAR Documentation](https://github.com/alexdobin/STAR)
 
@@ -337,12 +400,12 @@ index is composed of a set of files contained within the same directory.
 
 Ensure that it has an appropriate `label` and `container` specification.
 
-### Input Block
+### Input block
 
 Use the record you constructed at the top of the module containing the FASTA
 and GTF.
 
-### Output Block
+### Output block
 
 STAR will output a set of files that comprise the index together. In your command
 below, create a directory and have STAR output its index into that directory.
@@ -350,7 +413,7 @@ below, create a directory and have STAR output its index into that directory.
 The output of this process will be a single directory path containing all of the
 files comprising the index. 
 
-### Script Block
+### Script block
 
 Check the documentation for the appropriate command and flags. You may use default
 settings for the STAR index command. Ensure that you include the following flag
@@ -358,48 +421,40 @@ in that command so that STAR actually makes use of the threads you specify in
 your `label`.
 
 ```bash
---runThreadN $task.cpus
+mkdir star_index
+<star-genome-index-command> --runThreadN $task.cpus <other-options>
 ```
 
-### Stub Block
+### Stub block
 
 Remember to include a `stub` block. Since the output is a directory, use `mkdir`
 to create an empty directory with the same name your output block expects.
 
-## Assigning process labels to your modules
+### In your main.nf
 
-Please refer to the following page for [common combinations](https://www.bu.edu/tech/support/research/system-usage/running-jobs/batch-script-examples/#MEMORY)
-of options to request specific amounts of resources from nodes on the SCC. 
-
-I have provided you with a variety of pre-set labels, choose the ones you think
-are appropriate for each task based on their complexity. Make this a habit for
-every process even though I explicitly instructed you for just these two. 
-
+1. Call this module in your workflow and pass it the genome FASTA and GTF
+encoded as params (e.g. file(params.gtf)).
 
 ## modules/star_align/main.nf - Aligning reads to the genome
 
 Remember that paired end reads are almost always used in conjunction with each
 other (R1 and R2) and that they collectively represent the reads from a single
-fragment and sample. When we align both of these paired end reads to the genome,
-we will generate a single set of all valid alignments for the sample.
+fragment generated from the same sample. When we align both of these paired end
+reads to the genome, we will generate a single set of all valid alignments for 
+the sample.
 
 By default, many alignment programs will output these alignments in SAM format.
 As discussed in lecture, the BAM format is a compressed version of SAM files that
 contains the same information. Oftentimes, we will simply choose to generate BAM
 files in place of SAM files in order to preserve disk space. 
 
-### STAR Alignment Documentation
+### Tool documentation
 
 [STAR Alignment](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf) 
 - Focus on section 3 (pg. 7) for how to use STAR to run a basic mapping job.
 
 Remember back to the required aspects for your nextflow modules for last week 
 and construct a working nextflow module that performs basic alignment using STAR.
-
-### Additional labels and directives
-
-Ensure it will run in an appropriate environment and specify what label to use
-for computational resources. 
 
 ### Construct the input and output records
 
@@ -408,16 +463,21 @@ and R2 files (you've already constructed a channel holding this information)
 
 The output for this process should be the BAM file created and the log file.
 
-### Input Block
+### Additional labels and directives
+
+Ensure it will run in an appropriate environment and specify what label to use
+for computational resources. 
+
+### Input block
 
 Assign the record to a local variable so you can access its fields in your
 command.
 
-### Output Block
+### Output block
 
 Construct a record containing the generated BAM file and the log file. 
 
-### Script Block
+### Script block
 
 Your STAR command should include only the following options and all others may be left
 at their default value:
@@ -453,18 +513,23 @@ sequenced to the same quality and depth as the more commonly used references.
 Make sure to evaluate these alignment rates in an experiment-specific context as
 there is no set threshold or cutoff that is appropriate for all cases.
 
-**N.B.** Ensure that you use the `--runThreadN $task.cpus` to ensure that this
+**N.B.** Ensure that you use the `--runThreadN $task.cpus` so that this
 process actually uses the cores you request from the label. Alignment is a 
 highly parallelizable process that will be greatly sped up by using multiple
 cores.
 
-### Stub Block
+### Stub block
 
 Remember to include a `stub` block. Use the `name` value from your input record
 to `touch` a fake BAM file and log file with the same names your output
 block expects (e.g. `${name}.Log.final.out`).
 
-## modules/multiqc/main.nf - Performing post-alignment QC and aggregating all QC results together
+### In your main.nf
+
+1. Call this module in your workflow on the channel of `name`, `R1`, and `R2`
+records, along with the index produced by your STAR index process.
+
+## modules/multiqc/main.nf - Aggregating QC results after alignment
 
 Typically after performing alignment, it is good to obtain a few post-alignment
 quality control metrics to quickly check if there appear to be any major
@@ -485,7 +550,8 @@ them smaller, the actual outputs from fastQC and STAR will be misleading. Do
 the results will only be meaningful when you've switched to running this
 pipeline on the full dataset.
 
-### Tool Documentation
+### Tool documentation
+
 [MultiQC Documentation](https://github.com/MultiQC/MultiQC). 
 
 ### Construct the input and output records
@@ -499,29 +565,32 @@ The output will be a single HTML file called "multiqc_report.html" by default.
 Ensure it will run in an appropriate environment and specify what label to use
 for computational resources. 
 
-### Input Block
+### Input block
 
 MultiQC will scan the current directory and automatically detect known output files.
 The input will simply take advantage of Nextflow staging to gather together all
 of the files into the same location.
 
-### Output Block
+### Output block
 
 MultiQC creates a single file output called "multiqc_report.html" by default.
 
-### Script Block
+### Script block
 
 Look at the documentation for the appropriate command.
 
-### Stub Block
+### Stub block
 
 Remember to include a `stub` block that uses `touch` to create an empty
 `multiqc_report.html`.
 
-### main.nf (top-level)
+### In your main.nf
 
 1. Use appropriate operators to gather together all of the STAR output logs, and
-the FastQC results into a single channel. 
+the FastQC .ZIP file results into a single channel. 
+
+2. You will need to use the map() operator to access the elements in the records
+- align_output_channel.map { it.log } or fastqc_output_channel.map { it.zip }
 
 ## modules/verse/main.nf - Quantifying alignments to the genome
 
@@ -542,7 +611,8 @@ We will be using VERSE, which is a read counting tool that will quantify
 alignments into counts based on a feature of interest. VERSE also has built-in
 strategies for assigning counts hierarchically in the case of overlapping features.
 
-### Tool Documentation
+### Tool documentation
+
 [VERSE Documentation](https://kim.bio.upenn.edu/software/verse_manual.html)
 - You may leave all options at their default parameters. 
 - Be sure to include the `-S` flag in your final command.
@@ -562,23 +632,29 @@ created by VERSE, which is named with the pattern "`*.exon.txt`".
 Ensure it will run in an appropriate environment and specify what label to use
 for computational resources. 
 
-### Input Block
+### Input block
 
 List the record containing the `name` and BAM and the GTF on new lines in the
 input and then pass them left-to-right in the process call in your `main.nf`.
 
-### Output Block
+### Output block
 
 VERSE creates a single file of interest with a known pattern.
 
-### Script Block
+### Script block
 
 Read the documentation and fill out the script block appropriately. 
 
-### Stub Block
+### Stub block
 
 Remember to include a `stub` block. Use the `name` value from your input record
 to `touch` a fake `${name}.exon.txt` file so it matches the output pattern.
+
+### In your main.nf
+
+1. Call this module in your workflow on the records output by your STAR alignment
+process, along with the GTF encoded as a param.  The GTF is from your `nextflow.config`
+so you can specify it like: `file(params.gtf)`.
 
 ## bin/concat_cts.py - Concatenating count outputs into a single matrix
 
@@ -597,7 +673,7 @@ Look at the structure of the .exon.txt files. The final counts matrix / CSV
 should have the same number of rows as the number of genes in the reference
 genome and the same number of columns as the number of samples.
 
-## modules/concat_cts/main.nf - Construct a nextflow module that calls concat_cts.py
+## modules/concat_cts/main.nf - Running the concat_cts script
 
 ### Construct the input and output records
 
@@ -611,25 +687,25 @@ Ensure it will run in an appropriate environment and specify what label to use
 for computational resources. You can use the pandas container
 `ghcr.io/bf528/pandas:latest`.
 
-### Input Block
+### Input block
 
 Specify the list of VERSE output files as your input. Nextflow will stage all of
 them into the same working directory.
 
-### Output Block
+### Output block
 
 Specify the counts matrix your script writes. Make sure the filename matches the
 name you pass to your script's output argument.
 
-### Script Block
+### Script block
 
 Call `concat_cts.py` and provide the appropriate command line arguments necessary
 to run it, including all of the VERSE output files.
 
-### Stub Block
+### Stub block
 
-Remember to include a `stub` block that uses `touch` to create an empty counts
-matrix with the same name your output block expects.
+Remember to include a `stub` block that uses `touch` to create an empty file
+with the same name your output block expects.
 
 ### In your main.nf
 
@@ -637,7 +713,7 @@ matrix with the same name your output block expects.
 into a single channel and pass it to this module. Since your VERSE process outputs
 records, you will need to extract the `.exon.txt` file from each record first.
 
-## Week 1 Tasks Summary
+## Week 1 tasks summary
 
 In general, remember that once you have fully developed a module to `include`
 it in your top-level `main.nf` and start to call it on the appropriate channels
@@ -698,7 +774,7 @@ differential expression analysis.
 
 - Generate a sample-to-sample distance plot and PCA plot for your experiment
 
-## Setting up the publish and output blocks
+## main.nf (top-level) - Setting up the publish and output blocks
 
 In the top-level `main.nf` you were provided, you were given the `publish:` block
 inside of the `workflow` block and the `output` block below the `workflow` block.
@@ -728,13 +804,13 @@ from the subsampled samplesheet to the full data samplesheet.
 3. Now run your pipeline for real using the following command:
 
 ```bash
-nextflow run main.nf -profile singularity,cluster
+nextflow run main.nf -profile singularity,cluster -with-report
 ```
 
 You may examine the progress and status of your jobs by using the `qstat` utility
 as discussed in lecture and lab. 
 
-## rnaseq-report.Rmd - Evaluate the QC metrics for the full data
+## rnaseq-report.Rmd - Evaluating the QC metrics for the full data
 
 After your pipeline has finished, inspect the MultiQC report generated from 
 the full samples.
@@ -757,7 +833,7 @@ a new matrix of filtered counts according to your choice of strategy.
 2. In the same .Rmd, record the following in text about your choice of filtering
 strategy and other details: [Filtering Counts]({{ baseSite }}/projects/project_2_report/#filtering-the-counts-matrix-1-2-paragraphs)
 
-## rnaseq-report.Rmd - Performing differential expression analysis using the filtered counts
+## rnaseq-report.Rmd - Performing differential expression analysis
 
 Refer to the DESeq2 vignette on how to perform a basic differential expression
 analysis. For this dataset, you will simply be testing for differences between
@@ -771,8 +847,7 @@ vignette or the [BF530](https://bu-bioinfo.github.io/biological-data-science-in-
 Perform a basic differential expression analysis and ensure you do the following
 based on the guidelines here: [Differential Expression Analysis]({{ baseSite}}/projects/project_2_report/#differential-expression-analysis-3-4-paragraphs)
 
-
-## rnaseq-report.Rmd - RNAseq Quality Control Plots
+## rnaseq-report.Rmd - Generating RNAseq quality control plots
 
 It is common to produce both a PCA plot as well as a sample-to-sample distance
 matrix from our counts to assist us in our confidence in whether the differences
@@ -787,7 +862,7 @@ for specific directions on how to do this.
 2. Please follow the guidelines here for how to report these findings: [RNAseq Quality
 Control Plots]({{ baseSite}}/projects/project_2_report/#differential-expression-analysis-3-4-paragraphs)
 
-## rnaseq-report.Rmd - FGSEA Analysis
+## rnaseq-report.Rmd - Performing gene set enrichment analysis
 
 Perform a GSEA analysis on your RNAseq results. You are free to use any method
 available though we recommend [fgsea](https://bioconductor.org/packages/release/bioc/html/fgsea.html). Please refer to the following resources:
@@ -821,63 +896,26 @@ displays the top most significant results from the FGSEA results.
 For these final weeks, use this time to finish up any tasks you weren't able to 
 complete. There are no nextflow tasks this week, but you will be asked to create
 some figures from the original paper using your own findings. Do all of these
-tasks in one notebook.
+tasks in the same notebook, `rnaseq-report.Rmd`.
 
-## Read the original paper
+## Objectives
+
+- Read the original publication, focusing on its RNAseq analysis
+
+- Replicate Figures 3C and 3F using your own results
+
+- Compare your results and interpretations with the authors'
+
+- Complete the Phase 2 portion of the report
+
+## Reading the original paper
 
 The original publication was given to you in a post on blackboard. Please read
 the paper and focus specifically on their analysis and discussion of their RNAseq
 experiment. 
 
-## Complete the Phase 2 portion of the report
+## rnaseq-report.Rmd - Writing the Phase 2 report
 
-## rnaseq-report.Rmd - Phase 2
+Please follow the guidelines here to finish the Phase 2 portion of the report.
 
-### Introduction (1 paragraph)
-
-- What is the biological background of the study?
-- Why was the study performed?
-- Why did the authors use the bioinformatic techniques they did?
-
-### Replicate Figures 3C and 3F (3-4 paragraphs)
-
-- Create a volcano plot similar to the one seen in figure 3C
-- Use your DAVID/Enrichr or fgsea results and create a plot resembling figure
-3F but with your findings. You do not need to use the same pathways as they did.
-- Read their discussion of their results and specifically address the
-following in your provided notebook:
-
-1. Compare how many significant genes are up- and downregulated in their
-findings and yours (using their significance threshold). Ensure you list how
-many you find vs. how many they report.
-
-2. Compare their enrichment results with your DAVID/Enrichr and fgsea
-analyses. Comment on any differences you observe.
-
-3. List the candidate sources of discrepancy between your results and theirs
-(e.g. genome and annotation versions, aligner, filtering, normalization,
-thresholds, multiple testing correction). Using the paper's methods as
-evidence, comment on at least two candidate sources you believe contribute the most
-to the differences you observe.
-   - For each candidate source, please provide a follow-up analysis or experiment
-   that would reveal whether it was the likely source of the differences. **You
-   do not need to actually do this analysis, just propose how.**    
-
-### Comparing Interpretations (2-3 paragraphs)
-
-Return to your first interpretations about the major biological pathways implicated
-in the results:
-
-- Did the authors emphasize any genes or pathways that were weak or absent in
-your results? How strongly do you think their data support those claims?
-
-- Which of your findings agree with the authors'? Does reaching the same result
-through a different pipeline make you more or less confident in it, and why?
-
-### Conclusions (1-2 paragraphs) Informed analysis
-
-Please address the following:
-
-- Compare your first conclusions with those made by the paper. Did they propose
-any follow-up experiments or perform any validation? What was different between
-what you proposed and what they did or proposed in the text?
+[Phase 2 Report]({{ baseSite}}/projects/project_2_report/#phase-2-informed-analysis)
