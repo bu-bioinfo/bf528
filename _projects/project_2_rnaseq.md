@@ -589,8 +589,12 @@ Remember to include a `stub` block that uses `touch` to create an empty
 1. Use appropriate operators to gather together all of the STAR output logs, and
 the FastQC .ZIP file results into a single channel. 
 
-2. You will need to use the map() operator to access the elements in the records
-- align_output_channel.map { it.log } or fastqc_output_channel.map { it.zip }
+Hint: You will need to use the map, mix and collect operators to access the 
+elements in the records and transform it into a channel containing a list of
+all the logs and fastqc ZIP files. You can use the following to access a specific
+element from all the records in the channel:
+
+align_output_channel.map { it.log }
 
 ## modules/verse/main.nf - Quantifying alignments to the genome
 
