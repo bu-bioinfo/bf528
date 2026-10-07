@@ -715,7 +715,8 @@ with the same name your output block expects.
 
 1. Use appropriate nextflow operators to gather all of the VERSE outputs together
 into a single channel and pass it to this module. Since your VERSE process outputs
-records, you will need to extract the `.exon.txt` file from each record first.
+records, you will need to extract just the `.exon.txt` file from each record first
+and group them into a single list containing all of the files from every sample.
 
 ## Week 1 tasks summary
 
