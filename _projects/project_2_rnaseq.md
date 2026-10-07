@@ -136,13 +136,13 @@ It is fine to go back and edit this if anything changes as you develop your work
 ## rnaseq-report.Rmd - Writing the initial experimental design and methods
 
 1. Fill in the section for Experimental Design in the provided .Rmd. You may find
-the guidelines for doing so here: [Experimental Design]({{ baseSite }}/projects/project_2_report#experimental-design-1-paragraph)
+the guidelines for doing so here: [Experimental Design]({{ site.baseurl }}/projects/project_2_report#experimental-design-1-paragraph)
 
 2. Please write a methods section for your workflow in this same .Rmd. You will
 need to come back to this section after you make certain choices in your method
 of filtering your counts and differential expression analysis, but write the methods
 now for just the pipeline. You may find the guidelines for the methods section here:
-[Methods Section]({{ baseSite }}/projects/project_2_report/#methods-as-long-as-needed)
+[Methods Section]({{ site.baseurl }}/projects/project_2_report/#methods-as-long-as-needed)
 
 ## General guidance for developing your workflow
 
@@ -685,7 +685,7 @@ The output will be a single path to the counts matrix your script creates.
 
 Ensure it will run in an appropriate environment and specify what label to use
 for computational resources. You can use the pandas container
-`ghcr.io/bf528/pandas:latest`.
+`ghcr.io/bu-cds-bf528/pandas:latest`.
 
 ### Input block
 
@@ -816,7 +816,7 @@ After your pipeline has finished, inspect the MultiQC report generated from
 the full samples.
 
 1. In your provided notebook, comment on the general quality of the sequencing
-reads. Use the guidelines here: [sequencing quality control]({{ baseSite }}/projects/project_2_report/#read-quality-control-1-2-paragraphs)
+reads. Use the guidelines here: [sequencing quality control]({{ site.baseurl }}/projects/project_2_report/#read-quality-control-1-2-paragraphs)
 
 ## rnaseq-report.Rmd - Filtering the counts matrix
 
@@ -831,7 +831,7 @@ a new matrix of filtered counts according to your choice of strategy.
 1. Choose a filtering strategy and apply it to your counts matrix. 
 
 2. In the same .Rmd, record the following in text about your choice of filtering
-strategy and other details: [Filtering Counts]({{ baseSite }}/projects/project_2_report/#filtering-the-counts-matrix-1-2-paragraphs)
+strategy and other details: [Filtering Counts]({{ site.baseurl }}/projects/project_2_report/#filtering-the-counts-matrix-1-2-paragraphs)
 
 ## rnaseq-report.Rmd - Performing differential expression analysis
 
@@ -845,7 +845,7 @@ You may refer to the official [DESeq2](https://bioconductor.org/packages/3.21/bi
 vignette or the [BF530](https://bu-bioinfo.github.io/biological-data-science-in-r/biology-bioinformatics.html#differential-expression-rnaseq) instructions for how to run a basic differential expression analysis.  
 
 Perform a basic differential expression analysis and ensure you do the following
-based on the guidelines here: [Differential Expression Analysis]({{ baseSite}}/projects/project_2_report/#differential-expression-analysis-3-4-paragraphs)
+based on the guidelines here: [Differential Expression Analysis]({{ site.baseurl }}/projects/project_2_report/#differential-expression-analysis-3-4-paragraphs)
 
 ## rnaseq-report.Rmd - Generating RNAseq quality control plots
 
@@ -860,7 +860,7 @@ normalized counts matrix for the experiment. Refer to the DESeq2 vignette [here]
 for specific directions on how to do this.
 
 2. Please follow the guidelines here for how to report these findings: [RNAseq Quality
-Control Plots]({{ baseSite}}/projects/project_2_report/#differential-expression-analysis-3-4-paragraphs)
+Control Plots]({{ site.baseurl }}/projects/project_2_report/#differential-expression-analysis-3-4-paragraphs)
 
 ## rnaseq-report.Rmd - Performing gene set enrichment analysis
 
@@ -918,4 +918,4 @@ experiment.
 
 Please follow the guidelines here to finish the Phase 2 portion of the report.
 
-[Phase 2 Report]({{ baseSite}}/projects/project_2_report/#phase-2-informed-analysis)
+[Phase 2 Report]({{ site.baseurl }}/projects/project_2_report/#phase-2-informed-analysis)
