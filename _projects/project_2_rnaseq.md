@@ -424,6 +424,9 @@ to create an empty directory with the same name your output block expects.
 1. Call this module in your workflow on a record you construct containing the
 genome FASTA and the GTF file. 
 
+You can pass a plain record containing the FASTA and GTF, it does not need
+to be wrapped in a channel.
+
 ## modules/star_align/main.nf - Aligning reads to the genome
 
 Remember that paired end reads are almost always used in conjunction with each
