@@ -485,24 +485,14 @@ at their default value:
 `--runThreadN`, `--genomeDir`, `--readFilesIn`, `--readFilesCommand`, 
 `--outFileNamePrefix`, `--outSAMtype`
 
-- At the end of your STAR command, please add the following code:
-
-```bash
-2> ${sample.name}.Log.final.out
-```
-
 For example, if you named your input record `sample`:
 
 ```bash
-STAR --runThreadN $task.cpus --genomeDir <directory> --readFilesIn <reads> --readFilesCommand zcat --outFileNamePrefix ${sample.name}. --outSAMtype <option> 2> ${sample.name}.Log.final.out
+STAR --runThreadN $task.cpus --genomeDir <directory> --readFilesIn <reads> --readFilesCommand zcat --outFileNamePrefix ${sample.name}. --outSAMtype <option>
 ```
 
-The `2>` redirects the standard error to the log file and this is what will enable
-us to collect the alignment statistics from the log file. Replace `sample` with
-whatever local variable name you gave your input record, but you should name the
-log file with the same name as the sample identifier. 
-
-The log file from STAR will allow us to collect certain statistics about the
+Make sure you capture a file ending in "*.Log.final.out" as this is the file
+created by STAR  that will allow us to collect certain statistics about the
 alignment rates that are useful for quality control purposes. As a general rule
 of thumb, if there were no obvious issues with the sequencing preparation or
 errors in the alignment, we expect a substantial proportion of our reads to

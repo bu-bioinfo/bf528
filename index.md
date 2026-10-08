@@ -366,7 +366,7 @@ accounts for 20%.
 | Fri | 10/2  | [5]({{ site.baseurl }}/lectures/week-05/)    | Lab      | Lab 06 — QC evaluation                                          |                                 |
 | Mon | 10/5  | [6]({{ site.baseurl }}/lectures/week-06/)    | Lab      | Lab 07 — Agentic Coding                                |                                 |
 | Wed | 10/7  | [6]({{ site.baseurl }}/lectures/week-06/)    | Lecture  | Biological Databases                     |                                 |
-| Fri | 10/9  | [6]({{ site.baseurl }}/lectures/week-06/)    | Lecture  | P1 Check-In and Review                                               | P1 due — P2 assigned            |
+| Fri | 10/9  | [6]({{ site.baseurl }}/lectures/week-06/)    | Lecture  | P1 Check-In and Review / Lab 08 - Docker                                               | P1 due — P2 assigned            |
 | Mon | 10/12 |      | NO CLASS | Indigenous People's Day                                              |                                 |
 | Tue | 10/13 | [7]({{ site.baseurl }}/lectures/week-07/)    | Lecture  | Genome Editing — CRISPR-Cas9<br><em>(Monday schedule substitute)</em>|                                 |
 | Wed | 10/14 | [7]({{ site.baseurl }}/lectures/week-07/)    | Lecture  | Sequence Analysis — ChIP-Seq                                         |                                 |

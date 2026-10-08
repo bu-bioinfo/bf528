@@ -80,8 +80,6 @@ mention the following (even if there's no issue, state that there is no issue):
 - Any overrepresented sequences, or adapter contamination in the reads
 - The alignment rate of the reads to the reference genome
 - Multimapping rate
-- Identify the single metric that concerns you most, even if nothing failed,
-and state what value of that metric would have made you stop the analysis
 - Based on your evaluation above, please state whether you believe the
 experiment was of high quality and was suitable for downstream analysis. If
 not, please state what you would do to improve the quality of the reads.
