@@ -86,9 +86,7 @@ Biopython: `ghcr.io/bu-cds-bf528/biopython:latest`
 ## Overview
 
 A basic RNAseq analysis consists of sample quality control, alignment,
-quantification and differential expression analysis. This week, we will be
-performing quality control analysis on the sequencing reads, generating a genome
-index for alignment, and making a mapping of human ensembl IDs to gene names.
+quantification and differential expression analysis.
 
 ## Objectives
 
@@ -167,7 +165,8 @@ of options to request specific amounts of resources from nodes on the SCC.
 
 I have provided you with a variety of pre-set labels, choose the ones you think
 are appropriate for each task based on their complexity. You can use the provided
-nextflow report as a baseline for what might be appropriate. 
+nextflow report as a baseline for what might be appropriate. Focus on the VMEM tab to determine
+how much memory was needed for each job.
 
 ## main.nf (top-level) - Generating our input channels
 
@@ -188,13 +187,10 @@ This record should have fields `name` and `fastq`.
 Look for the partially filled in module, `modules/fastqc/main.nf`. This is the
 only one I will provide. 
 
-### Construct the input and output records
+### Construct the input record
 
 1. Declare a record at the top that matches the channel you constructed previously
 containing fields `name` and `fastq`.
-
-2. Declare a record at the top that matches the output of FastQC:
-  - FastQC automatically creates two files
 
 ### Additional labels and directives
 
@@ -331,7 +327,7 @@ script should take a single file input (GTF) and output a single text file.
 
 ## modules/parse_gtf/main.nf - Running the parse_gtf script
 
-### Construct the input and output records
+### Construct the input record
 
 The input will be a single path to the GTF file.
 
@@ -380,7 +376,7 @@ commands without changing any options
 writing them on new lines. You can use the `mkdir` command to create the output
 directory for the index files and then reference that same directory in the command.
 
-### Construct the input and output records
+### Construct the input record
 
 1. Make a record containing the genome FASTA file and the GTF file.
 
@@ -410,6 +406,8 @@ Check the documentation for the appropriate command and flags. You may use defau
 settings for the STAR index command. Ensure that you include the following flag
 in that command so that STAR actually makes use of the threads you specify in
 your `label`.
+
+Ensure that STAR creates the index in the same directory you create with `mkdir`.
 
 ```bash
 mkdir star_index
@@ -447,12 +445,12 @@ files in place of SAM files in order to preserve disk space.
 Remember back to the required aspects for your nextflow modules for last week 
 and construct a working nextflow module that performs basic alignment using STAR.
 
-### Construct the input and output records
+### Construct the input record
 
 Your input should be a record that has the sample name, and the two associated R1
 and R2 files (you've already constructed a channel holding this information)
 
-The output for this process should be the BAM file created and the log file.
+The output for this process should be a record with the BAM file created and the log file.
 
 ### Additional labels and directives
 
@@ -466,7 +464,7 @@ command.
 
 ### Output block
 
-Construct a record containing the generated BAM file and the log file. 
+Construct a record containing the generated BAM file and the log file ending in `*.Log.final.out`
 
 ### Script block
 
@@ -535,7 +533,7 @@ pipeline on the full dataset.
 
 [MultiQC Documentation](https://github.com/MultiQC/MultiQC). 
 
-### Construct the input and output records
+### Construct the input record
 
 The input will be a list of Paths (List<Path>)
 
@@ -602,12 +600,10 @@ strategies for assigning counts hierarchically in the case of overlapping featur
 - You may leave all options at their default parameters. 
 - Be sure to include the `-S` flag in your final command.
 
-### Construct the input and output records
+### Construct the input record
 
 VERSE requires the BAM file and the GTF file. The input record should contain
-the output from STAR: the record containing the BAM and the LOG file. You can use
-the name of the BAM file to name the resulting output from VERSE (e.g. ${record_name.bam.simpleName})
-
+the output from STAR: the record containing the BAM and the LOG file. 
 
 The GTF is shared by every sample, so provide it separately on its own line.
 
@@ -629,6 +625,9 @@ input and then pass them left-to-right in the process call in your `main.nf`.
 VERSE creates a single file of interest with a known pattern ending in `*.exon.txt`
 Since you are required to name the file outputs, you no longer technically need
 a record and can simply output the file. 
+
+You can use the name of the BAM file to name the resulting output from VERSE 
+(e.g. ${record_name.bam.simpleName}) as you've done before. 
 
 ### Script block
 
@@ -664,7 +663,7 @@ genome and the same number of columns as the number of samples.
 
 ## modules/concat_cts/main.nf - Running the concat_cts script
 
-### Construct the input and output records
+### Construct the input record
 
 The input will be a list of Paths (List<Path>) to all of the VERSE output files.
 
