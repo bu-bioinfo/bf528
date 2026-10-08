@@ -184,8 +184,9 @@ This record should have fields `name` and `fastq`.
 
 ## modules/fastqc/main.nf - Performing quality control
 
-Look for the partially filled in module, `modules/fastqc/main.nf`. This is the
-only one I will provide. 
+Look for the `modules/fastqc/main.nf`. I have provided this one to you because we've already
+used and partially developed this same module. I include the instructions below as a guide
+to how I developed it initially. 
 
 ### Construct the input record
 
