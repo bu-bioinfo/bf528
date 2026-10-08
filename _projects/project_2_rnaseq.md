@@ -175,11 +175,11 @@ In your `main.nf` at the top-level of the directory, make two initial channels
 that will serve as the starting point for your workflow and save them to 
 appropriately named variables in the `workflow` block.
 
-1. A channel of records that reads each element from the `samplesheet.csv`
-and maintains the `name`, `R1`, and `R2` fields. The number of elements should
+1. A channel of records that reads each element from the a samplesheet
+and maintains the `name`, `r1`, and `r2` fields. The number of elements should
 match the number of samples.
 
-2. A channel of records that has "exploded" out the `R1` and `R2` fields. This
+2. A channel of records that has "exploded" out the `r1` and `r2` fields. This
 channel of records should contain N * 2 records, one per each fastq and sample.
 This record should have fields `name` and `fastq`.
 
@@ -242,14 +242,6 @@ For every process, you will fill out a stub block that uses the `name` in the
 record field and the command `touch` to generate fake files that you can use
 to troubleshoot your workflow as you develop it. 
 
-Use the `name` value from your input record to name the fake files so they
-match the filenames your output block expects. For example, if your output
-expects `${name}.txt`, your stub block would be:
-
-```bash
-touch ${name}.txt
-```
-
 For our records if you had a process that looked like this:
 
 ```bash
@@ -261,7 +253,7 @@ record FastqRec {
 
 process FASTQC {
     label 'process_low'
-    container 'ghcr.io/bf528/fastqc:latest'
+    container 'ghcr.io/bu-cds-bf528/fastqc:latest'
 
     input:
     reads: FastqRec
@@ -276,8 +268,8 @@ process FASTQC {
 
     stub:
     """
-    touch ${reads.fastq.simpleName}.html
-    touch ${reads.fastq.simpleName}.zip
+    touch ${reads.fastq.simpleName}_fastqc.html
+    touch ${reads.fastq.simpleName}_fastqc.zip
     """
 }
 
@@ -390,8 +382,7 @@ directory for the index files and then reference that same directory in the comm
 
 ### Construct the input and output records
 
-1. The input record should contain two files, the genome FASTA file and the 
-associated GTF
+1. Make a record containing the genome FASTA file and the GTF file.
 
 2. The output will be a single path to the directory that STAR creates. The STAR
 index is composed of a set of files contained within the same directory. 
@@ -432,8 +423,8 @@ to create an empty directory with the same name your output block expects.
 
 ### In your main.nf
 
-1. Call this module in your workflow and pass it the genome FASTA and GTF
-encoded as params (e.g. file(params.gtf)).
+1. Call this module in your workflow on a record you construct containing the
+genome FASTA and the GTF file. 
 
 ## modules/star_align/main.nf - Aligning reads to the genome
 
@@ -516,7 +507,7 @@ block expects (e.g. `${name}.Log.final.out`).
 
 ### In your main.nf
 
-1. Call this module in your workflow on the channel of `name`, `R1`, and `R2`
+1. Call this module in your workflow on the channel of `name`, `r1`, and `r2`
 records, along with the index produced by your STAR index process.
 
 ## modules/multiqc/main.nf - Aggregating QC results after alignment
@@ -546,7 +537,7 @@ pipeline on the full dataset.
 
 ### Construct the input and output records
 
-The input will be a list of Paths (List<path>)
+The input will be a list of Paths (List<Path>)
 
 The output will be a single HTML file called "multiqc_report.html" by default.
 
@@ -614,12 +605,14 @@ strategies for assigning counts hierarchically in the case of overlapping featur
 ### Construct the input and output records
 
 VERSE requires the BAM file and the GTF file. The input record should contain
-the sample `name` and the BAM file; you can get these from the record your STAR
-process outputs. The GTF is shared by every sample, so provide it separately on
-its own line.
+the output from STAR: the record containing the BAM and the LOG file. You can use
+the name of the BAM file to name the resulting output from VERSE (e.g. ${record_name.bam.simpleName})
 
-The output record should contain the sample `name` and the file of interest
-created by VERSE, which is named with the pattern "`*.exon.txt`".
+
+The GTF is shared by every sample, so provide it separately on its own line.
+
+The output can be a single Path (file) ending in `*.exon.txt`. You may also output
+a record as long as you handle it accordingly in the workflow.
 
 ### Additional labels and directives
 
@@ -633,7 +626,9 @@ input and then pass them left-to-right in the process call in your `main.nf`.
 
 ### Output block
 
-VERSE creates a single file of interest with a known pattern.
+VERSE creates a single file of interest with a known pattern ending in `*.exon.txt`
+Since you are required to name the file outputs, you no longer technically need
+a record and can simply output the file. 
 
 ### Script block
 
@@ -671,7 +666,7 @@ genome and the same number of columns as the number of samples.
 
 ### Construct the input and output records
 
-The input will be a list of Paths (List<path>) to all of the VERSE output files.
+The input will be a list of Paths (List<Path>) to all of the VERSE output files.
 
 The output will be a single path to the counts matrix your script creates.
 
@@ -704,9 +699,8 @@ with the same name your output block expects.
 ### In your main.nf
 
 1. Use appropriate nextflow operators to gather all of the VERSE outputs together
-into a single channel and pass it to this module. Since your VERSE process outputs
-records, you will need to extract just the `.exon.txt` file from each record first
-and group them into a single list containing all of the files from every sample.
+into a single channel and pass it to this module. Group the VERSE outputs into a 
+single list containing all of the files from every sample.
 
 ## Week 1 tasks summary
 
@@ -719,7 +713,7 @@ and outputs to link together your workflow in the appropriate order.
 2. Use the files contained within your `nextflow.config`
   
 3. Generate a nextflow channel that has 6 total elements where
-each element is a record containing three fields, `name`, `R1` and `R2`
+each element is a record containing three fields, `name`, `r1` and `r2`
 
 4. Generate a nextflow channel that has 12 total
 elements where each element is a record containing two fields, `name` and `fastq`
@@ -739,9 +733,9 @@ module, `modules/parse_gtf/main.nf` that runs this script.
   - Specify the log file with extension (.Log.final.out) as a nextflow output
   
 9. Make a module that runs MultiQC using a channel that contains all of the FASTQC
-outputs and all of the STAR output log files
+ZIP outputs and all of the STAR output log files
 
-10 Create a module that runs VERSE on all of your output BAM files to generate
+10. Create a module that runs VERSE on all of your output BAM files to generate
 gene-level counts for all of your samples
  
 11. Write a python script that uses `pandas` to concatenate all of the VERSE
@@ -855,7 +849,7 @@ normalized counts matrix for the experiment. Refer to the DESeq2 vignette [here]
 for specific directions on how to do this.
 
 2. Please follow the guidelines here for how to report these findings: [RNAseq Quality
-Control Plots]({{ site.baseurl }}/projects/project_2_report/#differential-expression-analysis-3-4-paragraphs)
+Control Plots]({{ site.baseurl }}projects/project_2_report/#sample-quality-control-2-paragraphs)
 
 ## rnaseq-report.Rmd - Performing gene set enrichment analysis
 
