@@ -348,53 +348,53 @@ accounts for 20%.
 
 ## Course Schedule
 
-| Day | Date  | Week | Class    | Topic                                                                | Project                         |
-| --- | ----- | ---- | -------- | -------------------------------------------------------------------- | ------------------------------- |
-| Wed | 9/2   | [1]({{ site.baseurl }}/lectures/week-01/)    | Lecture  | Introduction                                                         |                                 |
-| Fri | 9/4   | [1]({{ site.baseurl }}/lectures/week-01/)    | Lab      | Lab 01 — Setup                                                       |                                 |
-| Mon | 9/7   |      | NO CLASS | Labor Day                                                            |                                 |
-| Wed | 9/9   | [2]({{ site.baseurl }}/lectures/week-02/)    | Lecture  | Genomics, Genes, and Genomes<br>Computational Pipelines           |                      |
-| Fri | 9/11  | [2]({{ site.baseurl }}/lectures/week-02/)    | Lab      | Lab 02 — Workflow Basics                                             | P1 Assigned                              |
-| Mon | 9/14  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lab      | Lab 03 — Nextflow Tooling                                            |                                 |
-| Wed | 9/16  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lecture  | Sequence Analysis Fundamentals                                       |                                 |
-| Fri | 9/18  | [3]({{ site.baseurl }}/lectures/week-03/)    | Lab      | Lab 04 — Nextflow Basics                                       |                                 |
-| Mon | 9/21  | [4]({{ site.baseurl }}/lectures/week-04/)    | Lecture  | Sequence Visualization / Genomic Variation and SNP Analysis                                   |                                 |
-| Wed | 9/23  | [4]({{ site.baseurl }}/lectures/week-04/)    | Lecture  | Long Read Sequencing                                                 |                                 |
-| Fri | 9/25  | [4]({{ site.baseurl }}/lectures/week-04/)    | Lab      | Lab 05 — Nextflow Cardinality                                     |                                 |
-| Mon | 9/28  | [5]({{ site.baseurl }}/lectures/week-05/)    | Lecture  | Sequence Analysis — RNA-Seq 1                                        |                                 |
-| Wed | 9/30  | [5]({{ site.baseurl }}/lectures/week-05/)    | Lecture  | Sequence Analysis — RNA-Seq 2 / Genes and Gene Enrichment                                        |                                 |
-| Fri | 10/2  | [5]({{ site.baseurl }}/lectures/week-05/)    | Lab      | Lab 06 — QC evaluation                                          |                                 |
-| Mon | 10/5  | [6]({{ site.baseurl }}/lectures/week-06/)    | Lab      | Lab 07 — Agentic Coding                                |                                 |
-| Wed | 10/7  | [6]({{ site.baseurl }}/lectures/week-06/)    | Lecture  | Biological Databases                     |                                 |
-| Fri | 10/9  | [6]({{ site.baseurl }}/lectures/week-06/)    | Lecture  | P1 Check-In and Review / Lab 08 - Docker                                               | P1 due — P2 assigned            |
-| Mon | 10/12 |      | NO CLASS | Indigenous People's Day                                              |                                 |
-| Tue | 10/13 | [7]({{ site.baseurl }}/lectures/week-07/)    | Lecture  | Genome Editing — CRISPR-Cas9<br><em>(Monday schedule substitute)</em>|                                 |
-| Wed | 10/14 | [7]({{ site.baseurl }}/lectures/week-07/)    | Lecture  | Sequence Analysis — ChIP-Seq                                         |                                 |
-| Fri | 10/16 | [7]({{ site.baseurl }}/lectures/week-07/)    | Lab      | Lab 11 — RNAseq and DESeq2                                           |                                 |
-| Mon | 10/19 | [8]({{ site.baseurl }}/lectures/week-08/)    | Lecture  | Sequence Analysis — ATAC-Seq                                         |                                 |
-| Wed | 10/21 | [8]({{ site.baseurl }}/lectures/week-08/)    | Lecture  | P2 Check-In                                                          |                                 |
-| Fri | 10/23 | [8]({{ site.baseurl }}/lectures/week-08/)    | Lab      | Lab 09 — CRISPR Guide Design                                         |                                 |
-| Mon | 10/26 | [9]({{ site.baseurl }}/lectures/week-09/)    | Lecture  | Microbiome: 16S and Metagenomics                                     |                                 |
-| Wed | 10/28 | [9]({{ site.baseurl }}/lectures/week-09/)    | Lecture  | Metabolomics                                                         |                                 |
-| Fri | 10/30 | [9]({{ site.baseurl }}/lectures/week-09/)    | Lab      | Lab 12 — Differential Peak Analysis (ATACseq)                        | P2 due — P3 assigned            |
-| Mon | 11/2  | [10]({{ site.baseurl }}/lectures/week-10/)   | Lecture  | Single Cell Analysis Part 1                                          |                                 |
-| Wed | 11/4  | [10]({{ site.baseurl }}/lectures/week-10/)   | Lecture  | Single Cell Analysis Part 2                                          |                                 |
-| Fri | 11/6  | [10]({{ site.baseurl }}/lectures/week-10/)   | Lab      | Lab 08 — Snakemake                                                   |                                 |
-| Mon | 11/9  | [11]({{ site.baseurl }}/lectures/week-11/)   | Lecture  | Single Cell Analysis Part 3                                          |                                 |
-| Wed | 11/11 | [11]({{ site.baseurl }}/lectures/week-11/)   | Lecture  | Spatial Transcriptomics                                              |                                 |
-| Fri | 11/13 | [11]({{ site.baseurl }}/lectures/week-11/)   | Lab      | Lab 10 — Containers                                             |                                 |
-| Mon | 11/16 | [12]({{ site.baseurl }}/lectures/week-12/)   | Lecture  | P3 Check-In                                                          |                                 |
-| Wed | 11/18 | [12]({{ site.baseurl }}/lectures/week-12/)   | Lecture  | Single Cell Analysis Part 4 / Extended Topics                        |                                 |
-| Fri | 11/20 | [12]({{ site.baseurl }}/lectures/week-12/)   | Lab      | Lab 13 — Single Cell Setup                                           | P3 due — Final assigned         |
-| Mon | 11/23 | [13]({{ site.baseurl }}/lectures/week-13/)   | Lab      | Lab 14 — Single Cell QC                                              |                                 |
-|     | 11/25 |      | NO CLASS | Thanksgiving Recess                                                  |                                 |
-|     | 11/28 |      | NO CLASS | Thanksgiving Recess                                                  |                                 |
-| Mon | 11/30 | [14]({{ site.baseurl }}/lectures/week-14/)   | Lab      | Lab 15 — Single Cell Preprocessing                                   |                                 |
-| Wed | 12/2  | [14]({{ site.baseurl }}/lectures/week-14/)   | Lab      | Final Project Work Session                                           |                                 |
-| Fri | 12/4  | [14]({{ site.baseurl }}/lectures/week-14/)   | Lab      | Lab 16 — Single Cell Pseudobulk                                      |                                 |
-| Mon | 12/7  | [15]({{ site.baseurl }}/lectures/week-15/)   | Lab      | Single Cell Integration                                              |                                 |
-| Wed | 12/9  | [15]({{ site.baseurl }}/lectures/week-15/)   | Lab      | Feedback                                                             |                                 |
-|     | 12/14 |      |          | Final Exams Begin                                                    | Final Project Due               |
+| Day | Date  | Week                                       | Class    | Topic                                                                 | Project                 |
+| --- | ----- | ------------------------------------------ | -------- | --------------------------------------------------------------------- | ----------------------- |
+| Wed | 9/2   | [1]({{ site.baseurl }}/lectures/week-01/)  | Lecture  | Introduction                                                          |                         |
+| Fri | 9/4   | [1]({{ site.baseurl }}/lectures/week-01/)  | Lab      | Lab 01 — Setup                                                        |                         |
+| Mon | 9/7   |                                            | NO CLASS | Labor Day                                                             |                         |
+| Wed | 9/9   | [2]({{ site.baseurl }}/lectures/week-02/)  | Lecture  | Genomics, Genes, and Genomes<br>Computational Pipelines               |                         |
+| Fri | 9/11  | [2]({{ site.baseurl }}/lectures/week-02/)  | Lab      | Lab 02 — Workflow Basics                                              | P1 Assigned             |
+| Mon | 9/14  | [3]({{ site.baseurl }}/lectures/week-03/)  | Lab      | Lab 03 — Nextflow Tooling                                             |                         |
+| Wed | 9/16  | [3]({{ site.baseurl }}/lectures/week-03/)  | Lecture  | Sequence Analysis Fundamentals                                        |                         |
+| Fri | 9/18  | [3]({{ site.baseurl }}/lectures/week-03/)  | Lab      | Lab 04 — Nextflow Basics                                              |                         |
+| Mon | 9/21  | [4]({{ site.baseurl }}/lectures/week-04/)  | Lecture  | Sequence Visualization / Genomic Variation and SNP Analysis           |                         |
+| Wed | 9/23  | [4]({{ site.baseurl }}/lectures/week-04/)  | Lecture  | Long Read Sequencing                                                  |                         |
+| Fri | 9/25  | [4]({{ site.baseurl }}/lectures/week-04/)  | Lab      | Lab 05 — Nextflow Cardinality                                         |                         |
+| Mon | 9/28  | [5]({{ site.baseurl }}/lectures/week-05/)  | Lecture  | Sequence Analysis — RNA-Seq 1                                         |                         |
+| Wed | 9/30  | [5]({{ site.baseurl }}/lectures/week-05/)  | Lecture  | Sequence Analysis — RNA-Seq 2 / Genes and Gene Enrichment             |                         |
+| Fri | 10/2  | [5]({{ site.baseurl }}/lectures/week-05/)  | Lab      | Lab 06 — QC evaluation                                                |                         |
+| Mon | 10/5  | [6]({{ site.baseurl }}/lectures/week-06/)  | Lab      | Lab 07 — Agentic Coding                                               |                         |
+| Wed | 10/7  | [6]({{ site.baseurl }}/lectures/week-06/)  | Lecture  | Biological Databases                                                  |                         |
+| Fri | 10/9  | [6]({{ site.baseurl }}/lectures/week-06/)  | Lecture  | P1 Check-In and Review / Lab 08 - Docker                              | P1 due — P2 assigned    |
+| Mon | 10/12 |                                            | NO CLASS | Indigenous People's Day                                               |                         |
+| Tue | 10/13 | [7]({{ site.baseurl }}/lectures/week-07/)  | Lecture  | Genome Editing — CRISPR-Cas9<br><em>(Monday schedule substitute)</em> |                         |
+| Wed | 10/14 | [7]({{ site.baseurl }}/lectures/week-07/)  | Lecture  | Sequence Analysis — ChIP-Seq                                          |                         |
+| Fri | 10/16 | [7]({{ site.baseurl }}/lectures/week-07/)  | Lab      | Lab 11 — RNAseq and DESeq2                                            |                         |
+| Mon | 10/19 | [8]({{ site.baseurl }}/lectures/week-08/)  | Lecture  | Sequence Analysis — ATAC-Seq                                          |                         |
+| Wed | 10/21 | [8]({{ site.baseurl }}/lectures/week-08/)  | Lecture  | P2 Check-In                                                           |                         |
+| Fri | 10/23 | [8]({{ site.baseurl }}/lectures/week-08/)  | Lab      | Lab 09 — CRISPR Guide Design                                          |                         |
+| Mon | 10/26 | [9]({{ site.baseurl }}/lectures/week-09/)  | Lecture  | Microbiome: 16S and Metagenomics                                      |                         |
+| Wed | 10/28 | [9]({{ site.baseurl }}/lectures/week-09/)  | Lecture  | Metabolomics                                                          |                         |
+| Fri | 10/30 | [9]({{ site.baseurl }}/lectures/week-09/)  | Lab      | Lab 12 — Differential Peak Analysis (ATACseq)                         |                         |
+| Mon | 11/2  | [10]({{ site.baseurl }}/lectures/week-10/) | Lecture  | Single Cell Analysis Part 1                                           |                         |
+| Wed | 11/4  | [10]({{ site.baseurl }}/lectures/week-10/) | Lecture  | Single Cell Analysis Part 2                                           |                         |
+| Fri | 11/6  | [10]({{ site.baseurl }}/lectures/week-10/) | Lab      | Lab 08 — Snakemake                                                    | P2 due — P3 assigned    |
+| Mon | 11/9  | [11]({{ site.baseurl }}/lectures/week-11/) | Lecture  | Single Cell Analysis Part 3                                           |                         |
+| Wed | 11/11 | [11]({{ site.baseurl }}/lectures/week-11/) | Lecture  | Spatial Transcriptomics                                               |                         |
+| Fri | 11/13 | [11]({{ site.baseurl }}/lectures/week-11/) | Lab      | Lab 10 — Containers                                                   |                         |
+| Mon | 11/16 | [12]({{ site.baseurl }}/lectures/week-12/) | Lecture  | P3 Check-In                                                           |                         |
+| Wed | 11/18 | [12]({{ site.baseurl }}/lectures/week-12/) | Lecture  | Single Cell Analysis Part 4 / Extended Topics                         |                         |
+| Fri | 11/20 | [12]({{ site.baseurl }}/lectures/week-12/) | Lab      | Lab 13 — Single Cell Setup                                            |                         |
+| Mon | 11/23 | [13]({{ site.baseurl }}/lectures/week-13/) | Lab      | Lab 14 — Single Cell QC                                               |                         |
+|     | 11/25 |                                            | NO CLASS | Thanksgiving Recess                                                   |                         |
+|     | 11/28 |                                            | NO CLASS | Thanksgiving Recess                                                   |                         |
+| Mon | 11/30 | [14]({{ site.baseurl }}/lectures/week-14/) | Lab      | Lab 15 — Single Cell Preprocessing                                    |                         |
+| Wed | 12/2  | [14]({{ site.baseurl }}/lectures/week-14/) | Lab      | Final Project Working Session                                         | P3 due — Final assigned |
+| Fri | 12/4  | [14]({{ site.baseurl }}/lectures/week-14/) | Lab      | Lab 16 — Single Cell Pseudobulk                                       |                         |
+| Mon | 12/7  | [15]({{ site.baseurl }}/lectures/week-15/) | Lab      | Single Cell Integration                                               |                         |
+| Wed | 12/9  | [15]({{ site.baseurl }}/lectures/week-15/) | Lab      | Final Project Working Session                                         |                         |
+|     | 12/20 |                                            |          |                                                                       | Final Project Due       |
 
 
 ## A note on AI use in this syllabus
