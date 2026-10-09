@@ -10,8 +10,8 @@ report that includes the following listed below:
 # Methods 
 
 Write a methods section that describes the pipeline that you created for this 
-project. This should follow the conventions we discussed in lecture. This should
-be a few paragraphs at most. 
+project. This should follow the conventions outlined here: [Methods]({{ site.baseurl }}/lectures/accessory-slides). 
+This should be a few paragraphs at most. 
 
 # Results
 
