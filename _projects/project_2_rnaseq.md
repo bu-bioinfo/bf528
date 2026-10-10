@@ -20,7 +20,9 @@ about the experiment: the sample metadata and the comparison being tested
 (control vs. experimental). For the first part of this project, you will build
 your pipeline and analyze the data without knowing which study it comes from.
 At the end of Week 2, I will post the original publication on Blackboard, and 
-you will compare your results and interpretations with the authors'.
+you will compare your results and interpretations with the authors'. The experiment
+originated from a human cell line with 6 samples (3 control and 3 experimental
+conditions).
 
 This is meant to let you explore the data and form your own conclusions before
 seeing what the authors chose to highlight. Please read the Project 2 Report
@@ -772,8 +774,39 @@ In the top-level `main.nf` you were provided, you were given the `publish:` bloc
 inside of the `workflow` block and the `output` block below the `workflow` block.
 
 Use the past examples in labs or the nextflow documentation and ensure that you
-send the results of `multiqc`, `parse_gtf` and `concat_cts` at minimum to the
-`results/` directory for easy access.
+send the results of `multiqc`, `parse_gtf` and `concat_cts` to a separate location
+for easy access.
+
+1. Uncomment the publish block at the bottom of your workflow
+
+2. Save the outputs from the relevant processes, which might look something
+like below:
+
+
+```bash
+workflow {
+  main:
+  ...
+  multiqc_out = MULTIQC(<inputs>)
+  concat_cts = CONCAT(<inputs>)
+  ...
+
+
+  publish:
+
+  multiqc_report = multiqc_out
+  counts_matrix = concat_cts
+
+}
+
+output {
+
+  multiqc_report {}
+  counts_matrix {}
+
+}
+
+```
 
 ## Switching to the full data
 
@@ -811,6 +844,10 @@ the full samples.
 reads. Use the guidelines here: [sequencing quality control]({{ site.baseurl }}/projects/project_2_report/#read-quality-control-1-2-paragraphs)
 
 ## rnaseq-report.Rmd - Filtering the counts matrix
+
+**N.B.** If you get to this section before our lab, you can explore how to do this yourself.
+Otherwise, we will have a lab where we walk through a differential expression
+analysis in R using DESeq2 on a sample dataset. 
 
 We will typically filter our counts matrices to remove genes that we believe
 will be uninformative for the DE analysis. It is important to remember that
