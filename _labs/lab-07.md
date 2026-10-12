@@ -12,111 +12,126 @@ layout: single
 - Build cache and layer ordering
 - GitHub Container Registry (`ghcr.io`), `docker push`
 - Singularity and its relationship to Docker
-- FastQC, Trimmomatic, MultiQC — sequencing QC workflow
 
 ---
 
-Containers solve the "works on my machine" problem by packaging a tool and all its dependencies into a portable, reproducible image. This lab runs in GitHub Codespaces rather than the SCC so you have access to the Docker daemon. You will pull existing images, inspect them interactively, write a Dockerfile from scratch, build and tag an image, and use a bind mount to persist output files back to the host. The final section introduces GitHub Container Registry, which is where the course container images live and how Singularity pulls them on the cluster.
+# Learning Objectives
 
----
+## Use pre-built images from a public registry
 
-# Part 1 — Sequence Quality Control
+> **Purpose - Why This Matters:** For most common bioinformatics tools,
+> someone has already built and published an image. Pulling an existing image
+> is often the fastest way to get a working tool. Choosing a specific tag
+> rather than relying on `latest` is what makes that environment reproducible
+> months or years later.
+>
+> **Task - What you will do:** Pull the `latest` and a pinned `slim` version
+> of the official python image from Docker Hub. Start a container from each
+> and check the installed python version. Compare the image sizes.
+>
+> **Criteria - How you'll know you're succeeding:** You can explain what an
+> untagged pull actually retrieves. You can explain why a pinned tag is more
+> reproducible than `latest`. You can account for the size difference between
+> a full and a `slim` image.
 
-Raw sequencing reads always require quality assessment before any downstream analysis. Systematic quality issues — adapter contamination, low-quality tails, GC bias, overrepresented sequences — can propagate silently through a pipeline and distort biological conclusions.
+## Write and build a Dockerfile using core instructions
 
-## Workflow
+> **Purpose - Why This Matters:** A Dockerfile is the written, version-controlled
+> recipe for a computational environment. Knowing what each core instruction
+> does lets you read the containers other people publish and write your own
+> when a pre-built image doesn't exist or doesn't fit your needs.
+>
+> **Task - What you will do:** Build an image from the provided `simple/`
+> Dockerfile and inspect the resulting environment interactively. Then
+> complete the partially written `advanced/` Dockerfile and conda environment
+> file to produce a working FastQC image.
+>
+> **Criteria - How you'll know you're succeeding:** You can state what `FROM`,
+> `RUN`, `COPY`, `WORKDIR`, and `CMD` each contribute to the final image. You
+> can explain why the `Dockerfile` itself does not appear inside the container.
+> Your FastQC image builds successfully and `fastqc --version` runs inside it.
 
-```
-FASTQC (raw) → TRIMMOMATIC → FASTQC (trimmed) → MULTIQC
-```
+## Explain and exploit the Docker build cache
 
-Run FastQC on raw reads first. After trimming, run FastQC again to confirm issues are resolved. MultiQC aggregates both sets of reports so you can compare before and after side by side.
+> **Purpose - Why This Matters:** Images are built as a stack of cached
+> layers. Instruction order determines whether a one-line edit to a script
+> rebuilds in seconds or reinstalls every dependency. When you are iterating
+> on a pipeline, this difference adds up quickly.
+>
+> **Task - What you will do:** Rebuild an unchanged image, then edit
+> `script.py` and rebuild again. Observe which steps are marked `CACHED`
+> and which re-run.
+>
+> **Criteria - How you'll know you're succeeding:** You can predict which
+> layers will be invalidated by a given change. You can justify ordering
+> Dockerfile instructions from least to most frequently changed.
 
-## Reading a MultiQC report
+## Run containers non-interactively and interactively
 
-- **Per-base sequence quality** — flag if median quality drops below Q28 at the 3' end
-- **Per-sequence GC content** — a sharp peak offset from the expected distribution indicates contamination
-- **Adapter content** — any adapter signal above ~1% warrants trimming
-- **Sequence duplication levels** — high duplication in RNA-seq may indicate over-amplification; in ChIP/ATACseq it is expected
+> **Purpose - Why This Matters:** Containers are used in two distinct modes.
+> They run a fixed command inside an automated workflow, and they open an
+> interactive shell when you need to debug or explore the environment.
+> Knowing how `docker run` flags and the `CMD` interact lets you move
+> between these modes deliberately.
+>
+> **Task - What you will do:** Run a container that executes its default
+> `CMD` and exits. Resolve a container-name conflict. Then launch an
+> interactive, self-removing container with `-it --rm` and a command override.
+>
+> **Criteria - How you'll know you're succeeding:** You can explain why a
+> container exits once its command finishes. You can explain why a stopped
+> container still holds its name. You can describe how passing `bash`
+> overrides the default `CMD`.
 
-## Trimmomatic
+## Persist container outputs to the host with a bind mount
 
-```bash
-trimmomatic PE \
-    -threads $task.cpus \
-    $read1 $read2 \
-    ${sample}_R1_paired.fastq.gz ${sample}_R1_unpaired.fastq.gz \
-    ${sample}_R2_paired.fastq.gz ${sample}_R2_unpaired.fastq.gz \
-    ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 \
-    LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
-```
+> **Purpose - Why This Matters:** By default, files written inside a
+> container are isolated from the host and are lost when the container is
+> removed. Any analysis that produces results you intend to keep depends on
+> connecting the container's filesystem to persistent storage. Nextflow does
+> exactly this on your behalf.
+>
+> **Task - What you will do:** Run FastQC in a container without a mount and
+> look for the output. Then rerun it with `--volume $(pwd):/app` and
+> retrieve the HTML report.
+>
+> **Criteria - How you'll know you're succeeding:** You can explain where the
+> output went in each run. You can interpret the `<host_path>:<container_path>`
+> syntax. You can explain why the mount only works when the input file exists
+> in the host directory, since the mount replaces the image's `/app`.
 
-Key options:
-- `ILLUMINACLIP` — adapter sequence file and mismatch tolerances
-- `SLIDINGWINDOW:4:15` — trim when average quality in a 4-base window drops below Q15
-- `MINLEN:36` — discard reads shorter than 36 bp after trimming
+## Evaluate design choices that keep images lightweight and pipeline-ready
 
----
+> **Purpose - Why This Matters:** Images built for shared pipelines have
+> different requirements than images built for one-off use. They need to be
+> small enough to pull and convert repeatedly, secure enough to run on shared
+> infrastructure, and flexible enough for a workflow manager to call any
+> command. The containers used throughout this course reflect these
+> trade-offs.
+>
+> **Task - What you will do:** Read the `class_containers/` Dockerfile and
+> environment file. Answer the guided questions about the base image, cleanup
+> steps, user switching, and the absence of a `CMD`. Manage and remove the
+> images and containers you created during the lab.
+>
+> **Criteria - How you'll know you're succeeding:** For each of the
+> following, you can give a specific technical reason for the choice:
+> choosing `micromamba` over `miniconda3`, cleaning caches within the same
+> `RUN` layer, switching between `root` and `$MAMBA_USER`, and omitting
+> `CMD` for Nextflow use.
 
-# Part 2 — Docker and Containers
+## (Optional) Publish an image to the GitHub Container Registry
 
-## Why containers?
-
-Conda environments solve many reproducibility problems, but they can fail when a tool has non-Python system dependencies, when the tool is not packaged for conda, or when you need to run on infrastructure without conda. Containers bundle an entire Linux filesystem — OS libraries, tool binaries, and your conda environment — into a single portable image.
-
-## Docker concepts
-
-| Concept | Description |
-|---|---|
-| Image | A read-only template built from a Dockerfile |
-| Container | A running instance of an image |
-| Layer | Each `RUN` instruction adds a filesystem layer; layers are cached |
-| Registry | Remote storage for images (`docker.io`, `ghcr.io`) |
-
-## Basic commands
-
-```bash
-docker pull python:3.11-slim           # download an image
-docker images                           # list local images
-docker run -it python:3.11-slim bash   # interactive shell inside container
-docker run python:3.11-slim python --version  # non-interactive
-docker build -t myimage:latest .        # build from Dockerfile in current dir
-docker push ghcr.io/org/myimage:tag    # push to registry
-```
-
-## Dockerfile structure
-
-```dockerfile
-FROM ubuntu:22.04
-
-RUN apt-get update && apt-get install -y \
-    samtools \
- && rm -rf /var/lib/apt/lists/*
-
-WORKDIR /data
-```
-
-Key instructions:
-- `FROM` — base image (always first)
-- `RUN` — execute a shell command and commit the result as a new layer
-- `COPY` — add files from the build context into the image
-- `WORKDIR` — set the working directory for subsequent instructions and container startup
-- `CMD` — default command when the container starts
-
-## Bind mounts
-
-Containers have their own isolated filesystem. To read files from or write files to the host, use a bind mount:
-
-```bash
-docker run -v /host/path:/container/path myimage command
-```
-
-Files written to `/container/path` inside the container appear at `/host/path` on the host after the container exits.
-
-## Singularity on the SCC
-
-The SCC does not allow Docker (it requires root). Singularity provides the same isolation with user-level permissions. Nextflow pulls Singularity images automatically when you use `-profile singularity`. Docker images from `ghcr.io` are converted on the fly.
-
-```bash
-nextflow run main.nf -profile singularity,cluster
-```
+> **Purpose - Why This Matters:** An image only becomes reusable by
+> collaborators and pipelines once it lives in a registry. This is the same
+> mechanism behind every `container 'ghcr.io/bu-cds-bf528/...'` line in your
+> Nextflow processes.
+>
+> **Task - What you will do:** Authenticate to GHCR, tag an image with the
+> full registry path, push it, make the package public, then delete your
+> local copy and pull it back.
+>
+> **Criteria - How you'll know you're succeeding:** You can explain why both
+> tags share one IMAGE ID. You can explain why already-pushed layers are
+> skipped during upload. Your image can be pulled and run from GHCR with no
+> local copy present.
