@@ -372,7 +372,7 @@ accounts for 20%.
 | Wed | 10/14 | [7]({{ site.baseurl }}/lectures/week-07/)  | Lecture  | Sequence Analysis — ChIP-Seq                                          |                         |
 | Fri | 10/16 | [7]({{ site.baseurl }}/lectures/week-07/)  | Lab      | Lab 09 — RNAseq and DESeq2 in R                                       |                         |
 | Mon | 10/19 | [8]({{ site.baseurl }}/lectures/week-08/)  | Lecture  | Sequence Analysis — ATAC-Seq                                          |                         |
-| Wed | 10/21 | [8]({{ site.baseurl }}/lectures/week-08/)  | Lecture  | P2 Check-In                                                           |                         |
+| Wed | 10/21 | [8]({{ site.baseurl }}/lectures/week-08/)  | Lecture  | P2 Check-In / Lab 09 - CRISPR Guides Part 1                                                         |                         |
 | Fri | 10/23 | [8]({{ site.baseurl }}/lectures/week-08/)  | Lab      | Lab 10 — CRISPR Guide Design                                          |                         |
 | Mon | 10/26 | [9]({{ site.baseurl }}/lectures/week-09/)  | Lecture  | Microbiome: 16S and Metagenomics                                      |                         |
 | Wed | 10/28 | [9]({{ site.baseurl }}/lectures/week-09/)  | Lecture  | Metabolomics                                                          |                         |
