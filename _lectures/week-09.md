@@ -7,9 +7,9 @@ layout: single
 
 ## Microbiome: 16S
 
-[online slides](https://docs.google.com/presentation/d/1iir7MCFph7vvHLsjts0HI_zel98nrttNWCigku-VzF8/present?usp=sharing)
+[online slides](https://docs.google.com/presentation/d/1op8OblD0NYhjvadd_M0kJvgcS8j3tXceAIqzthHQX5M/present?usp=sharing)
 
-[downloadable slides](https://docs.google.com/presentation/d/1iir7MCFph7vvHLsjts0HI_zel98nrttNWCigku-VzF8/export/pptx)
+[downloadable slides](https://docs.google.com/presentation/d/1op8OblD0NYhjvadd_M0kJvgcS8j3tXceAIqzthHQX5M/export/pptx)
 
 ---
 
