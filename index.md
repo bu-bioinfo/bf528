@@ -332,15 +332,11 @@ earlier reports into later ones. A weak Project 1 followed by clear
 improvement carries more weight than a strong Project 1 followed by
 stagnation.
 
-**Self-assessment.**
-Each submission includes a self-assessment (AIAS Level 1 — see
-above). This is not graded on content. It is graded on depth and
-honesty. The questions are simple: where did you meet the learning
-objectives? Where do you still have gaps? What would you do
-differently? These reflections are the primary record of your
-learning across the semester. My hope is that this structure frees you to engage
-with AI tools transparently, focus on the material, and reflect honestly on your
-own growth without the grade getting in the way.
+**Rubric Feedback**
+You will be given feedback from each project in the form a rubric.
+The feedback is focused on preciseness of language and how well
+you justify your choices using data or evidence. You should use
+the rubric to adjust your project reports as you go forward.
 
 **Final weights.**
 Projects account for 80% of your final grade; lab participation
