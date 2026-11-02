@@ -7,9 +7,9 @@ layout: single
 
 ## Single Cell Analysis Part 1
 
-[online slides](https://docs.google.com/presentation/d/16rQQp-PIxlvrm5jDYkjgonv35rhntsU1UQMc6xilvJ8/present?usp=sharing)
+[online slides](https://docs.google.com/presentation/d/1phTyRPpzn0J_gT1qFwBWR2rxCHCSbalAe5isRY6ce3c/present?usp=sharing)
 
-[downloadable slides](https://docs.google.com/presentation/d/16rQQp-PIxlvrm5jDYkjgonv35rhntsU1UQMc6xilvJ8/export/pptx)
+[downloadable slides](https://docs.google.com/presentation/d/1phTyRPpzn0J_gT1qFwBWR2rxCHCSbalAe5isRY6ce3c/export/pptx)
 
 ---
 
