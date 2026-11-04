@@ -3,6 +3,8 @@ title: "Project 3: ChIPseq"
 layout: single
 ---
 
+{% assign report = site.baseurl | append: "/projects/project_3_report/" %}
+
 # Workflow Visualization
 
 ![workflow]({{ site.baseurl }}/assets/images/project-3-workflow-diagram.svg)
@@ -68,23 +70,23 @@ has the desired behavior.
 
 # Containers for Project 3
 
-FastQC: `ghcr.io/bf528/fastqc:latest`
+FastQC: `ghcr.io/bu-cds-bf528/fastqc:latest`
 
-MultiQC: `ghcr.io/bf528/multiqc:latest`
+MultiQC: `ghcr.io/bu-cds-bf528/multiqc:latest`
 
-Bowtie2: `ghcr.io/bf528/bowtie2:latest`
+Bowtie2: `ghcr.io/bu-cds-bf528/bowtie2:latest`
 
-deepTools: `ghcr.io/bf528/deeptools:latest`
+deepTools: `ghcr.io/bu-cds-bf528/deeptools:latest`
 
-Trimmomatic: `ghcr.io/bf528/trimmomatic:latest`
+Trimmomatic: `ghcr.io/bu-cds-bf528/trimmomatic:latest`
 
-Samtools: `ghcr.io/bf528/samtools:latest`
+Samtools: `ghcr.io/bu-cds-bf528/samtools:latest`
 
-Bedtools: `ghcr.io/bf528/bedtools:latest`
+Bedtools: `ghcr.io/bu-cds-bf528/bedtools:latest`
 
-HOMER/Samtools: `ghcr.io/bf528/homer_samtools:latest`
+HOMER/Samtools: `ghcr.io/bu-cds-bf528/homer_samtools:latest`
 
-# Week 1: ChIPseq
+# Phase 1: Blind analysis
 
 ## Overview
 
@@ -95,11 +97,11 @@ denoted by the suffix _rep1 and _rep2. The IP and INPUT for each
 replicate originated from the same sample and should be used together when 
 performing peak calling. 
 
-IP (Immunoprecipitate) refers to the reads for the factor of interest and INPUT refers to the reads
-for the control. The IP samples were the sequences enriched for binding for our
-factor of interest. INPUT is used to normalize the IP reads and allow us to make
-more robust inferences about enrichment of binding in the IP relative to what 
-we expected in the background or INPUT. 
+IP (Immunoprecipitate) refers to the reads for the factor of interest and INPUT
+refers to the reads for the control. The IP samples were the sequences enriched
+for binding for our factor of interest. INPUT is used to normalize the IP reads
+and allow us to make more robust inferences about enrichment of binding in the
+IP relative to what we expected in the background or INPUT. 
 
 For many NGS experiments, the initial steps are largely universal. We perform
 quality control on the sequencing reads, build an index for the reference
@@ -109,6 +111,10 @@ these steps. For RNAseq, it is important to use a splice-aware aligner when
 aligning against a reference **genome** since our sequences originated from
 mRNA. For ChIPseq experiments, our reads originated from DNA sequences and we
 can use a non-splice aware algorithm to map our reads to the reference genome.
+
+You will use this description of the samples to write the
+[Experimental Design]({{ report }}#experimental-design-1-paragraph) section of
+your report.
 
 ## Objectives
 
@@ -131,10 +137,10 @@ can use a non-splice aware algorithm to map our reads to the reference genome.
 ## Quality Control, Genome indexing and alignment
 
 Between the past projects and the early labs we did, you should have working modules
-that perform quality control using FastQC and trimmomatic, build a genome index
+that perform quality control using FastQC, build a genome index
 using bowtie2, and align reads to a genome. We are going to take advantage of
-the modularity of nextflow by simply copying these previous modules and
-incorporating them into this workflow.
+the modularity of nextflow and you can simply copy these working modules to this
+repo.
 
 The samples termed IP are the samples of interest (IP for a factor of interest)
 and the samples labeled INPUT are the control samples. Remember ChIP-seq experiments
@@ -144,7 +150,7 @@ are paired (e.g. INPUT_rep1 is the control for IP_rep1)
 When you are developing the beginning of your workflow, use the subsampled files
 (they will not work once you get to the peak calling step). I have made the initial
 channel for you. You will switch to the full data before peak calling, as
-described in week 2.
+described in [Switching to the full data](#switching-to-the-full-data).
 
 **Please note that the subsampled_files are named differently than the full files!**
 
@@ -191,6 +197,10 @@ flagstat output)
 2. Copy your previous multiqc module and incorporate it into your workflow to 
 generate a MultiQC report for the listed outputs
 
+You will use this MultiQC report for the
+[Read Quality Control]({{ report }}#read-quality-control-1-2-paragraphs)
+section of your report.
+
 ## Generating bigWig files from our BAM files
 
 Now that we have sorted and indexed our alignments, we are going to generate
@@ -205,50 +215,11 @@ of the sample BAM files.
 2. You may use all default parameters. If you wish, you may change the `-bs` and
 `-p` flags as needed. 
 
-## Week 1 Tasks Summary
-
-- Create nextflow modules that run the following tools:
-  
-  1. FastQC
-  2. Trimmomatic
-  3. Bowtie2 index
-  4. Bowtie2 Align
-  5. Samtools Sort
-  6. Samtools Index
-  7. Samtools Flagstats
-  8. Deeptools bamCoverage
-  9. MultiQC
-
-- Use the initial provided channel and params in the `nextflow.config` and 
-create a workflow that runs all of the modules in the correct order
-
-# Week 2: ChIPseq
-
-## Overview
-
-For week 2, you will be performing a quick quality control check by plotting
-the correlation between the bigWigs you generated last week. Then, you will be
-performing standard peak calling analysis using HOMER, generating a single set
-of reproducible and filtered peaks, and annotating those peaks to their nearest
-genomic feature. 
-
-## Objectives
-
-- Plot the correlation between the bigWig representations of your samples
-
-- Switch your workflow to the full data
-
-- Perform peak calling using HOMER on each of the two replicate experiments
-
-- Use bedtools to generate a single set of reproducible peaks with ENCODE
-blacklist regions filtered out
-
-- Annotate your filtered, reproducible peaks using HOMER
-
 ## Create and use a single Jupyter notebook for any images, reports or written discussion
 
 Please create a single jupyter notebook (.ipynb) that contains all of the 
-requested figures, images or discussion requested. Please
+requested figures, images or discussion described in the
+[Project 3 report]({{ report }}). Please
 create a dedicated .yml file that specifies any needed packages (including
 an up-to-date installation of `ipykernel`). You may refer to the website for
 instructions on how to do this.
@@ -279,6 +250,29 @@ samples.
 a plot of the distances between correlation coefficients for all of your samples.
 You will need to choose whether to use a pearson or spearman correlation. In
 a notebook you create, provide a short justification for what you chose. 
+
+You will display and discuss this plot in the
+[Sample Quality Control]({{ report }}#sample-quality-control-2-paragraphs)
+section of your report.
+
+## Create a Fingerprint Plot  
+
+We discussed in class how fingerprint plots show how well the signal in a ChIPseq
+sample can be distinguished from the background distribution of reads in the 
+control. The basic intuition is that an ideal input would have a perfectly uniform
+distribution of reads across the genome. A very specific and strong ChIPseq sample
+should have a large proportion of its reads concentrated in a subset of regions 
+(i.e. the regions the factor prefers to bind) as compared to the entire genome.
+
+Conceptually, this plot bins the genome into intervals and counts how many alignments
+fall into each bin. It then ranks the bins and plots the cumulative sum.
+
+1. Create a module and use the `plotFingerprint` utility in Deeptools to generate
+a fingerprint plot for all of your samples.
+
+You will display and discuss this plot in the
+[Sample Quality Control]({{ report }}#sample-quality-control-2-paragraphs)
+section of your report.
 
 ## Switching to the full data
 
@@ -348,6 +342,10 @@ peaks from both of your replicate experiments.
 2. In your created notebook, please provide a quick statement on how you chose
 to come up with a consensus set of peaks. 
 
+You will report your peak counts and justify your intersection strategy in the
+[Peak Calling and Filtering]({{ report }}#peak-calling-and-filtering-1-2-paragraphs)
+section of your report.
+
 ## Filtering peaks found in ENCODE blacklist regions
 
 In next generation sequencing experiments, there are certain regions of the
@@ -368,6 +366,10 @@ blacklist BED for the most recent human reference genome. Generally speaking,
 you can remove a peak if it overlaps a blacklisted region by even 1bp as that is
 sufficiently close to consider it a signal-artifact region.
 
+The number of peaks remaining after filtering is also reported in the
+[Peak Calling and Filtering]({{ report }}#peak-calling-and-filtering-1-2-paragraphs)
+section of your report.
+
 ## Annotating peaks to their nearest genomic feature using HOMER
 
 Now that we have a single set of reproducible peaks with signal-artifact blacklisted
@@ -386,40 +388,11 @@ matching GTF to use custom annotations.** Look further down the directions page
 for the argument order. This will make use of your params for the reference
 fasta and the GTF.
 
-## Week 2 Tasks Summary
-
-- Create nextflow modules that perform the following tasks:
-  
-  1. Create a correlation plot between the sample bigWigs using deeptools 
-  `multiBigwigSummary` and `plotCorrelation`
-  2. Create a module that uses HOMER `makeTagDirectory` on each of your BAM files
-  3. Switch your workflow to the full data samplesheet and run it on the cluster
-  4. Use HOMER `findPeaks` to perform peak calling on both replicate experiments
-  5. Convert the HOMER peak outputs to BED format using `pos2bed.pl`
-  6. Generate a single set of reproducible peaks using bedtools
-  7. Filter peaks contained within the ENCODE blacklist using bedtools
-  8. Annotate peaks to their nearest genomic feature using HOMER
-
-# Week 3: ChIPseq
-
-## Overview
-
-In week 3, you will be using the UCSC table browser to obtain a BED file
-containing the start and end positions of every gene in the hg38 human reference
-genome. This will enable you to plot the signal coverage from your samples in
-relation to genic structure (Transcription Start Site and Transcription
-Termination Site). You will also be performing motif enrichment to determine
-what motifs appear to be enriched in the binding sites detected in your peaks.
-
-## Objectives
-
-- Extract the TSS and TTS for every gene in the hg38 reference in BED format
-using the UCSC table browser
-
-- Use the deeptools utilities computeMatrix and plotProfile, the UCSC BED, and
-your IP sample bigwigs to create a signal intensity plot
-
-- Perform motif enrichment on your reproducible and filtered peaks using HOMER
+You will use these annotated peaks in the
+[Annotation and Enrichment Analysis]({{ report }}#annotation-and-enrichment-analysis-2-3-paragraphs)
+section of your report, and again when
+[integrating with the RNAseq results]({{ report }}#integrating-your-peaks-with-their-rnaseq-results-3-4-paragraphs)
+in Phase 2.
 
 ## Download an hg38 gene BED from UCSC table browser
 
@@ -457,7 +430,7 @@ are incredibly powerful tools and repositories for genome-wide sequencing data.
 Now that we have our bigWig files (count of reads falling into bins across the
 genome) and the BED file of the start and end position of all of the genes in 
 the hg38 reference, we will calculate and visualize the signal falling into 
-these annotated regions. 
+these annotated regions focusing on the TSS/TES.
 
 1. Use the `computeMatrix` utility in deeptools, your bigWig files, and the BED
 file you downloaded to generate a matrix file containing the counts of reads
@@ -474,9 +447,13 @@ only done for the IP samples.
 a simple visualization of the read counts from the IP samples across the body of
 genes from the hg38 reference. 
 
+You will display and discuss this plot in the
+[Signal Coverage Plot]({{ report }}#signal-coverage-plot-1-2-paragraphs)
+section of your report.
+
 ## Finding enriched motifs in ChIP-seq peaks
 
-We will be using the single set of reproducible and filtered peaks from last week
+We will be using the single set of reproducible and filtered peaks from Phase 1
 to search for enriched motifs in our peaks. Many DNA binding proteins have been
 found to have higher affinity for specific DNA binding sites with recurring sequence
 and pattern. These motifs may reveal key information about gene regulation by
@@ -488,6 +465,10 @@ to perform motif enrichment, you may find the manual [here](http://homer.ucsd.ed
 1. Use the `findMotifsGenome.pl` utility in HOMER to perform motif enrichment
 analysis on your set of reproducible and filtered peaks. 
 
+You will use the knownResults output in the
+[Motif Finding]({{ report }}#motif-finding-1-2-paragraphs)
+section of your report.
+
 ## Setting up the publish and output blocks
 
 Use a `publish:` section inside of your `workflow` block and an `output` block
@@ -497,46 +478,39 @@ At minimum, publish the following:
 
 - The MultiQC report
 - The correlation plot from `plotCorrelation`
-- The bigWig files for each sample (you will need these in week 4)
+- The fingerprint plot from `plotFingerprint`
+- The bigWig files for each sample (you will need these in Phase 2)
 - The reproducible and filtered peaks BED file
 - The annotated peaks from `annotatePeaks.pl`
 - The signal intensity plot from `plotProfile`
 - The motif enrichment results from `findMotifsGenome.pl`
 
-## Week 3 Tasks Summary
+## Analyze the annotated peaks
 
-- Use the UCSC table browser to generate a BED file containing the TSS and TTS
-positions of every gene in the hg38 reference
+Use your annotated peaks list and perform an enrichment method of your choice.
+This is purposefully open-ended, so you may consider filtering your peaks by
+different categories before performing some kind of enrichment analysis. There
+are a few peak / region based enrichment methods (GREAT) in addition to standard
+methods used such as DAVID / Enrichr.
 
-- Create nextflow modules and update your script to perform the following tasks:
+What to report is described in the
+[Annotation and Enrichment Analysis]({{ report }}#annotation-and-enrichment-analysis-2-3-paragraphs)
+section of your report.
 
-  1. Runs computeMatrix to generate a matrix containing the read coverage relative
-  to the gene positions in the BED file
-  
-  2. Uses plotProfile to visualize the results generated by computeMatrix for 
-  each of the two IP samples
-  
-  3. Utilizes HOMER to perform basic motif finding on your reproducible and 
-  filtered peaks
+## Write a methods section
 
-- Publish your key results to the `results/` directory using the `publish:` and
-`output` blocks
-  
-# Week 4: ChIPseq
+Write a methods section for the complete analysis workflow implemented by your
+pipeline, following the guidelines in the
+[Methods]({{ report }}#methods-as-long-as-needed) section of your report.
 
-## Overview
-
-For the final week, you will be reading the original paper and interpreting
-your results in the context of the publication's results. Specifically, you will
-be focusing on reproducing the results shown in figure 2 with your own findings. 
-This exercise is not meant to make any assertions as to the ground "truth" but
-to encourage you to think about reproducibility in science. 
+# Phase 2: Informed analysis
 
 **Reminder**
 
-The tasks for this week will largely ask you to re-create the same figures found
-in the original publication with your own results. Remember that this is not
-meant to assert that one approach or one set of results are the only right answer.
+When you are asked to re-create the same figures found in the original publication
+with your own results, remember that this is not meant to assert that one approach
+or one set of results are the only right answer.
+
 In science, we are constantly making assumptions and subjective choices, ideally
 based on sound logic and past knowledge, that will greatly impact the
 interpretation of the results we obtain. The purpose of this exercise is to
@@ -544,123 +518,40 @@ explore the factors that contribute to reproducibility in bioinformatics and
 develop an understanding of what it means for an experiment or publication to be
 "reproducible".
 
-## Objectives
-
-- Read the original publication and focus specifically on the results and
-discussion for figure 2
-
-- Reproduce figures 2D, 2E and 2F from the paper
-
-- Compare other key findings to the original publication
-
 ## Read the original paper
 
-The original publication has been posted on blackboard. Please read through the
-paper with a particular focus on the ChIP-Seq experiment presented in figure 2.
+At the end of the 2nd week, the original publication will be posted to blackboard.
+Please read through the paper with a particular focus on the ChIP-Seq experiment
+presented in figure 2. This begins
+[Phase 2]({{ report }}#phase-2-informed-analysis) of your report.
 
 ## Overlap your ChIPseq results with the original RNAseq data
 
-In their publication find the link to their GEO submission. Read the methods
-section of the paper and integrate **your** called ChIPSeq peaks with the results
-from **their** differential expression RNAseq experiment. Use your set of
-reproducible and filtered peaks, and use the publication's listed significance
-thresholds for the RNAseq results.
+In their publication find the link to their GEO submission and download their
+differential expression RNAseq results. You will integrate **your** reproducible
+and filtered peaks with **their** RNAseq results, using the publication's listed
+significance thresholds. You may do this in python using pandas or R using
+tidyverse / ggplot, starting by reading the RNAseq results and your annotated
+peaks as dataframes.
 
-1. You may do all of these steps in python using pandas or R using tidyverse /
-ggplot. You may start by reading the RNAseq results and the annotated peak
-results as dataframes.
+You will likely not be able to exactly reproduce what the authors did for
+figure 2F. Use the promoter-TSS start site from your annotated peaks in place of
+the gene body.
 
-2. Create a figure that displays the same information of figure 2F from the
-original publication using your annotated peaks and the RNAseq results. The 
-figure does not have to be the same style but must convey the same information
-using your results.
+For figures 2D and 2E, you will need your bigWig files, your filtered and
+reproducible peaks, and a genome browser of your choice.
 
-3. In figures 2D and 2E, the authors identify and highlight two specific genes
-that were identified in both experiments. Using your list of filtered and
-reproducible peaks, a genome browser of your choice, and your bigWig files, please
-re-create these figures with your own results (You do not need to include the
-RNAseq data, but you should re-create the genomic tracks from your ChIPseq results)
-
-4. In the notebook you created, please ensure you address the following questions:
-
-  1. Focusing on your results for figure 2F (You will likely not be able to exactly
-  reproduce what they did - use the promoter-TSS start site in place of the gene
-  body from your own results):
-    - Do you observe any differences in the number of overlapping genes from both
-    analyses?
-    - If you do observe a difference, explain at least two factors that
-    may have contributed to these differences. 
-    - What is the rationale behind combining these two analyses in this way? What
-    additional conclusions is it supposed to enable you to draw?
-    
-  2. Focusing on your results for figures 2D and 2E:
-    - From your annotated peaks, do you observe statistically significant peaks
-    in these same two genes?
-    - How similar do your genomic tracks appear to those in the paper? If you 
-    observe any differences, comment briefly on why there may be discrepancies. 
+The figures to produce and questions to answer are in the
+[Integrating Your Peaks with Their RNAseq Results]({{ report }}#integrating-your-peaks-with-their-rnaseq-results-3-4-paragraphs)
+section of your report.
 
 ## Comparing key findings to the original paper
 
-Find the supplementary information for the publication and focus on supplementary
-figure S2A, S2B, and S2C. 
+Find the supplementary information for the publication, focusing on
+supplementary figures S2A, S2B, and S2C. You will need your MultiQC report,
+your correlation plot, and your per-replicate and reproducible peak sets.
 
-1. Re-create the table found in supplementary figure S2A. Compare the results 
-with your own findings. Address the following questions:
+The figures to produce and questions to answer are in the
+[Comparing Sequencing and Peak Results]({{ report }}#comparing-sequencing-and-peak-results-3-4-paragraphs)
+section of your report.
 
-  - Do you observe differences in the reported number of raw and mapped reads?
-  
-  - If so, provide at least two explanations for the discrepancies. 
-  
-2. Compare your correlation plot with the one found in supplementary figure S2B. 
-
-  - Do you observe any differences in your calculated metrics?
-  
-  - What was the author's takeaway from this figure? What is your conclusion
-  from this figure regarding the success of the experiment?
-  
-3. Create a venn diagram with the same information as found in figure S2C. 
-
-  - Do you observe any differences in your results compared to what you see?
-  
-  - If so, provide at least two explanations for the discrepancies in the number
-  of called peaks. 
-
-## Analyze the annotated peaks
-
-Use your annotated peaks list and perform an enrichment method of your choice. 
-This is purposefully open-ended so you may consider filtering your peaks by
-different categories before performing some kind of enrichment analysis. There are
-a few peak / region based enrichment methods (GREAT) in addition to standard
-methods used such as DAVID / Enrichr. 
-
-1. In your created notebook, detail the methodology used to perform the enrichment.
-
-2. Create a single figure / plot / table that displays some of the top results
-from the analysis.
-
-3. Comment briefly in a paragraph about the results you observe and why they 
-may be interesting.
-
-## Write a methods section
-
-In your notebook, write a methods section for the complete analysis workflow
-implemented by your pipeline. Adhere to the guidelines and style discussed in
-class and include the tools, versions and any non-default parameters you used.
-
-## Week 4 Tasks Summary
-
-- Read the original publication with a particular focus on figure 2
-
-- Write a methods section for the complete analysis workflow implemented by your
-pipeline while adhering to the guidelines and style discussed in class
-
-- Download the original publication's RNAseq results and apply their listed
-significance threshold. Use this information to re-create figure 2F. 
-
-- Re-create figures 2D and 2E and ensure you address the listed questions
-
-- Find supplementary figure S2 and re-create or compare your findings to
-supplementary figures S2A, S2B and S2C. Ensure you address any listed questions. 
-
-- Perform an enrichment method using your annotated peaks and highlight the top
-results
