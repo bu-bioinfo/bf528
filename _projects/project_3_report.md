@@ -83,7 +83,7 @@ state that there is no issue):
 - Any potential issues with the reads as flagged by FastQC
 - Any overrepresented sequences, or adapter contamination in the reads
 - The alignment rate of the reads to the reference genome
-- The duplication rate, and whether it differs between IP and input samples
+- The duplication rate and GC content distribution, and whether they differ between IP and input samples
 - Based on your evaluation above, please state whether you believe the
 experiment was of high quality and was suitable for downstream analysis. If
 not, please state what you would do to improve the quality of the reads.

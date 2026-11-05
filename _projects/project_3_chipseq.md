@@ -28,7 +28,7 @@ These conventions include:
   4. Encoding reference file paths in the `nextflow.config`
   5. Encoding sample info and sample file paths in a csv that drives your workflow
   6. Requesting appropriate computational resources per job
-  7. Including a `stub` block in every process
+  7. Including a `stub` block in every process so that you can test your workflow logic
 
 ## Fill out the specifications.md provided
 
@@ -38,20 +38,10 @@ about what your pipeline is doing, how it is behaving, and which points are crit
 for you to review or validate. This will become especially important to keep in
 mind once you start using agentic coding harnesses to develop workflows. 
 
-## Important Note for developing your workflow
+Use the completed `specifications.md` to write a methods section for your pipeline.
+You may need to revisit this section after you've made certain choices in your
+analysis. 
 
-As in project 2, you should always include a `stub` block in every process that
-uses `touch` to generate fake versions of the outputs your process expects. Until
-you are 100% confident your workflow performs as expected, you should always run
-it with:
-
-```bash
-nextflow run main.nf -stub
-```
-
-This is really important for this project since the real data is quite large
-and you will only run it with the full data once you are sure that your pipeline
-has the desired behavior. 
 
 # Containers for Project 3
 
@@ -92,63 +82,32 @@ For many NGS experiments, the initial steps are largely universal. We perform
 quality control on the sequencing reads, build an index for the reference
 genome, and align the reads. However, the source of the data will inform what
 quality metrics are relevant and the particular choice of tools to accomplish
-these steps. For RNAseq, it is important to use a splice-aware aligner when
-aligning against a reference **genome** since our sequences originated from
-mRNA. For ChIPseq experiments, our reads originated from DNA sequences and we
-can use a non-splice aware algorithm to map our reads to the reference genome.
+these steps. For ChIPseq experiments, our reads originated from DNA sequences
+and we can use a non-splice aware algorithm to map our reads to the reference
+genome.
 
 You will use this description of the samples to write the
 [Experimental Design]({{ report }}#experimental-design-1-paragraph) section of
 your report.
 
-## Objectives
-
-- Assess QC on sequencing reads using FastQC
-
-- Trim adapters and low-quality reads using Trimmomatic
-
-- Build a bowtie2 index for the human reference genome
-
-- Align trimmed reads to the human reference genome
-
-- Run samtools flagstat to assess alignment statistics
-
-- Use MultiQC to aggregate all of the QC metrics
-
-- Use samtools to sort and index your BAM (alignment) files
-
-- Generate bigWig files from your BAM files using deepTools bamCoverage
-
 ## Quality Control, Genome indexing and alignment
-
-Between the past projects and the early labs we did, you should have working modules
-that perform quality control using FastQC, build a genome index
-using bowtie2, and align reads to a genome. We are going to take advantage of
-the modularity of nextflow and you can simply copy these working modules to this
-repo.
-
-The samples termed IP are the samples of interest (IP for a factor of interest)
-and the samples labeled INPUT are the control samples. Remember ChIP-seq experiments
-are paired (e.g. INPUT_rep1 is the control for IP_rep1)
 
 1. Use the provided CSV files that point to both the subsampled and full files.
 When you are developing the beginning of your workflow, use the subsampled files
-(they will not work once you get to the peak calling step). I have made the initial
-channel for you. You will switch to the full data before peak calling, as
-described in [Switching to the full data](#switching-to-the-full-data).
+(they will not work once you get to the peak calling step). You will switch to the
+full data before peak calling, as described in [Switching to the full data](#switching-to-the-full-data).
 
 **Please note that the subsampled_files are named differently than the full files!**
 
 2. The paths to the human reference genome, GTF and a few other critical files
 are already encoded in your `nextflow.config`. 
 
-3. Update your workflow `main.nf` to perform quality control using FastQC and
-trimmomatic, build a bowtie2 index for the human reference genome and align the
-reads to the reference genome. Remember that we have worked on code for bowtie2 
-build, bowtie2 align, multiqc, samtools sort, samtools index, and deeptools 
-bamCoverage in labs.
+3. Update your workflow `main.nf` to perform quality control using `FastQC`, and 
+trim your reads using `trimmomatic`, build a `bowtie2` index for the human 
+reference genome and align the reads to the reference genome using `bowtie2`
 
-**N.B. Some of the code from the labs will need to be modified to work for this specific experiment (paired end vs. single end, etc.)**
+You may use code from previous labs, look at nf-core pipelines or read the
+original documentation for what the commands might look like for these tools. 
 
 Remember to construct input and output records based on what you expect each
 process to need and produce. 
@@ -168,6 +127,8 @@ The samtools flagstat utility will report various statistics regarding the
 alignment flags found in the BAM.
 
 1. Create a module that will run samtools flagstat on all of your BAM files
+
+This step can be run before or after your BAMs are sorted and indexed. 
 
 ## Aggregating QC results with MultiQC
 
@@ -202,10 +163,9 @@ of the sample BAM files.
 
 ## Create and use a single Jupyter notebook for any images, reports or written discussion
 
-Please create a single jupyter notebook (.ipynb) that contains all of the 
-requested figures, images or discussion described in the
-[Project 3 report]({{ report }}). Please
-create a dedicated .yml file that specifies any needed packages (including
+Please use the provided jupyter notebook (.ipynb) to display all of the 
+requested figures, images or discussion described in the [Project 3 report]({{ report }}).
+Please create a dedicated .yml file that specifies any needed packages (including
 an up-to-date installation of `ipykernel`). You may refer to the website for
 instructions on how to do this.
 
@@ -221,7 +181,7 @@ Assuming the experiment was successful, we naively expect that the IP samples
 should be highly similar to each other as they should be capturing the same
 binding sites for the factor of interest. Following this logic, the input controls
 which represent a random background of DNA from the genome should be *different*
-from the IP samples and somewhat more similar to each other. 
+from the IP samples and more similar to each other. 
 
 We are going to perform a quick correlation analysis between the distances in
 our bigWig representations of our BAM files to determine the similarity between
@@ -233,8 +193,7 @@ samples.
 
 2. Create a module and use the `plotCorrelation` utility in deeptools to generate
 a plot of the distances between correlation coefficients for all of your samples.
-You will need to choose whether to use a pearson or spearman correlation. In
-a notebook you create, provide a short justification for what you chose. 
+You will need to decide which correlation metric to use, either pearson or spearman.
 
 You will display and discuss this plot in the
 [Sample Quality Control]({{ report }}#sample-quality-control-2-paragraphs)
