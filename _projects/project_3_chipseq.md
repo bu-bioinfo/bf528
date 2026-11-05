@@ -9,21 +9,6 @@ layout: single
 
 ![workflow]({{ site.baseurl }}/assets/images/project-3-workflow-diagram.svg)
 
-# REMINDER TO CLEAN UP YOUR WORKING DIRECTORY FROM PROJECT 2
-
-When you have successfully run your project 2 pipeline, please ensure that you 
-fully delete your work/ directory and any large files that you may have published
-to your results/ directory. 
-
-You may use the following command after navigating to your project 2 repository:
-
-```bash
-rm -rf work/
-```
-
-These samples are very large and we have limited disk space. I will be checking
-your working directories to ensure you do this. 
-
 # Project 3 Instructions
 
 Now that we have experience with Nextflow from two prior projects, the
