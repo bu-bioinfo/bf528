@@ -375,10 +375,10 @@ accounts for 20%.
 | Fri | 10/30 | [9]({{ site.baseurl }}/lectures/week-09/)  | Lab      | Lab 11 — Genome Browsers                                              |                         |
 | Mon | 11/2  | [10]({{ site.baseurl }}/lectures/week-10/) | Lecture  | Single Cell Analysis Part 1 / Spatial Transcriptomics                                           |                         |
 | Wed | 11/4  | [10]({{ site.baseurl }}/lectures/week-10/) | Lecture  | Single Cell Analysis Part 2                                           |                         |
-| Fri | 11/6  | [10]({{ site.baseurl }}/lectures/week-10/) | Lab      | Lab 12 — Snakemake                                                    | P2 due — P3 assigned    |
-| Mon | 11/9  | [11]({{ site.baseurl }}/lectures/week-11/) | Lab  | Single Cell Setup                                           |                         |
+| Fri | 11/6  | [10]({{ site.baseurl }}/lectures/week-10/) | Lecture     | Single Cell Analysis Part 3 / Snakemake                                                    | P2 due — P3 assigned    |
+| Mon | 11/9  | [11]({{ site.baseurl }}/lectures/week-11/) | Lab  | Single Cell Pre-processing with Snakemake                                           |                         |
 | Wed | 11/11 | [11]({{ site.baseurl }}/lectures/week-11/) | Lecture  | TBA                                               |                         |
-| Fri | 11/13 | [11]({{ site.baseurl }}/lectures/week-11/) | Lab      | Lab 13 — Single Cell Setup                                            |                         |
+| Fri | 11/13 | [11]({{ site.baseurl }}/lectures/week-11/) | Lab      | Lab 13 — Single Cell Practice                                            |                         |
 | Mon | 11/16 | [12]({{ site.baseurl }}/lectures/week-12/) | Lecture  | P3 Check-In                                                           |                         |
 | Wed | 11/18 | [12]({{ site.baseurl }}/lectures/week-12/) | Lecture  | Single Cell Analysis Part 4 / Extended Topics                         |                         |
 | Fri | 11/20 | [12]({{ site.baseurl }}/lectures/week-12/) | Lab      | Lab 14 — Single Cell QC                                               |                         |
