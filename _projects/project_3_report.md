@@ -39,8 +39,8 @@ interpretation; it's simply meant as a way for you to compare results.
 
 For this project, it will be easier to work in a Jupyter notebook. Please write
 all sections of the report in markdown blocks in your notebook and create or
-display any plots there as well. Please create a **single** Jupyter notebook
-that contains both phases.
+display any plots there as well. Please use the provided Jupyter notebook for
+all of your analyses, writing, and plots. 
 
 # Phase 1: Blind analysis
 
@@ -58,7 +58,7 @@ account for them with the information you have?
 
 ## Methods (as long as needed)
 
-Please view the presentation here for guidelines: [methods]({{ site.baseurl }}/_lectures/accessory-slides.md)
+Please view the presentation here for guidelines: [methods]({{ site.baseurl }}/lectures/accessory-slides/)
 
 The methods section should concisely describe which steps were taken in the
 analysis of the data. Remember to adhere to our conventions for writing a
@@ -70,13 +70,14 @@ exclude any details that should not affect the results, such as the exact file
 paths used.
 
 - Write a methods section for the pipeline you developed for project 3
+- Some of this information will come from your `specifications.md`.
 
 ## Read Quality Control (1-2 paragraphs)
 
-Use the MultiQC report or the individual logs from FastQC, Trimmomatic, and your
-aligner to evaluate the quality of the reads and alignments. Please make sure 
-that at minimum you specifically mention the following (even if there's no issue,
-state that there is no issue):
+Use the MultiQC report or the individual logs from FastQC, Trimmomatic, and 
+samtools flagstats to evaluate the quality of the reads and alignments. Please
+make sure that at minimum you specifically mention the following (even if there's
+no issue, state that there is no issue):
 
 - The range of the number of reads in all the samples
 - The proportion of reads that survived trimming

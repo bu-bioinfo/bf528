@@ -56,7 +56,7 @@ for them with the information you have?
 
 ## Methods (as long as needed)
 
-Please view the presentation here for guidelines: [methods]({{ site.baseurl }}/_lectures/accessory-slides.md)
+Please view the presentation here for guidelines: [methods]({{ site.baseurl }}/lectures/accessory-slides/)
 
 The methods section should concisely describe which steps were taken in the
 analysis of the data. Remember to adhere to our conventions for writing a

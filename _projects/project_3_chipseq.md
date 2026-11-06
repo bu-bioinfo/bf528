@@ -351,7 +351,7 @@ genomic coordinates of all of the genes in the reference genome. We will be
 using the UCSC table browser to extract out this information.
 
 Navigate to the [UCSC Table Browser](https://genome.ucsc.edu/cgi-bin/hgTables),
-use the following settings to extract a BED file listing the TSS/TTS locations
+use the following settings to extract a BED file listing the TSS/TES locations
 for every gene in the reference genome:
 
 ![ucsc_tablebrowser]({{ site.baseurl }}/assets/images/ucsc_tablebrowser.png)
@@ -397,7 +397,7 @@ section of your report.
 
 ## Finding enriched motifs in ChIP-seq peaks
 
-We will be using the single set of reproducible and filtered peaks from Phase 1
+We will be using the single set of reproducible and filtered peaks 
 to search for enriched motifs in our peaks. Many DNA binding proteins have been
 found to have higher affinity for specific DNA binding sites with recurring sequence
 and pattern. These motifs may reveal key information about gene regulation by
@@ -428,6 +428,7 @@ At minimum, publish the following:
 - The annotated peaks from `annotatePeaks.pl`
 - The signal intensity plot from `plotProfile`
 - The motif enrichment results from `findMotifsGenome.pl`
+- Per replicate peak calling results from `findPeaks`
 
 ## Analyze the annotated peaks
 
