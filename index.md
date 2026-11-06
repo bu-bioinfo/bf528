@@ -376,7 +376,7 @@ accounts for 20%.
 | Mon | 11/2  | [10]({{ site.baseurl }}/lectures/week-10/) | Lecture  | Single Cell Analysis Part 1 / Spatial Transcriptomics                                           |                         |
 | Wed | 11/4  | [10]({{ site.baseurl }}/lectures/week-10/) | Lecture  | Single Cell Analysis Part 2                                           |                         |
 | Fri | 11/6  | [10]({{ site.baseurl }}/lectures/week-10/) | Lecture     | Single Cell Analysis Part 3 / Snakemake                                                    | P2 due — P3 assigned    |
-| Mon | 11/9  | [11]({{ site.baseurl }}/lectures/week-11/) | Lab  | Single Cell Pre-processing with Snakemake                                           |                         |
+| Mon | 11/9  | [11]({{ site.baseurl }}/lectures/week-11/) | Lab  | Lab 12 - Single Cell Pre-processing                                           |                         |
 | Wed | 11/11 | [11]({{ site.baseurl }}/lectures/week-11/) | Lecture  | TBA                                               |                         |
 | Fri | 11/13 | [11]({{ site.baseurl }}/lectures/week-11/) | Lab      | Lab 13 — Single Cell Practice                                            |                         |
 | Mon | 11/16 | [12]({{ site.baseurl }}/lectures/week-12/) | Lecture  | P3 Check-In                                                           |                         |
