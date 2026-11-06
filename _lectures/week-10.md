@@ -13,11 +13,27 @@ layout: single
 
 ---
 
+## Spatial Transcriptomics
+
+[online slides](https://docs.google.com/presentation/d/19Ji9n3qz6UorA_9rqkH_ZNesxNqcHQjRfWbSTZckRyI/present?usp=sharing)
+
+[downloadable slides](https://docs.google.com/presentation/d/19Ji9n3qz6UorA_9rqkH_ZNesxNqcHQjRfWbSTZckRyI/export/pptx)
+
+---
+
 ## Single Cell Analysis Part 2
 
 [online slides](https://docs.google.com/presentation/d/1L1jbEt3h2-QTys5Fcoj1WqtNvxzo3s9vGR9vXnovEFQ/present?usp=sharing)
 
 [downloadable slides](https://docs.google.com/presentation/d/1L1jbEt3h2-QTys5Fcoj1WqtNvxzo3s9vGR9vXnovEFQ/export/pptx)
+
+---
+
+## Single Cell Analysis Part 3
+
+[online slides](https://docs.google.com/presentation/d/15YydshEvWM-pllyPfKdljEV3u5qL5nQY_nkiMP-rmuI/present?usp=sharing)
+
+[downloadable slides](https://docs.google.com/presentation/d/15YydshEvWM-pllyPfKdljEV3u5qL5nQY_nkiMP-rmuI/export/pptx)
 
 ---
 
