@@ -380,7 +380,7 @@ accounts for 20%.
 | Wed | 11/11 | [11]({{ site.baseurl }}/lectures/week-11/) | Lecture  | Single Cell ATACseq                                               |                         |
 | Fri | 11/13 | [11]({{ site.baseurl }}/lectures/week-11/) | Lab      | Lab 13 — Single Cell Practice                                            |                         |
 | Mon | 11/16 | [12]({{ site.baseurl }}/lectures/week-12/) | Lecture  | P3 Check-In                                                           |                         |
-| Wed | 11/18 | [12]({{ site.baseurl }}/lectures/week-12/) | Lecture  | Single Cell Analysis Part 4 / Extended Topics                         |                         |
+| Wed | 11/18 | [12]({{ site.baseurl }}/lectures/week-12/) | Lecture  | Special Topics: DNA Methylation                         |                         |
 | Fri | 11/20 | [12]({{ site.baseurl }}/lectures/week-12/) | Lab      | Lab 14 — Single Cell QC                                               |                         |
 | Mon | 11/23 | [13]({{ site.baseurl }}/lectures/week-13/) | Lab      | Lab 15 — Single Cell Integration                                      |                         |
 |     | 11/25 |                                            | NO CLASS | Thanksgiving Recess                                                   |                         |

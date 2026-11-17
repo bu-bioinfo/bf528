@@ -3,12 +3,11 @@ title: "Week 12"
 layout: single
 ---
 
+## DNA Methylation
 
-Project Check-In
+[online slides](https://docs.google.com/presentation/d/18HMsP6cqlOZEcX7HG8loCRaPZuUay7pNihGC2clAM7w/present?usp=sharing)
 
-Single Cell Analysis
-
-Single Cell Setup Lab
+[downloadable slides](https://docs.google.com/presentation/d/18HMsP6cqlOZEcX7HG8loCRaPZuUay7pNihGC2clAM7w/export/pptx)
 
 ---
 
