@@ -3,7 +3,12 @@ title: "Week 13"
 layout: single
 ---
 
+## Chromosome Conformation
 
-Single Cell QC Lab
+[online slides](https://docs.google.com/presentation/d/1fRGbtDP7p8vee3cqd2iDWe3hfRKcYKTHMiNgsETEpAs/present?usp=sharing)
 
-Thanksgiving Recess
+[downloadable slides](https://docs.google.com/presentation/d/1fRGbtDP7p8vee3cqd2iDWe3hfRKcYKTHMiNgsETEpAs/export/pptx)
+
+---
+
+

@@ -382,7 +382,7 @@ accounts for 20%.
 | Mon | 11/16 | [12]({{ site.baseurl }}/lectures/week-12/) | Lecture  | P3 Check-In                                                           |                         |
 | Wed | 11/18 | [12]({{ site.baseurl }}/lectures/week-12/) | Lecture  | Special Topics: DNA Methylation                         |                         |
 | Fri | 11/20 | [12]({{ site.baseurl }}/lectures/week-12/) | Lab      | Lab 14 — Single Cell QC                                               |                         |
-| Mon | 11/23 | [13]({{ site.baseurl }}/lectures/week-13/) | Lab      | Lab 15 — Single Cell Integration                                      |                         |
+| Mon | 11/23 | [13]({{ site.baseurl }}/lectures/week-13/) | Lab      | Special Topics: Chromosome Conformation / Open Office Hours                                      |                         |
 |     | 11/25 |                                            | NO CLASS | Thanksgiving Recess                                                   |                         |
 |     | 11/28 |                                            | NO CLASS | Thanksgiving Recess                                                   |                         |
 | Mon | 11/30 | [14]({{ site.baseurl }}/lectures/week-14/) | Lab      | Lab 16 — Single Cell Marker Gene Analysis                             |                         |
